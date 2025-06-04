@@ -105,7 +105,7 @@ spinePublishing {
     destinations = PublishingRepos.run {
         setOf(
             cloudArtifactRegistry,
-            gitHub("mc-java"),
+            gitHub("core-jvm-compiler"),
         )
     }
 }
@@ -187,11 +187,11 @@ fun Module.setupProtocArtifact() {
 }
 
 apply(from = "version.gradle.kts")
-val mcJavaVersion: String by extra
+val coreJvmCompilerVersion: String by extra
 
 val prepareBuildPerformanceSettings by tasks.registering(Exec::class) {
     environment(
-        "MC_JAVA_VERSION" to mcJavaVersion,
+        "MC_JAVA_VERSION" to coreJvmCompilerVersion,
         "CORE_VERSION" to CoreJava.version,
         "PROTO_DATA_VERSION" to ProtoData.version,
         "VALIDATION_VERSION" to Validation.version
