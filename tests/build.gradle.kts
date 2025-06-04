@@ -57,7 +57,7 @@ buildscript {
 
     standardSpineSdkRepositories()
 
-    val mcJavaVersion: String by extra
+    val coreJvmCompilerVersion: String by extra
     val protoData = io.spine.dependency.local.ProtoData
     dependencies {
         classpath(io.spine.dependency.lib.Guava.lib)
@@ -68,7 +68,7 @@ buildscript {
             exclude(group = "com.google.guava")
         }
         classpath(protoData.pluginLib)
-        classpath(io.spine.dependency.local.McJava.pluginLib(mcJavaVersion))
+        classpath(io.spine.dependency.local.McJava.pluginLib(coreJvmCompilerVersion))
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
     }

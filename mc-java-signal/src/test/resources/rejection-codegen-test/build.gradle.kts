@@ -36,7 +36,7 @@ buildscript {
     standardSpineSdkRepositories()
 
     val protoData = io.spine.dependency.local.ProtoData
-    val mcJavaVersion: String by extra
+    val coreJvmCompilerVersion: String by extra
     dependencies {
         io.spine.dependency.lib.Protobuf.libs.forEach { classpath(it) }
 
@@ -44,7 +44,7 @@ buildscript {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib) {
             exclude(group = "com.google.guava")
         }
-        classpath("io.spine.tools:spine-mc-java-plugins:${mcJavaVersion}:all")
+        classpath("io.spine.tools:spine-mc-java-plugins:${coreJvmCompilerVersion}:all")
     }
 }
 
