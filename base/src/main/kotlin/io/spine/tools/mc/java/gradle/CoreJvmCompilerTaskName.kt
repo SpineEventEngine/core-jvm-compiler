@@ -35,7 +35,8 @@ import io.spine.tools.gradle.task.TaskWithSourceSetName
 /**
  * Names of Gradle tasks defined by the Core JVM Compiler.
  */
-public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) : TaskWithSourceSetName(value, ssn) {
+public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
+    TaskWithSourceSetName(value, ssn) {
 
     public companion object {
 
