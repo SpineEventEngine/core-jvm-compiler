@@ -48,15 +48,26 @@ import org.gradle.api.Project
  */
 public class CoreJvmPlugin : LanguagePlugin(name(), McJavaOptions::class.java.kotlin) {
 
+    public companion object {
+
+        /**
+         * The ID of the Gradle plugin.
+         *
+         * Please make sure it is sync with the name of the file
+         * under `resources/META-INF/`.
+         */
+        public const val ID: String = "io.spine.core-jvm"
+    }
+
     public override fun apply(project: Project) {
         super.apply(project)
         project.pluginManager.withPlugin(gradlePlugin.id) { _ ->
-            project.applyMcJava()
+            project.applyCoreJvmPlugins()
         }
     }
 }
 
-private fun Project.applyMcJava() {
+private fun Project.applyCoreJvmPlugins() {
     logApplying()
     setProtocArtifact()
     val extension = project.mcJava

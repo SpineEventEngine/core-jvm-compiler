@@ -68,7 +68,7 @@ buildscript {
             exclude(group = "com.google.guava")
         }
         classpath(protoData.pluginLib)
-        classpath(io.spine.dependency.local.McJava.pluginLib(coreJvmCompilerVersion))
+        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib(coreJvmCompilerVersion))
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
     }

@@ -28,6 +28,7 @@ package io.spine.tools.mc.java.gradle;
 import io.spine.testing.TempDir;
 import io.spine.tools.java.fs.DefaultJavaPaths;
 import io.spine.tools.mc.java.gradle.given.StubProject;
+import io.spine.tools.mc.java.gradle.plugins.CoreJvmPlugin;
 import org.gradle.api.Project;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,13 +38,12 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.truth.Truth.assertThat;
 import static io.spine.tools.mc.java.StandardRepos.applyStandard;
 import static io.spine.tools.mc.java.gradle.Projects.getMcJava;
-import static io.spine.tools.mc.java.gradle.given.ModelCompilerTestEnv.MC_JAVA_GRADLE_PLUGIN_ID;
-import static io.spine.tools.mc.java.gradle.given.ModelCompilerTestEnv.newUuid;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -63,7 +63,7 @@ class TempArtifactDirsTest {
         var plugins = project.getPluginManager();
         plugins.apply("java");
         plugins.apply("com.google.protobuf");
-        plugins.apply(MC_JAVA_GRADLE_PLUGIN_ID);
+        plugins.apply(CoreJvmPlugin.ID);
         options = getMcJava(project);
     }
 
@@ -123,6 +123,12 @@ class TempArtifactDirsTest {
                                 .stream()
                                 .map(File::toString)
                                 .collect(toList());
+        return result;
+    }
+
+    static String newUuid() {
+        var result = UUID.randomUUID()
+                         .toString();
         return result;
     }
 }

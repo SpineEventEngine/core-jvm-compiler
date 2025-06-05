@@ -29,6 +29,7 @@ package io.spine.tools.mc.java.gradle;
 import io.spine.tools.gradle.task.TaskName;
 import io.spine.tools.gradle.testing.GradleProject;
 import io.spine.tools.mc.java.gradle.given.StubProject;
+import io.spine.tools.mc.java.gradle.plugins.CoreJvmPlugin;
 import org.gradle.api.Task;
 import org.gradle.api.tasks.TaskContainer;
 import org.junit.jupiter.api.BeforeAll;
@@ -40,22 +41,21 @@ import static io.spine.tools.gradle.task.BaseTaskName.clean;
 import static io.spine.tools.gradle.testing.GradleTruth.assertThat;
 import static io.spine.tools.mc.java.gradle.GradleProjects.evaluate;
 import static io.spine.tools.mc.java.gradle.CoreJvmCompilerTaskName.preClean;
-import static io.spine.tools.mc.java.gradle.given.ModelCompilerTestEnv.MC_JAVA_GRADLE_PLUGIN_ID;
 
-@DisplayName("`McJavaPlugin` should")
-class McJavaPluginSpec {
+@DisplayName("`CoreJvmPlugin` should")
+class CoreJvmPluginSpec {
 
     private static TaskContainer tasks = null;
 
     @BeforeAll
     static void createProjectWithPlugin() {
-        var project = StubProject.createFor(McJavaPluginSpec.class)
+        var project = StubProject.createFor(CoreJvmPluginSpec.class)
                                  .withMavenRepositories()
                                  .get();
         var plugins = project.getPluginManager();
         plugins.apply(GradleProject.javaPlugin);
         plugins.apply("com.google.protobuf");
-        plugins.apply(MC_JAVA_GRADLE_PLUGIN_ID);
+        plugins.apply(CoreJvmPlugin.ID);
 
         evaluate(project);
 
