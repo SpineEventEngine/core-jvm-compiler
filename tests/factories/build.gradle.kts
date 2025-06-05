@@ -25,9 +25,8 @@
  */
 
 import io.spine.dependency.lib.JavaPoet
-import io.spine.dependency.local.McJava
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.ProtoData
-import io.spine.dependency.local.Spine
 import io.spine.dependency.local.ToolBase
 
 // Turn off validation codegen during the transition to the new ProtoData API.
@@ -48,6 +47,6 @@ dependencies {
     implementation(JavaPoet.lib)
     implementation(ToolBase.lib)
     implementation(ProtoData.api)!!.because("Custom codegen actions use ProtoData API.")
-    val mcJavaBase = McJava.base(version.toString())
-    implementation(mcJavaBase)!!.because("We take abstract base classes from this artifact.")
+    val coreJvmBase = CoreJvmCompiler.base(version.toString())
+    implementation(coreJvmBase)!!.because("We take abstract base classes from this artifact.")
 }

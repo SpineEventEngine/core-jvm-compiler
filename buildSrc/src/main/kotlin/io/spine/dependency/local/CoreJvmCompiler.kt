@@ -79,5 +79,5 @@ object CoreJvmCompiler {
     /**
      * The `mc-java-base` artifact with the given [version].
      */
-    fun base(version: String): String = "$group:core-vjm-base:$version"
+    fun base(version: String): String = "$group:core-jvm-base:$version"
 }
