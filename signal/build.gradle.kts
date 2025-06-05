@@ -1,11 +1,11 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,34 +24,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.Logging
+import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.TestLib
+import io.spine.dependency.local.ToolBase
 
-include(
-    "gradle-plugins",
-    "plugin-bundle",
-    "annotation",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+plugins {
+    id("io.spine.mc-java")
+}
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+dependencies {
+    arrayOf(
+        Logging.lib,
+        CoreJava.server,
+        ToolBase.psiJava,
+        project(":base")
+    ).forEach {
+        implementation(it)
     }
+
+    arrayOf(
+        gradleTestKit(),
+        TestLib.lib,
+        ToolBase.pluginTestlib,
+        ProtoData.testlib
+    ).forEach {
+        testImplementation(it)
+    }
+}
+
+/**
+ * Tests use the artifacts published to `mavenLocal`, so we need to publish them all first.
+ */
+tasks.test {
+    dependsOn(rootProject.tasks.named("localPublish"))
 }

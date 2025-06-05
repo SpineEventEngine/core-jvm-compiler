@@ -1,11 +1,11 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,34 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.mc.java.marker.given;
 
-include(
-    "gradle-plugins",
-    "plugin-bundle",
-    "annotation",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import com.google.protobuf.Message;
+import io.spine.annotation.GeneratedMixin;
+import io.spine.protobuf.Messages;
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+/**
+ * The grouping interface for all types declared in {@code animals.proto}.
+ */
+@SuppressWarnings("unused")
+@GeneratedMixin
+public interface Animal extends Message {
+
+    /**
+     * A stub method which simply obtains a default instance of the same class as this.
+     */
+    @SuppressWarnings({"unused", "TypeParameterUnusedInFormals"})
+    default <A extends Animal> A empty() {
+        @SuppressWarnings("unchecked")
+        var cls = (Class<A>) this.getClass();
+        return Messages.getDefaultInstance(cls);
     }
 }

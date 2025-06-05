@@ -108,6 +108,7 @@ spinePublishing {
             gitHub("core-jvm-compiler"),
         )
     }
+    artifactPrefix = "spine-core-jvm-"
 }
 
 allprojects {
@@ -145,7 +146,7 @@ val localPublish by tasks.registering {
  * The build task executed under `tests` subdirectory.
  *
  * These tests depend on locally published artifacts.
- * It is similar to the dependency on such artifacts that `:mc-java` module declares for
+ * It is similar to the dependency on such artifacts that `:gradle-plugins` module declares for
  * its tests. So, we depend on the `test` task of this module for simplicity.
  */
 val integrationTests by tasks.registering(RunBuild::class) {

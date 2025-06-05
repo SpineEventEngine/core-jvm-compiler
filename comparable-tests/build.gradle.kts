@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,34 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+import io.spine.dependency.local.Logging
+import io.spine.dependency.local.TestLib
 
-include(
-    "gradle-plugins",
-    "plugin-bundle",
-    "annotation",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+plugins {
+    prototap
+    `test-module`
+}
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+dependencies {
+    testImplementation(TestLib.lib)
+    testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
+    testImplementation(project(":comparable"))
+    testImplementation(testFixtures(project(":base")))
 }

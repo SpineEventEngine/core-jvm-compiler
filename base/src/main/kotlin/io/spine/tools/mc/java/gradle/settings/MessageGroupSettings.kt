@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,40 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-include(
-    "annotator",
-    "custom-annotations",
-    "factories",
-    "entity-queries",
-    "known-types",
-    "model-compiler",
-    "rejection",
-    "mc-java-comparable",
-    "validation-smoke"
-)
+package io.spine.tools.mc.java.gradle.settings
 
-/*
- * Dependency links established with the Gradle included build.
- *
- * See the `includeBuild(...)` block below for more info.
- */
-val links = mapOf(
-    "io.spine.tools:spine-core-jvm" to ":"
-)
+import com.google.common.base.MoreObjects
+import io.spine.tools.mc.java.settings.MessageGroup
+import io.spine.tools.mc.java.settings.Pattern
+import io.spine.tools.mc.java.settings.messageGroup
+import io.spine.type.shortDebugString
+import org.gradle.api.Project
 
-/*
- * Include the `mc-java` build into the `tests` project build.
+/**
+ * Codegen settings for messages which match a certain pattern.
  *
- * Integration tests are built separately in order to be able to test the current
- * version of the Gradle plugins.
+ * @param project The project for which settings are created.
+ * @property pattern The pattern to select message types.
  *
- * See the Gradle manual for more info:
- * https://docs.gradle.org/current/userguide/composite_builds.html
+ * @constructor Creates an instance of settings for the given project and the specified pattern.
+ *
+ * @see CodegenSettings.forMessages
  */
-includeBuild("$rootDir/../") {
-    dependencySubstitution {
-        links.forEach { (id, projectPath) ->
-            substitute(module(id)).using(project(projectPath))
+public class MessageGroupSettings internal constructor(
+    project: Project,
+    private val pattern: Pattern
+) : SettingsWithFields<MessageGroup>(project) {
+
+    override fun toProto(): MessageGroup {
+        return messageGroup {
+            pattern = this@MessageGroupSettings.pattern
+            actions = actions()
         }
+    }
+
+    override fun toString(): String {
+        return MoreObjects.toStringHelper(this)
+            .add("pattern", pattern.shortDebugString())
+            .toString()
     }
 }
