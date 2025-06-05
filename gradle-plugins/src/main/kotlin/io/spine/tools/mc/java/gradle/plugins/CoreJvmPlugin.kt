@@ -46,7 +46,7 @@ import org.gradle.api.Project
  *
  * Applies all McJava sub-plugins to the given project.
  */
-public class McJavaPlugin : LanguagePlugin(name(), McJavaOptions::class.java.kotlin) {
+public class CoreJvmPlugin : LanguagePlugin(name(), McJavaOptions::class.java.kotlin) {
 
     public override fun apply(project: Project) {
         super.apply(project)
@@ -66,7 +66,7 @@ private fun Project.applyMcJava() {
 
 private fun Project.logApplying() {
     val version = VersionHolder.version.value
-    logger.warn("Applying `${simply<McJavaPlugin>()}` (version: $version) to `$name`.")
+    logger.warn("Applying `${simply<CoreJvmPlugin>()}` (version: $version) to `$name`.")
 }
 
 private fun Project.setProtocArtifact() {

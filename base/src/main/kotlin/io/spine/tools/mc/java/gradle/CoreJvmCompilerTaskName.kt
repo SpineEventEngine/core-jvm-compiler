@@ -1,11 +1,11 @@
 /*
- * Copyright 2023, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -23,6 +23,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package io.spine.tools.mc.java.gradle
 
 import io.spine.tools.code.SourceSetName
@@ -32,9 +33,9 @@ import io.spine.tools.gradle.task.TaskName
 import io.spine.tools.gradle.task.TaskWithSourceSetName
 
 /**
- * Names of Gradle tasks defined by the Spine Model Compiler plugin.
+ * Names of Gradle tasks defined by the Core JVM Compiler.
  */
-public class McJavaTaskName(value: String, ssn: SourceSetName) : TaskWithSourceSetName(value, ssn) {
+public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) : TaskWithSourceSetName(value, ssn) {
 
     public companion object {
 
@@ -48,14 +49,14 @@ public class McJavaTaskName(value: String, ssn: SourceSetName) : TaskWithSourceS
          */
         @JvmStatic
         public fun annotateProto(ssn: SourceSetName): TaskName =
-            McJavaTaskName("annotate${ssn.toInfix()}Proto", ssn)
+            CoreJvmCompilerTaskName("annotate${ssn.toInfix()}Proto", ssn)
 
         /**
          * Obtains the name of the task which generate rejections for the specified source set.
          */
         @JvmStatic
         public fun generateRejections(ssn: SourceSetName): TaskName =
-            McJavaTaskName("generate${ssn.toInfix()}Rejections", ssn)
+            CoreJvmCompilerTaskName("generate${ssn.toInfix()}Rejections", ssn)
 
         /**
          * Obtains the name of the task which merges descriptor set files of the specified
@@ -63,7 +64,7 @@ public class McJavaTaskName(value: String, ssn: SourceSetName) : TaskWithSourceS
          */
         @JvmStatic
         public fun mergeDescriptorSet(ssn: SourceSetName): TaskName =
-            McJavaTaskName("merge${ssn.toInfix()}DescriptorSet", ssn)
+            CoreJvmCompilerTaskName("merge${ssn.toInfix()}DescriptorSet", ssn)
 
         /**
          * Obtains the name of the task which creates Protobuf compiler plugin configuration for
@@ -71,7 +72,7 @@ public class McJavaTaskName(value: String, ssn: SourceSetName) : TaskWithSourceS
          */
         @JvmStatic
         public fun writePluginConfiguration(ssn: SourceSetName): TaskName =
-            McJavaTaskName("write${ssn.toInfix()}PluginConfiguration", ssn)
+            CoreJvmCompilerTaskName("write${ssn.toInfix()}PluginConfiguration", ssn)
 
         /**
          * Obtains the name of the task which creates the `desc.ref` file containing the reference
@@ -79,14 +80,14 @@ public class McJavaTaskName(value: String, ssn: SourceSetName) : TaskWithSourceS
          */
         @JvmStatic
         public fun writeDescriptorReference(ssn: SourceSetName): TaskName =
-            McJavaTaskName("write${ssn.toInfix()}DescriptorReferences", ssn)
+            CoreJvmCompilerTaskName("write${ssn.toInfix()}DescriptorReferences", ssn)
 
         /**
          * Obtains the name of the task which launches ProtoData for the given source set.
          */
         @JvmStatic
         public fun launchProtoData(ssn: SourceSetName): TaskName =
-            McJavaTaskName("launch${ssn.toInfix()}ProtoData", ssn)
+            CoreJvmCompilerTaskName("launch${ssn.toInfix()}ProtoData", ssn)
 
         /** The name of the task which launches ProtoData for the main source set. */
         @JvmField

@@ -29,7 +29,7 @@ import io.spine.dependency.local.ToolBase
 
 plugins {
     // To allow `modelCompiler` syntax below.
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 // Turn off validation codegen during the transition to new ProtoData API.

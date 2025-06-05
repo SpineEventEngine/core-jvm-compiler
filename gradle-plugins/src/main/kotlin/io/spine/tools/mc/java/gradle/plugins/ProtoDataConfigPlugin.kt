@@ -39,7 +39,7 @@ import io.spine.tools.gradle.Artifact
 import io.spine.tools.mc.annotation.ApiAnnotationsPlugin
 import io.spine.tools.mc.java.comparable.ComparablePlugin
 import io.spine.tools.mc.java.entity.EntityPlugin
-import io.spine.tools.mc.java.gradle.McJava.allPlugins
+import io.spine.tools.mc.java.gradle.CoreJvmCompiler.allPlugins
 import io.spine.tools.mc.java.gradle.ValidationSdk
 import io.spine.tools.mc.java.gradle.generatedGrpcDirName
 import io.spine.tools.mc.java.gradle.generatedJavaDirName

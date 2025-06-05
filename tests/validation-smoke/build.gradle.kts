@@ -26,7 +26,7 @@
 
 plugins {
     java
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 protoDataRemoteDebug(enabled = false)

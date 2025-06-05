@@ -29,7 +29,7 @@ package io.spine.tools.mc.java.gradle.plugins
 import io.spine.io.Delete.deleteRecursively
 import io.spine.tools.gradle.task.BaseTaskName
 import io.spine.tools.gradle.task.GradleTask
-import io.spine.tools.mc.java.gradle.McJavaTaskName.Companion.preClean
+import io.spine.tools.mc.java.gradle.CoreJvmCompilerTaskName.Companion.preClean
 import io.spine.tools.mc.java.gradle.TempArtifactDirs
 import java.io.File
 import org.gradle.api.Action

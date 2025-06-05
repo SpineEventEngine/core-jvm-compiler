@@ -45,7 +45,7 @@ buildscript {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib) {
             exclude(group = "com.google.guava")
         }
-        classpath("io.spine.tools:spine-mc-java-plugins:${coreJvmCompilerVersion}:all")
+        classpath("io.spine.tools:core-jvm-plugins:${coreJvmCompilerVersion}:all")
     }
 }
 
@@ -66,7 +66,7 @@ subprojects {
     val enclosingRootDir: String by extra
     apply {
         plugin("com.google.protobuf")
-        plugin("io.spine.mc-java")
+        plugin("io.spine.core-jvm")
         from("${enclosingRootDir}/version.gradle.kts")
     }
 

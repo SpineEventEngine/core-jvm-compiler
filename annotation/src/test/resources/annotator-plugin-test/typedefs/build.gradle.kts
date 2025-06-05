@@ -27,7 +27,7 @@
 import io.spine.dependency.lib.JavaX
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE

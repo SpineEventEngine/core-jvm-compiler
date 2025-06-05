@@ -108,7 +108,7 @@ spinePublishing {
             gitHub("core-jvm-compiler"),
         )
     }
-    artifactPrefix = "spine-core-jvm-"
+    artifactPrefix = "core-jvm-"
 }
 
 allprojects {

@@ -63,7 +63,7 @@ internal class ProtoDataConfigPluginSpec {
             val plugins = project.pluginManager
             plugins.apply(GradleProject.javaPlugin)
             plugins.apply("com.google.protobuf")
-            plugins.apply(McJavaPlugin::class.java)
+            plugins.apply(CoreJvmPlugin::class.java)
 
             evaluate(project)
 

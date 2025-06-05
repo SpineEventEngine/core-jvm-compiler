@@ -42,7 +42,7 @@ public class RoutingPlugin : KspBasedPlugin() {
     override val mavenCoordinates: String
         get() = routingKspPlugin.notation()
 
-    private val moduleName = "spine-mc-java-routing"
+    private val moduleName = "core-jvm-routing"
     private val versions = DependencyVersions.loadFor(moduleName)
 
     private val routingVersion: String by lazy {

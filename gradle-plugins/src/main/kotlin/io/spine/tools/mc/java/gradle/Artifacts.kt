@@ -44,19 +44,19 @@ private const val ABOUT = ""
 private const val JAR_EXTENSION = "jar"
 private const val GRPC_GROUP = "io.grpc"
 private const val GRPC_PLUGIN_NAME = "protoc-gen-grpc-java"
-private const val MC_JAVA_NAME = "spine-gradle-plugins"
+private const val CORE_JVM_GRADLE_PLUGINS = "core-jvm-gradle-plugins"
 private const val ALL_CLASSIFIER = "all"
 
 /**
  * The name of the Maven artifact containing both Spine Protobuf compiler plugin
  * and `modelCompiler` plugin.
  */
-internal const val SPINE_MC_JAVA_ALL_PLUGINS_NAME = "spine-core-jvm-plugins"
+internal const val CORE_JVM_PLUGINS = "core-jvm-plugins"
 
 /**
  * Versions of dependencies used by McJava.
  */
-private val versions = DependencyVersions.loadFor(MC_JAVA_NAME)
+private val versions = DependencyVersions.loadFor(CORE_JVM_GRADLE_PLUGINS)
 
 /**
  * The type alias to avoid the confusion with the "third-party" part of
@@ -74,9 +74,9 @@ internal val gRpcProtocPlugin: Artifact by lazy {
 }
 
 /**
- * Artifacts of McJava.
+ * Artifacts of Core JVM Compiler.
  */
-internal object McJava {
+internal object CoreJvmCompiler {
 
     /**
      * The version of the Model Compiler Java modules.
@@ -86,21 +86,21 @@ internal object McJava {
     @JvmStatic
     @get:JvmName("version")
     internal val version: String by lazy {
-        val self: Dependency = MavenDependency(SPINE_TOOLS_GROUP, MC_JAVA_NAME)
+        val self: Dependency = MavenDependency(SPINE_TOOLS_GROUP, CORE_JVM_GRADLE_PLUGINS)
         versions.versionOf(self)
             .orElseThrow { error("Unable to load versions of `$self`.") }
     }
 
     /**
-     * The Maven artifact containing the `spine-mc-java-plugins:all` fat JAR artifact.
+     * The Maven artifact containing the `corr-jvm-plugins:all` fat JAR artifact.
      */
     @JvmStatic
     @get:JvmName("allPlugins")
     internal val allPlugins: Artifact by lazy {
         artifact {
             useSpineToolsGroup()
-            setName(SPINE_MC_JAVA_ALL_PLUGINS_NAME)
-            setVersion(this@McJava.version)
+            setName(CORE_JVM_PLUGINS)
+            setVersion(this@CoreJvmCompiler.version)
             setClassifier(ALL_CLASSIFIER)
             setExtension(JAR_EXTENSION)
         }

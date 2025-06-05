@@ -165,7 +165,7 @@ subprojects {
         plugin("com.google.protobuf")
         plugin("kotlin")
         plugin("module-testing")
-        plugin("io.spine.mc-java")
+        plugin("io.spine.core-jvm")
         plugin("net.ltgt.errorprone")
         plugin("idea")
     }

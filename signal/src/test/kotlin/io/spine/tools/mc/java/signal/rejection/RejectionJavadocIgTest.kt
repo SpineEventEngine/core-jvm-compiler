@@ -32,7 +32,7 @@ import io.spine.testing.SlowTest
 import io.spine.testing.TempDir
 import io.spine.tools.gradle.testing.GradleProject.Companion.setupAt
 import io.spine.tools.java.fullTextNormalized
-import io.spine.tools.mc.java.gradle.McJavaTaskName.Companion.launchProtoData
+import io.spine.tools.mc.java.gradle.CoreJvmCompilerTaskName.Companion.launchProtoData
 import io.spine.tools.mc.java.signal.rejection.Javadoc.BUILD_METHOD_ABSTRACT
 import io.spine.tools.mc.java.signal.rejection.Javadoc.NEW_BUILDER_METHOD_ABSTRACT
 import io.spine.tools.mc.java.signal.rejection.JavadocTestEnv.expectedBuilderClassComment

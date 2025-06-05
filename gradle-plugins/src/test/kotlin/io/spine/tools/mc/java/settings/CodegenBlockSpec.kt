@@ -46,7 +46,7 @@ import io.spine.tools.mc.java.applyStandard
 import io.spine.tools.mc.java.field.AddFieldClass
 import io.spine.tools.mc.java.gradle.McJavaOptions
 import io.spine.tools.mc.java.gradle.mcJava
-import io.spine.tools.mc.java.gradle.plugins.McJavaPlugin
+import io.spine.tools.mc.java.gradle.plugins.CoreJvmPlugin
 import io.spine.tools.mc.java.gradle.settings.EntitySettings
 import io.spine.tools.mc.java.gradle.settings.SignalSettings.Companion.DEFAULT_COMMAND_ACTIONS
 import io.spine.tools.mc.java.gradle.settings.SignalSettings.Companion.DEFAULT_EVENT_ACTIONS
@@ -101,7 +101,7 @@ class CodegenBlockSpec {
         project.apply {
             it.plugin("java")
             it.plugin("com.google.protobuf")
-            it.plugin(McJavaPlugin::class.java)
+            it.plugin(CoreJvmPlugin::class.java)
         }
         options = project.mcJava
     }

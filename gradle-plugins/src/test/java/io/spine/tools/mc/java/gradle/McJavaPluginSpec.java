@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 import static io.spine.tools.gradle.task.BaseTaskName.clean;
 import static io.spine.tools.gradle.testing.GradleTruth.assertThat;
 import static io.spine.tools.mc.java.gradle.GradleProjects.evaluate;
-import static io.spine.tools.mc.java.gradle.McJavaTaskName.preClean;
+import static io.spine.tools.mc.java.gradle.CoreJvmCompilerTaskName.preClean;
 import static io.spine.tools.mc.java.gradle.given.ModelCompilerTestEnv.MC_JAVA_GRADLE_PLUGIN_ID;
 
 @DisplayName("`McJavaPlugin` should")

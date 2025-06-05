@@ -47,7 +47,7 @@ import io.spine.tools.mc.java.annotation.check.NestedTypesAnnotationCheck
 import io.spine.tools.mc.java.annotation.check.SourceCheck
 import io.spine.tools.mc.java.annotation.check.TypeAnnotationCheck
 import io.spine.tools.mc.java.annotation.given.GivenProtoFile
-import io.spine.tools.mc.java.gradle.McJavaTaskName
+import io.spine.tools.mc.java.gradle.CoreJvmCompilerTaskName
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.div
@@ -133,7 +133,7 @@ internal class ApiAnnotationsPluginIgTest {
                 "-XX:+HeapDumpOnOutOfMemoryError"
             )
             moduleDir = projectDir.toPath() / RESOURCE_SUB_DIR
-            project.executeTask(McJavaTaskName.launchProtoData)
+            project.executeTask(CoreJvmCompilerTaskName.launchProtoData)
         }
     }
 
