@@ -93,7 +93,7 @@ final class MapFieldType implements FieldType {
      *
      * <p>Call should be like `builder.putAllFieldName({@link Map})`.
      *
-     * {@inheritDoc}
+     * <p>{@inheritDoc}
      */
     @Override
     public Accessor primarySetter() {

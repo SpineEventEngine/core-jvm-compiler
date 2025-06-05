@@ -28,7 +28,6 @@ package io.spine.tools.mc.java.signal.rejection
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.spine.protodata.java.ClassName
 import io.spine.protodata.java.MessageOrEnumConvention
 import io.spine.tools.mc.java.signal.rejection.TypesTestEnv.messageTypeName
 import io.spine.tools.mc.java.signal.rejection.TypesTestEnv.rejectionTypeName

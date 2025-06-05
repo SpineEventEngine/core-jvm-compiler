@@ -30,7 +30,6 @@ package io.spine.tools.mc.java.settings
 
 import io.spine.protodata.ast.MessageType
 import io.spine.protodata.ast.matches
-import io.spine.protodata.ast.qualifiedName
 import io.spine.tools.mc.java.settings.Pattern.KindCase.FILE
 import io.spine.tools.mc.java.settings.Pattern.KindCase.TYPE
 import io.spine.tools.mc.java.settings.TypePattern.ValueCase.EXPECTED_TYPE
