@@ -35,11 +35,8 @@ import io.spine.protodata.java.render.TypeListRenderer
 import io.spine.protodata.render.SourceFile
 import io.spine.protodata.render.TypeListActions
 import io.spine.tools.code.Java
-import io.spine.tools.mc.java.settings.SignalSettings
-import io.spine.tools.mc.java.settings.Signals
-import io.spine.tools.mc.java.signal.CommandActions
-import io.spine.tools.mc.java.signal.EventActions
-import io.spine.tools.mc.java.signal.RejectionActions
+import io.spine.tools.core.jvm.settings.SignalSettings
+import io.spine.tools.core.jvm.settings.Signals
 import io.spine.tools.psi.java.execute
 
 /**

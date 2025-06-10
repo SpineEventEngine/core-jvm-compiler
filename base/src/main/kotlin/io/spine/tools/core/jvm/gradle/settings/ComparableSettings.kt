@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.tools.mc.java.settings.Comparables
-import io.spine.tools.mc.java.settings.comparables
-import io.spine.tools.mc.java.settings.noParameter
+import io.spine.tools.core.jvm.settings.Comparables
+import io.spine.tools.core.jvm.settings.comparables
+import io.spine.tools.core.jvm.settings.noParameter
 import org.gradle.api.Project
 
 /**

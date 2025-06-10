@@ -30,16 +30,16 @@ import io.spine.core.Subscribe
 import io.spine.protodata.ast.File
 import io.spine.protodata.plugin.View
 import io.spine.server.entity.alter
-import io.spine.tools.mc.java.signal.event.CommandDiscovered
-import io.spine.tools.mc.java.signal.event.EventDiscovered
-import io.spine.tools.mc.java.signal.event.RejectionDiscovered
+import io.spine.tools.core.jvm.signal.event.CommandDiscovered
+import io.spine.tools.core.jvm.signal.event.EventDiscovered
+import io.spine.tools.core.jvm.signal.event.RejectionDiscovered
 
 /**
  * Collects command types discovered in the Protobuf files passed to the Signal Plugin.
  *
  * @see [io.spine.base.CommandMessage]
  */
-internal class CommandsPerFile : View<File, io.spine.tools.mc.java.signal.CommandActions, io.spine.tools.mc.java.signal.CommandActions.Builder>() {
+internal class CommandsPerFile : View<File, CommandActions, CommandActions.Builder>() {
 
     @Subscribe
     fun on(e: CommandDiscovered) = alter {
@@ -52,7 +52,7 @@ internal class CommandsPerFile : View<File, io.spine.tools.mc.java.signal.Comman
  *
  * @see [io.spine.base.EventMessage]
  */
-internal class EventsPerFile : View<File, io.spine.tools.mc.java.signal.EventActions, io.spine.tools.mc.java.signal.EventActions.Builder>() {
+internal class EventsPerFile : View<File, EventActions, EventActions.Builder>() {
 
     @Subscribe
     fun on(e: EventDiscovered) = alter {
@@ -65,7 +65,7 @@ internal class EventsPerFile : View<File, io.spine.tools.mc.java.signal.EventAct
  *
  * @see [io.spine.base.RejectionMessage]
  */
-internal class RejectionsPerFile : View<File, io.spine.tools.mc.java.signal.RejectionActions, io.spine.tools.mc.java.signal.RejectionActions.Builder>() {
+internal class RejectionsPerFile : View<File, RejectionActions, RejectionActions.Builder>() {
 
     @Subscribe
     fun on(e: RejectionDiscovered) = alter {

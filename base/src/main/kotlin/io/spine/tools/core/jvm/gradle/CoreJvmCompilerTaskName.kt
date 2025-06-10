@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.gradle
+package io.spine.tools.core.jvm.gradle
 
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.code.SourceSetName.Companion.main

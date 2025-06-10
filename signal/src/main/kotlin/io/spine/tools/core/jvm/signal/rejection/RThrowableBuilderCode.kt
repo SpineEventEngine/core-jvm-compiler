@@ -50,13 +50,8 @@ import io.spine.protodata.java.javaType
 import io.spine.protodata.java.primarySetterName
 import io.spine.protodata.java.toPrimitiveName
 import io.spine.protodata.type.TypeSystem
-import io.spine.tools.java.classSpec
-import io.spine.tools.java.codeBlock
-import io.spine.tools.java.constructorSpec
-import io.spine.tools.java.javadoc.JavadocText
-import io.spine.tools.java.methodSpec
-import io.spine.tools.mc.java.field.RepeatedFieldType
-import io.spine.tools.mc.java.field.SingularFieldType.constructTypeNameFor
+import io.spine.tools.core.jvm.field.RepeatedFieldType
+import io.spine.tools.core.jvm.field.SingularFieldType.constructTypeNameFor
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forBuilderOf
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofBuildMethod
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofBuilderConstructor
@@ -65,6 +60,11 @@ import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofRejectionMessageMethod
 import io.spine.tools.core.jvm.signal.rejection.Method.BUILD
 import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
 import io.spine.tools.core.jvm.signal.rejection.Method.REJECTION_MESSAGE
+import io.spine.tools.java.classSpec
+import io.spine.tools.java.codeBlock
+import io.spine.tools.java.constructorSpec
+import io.spine.tools.java.javadoc.JavadocText
+import io.spine.tools.java.methodSpec
 import io.spine.validate.Validate
 import io.spine.validate.Validated
 import javax.lang.model.element.Modifier.FINAL

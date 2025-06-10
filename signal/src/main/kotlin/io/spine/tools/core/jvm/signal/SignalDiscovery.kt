@@ -36,14 +36,14 @@ import io.spine.protodata.settings.loadSettings
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf4
-import io.spine.tools.mc.java.settings.SignalSettings
-import io.spine.tools.mc.java.settings.Signals
-import io.spine.tools.mc.java.signal.event.CommandDiscovered
-import io.spine.tools.mc.java.signal.event.EventDiscovered
-import io.spine.tools.mc.java.signal.event.RejectionDiscovered
-import io.spine.tools.mc.java.signal.event.commandDiscovered
-import io.spine.tools.mc.java.signal.event.eventDiscovered
-import io.spine.tools.mc.java.signal.event.rejectionDiscovered
+import io.spine.tools.core.jvm.settings.SignalSettings
+import io.spine.tools.core.jvm.settings.Signals
+import io.spine.tools.core.jvm.signal.event.CommandDiscovered
+import io.spine.tools.core.jvm.signal.event.EventDiscovered
+import io.spine.tools.core.jvm.signal.event.RejectionDiscovered
+import io.spine.tools.core.jvm.signal.event.commandDiscovered
+import io.spine.tools.core.jvm.signal.event.eventDiscovered
+import io.spine.tools.core.jvm.signal.event.rejectionDiscovered
 
 /**
  * Reacts to the [TypeDiscovered] event finding out if the discovered type is one

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ import io.spine.protodata.java.render.ImplementInterface
 import io.spine.protodata.java.render.superInterface
 import io.spine.protodata.render.Actions
 import io.spine.protodata.render.actions
-import io.spine.tools.mc.java.settings.ActionMap
-import io.spine.tools.mc.java.settings.BinaryClassName
-import io.spine.tools.mc.java.settings.noParameter
-import io.spine.tools.mc.java.settings.pack
+import io.spine.tools.core.jvm.settings.ActionMap
+import io.spine.tools.core.jvm.settings.BinaryClassName
+import io.spine.tools.core.jvm.settings.noParameter
+import io.spine.tools.core.jvm.settings.pack
 import org.gradle.api.Project
 import org.gradle.api.provider.MapProperty
 

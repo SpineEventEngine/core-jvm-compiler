@@ -27,8 +27,8 @@
 package io.spne.mc.java.marker
 
 import com.google.protobuf.Empty
-import io.spine.tools.mc.java.PluginTestSetup
-import io.spine.tools.mc.java.marker.MarkerPlugin
+import io.spine.tools.core.jvm.PluginTestSetup
+import io.spine.tools.core.jvm.marker.MarkerPlugin
 import java.nio.file.Path
 import org.junit.jupiter.api.io.TempDir
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,10 +36,10 @@ import io.spine.server.event.React
 import io.spine.server.event.asA
 import io.spine.server.event.asB
 import io.spine.server.tuple.EitherOf2
-import io.spine.tools.mc.java.mgroup.event.GroupedMessageDiscovered
-import io.spine.tools.mc.java.mgroup.event.groupedMessageDiscovered
-import io.spine.tools.mc.java.settings.GroupSettings
-import io.spine.tools.mc.java.settings.matches
+import io.spine.tools.core.jvm.mgroup.event.GroupedMessageDiscovered
+import io.spine.tools.core.jvm.mgroup.event.groupedMessageDiscovered
+import io.spine.tools.core.jvm.settings.GroupSettings
+import io.spine.tools.core.jvm.settings.matches
 
 /**
  * Detects message types matching [GroupSettings] in response to [TypeDiscovered] event.

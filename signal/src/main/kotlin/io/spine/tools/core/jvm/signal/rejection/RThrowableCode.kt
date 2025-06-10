@@ -34,12 +34,12 @@ import io.spine.logging.WithLogging
 import io.spine.protodata.ast.MessageType
 import io.spine.protodata.java.MessageOrEnumConvention
 import io.spine.protodata.type.TypeSystem
+import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.signal.rejection.Javadoc.forConstructorOfThrowable
+import io.spine.tools.core.jvm.signal.rejection.Javadoc.forThrowableOf
 import io.spine.tools.java.classSpec
 import io.spine.tools.java.constructorSpec
 import io.spine.tools.java.methodSpec
-import io.spine.tools.mc.java.GeneratedAnnotation
-import io.spine.tools.core.jvm.signal.rejection.Javadoc.forConstructorOfThrowable
-import io.spine.tools.core.jvm.signal.rejection.Javadoc.forThrowableOf
 import javax.lang.model.element.Modifier.FINAL
 import javax.lang.model.element.Modifier.PRIVATE
 import javax.lang.model.element.Modifier.PUBLIC

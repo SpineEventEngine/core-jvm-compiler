@@ -30,8 +30,8 @@ import com.google.protobuf.Message
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
+import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.java.reference
-import io.spine.tools.mc.java.GeneratedAnnotation
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.exists
@@ -71,7 +71,7 @@ internal class EveryIsOptionRendererSpec {
             file!!.outputPath.exists() shouldBe true
 
             val code = file.code()
-            code shouldContain "package io.spine.tools.mc.java.marker.given.fruit;"
+            code shouldContain "package io.spine.tools.core.jvm.marker.given.fruit;"
         }
 
         @Test

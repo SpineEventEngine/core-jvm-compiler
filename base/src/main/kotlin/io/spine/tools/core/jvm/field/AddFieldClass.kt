@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.field
+package io.spine.tools.core.jvm.field
 
 import com.google.protobuf.StringValue
 import com.intellij.psi.PsiAnnotation
@@ -37,8 +37,8 @@ import io.spine.protodata.java.ClassName
 import io.spine.protodata.java.render.CreateNestedClass
 import io.spine.protodata.render.SourceFile
 import io.spine.tools.code.Java
-import io.spine.tools.mc.java.GeneratedAnnotation
-import io.spine.tools.mc.java.field.AddFieldClass.Companion.NAME
+import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.field.AddFieldClass.Companion.NAME
 import io.spine.tools.psi.java.addLast
 import org.intellij.lang.annotations.Language
 

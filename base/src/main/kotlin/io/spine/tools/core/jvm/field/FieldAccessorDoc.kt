@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
  */
 
 
-package io.spine.tools.mc.java.field
+package io.spine.tools.core.jvm.field
 
 import com.intellij.psi.javadoc.PsiDocComment
 import io.spine.protodata.ast.Field

@@ -32,7 +32,7 @@ import io.spine.protodata.java.render.RenderActions
 import io.spine.protodata.render.SourceFile
 import io.spine.protodata.render.SourceFileSet
 import io.spine.tools.code.Java
-import io.spine.tools.mc.java.settings.GroupSettings
+import io.spine.tools.core.jvm.settings.GroupSettings
 import io.spine.tools.psi.java.execute
 
 /**

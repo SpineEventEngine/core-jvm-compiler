@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,8 +31,8 @@ import com.google.protobuf.Message
 import io.spine.protobuf.isDefault
 import io.spine.protodata.ast.FilePattern
 import io.spine.protodata.ast.FilePatternFactory
+import io.spine.tools.core.jvm.settings.ActionMap
 import io.spine.tools.gradle.Multiple
-import io.spine.tools.mc.java.settings.ActionMap
 import org.gradle.api.Project
 
 /**

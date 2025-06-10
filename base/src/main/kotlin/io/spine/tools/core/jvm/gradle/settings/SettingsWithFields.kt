@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.gradle.settings
 
 import com.google.protobuf.Message
-import io.spine.tools.mc.java.field.AddFieldClass
-import io.spine.tools.mc.java.settings.ActionMap
-import io.spine.tools.mc.java.settings.BinaryClassName
+import io.spine.tools.core.jvm.field.AddFieldClass
+import io.spine.tools.core.jvm.settings.ActionMap
+import io.spine.tools.core.jvm.settings.BinaryClassName
 import org.gradle.api.Project
 
 /**

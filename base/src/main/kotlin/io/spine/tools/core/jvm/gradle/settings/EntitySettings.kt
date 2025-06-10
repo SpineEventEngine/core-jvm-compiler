@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ import com.google.common.annotations.VisibleForTesting
 import io.spine.annotation.Internal
 import io.spine.option.OptionsProto
 import io.spine.query.EntityStateField
-import io.spine.tools.mc.java.settings.ActionMap
-import io.spine.tools.mc.java.settings.Entities
-import io.spine.tools.mc.java.settings.entities
-import io.spine.tools.mc.java.settings.noParameter
+import io.spine.tools.core.jvm.settings.ActionMap
+import io.spine.tools.core.jvm.settings.Entities
+import io.spine.tools.core.jvm.settings.entities
+import io.spine.tools.core.jvm.settings.noParameter
 import io.spine.tools.proto.code.ProtoOption
 import io.spine.tools.proto.code.protoOption
 import org.gradle.api.Project

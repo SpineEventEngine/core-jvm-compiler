@@ -30,8 +30,8 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.spine.base.EventMessage
 import io.spine.string.count
+import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
 import io.spine.tools.java.reference
-import io.spine.tools.mc.java.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
 import java.nio.file.Path
 import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll

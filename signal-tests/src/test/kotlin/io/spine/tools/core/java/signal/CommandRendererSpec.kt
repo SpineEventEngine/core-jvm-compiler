@@ -29,8 +29,8 @@ package io.spine.tools.core.java.signal
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import io.spine.base.CommandMessage
+import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
 import io.spine.tools.java.reference
-import io.spine.tools.mc.java.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
 import java.nio.file.Path
 import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll

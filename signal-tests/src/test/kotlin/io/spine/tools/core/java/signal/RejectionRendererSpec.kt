@@ -31,8 +31,8 @@ import io.spine.base.RejectionMessage
 import io.spine.string.Indent.Companion.defaultJavaIndent
 import io.spine.string.count
 import io.spine.string.repeat
+import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
 import io.spine.tools.java.reference
-import io.spine.tools.mc.java.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
 import java.nio.file.Path
 import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll

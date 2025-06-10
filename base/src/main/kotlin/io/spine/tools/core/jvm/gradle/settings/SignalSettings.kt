@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@ import io.spine.base.RejectionMessage
 import io.spine.protodata.ast.filePattern
 import io.spine.protodata.java.render.ImplementInterface
 import io.spine.protodata.java.render.superInterface
+import io.spine.tools.core.jvm.field.AddFieldClass
+import io.spine.tools.core.jvm.settings.ActionMap
+import io.spine.tools.core.jvm.settings.Signals
+import io.spine.tools.core.jvm.settings.signals
 import io.spine.tools.java.reference
-import io.spine.tools.mc.java.field.AddFieldClass
-import io.spine.tools.mc.java.settings.ActionMap
-import io.spine.tools.mc.java.settings.Signals
-import io.spine.tools.mc.java.settings.signals
 import org.gradle.api.Project
 
 /**

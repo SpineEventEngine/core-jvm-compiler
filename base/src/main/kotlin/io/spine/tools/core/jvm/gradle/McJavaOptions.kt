@@ -23,13 +23,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package io.spine.tools.mc.java.gradle
+package io.spine.tools.core.jvm.gradle
 
 import groovy.lang.Closure
 import io.spine.protodata.java.style.JavaCodeStyle
 import io.spine.protodata.java.style.javaCodeStyleDefaults
-import io.spine.tools.java.fs.DefaultJavaPaths
 import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
+import io.spine.tools.java.fs.DefaultJavaPaths
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.provider.Property

@@ -24,13 +24,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java
+package io.spine.tools.core.jvm
 
 import com.intellij.psi.PsiAnnotation
 import io.spine.annotation.Generated
+import io.spine.tools.core.jvm.GeneratedAnnotation.forPsi
+import io.spine.tools.core.jvm.VersionHolder.version
 import io.spine.tools.java.reference
-import io.spine.tools.mc.java.GeneratedAnnotation.forPsi
-import io.spine.tools.mc.java.VersionHolder.version
 import io.spine.tools.psi.java.Environment.elementFactory
 import org.intellij.lang.annotations.Language
 import com.squareup.javapoet.AnnotationSpec as JAnnotationSpec

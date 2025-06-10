@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.gradle.settings
 
 import com.google.common.base.MoreObjects
-import io.spine.tools.mc.java.settings.MessageGroup
-import io.spine.tools.mc.java.settings.Pattern
-import io.spine.tools.mc.java.settings.messageGroup
+import io.spine.tools.core.jvm.settings.MessageGroup
+import io.spine.tools.core.jvm.settings.Pattern
+import io.spine.tools.core.jvm.settings.messageGroup
 import io.spine.type.shortDebugString
 import org.gradle.api.Project
 

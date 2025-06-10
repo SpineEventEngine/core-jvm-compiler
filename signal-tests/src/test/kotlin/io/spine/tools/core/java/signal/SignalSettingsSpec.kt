@@ -28,7 +28,7 @@ package io.spine.tools.core.java.signal
 
 import io.kotest.matchers.collections.shouldContainExactly
 import io.spine.protodata.java.render.ImplementInterface
-import io.spine.tools.mc.java.field.AddFieldClass
+import io.spine.tools.core.jvm.field.AddFieldClass
 import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
 import java.io.File
 import org.gradle.testfixtures.ProjectBuilder
