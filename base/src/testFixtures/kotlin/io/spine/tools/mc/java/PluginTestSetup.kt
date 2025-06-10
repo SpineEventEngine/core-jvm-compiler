@@ -46,7 +46,7 @@ import io.spine.protodata.testing.withSettingsDir
 import io.spine.protodata.util.Format
 import io.spine.tools.code.Java
 import io.spine.tools.code.SourceSetName
-import io.spine.tools.mc.java.gradle.settings.CodegenSettings
+import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
 import io.spine.type.toJson
 import java.nio.file.Path
 import kotlin.io.path.exists

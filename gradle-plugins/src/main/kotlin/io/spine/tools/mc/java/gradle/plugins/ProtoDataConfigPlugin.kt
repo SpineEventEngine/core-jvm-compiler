@@ -46,11 +46,11 @@ import io.spine.tools.mc.java.gradle.generatedJavaDirName
 import io.spine.tools.mc.java.gradle.mcJava
 import io.spine.tools.mc.java.gradle.plugins.ProtoDataConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
 import io.spine.tools.mc.java.gradle.plugins.ProtoDataConfigPlugin.Companion.WRITE_PROTODATA_SETTINGS
-import io.spine.tools.mc.java.gradle.settings.CodegenSettings
+import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
 import io.spine.tools.mc.java.marker.MarkerPlugin
 import io.spine.tools.mc.java.mgroup.MessageGroupPlugin
-import io.spine.tools.mc.java.signal.SignalPlugin
-import io.spine.tools.mc.java.signal.rejection.RThrowablePlugin
+import io.spine.tools.core.jvm.signal.SignalPlugin
+import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.mc.java.uuid.UuidPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project

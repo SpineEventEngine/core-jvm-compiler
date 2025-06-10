@@ -48,7 +48,7 @@ import org.intellij.lang.annotations.Language
  * adding `generate()` and `of(String)` static factory methods.
  *
  * The class is public because its fully qualified name is used as a default
- * value in [UuidSettings][io.spine.tools.mc.java.gradle.settings.UuidSettings].
+ * value in [UuidSettings][io.spine.tools.core.jvm.gradle.settings.UuidSettings].
  *
  * @param type The type of the message.
  * @param file The source code to which the action is applied.

@@ -24,27 +24,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.mc.java.settings.Validation
+import io.spine.tools.mc.java.settings.validation
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * Settings for validation code generation.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+public class ValidationSettings internal constructor(project: Project) :
+    Settings<Validation>(project) {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    /**
+     * Allows specifying a version of the validation code generator used by McJava.
+     *
+     * If empty, the version on which McJava depends during build time will be used.
+     * The default value of this property is an empty string.
+     */
+    public val version: Property<String> = project.objects.property(String::class.java)
+
+    init {
+        version.convention("")
+    }
+
+    public override fun toProto(): Validation = validation {
+        version = this@ValidationSettings.version.getOrElse("")
     }
 }

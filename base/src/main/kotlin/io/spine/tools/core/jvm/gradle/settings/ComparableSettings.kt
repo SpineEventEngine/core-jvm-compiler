@@ -24,27 +24,29 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.mc.java.settings.Comparables
+import io.spine.tools.mc.java.settings.comparables
+import io.spine.tools.mc.java.settings.noParameter
+import org.gradle.api.Project
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * Code generation settings for messages that have `compare_by` option.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+public class ComparableSettings(project: Project) :
+    SettingsWithActions<Comparables>(project, DEFAULT_ACTIONS) {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    override fun toProto(): Comparables = comparables {
+        actions = actions()
     }
 }
+
+/**
+ * The actions applied by default to comparable messages.
+ */
+private val DEFAULT_ACTIONS = mapOf(
+    "io.spine.tools.mc.java.comparable.action.AddComparator" to noParameter,
+    "io.spine.tools.mc.java.comparable.action.AddCompareTo" to noParameter,
+    "io.spine.tools.mc.java.comparable.action.ImplementComparable" to noParameter,
+)

@@ -24,27 +24,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import com.google.protobuf.Message
+import io.spine.tools.mc.java.field.AddFieldClass
+import io.spine.tools.mc.java.settings.ActionMap
+import io.spine.tools.mc.java.settings.BinaryClassName
+import org.gradle.api.Project
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
+ * Code generation settings that include generation of
+ * [field classes][io.spine.base.SubscribableField].
  *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * Model Compiler generates the type-safe API for filtering messages by fields in queries
+ * and subscriptions.
+ *
+ * @param S The Protobuf type reflecting a snapshot of these settings.
+ *
+ * @param project The project for which settings are created.
+ * @param defaultActions Actions to be specified as the default value for the settings.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+public abstract class SettingsWithFields<S : Message> @JvmOverloads internal constructor(
+    project: Project,
+    defaultActions: ActionMap = mapOf()
+) : SettingsWithActions<S>(project, defaultActions) {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    /**
+     * Equips the field type with a superclass.
+     *
+     * @param className The canonical class name of an existing Java class.
+     */
+    public fun markFieldsAs(className: BinaryClassName) {
+        useAction(AddFieldClass::class.java.name, className)
     }
 }

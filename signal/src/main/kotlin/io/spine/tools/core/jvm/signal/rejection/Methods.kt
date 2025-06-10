@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,28 +23,37 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package io.spine.tools.core.jvm.signal.rejection
 
-package io.spine.tools.mc.java.comparable
-
-import io.spine.protodata.plugin.Plugin
+import com.google.errorprone.annotations.Immutable
+import io.spine.tools.java.code.Method
+import java.io.Serial
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * Method names used in the generated code.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+internal object Method {
+    const val NEW_BUILDER = "newBuilder"
+    const val REJECTION_MESSAGE = "rejectionMessage"
+    const val BUILD = "build"
+}
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+/**
+ * A reference to a method with no arguments.
+ */
+@Immutable
+internal class NoArgMethod(methodName: String) : io.spine.tools.java.code.Method(methodName) {
+
+    fun name(): String {
+        return value()
+    }
+
+    fun signature(): String {
+        return value() + "()"
+    }
+
+    companion object {
+        @Serial
+        private const val serialVersionUID = 0L
     }
 }

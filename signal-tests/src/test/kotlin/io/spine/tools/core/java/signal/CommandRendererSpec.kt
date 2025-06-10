@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,39 +24,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.gradle.settings
+package io.spine.tools.core.java.signal
 
-import io.kotest.matchers.collections.shouldContainExactly
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.tools.core.jvm.gradle.settings.UuidSettings
-import io.spine.tools.kotlin.reference
-import io.spine.tools.mc.java.uuid.AddFactoryMethods
-import java.io.File
-import org.gradle.testfixtures.ProjectBuilder
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotContain
+import io.spine.base.CommandMessage
+import io.spine.tools.java.reference
+import io.spine.tools.mc.java.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
+import java.nio.file.Path
+import kotlin.io.path.Path
+import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
-/**
- * This is a test suite for [io.spine.tools.core.jvm.gradle.settings.UuidSettings] class which belongs to `mc-java-base` module.
- *
- * We have this test suite in another module to check the correctness of default settings
- * specified as strings against classes of this module.
- */
-@DisplayName("`UuidSettings` should")
-internal class UuidSettingsSpec {
+@DisplayName("`CommandRenderer` should")
+internal class CommandRendererSpec {
+
+    companion object : SignalPluginTestSetup() {
+
+        lateinit var commandCode: String
+
+        @BeforeAll
+        @JvmStatic
+        fun setup(@TempDir projectDir: Path) {
+            runPipeline(projectDir)
+            val sourceFile = file(Path("io/spine/tools/mc/signal/given/command/StartScanning.java"))
+            commandCode = sourceFile.code()
+        }
+    }
 
     @Test
-    fun `provide default action class names`(@TempDir projectDir: File) {
-        val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
-        val settings = UuidSettings(project)
+    fun `add 'CommandMessage' interface`() {
+        commandCode shouldContain ", ${CommandMessage::class.java.reference} {"
+    }
 
-        val expected = setOf(
-            ImplementInterface::class.java.name,
-            AddFactoryMethods::class.reference,
-        )
-
-        settings.actions().actionMap.keys shouldContainExactly expected
-        settings.toProto().actions.actionMap.keys shouldContainExactly expected
+    @Test
+    fun `not generate nested 'Field' class`() {
+        commandCode shouldNotContain FIELD_CLASS_SIGNATURE
     }
 }

@@ -44,7 +44,7 @@ import io.spine.tools.java.reference
  * making it implement this interface.
  *
  * The class is public because its fully qualified name is used as a default
- * value in [EntitySettings][io.spine.tools.mc.java.gradle.settings.EntitySettings].
+ * value in [EntitySettings][io.spine.tools.core.jvm.gradle.settings.EntitySettings].
  *
  * ## Implementation note
  *

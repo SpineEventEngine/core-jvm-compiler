@@ -27,6 +27,7 @@
 package io.spine.tools.mc.java.gradle.settings
 
 import io.kotest.matchers.shouldBe
+import io.spine.tools.core.jvm.gradle.settings.ComparableSettings
 import io.spine.tools.kotlin.reference
 import io.spine.tools.mc.java.comparable.action.AddComparator
 import io.spine.tools.mc.java.comparable.action.AddCompareTo
@@ -39,7 +40,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * This is a test suite for [ComparableSettings] class, which belongs
+ * This is a test suite for [io.spine.tools.core.jvm.gradle.settings.ComparableSettings] class, which belongs
  * to `mc-java-base` module.
  *
  * We test it here to check the correctness of default settings specified

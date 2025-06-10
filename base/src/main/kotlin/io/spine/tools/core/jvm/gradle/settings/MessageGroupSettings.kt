@@ -24,27 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import com.google.common.base.MoreObjects
+import io.spine.tools.mc.java.settings.MessageGroup
+import io.spine.tools.mc.java.settings.Pattern
+import io.spine.tools.mc.java.settings.messageGroup
+import io.spine.type.shortDebugString
+import org.gradle.api.Project
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
+ * Codegen settings for messages which match a certain pattern.
  *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * @param project The project for which settings are created.
+ * @property pattern The pattern to select message types.
+ *
+ * @constructor Creates an instance of settings for the given project and the specified pattern.
+ *
+ * @see CodegenSettings.forMessages
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+public class MessageGroupSettings internal constructor(
+    project: Project,
+    private val pattern: Pattern
+) : SettingsWithFields<MessageGroup>(project) {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    override fun toProto(): MessageGroup {
+        return messageGroup {
+            pattern = this@MessageGroupSettings.pattern
+            actions = actions()
+        }
+    }
+
+    override fun toString(): String {
+        return MoreObjects.toStringHelper(this)
+            .add("pattern", pattern.shortDebugString())
+            .toString()
     }
 }

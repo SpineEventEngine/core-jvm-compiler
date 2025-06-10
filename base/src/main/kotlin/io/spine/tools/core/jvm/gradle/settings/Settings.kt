@@ -24,27 +24,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import com.google.protobuf.Message
+import org.gradle.api.Project
+import org.gradle.api.provider.Property
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
+ * Settings for a specific aspect of the Model Compiler, established through Gradle.
  *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * @param S The type that captures a snapshot of the current settings state.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+public abstract class Settings<S : Message>(project: Project) {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    /**
+     * Whether this configuration is enabled.
+     *
+     * If `false`, the configuration is ignored by the Model Compiler.
+     * The default value is `true`.
+     */
+    public val enabled: Property<Boolean> = project.objects.property(Boolean::class.java)
+
+    init {
+        enabled.convention(true)
     }
+
+    /**
+     * Converts this instance into a Protobuf message.
+     */
+    public abstract fun toProto(): S
 }

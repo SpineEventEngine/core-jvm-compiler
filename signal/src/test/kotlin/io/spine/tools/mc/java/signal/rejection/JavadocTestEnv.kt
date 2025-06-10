@@ -33,8 +33,8 @@ import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.fs.DirectoryName.java
 import io.spine.tools.fs.DirectoryName.main
 import io.spine.tools.java.fs.toDirectory
-import io.spine.tools.mc.java.signal.rejection.Javadoc.BUILDER_ABSTRACT_TEMPLATE
-import io.spine.tools.mc.java.signal.rejection.Javadoc.PROTO_MESSAGE_NOTE_TEMPLATE
+import io.spine.tools.core.jvm.signal.rejection.Javadoc.BUILDER_ABSTRACT_TEMPLATE
+import io.spine.tools.core.jvm.signal.rejection.Javadoc.PROTO_MESSAGE_NOTE_TEMPLATE
 import java.io.File
 import kotlin.io.path.div
 

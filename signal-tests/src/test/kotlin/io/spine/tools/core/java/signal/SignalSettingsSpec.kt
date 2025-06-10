@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,15 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.entity
+package io.spine.tools.core.java.signal
 
 import io.kotest.matchers.collections.shouldContainExactly
-import io.spine.tools.java.reference
-import io.spine.tools.mc.java.entity.column.AddColumnClass
-import io.spine.tools.mc.java.entity.query.AddQuerySupport
+import io.spine.protodata.java.render.ImplementInterface
 import io.spine.tools.mc.java.field.AddFieldClass
 import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
-import io.spine.tools.mc.java.settings.Entities
 import java.io.File
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeEach
@@ -41,31 +38,43 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * This is a test suite for [io.spine.tools.core.jvm.gradle.settings.EntitySettings] class
+ * This is a test suite for [io.spine.tools.core.jvm.gradle.settings.SignalSettings] class
  * which belongs to `mc-java-base` module.
  *
  * We have this test suite in another module to check the correctness of default settings
  * specified as strings against classes of this module.
  */
-@DisplayName("`EntitySettings` should")
-internal class EntitySettingsSpec {
+@DisplayName("`SignalSettings` should")
+internal class SignalSettingsSpec {
 
-    private lateinit var settings: Entities
+    private lateinit var codegenSettings: CodegenSettings
 
     @BeforeEach
     fun createProject(@TempDir projectDir: File) {
         val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
-        val codegenSettings = CodegenSettings(project)
-        settings = codegenSettings.entities.toProto()
+        codegenSettings = CodegenSettings(project)
     }
 
     @Test
-    fun `provide default actions`() {
-        settings.actions.actionMap.keys shouldContainExactly setOf(
-            AddColumnClass::class.java.reference,
-            AddFieldClass::class.java.reference,
-            AddQuerySupport::class.java.reference,
-            ImplementEntityState::class.java.reference,
+    fun `provide default actions for command messages`() {
+        codegenSettings.commands.toProto().actions.actionMap.keys shouldContainExactly setOf(
+            ImplementInterface::class.java.name,
+        )
+    }
+
+    @Test
+    fun `provide default actions for event messages`() {
+        codegenSettings.events.toProto().actions.actionMap.keys shouldContainExactly setOf(
+            ImplementInterface::class.java.name,
+            AddFieldClass::class.java.name
+        )
+    }
+
+    @Test
+    fun `provide default actions for rejection messages`() {
+        codegenSettings.rejections.toProto().actions.actionMap.keys shouldContainExactly setOf(
+            ImplementInterface::class.java.name,
+            AddFieldClass::class.java.name
         )
     }
 }

@@ -28,7 +28,7 @@ package io.spine.tools.mc.java.entity
 
 import com.intellij.psi.PsiClass
 import io.spine.tools.mc.java.PluginTestSetup
-import io.spine.tools.mc.java.gradle.settings.EntitySettings
+import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.mc.java.settings.Entities
 import io.spine.tools.psi.java.method
 import java.nio.file.Path

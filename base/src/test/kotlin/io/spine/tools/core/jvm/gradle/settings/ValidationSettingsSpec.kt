@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,27 +24,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldBeEmpty
+import java.io.File
+import org.gradle.testfixtures.ProjectBuilder
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
 
-/**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
- */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+@DisplayName("`ValidationSettings` should")
+internal class ValidationSettingsSpec {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    private lateinit var settings: ValidationSettings
+
+    @BeforeEach
+    fun createProject(@TempDir projectDir: File) {
+        val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
+        settings = ValidationSettings(project)
+    }
+
+    @Test
+    fun `use built-in version of validation settings by default`() {
+        settings.version.get().shouldBeEmpty()
+        settings.toProto().version.shouldBeEmpty()
+    }
+
+    @Test
+    fun `allow specifying a version in validation settings`() {
+        val expected = "1.2.3"
+        settings.version.set(expected)
+        settings.run {
+            version.get() shouldBe expected
+            toProto().version shouldBe expected
+        }
     }
 }

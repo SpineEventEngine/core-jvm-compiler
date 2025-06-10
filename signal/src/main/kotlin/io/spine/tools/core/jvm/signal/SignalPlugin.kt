@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,27 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.signal
 
 import io.spine.protodata.plugin.Plugin
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
+ * A ProtoData plugin responsible for code generation of signal messages.
  *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * @see SignalDiscovery
+ * @see CommandRenderer
+ * @see EventRenderer
+ * @see RejectionRenderer
+ * @see io.spine.tools.mc.java.settings.SignalSettings
+ * @see io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
+public class SignalPlugin : Plugin(
+    policies = setOf(SignalDiscovery()),
+    views = setOf(
+        CommandsPerFile::class.java,
+        EventsPerFile::class.java,
+        RejectionsPerFile::class.java
+    ),
+    renderers = listOf(
+        CommandRenderer(),
+        EventRenderer(),
+        RejectionRenderer(),
+    )
 ) {
     public companion object {
 
         /**
-         * Settings ID for this plugin.
+         * The ID for obtaining settings of the plugin.
          */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+        public val SETTINGS_ID: String = SignalPlugin::class.java.canonicalName
     }
 }

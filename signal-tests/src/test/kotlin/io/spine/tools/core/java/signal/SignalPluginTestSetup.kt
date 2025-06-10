@@ -24,27 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.java.signal
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.base.MessageFile
+import io.spine.protodata.ast.FilePattern
+import io.spine.protodata.ast.FilePatternFactory.suffix
+import io.spine.tools.mc.java.PluginTestSetup
+import io.spine.tools.mc.java.settings.SignalSettings
+import java.nio.file.Path
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * The abstract base for test suites of the Signal Plugin.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
+@Suppress("UtilityClassWithPublicConstructor")
+internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
+    SignalPlugin(),
+    SignalPlugin.SETTINGS_ID
 ) {
-    public companion object {
+    companion object {
+        const val FIELD_CLASS_SIGNATURE = "public static final class Field"
+    }
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    /**
+     * Creates an instance of [SignalSettings] as if it was created by McJava added to
+     * a Gradle project.
+     */
+    override fun createSettings(projectDir: Path): SignalSettings {
+        val codegenConfig = createCodegenConfig(projectDir)
+        return codegenConfig.toProto().signalSettings
     }
 }
+
+/**
+ * Creates [FilePattern] corresponding to this [MessageFile] type.
+ */
+internal fun MessageFile.pattern(): FilePattern = suffix(suffix())

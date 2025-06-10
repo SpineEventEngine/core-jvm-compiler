@@ -45,7 +45,7 @@ import io.spine.tools.mc.java.gradle.plugins.WriteProtoDataSettings.Companion.VA
 import io.spine.tools.mc.java.mgroup.MessageGroupPlugin
 import io.spine.tools.mc.java.settings.Combined
 import io.spine.tools.mc.java.settings.signalSettings
-import io.spine.tools.mc.java.signal.SignalPlugin
+import io.spine.tools.core.jvm.signal.SignalPlugin
 import io.spine.tools.mc.java.uuid.UuidPlugin
 import io.spine.type.toJson
 import io.spine.validation.messageMarkers

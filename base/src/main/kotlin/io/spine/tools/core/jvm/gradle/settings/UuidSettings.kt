@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,27 +24,40 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.jvm.gradle.settings
 
-import io.spine.protodata.plugin.Plugin
+import com.google.common.annotations.VisibleForTesting
+import io.spine.base.UuidValue
+import io.spine.protodata.java.render.ImplementInterface
+import io.spine.protodata.java.render.superInterface
+import io.spine.tools.mc.java.settings.ActionMap
+import io.spine.tools.mc.java.settings.Uuids
+import io.spine.tools.mc.java.settings.noParameter
+import io.spine.tools.mc.java.settings.uuids
+import org.gradle.api.Project
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * Settings for code generation for messages that qualify as [UuidValue].
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
+public class UuidSettings(project: Project) : SettingsWithActions<Uuids>(project, DEFAULT_ACTIONS) {
+
+    override fun toProto(): Uuids {
+        return uuids {
+            this@uuids.actions = actions()
+        }
+    }
+
     public companion object {
 
         /**
-         * Settings ID for this plugin.
+         * The name of the default codegen action applied to [UuidValue]s.
          */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+        @VisibleForTesting
+        public val DEFAULT_ACTIONS: ActionMap = mapOf(
+            ImplementInterface::class.java.name to
+                    superInterface { name = UuidValue::class.java.name },
+
+            "io.spine.tools.mc.java.uuid.AddFactoryMethods" to noParameter
+        )
     }
 }

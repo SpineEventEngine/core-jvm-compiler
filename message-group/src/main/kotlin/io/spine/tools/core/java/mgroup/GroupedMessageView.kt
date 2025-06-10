@@ -24,27 +24,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.java.mgroup
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.core.Subscribe
+import io.spine.protodata.ast.MessageType
+import io.spine.protodata.plugin.View
+import io.spine.server.entity.alter
+import io.spine.tools.mc.java.mgroup.event.GroupedMessageDiscovered
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
- *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * Gathers group settings for a matching message type.
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
-) {
-    public companion object {
+internal class GroupedMessageView : View<MessageType, GroupedMessage, GroupedMessage.Builder>() {
 
-        /**
-         * Settings ID for this plugin.
-         */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+    @Subscribe
+    fun on(e: GroupedMessageDiscovered) = alter {
+        addAllGroup(e.groupList)
     }
 }

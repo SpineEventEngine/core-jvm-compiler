@@ -37,7 +37,7 @@ import io.spine.tools.mc.annotation.ApiAnnotationsPlugin
 import io.spine.tools.mc.java.gradle.GradleProjects.evaluate
 import io.spine.tools.mc.java.gradle.given.StubProject
 import io.spine.tools.mc.java.gradle.plugins.ProtoDataConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
-import io.spine.tools.mc.java.signal.rejection.RThrowablePlugin
+import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType

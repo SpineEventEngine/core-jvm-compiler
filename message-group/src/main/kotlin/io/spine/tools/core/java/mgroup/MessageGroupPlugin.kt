@@ -24,27 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable
+package io.spine.tools.core.java.mgroup
 
 import io.spine.protodata.plugin.Plugin
 
 /**
- * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forComparables].
+ * The ProtoData plugin responsible for code generation for groups of messages
+ * specified by a file or type name patterns.
  *
- * The default list of actions is configured in
- * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
+ * @see io.spine.tools.mc.java.settings.GroupSettings
  */
-public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
-    views = setOf(ComparableMessageView::class.java),
-    renderers = listOf(ComparableActionsRenderer())
+public class MessageGroupPlugin : Plugin(
+    policies = setOf(GroupedMessageDiscovery()),
+    views = setOf(GroupedMessageView::class.java),
+    renderers = listOf(GroupedMessageRenderer())
 ) {
     public companion object {
 
         /**
-         * Settings ID for this plugin.
+         * The ID for obtaining settings for the plugin.
          */
-        public val SETTINGS_ID: String = ComparablePlugin::class.java.canonicalName
+        public val SETTINGS_ID: String = MessageGroupPlugin::class.java.canonicalName
     }
 }
