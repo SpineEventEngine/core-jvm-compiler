@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.signal
+package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.collections.shouldContainExactly
 import io.spine.protodata.java.render.ImplementInterface

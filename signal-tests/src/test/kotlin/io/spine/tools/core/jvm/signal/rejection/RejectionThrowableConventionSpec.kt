@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.signal.rejection
+package io.spine.tools.core.jvm.signal.rejection
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe

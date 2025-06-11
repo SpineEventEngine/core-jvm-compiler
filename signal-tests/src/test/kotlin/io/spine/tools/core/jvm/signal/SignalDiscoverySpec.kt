@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.signal
+package io.spine.tools.core.jvm.signal
 
 import com.google.protobuf.Descriptors.FileDescriptor
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
