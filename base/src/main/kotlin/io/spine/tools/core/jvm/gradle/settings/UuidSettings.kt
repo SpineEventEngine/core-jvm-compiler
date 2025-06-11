@@ -57,7 +57,7 @@ public class UuidSettings(project: Project) : SettingsWithActions<Uuids>(project
             ImplementInterface::class.java.name to
                     superInterface { name = UuidValue::class.java.name },
 
-            "io.spine.tools.mc.java.uuid.AddFactoryMethods" to noParameter
+            "io.spine.tools.core.jvm.uuid.AddFactoryMethods" to noParameter
         )
     }
 }

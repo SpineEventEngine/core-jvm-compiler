@@ -43,7 +43,7 @@ import java.util.UUID;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.truth.Truth.assertThat;
 import static io.spine.tools.core.jvm.gradle.Projects.getMcJava;
-import static io.spine.tools.mc.java.StandardRepos.applyStandard;
+import static io.spine.tools.core.jvm.StandardRepos.applyStandard;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

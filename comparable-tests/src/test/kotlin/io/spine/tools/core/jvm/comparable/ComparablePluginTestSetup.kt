@@ -62,7 +62,7 @@ open class ComparablePluginTestSetup(
      * The message name should be in a simple form like "Account" or "AccountId".
      */
     fun generatedCodeOf(message: String): PsiClass {
-        val sourcePath = Path("io/spine/tools/mc/java/comparable/given/$message.java")
+        val sourcePath = Path("io/spine/tools/core/jvm/comparable/given/$message.java")
         val sourceFile = file(sourcePath)
         val psiFile = sourceFile.psi() as PsiJavaFile
         return psiFile.topLevelClass

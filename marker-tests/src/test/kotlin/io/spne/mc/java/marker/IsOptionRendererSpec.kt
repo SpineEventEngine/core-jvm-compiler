@@ -59,7 +59,7 @@ internal class IsOptionRendererSpec {
     @Test
     fun `implement an interface via a fully qualified name`() {
         val javaFiles = files(
-            Path("io/spine/tools/mc/java/marker/given/animal/fiction/greek"),
+            Path("io/spine/tools/core/jvm/marker/given/animal/fiction/greek"),
             "Pegasus", "Hippalektryon"
         )
 

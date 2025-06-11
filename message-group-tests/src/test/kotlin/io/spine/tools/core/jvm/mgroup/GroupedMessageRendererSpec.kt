@@ -56,7 +56,7 @@ internal class GroupedMessageRendererSpec {
             pipeline()
             val sourceFileSet = pipeline.sources[0]
             code = sourceFileSet.find(
-                Path("io/spine/tools/mc/mgroup/given/Student.java")
+                Path("io/spine/tools/core/mgroup/given/Student.java")
             )!!.code()
         }
 

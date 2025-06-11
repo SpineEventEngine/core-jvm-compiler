@@ -48,7 +48,7 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
         /**
          * The path to the Java file generated for the `Department` entity state.
          */
-        const val DEPARTMENT_JAVA = "io/spine/tools/mc/jvm/entity/given/Department.java"
+        const val DEPARTMENT_JAVA = "io/spine/tools/core/jvm/entity/given/Department.java"
     }
 
     override fun createSettings(projectDir: Path): Entities {

@@ -46,7 +46,7 @@ internal abstract class MarkerPluginTestSetup : PluginTestSetup<Empty>(MarkerPlu
      * The directory of the Java package generated for proto types in `animals.proto` and
      * their siblings of the same "domain".
      */
-    internal val animalDir = "io/spine/tools/mc/java/marker/given/animal"
+    internal val animalDir = "io/spine/tools/core/jvm/marker/given/animal"
 
     /**
      * The package corresponding to [animalDir].

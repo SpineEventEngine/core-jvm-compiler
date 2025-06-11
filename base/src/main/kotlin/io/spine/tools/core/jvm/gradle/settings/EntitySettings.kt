@@ -99,14 +99,19 @@ public class EntitySettings @VisibleForTesting public constructor(project: Proje
     public companion object {
 
         /**
+         * The package common to all the default actions.
+         */
+        private const val PCKG = "io.spine.tools.core.jvm"
+
+        /**
          * Names of render action classes applied by default to entity states.
          */
         @VisibleForTesting
         public val DEFAULT_ACTIONS: ActionMap = mapOf(
-            "io.spine.tools.mc.java.field.AddFieldClass" to noParameter,
-            "io.spine.tools.mc.java.entity.column.AddColumnClass" to noParameter,
-            "io.spine.tools.mc.java.entity.query.AddQuerySupport" to noParameter,
-            "io.spine.tools.mc.java.entity.ImplementEntityState" to noParameter
+            "$PCKG.field.AddFieldClass" to noParameter,
+            "$PCKG.entity.column.AddColumnClass" to noParameter,
+            "$PCKG.entity.query.AddQuerySupport" to noParameter,
+            "$PCKG.entity.ImplementEntityState" to noParameter
         )
     }
 }

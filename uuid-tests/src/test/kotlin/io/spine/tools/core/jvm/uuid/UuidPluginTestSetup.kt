@@ -68,7 +68,7 @@ abstract class UuidPluginTestSetup(
 
     fun generateCode(@TempDir projectDir: Path) {
         runPipeline(projectDir)
-        val sourceFile = file(Path("io/spine/tools/mc/java/uuid/given/$uuidType.java"))
+        val sourceFile = file(Path("io/spine/tools/core/jvm/uuid/given/$uuidType.java"))
         generatedCode = sourceFile.code()
         val file = sourceFile.psi() as PsiJavaFile
         cls = file.topLevelClass
