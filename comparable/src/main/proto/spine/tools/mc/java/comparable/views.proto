@@ -31,7 +31,7 @@ package spine.tools.mc.java.comparable;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.mc.java.comparable";
+option java_package = "io.spine.tools.core.jvm.comparable";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 

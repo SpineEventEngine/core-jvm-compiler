@@ -24,17 +24,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.jvm.mgroup.given;
+package io.spine.tools.core.jvm.annotation.check;
 
-import io.spine.base.Field;
-import io.spine.base.SubscribableField;
+import org.jboss.forge.roaster.model.impl.AbstractJavaSource;
+import org.jboss.forge.roaster.model.source.JavaClassSource;
+
+import java.lang.annotation.Annotation;
+import java.util.function.Consumer;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
- * A custom stub field type.
+ * Abstract base for checking annotations in the generated source code.
  */
-public final class CustomField extends SubscribableField {
+public abstract class SourceCheck implements Consumer<AbstractJavaSource<JavaClassSource>> {
 
-    public CustomField(Field field) {
-        super(field);
+    private final Class<? extends Annotation> annotationClass;
+    private final boolean shouldBeAnnotated;
+
+    SourceCheck(Class<? extends Annotation> annotationClass, boolean shouldBeAnnotated) {
+        this.annotationClass = checkNotNull(annotationClass);
+        this.shouldBeAnnotated = shouldBeAnnotated;
+    }
+
+    protected Class<? extends Annotation> annotationClass() {
+        return annotationClass;
+    }
+
+    boolean shouldBeAnnotated() {
+        return shouldBeAnnotated;
     }
 }

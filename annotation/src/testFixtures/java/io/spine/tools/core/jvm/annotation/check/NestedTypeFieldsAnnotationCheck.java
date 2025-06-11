@@ -24,46 +24,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.annotation.check;
+package io.spine.tools.core.jvm.annotation.check;
 
 import org.jboss.forge.roaster.model.impl.AbstractJavaSource;
 import org.jboss.forge.roaster.model.source.JavaClassSource;
 
 import java.lang.annotation.Annotation;
-import java.util.Optional;
 
-import static io.spine.tools.mc.java.annotation.check.Annotations.findAnnotation;
-import static java.lang.String.format;
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.protobuf.Descriptors.Descriptor;
 
 /**
- * Checks that a nested type is annotated.
+ * Checks that fields of a nested type are annotated.
  */
-public final class NestedTypesAnnotationCheck extends SourceCheck {
+public final class NestedTypeFieldsAnnotationCheck extends SourceCheck {
 
-    public NestedTypesAnnotationCheck(
-            Class<? extends Annotation> expectedAnnotation,
-            boolean shouldBeAnnotated
-    ) {
-        super(expectedAnnotation, shouldBeAnnotated);
+    private final Descriptor descriptor;
+
+    public NestedTypeFieldsAnnotationCheck(Descriptor descriptor,
+                                           Class<? extends Annotation> annotationClass,
+                                           boolean shouldBeAnnotated) {
+        super(annotationClass, shouldBeAnnotated);
+        this.descriptor = checkNotNull(descriptor);
     }
 
     @Override
+    @SuppressWarnings("unchecked") // Could not determine an exact type for nested declaration.
     public void accept(AbstractJavaSource<JavaClassSource> outerClass) {
-        requireNonNull(outerClass);
-        for (var nestedType : outerClass.getNestedTypes()) {
-            Optional<?> annotation = findAnnotation(nestedType, annotationClass());
-            var qualifiedName = nestedType.getQualifiedName();
-            var annotated = annotation.isPresent();
-            if (shouldBeAnnotated()) {
-                assertTrue(annotated,
-                           () -> format("`%s` is not annotated but should be.", qualifiedName));
-            } else {
-                assertFalse(annotated,
-                            () -> format("`%s` is annotated but should not be.", qualifiedName));
-            }
+        checkNotNull(outerClass);
+        var annotationClass = annotationClass();
+        var shouldBeAnnotated = shouldBeAnnotated();
+        for (var fieldDescriptor : descriptor.getFields()) {
+            var nestedType = (AbstractJavaSource<JavaClassSource>)
+                    outerClass.getNestedType(descriptor.getName());
+            var check = new FieldAnnotationCheck(
+                    fieldDescriptor,
+                    annotationClass,
+                    shouldBeAnnotated
+            );
+            check.accept(nestedType);
         }
     }
 }

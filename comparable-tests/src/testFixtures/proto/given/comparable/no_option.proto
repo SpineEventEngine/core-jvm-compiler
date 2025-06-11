@@ -31,7 +31,7 @@ package given.comparable;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.mc.java.comparable.given";
+option java_package = "io.spine.tools.core.jvm.comparable.given";
 option java_multiple_files = true;
 
 // This message doesn't have `compare_by` option.

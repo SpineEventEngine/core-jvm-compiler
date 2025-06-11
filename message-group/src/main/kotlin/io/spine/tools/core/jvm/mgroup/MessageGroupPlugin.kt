@@ -1,11 +1,11 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,17 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.mgroup
+package io.spine.tools.core.jvm.mgroup
 
-import io.spine.protodata.settings.LoadsSettings
+import io.spine.protodata.plugin.Plugin
 
 /**
- * A part of [MessageGroupPlugin] that loads shared
- * [settings][io.spine.tools.mc.java.settings.GroupSettings] stored
- * using [consumerId] as the file name.
+ * The ProtoData plugin responsible for code generation for groups of messages
+ * specified by a file or type name patterns.
+ *
+ * @see io.spine.tools.mc.java.settings.GroupSettings
  */
-internal interface MessageGroupPluginComponent : LoadsSettings {
+public class MessageGroupPlugin : Plugin(
+    policies = setOf(GroupedMessageDiscovery()),
+    views = setOf(GroupedMessageView::class.java),
+    renderers = listOf(GroupedMessageRenderer())
+) {
+    public companion object {
 
-    override val consumerId: String
-        get() = MessageGroupPlugin.SETTINGS_ID
+        /**
+         * The ID for obtaining settings for the plugin.
+         */
+        public val SETTINGS_ID: String = MessageGroupPlugin::class.java.canonicalName
+    }
 }

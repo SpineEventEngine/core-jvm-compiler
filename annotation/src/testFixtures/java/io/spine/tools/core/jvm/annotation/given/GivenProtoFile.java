@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,26 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.mgroup
+package io.spine.tools.core.jvm.annotation.given;
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.code.proto.FileName;
 
 /**
- * The ProtoData plugin responsible for code generation for groups of messages
- * specified by a file or type name patterns.
+ * Test proto file names.
  *
- * @see io.spine.tools.mc.java.settings.GroupSettings
+ * <p>See {@code resources/annotator-plugin-test/src/main/proto/} directory for the files.
  */
-public class MessageGroupPlugin : Plugin(
-    policies = setOf(GroupedMessageDiscovery()),
-    views = setOf(GroupedMessageView::class.java),
-    renderers = listOf(GroupedMessageRenderer())
-) {
-    public companion object {
+public enum GivenProtoFile {
 
-        /**
-         * The ID for obtaining settings for the plugin.
-         */
-        public val SETTINGS_ID: String = MessageGroupPlugin::class.java.canonicalName
+    NO_INTERNAL_OPTIONS("no_internal_options.proto"),
+    NO_INTERNAL_OPTIONS_MULTIPLE("no_internal_options_multiple.proto"),
+    OUTER_INTERNAL("outer_internal.proto"),
+    INTERNAL_ALL_SERVICE("internal_all_service.proto"),
+    INTERNAL_ALL_MULTIPLE("internal_all_multiple.proto"),
+    INTERNAL_MESSAGE("internal_message.proto"),
+    INTERNAL_MESSAGE_MULTIPLE("internal_message_multiple.proto"),
+    INTERNAL_FIELD("internal_field.proto"),
+    INTERNAL_FIELD_MULTIPLE("internal_field_multiple.proto"),
+    SPI_SERVICE("spi_service.proto"),
+    SPI_ALL("spi_all.proto"),
+    DUPLICATION("combinations.proto"),
+    REVERTING("reverting.proto");
+
+    private final FileName fileName;
+
+    GivenProtoFile(String value) {
+        this.fileName = FileName.of(value);
+    }
+
+    public FileName fileName() {
+        return fileName;
     }
 }

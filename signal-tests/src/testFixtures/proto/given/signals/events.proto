@@ -31,7 +31,7 @@ package given.signals;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.mc.signal.given.event";
+option java_package = "io.spine.tools.core.signal.given.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 

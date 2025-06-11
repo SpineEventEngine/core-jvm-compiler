@@ -24,34 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.annotation.check;
-
-import org.jboss.forge.roaster.model.impl.AbstractJavaSource;
-import org.jboss.forge.roaster.model.source.JavaClassSource;
-
-import java.lang.annotation.Annotation;
-import java.util.function.Consumer;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-
 /**
- * Abstract base for checking annotations in the generated source code.
+ * Checker classes for testing annotations added to the generated code.
  */
-public abstract class SourceCheck implements Consumer<AbstractJavaSource<JavaClassSource>> {
+@CheckReturnValue
+@NullMarked
+package io.spine.tools.core.jvm.annotation.check;
 
-    private final Class<? extends Annotation> annotationClass;
-    private final boolean shouldBeAnnotated;
-
-    SourceCheck(Class<? extends Annotation> annotationClass, boolean shouldBeAnnotated) {
-        this.annotationClass = checkNotNull(annotationClass);
-        this.shouldBeAnnotated = shouldBeAnnotated;
-    }
-
-    protected Class<? extends Annotation> annotationClass() {
-        return annotationClass;
-    }
-
-    boolean shouldBeAnnotated() {
-        return shouldBeAnnotated;
-    }
-}
+import com.google.errorprone.annotations.CheckReturnValue;
+import org.jspecify.annotations.NullMarked;

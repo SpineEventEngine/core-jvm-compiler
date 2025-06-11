@@ -24,38 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.annotation.check;
+package io.spine.tools.core.jvm.mgroup.given;
 
-import io.spine.annotation.Internal;
-import org.jboss.forge.roaster.model.source.AnnotationSource;
-import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
-
-import java.lang.annotation.Annotation;
-import java.util.Optional;
-
-import static java.util.Optional.ofNullable;
+import io.spine.base.Field;
+import io.spine.base.SubscribableField;
 
 /**
- * Utilities for finding annotations in the generated code.
+ * A custom stub field type.
  */
-final class Annotations {
+public final class CustomField extends SubscribableField {
 
-    private static final Class<? extends Annotation> ANNOTATION_CLASS = Internal.class;
-
-    /** Prevents instantiation of this utility class. */
-    private Annotations() {
-    }
-
-    static Optional<? extends AnnotationSource<?>>
-    findInternalAnnotation(AnnotationTargetSource<?, ?> javaSource) {
-        return findAnnotation(javaSource, ANNOTATION_CLASS);
-    }
-
-    static Optional<? extends AnnotationSource<?>>
-    findAnnotation(AnnotationTargetSource<?, ?> javaSource,
-                   Class<? extends Annotation> annotationType) {
-        var annotationName = annotationType.getName();
-        AnnotationSource<?> annotation = javaSource.getAnnotation(annotationName);
-        return ofNullable(annotation);
+    public CustomField(Field field) {
+        super(field);
     }
 }

@@ -24,21 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.mgroup
-
-import io.spine.core.Subscribe
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.plugin.View
-import io.spine.server.entity.alter
-import io.spine.tools.core.jvm.mgroup.event.GroupedMessageDiscovered
-
 /**
- * Gathers group settings for a matching message type.
+ * Test environment classes for testing generation of annotations.
  */
-internal class GroupedMessageView : View<MessageType, GroupedMessage, GroupedMessage.Builder>() {
+@CheckReturnValue
+@NullMarked
+package io.spine.tools.core.jvm.annotation.given;
 
-    @Subscribe
-    fun on(e: GroupedMessageDiscovered) = alter {
-        addAllGroup(e.groupList)
-    }
-}
+import com.google.errorprone.annotations.CheckReturnValue;
+import org.jspecify.annotations.NullMarked;

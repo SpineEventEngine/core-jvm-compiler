@@ -24,38 +24,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.annotation.given;
+package io.spine.tools.core.jvm.mgroup
 
-import io.spine.code.proto.FileName;
+import io.spine.protodata.settings.LoadsSettings
 
 /**
- * Test proto file names.
- *
- * <p>See {@code resources/annotator-plugin-test/src/main/proto/} directory for the files.
+ * A part of [MessageGroupPlugin] that loads shared
+ * [settings][io.spine.tools.mc.java.settings.GroupSettings] stored
+ * using [consumerId] as the file name.
  */
-public enum GivenProtoFile {
+internal interface MessageGroupPluginComponent : LoadsSettings {
 
-    NO_INTERNAL_OPTIONS("no_internal_options.proto"),
-    NO_INTERNAL_OPTIONS_MULTIPLE("no_internal_options_multiple.proto"),
-    OUTER_INTERNAL("outer_internal.proto"),
-    INTERNAL_ALL_SERVICE("internal_all_service.proto"),
-    INTERNAL_ALL_MULTIPLE("internal_all_multiple.proto"),
-    INTERNAL_MESSAGE("internal_message.proto"),
-    INTERNAL_MESSAGE_MULTIPLE("internal_message_multiple.proto"),
-    INTERNAL_FIELD("internal_field.proto"),
-    INTERNAL_FIELD_MULTIPLE("internal_field_multiple.proto"),
-    SPI_SERVICE("spi_service.proto"),
-    SPI_ALL("spi_all.proto"),
-    DUPLICATION("combinations.proto"),
-    REVERTING("reverting.proto");
-
-    private final FileName fileName;
-
-    GivenProtoFile(String value) {
-        this.fileName = FileName.of(value);
-    }
-
-    public FileName fileName() {
-        return fileName;
-    }
+    override val consumerId: String
+        get() = MessageGroupPlugin.SETTINGS_ID
 }

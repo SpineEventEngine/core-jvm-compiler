@@ -29,13 +29,13 @@ package io.spine.tools.core.jvm.annotation
 import io.spine.protodata.java.file.hasJavaRoot
 import io.spine.protodata.java.render.JavaRenderer
 import io.spine.protodata.render.SourceFileSet
+import io.spine.protodata.settings.loadSettings
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.ApiOption.BETA
 import io.spine.tools.core.annotation.ApiOption.EXPERIMENTAL
 import io.spine.tools.core.annotation.ApiOption.INTERNAL
 import io.spine.tools.core.annotation.ApiOption.SPI
-import io.spine.tools.core.jvm.gradle.settings.Settings
 
 /**
  * The abstract base for renderers that annotate Java source code using

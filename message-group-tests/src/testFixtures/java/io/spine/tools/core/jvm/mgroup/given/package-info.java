@@ -24,12 +24,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/**
- * Checker classes for testing annotations added to the generated code.
- */
 @CheckReturnValue
 @NullMarked
-package io.spine.tools.mc.java.annotation.check;
+package io.spine.tools.core.jvm.mgroup.given;
 
 import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;

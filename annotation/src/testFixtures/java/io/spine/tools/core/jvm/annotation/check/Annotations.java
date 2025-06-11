@@ -24,9 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@CheckReturnValue
-@NullMarked
-package io.spine.tools.mc.jvm.mgroup.given;
+package io.spine.tools.core.jvm.annotation.check;
 
-import com.google.errorprone.annotations.CheckReturnValue;
-import org.jspecify.annotations.NullMarked;
+import io.spine.annotation.Internal;
+import org.jboss.forge.roaster.model.source.AnnotationSource;
+import org.jboss.forge.roaster.model.source.AnnotationTargetSource;
+
+import java.lang.annotation.Annotation;
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
+
+/**
+ * Utilities for finding annotations in the generated code.
+ */
+final class Annotations {
+
+    private static final Class<? extends Annotation> ANNOTATION_CLASS = Internal.class;
+
+    /** Prevents instantiation of this utility class. */
+    private Annotations() {
+    }
+
+    static Optional<? extends AnnotationSource<?>>
+    findInternalAnnotation(AnnotationTargetSource<?, ?> javaSource) {
+        return findAnnotation(javaSource, ANNOTATION_CLASS);
+    }
+
+    static Optional<? extends AnnotationSource<?>>
+    findAnnotation(AnnotationTargetSource<?, ?> javaSource,
+                   Class<? extends Annotation> annotationType) {
+        var annotationName = annotationType.getName();
+        AnnotationSource<?> annotation = javaSource.getAnnotation(annotationName);
+        return ofNullable(annotation);
+    }
+}

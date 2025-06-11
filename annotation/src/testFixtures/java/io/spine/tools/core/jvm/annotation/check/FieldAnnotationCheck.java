@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.java.annotation.check;
+package io.spine.tools.core.jvm.annotation.check;
 
 import com.google.protobuf.Descriptors.FieldDescriptor;
 import io.spine.annotation.Internal;
@@ -41,7 +41,7 @@ import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 import static io.spine.code.java.SimpleClassName.ofBuilder;
-import static io.spine.tools.mc.java.annotation.check.Annotations.findAnnotation;
+import static io.spine.tools.core.jvm.annotation.check.Annotations.findAnnotation;
 import static java.lang.String.format;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
