@@ -40,13 +40,21 @@ public class ComparableSettings(project: Project) :
     override fun toProto(): Comparables = comparables {
         actions = actions()
     }
-}
 
-/**
- * The actions applied by default to comparable messages.
- */
-private val DEFAULT_ACTIONS = mapOf(
-    "io.spine.tools.mc.java.comparable.action.AddComparator" to noParameter,
-    "io.spine.tools.mc.java.comparable.action.AddCompareTo" to noParameter,
-    "io.spine.tools.mc.java.comparable.action.ImplementComparable" to noParameter,
-)
+    private companion object {
+
+        /**
+         * The package to which the default action classes belong.
+         */
+        private const val PKG = "io.spine.tools.core.jvm.comparable.action"
+
+        /**
+         * The actions applied by default to comparable messages.
+         */
+        private val DEFAULT_ACTIONS = mapOf(
+            "$PKG.AddComparator" to noParameter,
+            "$PKG.AddCompareTo" to noParameter,
+            "$PKG.ImplementComparable" to noParameter,
+        )
+    }
+}
