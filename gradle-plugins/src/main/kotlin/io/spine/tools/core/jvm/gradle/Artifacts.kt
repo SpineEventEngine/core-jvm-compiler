@@ -138,7 +138,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun javaCodegenBundle(version: String = ""): Artifact = artifact {
-        Artifact.Builder.setDependency = javaCodegenBundle
+        dependency = javaCodegenBundle
         setVersion(validationVersion(version))
     }
 
@@ -152,7 +152,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun javaRuntime(version: String = ""): Artifact = artifact {
-        Artifact.Builder.setDependency = javaRuntime
+        dependency = javaRuntime
         setVersion(validationVersion(version))
     }
 
@@ -166,7 +166,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun configuration(version: String = ""): Artifact = artifact {
-        Artifact.Builder.setDependency = configuration
+        dependency = configuration
         setVersion(validationVersion(version))
     }
 }
