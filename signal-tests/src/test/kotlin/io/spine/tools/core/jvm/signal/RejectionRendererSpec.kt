@@ -56,7 +56,7 @@ internal class RejectionRendererSpec {
         @JvmStatic
         fun setup(@TempDir projectDir: Path) {
             runPipeline(projectDir)
-            val sourceFile = file(Path("io/spine/tools/mc/signal/given/rejection/Rejections.java"))
+            val sourceFile = file(Path("$JAVA_SRC_DIR/rejection/Rejections.java"))
             rejectionCode = sourceFile.code()
         }
     }

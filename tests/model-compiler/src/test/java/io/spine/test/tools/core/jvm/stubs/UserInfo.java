@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,21 +24,14 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.routing.processor
-
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+package io.spine.test.tools.core.jvm.stubs;
 
 /**
- * Creates a symbol processor for the [Route][io.spine.server.route.Route] annotation.
+ * The interface to be mixed into the {@code UserName} message type.
  *
- * @see RouteProcessor
+ * @see <code>user_name.proto</code> file for details.
  */
-//TODO:2025-06-13:alexander.yevsyukov: Uncomment after bootstrapping.
-//@AutoService(SymbolProcessorProvider::class)
-public class RouteProcessorProvider : SymbolProcessorProvider {
-    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
-        RouteProcessor(environment.codeGenerator, environment.logger)
+public interface UserInfo {
+    String getFirstName();
+    String getLastName();
 }

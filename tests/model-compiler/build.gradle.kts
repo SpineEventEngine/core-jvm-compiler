@@ -42,27 +42,29 @@ modelCompiler {
                 enabled.set(false)
             }
 
-            val methodAction = "io.spine.tools.mc.java.mgroup.given.AddOwnTypeMethod"
-            val nestedClassAction = "io.spine.tools.mc.java.mgroup.given.NestClassAction"
+            val actionStubs = "io.spine.tools.core.jvm.mgroup.given"
+            val methodAction = "$actionStubs.AddOwnTypeMethod"
+            val nestedClassAction = "$actionStubs.NestClassAction"
 
+            val msgGroupStubs = "io.spine.test.tools.core.jvm.stubs"
             forMessages(by().suffix("documents.proto")) {
-                markAs("io.spine.test.tools.mc.java.protoc.DocumentMessage")
+                markAs("$msgGroupStubs.DocumentMessage")
             }
 
-            forMessages(by().infix("spine/tools/mc/java/protoc/prefix_generation")) {
-                markAs("io.spine.test.tools.mc.java.protoc.PrefixedMessage")
+            forMessages(by().infix("spine/tools/core/jvm/stub/prefix_generation")) {
+                markAs("$msgGroupStubs.PrefixedMessage")
                 useAction(methodAction)
                 useAction(nestedClassAction)
             }
 
             forMessages(by().suffix("suffix_generation_test.proto")) {
-                markAs("io.spine.test.tools.mc.java.protoc.SuffixedMessage")
+                markAs("$msgGroupStubs.SuffixedMessage")
                 useAction(methodAction)
                 useAction(nestedClassAction)
             }
 
             forMessages(by().regex(".*regex.*test.*")) {
-                markAs("io.spine.test.tools.mc.java.protoc.RegexedMessage")
+                markAs("$msgGroupStubs.RegexedMessage")
                 useAction(methodAction)
                 useAction(nestedClassAction)
             }

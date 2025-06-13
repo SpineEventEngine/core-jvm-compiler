@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2024, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,21 +24,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.routing.processor
+package io.spine.test.tools.core.jvm.stubs;
 
-import com.google.auto.service.AutoService
-import com.google.devtools.ksp.processing.SymbolProcessor
-import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
-import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import com.google.errorprone.annotations.Immutable;
+import io.spine.type.SerializableMessage;
 
-/**
- * Creates a symbol processor for the [Route][io.spine.server.route.Route] annotation.
- *
- * @see RouteProcessor
- */
-//TODO:2025-06-13:alexander.yevsyukov: Uncomment after bootstrapping.
-//@AutoService(SymbolProcessorProvider::class)
-public class RouteProcessorProvider : SymbolProcessorProvider {
-    override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
-        RouteProcessor(environment.codeGenerator, environment.logger)
+@Immutable
+public interface SuffixedMessage extends SerializableMessage {
 }

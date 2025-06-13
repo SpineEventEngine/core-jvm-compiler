@@ -49,7 +49,7 @@ internal class CommandRendererSpec {
         @JvmStatic
         fun setup(@TempDir projectDir: Path) {
             runPipeline(projectDir)
-            val sourceFile = file(Path("io/spine/tools/mc/signal/given/command/StartScanning.java"))
+            val sourceFile = file(Path("$JAVA_SRC_DIR/command/StartScanning.java"))
             commandCode = sourceFile.code()
         }
     }

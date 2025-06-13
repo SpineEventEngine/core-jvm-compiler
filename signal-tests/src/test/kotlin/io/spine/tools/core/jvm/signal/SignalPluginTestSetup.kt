@@ -42,6 +42,10 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
     SignalPlugin.SETTINGS_ID
 ) {
     companion object {
+        /**
+         * The common parent directory for the generated Java code of signals.
+         */
+        const val JAVA_SRC_DIR = "io/spine/tools/core/signal/given"
         const val FIELD_CLASS_SIGNATURE = "public static final class Field"
     }
 
