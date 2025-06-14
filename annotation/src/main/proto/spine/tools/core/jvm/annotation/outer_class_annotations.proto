@@ -1,0 +1,62 @@
+/*
+ * Copyright 2024, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+syntax = "proto3";
+
+package spine.core.jvm.annotation;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.core.jvm.annotation";
+option java_outer_classname = "OuterClassAnnotationsProto";
+option java_multiple_files = true;
+
+import "spine/protodata/file.proto";
+import "spine/protodata/source.proto";
+import "spine/protodata/ast.proto";
+
+// The API level options applied to an outer Java class for types
+// declared in a proto file with `java_multiple_files = false`.
+message OuterClassAnnotations {
+    option (entity) = {
+        kind: PROCESS_MANAGER,
+        visibility: FULL
+    };
+    option (is).java_type = "io.spine.tools.core.annotation.WithOptions";
+
+    // The proto file where the file option is defined.
+    protodata.File file = 1 [(required) = true];
+
+    // The header of the proto file.
+    protodata.ProtoFileHeader header = 2 [(required) = true];
+
+    // The name of the outer Java class.
+    protodata.TypeName type = 3;
+
+    // The options to be applied to the outer Java class.
+    repeated protodata.Option option = 4;
+}

@@ -27,8 +27,8 @@
 package io.spne.mc.java.marker
 
 import com.google.protobuf.Empty
-import io.spine.tools.mc.java.PluginTestSetup
-import io.spine.tools.mc.java.marker.MarkerPlugin
+import io.spine.tools.core.jvm.PluginTestSetup
+import io.spine.tools.core.jvm.marker.MarkerPlugin
 import java.nio.file.Path
 import org.junit.jupiter.api.io.TempDir
 
@@ -46,7 +46,7 @@ internal abstract class MarkerPluginTestSetup : PluginTestSetup<Empty>(MarkerPlu
      * The directory of the Java package generated for proto types in `animals.proto` and
      * their siblings of the same "domain".
      */
-    internal val animalDir = "io/spine/tools/mc/java/marker/given/animal"
+    internal val animalDir = "io/spine/tools/core/jvm/marker/given/animal"
 
     /**
      * The package corresponding to [animalDir].

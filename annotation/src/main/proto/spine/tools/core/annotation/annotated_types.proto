@@ -1,0 +1,157 @@
+/*
+ * Copyright 2024, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+syntax = "proto3";
+
+package spine.tools.core.annotation;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.core.annotation";
+option java_outer_classname = "AnnotatedTypesProto";
+option java_multiple_files = true;
+
+import "spine/protodata/file.proto";
+import "spine/protodata/ast.proto";
+
+// About API level options
+// ========================
+//
+// Spine provides several API level options that can be applied to elements of a proto code.
+// These options allow to describe visibility or stability of corresponding API elements.
+//
+// For example, `experimental_type` option of a message indicates that the type should be
+// used with caution as it may be changed or removed in the future. To learn more about
+// the API level options, please see the `spine/options.proto` file imported above.
+//
+// A proto type can get an API level option in two ways:
+//   1. Directly, by annotating the type with the option.
+//   2. Indirectly, by annotating the file with an option, which covers all the types in the file.
+//
+// For example, `experimental_all` file option makes all the types in the file experimental.
+// If we have such an option applied, we can turn it off for a particular type by annotating
+// its type with the corresponding message-level option set to `false`.
+//
+// API level options can be also applied to fields of a message. For example, `experimental_field`
+// makes only the field experimental, while the message itself remains stable.
+//
+// API level options are used to produce corresponding annotations in the generated code.
+//
+
+// The API level options applied to a proto file.
+message FileOptions {
+    option (entity).kind = PROCESS_MANAGER;
+    option (is).java_type = "WithOptions";
+
+    // The name of the file.
+    protodata.File file = 1;
+
+    // The options applied to the file.
+    //
+    // Usually, a proto file has at least one option.
+    // So, in the general case the list should not be empty.
+    // But, this message type is for the case of API-level options, and
+    // it should be empty if the file does not have such options.
+    // That is why this field is not `required`.
+    // See `FileOptionsProcess` for the example of filtering the options.
+    //
+    repeated protodata.Option option = 2;
+}
+
+// A message type which has been annotated with one or more API level options.
+//
+// It can be annotated directly inside the type, or indirectly, via a file-wide option.
+//
+message MessageAnnotations {
+    option (entity).kind = VIEW;
+    option (is).java_type = "WithOptions";
+
+    // The name of the message type.
+    protodata.TypeName type = 1;
+
+    // The proto file where the message is defined.
+    protodata.File file = 2 [(required) = true];
+
+    // The options applied to the type.
+    repeated protodata.Option option = 3 [(required) = true];
+}
+
+// The API level options applied to fields of a message type.
+message MessageFieldAnnotations {
+    option (entity).kind = VIEW;
+
+    // The name of the message type.
+    protodata.TypeName type = 1;
+
+    // The proto file where the message is defined.
+    protodata.File file = 2 [(required) = true];
+
+    // The options applied to the fields of the type.
+    //
+    // Could be empty if the message has no fields with options applied.
+    //
+    repeated FieldOptions field_options = 3 [(required) = true];
+}
+
+// The API level options applied to a field of a message.
+message FieldOptions {
+    // The field with the options applied.
+    protodata.FieldName field = 1 [(required) = true];
+
+    // One or more applied options.
+    repeated protodata.Option option = 2 [(required) = true];
+}
+
+// The API level options applied to an enum.
+message EnumAnnotations {
+    option (entity).kind = VIEW;
+    option (is).java_type = "WithOptions";
+
+    // The name of the enum.
+    protodata.TypeName type = 1;
+
+    // The proto file where the enum is defined.
+    protodata.File file = 2 [(required) = true];
+
+    // The options applied to the enum.
+    repeated protodata.Option option = 3;
+}
+
+// The API level options applied to a service.
+message ServiceAnnotations {
+    option (entity).kind = VIEW;
+    option (is).java_type = "WithOptions";
+
+    // The name of the service.
+    protodata.ServiceName service = 1;
+
+    // The proto file where the service is defined.
+    protodata.File file = 2 [(required) = true];
+
+    // The options applied to the service.
+    repeated protodata.Option option = 3;
+}
