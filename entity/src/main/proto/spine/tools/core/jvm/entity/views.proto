@@ -26,27 +26,30 @@
 
 syntax = "proto3";
 
-package spine.tools.mc.java.comparable;
+package spine.tools.core.jvm.entity;
 
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.core.jvm.comparable.event";
-option java_outer_classname = "EventsProto";
+option java_package = "io.spine.tools.core.jvm.entity";
+option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
 import "spine/protodata/ast.proto";
+import "spine/protodata/file.proto";
 import "spine/protodata/render_actions.proto";
 
-// A message with `compare_by` option was discovered.
-message ComparableMessageDiscovered {
+// Provides entity state types declared in a proto file.
+message DiscoveredEntities {
+    option (is).java_type = "io.spine.protodata.render.TypeListActions";
+    option (.entity).kind = PROJECTION;
 
-    // The type in which the option was discovered.
-    protodata.MessageType type = 1;
+    // The file which declares entity state types.
+    protodata.File file = 1;
 
-    // The option itself.
-    CompareByOption option = 2;
+    // Message types that qualify as entity states.
+    repeated protodata.MessageType type = 2;
 
-    // The code generation actions to apply.
+    // Rendering actions to be applied to the entity states.
     protodata.Actions actions = 3;
 }

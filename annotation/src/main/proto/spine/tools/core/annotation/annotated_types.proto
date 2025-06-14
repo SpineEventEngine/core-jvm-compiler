@@ -26,7 +26,7 @@
 
 syntax = "proto3";
 
-package spine.tools.mc.annotation;
+package spine.tools.core.annotation;
 
 import "spine/options.proto";
 
