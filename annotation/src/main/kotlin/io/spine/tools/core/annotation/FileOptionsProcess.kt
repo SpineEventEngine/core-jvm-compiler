@@ -49,7 +49,7 @@ import io.spine.tools.core.annotation.event.fileOptionMatched
  * a file-level option with an option for a corresponding Protobuf type such as
  * a message or a service defined in the file.
  *
- * @see io.spine.tools.mc.annotation.event.FileOptionMatched
+ * @see io.spine.tools.core.annotation.event.FileOptionMatched
  */
 internal class FileOptionsProcess : ProcessManager<File, FileOptions, FileOptions.Builder>() {
 

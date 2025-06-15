@@ -93,7 +93,7 @@ internal class QueryBuilderClassSpec {
      *
      * See also a similar test for generated `Column` class.
      *
-     * @see io.spine.tools.mc.java.entity.column.AddColumnClassSpec
+     * @see io.spine.tools.core.jvm.entity.column.AddColumnClassSpec
      */
     @Test
     fun `expose methods for columns`() {

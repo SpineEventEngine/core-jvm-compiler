@@ -30,7 +30,7 @@ import io.spine.protodata.settings.LoadsSettings
 
 /**
  * A part of [MessageGroupPlugin] that loads shared
- * [settings][io.spine.tools.mc.java.settings.GroupSettings] stored
+ * [settings][io.spine.tools.core.jvm.settings.GroupSettings] stored
  * using [consumerId] as the file name.
  */
 internal interface MessageGroupPluginComponent : LoadsSettings {

@@ -32,7 +32,7 @@ import io.spine.protodata.plugin.Plugin
  * The ProtoData plugin responsible for code generation for groups of messages
  * specified by a file or type name patterns.
  *
- * @see io.spine.tools.mc.java.settings.GroupSettings
+ * @see io.spine.tools.core.jvm.settings.GroupSettings
  */
 public class MessageGroupPlugin : Plugin(
     policies = setOf(GroupedMessageDiscovery()),

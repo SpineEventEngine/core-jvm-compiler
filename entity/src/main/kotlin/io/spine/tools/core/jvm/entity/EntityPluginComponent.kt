@@ -30,7 +30,7 @@ import io.spine.protodata.settings.LoadsSettings
 
 /**
  * A common interface for [EntityPlugin] parts that load
- * shared codegen [settings][io.spine.tools.mc.java.settings.Entities] stored
+ * shared codegen [settings][io.spine.tools.core.jvm.settings.Entities] stored
  * using the canonical name of the plugin class.
  */
 internal interface EntityPluginComponent : LoadsSettings {

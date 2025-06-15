@@ -30,7 +30,7 @@ import io.spine.protodata.settings.LoadsSettings
 
 /**
  * A part of [SignalPlugin] parts that loads shared
- * [settings][io.spine.tools.mc.java.settings.SignalSettings] stored
+ * [settings][io.spine.tools.core.jvm.settings.SignalSettings] stored
  * using the canonical name of the plugin class.
  */
 internal interface SignalPluginComponent : LoadsSettings {

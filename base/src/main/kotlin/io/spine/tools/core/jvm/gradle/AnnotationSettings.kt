@@ -37,7 +37,7 @@ import org.gradle.api.tasks.Nested
 /**
  * Settings for annotations exposed by McJava in a Gradle project.
  *
- * @see McJavaOptions
+ * @see CoreJvmOptions
  */
 public abstract class AnnotationSettings {
 

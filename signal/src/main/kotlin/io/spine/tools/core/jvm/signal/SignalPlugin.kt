@@ -35,7 +35,7 @@ import io.spine.protodata.plugin.Plugin
  * @see CommandRenderer
  * @see EventRenderer
  * @see RejectionRenderer
- * @see io.spine.tools.mc.java.settings.SignalSettings
+ * @see io.spine.tools.core.jvm.settings.SignalSettings
  * @see io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
  */
 public class SignalPlugin : Plugin(

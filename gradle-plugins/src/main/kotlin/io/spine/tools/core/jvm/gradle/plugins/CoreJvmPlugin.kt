@@ -28,9 +28,9 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.string.simply
 import io.spine.tools.core.jvm.VersionHolder
-import io.spine.tools.core.jvm.gradle.McJavaOptions
-import io.spine.tools.core.jvm.gradle.McJavaOptions.Companion.name
-import io.spine.tools.core.jvm.gradle.mcJava
+import io.spine.tools.core.jvm.gradle.CoreJvmOptions
+import io.spine.tools.core.jvm.gradle.CoreJvmOptions.Companion.name
+import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.DependencyVersions
@@ -46,7 +46,7 @@ import org.gradle.api.Project
  *
  * Applies all McJava sub-plugins to the given project.
  */
-public class CoreJvmPlugin : LanguagePlugin(name(), McJavaOptions::class.java.kotlin) {
+public class CoreJvmPlugin : LanguagePlugin(name(), CoreJvmOptions::class.java.kotlin) {
 
     public companion object {
 
@@ -70,7 +70,7 @@ public class CoreJvmPlugin : LanguagePlugin(name(), McJavaOptions::class.java.ko
 private fun Project.applyCoreJvmPlugins() {
     logApplying()
     setProtocArtifact()
-    val extension = project.mcJava
+    val extension = project.coreJvmOptions
     extension.injectProject(project)
     createAndApplyPlugins()
 }

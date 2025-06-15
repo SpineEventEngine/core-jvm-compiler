@@ -43,8 +43,8 @@ import io.spine.testing.SlowTest
 import io.spine.tools.core.jvm.NoOpMessageAction
 import io.spine.tools.core.jvm.applyStandard
 import io.spine.tools.core.jvm.field.AddFieldClass
-import io.spine.tools.core.jvm.gradle.McJavaOptions
-import io.spine.tools.core.jvm.gradle.mcJava
+import io.spine.tools.core.jvm.gradle.CoreJvmOptions
+import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.plugins.CoreJvmPlugin
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_COMMAND_ACTIONS
@@ -67,7 +67,7 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("`codegen { }` block should`")
 class CodegenBlockSpec {
 
-    private lateinit var options: McJavaOptions
+    private lateinit var options: CoreJvmOptions
     private lateinit var projectDir: File
 
     /**
@@ -103,7 +103,7 @@ class CodegenBlockSpec {
             it.plugin("com.google.protobuf")
             it.plugin(CoreJvmPlugin::class.java)
         }
-        options = project.mcJava
+        options = project.coreJvmOptions
     }
 
     @AfterEach

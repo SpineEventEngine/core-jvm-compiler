@@ -23,12 +23,13 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
 package io.spine.tools.core.jvm.gradle
 
 import groovy.lang.Closure
 import io.spine.protodata.java.style.JavaCodeStyle
 import io.spine.protodata.java.style.javaCodeStyleDefaults
-import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
+import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
 import io.spine.tools.java.fs.DefaultJavaPaths
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -38,7 +39,7 @@ import org.gradle.api.tasks.Nested
 /**
  * Code generation options exposed in a project with McJava Gradle plugin applied.
  */
-public abstract class McJavaOptions {
+public abstract class CoreJvmOptions {
 
     private lateinit var project: Project
 
@@ -49,7 +50,7 @@ public abstract class McJavaOptions {
      * Code generation settings related to specific kinds of messages and their validation.
      */
     @JvmField
-    public var codegen: CodegenSettings? = null
+    public var codegen: CompilerSettings? = null
 
     /**
      * The indent for the generated code.
@@ -80,7 +81,7 @@ public abstract class McJavaOptions {
      * Injects the dependency to the given project.
      */
     public fun injectProject(project: Project) {
-        this.codegen = CodegenSettings(project)
+        this.codegen = CompilerSettings(project)
     }
 
     public fun annotation(action: Action<AnnotationSettings>) {
@@ -90,7 +91,7 @@ public abstract class McJavaOptions {
     /**
      * Applies the given action for code generation options.
      */
-    public fun codegen(action: Action<CodegenSettings>) {
+    public fun codegen(action: Action<CompilerSettings>) {
         action.execute(codegen!!)
     }
 
