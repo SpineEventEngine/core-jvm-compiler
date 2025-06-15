@@ -24,18 +24,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable.tests.env;
+package io.spine.tools.core.jvm.comparable.tests.env;
 
-import io.spine.test.tools.mc.java.comparable.tests.Address;
-import io.spine.test.tools.mc.java.comparable.tests.Destination;
-import io.spine.test.tools.mc.java.comparable.tests.Traveler;
+import io.spine.test.tools.core.jvm.comparable.tests.Student;
 
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
- * Provides {@link Traveler} instances for
+ * Provides {@link Student} instances for
  * {@link io.spine.tools.mc.java.comparable.ComparablePluginTest ComparablePluginTest}.
  *
  * <p>Field names reflect the expected position of the corresponding message
@@ -43,40 +41,31 @@ import static com.google.common.collect.Lists.newArrayList;
  * a sorted collection on our own. Otherwise, it would break the test essence, in which
  * we would compare two collections sorted by {@link java.util.Collections#sort(List)}.
  */
-public class Travelers {
+public class Students {
 
-    public static final Traveler firstTraveler = traveler("America", "Washington", "Pennsylvania Avenue 5", true);
-    public static final Traveler secondTraveler = traveler("America", "Washington", "U Street", false);
-    public static final Traveler thirdTraveler = traveler("Germany", "Berlin", "Potsdamer Platz", false);
-    public static final Traveler fourthTraveler = traveler("Germany", "Munich", "Sendlinger Strasse", false);
-    public static final Traveler fifthTraveler = traveler("Germany", "Munich", "Sendlinger Strasse", true);
+    public static final Student firstStudent = student(2022, "Jack");
+    public static final Student secondStudent = student(2022, "Danial");
+    public static final Student thirdStudent = student(2022, "Alex");
+    public static final Student fourthStudent = student(2018, "Richard");
+    public static final Student fifthStudent = student(2015, "Jessica");
 
     /**
      * Prevents instantiation of this utility class.
      */
-    private Travelers() {
+    private Students() {
     }
 
     /**
-     * Returns an unsorted collection of the five travelers.
+     * Returns an unsorted collection of the five students.
      */
-    public static List<Traveler> unsorted() {
-        return newArrayList(fourthTraveler, secondTraveler, fifthTraveler, firstTraveler,
-                            thirdTraveler);
+    public static List<Student> unsorted() {
+        return newArrayList(fourthStudent, secondStudent, fifthStudent, firstStudent, thirdStudent);
     }
 
-    private static Traveler traveler(String country, String city, String street, boolean fool) {
-        var address = Address.newBuilder()
-                .setStreet(street)
-                .setFull(fool)
-                .build();
-        var destination = Destination.newBuilder()
-                .setCountry(country)
-                .setCity(city)
-                .setAddress(address)
-                .build();
-        return Traveler.newBuilder()
-                .setDestination(destination)
+    private static Student student(int year, String name) {
+        return Student.newBuilder()
+                .setYear(year)
+                .setName(name)
                 .build();
     }
 }

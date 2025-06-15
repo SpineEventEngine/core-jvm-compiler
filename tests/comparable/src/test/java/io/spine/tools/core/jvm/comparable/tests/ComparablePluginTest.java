@@ -24,37 +24,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable.tests;
+package io.spine.tools.core.jvm.comparable.tests;
 
-import io.spine.tools.mc.java.comparable.tests.env.Joggings;
-import io.spine.tools.mc.java.comparable.tests.env.LocalDateTimes;
-import io.spine.tools.mc.java.comparable.tests.env.Students;
-import io.spine.tools.mc.java.comparable.tests.env.Travelers;
+import io.spine.tools.core.jvm.comparable.tests.env.Joggings;
+import io.spine.tools.core.jvm.comparable.tests.env.LocalDateTimes;
+import io.spine.tools.core.jvm.comparable.tests.env.Students;
+import io.spine.tools.core.jvm.comparable.tests.env.Travelers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.truth.Truth.assertThat;
-import static io.spine.tools.mc.java.comparable.tests.env.Joggings.fifthJogging;
-import static io.spine.tools.mc.java.comparable.tests.env.Joggings.firstJogging;
-import static io.spine.tools.mc.java.comparable.tests.env.Joggings.fourthJogging;
-import static io.spine.tools.mc.java.comparable.tests.env.Joggings.secondJogging;
-import static io.spine.tools.mc.java.comparable.tests.env.Joggings.thirdJogging;
-import static io.spine.tools.mc.java.comparable.tests.env.LocalDateTimes.fifthStamp;
-import static io.spine.tools.mc.java.comparable.tests.env.LocalDateTimes.firstStamp;
-import static io.spine.tools.mc.java.comparable.tests.env.LocalDateTimes.fourthStamp;
-import static io.spine.tools.mc.java.comparable.tests.env.LocalDateTimes.secondStamp;
-import static io.spine.tools.mc.java.comparable.tests.env.LocalDateTimes.thirdStamp;
-import static io.spine.tools.mc.java.comparable.tests.env.Students.fifthStudent;
-import static io.spine.tools.mc.java.comparable.tests.env.Students.firstStudent;
-import static io.spine.tools.mc.java.comparable.tests.env.Students.fourthStudent;
-import static io.spine.tools.mc.java.comparable.tests.env.Students.secondStudent;
-import static io.spine.tools.mc.java.comparable.tests.env.Students.thirdStudent;
-import static io.spine.tools.mc.java.comparable.tests.env.Travelers.fifthTraveler;
-import static io.spine.tools.mc.java.comparable.tests.env.Travelers.firstTraveler;
-import static io.spine.tools.mc.java.comparable.tests.env.Travelers.fourthTraveler;
-import static io.spine.tools.mc.java.comparable.tests.env.Travelers.secondTraveler;
-import static io.spine.tools.mc.java.comparable.tests.env.Travelers.thirdTraveler;
+import static io.spine.tools.core.jvm.comparable.tests.env.Joggings.fifthJogging;
+import static io.spine.tools.core.jvm.comparable.tests.env.Joggings.firstJogging;
+import static io.spine.tools.core.jvm.comparable.tests.env.Joggings.fourthJogging;
+import static io.spine.tools.core.jvm.comparable.tests.env.Joggings.secondJogging;
+import static io.spine.tools.core.jvm.comparable.tests.env.Joggings.thirdJogging;
+import static io.spine.tools.core.jvm.comparable.tests.env.LocalDateTimes.fifthStamp;
+import static io.spine.tools.core.jvm.comparable.tests.env.LocalDateTimes.firstStamp;
+import static io.spine.tools.core.jvm.comparable.tests.env.LocalDateTimes.fourthStamp;
+import static io.spine.tools.core.jvm.comparable.tests.env.LocalDateTimes.secondStamp;
+import static io.spine.tools.core.jvm.comparable.tests.env.LocalDateTimes.thirdStamp;
+import static io.spine.tools.core.jvm.comparable.tests.env.Students.fifthStudent;
+import static io.spine.tools.core.jvm.comparable.tests.env.Students.firstStudent;
+import static io.spine.tools.core.jvm.comparable.tests.env.Students.fourthStudent;
+import static io.spine.tools.core.jvm.comparable.tests.env.Students.secondStudent;
+import static io.spine.tools.core.jvm.comparable.tests.env.Students.thirdStudent;
+import static io.spine.tools.core.jvm.comparable.tests.env.Travelers.fifthTraveler;
+import static io.spine.tools.core.jvm.comparable.tests.env.Travelers.firstTraveler;
+import static io.spine.tools.core.jvm.comparable.tests.env.Travelers.fourthTraveler;
+import static io.spine.tools.core.jvm.comparable.tests.env.Travelers.secondTraveler;
+import static io.spine.tools.core.jvm.comparable.tests.env.Travelers.thirdTraveler;
 import static java.util.Collections.sort;
 
 @DisplayName("`ComparablePlugin` should")
