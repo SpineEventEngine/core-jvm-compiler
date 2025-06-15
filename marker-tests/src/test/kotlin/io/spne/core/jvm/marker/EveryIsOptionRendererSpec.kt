@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spne.mc.java.marker
+package io.spne.core.jvm.marker
 
 import com.google.protobuf.Message
 import io.kotest.matchers.shouldBe

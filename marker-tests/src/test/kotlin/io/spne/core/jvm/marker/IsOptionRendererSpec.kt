@@ -24,38 +24,50 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spne.mc.java.marker
+package io.spne.core.jvm.marker
 
-import com.google.protobuf.Empty
-import io.spine.tools.core.jvm.PluginTestSetup
-import io.spine.tools.core.jvm.marker.MarkerPlugin
+import io.kotest.matchers.string.shouldContain
 import java.nio.file.Path
+import kotlin.io.path.Path
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
-/**
- * Abstract base for [MarkerPlugin] tests.
- *
- * The plugin does not have settings.
- *
- * The class exposes properties common for tests based on proto types
- * generated in response to files under `testFixtures/proto/given/types`.
- */
-internal abstract class MarkerPluginTestSetup : PluginTestSetup<Empty>(MarkerPlugin(), "") {
+@DisplayName("`IsOptionRenderer` should")
+internal class IsOptionRendererSpec {
 
-    /**
-     * The directory of the Java package generated for proto types in `animals.proto` and
-     * their siblings of the same "domain".
-     */
-    internal val animalDir = "io/spine/tools/core/jvm/marker/given/animal"
+    companion object : MarkerPluginTestSetup() {
 
-    /**
-     * The package corresponding to [animalDir].
-     */
-    internal val animalPackage = animalDir.replace('/', '.')
+        @BeforeAll
+        @JvmStatic
+        fun setup(@TempDir projectDir: Path) {
+            generateCode(projectDir)
+        }
+    }
 
-    override fun createSettings(projectDir: Path): Empty = Empty.getDefaultInstance()
+    @Test
+    fun `implement an interface via a simple name`() {
+        val javaFiles = files(Path(animalDir), "Unicorn", "Dragon")
 
-    fun generateCode(@TempDir projectDir: Path) {
-        runPipeline(projectDir)
+        javaFiles.forEach {
+            val code = file(it).code()
+            code shouldContain ", Fictional"
+        }
+    }
+
+    @Test
+    fun `implement an interface via a fully qualified name`() {
+        val javaFiles = files(
+            Path("io/spine/tools/core/jvm/marker/given/animal/fiction/greek"),
+            "Pegasus", "Hippalektryon"
+        )
+
+        val qualifiedInterface = "$animalPackage.Fictional"
+
+        javaFiles.forEach {
+            val code = file(it).code()
+            code shouldContain ", $qualifiedInterface"
+        }
     }
 }

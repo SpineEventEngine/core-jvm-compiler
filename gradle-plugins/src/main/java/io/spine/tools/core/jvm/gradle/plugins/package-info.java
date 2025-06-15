@@ -29,7 +29,7 @@
  */
 @CheckReturnValue
 @NullMarked
-package io.spine.tools.mc.jvm.gradle.plugins;
+package io.spine.tools.core.jvm.gradle.plugins;
 
 import com.google.errorprone.annotations.CheckReturnValue;
 import org.jspecify.annotations.NullMarked;
