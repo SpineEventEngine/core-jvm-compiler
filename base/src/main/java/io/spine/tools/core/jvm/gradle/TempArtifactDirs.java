@@ -35,11 +35,12 @@ import org.jspecify.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 import static io.spine.tools.core.jvm.gradle.CoreJvmOptions.def;
-import static io.spine.tools.core.jvm.gradle.Projects.getMcJava;
+import static io.spine.tools.core.jvm.gradle.Projects.getCoreJvmOptions;
 import static io.spine.util.Exceptions.newIllegalStateException;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
@@ -80,7 +81,7 @@ public class TempArtifactDirs {
     }
 
     private static List<File> fromOptionsOf(Project project) {
-        var options = getMcJava(project);
+        var options = getCoreJvmOptions(project);
         var dirs = options.tempArtifactDirs.stream()
                 .map(File::new)
                 .collect(toList());
@@ -94,7 +95,7 @@ public class TempArtifactDirs {
         if (tempArtifactDir != null) {
             result.add(tempArtifactDir);
             if (tempArtifactDirOfRoot != null
-                    && !tempArtifactDir.equals(tempArtifactDirOfRoot)) {
+                    && !areSame(tempArtifactDir, tempArtifactDirOfRoot)) {
                 result.add(tempArtifactDirOfRoot);
             }
         }
@@ -123,5 +124,15 @@ public class TempArtifactDirs {
             );
         }
         return result;
+    }
+
+    private static boolean areSame(File f1, File f2) {
+        var p1 = f1.toPath();
+        var p2 = f2.toPath();
+        try {
+            return Files.isSameFile(p1, p2);
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

@@ -39,7 +39,7 @@ import io.spine.tools.core.jvm.annotation.settings
 import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
-import io.spine.tools.core.jvm.gradle.mcJava
+import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.plugins.WriteProtoDataSettings.Companion.JAVA_CODE_STYLE_ID
 import io.spine.tools.core.jvm.gradle.plugins.WriteProtoDataSettings.Companion.VALIDATION_SETTINGS_ID
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
@@ -73,7 +73,7 @@ public abstract class WriteProtoDataSettings : DefaultTask() {
 
     @get:Internal
     internal val options: CoreJvmOptions by lazy {
-        project.mcJava
+        project.coreJvmOptions
     }
 
     @get:Internal
