@@ -24,12 +24,12 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.mc.java.comparable.tests.env;
+package io.spine.tools.core.jvm.comparable.tests.env;
 
-import io.spine.test.tools.mc.java.comparable.tests.LocalDate;
-import io.spine.test.tools.mc.java.comparable.tests.LocalDateTime;
-import io.spine.test.tools.mc.java.comparable.tests.LocalTime;
-import io.spine.test.tools.mc.java.comparable.tests.Zone;
+import io.spine.test.tools.core.jvm.comparable.tests.LocalDate;
+import io.spine.test.tools.core.jvm.comparable.tests.LocalDateTime;
+import io.spine.test.tools.core.jvm.comparable.tests.LocalTime;
+import io.spine.test.tools.core.jvm.comparable.tests.Zone;
 
 import java.util.List;
 

@@ -32,7 +32,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.test.tools.mc.java.comparable.tests";
+option java_package = "io.spine.test.tools.core.jvm.comparable.tests";
 option java_multiple_files = true;
 
 // Comparable by `Timestamp` and `Duration` fields, for which the `ComparatorRegistry`
