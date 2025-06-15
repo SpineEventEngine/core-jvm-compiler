@@ -68,7 +68,7 @@ import org.junit.jupiter.api.io.TempDir
  * Tests annotating generated Java code with API level annotations, such as
  * [Internal] or [SPI].
  *
- * The subject of test is [io.spine.tools.mc.annotation.ApiAnnotationsPlugin] which is
+ * The subject of test is [io.spine.tools.core.annotation.ApiAnnotationsPlugin] which is
  * a plugin to ProtoData. We test the plugin as a part of the Gradle build performed by
  * McJava Gradle plugin.
  *

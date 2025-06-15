@@ -47,7 +47,7 @@ import org.gradle.kotlin.dsl.getByType
 /**
  * Obtains options of Model Compiler for Java.
  */
-public val Project.mcJava: McJavaOptions
+public val Project.mcJava: CoreJvmOptions
     get() = (modelCompiler as ExtensionAware).extensions.getByType()
 
 private val Project.defaultPaths: DefaultJavaPaths

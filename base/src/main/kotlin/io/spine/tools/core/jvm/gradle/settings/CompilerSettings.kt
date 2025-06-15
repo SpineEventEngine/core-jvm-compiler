@@ -50,10 +50,10 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.compile.JavaCompile
 
 /**
- * A part of [McJavaOptions][io.spine.tools.mc.java.gradle.McJavaOptions] responsible
+ * A part of [McJavaOptions][io.spine.tools.core.jvm.gradle.CoreJvmOptions] responsible
  * for code generation settings.
  */
-public class CodegenSettings @Internal public constructor(private val project: Project) :
+public class CompilerSettings @Internal public constructor(private val project: Project) :
     Settings<Combined>(project) {
 
     /**
@@ -207,7 +207,7 @@ public class CodegenSettings @Internal public constructor(private val project: P
     }
 
     override fun toProto(): Combined {
-        val self = this@CodegenSettings
+        val self = this@CompilerSettings
         val ss = signalSettings {
             commands = self.commands.toProto()
             events = self.events.toProto()

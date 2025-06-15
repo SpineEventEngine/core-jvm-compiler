@@ -31,7 +31,7 @@ import io.spine.protodata.plugin.Plugin
 /**
  * Discovers [UuidValue][io.spine.base.UuidValue] message types and renders the code
  * according to the settings specified in
- * [io.spine.tools.core.jvm.gradle.settings.CodegenSettings.forUuids] clause.
+ * [io.spine.tools.core.jvm.gradle.settings.CompilerSettings.forUuids] clause.
  */
 public class UuidPlugin : Plugin(
     policies = setOf(UuidValueDiscovery()),

@@ -30,7 +30,7 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.spine.tools.core.jvm.entity.column.AddColumnClass
 import io.spine.tools.core.jvm.entity.query.AddQuerySupport
 import io.spine.tools.core.jvm.field.AddFieldClass
-import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
+import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.java.reference
 import java.io.File
@@ -55,8 +55,8 @@ internal class EntitySettingsSpec {
     @BeforeEach
     fun createProject(@TempDir projectDir: File) {
         val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
-        val codegenSettings = CodegenSettings(project)
-        settings = codegenSettings.entities.toProto()
+        val compilerSettings = CompilerSettings(project)
+        settings = compilerSettings.entities.toProto()
     }
 
     @Test

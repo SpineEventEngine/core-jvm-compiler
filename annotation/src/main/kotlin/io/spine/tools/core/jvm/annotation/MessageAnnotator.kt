@@ -33,7 +33,7 @@ import io.spine.tools.core.annotation.MessageAnnotations
 /**
  * Annotates a message class and a `MessageOrBuilder` interface with the given annotation.
  *
- * @see io.spine.tools.mc.annotation.MessageAnnotationsView
+ * @see io.spine.tools.core.annotation.MessageAnnotationsView
  */
 internal class MessageAnnotator :
     MessageOrEnumAnnotator<MessageAnnotations>(MessageAnnotations::class.java) {

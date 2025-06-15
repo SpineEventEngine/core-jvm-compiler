@@ -44,7 +44,7 @@ import io.spine.tools.core.jvm.gradle.generatedJavaDirName
 import io.spine.tools.core.jvm.gradle.mcJava
 import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
 import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.WRITE_PROTODATA_SETTINGS
-import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
+import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
 import io.spine.tools.core.jvm.marker.MarkerPlugin
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.signal.SignalPlugin
@@ -157,7 +157,7 @@ private fun Project.configureProtoDataPlugins() {
     }
 }
 
-private val Project.messageOptions: CodegenSettings
+private val Project.messageOptions: CompilerSettings
     get() = mcJava.codegen!!
 
 private fun ProtoDataSettings.setSubdirectories() {

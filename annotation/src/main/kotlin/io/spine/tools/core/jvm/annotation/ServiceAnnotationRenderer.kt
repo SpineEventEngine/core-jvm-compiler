@@ -36,7 +36,7 @@ import io.spine.tools.core.annotation.ServiceAnnotations
 /**
  * Annotates Java implementations of gRPC services.
  *
- * @see io.spine.tools.mc.annotation.ServiceAnnotationsView
+ * @see io.spine.tools.core.annotation.ServiceAnnotationsView
  */
 internal class ServiceAnnotationRenderer :
     TypeAnnotator<ServiceAnnotations>(ServiceAnnotations::class.java) {

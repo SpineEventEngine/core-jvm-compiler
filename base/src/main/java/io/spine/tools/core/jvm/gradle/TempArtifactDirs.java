@@ -38,7 +38,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.spine.tools.core.jvm.gradle.McJavaOptions.def;
+import static io.spine.tools.core.jvm.gradle.CoreJvmOptions.def;
 import static io.spine.tools.core.jvm.gradle.Projects.getMcJava;
 import static io.spine.util.Exceptions.newIllegalStateException;
 import static java.lang.String.format;

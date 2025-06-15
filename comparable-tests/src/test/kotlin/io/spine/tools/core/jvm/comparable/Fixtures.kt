@@ -41,7 +41,7 @@ import java.nio.file.Path
 import org.junit.jupiter.api.assertThrows
 
 /**
- * Runs the [block] with logging muted in the `io.spine.tools.mc.java.comparable` package.
+ * Runs the [block] with logging muted in the `io.spine.tools.core.jvm.comparable` package.
  */
 internal fun muteLogging(block: () -> Unit) {
     withLoggingMutedIn(listOf(AddComparator::class.java.packageName), block)

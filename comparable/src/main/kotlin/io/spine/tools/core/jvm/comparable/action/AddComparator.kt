@@ -153,7 +153,7 @@ public class AddComparator(
      * 2. All enumerations (Java enums are implicitly comparable).
      * 3. Messages with [CompareByOption] option.
      * 4. External messages for which [ComparatorRegistry] has a comparator.
-     * 5. [WellKnownComparables][io.spine.tools.mc.java.comparable.WellKnownComparables].
+     * 5. [WellKnownComparables][io.spine.tools.core.jvm.comparable.WellKnownComparables].
      */
     private fun ComparatorBuilder.comparingBy(field: ComparisonField) {
         val path = field.path
@@ -197,7 +197,7 @@ public class AddComparator(
      * a comparator in [ComparatorRegistry].
      * 2. An external message without the option, but with a comparator
      * in the registry.
-     * 3. [Well-known comparable][io.spine.tools.mc.java.comparable.WellKnownComparables].
+     * 3. [Well-known comparable][io.spine.tools.core.jvm.comparable.WellKnownComparables].
      */
     private fun ComparatorBuilder.comparingBy(field: ExternalMessageComparisonField) {
         val path = field.path

@@ -41,7 +41,7 @@ import org.gradle.api.Project
  *
  * @constructor Creates an instance of settings for the given project and the specified pattern.
  *
- * @see CodegenSettings.forMessages
+ * @see CompilerSettings.forMessages
  */
 public class MessageGroupSettings internal constructor(
     project: Project,

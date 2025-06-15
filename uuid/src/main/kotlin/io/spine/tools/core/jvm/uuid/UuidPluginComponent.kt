@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.uuid
 import io.spine.protodata.settings.LoadsSettings
 
 /**
- * A part of [UuidPlugin] that loads [settings][io.spine.tools.mc.java.settings.Uuids] stored
+ * A part of [UuidPlugin] that loads [settings][io.spine.tools.core.jvm.settings.Uuids] stored
  * using [consumerId] as the file name.
  */
 internal interface UuidPluginComponent : LoadsSettings {

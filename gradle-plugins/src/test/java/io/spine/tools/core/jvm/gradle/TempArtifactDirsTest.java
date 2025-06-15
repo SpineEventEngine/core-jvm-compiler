@@ -52,7 +52,7 @@ class TempArtifactDirsTest {
 
     private Project project = null;
     private File projectDir = null;
-    private McJavaOptions options = null;
+    private CoreJvmOptions options = null;
 
     @BeforeEach
     void setUp() {

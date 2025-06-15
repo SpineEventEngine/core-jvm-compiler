@@ -45,7 +45,7 @@ import org.gradle.api.provider.SetProperty
  *
  * @param project The project for which settings are created.
  *
- * @see CodegenSettings.forEntities
+ * @see CompilerSettings.forEntities
  */
 public class EntitySettings @VisibleForTesting public constructor(project: Project) :
     SettingsWithFields<Entities>(project, DEFAULT_ACTIONS) {

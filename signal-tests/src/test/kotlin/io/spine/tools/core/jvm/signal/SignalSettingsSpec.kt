@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.signal
 import io.kotest.matchers.collections.shouldContainExactly
 import io.spine.protodata.java.render.ImplementInterface
 import io.spine.tools.core.jvm.field.AddFieldClass
-import io.spine.tools.core.jvm.gradle.settings.CodegenSettings
+import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
 import java.io.File
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeEach
@@ -47,24 +47,24 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("`SignalSettings` should")
 internal class SignalSettingsSpec {
 
-    private lateinit var codegenSettings: CodegenSettings
+    private lateinit var compilerSettings: CompilerSettings
 
     @BeforeEach
     fun createProject(@TempDir projectDir: File) {
         val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
-        codegenSettings = CodegenSettings(project)
+        compilerSettings = CompilerSettings(project)
     }
 
     @Test
     fun `provide default actions for command messages`() {
-        codegenSettings.commands.toProto().actions.actionMap.keys shouldContainExactly setOf(
+        compilerSettings.commands.toProto().actions.actionMap.keys shouldContainExactly setOf(
             ImplementInterface::class.java.name,
         )
     }
 
     @Test
     fun `provide default actions for event messages`() {
-        codegenSettings.events.toProto().actions.actionMap.keys shouldContainExactly setOf(
+        compilerSettings.events.toProto().actions.actionMap.keys shouldContainExactly setOf(
             ImplementInterface::class.java.name,
             AddFieldClass::class.java.name
         )
@@ -72,7 +72,7 @@ internal class SignalSettingsSpec {
 
     @Test
     fun `provide default actions for rejection messages`() {
-        codegenSettings.rejections.toProto().actions.actionMap.keys shouldContainExactly setOf(
+        compilerSettings.rejections.toProto().actions.actionMap.keys shouldContainExactly setOf(
             ImplementInterface::class.java.name,
             AddFieldClass::class.java.name
         )
