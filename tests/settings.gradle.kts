@@ -30,9 +30,9 @@ include(
     "factories",
     "entity-queries",
     "known-types",
-    "model-compiler",
+    "compiler",
     "rejection",
-    "mc-java-comparable",
+    "comparable",
     "validation-smoke"
 )
 
