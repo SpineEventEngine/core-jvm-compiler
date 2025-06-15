@@ -36,6 +36,10 @@ package io.spine.dependency.local
     "ConstPropertyName",
     "unused"
 )
+@Deprecated(
+    message = "Please use `CoreJvmCompiler` instead.",
+    replaceWith = ReplaceWith("CoreJvmCompiler")
+)
 object McJava {
     const val group = Spine.toolsGroup
 
