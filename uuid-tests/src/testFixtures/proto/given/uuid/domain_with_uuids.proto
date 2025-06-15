@@ -31,7 +31,7 @@ package given.uuid;
 import "spine/options.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.mc.java.uuid.given";
+option java_package = "io.spine.tools.core.jvm.uuid.given";
 option java_outer_classname = "DomainWithUuidsProto";
 option java_multiple_files = true;
 

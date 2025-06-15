@@ -34,7 +34,7 @@ import "google/protobuf/duration.proto";
 import "google/protobuf/wrappers.proto";
 
 option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.mc.java.comparable.given";
+option java_package = "io.spine.tools.core.jvm.comparable.given";
 option java_multiple_files = true;
 
 // This file contains messages with well-known Protobuf types, which are not required to have
