@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.entity
 
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.java.render.RenderActions
-import io.spine.protodata.java.render.TypeListRenderer
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.render.RenderActions
+import io.spine.tools.compiler.jvm.render.TypeListRenderer
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.execute

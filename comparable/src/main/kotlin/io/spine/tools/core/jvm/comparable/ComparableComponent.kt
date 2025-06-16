@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.comparable
 
-import io.spine.protodata.settings.LoadsSettings
+import io.spine.tools.compiler.settings.LoadsSettings
 
 /**
  * A component that can access settings of [ComparablePlugin].

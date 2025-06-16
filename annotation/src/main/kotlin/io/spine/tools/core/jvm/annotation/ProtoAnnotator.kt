@@ -27,7 +27,7 @@
 package io.spine.tools.core.jvm.annotation
 
 import io.spine.base.EntityState
-import io.spine.protodata.render.SourceFileSet
+import io.spine.tools.compiler.render.SourceFileSet
 
 /**
  * An abstract base for annotation renderers that annotate Protobuf generated code

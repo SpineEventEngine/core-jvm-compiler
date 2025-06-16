@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.mgroup
 
-import io.spine.protodata.settings.LoadsSettings
+import io.spine.tools.compiler.settings.LoadsSettings
 
 /**
  * A part of [MessageGroupPlugin] that loads shared

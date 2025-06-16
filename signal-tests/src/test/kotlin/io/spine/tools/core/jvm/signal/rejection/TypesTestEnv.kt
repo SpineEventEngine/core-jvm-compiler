@@ -31,37 +31,37 @@ import com.google.protobuf.DescriptorProtos.FileOptions.JAVA_MULTIPLE_FILES_FIEL
 import com.google.protobuf.DescriptorProtos.FileOptions.JAVA_OUTER_CLASSNAME_FIELD_NUMBER
 import com.google.protobuf.DescriptorProtos.FileOptions.JAVA_PACKAGE_FIELD_NUMBER
 import io.spine.protobuf.pack
-import io.spine.protodata.ast.EnumConstant
-import io.spine.protodata.ast.EnumType
-import io.spine.protodata.ast.Field
-import io.spine.protodata.ast.File
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.Option
-import io.spine.protodata.ast.PrimitiveType.TYPE_BOOL
-import io.spine.protodata.ast.PrimitiveType.TYPE_STRING
-import io.spine.protodata.ast.ProtoFileHeader
-import io.spine.protodata.ast.Service
-import io.spine.protodata.ast.ServiceName
-import io.spine.protodata.ast.TypeName
-import io.spine.protodata.ast.constantName
-import io.spine.protodata.ast.enumConstant
-import io.spine.protodata.ast.fieldName
-import io.spine.protodata.ast.fieldType
-import io.spine.protodata.ast.file
-import io.spine.protodata.ast.messageType
-import io.spine.protodata.ast.option
-import io.spine.protodata.ast.protoFileHeader
-import io.spine.protodata.ast.protobufSourceFile
-import io.spine.protodata.ast.service
-import io.spine.protodata.ast.serviceName
-import io.spine.protodata.ast.toPath
-import io.spine.protodata.ast.type
-import io.spine.protodata.ast.typeName
-import io.spine.protodata.protobuf.ProtoFileList
-import io.spine.protodata.type.TypeSystem
-import io.spine.protodata.value.pack
-import io.spine.protodata.ast.enumType as newEnumType
-import io.spine.protodata.ast.field as newField
+import io.spine.tools.compiler.ast.EnumConstant
+import io.spine.tools.compiler.ast.EnumType
+import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.Option
+import io.spine.tools.compiler.ast.PrimitiveType.TYPE_BOOL
+import io.spine.tools.compiler.ast.PrimitiveType.TYPE_STRING
+import io.spine.tools.compiler.ast.ProtoFileHeader
+import io.spine.tools.compiler.ast.Service
+import io.spine.tools.compiler.ast.ServiceName
+import io.spine.tools.compiler.ast.TypeName
+import io.spine.tools.compiler.ast.constantName
+import io.spine.tools.compiler.ast.enumConstant
+import io.spine.tools.compiler.ast.fieldName
+import io.spine.tools.compiler.ast.fieldType
+import io.spine.tools.compiler.ast.file
+import io.spine.tools.compiler.ast.messageType
+import io.spine.tools.compiler.ast.option
+import io.spine.tools.compiler.ast.protoFileHeader
+import io.spine.tools.compiler.ast.protobufSourceFile
+import io.spine.tools.compiler.ast.service
+import io.spine.tools.compiler.ast.serviceName
+import io.spine.tools.compiler.ast.toPath
+import io.spine.tools.compiler.ast.type
+import io.spine.tools.compiler.ast.typeName
+import io.spine.tools.compiler.protobuf.ProtoFileList
+import io.spine.tools.compiler.type.TypeSystem
+import io.spine.tools.compiler.value.pack
+import io.spine.tools.compiler.ast.enumType as newEnumType
+import io.spine.tools.compiler.ast.field as newField
 
 object TypesTestEnv {
 

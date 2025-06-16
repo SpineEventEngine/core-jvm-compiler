@@ -30,9 +30,10 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import com.google.protobuf.Message
-import io.spine.protodata.java.style.JavaCodeStyle
-import io.spine.protodata.settings.SettingsDirectory
-import io.spine.protodata.util.Format
+import io.spine.tools.compiler.jvm.style.JavaCodeStyle
+import io.spine.tools.compiler.settings.SettingsDirectory
+import io.spine.format.Format
+import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.annotation.SettingsKt.annotationTypes
 import io.spine.tools.core.jvm.annotation.settings
@@ -40,8 +41,8 @@ import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
-import io.spine.tools.core.jvm.gradle.plugins.WriteProtoDataSettings.Companion.JAVA_CODE_STYLE_ID
-import io.spine.tools.core.jvm.gradle.plugins.WriteProtoDataSettings.Companion.VALIDATION_SETTINGS_ID
+import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerSettings.Companion.JAVA_CODE_STYLE_ID
+import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerSettings.Companion.VALIDATION_SETTINGS_ID
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.settings.Combined
 import io.spine.tools.core.jvm.settings.signalSettings
@@ -66,7 +67,7 @@ import org.gradle.api.tasks.TaskAction
  * This task writes settings files for ProtoData components.
  */
 @Suppress("unused") // Gradle creates a subtype for this class.
-public abstract class WriteProtoDataSettings : DefaultTask() {
+public abstract class WriteCompilerSettings : DefaultTask() {
 
     @get:OutputDirectory
     public abstract val settingsDir: DirectoryProperty
@@ -77,8 +78,8 @@ public abstract class WriteProtoDataSettings : DefaultTask() {
     }
 
     @get:Internal
-    internal val codegenSettings by lazy {
-        options.codegen!!.toProto()
+    internal val compilerSettings by lazy {
+        options.compiler!!.toProto()
     }
 
     @TaskAction
@@ -111,9 +112,9 @@ public abstract class WriteProtoDataSettings : DefaultTask() {
 
 /**
  * Obtains an instance of [SettingsDirectory] to be used for writing files which
- * points to the directory specified by the [WriteProtoDataSettings.settingsDir] property.
+ * points to the directory specified by the [WriteCompilerSettings.settingsDir] property.
  */
-private fun WriteProtoDataSettings.settingsDirectory(): SettingsDirectory {
+private fun WriteCompilerSettings.settingsDirectory(): SettingsDirectory {
     val dir = project.file(settingsDir)
     dir.mkdirs()
     val settings = SettingsDirectory(dir.toPath())
@@ -126,16 +127,16 @@ private fun WriteProtoDataSettings.settingsDirectory(): SettingsDirectory {
  * The settings are taken from McJava extension object and converted to
  * [io.spine.validation.ValidationConfig], which is later written as JSON file.
  */
-private fun WriteProtoDataSettings.forValidationPlugin(dir: SettingsDirectory) {
-    val codegen = codegenSettings
-    val signalSettings = codegen.signalSettings
+private fun WriteCompilerSettings.forValidationPlugin(dir: SettingsDirectory) {
+    val compilerSettings = compilerSettings
+    val signalSettings = compilerSettings.signalSettings
     val markers = messageMarkers {
         signalSettings.let {
-            commandPattern.addAll(it.commands.patternList)
-            eventPattern.addAll(it.events.patternList)
-            rejectionPattern.addAll(it.rejections.patternList)
+            commandPattern.addAll(it.commands.patternList.toProtoData())
+            eventPattern.addAll(it.events.patternList.toProtoData())
+            rejectionPattern.addAll(it.rejections.patternList.toProtoData())
         }
-        entityOptionName.addAll(codegen.entityOptionsNames())
+        entityOptionName.addAll(compilerSettings.entityOptionsNames())
     }
     val settings = validationConfig {
         messageMarkers = markers
@@ -144,10 +145,18 @@ private fun WriteProtoDataSettings.forValidationPlugin(dir: SettingsDirectory) {
     dir.write(VALIDATION_SETTINGS_ID, settings)
 }
 
+private fun FilePattern.toProtoData(): io.spine.protodata.ast.FilePattern {
+    return io.spine.protodata.ast.FilePattern.parseFrom(this.toByteArray())
+}
+
+private fun List<FilePattern>.toProtoData(): List<io.spine.protodata.ast.FilePattern> {
+    return map { it.toProtoData() }
+}
+
 private fun Combined.entityOptionsNames(): Iterable<String> =
     entities.optionList.map { it.name }
 
-private fun WriteProtoDataSettings.forAnnotationPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerSettings.forAnnotationPlugin(dir: SettingsDirectory) {
     val annotation = options.annotation
     val proto = settings {
         val javaType = annotation.types
@@ -163,13 +172,13 @@ private fun WriteProtoDataSettings.forAnnotationPlugin(dir: SettingsDirectory) {
     dir.write(ApiAnnotationsPlugin.SETTINGS_ID, proto)
 }
 
-private fun WriteProtoDataSettings.forEntityPlugin(dir: SettingsDirectory) {
-    val entitySettings = codegenSettings.entities
+private fun WriteCompilerSettings.forEntityPlugin(dir: SettingsDirectory) {
+    val entitySettings = compilerSettings.entities
     dir.write(EntityPlugin.SETTINGS_ID, entitySettings)
 }
 
-private fun WriteProtoDataSettings.forSignalPlugin(dir: SettingsDirectory) {
-    val codegen = codegenSettings.signalSettings
+private fun WriteCompilerSettings.forSignalPlugin(dir: SettingsDirectory) {
+    val codegen = compilerSettings.signalSettings
     val signalSettings = signalSettings {
         commands = codegen.commands
         events = codegen.events
@@ -178,22 +187,22 @@ private fun WriteProtoDataSettings.forSignalPlugin(dir: SettingsDirectory) {
     dir.write(SignalPlugin.SETTINGS_ID, signalSettings)
 }
 
-private fun WriteProtoDataSettings.forMessageGroupPlugin(dir: SettingsDirectory) {
-    val groupSettings = codegenSettings.groupSettings
+private fun WriteCompilerSettings.forMessageGroupPlugin(dir: SettingsDirectory) {
+    val groupSettings = compilerSettings.groupSettings
     dir.write(MessageGroupPlugin.SETTINGS_ID, groupSettings)
 }
 
-private fun WriteProtoDataSettings.forUuidPlugin(dir: SettingsDirectory) {
-    val uuidSettings = codegenSettings.uuids
+private fun WriteCompilerSettings.forUuidPlugin(dir: SettingsDirectory) {
+    val uuidSettings = compilerSettings.uuids
     dir.write(UuidPlugin.SETTINGS_ID, uuidSettings)
 }
 
-private fun WriteProtoDataSettings.forComparablePlugin(dir: SettingsDirectory) {
-    val settings = codegenSettings.comparables
+private fun WriteCompilerSettings.forComparablePlugin(dir: SettingsDirectory) {
+    val settings = compilerSettings.comparables
     dir.write(ComparablePlugin.SETTINGS_ID, settings)
 }
 
-private fun WriteProtoDataSettings.forStyleFormattingPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerSettings.forStyleFormattingPlugin(dir: SettingsDirectory) {
     val styleSettings = options.style.get()
     dir.write(JAVA_CODE_STYLE_ID, styleSettings)
 }
@@ -202,5 +211,5 @@ private fun WriteProtoDataSettings.forStyleFormattingPlugin(dir: SettingsDirecto
  * Writes the given instance of settings in [Format.PROTO_JSON] format using the [id].
  */
 private fun SettingsDirectory.write(id: String, settings: Message) {
-    write(id, Format.PROTO_JSON, settings.toJson())
+    write(id, Format.ProtoJson, settings.toJson())
 }

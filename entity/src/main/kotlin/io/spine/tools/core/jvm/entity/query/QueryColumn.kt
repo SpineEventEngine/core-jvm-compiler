@@ -29,10 +29,10 @@ package io.spine.tools.core.jvm.entity.query
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.javadoc.PsiDocComment
-import io.spine.protodata.ast.Field
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.typeReference
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.typeReference
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.query.EntityCriterion
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
 import io.spine.tools.core.jvm.entity.column.columnMethodName

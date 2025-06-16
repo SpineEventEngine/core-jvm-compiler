@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.java.file.hasJavaRoot
-import io.spine.protodata.java.render.JavaRenderer
-import io.spine.protodata.render.SourceFileSet
-import io.spine.protodata.settings.loadSettings
+import io.spine.tools.compiler.jvm.file.hasJavaRoot
+import io.spine.tools.compiler.jvm.render.JavaRenderer
+import io.spine.tools.compiler.render.SourceFileSet
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.ApiOption.BETA

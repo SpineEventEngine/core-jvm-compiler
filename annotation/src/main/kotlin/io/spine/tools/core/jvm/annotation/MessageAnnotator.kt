@@ -26,8 +26,8 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.MessageOrBuilderConvention
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.MessageOrBuilderConvention
 import io.spine.tools.core.annotation.MessageAnnotations
 
 /**

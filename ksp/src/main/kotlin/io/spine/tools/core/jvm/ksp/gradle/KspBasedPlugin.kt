@@ -28,7 +28,7 @@ package io.spine.tools.core.jvm.ksp.gradle
 
 import com.google.devtools.ksp.KspExperimental
 import com.google.devtools.ksp.gradle.KspExtension
-import io.spine.protodata.gradle.ProtoDataTaskName
+import io.spine.tools.compiler.gradle.api.CompilerTaskName
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin.Companion.autoServiceKsp
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin.Companion.commonSettingsApplied
@@ -214,10 +214,10 @@ private fun Project.makeKspTasksDependOnProtoData() {
     afterEvaluate {
         val kspTasks = kspTasks()
         kspTasks.forEach { (ssn, kspTask) ->
-            val protoDataTaskName = ProtoDataTaskName(ssn)
-            val protoDataTask = tasks.findByName(protoDataTaskName.value())
-            if (protoDataTask != null) {
-                kspTask.dependsOn(protoDataTask)
+            val taskName = CompilerTaskName(ssn)
+            val compilerTask = tasks.findByName(taskName.value())
+            if (compilerTask != null) {
+                kspTask.dependsOn(compilerTask)
             }
         }
     }

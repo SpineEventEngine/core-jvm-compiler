@@ -27,8 +27,8 @@
 package io.spine.tools.core.jvm.gradle
 
 import groovy.lang.Closure
-import io.spine.protodata.java.style.JavaCodeStyle
-import io.spine.protodata.java.style.javaCodeStyleDefaults
+import io.spine.tools.compiler.jvm.style.JavaCodeStyle
+import io.spine.tools.compiler.jvm.style.javaCodeStyleDefaults
 import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
 import io.spine.tools.java.fs.DefaultJavaPaths
 import org.gradle.api.Action
@@ -50,7 +50,7 @@ public abstract class CoreJvmOptions {
      * Code generation settings related to specific kinds of messages and their validation.
      */
     @JvmField
-    public var codegen: CompilerSettings? = null
+    public var compiler: CompilerSettings? = null
 
     /**
      * The indent for the generated code.
@@ -81,7 +81,7 @@ public abstract class CoreJvmOptions {
      * Injects the dependency to the given project.
      */
     public fun injectProject(project: Project) {
-        this.codegen = CompilerSettings(project)
+        this.compiler = CompilerSettings(project)
     }
 
     public fun annotation(action: Action<AnnotationSettings>) {
@@ -92,7 +92,7 @@ public abstract class CoreJvmOptions {
      * Applies the given action for code generation options.
      */
     public fun codegen(action: Action<CompilerSettings>) {
-        action.execute(codegen!!)
+        action.execute(compiler!!)
     }
 
     @Suppress("unused")
@@ -112,7 +112,7 @@ public abstract class CoreJvmOptions {
         /**
          * The name of the extension, as it appears in a Gradle build script.
          */
-        public const val NAME: String = "java"
+        public const val NAME: String = "coreJvm"
 
         /**
          * Obtains the extension name of the plugin.

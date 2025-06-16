@@ -28,8 +28,8 @@
 
 package io.spine.tools.core.jvm.settings
 
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.matches
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.matches
 import io.spine.tools.core.jvm.settings.Pattern.KindCase.FILE
 import io.spine.tools.core.jvm.settings.Pattern.KindCase.TYPE
 import io.spine.tools.core.jvm.settings.TypePattern.ValueCase.EXPECTED_TYPE

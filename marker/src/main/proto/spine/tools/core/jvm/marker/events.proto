@@ -35,30 +35,30 @@ option java_package = "io.spine.tools.core.jvm.marker.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/file.proto";
-import "spine/protodata/source.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/file.proto";
+import "spine/compiler/source.proto";
 
 // An option `every_is` discovered in a proto file.
 message EveryIsOptionDiscovered {
 
     // The file in which the option was discovered.
-    protodata.File file = 1 [(required) = true];
+    compiler.File file = 1 [(required) = true];
 
     // The discovered option value.
     EveryIsOption option = 2 [(required) = true];
 
     // The header of the proto file containing the discovered option and other options
     // that will be used in code generation.
-    protodata.ProtoFileHeader header = 3 [(required) = true];
+    compiler.ProtoFileHeader header = 3 [(required) = true];
 }
 
 // An option `is` discovered in a message type.
 message IsOptionDiscovered {
 
     // The file in which the option was discovered.
-    protodata.File file = 1 [(required) = true];
+    compiler.File file = 1 [(required) = true];
 
     // The message type in which the option was discovered.
-    protodata.MessageType type = 2 [(required) = true];
+    compiler.MessageType type = 2 [(required) = true];
 }

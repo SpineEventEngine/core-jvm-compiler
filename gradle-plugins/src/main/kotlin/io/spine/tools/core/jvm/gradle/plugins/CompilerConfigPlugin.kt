@@ -28,12 +28,12 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
-import io.spine.protodata.gradle.Names
-import io.spine.protodata.gradle.Names.GRADLE_PLUGIN_ID
-import io.spine.protodata.gradle.plugin.LaunchProtoData
-import io.spine.protodata.gradle.protoDataWorkingDir
-import io.spine.protodata.java.style.JavaCodeStyleFormatterPlugin
-import io.spine.protodata.params.WorkingDirectory
+import io.spine.tools.compiler.gradle.api.Names
+import io.spine.tools.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
+import io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler
+import io.spine.tools.compiler.gradle.api.compilerWorkingDir
+import io.spine.tools.compiler.jvm.style.JavaCodeStyleFormatterPlugin
+import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
@@ -42,8 +42,8 @@ import io.spine.tools.core.jvm.gradle.ValidationSdk
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
 import io.spine.tools.core.jvm.gradle.generatedJavaDirName
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
-import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
-import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.WRITE_PROTODATA_SETTINGS
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_PROTODATA_SETTINGS
 import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
 import io.spine.tools.core.jvm.marker.MarkerPlugin
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
@@ -59,8 +59,8 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
-import io.spine.protodata.gradle.CodegenSettings as ProtoDataSettings
-import io.spine.protodata.plugin.Plugin as ProtoDataPlugin
+import io.spine.tools.compiler.gradle.api.CompilerSettings as ProtoDataSettings
+import io.spine.tools.compiler.plugin.Plugin as ProtoDataPlugin
 
 /**
  * The plugin that configures ProtoData for the associated project.
@@ -70,11 +70,11 @@ import io.spine.protodata.plugin.Plugin as ProtoDataPlugin
  *   2. Configures the ProtoData extension of a Gradle project, passing codegen
  *      plugins of ProtoData, such
  *      as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin].
- *   3. Creates a [WriteProtoDataSettings] task for passing configuration to ProtoData, and
+ *   3. Creates a [WriteCompilerSettings] task for passing configuration to ProtoData, and
  *      links it to the [LaunchProtoData] task.
  *   4. Adds required dependencies.
  */
-internal class ProtoDataConfigPlugin : Plugin<Project> {
+internal class CompilerConfigPlugin : Plugin<Project> {
 
     /**
      * Applies the `io.spine.protodata` plugin to the project and, if the user needs
@@ -109,7 +109,7 @@ internal class ProtoDataConfigPlugin : Plugin<Project> {
 private fun Project.configureProtoData() {
     configureProtoDataPlugins()
     val writeSettingsTask = createWriteSettingsTask()
-    tasks.withType<LaunchProtoData>().all { task ->
+    tasks.withType<LaunchSpineCompiler>().all { task ->
         task.apply {
             dependsOn(writeSettingsTask)
             setStandardOutput(System.out)
@@ -118,9 +118,9 @@ private fun Project.configureProtoData() {
     }
 }
 
-private fun Project.createWriteSettingsTask(): Provider<WriteProtoDataSettings> {
-    val result = tasks.register<WriteProtoDataSettings>(WRITE_PROTODATA_SETTINGS) {
-        val workingDir = WorkingDirectory(protoDataWorkingDir.asFile.toPath())
+private fun Project.createWriteSettingsTask(): Provider<WriteCompilerSettings> {
+    val result = tasks.register<WriteCompilerSettings>(WRITE_PROTODATA_SETTINGS) {
+        val workingDir = WorkingDirectory(compilerWorkingDir.asFile.toPath())
         val settingsDir = workingDir.settingsDirectory.path.toFile()
         val settingsDirProvider = project.layout.dir(provider { settingsDir })
         this.settingsDir.set(settingsDirProvider)
@@ -158,7 +158,7 @@ private fun Project.configureProtoDataPlugins() {
 }
 
 private val Project.messageOptions: CompilerSettings
-    get() = coreJvmOptions.codegen!!
+    get() = coreJvmOptions.compiler!!
 
 private fun ProtoDataSettings.setSubdirectories() {
     subDirs = listOf(

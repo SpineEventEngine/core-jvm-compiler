@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.comparable
 
-import io.spine.protodata.java.render.TypeRenderer
+import io.spine.tools.compiler.jvm.render.TypeRenderer
 
 /**
  * Renders codegen [actions][ComparableMessage.getActions] for each [ComparableMessage]

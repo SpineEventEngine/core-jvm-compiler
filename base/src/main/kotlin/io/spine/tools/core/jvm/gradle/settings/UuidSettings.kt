@@ -28,8 +28,8 @@ package io.spine.tools.core.jvm.gradle.settings
 
 import com.google.common.annotations.VisibleForTesting
 import io.spine.base.UuidValue
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.superInterface
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.superInterface
 import io.spine.tools.core.jvm.settings.ActionMap
 import io.spine.tools.core.jvm.settings.Uuids
 import io.spine.tools.core.jvm.settings.noParameter

@@ -27,8 +27,8 @@
 package io.spine.tools.core.jvm.comparable.action
 
 import io.spine.base.FieldPath
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.PrimitiveType
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.PrimitiveType
 
 /**
  * A field that participates in comparison.

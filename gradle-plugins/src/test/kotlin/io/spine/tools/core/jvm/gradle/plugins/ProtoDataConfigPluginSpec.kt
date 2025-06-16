@@ -29,18 +29,16 @@ package io.spine.tools.core.jvm.gradle.plugins
 import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldNotBe
-import io.spine.protodata.gradle.CodegenSettings
-import io.spine.protodata.gradle.plugin.Extension
-import io.spine.protodata.gradle.plugin.LaunchProtoData
+import io.spine.tools.compiler.gradle.CodegenSettings
+import io.spine.tools.compiler.gradle.plugin.Extension
+import io.spine.tools.compiler.gradle.plugin.LaunchProtoData
 import io.spine.tools.gradle.testing.GradleProject
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.gradle.GradleProjects.evaluate
 import io.spine.tools.core.jvm.gradle.given.StubProject
-import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
-import kotlin.text.get
 import org.gradle.api.Project
-import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.withType
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
@@ -89,7 +87,7 @@ internal class ProtoDataConfigPluginSpec {
 
     @Test
     fun `add a task for passing configuration file`() {
-        val task = project.tasks.withType<WriteProtoDataSettings>()
+        val task = project.tasks.withType<WriteCompilerSettings>()
         task shouldNotBe null
         task.shouldNotBeEmpty()
     }

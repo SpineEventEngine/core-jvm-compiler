@@ -27,7 +27,7 @@
 package io.spine.tools.core.jvm.gradle.settings
 
 import io.kotest.matchers.collections.shouldContainExactly
-import io.spine.protodata.java.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.ImplementInterface
 import io.spine.tools.core.jvm.uuid.AddFactoryMethods
 import io.spine.tools.kotlin.reference
 import java.io.File

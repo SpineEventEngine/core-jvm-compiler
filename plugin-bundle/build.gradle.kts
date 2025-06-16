@@ -25,7 +25,7 @@
  */
 
 import groovy.util.Node
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.gradle.publish.SpinePublishing
 
 plugins {
@@ -101,7 +101,7 @@ publishing {
                 val dependency = Node(dependencies, "dependency")
                 Node(dependency, "groupId", "io.spine")
                 Node(dependency, "artifactId", "protodata")
-                Node(dependency, "version", ProtoData.version)
+                Node(dependency, "version", Compiler.version)
                 Node(dependency, "scope", "runtime")
 
                 val exclusions = Node(dependency, "exclusions")

@@ -30,9 +30,9 @@ import com.google.protobuf.BoolValue
 import com.google.protobuf.kotlin.isA
 import com.google.protobuf.kotlin.unpack
 import io.spine.protobuf.pack
-import io.spine.protodata.ast.Option
-import io.spine.protodata.ast.TypeInstances
-import io.spine.protodata.ast.option
+import io.spine.tools.compiler.ast.Option
+import io.spine.tools.compiler.ast.TypeInstances
+import io.spine.tools.compiler.ast.option
 import com.google.protobuf.Any as ProtoAny
 
 /**

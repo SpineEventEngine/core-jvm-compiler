@@ -28,11 +28,11 @@ package io.spine.tools.core.jvm.marker
 
 import com.google.protobuf.Message
 import com.intellij.psi.PsiJavaFile
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.qualifiedJavaType
-import io.spine.protodata.java.render.CreateInterface
-import io.spine.protodata.java.render.superInterface
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.qualifiedJavaType
+import io.spine.tools.compiler.jvm.render.CreateInterface
+import io.spine.tools.compiler.jvm.render.superInterface
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.java.reference

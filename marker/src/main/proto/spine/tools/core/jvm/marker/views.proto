@@ -35,9 +35,9 @@ option java_package = "io.spine.tools.core.jvm.marker";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/file.proto";
-import "spine/protodata/source.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/file.proto";
+import "spine/compiler/source.proto";
 
 
 // Messages discovered in a file with `(every_is)` option declared.
@@ -46,16 +46,16 @@ message EveryIsMessages {
     option (entity).kind = VIEW;
 
     // The file in which the option was discovered.
-    protodata.File file = 1 [(required) = true];
+    compiler.File file = 1 [(required) = true];
 
     // The discovered option value.
     EveryIsOption option = 2 [(required) = true];
 
     // The header of the file.
-    protodata.ProtoFileHeader header = 3 [(required) = true];
+    compiler.ProtoFileHeader header = 3 [(required) = true];
 
     // Message types declared in the file.
-    repeated protodata.MessageType type = 4;
+    repeated compiler.MessageType type = 4;
 }
 
 // Message types with `(is)` option.
@@ -66,5 +66,5 @@ message MessagesWithIs {
     string singleton_id = 1;
 
     // The discovered message types.
-    repeated protodata.MessageType type = 2;
+    repeated compiler.MessageType type = 2;
 }

@@ -29,8 +29,8 @@ package io.spine.tools.core.jvm.comparable
 import com.google.protobuf.Any
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiJavaFile
-import io.spine.protodata.java.render.MessageAction
-import io.spine.protodata.render.actions
+import io.spine.tools.compiler.jvm.render.MessageAction
+import io.spine.tools.compiler.render.actions
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.Comparables
 import io.spine.tools.core.jvm.settings.comparables

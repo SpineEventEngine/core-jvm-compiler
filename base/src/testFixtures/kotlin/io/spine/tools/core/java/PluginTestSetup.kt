@@ -30,20 +30,20 @@ import com.google.protobuf.Descriptors.GenericDescriptor
 import com.google.protobuf.Message
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.spine.protodata.backend.DescriptorFilter
-import io.spine.protodata.java.style.JavaCodeStyleFormatterPlugin
-import io.spine.protodata.params.Directories
-import io.spine.protodata.params.WorkingDirectory
-import io.spine.protodata.plugin.Plugin
-import io.spine.protodata.render.SourceFile
-import io.spine.protodata.render.SourceFileSet
-import io.spine.protodata.settings.SettingsDirectory
-import io.spine.protodata.testing.PipelineSetup
-import io.spine.protodata.testing.PipelineSetup.Companion.byResources
-import io.spine.protodata.testing.pipelineParams
-import io.spine.protodata.testing.withRequestFile
-import io.spine.protodata.testing.withSettingsDir
-import io.spine.protodata.util.Format
+import io.spine.tools.compiler.backend.DescriptorFilter
+import io.spine.tools.compiler.jvm.style.JavaCodeStyleFormatterPlugin
+import io.spine.tools.compiler.params.Directories
+import io.spine.tools.compiler.params.WorkingDirectory
+import io.spine.tools.compiler.plugin.Plugin
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.render.SourceFileSet
+import io.spine.tools.compiler.settings.SettingsDirectory
+import io.spine.testing.compiler.PipelineSetup
+import io.spine.testing.compiler.PipelineSetup.Companion.byResources
+import io.spine.testing.compiler.pipelineParams
+import io.spine.testing.compiler.withRequestFile
+import io.spine.testing.compiler.withSettingsDir
+import io.spine.format.Format
 import io.spine.tools.code.Java
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
@@ -55,7 +55,7 @@ import org.gradle.testfixtures.ProjectBuilder
 
 /**
  * An abstract base for companion objects of test suites testing
- * a ProtoData plugin provided by a module of McJava.
+ * a Spine Compiler plugin provided by a module of the Core JVM Compiler.
  *
  * @param S The type of the plugin settings in the form of a Protobuf message.
  */
@@ -81,27 +81,30 @@ abstract class PluginTestSetup<S: Message>(
     /**
      * Creates settings for the [plugin] under the test.
      *
-     * Please use [createCodegenConfig] for obtaining all default code
+     * Please use [createCompilerSettings] for obtaining all default code
      * generation settings and then get its part for your plugin.
      */
     protected abstract fun createSettings(projectDir: Path): S
 
     /**
-     * Creates default code generation settings created for a project when
-     * McJava Gradle plugin is applied.
+     * Creates default compiler settings created for a project when
+     * the Core JVM Compiler Gradle plugin is applied.
+     *
+     * The method mimics the call to
+     * [CoreJvmOptions.injectProject][io.spine.tools.core.jvm.gradle.CoreJvmOptions.injectProject]
+     * performed by `CoreJvmPlugin`.
      */
-    protected fun createCodegenConfig(projectDir: Path): CompilerSettings {
+    protected fun createCompilerSettings(projectDir: Path): CompilerSettings {
         val project = createProject(projectDir)
-        // This mimics the call `McJavaOptions` performed on `injectProject`.
-        val codegenConfig = CompilerSettings(project)
-        return codegenConfig
+        val compilerSettings = CompilerSettings(project)
+        return compilerSettings
     }
 
     /**
      * Creates an instance of [PipelineSetup] with the given parameters.
      *
      * [settings] will be written to the [WorkingDirectory.settingsDirectory] before
-     * creation of a [Pipeline][io.spine.protodata.backend.Pipeline].
+     * creation of a [Pipeline][io.spine.tools.compiler.backend.Pipeline].
      *
      * @param projectDir The directory to create the compilation environment.
      * @param settings The plugin settings used by the test.
@@ -113,7 +116,7 @@ abstract class PluginTestSetup<S: Message>(
         settings: S,
         descriptorFilter: (GenericDescriptor) -> Boolean = { true }
     ): PipelineSetup {
-        val workingDir = projectDir.resolve("build").resolve(Directories.PROTODATA_WORKING_DIR)
+        val workingDir = projectDir.resolve("build").resolve(Directories.COMPILER_WORKING_DIR)
         val workingDirectory = WorkingDirectory(workingDir)
         val requestFile = workingDirectory.requestDirectory.file(SourceSetName("testFixtures"))
         val params = pipelineParams {
@@ -138,7 +141,7 @@ abstract class PluginTestSetup<S: Message>(
     }
 
     private fun writeSettings(dir: SettingsDirectory, settings: S) {
-        dir.write(settingsId, Format.PROTO_JSON, settings.toJson())
+        dir.write(settingsId, Format.ProtoJson, settings.toJson())
     }
 
     /**

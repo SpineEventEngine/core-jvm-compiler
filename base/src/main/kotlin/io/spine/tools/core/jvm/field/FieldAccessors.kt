@@ -28,15 +28,15 @@ package io.spine.tools.core.jvm.field
 
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.javadoc.PsiDocComment
-import io.spine.protodata.ast.Cardinality.CARDINALITY_SINGLE
-import io.spine.protodata.ast.Field
-import io.spine.protodata.ast.cardinality
-import io.spine.protodata.ast.isMessage
-import io.spine.protodata.ast.toMessageType
-import io.spine.protodata.ast.toType
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.javaCase
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.Cardinality.CARDINALITY_SINGLE
+import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.ast.cardinality
+import io.spine.tools.compiler.ast.isMessage
+import io.spine.tools.compiler.ast.toMessageType
+import io.spine.tools.compiler.ast.toType
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.javaCase
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.java.reference
 import io.spine.tools.psi.addFirst
 import io.spine.tools.psi.java.Environment.elementFactory

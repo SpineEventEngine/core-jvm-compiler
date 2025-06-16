@@ -27,8 +27,8 @@
 package io.spine.tools.core.annotation
 
 import io.spine.annotation.GeneratedMixin
-import io.spine.protodata.ast.File
-import io.spine.protodata.ast.Option
+import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.Option
 
 /**
  * Common interface for views that deal with API options.

@@ -28,10 +28,10 @@ package io.spine.tools.core.jvm.field
 
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiJavaCodeReferenceElement
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.javaClassName
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.javaClassName
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.psi.java.Environment.elementFactory
 import io.spine.tools.psi.java.addFirst
 import io.spine.tools.psi.java.addLast

@@ -36,9 +36,9 @@ import io.spine.base.MessageFile
 import io.spine.base.MessageFile.COMMANDS
 import io.spine.base.MessageFile.EVENTS
 import io.spine.option.OptionsProto
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.render.actions
-import io.spine.protodata.render.add
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.render.actions
+import io.spine.tools.compiler.render.add
 import io.spine.testing.SlowTest
 import io.spine.tools.core.jvm.NoOpMessageAction
 import io.spine.tools.core.jvm.applyStandard
@@ -74,7 +74,7 @@ class CodegenBlockSpec {
      * Calculates the [SignalSettings] after [options] are modified by a test body.
      */
     private val signalSettings: SignalSettings
-        get() = options.codegen!!.toProto().signalSettings
+        get() = options.compiler!!.toProto().signalSettings
 
     /**
      * Creates the project in the given directory.
@@ -119,7 +119,7 @@ class CodegenBlockSpec {
                 it.useAction(actionName)
             }
         }
-        val settings = options.codegen!!.toProto()
+        val settings = options.compiler!!.toProto()
 
         settings.uuids.actions.actionMap.keys shouldBe
                 UuidSettings.DEFAULT_ACTIONS.keys + actionName
@@ -224,7 +224,7 @@ class CodegenBlockSpec {
                     it.useAction(action)
                 }
             }
-            val entities = options.codegen!!.toProto().entities
+            val entities = options.compiler!!.toProto().entities
 
             entities.run {
                 actions.actionMap.keys shouldContainExactly
@@ -243,7 +243,7 @@ class CodegenBlockSpec {
                     it.useAction(customAction)
                 }
             }
-            val uuids = options.codegen!!.toProto().uuids
+            val uuids = options.compiler!!.toProto().uuids
             uuids.run {
                 actions.actionMap.keys shouldBe UuidSettings.DEFAULT_ACTIONS.keys + customAction
             }
@@ -268,7 +268,7 @@ class CodegenBlockSpec {
                     it.useAction(anotherNestedClassAction)
                 }
             }
-            val groups = options.codegen!!.toProto().groupSettings.groupList
+            val groups = options.compiler!!.toProto().groupSettings.groupList
 
             groups shouldHaveSize 2
 
@@ -331,7 +331,7 @@ class CodegenBlockSpec {
 
         @Test
         fun entities() {
-            val entities = options.codegen!!.toProto().entities
+            val entities = options.compiler!!.toProto().entities
 
             entities.run {
                 optionList shouldHaveSize 1
@@ -343,7 +343,7 @@ class CodegenBlockSpec {
 
         @Test
         fun `arbitrary message groups`() {
-            val settings = options.codegen!!.toProto()
+            val settings = options.compiler!!.toProto()
 
             settings.groupSettings.groupList shouldBe emptyList()
 
@@ -354,7 +354,7 @@ class CodegenBlockSpec {
                     group.useAction(stubActionClass.reference)
                 }
             }
-            val updated = options.codegen!!.toProto()
+            val updated = options.compiler!!.toProto()
 
             updated.groupSettings.groupList shouldHaveSize 1
             val typeName = ProtoTypeName.newBuilder().setValue(type)
@@ -374,7 +374,7 @@ class CodegenBlockSpec {
 
         @Test
         fun validation() {
-            val validation = options.codegen!!.toProto().validation
+            val validation = options.compiler!!.toProto().validation
             validation.run {
                 version.shouldBeEmpty()
             }
@@ -392,7 +392,7 @@ class CodegenBlockSpec {
 
         @Test
         fun `turning generation of queries off`() {
-            options.codegen!!.forEntities {
+            options.compiler!!.forEntities {
                 it.skipQueries()
             }
             assertFlag().isFalse()
@@ -401,18 +401,18 @@ class CodegenBlockSpec {
         @Test
         fun `turning generation of queries on`() {
             // Turn `off`, assuming that the default is `on`.
-            options.codegen!!.forEntities {
+            options.compiler!!.forEntities {
                 it.skipQueries()
             }
 
             // Turn `on`.
-            options.codegen!!.forEntities {
+            options.compiler!!.forEntities {
                 it.generateQueries()
             }
 
             assertFlag().isTrue()
         }
 
-        private fun assertFlag() = assertThat(options.codegen!!.toProto().entities.generateQueries)
+        private fun assertFlag() = assertThat(options.compiler!!.toProto().entities.generateQueries)
     }
 }

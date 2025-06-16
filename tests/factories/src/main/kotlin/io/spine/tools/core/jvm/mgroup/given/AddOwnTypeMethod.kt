@@ -29,17 +29,17 @@ package io.spine.tools.core.jvm.mgroup.given
 import com.google.protobuf.Empty
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.javadoc.PsiDocComment
-import io.spine.protodata.context.CodegenContext
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.render.SourceFile
-import io.spine.protodata.java.javaClassName
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.jvm.javaClassName
 import io.spine.tools.code.Java
-import io.spine.protodata.java.render.CreateNestedClass
+import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.psi.addFirst
 import io.spine.tools.psi.java.addLast
 import io.spine.tools.psi.java.Environment.elementFactory
 import org.intellij.lang.annotations.Language
-import io.spine.protodata.java.render.DirectMessageAction
+import io.spine.tools.compiler.jvm.render.DirectMessageAction
 import io.spine.tools.java.reference
 import io.spine.type.MessageType as MType
 

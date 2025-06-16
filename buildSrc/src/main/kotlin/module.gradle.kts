@@ -33,21 +33,18 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
-import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ProtoData
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
-import io.spine.dependency.test.JUnit
-import io.spine.dependency.test.Truth
 import io.spine.gradle.VersionWriter
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.javac.configureErrorProne
@@ -56,12 +53,7 @@ import io.spine.gradle.javadoc.JavadocConfig
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.report.license.LicenseReporter
-import io.spine.gradle.testing.configureLogging
-import io.spine.gradle.testing.registerTestTasks
 import java.util.*
-import org.gradle.kotlin.dsl.invoke
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 plugins {
     java
@@ -163,9 +155,9 @@ fun Module.forceConfigurations() {
                     Validation.java,
                     Validation.javaBundle,
                     Validation.config,
-                    ProtoData.api,
-                    ProtoData.gradleApi,
-                    ProtoData.java,
+                    Compiler.api,
+                    Compiler.gradleApi,
+                    Compiler.jvm,
                 )
             }
         }

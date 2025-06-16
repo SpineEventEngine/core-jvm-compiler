@@ -28,7 +28,7 @@ package io.spine.tools.core.jvm.entity.query
 
 import com.intellij.psi.PsiClass
 import com.intellij.psi.javadoc.PsiDocComment
-import io.spine.protodata.java.ClassName
+import io.spine.tools.compiler.jvm.ClassName
 import io.spine.query.IdCriterion
 import io.spine.tools.java.reference
 import io.spine.tools.psi.addFirst

@@ -26,8 +26,8 @@
 
 package io.spine.tools.core.jvm.entity
 
-import io.spine.protodata.ast.Field
-import io.spine.protodata.ast.MessageType
+import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.core.jvm.settings.Entities
 
 /**

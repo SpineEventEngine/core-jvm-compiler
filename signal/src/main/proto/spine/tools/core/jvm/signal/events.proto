@@ -35,35 +35,35 @@ option java_package = "io.spine.tools.core.jvm.signal.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/file.proto";
-import "spine/protodata/ast.proto";
+import "spine/compiler/file.proto";
+import "spine/compiler/ast.proto";
 
 // A command was discovered in a proto file.
 message CommandDiscovered {
 
     // The file in which the command is defined.
-    protodata.File file = 1 [(required) = true];
+    compiler.File file = 1 [(required) = true];
 
     // The declaration of the command.
-    protodata.MessageType type = 2 [(required) = true];
+    compiler.MessageType type = 2 [(required) = true];
 }
 
 // An event was discovered in a proto file.
 message EventDiscovered {
 
     // The file in which the event is defined.
-    protodata.File file = 1 [(required) = true];
+    compiler.File file = 1 [(required) = true];
 
     // The declaration of the event.
-    protodata.MessageType type = 2 [(required) = true];
+    compiler.MessageType type = 2 [(required) = true];
 }
 
 // A rejection was discovered in a proto file.
 message RejectionDiscovered {
 
     // The file in which the rejection is defined.
-    protodata.File file = 1 [(required) = true];
+    compiler.File file = 1 [(required) = true];
 
     // The declaration of the rejection.
-    protodata.MessageType type = 2 [(required) = true];
+    compiler.MessageType type = 2 [(required) = true];
 }

@@ -34,10 +34,11 @@ import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.DependencyVersions
+import io.spine.tools.gradle.DslSpec
+import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.protobuf.ProtobufDependencies.gradlePlugin
 import io.spine.tools.gradle.protobuf.ProtobufDependencies.protobufCompiler
 import io.spine.tools.gradle.protobuf.protobufExtension
-import io.spine.tools.mc.gradle.LanguagePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -46,7 +47,9 @@ import org.gradle.api.Project
  *
  * Applies all McJava sub-plugins to the given project.
  */
-public class CoreJvmPlugin : LanguagePlugin(name(), CoreJvmOptions::class.java.kotlin) {
+public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
+    DslSpec(name(), CoreJvmOptions::class)
+) {
 
     public companion object {
 
@@ -95,7 +98,7 @@ private fun Project.createAndApplyPlugins() {
     val plugins: List<Plugin<Project>> = listOf(
         CleaningPlugin(),
         EnableGrpcPlugin(),
-        ProtoDataConfigPlugin(),
+        CompilerConfigPlugin(),
         RoutingPlugin()
     )
     plugins.forEach {

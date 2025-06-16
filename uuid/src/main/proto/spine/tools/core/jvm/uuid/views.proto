@@ -35,18 +35,18 @@ option java_package = "io.spine.tools.core.jvm.uuid";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/render_actions.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/render_actions.proto";
 
 // Matches a UUID value message to corresponding code generation settings.
 message UuidActions {
-    option (is).java_type = "io.spine.protodata.render.TypeActions";
+    option (is).java_type =  "io.spine.tools.compiler.render.TypeActions";
     option (entity).kind = VIEW;
 
     // The type of the message.
-    protodata.MessageType type = 1 [(required) = true];
+    compiler.MessageType type = 1 [(required) = true];
 
-    // Names of classes implementing the `io.spine.protodata.renderer.RenderAction` class
+    // Names of classes implementing the `io.spine.compiler.renderer.RenderAction` class
     // that are to be applied to the UUID messages.
-    protodata.Actions actions =  2;
+    compiler.Actions actions =  2;
 }

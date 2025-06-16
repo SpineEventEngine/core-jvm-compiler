@@ -27,11 +27,11 @@
 package io.spine.tools.core.jvm.entity.query
 
 import com.google.protobuf.Empty
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.context.CodegenContext
-import io.spine.protodata.java.render.DirectMessageAction
-import io.spine.protodata.render.SourceFile
-import io.spine.protodata.settings.loadSettings
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.jvm.render.DirectMessageAction
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.entity.EntityPluginComponent
 import io.spine.tools.core.jvm.settings.Entities

@@ -30,7 +30,7 @@ import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.javadoc.PsiDocComment
 import com.intellij.refactoring.extractMethod.newImpl.ExtractMethodHelper.addSiblingAfter
 import io.spine.logging.WithLogging
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_BUILDER_CLASS_NAME

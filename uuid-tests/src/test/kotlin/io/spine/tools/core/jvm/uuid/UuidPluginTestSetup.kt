@@ -30,8 +30,8 @@ import com.google.protobuf.Message
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiJavaFile
 import io.spine.protobuf.pack
-import io.spine.protodata.java.render.MessageAction
-import io.spine.protodata.render.actions
+import io.spine.tools.compiler.jvm.render.MessageAction
+import io.spine.tools.compiler.render.actions
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.Uuids
 import io.spine.tools.core.jvm.settings.copy
@@ -58,7 +58,7 @@ abstract class UuidPluginTestSetup(
      * Creates an instance of [Uuids] with only one action under the test.
      */
     override fun createSettings(projectDir: Path): Uuids {
-        val codegenConfig = createCodegenConfig(projectDir)
+        val codegenConfig = createCompilerSettings(projectDir)
         return codegenConfig.toProto().uuids.copy {
             actions = actions {
                 action.put(actionClass.name, parameter.pack())

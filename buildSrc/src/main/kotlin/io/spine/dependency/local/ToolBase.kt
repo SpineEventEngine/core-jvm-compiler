@@ -37,6 +37,7 @@ object ToolBase {
     const val version = "2.0.0-SNAPSHOT.335"
 
     const val lib = "$group:spine-tool-base:$version"
+    const val gradlePluginApi = "$group:spine-gradle-plugin-api:$version"
     const val pluginBase = "$group:spine-plugin-base:$version"
     const val pluginTestlib = "$group:spine-plugin-testlib:$version"
 

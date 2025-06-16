@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.annotation
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 import io.spine.server.BoundedContextBuilder
 import io.spine.tools.core.jvm.annotation.ClassPatternAnnotator
 import io.spine.tools.core.jvm.annotation.EnumAnnotator

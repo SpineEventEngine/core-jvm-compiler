@@ -65,7 +65,7 @@ internal class OneofFieldCodegenSpec {
          * Mimics codegen settings declared in `core-java/code/build.gradle.kts`.
          */
         override fun createSettings(projectDir: Path): GroupSettings {
-            val codegenConfig = createCodegenConfig(projectDir)
+            val codegenConfig = createCompilerSettings(projectDir)
             codegenConfig.forMessage("given.core.EventContext") {
                 it.markFieldsAs(FIELD_SUPERTYPE)
             }

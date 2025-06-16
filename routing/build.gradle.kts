@@ -31,7 +31,7 @@ import io.spine.dependency.test.Kotest
 import io.spine.dependency.test.KotlinCompileTesting
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 dependencies {

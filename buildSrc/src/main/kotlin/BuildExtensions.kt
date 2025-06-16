@@ -31,8 +31,8 @@ import io.spine.dependency.build.GradleDoctor
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.build.PluginPublishPlugin
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.McJava
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.CoreJvmCompiler
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.test.Kotest
 import io.spine.dependency.test.Kover
@@ -80,36 +80,36 @@ val ScriptHandlerScope.protobuf: Protobuf
     get() = Protobuf
 
 /**
- * Shortcut to [McJava] dependency object for using under `buildScript`.
+ * Shortcut to [CoreJvmCompiler] dependency object for using under `buildScript`.
  */
-val ScriptHandlerScope.mcJava: McJava
-    get() = McJava
+val ScriptHandlerScope.coreJvmCompiler: CoreJvmCompiler
+    get() = CoreJvmCompiler
 
 /**
- * Shortcut to [McJava] dependency object.
+ * Shortcut to [CoreJvmCompiler] dependency object.
  *
  * This plugin is not published to Gradle Portal and cannot be applied directly to a project.
  * Firstly, it should be put to buildscript's classpath and then applied by ID only.
  */
-val PluginDependenciesSpec.mcJava: McJava
-    get() = McJava
+val PluginDependenciesSpec.coreJvmCompiler: CoreJvmCompiler
+    get() = CoreJvmCompiler
 
 /**
- * Shortcut to [ProtoData] dependency object for using under `buildscript`.
+ * Shortcut to the [Compiler] dependency object for using under `buildscript`.
  */
-val ScriptHandlerScope.protoData: ProtoData
-    get() = ProtoData
+val ScriptHandlerScope.compiler: Compiler
+    get() = Compiler
 
 /**
- * Shortcut to [ProtoData] dependency object.
+ * Shortcut to the [Compiler] dependency object.
  *
  * This plugin is published at Gradle Plugin Portal.
- * But when used in a pair with [mcJava], it cannot be applied directly to a project.
- * It is so, because [mcJava] uses [protoData] as its dependency.
+ * But when used in a pair with [coreJvmCompiler], it cannot be applied directly to a project.
+ * It is so, because [coreJvmCompiler] uses [compiler] as its dependency.
  * And the buildscript's classpath ends up with both of them.
  */
-val PluginDependenciesSpec.protoData: ProtoData
-    get() = ProtoData
+val PluginDependenciesSpec.compiler: Compiler
+    get() = Compiler
 
 /**
  * Provides shortcuts for applying plugins from our dependency objects.
@@ -162,11 +162,11 @@ val PluginDependenciesSpec.`plugin-publish`: PluginDependencySpec
 
 /**
  * Configures the dependencies between third-party Gradle tasks
- * and those defined via ProtoData and Spine Model Compiler.
+ * and those defined via the Spine Compiler and its plugins.
  *
  * It is required to avoid warnings in build logs, detecting the undeclared
  * usage of Spine-specific task output by other tasks,
- * e.g., the output of `launchProtoData` is used by `compileKotlin`.
+ * e.g., the output of `launchSpineCompiler` is used by `compileKotlin`.
  */
 @Suppress("unused")
 fun Project.configureTaskDependencies() {

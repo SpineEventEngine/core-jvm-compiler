@@ -35,21 +35,21 @@ option java_package = "io.spine.tools.core.jvm.entity";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/file.proto";
-import "spine/protodata/render_actions.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/file.proto";
+import "spine/compiler/render_actions.proto";
 
 // Provides entity state types declared in a proto file.
 message DiscoveredEntities {
-    option (is).java_type = "io.spine.protodata.render.TypeListActions";
+    option (is).java_type = "io.spine.tools.compiler.render.TypeListActions";
     option (.entity).kind = PROJECTION;
 
     // The file which declares entity state types.
-    protodata.File file = 1;
+    compiler.File file = 1;
 
     // Message types that qualify as entity states.
-    repeated protodata.MessageType type = 2;
+    repeated compiler.MessageType type = 2;
 
     // Rendering actions to be applied to the entity states.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }

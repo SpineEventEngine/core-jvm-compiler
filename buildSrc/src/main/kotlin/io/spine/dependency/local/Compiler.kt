@@ -27,14 +27,14 @@
 package io.spine.dependency.local
 
 /**
- * Dependencies on ProtoData modules.
+ * Dependencies on the Spine Compiler modules.
  *
  * To use a locally published ProtoData version instead of the version from a public plugin
- * registry, set the `PROTODATA_VERSION` and/or the `PROTODATA_DF_VERSION` environment variables
+ * registry, set the `COMPILER_VERSION` and/or the `COMPILER_DF_VERSION` environment variables
  * and stop the Gradle daemons so that Gradle observes the env change:
  * ```
- * export PROTODATA_VERSION=0.43.0-local
- * export PROTODATA_DF_VERSION=0.41.0
+ * export COMPILER_VERSION=0.43.0-local
+ * export COMPILER_DF_VERSION=0.41.0
  *
  * ./gradle --stop
  * ./gradle build   # Conduct the intended checks.
@@ -43,40 +43,34 @@ package io.spine.dependency.local
  * Then, to reset the console to run the usual versions again, remove the values of
  * the environment variables and stop the daemon:
  * ```
- * export PROTODATA_VERSION=""
- * export PROTODATA_DF_VERSION=""
+ * export COMPILER_VERSION=""
+ * export COMPILER_DF_VERSION=""
  *
  * ./gradle --stop
  * ```
  *
- * See [`SpineEventEngine/ProtoData`](https://github.com/SpineEventEngine/ProtoData/).
+ * See [`SpineEventEngine/compiler`](https://github.com/SpineEventEngine/compiler/).
  */
 @Suppress(
-    "unused" /* Some subprojects do not use ProtoData directly. */,
+    "unused" /* Some subprojects do not use the Compiler directly. */,
     "ConstPropertyName" /* We use custom convention for artifact properties. */,
     "MemberVisibilityCanBePrivate" /* The properties are used directly by other subprojects. */,
 )
-@Deprecated(
-    message = "Please use `Compiler` instead.",
-    replaceWith = ReplaceWith("Compiler", imports = ["io.spine.dependency.local.Compiler"])
-)
-object ProtoData {
+object Compiler {
     const val pluginGroup = Spine.group
-    const val group = "io.spine.protodata"
-    const val pluginId = "io.spine.protodata"
+    const val group = "io.spine.tools"
+    const val pluginId = "io.spine.compiler"
 
     /**
-     * Identifies ProtoData as a `classpath` dependency under `buildScript` block.
-     *
-     * The dependency is obtained from https://plugins.gradle.org/m2/.
+     * Identifies the Compiler as a `classpath` dependency under `buildScript` block.
      */
-    const val module = "io.spine:protodata"
+    const val module = "io.spine.tools:compiler"
 
     /**
      * The version of ProtoData dependencies.
      */
     val version: String
-    private const val fallbackVersion = "0.96.4"
+    private const val fallbackVersion = "2.0.0-SNAPSHOT.011"
 
     /**
      * The distinct version of ProtoData used by other build tools.
@@ -85,7 +79,7 @@ object ProtoData {
      * transitional dependencies, this is the version used to build the project itself.
      */
     val dogfoodingVersion: String
-    private const val fallbackDfVersion = "0.96.4"
+    private const val fallbackDfVersion = "2.0.0-SNAPSHOT.011"
 
     /**
      * The artifact for the ProtoData Gradle plugin.
@@ -95,55 +89,55 @@ object ProtoData {
     /**
      * The artifact to be used during experiments when publishing locally.
      *
-     * @see ProtoData
+     * @see Compiler
      */
     private fun pluginLib(version: String): String =
-        "$group:gradle-plugin:$version"
+        "$group:compiler-gradle-plugin:$version"
 
     fun api(version: String): String =
-        "$group:protodata-api:$version"
+        "$group:compiler-api:$version"
 
     val api
         get() = api(version)
 
     val backend
-        get() = "$group:protodata-backend:$version"
+        get() = "$group:compiler-backend:$version"
 
     val params
-        get() = "$group:protodata-params:$version"
+        get() = "$group:compiler-params:$version"
 
     val protocPlugin
-        get() = "$group:protodata-protoc:$version"
+        get() = "$group:compiler-protoc:$version"
 
     val gradleApi
-        get() = "$group:protodata-gradle-api:$version"
+        get() = "$group:compiler-gradle-api:$version"
 
     val cliApi
-        get() = "$group:protodata-cli-api:$version"
+        get() = "$group:compiler-cli-api:$version"
 
-    val javaModule = "$group:protodata-java"
+    val jvmModule = "$group:compiler-jvm"
 
-    fun java(version: String): String =
-        "$javaModule:$version"
+    fun jvm(version: String): String =
+        "$jvmModule:$version"
 
-    val java
-        get() = java(version)
+    val jvm
+        get() = jvm(version)
 
     val fatCli
-        get() = "$group:protodata-fat-cli:$version"
+        get() = "$group:compiler-fat-cli:$version"
 
     val testlib
-        get() = "$group:protodata-testlib:$version"
+        get() = "$group:compiler-testlib:$version"
 
     /**
      * An env variable storing a custom [version].
      */
-    private const val VERSION_ENV = "PROTODATA_VERSION"
+    private const val VERSION_ENV = "COMPILER_VERSION"
 
     /**
      * An env variable storing a custom [dogfoodingVersion].
      */
-    private const val DF_VERSION_ENV = "PROTODATA_DF_VERSION"
+    private const val DF_VERSION_ENV = "COMPILER_DF_VERSION"
 
     /**
      * Sets up the versions and artifacts for the build to use.
@@ -163,12 +157,12 @@ object ProtoData {
             pluginLib = pluginLib(version)
             println("""
 
-                ❗ Running an experiment with ProtoData. ❗
+                ❗ Running an experiment with the Spine Compiler. ❗
                 -----------------------------------------
                     Regular version     = v$version
                     Dogfooding version  = v$dogfoodingVersion
                 
-                    ProtoData Gradle plugin can now be loaded from Maven Local.
+                    The Compiler Gradle plugin can now be loaded from Maven Local.
                     
                     To reset the versions, erase the `$$VERSION_ENV` and `$$DF_VERSION_ENV` environment variables. 
 
@@ -176,7 +170,7 @@ object ProtoData {
         } else {
             version = fallbackVersion
             dogfoodingVersion = fallbackDfVersion
-            pluginLib = "$pluginGroup:protodata:$version"
+            pluginLib = pluginLib(version)
         }
     }
 }

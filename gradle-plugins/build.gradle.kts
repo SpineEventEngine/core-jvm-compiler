@@ -27,15 +27,15 @@
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.WriteVersions
 
 dependencies {
-    implementation(ProtoData.pluginLib)
-    implementation(ProtoData.params)
+    implementation(Compiler.pluginLib)
+    implementation(Compiler.params)
 
     implementation(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")

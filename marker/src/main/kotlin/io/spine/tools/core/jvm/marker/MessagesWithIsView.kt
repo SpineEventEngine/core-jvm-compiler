@@ -27,8 +27,8 @@
 package io.spine.tools.core.jvm.marker
 
 import io.spine.core.Subscribe
-import io.spine.protodata.plugin.View
-import io.spine.protodata.plugin.ViewRepository
+import io.spine.tools.compiler.plugin.View
+import io.spine.tools.compiler.plugin.ViewRepository
 import io.spine.server.entity.alter
 import io.spine.server.route.EventRouting
 import io.spine.tools.core.jvm.marker.event.IsOptionDiscovered

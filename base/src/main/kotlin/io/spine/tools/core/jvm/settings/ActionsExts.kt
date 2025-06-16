@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.settings
 import com.google.protobuf.Any
 import com.google.protobuf.Message
 import io.spine.protobuf.pack
-import io.spine.protodata.render.Actions
+import io.spine.tools.compiler.render.Actions
 import org.checkerframework.checker.signature.qual.FqBinaryName
 
 /**

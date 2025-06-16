@@ -70,7 +70,7 @@ import org.junit.jupiter.api.io.TempDir
  *
  * The subject of test is [io.spine.tools.core.annotation.ApiAnnotationsPlugin] which is
  * a plugin to ProtoData. We test the plugin as a part of the Gradle build performed by
- * McJava Gradle plugin.
+ * the Core JVM Compiler Gradle plugin.
  *
  * The test project is located in `resources/annotator-plugin-test` directory.
  *

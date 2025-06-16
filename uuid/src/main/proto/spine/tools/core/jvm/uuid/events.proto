@@ -35,7 +35,7 @@ option java_package = "io.spine.tools.core.jvm.uuid.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
+import "spine/compiler/ast.proto";
 
 import "spine/tools/core/jvm/settings.proto";
 
@@ -43,7 +43,7 @@ import "spine/tools/core/jvm/settings.proto";
 message UuidValueDiscovered {
 
     // The discovered type.
-    protodata.MessageType type = 1 [(required) = true];
+    compiler.MessageType type = 1 [(required) = true];
 
     // Code generation settings for this type.
     Uuids settings = 2 [(required) = true];

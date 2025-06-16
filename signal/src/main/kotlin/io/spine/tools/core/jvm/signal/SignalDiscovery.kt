@@ -28,11 +28,11 @@ package io.spine.tools.core.jvm.signal
 
 import com.google.common.annotations.VisibleForTesting
 import io.spine.core.External
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.event.TypeDiscovered
-import io.spine.protodata.ast.matches
-import io.spine.protodata.plugin.Policy
-import io.spine.protodata.settings.loadSettings
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.ast.matches
+import io.spine.tools.compiler.plugin.Policy
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf4

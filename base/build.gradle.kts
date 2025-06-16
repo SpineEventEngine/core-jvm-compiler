@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,15 +26,14 @@
 
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.local.Base
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ModelCompiler
-import io.spine.dependency.local.ProtoData
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 dependencies {
@@ -42,9 +41,8 @@ dependencies {
     compileOnlyApi(gradleKotlinDsl())
 
     val apiDeps = arrayOf(
-        Logging.lib,
-        ModelCompiler.lib,
-        ProtoData.java,
+        Compiler.api,
+        Compiler.jvm,
         Validation.config,
         ToolBase.pluginBase,
         KotlinPoet.lib,
@@ -57,10 +55,17 @@ dependencies {
     api(Base.lib)
 
     arrayOf(
+        Logging.lib,
+        ToolBase.gradlePluginApi
+    ).forEach {
+        implementation(it)
+    }
+
+    arrayOf(
         Base.lib,
         gradleTestKit() /* for creating a Gradle project. */,
         TestLib.lib,
-        ProtoData.testlib /* `PipelineSetup` API. */
+        Compiler.testlib /* `PipelineSetup` API. */
     ).forEach {
         // Expose using API level for the submodules.
         testFixturesApi(it)

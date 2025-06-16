@@ -28,9 +28,9 @@ package io.spine.tools.core.annotation
 
 import io.spine.core.External
 import io.spine.core.Subscribe
-import io.spine.protodata.ast.ServiceName
-import io.spine.protodata.ast.event.ServiceOptionDiscovered
-import io.spine.protodata.plugin.View
+import io.spine.tools.compiler.ast.ServiceName
+import io.spine.tools.compiler.ast.event.ServiceOptionDiscovered
+import io.spine.tools.compiler.plugin.View
 import io.spine.server.entity.alter
 import io.spine.server.route.Route
 import io.spine.tools.core.annotation.event.FileOptionMatched

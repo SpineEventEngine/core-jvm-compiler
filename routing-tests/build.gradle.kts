@@ -33,7 +33,7 @@ import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 apply<BomsPlugin>()
 
@@ -85,7 +85,7 @@ sourceSets.testFixtures {
     kotlin.srcDir("generated/testFixtures/java")
 
     /* Temporarily add redirected output of KSP processor
-       until a newer dogfooding version of McJava is applied. */
+       until a newer dogfooding version of Core JVM Compiler is applied. */
     kotlin.srcDir("generated/ksp/testFixtures/kotlin")
 }
 

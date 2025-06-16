@@ -27,8 +27,8 @@
 package io.spine.tools.core.jvm.signal
 
 import io.spine.base.MessageFile
-import io.spine.protodata.ast.FilePattern
-import io.spine.protodata.ast.FilePatternFactory.suffix
+import io.spine.tools.compiler.ast.FilePattern
+import io.spine.tools.compiler.ast.FilePatternFactory.suffix
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.SignalSettings
 import java.nio.file.Path
@@ -54,7 +54,7 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
      * a Gradle project.
      */
     override fun createSettings(projectDir: Path): SignalSettings {
-        val codegenConfig = createCodegenConfig(projectDir)
+        val codegenConfig = createCompilerSettings(projectDir)
         return codegenConfig.toProto().signalSettings
     }
 }

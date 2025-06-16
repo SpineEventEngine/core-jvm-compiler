@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.uuid
 
-import io.spine.protodata.settings.LoadsSettings
+import io.spine.tools.compiler.settings.LoadsSettings
 
 /**
  * A part of [UuidPlugin] that loads [settings][io.spine.tools.core.jvm.settings.Uuids] stored

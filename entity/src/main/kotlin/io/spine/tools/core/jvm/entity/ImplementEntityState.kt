@@ -28,14 +28,14 @@ package io.spine.tools.core.jvm.entity
 
 import com.google.protobuf.Empty
 import io.spine.base.EntityState
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.firstField
-import io.spine.protodata.context.CodegenContext
-import io.spine.protodata.java.javaType
-import io.spine.protodata.java.render.DirectMessageAction
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.superInterface
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.firstField
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.jvm.javaType
+import io.spine.tools.compiler.jvm.render.DirectMessageAction
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.superInterface
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.java.reference
 

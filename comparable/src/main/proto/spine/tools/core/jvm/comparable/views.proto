@@ -35,20 +35,20 @@ option java_package = "io.spine.tools.core.jvm.comparable";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/render_actions.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/render_actions.proto";
 
 // A comparable message.
 message ComparableMessage {
-    option (is).java_type = "io.spine.protodata.render.TypeActions";
+    option (is).java_type = "io.spine.tools.compiler.render.TypeActions";
     option (entity).kind = VIEW;
 
     // The message type.
-    protodata.MessageType type = 1;
+    compiler.MessageType type = 1;
 
     // Message's `compare_by` option.
     CompareByOption option = 2;
 
     // The code generation actions to apply.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }

@@ -27,12 +27,12 @@
 package io.spine.tools.core.jvm.signal.rejection
 
 import io.spine.protobuf.isNotDefault
-import io.spine.protodata.ast.TypeName
-import io.spine.protodata.java.BaseJavaConvention
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.javaPackage
-import io.spine.protodata.type.Declaration
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.TypeName
+import io.spine.tools.compiler.jvm.BaseJavaConvention
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.javaPackage
+import io.spine.tools.compiler.type.Declaration
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.code.Java
 
 /**

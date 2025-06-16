@@ -26,8 +26,8 @@
 
 package io.spine.tools.core.annotation
 
-import io.spine.protodata.ast.ServiceName
-import io.spine.protodata.ast.TypeName
+import io.spine.tools.compiler.ast.ServiceName
+import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.core.annotation.event.FileOptionMatched
 import io.spine.tools.core.annotation.event.FileOptionMatched.TargetCase.ENUM_TYPE
 import io.spine.tools.core.annotation.event.FileOptionMatched.TargetCase.MESSAGE_TYPE

@@ -26,12 +26,12 @@
 
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 dependencies {
@@ -48,7 +48,7 @@ dependencies {
         gradleTestKit(),
         TestLib.lib,
         ToolBase.pluginTestlib,
-        ProtoData.testlib
+        Compiler.testlib
     ).forEach {
         testImplementation(it)
     }

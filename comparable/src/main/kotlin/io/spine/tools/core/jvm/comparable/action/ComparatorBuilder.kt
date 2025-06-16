@@ -29,11 +29,11 @@ package io.spine.tools.core.jvm.comparable.action
 import com.google.protobuf.Message
 import com.intellij.psi.PsiClass
 import io.spine.base.FieldPath
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.Expression
-import io.spine.protodata.java.FieldDeclaration
-import io.spine.protodata.java.ParameterizedTypeName
-import io.spine.protodata.java.call
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.Expression
+import io.spine.tools.compiler.jvm.FieldDeclaration
+import io.spine.tools.compiler.jvm.ParameterizedTypeName
+import io.spine.tools.compiler.jvm.call
 import io.spine.string.camelCase
 import io.spine.string.lowerCamelCase
 import io.spine.tools.core.jvm.base.isNotNested

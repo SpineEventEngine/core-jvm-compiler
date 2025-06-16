@@ -27,7 +27,7 @@
 package io.spine.tools.core.jvm.entity
 
 import com.google.common.annotations.VisibleForTesting
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * A ProtoData plugin responsible for handling code generation aspects related to

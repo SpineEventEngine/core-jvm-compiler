@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.annotation.ApiOption
 import java.io.File

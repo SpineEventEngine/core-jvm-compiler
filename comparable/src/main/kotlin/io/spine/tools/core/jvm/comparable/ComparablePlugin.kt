@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.comparable
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * Looks for messages with `compare_by` option and applies render actions specified in
