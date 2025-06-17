@@ -107,7 +107,7 @@ object Compiler {
         get() = "$group:compiler-params:$version"
 
     val protocPlugin
-        get() = "$group:compiler-protoc:$version"
+        get() = "$group:compiler-protoc-plugin:$version"
 
     val gradleApi
         get() = "$group:compiler-gradle-api:$version"
