@@ -37,7 +37,7 @@ import com.squareup.javapoet.AnnotationSpec as JAnnotationSpec
 import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
 
 /**
- * Creates [PsiAnnotation] for marking code elements created by Core JVM Compiler.
+ * Creates [PsiAnnotation] for marking code elements created by  CoreJvm Compiler.
  *
  * ## Implementation note
  * We do not cache the created instance of [PsiAnnotation] because PSI elements are mutable.
@@ -50,7 +50,7 @@ import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
  */
 public object GeneratedAnnotation {
 
-    private val defaultValue = "by Spine Core JVM Compiler (version: ${version.value})"
+    private val defaultValue = "by Spine  CoreJvm Compiler (version: ${version.value})"
 
     /**
      * Creates a new [PsiAnnotation] with the [Generated] annotation.

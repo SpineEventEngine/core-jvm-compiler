@@ -35,7 +35,6 @@ buildscript {
 
     standardSpineSdkRepositories()
 
-    val protoData = io.spine.dependency.local.ProtoData
     val coreJvmCompilerVersion: String by extra
     dependencies {
         io.spine.dependency.lib.Protobuf.libs.forEach { classpath(it) }

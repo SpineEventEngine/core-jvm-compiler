@@ -76,7 +76,7 @@ internal val gRpcProtocPlugin: Artifact by lazy {
 }
 
 /**
- * Artifacts of Core JVM Compiler.
+ * Artifacts of  CoreJvm Compiler.
  */
 internal object CoreJvmCompiler {
 
@@ -131,9 +131,8 @@ internal object ValidationSdk {
     /**
      * The Maven artifact containing the `spine-validation-java-bundle` module.
      *
-     * @param version
-     *         the version of Validation library to be used.
-     *         If empty, the version of the build time dependency used is used.
+     * @param version The version of the Validation library to be used.
+     *   If empty, the version of the build time dependency used is used.
      * @see javaRuntime
      */
     @JvmStatic

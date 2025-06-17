@@ -114,7 +114,7 @@ class CodegenBlockSpec {
     @Test
     fun `apply changes immediately`() {
         val actionName = "fake.Action"
-        options.codegen { settings ->
+        options.compiler { settings ->
             settings.forUuids {
                 it.useAction(actionName)
             }
@@ -134,7 +134,7 @@ class CodegenBlockSpec {
             val action1 = "org.example.command.codegen.Action1"
             val action2 = "org.example.command.codegen.Action2"
             val suffix = "_my_commands.proto"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forCommands { commands ->
                     with(commands) {
                         includeFiles(by().suffix(suffix))
@@ -157,7 +157,7 @@ class CodegenBlockSpec {
             val action1 = "org.example.event.codegen.Action1"
             val action2 = "org.example.event.codegen.Action2"
             val infix = "my_"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forEvents { events ->
                     with(events) {
                         includeFiles(by().infix(infix))
@@ -179,7 +179,7 @@ class CodegenBlockSpec {
             val action1 = "org.example.rejection.codegen.Action1"
             val action2 = "org.example.rejection.codegen.Action2"
             val regex = ".*rejection.*"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forRejections { rejections ->
                     rejections.includeFiles(rejections.by().regex(regex))
                     rejections.useActions(listOf(action1, action2))
@@ -198,7 +198,7 @@ class CodegenBlockSpec {
         fun `rejections separately from events`() {
             val eventAction = "org.example.event.Action"
             val rejectionAction = "org.example.rejection.Action"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forEvents {
                     it.useAction(eventAction)
                 }
@@ -217,7 +217,7 @@ class CodegenBlockSpec {
         fun entities() {
             val action = "custom.Action"
             val option = "view"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forEntities {
                     it.options.add(option)
                     it.skipQueries()
@@ -238,7 +238,7 @@ class CodegenBlockSpec {
         @Test
         fun `UUID messages`() {
             val customAction = "custom.UuidCodegenAction"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forUuids {
                     it.useAction(customAction)
                 }
@@ -257,7 +257,7 @@ class CodegenBlockSpec {
             val anotherNestedClassAction = "custom.AnotherNestedClassAction"
             val fieldSuperclass = "acme.Searchable"
             val firstMessageType = "acme.small.yellow.Bird"
-            options.codegen { settings ->
+            options.compiler { settings ->
                 settings.forMessage(firstMessageType) {
                     it.markAs(firstInterface)
                     it.markFieldsAs(fieldSuperclass)
@@ -349,7 +349,7 @@ class CodegenBlockSpec {
 
             val stubActionClass = NoOpMessageAction::class
             val type = "test.Message"
-            options.codegen {
+            options.compiler {
                 it.forMessage(type) { group ->
                     group.useAction(stubActionClass.reference)
                 }

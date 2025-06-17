@@ -55,6 +55,7 @@ dependencies {
     api(Base.lib)
 
     arrayOf(
+        Compiler.gradleApi,
         Logging.lib,
         ToolBase.gradlePluginApi
     ).forEach {

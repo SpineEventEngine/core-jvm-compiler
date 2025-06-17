@@ -32,18 +32,16 @@ plugins {
 
 tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-// Turn off validation codegen during the transition to new ProtoData API.
-modelCompiler {
-    java {
-        codegen {
+// Turn off validation copiler during the transition to new Compiler API.
+spine {
+    coreJvm {
+        compiler {
             validation.enabled.set(false)
         }
     }
 }
 
-// Add Validation Java Runtime because the generated code reference
-// the `ValidatingBuilder` interface even if validation codegen is turned off.
+// Add Validation Java Runtime because the generated code reference it anyway.
 dependencies {
-    compileOnly(JavaX.annotations)
     implementation(io.spine.dependency.local.Validation.runtime)
 }

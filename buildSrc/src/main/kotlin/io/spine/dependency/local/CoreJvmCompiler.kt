@@ -27,7 +27,7 @@
 package io.spine.dependency.local
 
 /**
- * Dependencies on the Core JVM Compiler artifacts.
+ * Dependencies on the  CoreJvm Compiler artifacts.
  *
  * See [mc-java](https://github.com/SpineEventEngine/core-jvm-compiler).
  */

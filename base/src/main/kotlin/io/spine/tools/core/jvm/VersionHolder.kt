@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm
 import io.spine.tools.code.manifest.Version
 
 /**
- * Holds the version of Core JVM Compiler loaded from the manifest.
+ * Holds the version of  CoreJvm Compiler loaded from the manifest.
  */
 public object VersionHolder {
 

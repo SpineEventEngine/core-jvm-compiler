@@ -39,9 +39,9 @@ public class ValidationSettings internal constructor(project: Project) :
 
     /**
      * Allows specifying a version of the Validation Compiler used by
-     * the Core JVM Compiler.
+     * the  CoreJvm Compiler.
      *
-     * If empty, the version on which the Core JVM Compiler depends during build time will be used.
+     * If empty, the version on which the  CoreJvm Compiler depends during build time will be used.
      * The default value of this property is an empty string.
      */
     public val version: Property<String> = project.objects.property(String::class.java)

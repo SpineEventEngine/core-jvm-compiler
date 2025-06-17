@@ -29,11 +29,12 @@ package io.spine.tools.core.jvm.gradle
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.code.SourceSetName.Companion.main
 import io.spine.tools.code.SourceSetName.Companion.test
+import io.spine.tools.compiler.gradle.api.CompilerTaskName
 import io.spine.tools.gradle.task.TaskName
 import io.spine.tools.gradle.task.TaskWithSourceSetName
 
 /**
- * Names of Gradle tasks defined by the Core JVM Compiler.
+ * Names of Gradle tasks defined by the  CoreJvm Compiler.
  */
 public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
     TaskWithSourceSetName(value, ssn) {
@@ -43,21 +44,6 @@ public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
         /** Additional cleanup task added to the Gradle lifecycle. */
         @JvmField
         public val preClean: TaskName = PreCleanTaskName()
-
-        /**
-         * Obtains the name of the task which annotates Java code according to
-         * visibility options defined in proto files.
-         */
-        @JvmStatic
-        public fun annotateProto(ssn: SourceSetName): TaskName =
-            CoreJvmCompilerTaskName("annotate${ssn.toInfix()}Proto", ssn)
-
-        /**
-         * Obtains the name of the task which generate rejections for the specified source set.
-         */
-        @JvmStatic
-        public fun generateRejections(ssn: SourceSetName): TaskName =
-            CoreJvmCompilerTaskName("generate${ssn.toInfix()}Rejections", ssn)
 
         /**
          * Obtains the name of the task which merges descriptor set files of the specified
@@ -84,33 +70,14 @@ public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
             CoreJvmCompilerTaskName("write${ssn.toInfix()}DescriptorReferences", ssn)
 
         /**
-         * Obtains the name of the task which launches ProtoData for the given source set.
+         * Obtains the name of the task which launches the Spine Compiler for the given source set.
          */
         @JvmStatic
-        public fun launchProtoData(ssn: SourceSetName): TaskName =
-            CoreJvmCompilerTaskName("launch${ssn.toInfix()}ProtoData", ssn)
+        public fun launchSpineCompiler(ssn: SourceSetName): TaskName = CompilerTaskName(ssn)
 
-        /** The name of the task which launches ProtoData for the main source set. */
+        /** The name of the task which launches the Spine Compiler for the main source set. */
         @JvmField
-        public val launchProtoData: TaskName = launchProtoData(main)
-
-        /** Generates source code of rejections in the `main` source set. */
-        @JvmField
-        public val generateRejections: TaskName = generateRejections(main)
-
-        /** Generates source code of rejections in the `test` scope. */
-        @JvmField
-        public val generateTestRejections: TaskName = generateRejections(test)
-
-        /** Annotates the Java sources generated from `.proto` files the `main` scope. */
-        @JvmField
-        @Deprecated("No longer used")
-        public val annotateProto: TaskName = annotateProto(main)
-
-        /** Annotates the Java sources generated from `.proto` files the `test` scope. */
-        @JvmField
-        @Deprecated("No longer used")
-        public val annotateTestProto: TaskName = annotateProto(test)
+        public val launchSpineCompiler: TaskName = launchSpineCompiler(main)
 
         /**
          * Merges all the known type descriptors of the module into one in the `main` source set.
