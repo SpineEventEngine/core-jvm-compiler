@@ -94,7 +94,7 @@ internal object CoreJvmCompiler {
     }
 
     /**
-     * The Maven artifact containing the `corr-jvm-plugins:all` fat JAR artifact.
+     * The Maven artifact containing the `core-jvm-plugins:all` fat JAR artifact.
      */
     @JvmStatic
     @get:JvmName("allPlugins")
