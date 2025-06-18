@@ -30,7 +30,7 @@ import io.spine.gradle.publish.SpinePublishing
 
 plugins {
     `maven-publish`
-    id("com.github.johnrengelman.shadow")
+    id("com.gradleup.shadow")
 }
 
 /** The publishing settings from the root project. */
