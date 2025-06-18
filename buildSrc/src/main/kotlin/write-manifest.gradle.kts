@@ -153,7 +153,7 @@ tasks.jar {
 /**
  * Makes Gradle ignore the [buildTimestampAttr] attribute during normalization.
  *
- * See [Java META-INF normalization](https://docs.gradle.org/current/userguide/more_about_tasks.html#sec:meta_inf_normalization)
+ * See [Java META-INF normalization](https://docs.gradle.org/current/userguide/incremental_build.html#sec:meta_inf_normalization)
  * section of the Gradle documentation for details.
  */
 normalization {
