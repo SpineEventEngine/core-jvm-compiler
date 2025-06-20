@@ -187,10 +187,9 @@ abstract class PluginTestSetup<S: Message>(
      * Locates the file with the given [path], asserting its existence.
      */
     fun file(path: Path): SourceFile<Java> {
-        val file = requireNotNull(sourceFileSet.find(path)) {
-            "Source file not found: $path"
-        }
-        file.outputPath.exists() shouldBe true
+        val file = sourceFileSet.find(path)
+        file shouldNotBe null
+        file!!.outputPath.exists() shouldBe true
         @Suppress("UNCHECKED_CAST")
         return file as SourceFile<Java>
     }
