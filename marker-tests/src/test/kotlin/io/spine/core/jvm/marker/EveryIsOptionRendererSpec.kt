@@ -63,12 +63,12 @@ internal class EveryIsOptionRendererSpec {
         private val file = sourceFileSet.find(fruitDir.resolve("Fruit.java"))
 
         private val code: String
-            get() = file!!.code()
+            get() = requireNotNull(file).code()
 
         @Test
         fun `in the same package with proto types`() {
-            file shouldNotBe null
-            file!!.outputPath.exists() shouldBe true
+            val file = requireNotNull(file)
+            file.outputPath.exists() shouldBe true
 
             val code = file.code()
             code shouldContain "package io.spine.tools.core.jvm.marker.given.fruit;"
