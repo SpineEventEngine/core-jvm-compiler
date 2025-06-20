@@ -55,7 +55,7 @@ internal abstract class MarkerPluginTestSetup : PluginTestSetup<Empty>(MarkerPlu
 
     override fun createSettings(projectDir: Path): Empty = Empty.getDefaultInstance()
 
-    fun generateCode(@TempDir projectDir: Path) {
+    fun generateCode(projectDir: Path) {
         runPipeline(projectDir)
     }
 }

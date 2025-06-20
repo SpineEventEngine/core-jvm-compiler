@@ -60,14 +60,14 @@ internal class EveryIsOptionRendererSpec {
     `generate an interface given as a simple name` {
 
         private val fruitDir = Path("io/spine/tools/core/jvm/marker/given/fruit")
-        private val file = sourceFileSet.find(fruitDir.resolve("Fruit.java"))
+        private val fruitFile = sourceFileSet.find(fruitDir.resolve("Fruit.java"))
 
         private val code: String
-            get() = requireNotNull(file).code()
+            get() = requireNotNull(fruitFile).code()
 
         @Test
         fun `in the same package with proto types`() {
-            val file = requireNotNull(file)
+            val file = requireNotNull(fruitFile)
             file.outputPath.exists() shouldBe true
 
             val code = file.code()
