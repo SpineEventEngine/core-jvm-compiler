@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.core.jvm.marker
+package io.spne.core.jvm.marker
 
 import io.kotest.matchers.string.shouldContain
 import java.nio.file.Path
