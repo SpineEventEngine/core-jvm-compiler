@@ -63,22 +63,22 @@ import org.gradle.kotlin.dsl.withType
 import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
 
 /**
- * The plugin that configures ProtoData for the associated project.
+ * The plugin that configures the Spine Compiler for the associated project.
  *
  * This plugin does the following:
- *   1. Applies the `io.spine.protodata` Gradle plugin to the project.
- *   2. Configures the ProtoData extension of a Gradle project, passing codegen
- *      plugins of ProtoData, such
- *      as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin].
- *   3. Creates a [WriteCompilerSettings] task for passing configuration to ProtoData, and
- *      links it to the [LaunchProtoData] task.
+ *   1. Applies the `io.spine.compiler` Gradle plugin to the project.
+ *   2. Configures the Compiler extension of the Gradle project, passing the compiler plugins,
+ *      such as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin] and
+ *      the plugins introduced by the modules of CoreJvm Compiler modules.
+ *   3. Creates a [WriteCompilerSettings] task for passing configuration to the Compiler, and
+ *      links it to the [LaunchSpineCompiler] task.
  *   4. Adds required dependencies.
  */
 internal class CompilerConfigPlugin : Plugin<Project> {
 
     /**
-     * Applies the `io.spine.protodata` plugin to the project and, if the user needs
-     * validation code generation, configures ProtoData to generate Java validation code.
+     * Applies the `io.spine.compiler` plugin to the project and, if the user needs
+     * validation code generation, configures the Compiler to generate Java validation code.
      *
      * ProtoData configuration is a tricky operation because of Gradle's lifecycle.
      * We need to squeeze our configuration before the `LaunchProtoData` task is configured.
@@ -87,7 +87,7 @@ internal class CompilerConfigPlugin : Plugin<Project> {
      */
     override fun apply(project: Project) {
         project.afterEvaluate {
-            it.configureProtoData()
+            it.configureCompiler()
         }
         project.pluginManager.apply(GRADLE_PLUGIN_ID)
     }
@@ -106,7 +106,7 @@ internal class CompilerConfigPlugin : Plugin<Project> {
     }
 }
 
-private fun Project.configureProtoData() {
+private fun Project.configureCompiler() {
     configureCompilerPlugins()
     val writeSettingsTask = createWriteSettingsTask()
     tasks.withType<LaunchSpineCompiler>().all { task ->

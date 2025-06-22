@@ -29,28 +29,29 @@ package io.spine.tools.core.jvm.gradle.plugins
 import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldNotBe
-import io.spine.tools.compiler.gradle.CodegenSettings
+import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.compiler.gradle.plugin.Extension
-import io.spine.tools.compiler.gradle.plugin.LaunchProtoData
-import io.spine.tools.gradle.testing.GradleProject
+import io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.gradle.GradleProjects.evaluate
 import io.spine.tools.core.jvm.gradle.given.StubProject
 import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
+import io.spine.tools.gradle.lib.spineExtension
+import io.spine.tools.gradle.testing.GradleProject
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-@DisplayName("`ProtoDataConfigPlugin` should")
-internal class ProtoDataConfigPluginSpec {
+@DisplayName("`CompilerConfigPlugin` should")
+internal class CompilerConfigPluginSpec {
 
     companion object {
 
         lateinit var project: Project
-        lateinit var codegenSettings: Extension
+        lateinit var compilerSettings: Extension
 
         @BeforeAll
         @JvmStatic
@@ -66,18 +67,18 @@ internal class ProtoDataConfigPluginSpec {
 
             evaluate(project)
 
-            codegenSettings = project.extensions.findByType<CodegenSettings>() as Extension
+            compilerSettings = project.spineExtension<CompilerSettings>() as Extension
         }
     }
 
     @Test
     fun `add project extension`() {
-        codegenSettings shouldNotBe null
+        compilerSettings shouldNotBe null
     }
 
     @Test
     fun `add ProtoData plugins`() {
-        val plugins = codegenSettings.plugins.get()
+        val plugins = compilerSettings.plugins.get()
         plugins.shouldContainInOrder(
             VALIDATION_PLUGIN_CLASS,
             RThrowablePlugin::class.java.name,
@@ -94,7 +95,7 @@ internal class ProtoDataConfigPluginSpec {
 
     @Test
     fun `add a task for launching ProtoData CLI`() {
-        val task = project.tasks.withType<LaunchProtoData>()
+        val task = project.tasks.withType<LaunchSpineCompiler>()
         task shouldNotBe null
         task.shouldNotBeEmpty()
     }
