@@ -77,7 +77,7 @@ internal class CompilerConfigPluginSpec {
     }
 
     @Test
-    fun `add ProtoData plugins`() {
+    fun `add Compiler plugins`() {
         val plugins = compilerSettings.plugins.get()
         plugins.shouldContainInOrder(
             VALIDATION_PLUGIN_CLASS,
@@ -94,7 +94,7 @@ internal class CompilerConfigPluginSpec {
     }
 
     @Test
-    fun `add a task for launching ProtoData CLI`() {
+    fun `add a task for launching the Compiler CLI`() {
         val task = project.tasks.withType<LaunchSpineCompiler>()
         task shouldNotBe null
         task.shouldNotBeEmpty()

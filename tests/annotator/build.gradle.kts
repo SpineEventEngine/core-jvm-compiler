@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ plugins {
 
 modelCompiler {
     java {
-        // Turn off validation codegen during the transition to new ProtoData API.
+        // Turn off validation codegen during the transition to new Compiler API.
         codegen {
             validation.enabled.set(false)
         }
@@ -70,10 +70,10 @@ dependencies {
     testImplementation(Grpc.protobuf)
     testImplementation(customAnnotations)
 
-    protoData(customAnnotations)
+    compiler(customAnnotations)
 }
 
-tasks.findByName("launchTestProtoData")?.apply { this as JavaExec
+tasks.findByName("launchTestSpineCompiler")?.apply { this as JavaExec
     debugOptions {
         enabled.set(false) // Set this option to `true` to enable remote debugging.
         port.set(5566)

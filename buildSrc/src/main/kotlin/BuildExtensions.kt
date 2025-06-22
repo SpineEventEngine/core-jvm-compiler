@@ -297,31 +297,31 @@ fun Project.setRemoteDebug(taskName: String, enabled: Boolean = true) {
 }
 
 /**
- * Sets remote debug options for the `launchProtoData` task.
+ * Sets remote debug options for the `launchSpineCompiler` task.
  *
  * @param enabled if `true` the task will be suspended.
  *
  * @see remoteDebug
  */
-fun Project.protoDataRemoteDebug(enabled: Boolean = true) =
-    setRemoteDebug("launchProtoData", enabled)
+fun Project.spineCompilerRemoteDebug(enabled: Boolean = true) =
+    setRemoteDebug("launchSpineCompiler", enabled)
 
 /**
- * Sets remote debug options for the `launchTestProtoData` task.
+ * Sets remote debug options for the `launchTestSpineCompiler` task.
  *
  * @param enabled if `true` the task will be suspended.
  *
  * @see remoteDebug
  */
-fun Project.testProtoDataRemoteDebug(enabled: Boolean = true) =
-    setRemoteDebug("launchTestProtoData", enabled)
+fun Project.testSpineCompilerRemoteDebug(enabled: Boolean = true) =
+    setRemoteDebug("launchTestSpineCompiler", enabled)
 
 /**
- * Sets remote debug options for the `launchTestFixturesProtoData` task.
+ * Sets remote debug options for the `launchTestFixturesSpineCompiler` task.
  *
  * @param enabled if `true` the task will be suspended.
  *
  * @see remoteDebug
  */
-fun Project.testFixturesProtoDataRemoteDebug(enabled: Boolean = true) =
-    setRemoteDebug("launchTestFixturesProtoData", enabled)
+fun Project.testFixturesSpineCompilerRemoteDebug(enabled: Boolean = true) =
+    setRemoteDebug("launchTestFixturesSpineCompiler", enabled)
