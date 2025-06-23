@@ -43,7 +43,7 @@ public object KspGradlePlugin {
     public const val id: String = "com.google.devtools.ksp"
 
     /**
-     * Obtains the path to the directory where KSP generates sources for the given [project].
+     * Returns the path to the directory where KSP generates sources for the given [project].
      */
     public fun defaultTargetDirectory(project: Project): Path {
         val generatedDir = project.layout.buildDirectory.dir("generated")
