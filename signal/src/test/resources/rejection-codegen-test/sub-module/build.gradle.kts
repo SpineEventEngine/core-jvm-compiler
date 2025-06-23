@@ -37,9 +37,9 @@ plugins {
 }
 
 // Turn off validation codegen during the transition to new ProtoData API.
-modelCompiler {
-    java {
-        codegen {
+spine {
+    coreJvm {
+        compiler {
             validation.enabled.set(false)
         }
     }
