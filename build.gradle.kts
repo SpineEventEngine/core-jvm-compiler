@@ -71,7 +71,6 @@ buildscript {
                     coreJava.server,
                     logging.lib,
                     logging.libJvm,
-                    logging.middleware,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
                     validation.runtime,
                     validation.javaBundle

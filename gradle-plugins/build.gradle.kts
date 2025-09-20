@@ -36,6 +36,7 @@ import io.spine.gradle.WriteVersions
 dependencies {
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)
+    implementation(ToolBase.jvmTools)
 
     implementation(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")
