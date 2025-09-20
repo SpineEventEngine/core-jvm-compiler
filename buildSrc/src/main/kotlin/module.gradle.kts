@@ -45,6 +45,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
+import io.spine.dependency.test.JUnit
 import io.spine.gradle.VersionWriter
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.javac.configureErrorProne
@@ -123,9 +124,18 @@ fun Module.forceConfigurations() {
             // Exclude in favor of `spine-validation-java-runtime`.
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
+                // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
+                dependencySubstitution {
+                    substitute(module("io.spine.tools:spine-tool-base"))
+                        .using(module(ToolBase.lib))
+                    substitute(module("io.spine.tools:spine-plugin-base"))
+                        .using(module(ToolBase.pluginBase))
+                }
+
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    JUnit.bom,
                     Kotlin.bom,
                     Kotlin.Compiler.embeddable,
                     Kotlin.GradlePlugin.api,
@@ -143,10 +153,11 @@ fun Module.forceConfigurations() {
                     TestLib.lib,
                     ToolBase.lib,
                     ToolBase.pluginBase,
+                    ToolBase.intellijPlatform,
+                    ToolBase.intellijPlatformJava,
                     ToolBase.psiJava,
                     Logging.lib,
                     Logging.libJvm,
-                    Logging.middleware,
                     Logging.grpcContext,
 
                     // Force the version to avoid the version conflict for
