@@ -55,7 +55,7 @@ public class EntitySettings @VisibleForTesting public constructor(project: Proje
      *
      * By default, the `(entity)` option is used.
      */
-    @get:Internal
+    @Internal
     public val options: SetProperty<String>
 
     private val generateQueries: Property<Boolean>
