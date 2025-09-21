@@ -44,6 +44,9 @@ import io.spine.tools.core.jvm.field.AddFieldClass
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
+import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_COMMAND_ACTIONS
+import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_EVENT_ACTIONS
+import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_REJECTION_ACTIONS
 import io.spine.tools.core.jvm.gradle.settings.UuidSettings
 import io.spine.tools.core.jvm.settings.MessageGroup
 import io.spine.tools.core.jvm.settings.Pattern
@@ -148,7 +151,7 @@ class CoreJvmOptionsSpec {
                 patternList shouldHaveSize 1
                 patternList[0].suffix shouldBe suffix
                 actions.actionMap.keys shouldBe
-                        io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_COMMAND_ACTIONS.keys + setOf(action1, action2)
+                        DEFAULT_COMMAND_ACTIONS.keys + setOf(action1, action2)
             }
         }
 
@@ -170,7 +173,7 @@ class CoreJvmOptionsSpec {
                 patternList shouldHaveSize 1
                 patternList[0].infix shouldBe infix
                 actions.actionMap.keys shouldBe
-                        io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_EVENT_ACTIONS.keys + setOf(action1, action2)
+                        DEFAULT_EVENT_ACTIONS.keys + setOf(action1, action2)
             }
         }
 
@@ -190,7 +193,7 @@ class CoreJvmOptionsSpec {
                 patternList shouldHaveSize 1
                 patternList[0].regex shouldBe regex
                 actions.actionMap.keys shouldBe
-                        io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_REJECTION_ACTIONS.keys + setOf(action1, action2)
+                        DEFAULT_REJECTION_ACTIONS.keys + setOf(action1, action2)
             }
         }
 
@@ -208,9 +211,9 @@ class CoreJvmOptionsSpec {
             }
 
             signalSettings.events.actions.actionMap.keys shouldBe
-                    io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_EVENT_ACTIONS.keys + eventAction
+                    DEFAULT_EVENT_ACTIONS.keys + eventAction
             signalSettings.rejections.actions.actionMap.keys shouldBe
-                    io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_REJECTION_ACTIONS.keys + rejectionAction
+                    DEFAULT_REJECTION_ACTIONS.keys + rejectionAction
         }
 
         @Test
