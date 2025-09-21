@@ -304,7 +304,7 @@ fun Project.setRemoteDebug(taskName: String, enabled: Boolean = true) {
  * @see remoteDebug
  */
 fun Project.spineCompilerRemoteDebug(enabled: Boolean = true) =
-    setRemoteDebug("launchProtoData", enabled)
+    setRemoteDebug("launchSpineCompiler", enabled)
 
 /**
  * Sets remote debug options for the `launchTestSpineCompiler` task.
@@ -314,7 +314,7 @@ fun Project.spineCompilerRemoteDebug(enabled: Boolean = true) =
  * @see remoteDebug
  */
 fun Project.testSpineCompilerRemoteDebug(enabled: Boolean = true) =
-    setRemoteDebug("launchTestProtoData", enabled)
+    setRemoteDebug("launchTestSpineCompiler", enabled)
 
 /**
  * Sets remote debug options for the `launchTestFixturesSpineCompiler` task.
@@ -324,4 +324,4 @@ fun Project.testSpineCompilerRemoteDebug(enabled: Boolean = true) =
  * @see remoteDebug
  */
 fun Project.testFixturesSpineCompilerRemoteDebug(enabled: Boolean = true) =
-    setRemoteDebug("launchTestFixturesProtoData", enabled)
+    setRemoteDebug("launchTestFixturesSpineCompiler", enabled)
