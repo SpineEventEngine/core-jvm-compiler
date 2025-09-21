@@ -30,6 +30,7 @@ import com.google.auto.service.AutoService
 import com.google.protobuf.MessageOrBuilder
 import com.tschuchort.compiletesting.KotlinCompilation
 import com.tschuchort.compiletesting.configureKsp
+import io.spine.annotation.Generated
 import io.spine.base.CommandMessage
 import io.spine.core.EventContext
 import io.spine.given.devices.Device
@@ -73,6 +74,7 @@ sealed class RouteCompilationTest {
 
         val dependencyJars = setOf(
             AutoService::class.java,
+            Generated::class.java,
             MessageOrBuilder::class.java, // Protobuf
             CommandMessage::class.java, // Base
             WithLogging::class.java, // Logging library.
