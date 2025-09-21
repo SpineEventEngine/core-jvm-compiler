@@ -43,7 +43,7 @@ import org.gradle.api.provider.MapProperty
 /**
  * Code generation settings that cover applying code generation
  * actions specified as fully qualified binary names of classes that
- * extend [io.spine.protodata.java.render.MessageAction].
+ * extend [io.spine.tools.compiler.jvm.render.MessageAction].
  *
  * @param S Protobuf type reflecting a snapshot of these settings.
  *

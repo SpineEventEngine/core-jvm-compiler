@@ -52,7 +52,7 @@ import io.spine.tools.java.reference
  * the [doRender] method instead of extending [ImplementInterface] directly.
  * This is so because of the following.
  * The resolution of the ID field type requires an instance of
- * [TypeSystem][io.spine.protodata.type.TypeSystem].
+ * [TypeSystem][io.spine.tools.compiler.type.TypeSystem].
  * The field type is passed as the generic parameter of the [EntityState] interface.
  * The [typeSystem] property is not yet initialized when the constructor is called.
  * Therefore, we have to use delegation rather than inheritance here.
