@@ -32,11 +32,11 @@ import org.gradle.api.tasks.JavaExec
 plugins {
     `java-test-fixtures`
 
-    // To allow `modelCompiler` syntax below.
+    // To allow `spine/coreJvm` syntax below.
     id("io.spine.core-jvm")
 }
 
-// Turn off validation codegen during the transition to new ProtoData API.
+// Turn off validation codegen during the transition to the Compiler API.
 spine {
     coreJvm {
         compiler {
@@ -59,7 +59,7 @@ dependencies {
 
 tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-tasks.findByName("launchProtoData")?.apply { this as JavaExec
+tasks.findByName("launchSpineCompiler")?.apply { this as JavaExec
     debugOptions {
         enabled.set(false) // Set this option to `true` to enable remote debugging.
         port.set(5566)
