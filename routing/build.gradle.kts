@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.lib.KotlinPoet
+import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
 import io.spine.dependency.test.Kotest
@@ -35,10 +36,12 @@ plugins {
 }
 
 dependencies {
+    api(project(":ksp"))
+
+    implementation(Base.annotations) // for `@Generated`.
     implementation(KotlinPoet.ksp)
     implementation(CoreJava.server)
     implementation(project(":base"))
-    api(project(":ksp"))
 
     testImplementation(gradleTestKit())
     testImplementation(Kotest.assertions)
