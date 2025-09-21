@@ -37,13 +37,13 @@ plugins {
 }
 
 // Turn off validation codegen during the transition to the Compiler API.
-spine {
-    coreJvm {
-        compiler {
-            validation.enabled.set(false)
-        }
-    }
-}
+//spine {
+//    coreJvm {
+//        compiler {
+//            validation.enabled.set(false)
+//        }
+//    }
+//}
 
 dependencies {
     // Add Validation Java Runtime because the generated code reference

@@ -33,13 +33,13 @@ plugins {
 }
 
 // Turn off validation codegen during the transition to new Compiler API.
-spine {
-    coreJvm {
-        compiler {
-            validation.enabled.set(false)
-        }
-    }
-}
+//spine {
+//    coreJvm {
+//        compiler {
+//            validation.enabled.set(false)
+//        }
+//    }
+//}
 
 repositories.standardToSpineSdk()
 

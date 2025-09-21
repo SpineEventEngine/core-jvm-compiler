@@ -23,23 +23,27 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+import io.spine.dependency.lib.JavaX
 
 plugins {
+    `java-library`
+    id("com.google.protobuf")
     id("io.spine.core-jvm")
 }
 
 tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
 // Turn off validation copiler during the transition to new Compiler API.
-spine {
-    coreJvm {
-        compiler {
-            validation.enabled.set(false)
-        }
-    }
-}
+//spine {
+//    coreJvm {
+//        compiler {
+//            validation.enabled.set(false)
+//        }
+//    }
+//}
 
-// Add Validation Java Runtime because the generated code reference it anyway.
+// Add Validation Java Runtime because the generated code references it anyway.
 dependencies {
+    compileOnlyApi(JavaX.annotations)?.because("gRPC generator uses it.")
     implementation(io.spine.dependency.local.Validation.runtime)
 }
