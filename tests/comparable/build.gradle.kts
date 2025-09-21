@@ -29,9 +29,9 @@ plugins {
     id("io.spine.core-jvm")
 }
 
-modelCompiler {
-    java {
-        codegen {
+spine {
+    coreJvm {
+        compiler {
             // Turn off validation codegen during the transition to the new Compiler API.
             validation.enabled.set(false)
         }

@@ -24,9 +24,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-modelCompiler {
-    java {
-        codegen {
+spine {
+    coreJvm {
+        compiler {
             // Turn off validation codegen during the transition to new ProtoData API.
             validation.enabled.set(false)
 
@@ -37,7 +37,7 @@ modelCompiler {
     }
 }
 
-tasks.findByName("launchTestProtoData")?.apply { this as JavaExec
+tasks.findByName("launchTestSpineCompiler")?.apply { this as JavaExec
     debugOptions {
         enabled.set(false) // Set this option to `true` to enable remote debugging.
         port.set(5566)

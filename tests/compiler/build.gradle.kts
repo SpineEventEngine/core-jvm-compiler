@@ -30,13 +30,13 @@ plugins {
 }
 
 dependencies {
-    protoData(project(":factories"))
+    spineCompiler(project(":factories"))
     testImplementation(project(":factories"))
 }
 
-modelCompiler {
-    java {
-        codegen {
+spine {
+    coreJvm {
+        compiler {
             // Turn off validation codegen during the transition to the new ProtoData API.
             validation {
                 enabled.set(false)
@@ -76,7 +76,7 @@ modelCompiler {
     }
 }
 
-tasks.findByName("launchTestProtoData")?.apply { this as JavaExec
+tasks.findByName("launchTestSpineCompiler")?.apply { this as JavaExec
     debugOptions {
         enabled.set(false) // Set this option to `true` to enable remote debugging.
         port.set(5566)

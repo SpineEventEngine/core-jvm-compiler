@@ -31,10 +31,10 @@ plugins {
     `java-library`
 }
 
-modelCompiler {
-    java {
+spine {
+    coreJvm {
         // Turn off validation codegen during the transition to new Compiler API.
-        codegen {
+        compiler {
             validation.enabled.set(false)
         }
 
@@ -70,7 +70,7 @@ dependencies {
     testImplementation(Grpc.protobuf)
     testImplementation(customAnnotations)
 
-    compiler(customAnnotations)
+    spineCompiler(customAnnotations)
 }
 
 tasks.findByName("launchTestSpineCompiler")?.apply { this as JavaExec

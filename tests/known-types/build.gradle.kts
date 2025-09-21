@@ -30,9 +30,9 @@ plugins {
 }
 
 // Turn off validation codegen during the transition to new Compiler API.
-modelCompiler {
-    java {
-        codegen {
+spine {
+    coreJvm {
+        compiler {
             validation.enabled.set(false)
         }
     }
