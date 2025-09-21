@@ -34,6 +34,7 @@ import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 import com.google.devtools.ksp.symbol.KSTypeArgument
 import com.google.devtools.ksp.symbol.KSVisitorVoid
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
@@ -225,12 +226,50 @@ internal sealed class RouteVisitor<F : RouteFun>(
         val code = FileSpec.builder(packageName, cls.name!!)
             .indent(Indent.defaultJavaIndent.value)
             .addType(cls)
+            .removeBackticksInImports()
             .build()
         val deps = Dependencies(true, originalFile)
         code.writeTo(environment.codeGenerator, deps)
+        code.name
+    }
+
+    /**
+     * Removes backticks around [ANNOTATION_BACKTICKED] in the imports.
+     */
+    private fun FileSpec.Builder.removeBackticksInImports(): FileSpec.Builder {
+        clearImports()
+        imports.forEach { import ->
+            val qualifiedName = import.qualifiedName
+            if (qualifiedName.contains(ANNOTATION_BACKTICKED)) {
+                val unticked = qualifiedName.replace(ANNOTATION_BACKTICKED, ANNOTATION_UNTICKED)
+                addImport(ClassName.bestGuess(unticked))
+            } else {
+                addImport(import)
+            }
+        }
+        return this
     }
 
     companion object {
+
+        /**
+         * The string which KotlinPoet puts into an import for annotations
+         * belonging to the `io.spine.annotation` package.
+         *
+         * This is the intended behaviour of KotlinPoint.
+         * It backticks all the Kotlin keywords when generating the code.
+         * There's no known way to turn it off for imports at the time of writing.
+         *
+         * An import containing `.annotation.` in the name does compile by Kotlin.
+         * So we remove the backticks in the [postProcess] function.
+         */
+        private const val ANNOTATION_BACKTICKED = "`annotation`"
+
+        /**
+         * The string which replaces [ANNOTATION_BACKTICKED] in the imports handled
+         * by the [postProcess] function.
+         */
+        private const val ANNOTATION_UNTICKED = "annotation"
 
         /**
          * The name of the inline extension functions for classes extending
