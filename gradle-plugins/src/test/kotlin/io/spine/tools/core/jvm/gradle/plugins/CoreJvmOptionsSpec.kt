@@ -24,33 +24,31 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.settings
+package io.spine.tools.core.jvm.gradle.plugins
 
-import com.google.common.truth.Truth.assertThat
+import com.google.common.truth.Truth
 import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldBeEmpty
 import io.spine.base.MessageFile
-import io.spine.base.MessageFile.COMMANDS
-import io.spine.base.MessageFile.EVENTS
 import io.spine.option.OptionsProto
+import io.spine.testing.SlowTest
 import io.spine.tools.compiler.jvm.render.ImplementInterface
 import io.spine.tools.compiler.render.actions
 import io.spine.tools.compiler.render.add
-import io.spine.testing.SlowTest
 import io.spine.tools.core.jvm.NoOpMessageAction
 import io.spine.tools.core.jvm.applyStandard
 import io.spine.tools.core.jvm.field.AddFieldClass
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
-import io.spine.tools.core.jvm.gradle.plugins.CoreJvmPlugin
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
-import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_COMMAND_ACTIONS
-import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_EVENT_ACTIONS
-import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_REJECTION_ACTIONS
 import io.spine.tools.core.jvm.gradle.settings.UuidSettings
+import io.spine.tools.core.jvm.settings.MessageGroup
+import io.spine.tools.core.jvm.settings.Pattern
+import io.spine.tools.core.jvm.settings.SignalSettings
+import io.spine.tools.core.jvm.settings.TypePattern
 import io.spine.tools.kotlin.reference
 import io.spine.tools.proto.code.ProtoTypeName
 import java.io.File
@@ -64,14 +62,15 @@ import org.junit.jupiter.api.io.CleanupMode
 import org.junit.jupiter.api.io.TempDir
 
 @SlowTest
-@DisplayName("`codegen { }` block should`")
-class CodegenBlockSpec {
+@DisplayName("`CoreJvmOptions` should`")
+class CoreJvmOptionsSpec {
 
     private lateinit var options: CoreJvmOptions
     private lateinit var projectDir: File
 
     /**
-     * Calculates the [SignalSettings] after [options] are modified by a test body.
+     * Calculates the [io.spine.tools.core.jvm.settings.SignalSettings] after
+     * [options] are modified by a test body.
      */
     private val signalSettings: SignalSettings
         get() = options.compiler!!.toProto().signalSettings
@@ -90,7 +89,8 @@ class CodegenBlockSpec {
      */
     @BeforeEach
     fun prepareExtension(
-        @TempDir(cleanup = CleanupMode.NEVER) projectDir: File) {
+        @TempDir(cleanup = CleanupMode.NEVER) projectDir: File
+    ) {
         this.projectDir = projectDir
         val project = ProjectBuilder.builder()
             .withProjectDir(projectDir)
@@ -148,7 +148,7 @@ class CodegenBlockSpec {
                 patternList shouldHaveSize 1
                 patternList[0].suffix shouldBe suffix
                 actions.actionMap.keys shouldBe
-                        DEFAULT_COMMAND_ACTIONS.keys + setOf(action1, action2)
+                        io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_COMMAND_ACTIONS.keys + setOf(action1, action2)
             }
         }
 
@@ -170,7 +170,7 @@ class CodegenBlockSpec {
                 patternList shouldHaveSize 1
                 patternList[0].infix shouldBe infix
                 actions.actionMap.keys shouldBe
-                        DEFAULT_EVENT_ACTIONS.keys + setOf(action1, action2)
+                        io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_EVENT_ACTIONS.keys + setOf(action1, action2)
             }
         }
 
@@ -190,7 +190,7 @@ class CodegenBlockSpec {
                 patternList shouldHaveSize 1
                 patternList[0].regex shouldBe regex
                 actions.actionMap.keys shouldBe
-                        DEFAULT_REJECTION_ACTIONS.keys + setOf(action1, action2)
+                        io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_REJECTION_ACTIONS.keys + setOf(action1, action2)
             }
         }
 
@@ -208,9 +208,9 @@ class CodegenBlockSpec {
             }
 
             signalSettings.events.actions.actionMap.keys shouldBe
-                    DEFAULT_EVENT_ACTIONS.keys + eventAction
+                    io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_EVENT_ACTIONS.keys + eventAction
             signalSettings.rejections.actions.actionMap.keys shouldBe
-                    DEFAULT_REJECTION_ACTIONS.keys + rejectionAction
+                    io.spine.tools.core.jvm.gradle.settings.SignalSettings.DEFAULT_REJECTION_ACTIONS.keys + rejectionAction
         }
 
         @Test
@@ -309,7 +309,7 @@ class CodegenBlockSpec {
         fun commands() {
             signalSettings.commands.run {
                 patternList shouldHaveSize 1
-                patternList[0].suffix shouldBe COMMANDS.suffix()
+                patternList[0].suffix shouldBe MessageFile.COMMANDS.suffix()
             }
         }
 
@@ -317,7 +317,7 @@ class CodegenBlockSpec {
         fun events() {
             signalSettings.events.run {
                 patternList shouldHaveSize 1
-                patternList[0].suffix shouldBe EVENTS.suffix()
+                patternList[0].suffix shouldBe MessageFile.EVENTS.suffix()
             }
         }
 
@@ -413,6 +413,7 @@ class CodegenBlockSpec {
             assertFlag().isTrue()
         }
 
-        private fun assertFlag() = assertThat(options.compiler!!.toProto().entities.generateQueries)
+        private fun assertFlag() =
+            Truth.assertThat(options.compiler!!.toProto().entities.generateQueries)
     }
 }
