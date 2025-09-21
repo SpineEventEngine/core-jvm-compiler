@@ -30,7 +30,6 @@ import io.kotest.matchers.shouldBe
 import io.spine.code.java.SimpleClassName
 import io.spine.testing.SlowTest
 import io.spine.testing.TempDir
-import io.spine.tools.core.jvm.gradle.CoreJvmCompilerTaskName.Companion.launchSpineCompiler
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.BUILD_METHOD_ABSTRACT
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.NEW_BUILDER_METHOD_ABSTRACT
 import io.spine.tools.core.jvm.signal.rejection.JavadocTestEnv.expectedBuilderClassComment
@@ -41,6 +40,7 @@ import io.spine.tools.core.jvm.signal.rejection.JavadocTestEnv.rejectionFileCont
 import io.spine.tools.core.jvm.signal.rejection.JavadocTestEnv.rejectionJavaFile
 import io.spine.tools.core.jvm.signal.rejection.Method.BUILD
 import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
+import io.spine.tools.gradle.task.JavaTaskName.Companion.compileJava
 import io.spine.tools.gradle.testing.GradleProject.Companion.setupAt
 import io.spine.tools.java.fullTextNormalized
 import org.gradle.testkit.runner.internal.DefaultGradleRunner
@@ -80,7 +80,7 @@ internal class RejectionJavadocIgTest {
                 "-XX:+UseParallelGC",
                 "-XX:+HeapDumpOnOutOfMemoryError"
             )
-            project.executeTask(launchSpineCompiler)
+            project.executeTask(compileJava /* launchSpineCompiler */)
             val generatedFile = rejectionJavaFile(projectDir.resolve("sub-module"))
             generatedSource = Roaster.parse(
                 JavaClassSource::class.java, generatedFile
