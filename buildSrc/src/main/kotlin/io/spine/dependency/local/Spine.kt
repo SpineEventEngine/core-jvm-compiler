@@ -33,7 +33,7 @@ package io.spine.dependency.local
 object Spine {
 
     const val group = "io.spine"
-    const val toolsGroup = "io.spine.tools"
+    const val toolsGroup = ToolBase.group
 
     const val javadocFilter = "$toolsGroup:spine-javadoc-filter:${ArtifactVersion.javadocTools}"
 }

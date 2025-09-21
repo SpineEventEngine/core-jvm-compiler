@@ -56,10 +56,6 @@ package io.spine.dependency.local
     "ConstPropertyName" /* We use custom convention for artifact properties. */,
     "MemberVisibilityCanBePrivate" /* The properties are used directly by other subprojects. */,
 )
-@Deprecated(
-    message = "Please use `Compiler` instead.",
-    replaceWith = ReplaceWith("Compiler", imports = ["io.spine.dependency.local.Compiler"])
-)
 object ProtoData {
     const val pluginGroup = Spine.group
     const val group = "io.spine.protodata"
@@ -167,10 +163,10 @@ object ProtoData {
                 -----------------------------------------
                     Regular version     = v$version
                     Dogfooding version  = v$dogfoodingVersion
-                
+
                     ProtoData Gradle plugin can now be loaded from Maven Local.
-                    
-                    To reset the versions, erase the `$$VERSION_ENV` and `$$DF_VERSION_ENV` environment variables. 
+
+                    To reset the versions, erase the `$$VERSION_ENV` and `$$DF_VERSION_ENV` environment variables.
 
             """.trimIndent())
         } else {

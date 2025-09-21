@@ -26,6 +26,8 @@
 
 package io.spine.dependency.local
 
+import io.spine.dependency.local.ToolBase
+
 /**
  * Dependencies on the  CoreJvm Compiler artifacts.
  *
@@ -41,7 +43,7 @@ object CoreJvmCompiler {
     /**
      * The Compiler belongs to the `tools` group.
      */
-    const val group = Spine.toolsGroup
+    const val group = ToolBase.group
 
     /**
      * The version used to in the build classpath.

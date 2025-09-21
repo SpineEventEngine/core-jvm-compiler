@@ -26,6 +26,9 @@
 
 package io.spine.dependency.local
 
+import io.spine.dependency.local.McJava.dogfoodingVersion
+import io.spine.dependency.local.McJava.version
+
 /**
  * Dependencies on Spine Model Compiler for Java.
  *
@@ -36,22 +39,18 @@ package io.spine.dependency.local
     "ConstPropertyName",
     "unused"
 )
-@Deprecated(
-    message = "Please use `CoreJvmCompiler` instead.",
-    replaceWith = ReplaceWith("CoreJvmCompiler")
-)
 object McJava {
-    const val group = Spine.toolsGroup
+    const val group = ToolBase.group
 
     /**
      * The version used to in the build classpath.
      */
-    const val dogfoodingVersion = "2.0.0-SNAPSHOT.311"
+    const val dogfoodingVersion = "2.0.0-SNAPSHOT.320"
 
     /**
      * The version to be used for integration tests.
      */
-    const val version = "2.0.0-SNAPSHOT.311"
+    const val version = "2.0.0-SNAPSHOT.320"
 
     /**
      * The ID of the Gradle plugin.
