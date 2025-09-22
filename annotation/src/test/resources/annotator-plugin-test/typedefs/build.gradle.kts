@@ -43,5 +43,6 @@ spine {
 
 // Add Validation Java Runtime because the generated code reference it anyway.
 dependencies {
+    implementation(io.spine.dependency.lib.JavaX.annotations) // used in generated gRPC code.
     implementation(io.spine.dependency.local.Validation.runtime)
 }
