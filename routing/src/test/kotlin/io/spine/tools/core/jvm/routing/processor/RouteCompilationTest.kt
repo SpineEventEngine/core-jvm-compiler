@@ -73,6 +73,8 @@ sealed class RouteCompilationTest {
         compilation.jvmTarget = JavaVersion.VERSION_17.toString()
 
         val dependencyJars = setOf(
+            javax.annotation.Generated::class.java, // JavaX annotations are used by gRPC.
+            Generated::class.java, // Spine Annotations
             AutoService::class.java,
             Generated::class.java,
             MessageOrBuilder::class.java, // Protobuf

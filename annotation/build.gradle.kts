@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.lib.Roaster
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
@@ -36,6 +37,8 @@ plugins {
 dependencies {
     implementation(project(":base"))
     implementation(Logging.lib)
+
+    ksp(CoreJvmCompiler.pluginLib)
 
     testFixturesImplementation(ToolBase.lib)
     testFixturesImplementation(TestLib.lib)

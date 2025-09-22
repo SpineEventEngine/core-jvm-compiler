@@ -72,8 +72,10 @@ buildscript {
                     logging.lib,
                     logging.libJvm,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
-                    validation.runtime,
-                    validation.javaBundle
+//                    validation.runtime,
+//                    validation.javaBundle,
+                    "${validation.runtimeModule}:${validation.pdCompatibleVersion}",
+                    "${validation.javaBundleModule}:${validation.pdCompatibleVersion}"
                 )
             }
         }

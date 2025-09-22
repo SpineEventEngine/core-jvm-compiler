@@ -38,7 +38,7 @@ plugins {
 dependencies {
     api(project(":ksp"))
 
-    implementation(Base.annotations) // for `@Generated`.
+    implementation(Base.annotations)
     implementation(KotlinPoet.ksp)
     implementation(CoreJava.server)
     implementation(project(":base"))

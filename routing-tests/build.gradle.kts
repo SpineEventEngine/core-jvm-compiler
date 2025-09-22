@@ -29,6 +29,7 @@ import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.Validation
 import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
 

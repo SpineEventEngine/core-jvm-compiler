@@ -118,6 +118,7 @@ fun Module.forceConfigurations() {
         forceVersions()
         excludeProtobufLite()
         all {
+            val config = this
             // Exclude outdated module.
             exclude(group = "io.spine", module = "spine-logging-backend")
 
@@ -153,23 +154,36 @@ fun Module.forceConfigurations() {
                     TestLib.lib,
                     ToolBase.lib,
                     ToolBase.pluginBase,
+                    ToolBase.jvmTools,
+                    ToolBase.gradlePluginApi,
                     ToolBase.intellijPlatform,
                     ToolBase.intellijPlatformJava,
                     ToolBase.psiJava,
                     Logging.lib,
                     Logging.libJvm,
                     Logging.grpcContext,
-
-                    // Force the version to avoid the version conflict for
-                    // the `:gradle-plugins:ProtoData` configuration.
-                    Validation.runtime,
-                    Validation.java,
-                    Validation.javaBundle,
-                    Validation.config,
                     Compiler.api,
                     Compiler.gradleApi,
                     Compiler.jvm,
                 )
+                // Force the version to avoid the version conflict for
+                // the `:gradle-plugins:ProtoData` configuration.
+                if(config.name.contains("protodata", ignoreCase = true)) {
+                    val compatVersion = Validation.pdCompatibleVersion
+                    force(
+                        "${Validation.runtimeModule}:$compatVersion",
+                        "${Validation.javaBundleModule}:$compatVersion",
+                        "${Validation.javaModule}:$compatVersion",
+                        "${Validation.configModule}:$compatVersion",
+                    )
+                } else {
+                    force(
+                        Validation.runtime,
+                        Validation.java,
+                        Validation.javaBundle,
+                        Validation.config
+                    )
+                }
             }
         }
     }
@@ -189,6 +203,7 @@ fun Module.configureKotlin() {
     kotlin {
         explicitApi()
         compilerOptions {
+            jvmTarget.set(BuildSettings.jvmTarget)
             setFreeCompilerArgs()
         }
     }
