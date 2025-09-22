@@ -46,7 +46,6 @@ artifactMeta {
     artifactId.set(moduleArtifactId)
     excludeConfigurations {
         containing(
-            "errorprone",
             "detekt",
             "jacoco",
             "pmd",
@@ -54,7 +53,6 @@ artifactMeta {
             "checkerframework",
             "ksp",
             "dokka",
-            "jvm-tools",
         )
     }
 }
