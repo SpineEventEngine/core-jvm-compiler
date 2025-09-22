@@ -29,33 +29,36 @@ package io.spine.tools.core.jvm.routing.gradle
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin
 import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
-import io.spine.tools.gradle.Dependency
-import io.spine.tools.gradle.DependencyVersions
-import io.spine.tools.gradle.ThirdPartyDependency
 import io.spine.tools.gradle.artifact
+import io.spine.tools.meta.ArtifactMeta
+import io.spine.tools.meta.Module
 
 /**
- * Applies this [module][moduleName] as a plugin to KSP by calculating [mavenCoordinates].
+ * Applies this [thisModule] as a plugin to KSP by calculating [mavenCoordinates].
  */
 public class RoutingPlugin : KspBasedPlugin() {
 
     override val mavenCoordinates: String
         get() = routingKspPlugin.notation()
 
-    private val moduleName = "core-jvm-routing"
-    private val versions = DependencyVersions.loadFor(moduleName)
-
     private val routingVersion: String by lazy {
-        val self: Dependency = ThirdPartyDependency(SPINE_TOOLS_GROUP, moduleName)
-        versions.versionOf(self)
-            .orElseThrow { error("Unable to load versions of `$self`.") }
+        val meta = ArtifactMeta.loadFromResource(thisModule, this::class.java)
+        meta.version
     }
 
     private val routingKspPlugin: Artifact by lazy {
         artifact {
             useSpineToolsGroup()
-            setName(moduleName)
+            setName(thisModule.name)
             setVersion(routingVersion)
         }
+    }
+
+    private companion object {
+
+        /**
+         * The Maven module to which this class belongs.
+         */
+        private val thisModule = Module(SPINE_TOOLS_GROUP, "core-jvm-routing")
     }
 }

@@ -28,17 +28,42 @@ import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
+import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.Kotest
 import io.spine.dependency.test.KotlinCompileTesting
 
 plugins {
+    id("io.spine.artifact-meta")
     id("io.spine.core-jvm")
+}
+
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "core-jvm-routing"
+
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    excludeConfigurations {
+        containing(
+            "errorprone",
+            "detekt",
+            "jacoco",
+            "pmd",
+            "checkstyle",
+            "checkerframework",
+            "ksp",
+            "dokka",
+            "jvm-tools",
+        )
+    }
 }
 
 dependencies {
     api(project(":ksp"))
 
     implementation(Base.annotations)
+    implementation(ToolBase.jvmTools)
     implementation(KotlinPoet.ksp)
     implementation(CoreJava.server)
     implementation(project(":base"))
