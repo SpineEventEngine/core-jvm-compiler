@@ -30,10 +30,9 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import com.google.protobuf.Message
+import io.spine.format.Format
 import io.spine.tools.compiler.jvm.style.JavaCodeStyle
 import io.spine.tools.compiler.settings.SettingsDirectory
-import io.spine.format.Format
-import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.annotation.SettingsKt.annotationTypes
 import io.spine.tools.core.jvm.annotation.settings
@@ -132,9 +131,9 @@ private fun WriteCompilerSettings.forValidationPlugin(dir: SettingsDirectory) {
     val signalSettings = compilerSettings.signalSettings
     val markers = messageMarkers {
         signalSettings.let {
-            commandPattern.addAll(it.commands.patternList.toProtoData())
-            eventPattern.addAll(it.events.patternList.toProtoData())
-            rejectionPattern.addAll(it.rejections.patternList.toProtoData())
+            commandPattern.addAll(it.commands.patternList)
+            eventPattern.addAll(it.events.patternList)
+            rejectionPattern.addAll(it.rejections.patternList)
         }
         entityOptionName.addAll(compilerSettings.entityOptionsNames())
     }
@@ -145,13 +144,6 @@ private fun WriteCompilerSettings.forValidationPlugin(dir: SettingsDirectory) {
     dir.write(VALIDATION_SETTINGS_ID, settings)
 }
 
-private fun FilePattern.toProtoData(): io.spine.protodata.ast.FilePattern {
-    return io.spine.protodata.ast.FilePattern.parseFrom(this.toByteArray())
-}
-
-private fun List<FilePattern>.toProtoData(): List<io.spine.protodata.ast.FilePattern> {
-    return map { it.toProtoData() }
-}
 
 private fun Combined.entityOptionsNames(): Iterable<String> =
     entities.optionList.map { it.name }
@@ -208,7 +200,7 @@ private fun WriteCompilerSettings.forStyleFormattingPlugin(dir: SettingsDirector
 }
 
 /**
- * Writes the given instance of settings in [Format.PROTO_JSON] format using the [id].
+ * Writes the given instance of settings in [Format.ProtoJson] format using the [id].
  */
 private fun SettingsDirectory.write(id: String, settings: Message) {
     write(id, Format.ProtoJson, settings.toJson())
