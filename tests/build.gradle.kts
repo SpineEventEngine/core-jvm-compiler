@@ -147,6 +147,7 @@ allprojects {
                     ToolBase.intellijPlatformJava,
                     ToolBase.psiJava,
                     Compiler.api,
+                    Validation.javaBundle,
                     Validation.config,
                     Validation.runtime,
                 )
