@@ -72,8 +72,6 @@ buildscript {
                     logging.lib,
                     logging.libJvm,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
-//                    validation.runtime,
-//                    validation.javaBundle,
                     "${validation.runtimeModule}:${validation.pdCompatibleVersion}",
                     "${validation.javaBundleModule}:${validation.pdCompatibleVersion}"
                 )
@@ -83,6 +81,7 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
+        classpath(io.spine.dependency.local.ToolBase.jvmToolPlugins)
         classpath(coreJvmCompiler.pluginLib)
     }
 }
