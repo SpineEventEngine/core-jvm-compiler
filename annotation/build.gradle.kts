@@ -82,4 +82,4 @@ modelCompiler {
     }
 }
 
-spineCompilerRemoteDebug(enabled = false)
+// spineCompilerRemoteDebug(enabled = false)
