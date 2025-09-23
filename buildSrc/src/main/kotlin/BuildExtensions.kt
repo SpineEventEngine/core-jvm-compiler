@@ -33,6 +33,7 @@ import io.spine.dependency.build.PluginPublishPlugin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.McJava
 import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.test.Kotest
 import io.spine.dependency.test.Kover
@@ -84,6 +85,12 @@ val ScriptHandlerScope.protobuf: Protobuf
  */
 val ScriptHandlerScope.coreJvmCompiler: CoreJvmCompiler
     get() = CoreJvmCompiler
+
+/**
+ * Shortcut to [McJava] dependency object for using under `buildScript`.
+ */
+val ScriptHandlerScope.mcJava: McJava
+    get() = McJava
 
 /**
  * Shortcut to [CoreJvmCompiler] dependency object.
