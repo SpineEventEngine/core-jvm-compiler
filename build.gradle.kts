@@ -65,6 +65,7 @@ buildscript {
                     .forceArtifacts(project, configuration, strategy)
                 force(
                     io.spine.dependency.lib.Kotlin.bom,
+                    io.spine.dependency.local.Base.annotations,
                     io.spine.dependency.local.Base.libForBuildScript,
                     io.spine.dependency.local.Reflect.lib,
                     toolBase.lib,
@@ -72,6 +73,7 @@ buildscript {
                     logging.lib,
                     logging.libJvm,
                     logging.middleware,
+                    logging.grpcContext,
                     "${protoData.module}:${protoData.dogfoodingVersion}",
                     validation.runtime,
                     validation.javaBundle
