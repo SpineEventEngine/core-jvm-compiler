@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm
 
-import io.spine.tools.code.manifest.Version
+import io.spine.tools.version.Version
 
 /**
  * Holds the version of McJava loaded from the manifest.
