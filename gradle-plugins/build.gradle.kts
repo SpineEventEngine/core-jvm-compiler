@@ -33,6 +33,19 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.WriteVersions
 
+configurations {
+    all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute(module("io.spine.tools:spine-tool-base")).using(module(ToolBase.lib))
+            }
+            force(
+                ToolBase.lib,
+            )
+        }
+    }
+}
+
 dependencies {
     implementation(ProtoData.pluginLib)
     implementation(ProtoData.params)

@@ -47,6 +47,7 @@ dependencies {
         ProtoData.java,
         Validation.config,
         ToolBase.pluginBase,
+        ToolBase.jvmTools,
         KotlinPoet.lib,
     )
     apiDeps.forEach {

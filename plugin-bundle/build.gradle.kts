@@ -24,9 +24,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@file:Suppress("RemoveRedundantQualifierName")
+
 import groovy.util.Node
 import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.ToolBase
 import io.spine.gradle.publish.SpinePublishing
+
+buildscript {
+    configurations {
+        all {
+            resolutionStrategy {
+                dependencySubstitution {
+                    substitute(module("io.spine.tools:spine-tool-base")).using(module(
+                        io.spine.dependency.local.ToolBase.lib))
+                }
+                force(
+                    io.spine.dependency.local.ToolBase.lib,
+                )
+            }
+        }
+    }
+}
 
 plugins {
     `maven-publish`
@@ -42,6 +61,20 @@ val spinePublishing = rootProject.the<SpinePublishing>()
  * This value is also used in `io.spine.tools.mc.java.gradle.Artifacts.kt`.
  */
 val projectArtifact = spinePublishing.artifactPrefix + "plugins"
+
+configurations {
+    all {
+        resolutionStrategy {
+            dependencySubstitution {
+                substitute(module("io.spine.tools:spine-tool-base")).using(module(ToolBase.lib))
+                substitute(module("io.spine.tools:spine-psi-java")).using(module(ToolBase.psiJava))
+            }
+            force(
+                ToolBase.lib,
+            )
+        }
+    }
+}
 
 dependencies {
     implementation(project(":gradle-plugins"))

@@ -126,6 +126,10 @@ fun Module.forceConfigurations() {
             resolutionStrategy {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
+                dependencySubstitution {
+                    substitute(module("io.spine.tools:spine-tool-base"))
+                        .using(module(ToolBase.lib))
+                }
                 force(
                     JUnit.bom,
                     Kotlin.bom,
@@ -147,6 +151,8 @@ fun Module.forceConfigurations() {
                     ToolBase.lib,
                     ToolBase.pluginBase,
                     ToolBase.psiJava,
+                    ToolBase.intellijPlatform,
+                    ToolBase.intellijPlatformJava,
                     Logging.lib,
                     Logging.libJvm,
                     Logging.middleware,
