@@ -34,7 +34,6 @@ import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.DependencyVersions
-import io.spine.tools.gradle.protobuf.ProtobufDependencies.gradlePlugin
 import io.spine.tools.gradle.protobuf.ProtobufDependencies.protobufCompiler
 import io.spine.tools.gradle.protobuf.protobufExtension
 import io.spine.tools.mc.gradle.LanguagePlugin
@@ -61,7 +60,7 @@ public class CoreJvmPlugin : LanguagePlugin(name(), CoreJvmOptions::class.java.k
 
     public override fun apply(project: Project) {
         super.apply(project)
-        project.pluginManager.withPlugin(gradlePlugin.id) { _ ->
+        project.pluginManager.withPlugin("com.google.protobuf") { _ ->
             project.applyCoreJvmPlugins()
         }
     }
