@@ -33,7 +33,6 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
-import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -47,7 +46,6 @@ import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.dependency.test.JUnit
-import io.spine.dependency.test.Truth
 import io.spine.gradle.VersionWriter
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.javac.configureErrorProne
@@ -56,12 +54,8 @@ import io.spine.gradle.javadoc.JavadocConfig
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.report.license.LicenseReporter
-import io.spine.gradle.testing.configureLogging
-import io.spine.gradle.testing.registerTestTasks
 import java.util.*
 import org.gradle.kotlin.dsl.invoke
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 plugins {
     java
@@ -92,8 +86,7 @@ project.run {
     addDependencies()
     forceConfigurations()
 
-    val javaVersion = BuildSettings.javaVersion
-    configureJava(javaVersion)
+    configureJava()
     configureKotlin()
     setupTests()
 
@@ -134,6 +127,7 @@ fun Module.forceConfigurations() {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    JUnit.bom,
                     Kotlin.bom,
                     Kotlin.Compiler.embeddable,
                     Kotlin.GradlePlugin.api,
@@ -144,6 +138,7 @@ fun Module.forceConfigurations() {
 
                     Reflect.lib,
                     Base.lib,
+                    Base.annotations,
                     Time.lib,
                     CoreJava.core,
                     CoreJava.client,
@@ -156,6 +151,8 @@ fun Module.forceConfigurations() {
                     Logging.libJvm,
                     Logging.middleware,
                     Logging.grpcContext,
+                    Logging.testLib,
+                    Logging.testLibJvm,
 
                     // Force the version to avoid the version conflict for
                     // the `:gradle-plugins:ProtoData` configuration.
@@ -172,9 +169,9 @@ fun Module.forceConfigurations() {
     }
 }
 
-fun Module.configureJava(javaVersion: JavaLanguageVersion) {
+fun Module.configureJava() {
     tasks.withType<JavaCompile>().configureEach {
-        val javaVer = javaVersion.toString()
+        val javaVer = BuildSettings.javaVersion.toString()
         sourceCompatibility = javaVer
         targetCompatibility = javaVer
         configureJavac()
@@ -186,6 +183,7 @@ fun Module.configureKotlin() {
     kotlin {
         explicitApi()
         compilerOptions {
+            jvmTarget.set(BuildSettings.jvmTarget)
             setFreeCompilerArgs()
         }
     }
