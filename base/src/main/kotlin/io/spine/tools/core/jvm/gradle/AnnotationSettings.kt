@@ -35,7 +35,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Nested
 
 /**
- * Settings for annotations exposed by the  CoreJvm Compiler in a Gradle project.
+ * Settings for annotations exposed by the CoreJvm Compiler in a Gradle project.
  *
  * @see CoreJvmOptions
  */

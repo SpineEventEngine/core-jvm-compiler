@@ -55,7 +55,7 @@ import org.gradle.testfixtures.ProjectBuilder
 
 /**
  * An abstract base for companion objects of test suites testing
- * a Spine Compiler plugin provided by a module of the  CoreJvm Compiler.
+ * a Spine Compiler plugin provided by a module of the CoreJvm Compiler.
  *
  * @param S The type of the plugin settings in the form of a Protobuf message.
  */
@@ -88,7 +88,7 @@ abstract class PluginTestSetup<S: Message>(
 
     /**
      * Creates default compiler settings created for a project when
-     * the  CoreJvm Compiler Gradle plugin is applied.
+     * the CoreJvm Compiler Gradle plugin is applied.
      *
      * The method mimics the call to
      * [CoreJvmOptions.injectProject][io.spine.tools.core.jvm.gradle.CoreJvmOptions.injectProject]

@@ -43,7 +43,7 @@ import org.gradle.api.Project
 import org.gradle.api.file.FileCollection
 
 /**
- * Obtains options of  CoreJvm Compiler.
+ * Obtains options of CoreJvm Compiler.
  */
 public val Project.coreJvmOptions: CoreJvmOptions
     get() = spineExtension<CoreJvmOptions>()

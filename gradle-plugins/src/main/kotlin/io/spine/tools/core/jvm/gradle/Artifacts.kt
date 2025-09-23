@@ -76,7 +76,7 @@ internal val gRpcProtocPlugin: Artifact by lazy {
 }
 
 /**
- * Artifacts of  CoreJvm Compiler.
+ * Artifacts of CoreJvm Compiler.
  */
 internal object CoreJvmCompiler {
 
