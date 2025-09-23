@@ -98,7 +98,7 @@ private fun Project.setProtobufProtocArtifact() {
 }
 
 /**
- * Creates all the plugins that are parts of CoreJvm Compiler and applies them to this project.
+ * Creates all the plugins that are parts of the CoreJvm Compiler and applies them to this project.
  */
 private fun Project.createAndApplyPlugins() {
     val plugins: List<Plugin<Project>> = listOf(

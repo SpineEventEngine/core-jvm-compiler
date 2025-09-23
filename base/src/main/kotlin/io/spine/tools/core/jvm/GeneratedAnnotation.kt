@@ -37,7 +37,7 @@ import com.squareup.javapoet.AnnotationSpec as JAnnotationSpec
 import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
 
 /**
- * Creates [PsiAnnotation] for marking code elements created by CoreJvm Compiler.
+ * Creates [PsiAnnotation] for marking code elements created by the CoreJvm Compiler.
  *
  * ## Implementation note
  * We do not cache the created instance of [PsiAnnotation] because PSI elements are mutable.

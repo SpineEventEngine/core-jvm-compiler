@@ -38,7 +38,7 @@ import io.spine.tools.gradle.ThirdPartyDependency
 import io.spine.tools.gradle.artifact
 
 /**
- * This file declares artifacts used and exposed by McJava.
+ * This file declares artifacts used and exposed by the CoreJvm Compiler.
  */
 @Suppress("unused")
 private const val ABOUT = ""
@@ -76,7 +76,7 @@ internal val gRpcProtocPlugin: Artifact by lazy {
 }
 
 /**
- * Artifacts of CoreJvm Compiler.
+ * Artifacts of the CoreJvm Compiler.
  */
 internal object CoreJvmCompiler {
 

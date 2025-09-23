@@ -69,7 +69,7 @@ import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
  *   1. Applies the `io.spine.compiler` Gradle plugin to the project.
  *   2. Configures the Compiler extension of the Gradle project, passing the compiler plugins,
  *      such as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin] and
- *      the plugins introduced by the modules of CoreJvm Compiler modules.
+ *      the plugins introduced by the modules of the CoreJvm Compiler modules.
  *   3. Creates a [WriteCompilerSettings] task for passing configuration to the Compiler, and
  *      links it to the [LaunchSpineCompiler] task.
  *   4. Adds required dependencies.
@@ -132,7 +132,7 @@ private fun Project.createWriteSettingsTask(): Provider<WriteCompilerSettings> {
  * Configures the Compiler with plugins for the given Gradle project.
  */
 private fun Project.configureCompilerPlugins() {
-    // Pass the uber JAR of CoreJvm Compiler Plugins so that plugins from
+    // Pass the uber JAR of the CoreJvm Compiler Plugins so that plugins from
     // all the submodules are available.
     addUserClasspathDependency(allPlugins)
 
