@@ -57,10 +57,18 @@ plugins {
 }
 
 apply {
-    plugin("io.spine.core-jvm")
+    plugin("io.spine.mc-java")
 }
 
 apply<BomsPlugin>()
+
+configurations.all {
+    resolutionStrategy {
+        dependencySubstitution {
+            substitute(module("io.spine.tools:spine-mc-java-routing")).using(project(":routing"))
+        }
+    }
+}
 
 dependencies {
     testImplementation(CoreJava.testUtilServer)
