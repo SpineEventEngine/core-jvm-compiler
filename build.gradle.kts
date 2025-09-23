@@ -28,8 +28,8 @@
 
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
 import io.spine.gradle.RunGradle
@@ -82,7 +82,7 @@ buildscript {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
         classpath(io.spine.dependency.local.ToolBase.jvmToolPlugins)
-        classpath(coreJvmCompiler.pluginLib)
+        classpath(mcJava.pluginLib)
     }
 }
 

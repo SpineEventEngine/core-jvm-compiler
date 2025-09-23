@@ -34,7 +34,7 @@ import io.spine.dependency.test.KotlinCompileTesting
 
 plugins {
     id("io.spine.artifact-meta")
-    id("io.spine.core-jvm")
+    id("io.spine.mc-java")
 }
 
 /**

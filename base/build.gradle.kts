@@ -33,7 +33,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 
 plugins {
-    id("io.spine.core-jvm")
+    id("io.spine.mc-java")
 }
 
 dependencies {
