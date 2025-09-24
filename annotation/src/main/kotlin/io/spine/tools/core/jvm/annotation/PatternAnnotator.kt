@@ -62,5 +62,8 @@ internal abstract class PatternAnnotator : Annotator() {
         patterns.any { it.matches(codeElement) }
 }
 
-internal fun SourceFile<Java>.qualifiedTopClassName(): String
-    = relativePath.toString().replace(File.separator, ".").replace(".java", "")
+/**
+ * Obtains the fully qualified name of the top-level class defined in this file.
+ */
+internal fun SourceFile<Java>.qualifiedTopClassName(): String =
+    relativePath.toString().replace(File.separator, ".").replace(".java", "")
