@@ -31,19 +31,7 @@ import org.gradle.api.tasks.JavaExec
 
 plugins {
     `java-test-fixtures`
-
-    // To allow `spine/coreJvm` syntax below.
-    id("io.spine.core-jvm")
 }
-
-// Turn off validation codegen during the transition to the Compiler API.
-//spine {
-//    coreJvm {
-//        compiler {
-//            validation.enabled.set(false)
-//        }
-//    }
-//}
 
 dependencies {
     // Add Validation Java Runtime because the generated code reference
