@@ -256,7 +256,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
          * The string which KotlinPoet puts into an import for annotations
          * belonging to the `io.spine.annotation` package.
          *
-         * This is the intended behaviour of KotlinPoint.
+         * This is the intended behaviour of KotlinPoet.
          * It backticks all the Kotlin keywords when generating the code.
          * There's no known way to turn it off for imports at the time of writing.
          *
