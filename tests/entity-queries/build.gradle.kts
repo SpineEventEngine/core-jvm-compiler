@@ -27,7 +27,7 @@
 spine {
     coreJvm {
         compiler {
-            // Turn off validation codegen during the transition to new ProtoData API.
+            // Turn off validation codegen during the transition to new Compiler API.
             validation.enabled.set(false)
 
             forMessage("spine.tools.column.ProjectName") {
