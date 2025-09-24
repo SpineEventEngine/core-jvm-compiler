@@ -27,32 +27,20 @@
 package io.spine.tools.core.jvm.routing.gradle
 
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin
-import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
-import io.spine.tools.gradle.artifact
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.Module
 
 /**
- * Applies this [thisModule] as a plugin to KSP by calculating [mavenCoordinates].
+ * Applies the [module][thisModule] to which this plugin belows as
+ * a plugin to KSP by calculating [mavenCoordinates].
+ *
+ * @see KspBasedPlugin
  */
 public class RoutingPlugin : KspBasedPlugin() {
 
     override val mavenCoordinates: String
-        get() = routingKspPlugin.notation()
-
-    private val routingVersion: String by lazy {
-        val meta = ArtifactMeta.loadFromResource(thisModule, this::class.java)
-        meta.version
-    }
-
-    private val routingKspPlugin: Artifact by lazy {
-        artifact {
-            useSpineToolsGroup()
-            setName(thisModule.name)
-            setVersion(routingVersion)
-        }
-    }
+        get() = meta.artifact.coordinates
 
     private companion object {
 
@@ -60,5 +48,15 @@ public class RoutingPlugin : KspBasedPlugin() {
          * The Maven module to which this class belongs.
          */
         private val thisModule = Module(SPINE_TOOLS_GROUP, "core-jvm-routing")
+
+        /**
+         * The meta-data of [thisModule] loaded from resources.
+         *
+         * The resource is created by `io.spine.artifact-meta` Gradle
+         * plugin applied to the project.
+         */
+        private val meta by lazy {
+            ArtifactMeta.loadFromResource(thisModule, this::class.java)
+        }
     }
 }
