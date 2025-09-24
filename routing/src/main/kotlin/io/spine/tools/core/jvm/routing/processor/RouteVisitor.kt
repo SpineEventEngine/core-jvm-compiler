@@ -260,13 +260,13 @@ internal sealed class RouteVisitor<F : RouteFun>(
          * There's no known way to turn it off for imports at the time of writing.
          *
          * An import containing `.annotation.` in the name does compile by Kotlin.
-         * So we remove the backticks in the [postProcess] function.
+         * So we remove the backticks in the [removeBackticksInImports] function.
          */
         private const val ANNOTATION_BACKTICKED = "`annotation`"
 
         /**
          * The string which replaces [ANNOTATION_BACKTICKED] in the imports handled
-         * by the [postProcess] function.
+         * by the [removeBackticksInImports] function.
          */
         private const val ANNOTATION_UNTICKED = "annotation"
 
