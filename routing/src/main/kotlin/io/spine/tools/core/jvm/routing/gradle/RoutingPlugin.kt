@@ -32,7 +32,7 @@ import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.Module
 
 /**
- * Applies the [module][thisModule] to which this plugin belows as
+ * Applies the [module][thisModule] to which this plugin belongs as
  * a plugin to KSP by calculating [mavenCoordinates].
  *
  * @see KspBasedPlugin
