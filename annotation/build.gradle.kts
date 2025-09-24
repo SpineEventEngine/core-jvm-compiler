@@ -38,6 +38,9 @@ dependencies {
     implementation(project(":base"))
     implementation(Logging.lib)
 
+    // Generate routing schemas using the CoreJvm Compiler, avoiding the missing
+    // `io/spine/tools/code/manifest/Version` class issue.
+    // This dependency must be removed when `io.spine.core-jvm` plugin is used.
     ksp(CoreJvmCompiler.pluginLib)
 
     testFixturesImplementation(ToolBase.lib)
