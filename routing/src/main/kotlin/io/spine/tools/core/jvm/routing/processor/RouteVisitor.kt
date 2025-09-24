@@ -230,7 +230,6 @@ internal sealed class RouteVisitor<F : RouteFun>(
             .build()
         val deps = Dependencies(true, originalFile)
         code.writeTo(environment.codeGenerator, deps)
-        code.name
     }
 
     /**
