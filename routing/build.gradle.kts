@@ -34,7 +34,7 @@ import io.spine.dependency.test.KotlinCompileTesting
 
 plugins {
     id("io.spine.artifact-meta")
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 /**
@@ -75,8 +75,8 @@ dependencies {
 // Avoid the missing file error for generated code when running tests out of the IDE.
 afterEvaluate {
     val kspTestKotlin by tasks.getting
-    val launchTestProtoData by tasks.getting
-    kspTestKotlin.dependsOn(launchTestProtoData)
+    val launchTestSpineCompiler by tasks.getting
+    kspTestKotlin.dependsOn(launchTestSpineCompiler)
 }
 
 if (JavaVersion.current() >= JavaVersion.VERSION_16) {

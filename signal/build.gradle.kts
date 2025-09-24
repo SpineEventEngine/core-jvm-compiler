@@ -31,7 +31,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 dependencies {

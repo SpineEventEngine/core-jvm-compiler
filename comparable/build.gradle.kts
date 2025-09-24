@@ -27,7 +27,7 @@
 import io.spine.dependency.local.TestLib
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 dependencies {
