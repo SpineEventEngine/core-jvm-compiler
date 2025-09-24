@@ -72,6 +72,11 @@ buildscript {
                     logging.lib,
                     logging.libJvm,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
+
+                    // Force ProtoData-compatible version because the build still uses McJava.
+                    // See `classpath` dependencies below.
+                    // When McJava is replaced with CoreJvmCompiler, these lines must be either removed
+                    // or changed with the latest version of Validation.
                     "${validation.runtimeModule}:${validation.pdCompatibleVersion}",
                     "${validation.javaBundleModule}:${validation.pdCompatibleVersion}"
                 )
