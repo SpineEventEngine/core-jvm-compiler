@@ -76,7 +76,6 @@ sealed class RouteCompilationTest {
             javax.annotation.Generated::class.java, // JavaX annotations are used by gRPC.
             Generated::class.java, // Spine Annotations
             AutoService::class.java,
-            Generated::class.java,
             MessageOrBuilder::class.java, // Protobuf
             CommandMessage::class.java, // Base
             WithLogging::class.java, // Logging library.
