@@ -39,14 +39,7 @@ buildscript {
             resolutionStrategy {
                 force(io.spine.dependency.local.Logging.grpcContext)
             }
-            exclude(
-                group = "io.spine.tools",
-                module = "spine-mc-java-plugins"
-            )
         }
-    }
-    dependencies {
-        classpath(coreJvmCompiler.pluginLib)
     }
 }
 
@@ -65,6 +58,10 @@ apply<BomsPlugin>()
 configurations.all {
     resolutionStrategy {
         dependencySubstitution {
+            // Use `:routing` module of this project for generating routing schemas
+            // instead of the code from McJava.
+            // When this project is built with CoreJvm Compiler instead of McJava,
+            // the module coordinates should be replaced to: "io.spine.tools:core-jvm-routing".
             substitute(module("io.spine.tools:spine-mc-java-routing")).using(project(":routing"))
         }
     }
