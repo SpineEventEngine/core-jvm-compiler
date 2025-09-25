@@ -33,6 +33,25 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.WriteVersions
 
+plugins {
+    id("io.spine.artifact-meta")
+}
+
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "core-jvm-gradle-plugins"
+
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    // Add `protoc` as an explicit dependency as we pass it on to
+    // `protobuf/protoc/artifact` when configuring a project.
+    addDependencies(Protobuf.compiler)
+    excludeConfigurations {
+        containing(*buildToolConfigurations)
+    }
+}
+
 dependencies {
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)

@@ -39,7 +39,7 @@ import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
-import io.spine.tools.core.jvm.gradle.CoreJvmCompiler.allPlugins
+import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
 import io.spine.tools.core.jvm.gradle.ValidationSdk
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
@@ -54,6 +54,7 @@ import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.gradle.Artifact
+import io.spine.tools.meta.MavenArtifact
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
@@ -134,7 +135,7 @@ private fun Project.createWriteSettingsTask(): Provider<WriteCompilerSettings> {
 private fun Project.configureCompilerPlugins() {
     // Pass the uber JAR of the CoreJvm Compiler Plugins so that plugins from
     // all the submodules are available.
-    addUserClasspathDependency(allPlugins)
+    addUserClasspathDependency(CoreJvmCompiler.artifact)
 
     val compiler = compilerSettings
     compiler.setSubdirectories()
@@ -205,8 +206,18 @@ private fun Project.addUserClasspathDependency(vararg artifacts: Artifact) = art
     addDependency(Names.USER_CLASSPATH_CONFIGURATION, it)
 }
 
+private fun Project.addUserClasspathDependency(vararg artifacts: MavenArtifact) =
+    artifacts.forEach {
+        addDependency(Names.USER_CLASSPATH_CONFIGURATION, it)
+    }
+
 private fun Project.addDependency(configuration: String, artifact: Artifact) {
     val dependency = findDependency(artifact) ?: artifact.notation()
+    dependencies.add(configuration, dependency)
+}
+
+private fun Project.addDependency(configuration: String, artifact: MavenArtifact) {
+    val dependency = findDependency(artifact) ?: artifact.coordinates
     dependencies.add(configuration, dependency)
 }
 
@@ -215,6 +226,15 @@ private fun Project.findDependency(artifact: Artifact): Dependency? {
     val found = dependencies.firstOrNull { d ->
         artifact.group() == d.group // `d.group` could be `null`.
                 && artifact.name() == d.name
+    }
+    return found
+}
+
+private fun Project.findDependency(artifact: MavenArtifact): Dependency? {
+    val dependencies = configurations.flatMap { c -> c.dependencies }
+    val found = dependencies.firstOrNull { d ->
+        artifact.group == d.group // `d.group` could be `null`.
+                && artifact.name == d.name
     }
     return found
 }

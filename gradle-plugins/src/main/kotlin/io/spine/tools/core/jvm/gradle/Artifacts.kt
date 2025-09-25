@@ -36,6 +36,9 @@ import io.spine.tools.gradle.Dependency
 import io.spine.tools.gradle.DependencyVersions
 import io.spine.tools.gradle.ThirdPartyDependency
 import io.spine.tools.gradle.artifact
+import io.spine.tools.meta.ArtifactMeta
+import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.meta.Module
 
 /**
  * This file declares artifacts used and exposed by the CoreJvm Compiler.
@@ -43,17 +46,9 @@ import io.spine.tools.gradle.artifact
 @Suppress("unused")
 private const val ABOUT = ""
 
-private const val JAR_EXTENSION = "jar"
 private const val GRPC_GROUP = "io.grpc"
 private const val GRPC_PLUGIN_NAME = "protoc-gen-grpc-java"
 private const val CORE_JVM_GRADLE_PLUGINS = "core-jvm-gradle-plugins"
-private const val ALL_CLASSIFIER = "all"
-
-/**
- * The name of the Maven artifact containing both Spine Protobuf compiler plugin
- * and `modelCompiler` plugin.
- */
-internal const val CORE_JVM_PLUGINS = "core-jvm-plugins"
 
 /**
  * Versions of dependencies used by McJava.
@@ -81,32 +76,22 @@ internal val gRpcProtocPlugin: Artifact by lazy {
 internal object CoreJvmCompiler {
 
     /**
-     * The version of the Model Compiler Java modules.
-     *
-     * This is the version of all the modules declared in this project.
+     * The Maven module of the CoreJvm Compiler.
      */
-    @JvmStatic
-    @get:JvmName("version")
-    internal val version: String by lazy {
-        val self: Dependency = MavenDependency(SPINE_TOOLS_GROUP, CORE_JVM_GRADLE_PLUGINS)
-        versions.versionOf(self)
-            .orElseThrow { error("Unable to load versions of `$self`.") }
+    private val module = Module(SPINE_TOOLS_GROUP, CORE_JVM_GRADLE_PLUGINS)
+
+    /**
+     * The meta-data of the CoreJvm Compiler module.
+     */
+    private val meta by lazy {
+        ArtifactMeta.loadFromResource(module, this::class.java)
     }
 
     /**
-     * The Maven artifact containing the `core-jvm-plugins:all` fat JAR artifact.
+     * The Maven artifact of the CoreJvm Compiler.
      */
-    @JvmStatic
-    @get:JvmName("allPlugins")
-    internal val allPlugins: Artifact by lazy {
-        artifact {
-            useSpineToolsGroup()
-            setName(CORE_JVM_PLUGINS)
-            setVersion(this@CoreJvmCompiler.version)
-            setClassifier(ALL_CLASSIFIER)
-            setExtension(JAR_EXTENSION)
-        }
-    }
+    internal val artifact: MavenArtifact
+        get() = meta.artifact
 }
 
 /**
