@@ -29,13 +29,7 @@
 package io.spine.tools.core.jvm.gradle
 
 import io.spine.tools.core.jvm.gradle.ValidationSdk.javaCodegenBundle
-import io.spine.tools.core.jvm.gradle.ValidationSdk.javaRuntime
-import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
-import io.spine.tools.gradle.Dependency
-import io.spine.tools.gradle.DependencyVersions
-import io.spine.tools.gradle.ThirdPartyDependency
-import io.spine.tools.gradle.artifact
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
@@ -49,17 +43,6 @@ private const val ABOUT = ""
 private const val GRPC_GROUP = "io.grpc"
 private const val GRPC_PLUGIN_NAME = "protoc-gen-grpc-java"
 private const val CORE_JVM_GRADLE_PLUGINS = "core-jvm-gradle-plugins"
-
-/**
- * Versions of dependencies used by McJava.
- */
-private val versions = DependencyVersions.loadFor(CORE_JVM_GRADLE_PLUGINS)
-
-/**
- * The type alias to avoid the confusion with the "third-party" part of
- * the class name used for the default implementation of the [Dependency] interface.
- */
-internal typealias MavenDependency = ThirdPartyDependency
 
 /**
  * Artifacts of the CoreJvm Compiler.
@@ -85,72 +68,79 @@ internal object CoreJvmCompiler {
         get() = meta.artifact
 
     /**
+     * Obtains the dependency of the CoreJvm Compiler specified by the given [module].
+     *
+     * @throws IllegalStateException if no dependency is found.
+     */
+    internal fun dependency(module: Module): MavenArtifact {
+        val found = meta.dependencies.find(module)
+            ?: error("Unable to find the dependency `$module` in `$meta`.")
+        return found as MavenArtifact
+    }
+
+    /**
      * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
      * Protobuf Gradle Plugin.
+     *
+     * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
      *
      * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
      */
     internal val gRpcProtocPluginDependency: MavenArtifact
-        get() = meta.dependencies.find(Module(GRPC_GROUP, GRPC_PLUGIN_NAME)) as MavenArtifact
+        get() = dependency(Module(GRPC_GROUP, GRPC_PLUGIN_NAME))
 }
 
 /**
- * Artifacts of the Spine Validation SDK.
+ * Artifacts of the Spine Validation SDK on which [CoreJvmCompiler] depends.
+ *
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
+@Suppress("ConstPropertyName")
 internal object ValidationSdk {
 
-    @Suppress("ConstPropertyName")
     private const val group = "io.spine.validation"
-    private val javaCodegen = MavenDependency(group, "spine-validation-java")
-    private val javaCodegenBundle = MavenDependency(group, "spine-validation-java-bundle")
-    private val javaRuntime = MavenDependency(group, "spine-validation-java-runtime")
-    private val configuration = MavenDependency(group, "spine-validation-configuration")
+    private const val prefix = "spine-validation"
+    private val javaCodegenBundle = Module(group, "$prefix-java-bundle")
+    private val javaRuntime = Module(group, "$prefix-java-runtime")
+    private val configuration = Module(group, "$prefix-configuration")
 
-    private fun validationVersion(version: String = ""): String =
+    private fun MavenArtifact.withVersion(version: String): MavenArtifact {
         version.ifEmpty {
-            versions.versionOf(javaCodegen).orElseThrow {
-                error("Unable to load the version of `$javaCodegen`.")
-            }
+            return this
         }
+        return MavenArtifact(group, name, version, classifier, extension)
+    }
 
     /**
      * The Maven artifact containing the `spine-validation-java-bundle` module.
      *
      * @param version The version of the Validation library to be used.
-     *   If empty, the version of the build time dependency used is used.
-     * @see javaRuntime
+     *        If empty, the version of the build time dependency used is used.
      */
     @JvmStatic
-    fun javaCodegenBundle(version: String = ""): Artifact = artifact {
-        dependency = javaCodegenBundle
-        setVersion(validationVersion(version))
-    }
+    fun javaCodegenBundle(version: String = ""): MavenArtifact =
+        CoreJvmCompiler.dependency(javaCodegenBundle).withVersion(version)
 
     /**
      * The Maven artifact containing the `spine-validation-java-runtime` module.
      *
-     * @param version
-     *         the version of the Validation library to be used.
-     *         If empty, the version of the build time dependency used is used.
+     * @param version The version of the Validation library to be used.
+     *        If empty, the version of the build time dependency used is used.
      * @see javaCodegenBundle
      */
     @JvmStatic
-    fun javaRuntime(version: String = ""): Artifact = artifact {
-        dependency = javaRuntime
-        setVersion(validationVersion(version))
-    }
+    fun javaRuntime(version: String = ""): MavenArtifact =
+        CoreJvmCompiler.dependency(javaRuntime).withVersion(version)
 
     /**
      * The Maven artifact containing the `spine-validation-configuration` module.
      *
-     * @param version
-     *         the version of the Validation library to be used.
-     *         If empty, the version of the build time dependency used is used.
+     * @param version The version of the Validation library to be used.
+     *        If empty, the version of the build time dependency used is used.
      * @see javaCodegenBundle
      */
     @JvmStatic
-    fun configuration(version: String = ""): Artifact = artifact {
-        dependency = configuration
-        setVersion(validationVersion(version))
-    }
+    fun configuration(version: String = ""): MavenArtifact =
+        CoreJvmCompiler.dependency(configuration).withVersion(version)
+
 }

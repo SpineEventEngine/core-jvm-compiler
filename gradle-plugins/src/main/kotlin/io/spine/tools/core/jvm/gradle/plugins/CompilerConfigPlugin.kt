@@ -53,7 +53,6 @@ import io.spine.tools.core.jvm.signal.SignalPlugin
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
-import io.spine.tools.gradle.Artifact
 import io.spine.tools.meta.MavenArtifact
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -202,32 +201,14 @@ private fun Project.configureSignals(compiler: CompilerSettings) {
     }
 }
 
-private fun Project.addUserClasspathDependency(vararg artifacts: Artifact) = artifacts.forEach {
-    addDependency(Names.USER_CLASSPATH_CONFIGURATION, it)
-}
-
 private fun Project.addUserClasspathDependency(vararg artifacts: MavenArtifact) =
     artifacts.forEach {
         addDependency(Names.USER_CLASSPATH_CONFIGURATION, it)
     }
 
-private fun Project.addDependency(configuration: String, artifact: Artifact) {
-    val dependency = findDependency(artifact) ?: artifact.notation()
-    dependencies.add(configuration, dependency)
-}
-
 private fun Project.addDependency(configuration: String, artifact: MavenArtifact) {
     val dependency = findDependency(artifact) ?: artifact.coordinates
     dependencies.add(configuration, dependency)
-}
-
-private fun Project.findDependency(artifact: Artifact): Dependency? {
-    val dependencies = configurations.flatMap { c -> c.dependencies }
-    val found = dependencies.firstOrNull { d ->
-        artifact.group() == d.group // `d.group` could be `null`.
-                && artifact.name() == d.name
-    }
-    return found
 }
 
 private fun Project.findDependency(artifact: MavenArtifact): Dependency? {

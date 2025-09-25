@@ -40,14 +40,11 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
-import io.spine.dependency.test.JUnit
-import io.spine.dependency.test.Truth
 import io.spine.gradle.javac.configureErrorProne
 import io.spine.gradle.javac.configureJavac
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.publish.PublishingRepos.gitHub
 import io.spine.gradle.repo.standardToSpineSdk
-import io.spine.gradle.testing.configureLogging
 
 buildscript {
 
@@ -148,7 +145,7 @@ allprojects {
                     ToolBase.psiJava,
                     Compiler.api,
                     Validation.javaBundle,
-                    Validation.config,
+                    Validation.configuration,
                     Validation.runtime,
                 )
             }

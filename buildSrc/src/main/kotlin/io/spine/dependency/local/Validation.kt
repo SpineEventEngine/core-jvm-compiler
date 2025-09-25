@@ -61,5 +61,5 @@ object Validation {
     const val model = "$group:$prefix-model:$version"
 
     const val configModule = "$group:$prefix-configuration"
-    const val config = "$configModule:$version"
+    const val configuration = "$configModule:$version"
 }

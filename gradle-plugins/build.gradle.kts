@@ -46,7 +46,12 @@ artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
         // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
-        Grpc.ProtocPlugin.artifact
+        Grpc.ProtocPlugin.artifact,
+        // Add Validation module dependencies that we use for project configuration
+        // to which the CoreJvm Gradle Plugin is applied.
+        Validation.javaBundle,
+        Validation.runtime,
+        Validation.configuration
     )
     excludeConfigurations {
         containing(*buildToolConfigurations)
