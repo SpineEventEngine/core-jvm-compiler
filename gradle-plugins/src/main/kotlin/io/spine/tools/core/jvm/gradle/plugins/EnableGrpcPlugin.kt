@@ -28,7 +28,6 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import com.google.protobuf.gradle.ExecutableLocator
 import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.tools.core.jvm.gradle.gRpcProtocPlugin
 import io.spine.tools.gradle.ProtocConfigurationPlugin
 import io.spine.tools.gradle.ProtocPluginName.grpc
 import org.gradle.api.NamedDomainObjectContainer
@@ -44,7 +43,7 @@ public class EnableGrpcPlugin : ProtocConfigurationPlugin() {
         project: Project
     ) {
         plugins.create(grpc.name) { locator ->
-            locator.artifact = gRpcProtocPlugin.notation()
+            locator.artifact = CoreJvmCompiler.gRpcProtocPluginDependency.coordinates
         }
     }
 

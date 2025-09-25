@@ -102,20 +102,20 @@ val PluginDependenciesSpec.coreJvmCompiler: CoreJvmCompiler
     get() = CoreJvmCompiler
 
 /**
- * Shortcut to the [Compiler] dependency object for using under `buildscript`.
+ * Shortcut to [Compiler] dependency object for using under `buildscript`.
  */
-val ScriptHandlerScope.compiler: Compiler
+val ScriptHandlerScope.spineCompiler: Compiler
     get() = Compiler
 
 /**
- * Shortcut to the [Compiler] dependency object.
+ * Shortcut to [Compiler] dependency object.
  *
  * This plugin is published at Gradle Plugin Portal.
- * But when used in a pair with [coreJvmCompiler], it cannot be applied directly to a project.
- * It is so, because [coreJvmCompiler] uses [compiler] as its dependency.
+ * But when used in a pair with [mcJava], it cannot be applied directly to a project.
+ * It is so, because [mcJava] uses [spineCompiler] as its dependency.
  * And the buildscript's classpath ends up with both of them.
  */
-val PluginDependenciesSpec.compiler: Compiler
+val PluginDependenciesSpec.spineCompiler: Compiler
     get() = Compiler
 
 /**
@@ -332,3 +332,18 @@ fun Project.testSpineCompilerRemoteDebug(enabled: Boolean = true) =
  */
 fun Project.testFixturesSpineCompilerRemoteDebug(enabled: Boolean = true) =
     setRemoteDebug("launchTestFixturesSpineCompiler", enabled)
+
+/**
+ * Parts of names of configurations to be excluded by
+ * `artifactMeta/excludeConfigurations/containing` in the modules
+ * where `io.spine.atifact-meta` plugin is applied.
+ */
+val buildToolConfigurations: Array<String> = arrayOf(
+    "detekt",
+    "jacoco",
+    "pmd",
+    "checkstyle",
+    "checkerframework",
+    "ksp",
+    "dokka",
+)

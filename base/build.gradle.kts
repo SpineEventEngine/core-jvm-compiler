@@ -43,7 +43,7 @@ dependencies {
     val apiDeps = arrayOf(
         Compiler.api,
         Compiler.jvm,
-        Validation.config,
+        Validation.configuration,
         ToolBase.pluginBase,
         KotlinPoet.lib,
     )

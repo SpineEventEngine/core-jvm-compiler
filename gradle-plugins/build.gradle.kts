@@ -33,6 +33,31 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.WriteVersions
 
+plugins {
+    id("io.spine.artifact-meta")
+}
+
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "core-jvm-gradle-plugins"
+
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    addDependencies(
+        // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
+        Grpc.ProtocPlugin.artifact,
+        // Add Validation module dependencies that we use for project configuration
+        // to which the CoreJvm Gradle Plugin is applied.
+        Validation.javaBundle,
+        Validation.runtime,
+        Validation.configuration
+    )
+    excludeConfigurations {
+        containing(*buildToolConfigurations)
+    }
+}
+
 dependencies {
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)

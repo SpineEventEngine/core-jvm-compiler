@@ -45,15 +45,7 @@ val moduleArtifactId = "core-jvm-routing"
 artifactMeta {
     artifactId.set(moduleArtifactId)
     excludeConfigurations {
-        containing(
-            "detekt",
-            "jacoco",
-            "pmd",
-            "checkstyle",
-            "checkerframework",
-            "ksp",
-            "dokka",
-        )
+        containing(*buildToolConfigurations)
     }
 }
 
