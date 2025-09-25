@@ -32,13 +32,9 @@ import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions.Companion.name
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
-import io.spine.tools.gradle.Artifact
-import io.spine.tools.gradle.DependencyVersions
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
 import io.spine.tools.gradle.protobuf.ProtobufDependencies
-import io.spine.tools.gradle.protobuf.ProtobufDependencies.protobufCompiler
-import io.spine.tools.gradle.protobuf.protobufExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -72,7 +68,6 @@ public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
 
 private fun Project.applyCoreJvmPlugins() {
     logApplying()
-    setProtobufProtocArtifact()
     val extension = project.coreJvmOptions
     extension.injectProject(project)
     createAndApplyPlugins()
@@ -81,20 +76,6 @@ private fun Project.applyCoreJvmPlugins() {
 private fun Project.logApplying() {
     val version = VersionHolder.version.value
     logger.warn("Applying `${simply<CoreJvmPlugin>()}` (version: $version) to `$name`.")
-}
-
-/**
- * Configures the [protobufExtension] with the `protoc` artifact.
- *
- * The version of the `protoc` artifact is loaded from the resources of
- * the `spine-plugin-base` artifact.
- */
-private fun Project.setProtobufProtocArtifact() {
-    val ofPluginBase = DependencyVersions.loadFor(Artifact.PLUGIN_BASE_ID)
-    val protocArtifact = protobufCompiler.withVersionFrom(ofPluginBase).notation()
-    protobufExtension!!.protoc { locator ->
-        locator.artifact = protocArtifact
-    }
 }
 
 /**
