@@ -31,7 +31,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 
 plugins {
-    id("io.spine.mc-java")
+    id("io.spine.core-jvm")
 }
 
 dependencies {
@@ -77,9 +77,9 @@ tasks.withType<ProcessResources>().configureEach {
  *  2. We want to avoid errors that may be caused by the code which has not yet
  *     fully migrated to the latest Compiler API.
  */
-modelCompiler {
-    java {
-        codegen {
+spine {
+    coreJvm {
+        compiler {
             rejections.enabled.set(false)
         }
     }

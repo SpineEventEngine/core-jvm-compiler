@@ -50,7 +50,7 @@ plugins {
 }
 
 apply {
-    plugin("io.spine.mc-java")
+    plugin("io.spine.core-jvm")
 }
 
 apply<BomsPlugin>()
@@ -59,10 +59,8 @@ configurations.all {
     resolutionStrategy {
         dependencySubstitution {
             // Use `:routing` module of this project for generating routing schemas
-            // instead of the code from McJava.
-            // When this project is built with CoreJvm Compiler instead of McJava,
-            // the module coordinates should be replaced to: "io.spine.tools:core-jvm-routing".
-            substitute(module("io.spine.tools:spine-mc-java-routing")).using(project(":routing"))
+            // instead of the code the previous version of CoreJvm Compiler.
+            substitute(module("io.spine.tools:core-jvm-routing")).using(project(":routing"))
         }
     }
 }
@@ -100,9 +98,9 @@ sourceSets.testFixtures {
     /* We need to add these sources because original Protobuf-generated files
        are filtered via `excludedSources` above.
        The KSP Gradle Plugin analyzes source sets and task outputs before
-       ProtoData comes into play.
+       Spine Compiler comes into play.
        When we modify the source directories in `GenerateProtoTask.configureSourceSetDirs()`
-       in ProtoData Gradle Plugin, it does not affect the input of KSP tasks.
+       in the Spine Compiler Gradle Plugin, it does not affect the input of KSP tasks.
        See `com.google.devtools.ksp.gradle.KspAATask.registerKspAATask()` with the following
        code block:
        ```kotlin
@@ -123,8 +121,8 @@ sourceSets.testFixtures {
 // explicit or implicit dependencies.
 afterEvaluate {
     val kspTestFixturesKotlin by tasks.getting
-    val launchTestFixturesProtoData by tasks.getting
-    kspTestFixturesKotlin.dependsOn(launchTestFixturesProtoData)
+    val launchTestFixturesSpineCompiler by tasks.getting
+    kspTestFixturesKotlin.dependsOn(launchTestFixturesSpineCompiler)
 }
 
 configurations

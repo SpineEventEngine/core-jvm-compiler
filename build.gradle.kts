@@ -87,7 +87,7 @@ buildscript {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
         classpath(io.spine.dependency.local.ToolBase.jvmToolPlugins)
-        classpath(mcJava.pluginLib)
+        classpath(coreJvmCompiler.pluginLib)
     }
 }
 
