@@ -62,15 +62,6 @@ private val versions = DependencyVersions.loadFor(CORE_JVM_GRADLE_PLUGINS)
 internal typealias MavenDependency = ThirdPartyDependency
 
 /**
- * The Maven artifact of the gRPC Protobuf compiler plugin.
- */
-@get:JvmName("gRpcProtocPlugin")
-internal val gRpcProtocPlugin: Artifact by lazy {
-    val gRpcPlugin: Dependency = MavenDependency(GRPC_GROUP, GRPC_PLUGIN_NAME)
-    gRpcPlugin.withVersionFrom(versions)
-}
-
-/**
  * Artifacts of the CoreJvm Compiler.
  */
 internal object CoreJvmCompiler {
@@ -92,6 +83,15 @@ internal object CoreJvmCompiler {
      */
     internal val artifact: MavenArtifact
         get() = meta.artifact
+
+    /**
+     * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
+     * Protobuf Gradle Plugin.
+     *
+     * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
+     */
+    internal val gRpcProtocPluginDependency: MavenArtifact
+        get() = meta.dependencies.find(Module(GRPC_GROUP, GRPC_PLUGIN_NAME)) as MavenArtifact
 }
 
 /**

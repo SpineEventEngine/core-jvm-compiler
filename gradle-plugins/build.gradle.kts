@@ -44,9 +44,10 @@ val moduleArtifactId = "core-jvm-gradle-plugins"
 
 artifactMeta {
     artifactId.set(moduleArtifactId)
-    // Add `protoc` as an explicit dependency as we pass it on to
-    // `protobuf/protoc/artifact` when configuring a project.
-    addDependencies(Protobuf.compiler)
+    addDependencies(
+        // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
+        Grpc.ProtocPlugin.artifact
+    )
     excludeConfigurations {
         containing(*buildToolConfigurations)
     }
