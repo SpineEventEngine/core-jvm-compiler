@@ -26,9 +26,8 @@
 
 @file:JvmName("Artifacts")
 
-package io.spine.tools.core.jvm.gradle
+package io.spine.tools.core.jvm.gradle.plugins
 
-import io.spine.tools.core.jvm.gradle.ValidationSdk.javaCodegenBundle
 import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
@@ -40,9 +39,9 @@ import io.spine.tools.meta.Module
 @Suppress("unused")
 private const val ABOUT = ""
 
+private const val CORE_JVM_GRADLE_PLUGINS = "core-jvm-gradle-plugins"
 private const val GRPC_GROUP = "io.grpc"
 private const val GRPC_PLUGIN_NAME = "protoc-gen-grpc-java"
-private const val CORE_JVM_GRADLE_PLUGINS = "core-jvm-gradle-plugins"
 
 /**
  * Artifacts of the CoreJvm Compiler.
@@ -115,7 +114,7 @@ internal object ValidationSdk {
      * The Maven artifact containing the `spine-validation-java-bundle` module.
      *
      * @param version The version of the Validation library to be used.
-     *        If empty, the version of the build time dependency used is used.
+     *        If empty, the version of the build-time dependency is used.
      */
     @JvmStatic
     fun javaCodegenBundle(version: String = ""): MavenArtifact =
@@ -125,7 +124,7 @@ internal object ValidationSdk {
      * The Maven artifact containing the `spine-validation-java-runtime` module.
      *
      * @param version The version of the Validation library to be used.
-     *        If empty, the version of the build time dependency used is used.
+     *        If empty, the version of the build-time dependency is used.
      * @see javaCodegenBundle
      */
     @JvmStatic
@@ -136,11 +135,10 @@ internal object ValidationSdk {
      * The Maven artifact containing the `spine-validation-configuration` module.
      *
      * @param version The version of the Validation library to be used.
-     *        If empty, the version of the build time dependency used is used.
+     *        If empty, the version of the build-time dependency is used.
      * @see javaCodegenBundle
      */
     @JvmStatic
     fun configuration(version: String = ""): MavenArtifact =
         CoreJvmCompiler.dependency(configuration).withVersion(version)
-
 }

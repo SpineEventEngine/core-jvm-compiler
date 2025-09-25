@@ -28,7 +28,6 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import com.google.protobuf.gradle.ExecutableLocator
 import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
 import io.spine.tools.gradle.ProtocConfigurationPlugin
 import io.spine.tools.gradle.ProtocPluginName.grpc
 import org.gradle.api.NamedDomainObjectContainer

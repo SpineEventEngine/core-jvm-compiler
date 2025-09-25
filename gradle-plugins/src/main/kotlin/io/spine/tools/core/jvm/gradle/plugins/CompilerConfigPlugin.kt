@@ -39,8 +39,6 @@ import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
-import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
-import io.spine.tools.core.jvm.gradle.ValidationSdk
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
 import io.spine.tools.core.jvm.gradle.generatedJavaDirName
