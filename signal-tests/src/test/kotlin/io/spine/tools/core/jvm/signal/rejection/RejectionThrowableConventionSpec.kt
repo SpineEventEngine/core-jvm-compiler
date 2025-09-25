@@ -28,7 +28,7 @@ package io.spine.tools.core.jvm.signal.rejection
 
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
-import io.spine.protodata.java.MessageOrEnumConvention
+import io.spine.tools.compiler.jvm.MessageOrEnumConvention
 import io.spine.tools.core.jvm.signal.rejection.TypesTestEnv.messageTypeName
 import io.spine.tools.core.jvm.signal.rejection.TypesTestEnv.rejectionTypeName
 import io.spine.tools.core.jvm.signal.rejection.TypesTestEnv.typeSystem

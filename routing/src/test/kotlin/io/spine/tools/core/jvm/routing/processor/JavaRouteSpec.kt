@@ -46,7 +46,7 @@ import org.junit.jupiter.api.Test
  * @see JavaRouteErrorSpec
  */
 @OptIn(ExperimentalCompilerApi::class)
-@DisplayName("`RouteProcessor` should detect Java code errors")
+@DisplayName("`RouteProcessor` should handle routes in Java")
 internal class JavaRouteSpec : RouteCompilationTest() {
 
     private val twoRoutes = javaFile("TwoRoutes", """

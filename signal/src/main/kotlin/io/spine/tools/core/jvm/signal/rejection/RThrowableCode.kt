@@ -31,9 +31,9 @@ import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
 import io.spine.base.RejectionThrowable
 import io.spine.logging.WithLogging
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.java.MessageOrEnumConvention
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.MessageOrEnumConvention
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forConstructorOfThrowable
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forThrowableOf

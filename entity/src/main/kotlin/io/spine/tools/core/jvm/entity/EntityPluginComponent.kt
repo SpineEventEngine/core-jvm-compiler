@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.entity
 
-import io.spine.protodata.settings.LoadsSettings
+import io.spine.tools.compiler.settings.LoadsSettings
 
 /**
  * A common interface for [EntityPlugin] parts that load

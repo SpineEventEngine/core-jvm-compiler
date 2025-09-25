@@ -61,7 +61,7 @@ internal class GroupedMessageRendererSpec {
         }
 
         override fun createSettings(projectDir: Path): GroupSettings {
-            val codegenConfig = createCodegenConfig(projectDir)
+            val codegenConfig = createCompilerSettings(projectDir)
             codegenConfig.forMessage("given.groups.Student") {
                 it.markFieldsAs(CustomField::class.java.canonicalName)
                 it.useAction(StudentIdClass::class.java.canonicalName)

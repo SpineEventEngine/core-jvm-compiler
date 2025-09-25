@@ -37,18 +37,16 @@ import io.spine.tools.gradle.project.sourceSet
 import io.spine.tools.gradle.protobuf.ProtobufDependencies.sourceSetExtensionName
 import io.spine.tools.gradle.protobuf.generated
 import io.spine.tools.java.fs.DefaultJavaPaths
-import io.spine.tools.mc.gradle.modelCompiler
+import io.spine.tools.gradle.lib.spineExtension
 import java.nio.file.Path
 import org.gradle.api.Project
 import org.gradle.api.file.FileCollection
-import org.gradle.api.plugins.ExtensionAware
-import org.gradle.kotlin.dsl.getByType
 
 /**
- * Obtains options of Core JVM Compiler.
+ * Obtains options of the CoreJvm Compiler.
  */
 public val Project.coreJvmOptions: CoreJvmOptions
-    get() = (modelCompiler as ExtensionAware).extensions.getByType()
+    get() = spineExtension<CoreJvmOptions>()
 
 private val Project.defaultPaths: DefaultJavaPaths
     get() = DefaultJavaPaths.at(projectDir.toPath())

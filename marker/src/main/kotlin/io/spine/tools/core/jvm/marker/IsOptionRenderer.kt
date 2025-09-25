@@ -27,12 +27,12 @@
 package io.spine.tools.core.jvm.marker
 
 import io.spine.option.IsOption
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.find
-import io.spine.protodata.ast.qualifiedName
-import io.spine.protodata.context.findHeader
-import io.spine.protodata.java.qualifiedJavaType
-import io.spine.protodata.java.render.superInterface
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.find
+import io.spine.tools.compiler.ast.qualifiedName
+import io.spine.tools.compiler.context.findHeader
+import io.spine.tools.compiler.jvm.qualifiedJavaType
+import io.spine.tools.compiler.jvm.render.superInterface
 import io.spine.tools.psi.java.execute
 
 /**

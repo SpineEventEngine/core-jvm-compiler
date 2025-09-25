@@ -27,15 +27,16 @@
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.WriteVersions
 
 dependencies {
-    implementation(ProtoData.pluginLib)
-    implementation(ProtoData.params)
+    implementation(Compiler.pluginLib)
+    implementation(Compiler.params)
+    implementation(ToolBase.jvmTools)
 
     implementation(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")
@@ -86,17 +87,14 @@ tasks {
     withType<WriteVersions>().configureEach {
 
         // Store the version of gRPC so that we can set the artifact for `protoc`.
-        // See `io.spine.tools.mc.java.gradle.plugins.JavaProtocConfigurationPlugin` for details.
         version(Grpc.ProtocPlugin.artifact)
 
         // Store the version of Validation so that we can add the dependency for
-        // the `protoData` configuration.
-        // See `io.spine.tools.mc.java.gradle.plugins.ProtoDataConfigurationPlugin` for details.
+        // the `spineCompiler` configuration.
         version(Validation.java)
 
-        // Store the version of `tool-base` so that we can add the dependency for
-        // the `protoData` configuration when configuring rejection codegen.
-        // See `io.spine.tools.mc.java.gradle.plugins.ProtoDataConfigurationPlugin` for details.
+        // Store the version of `tool-base` so that we can load the version of
+        // Protobuf `protoc` artifact.
         version(ToolBase.lib)
     }
 }

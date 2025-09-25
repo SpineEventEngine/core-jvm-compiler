@@ -26,12 +26,12 @@
 
 package io.spine.tools.core.jvm.uuid
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * Discovers [UuidValue][io.spine.base.UuidValue] message types and renders the code
  * according to the settings specified in
- * [io.spine.tools.core.jvm.gradle.settings.CompilerSettings.forUuids] clause.
+ * [io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings.forUuids] clause.
  */
 public class UuidPlugin : Plugin(
     policies = setOf(UuidValueDiscovery()),

@@ -28,10 +28,10 @@ package io.spine.tools.core.annotation
 
 import io.spine.core.External
 import io.spine.core.Subscribe
-import io.spine.protodata.ast.TypeName
-import io.spine.protodata.ast.event.EnumOptionDiscovered
-import io.spine.protodata.plugin.View
-import io.spine.protodata.plugin.ViewRepository
+import io.spine.tools.compiler.ast.TypeName
+import io.spine.tools.compiler.ast.event.EnumOptionDiscovered
+import io.spine.tools.compiler.plugin.View
+import io.spine.tools.compiler.plugin.ViewRepository
 import io.spine.server.entity.alter
 import io.spine.server.route.EventRouting
 import io.spine.server.route.Route

@@ -28,8 +28,8 @@ package io.spine.tools.core.jvm.annotation
 
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper
 import io.spine.base.EntityState
-import io.spine.protodata.ast.ProtoFileHeader
-import io.spine.protodata.context.findHeader
+import io.spine.tools.compiler.ast.ProtoFileHeader
+import io.spine.tools.compiler.context.findHeader
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.WithOptions
 import io.spine.tools.core.annotation.file

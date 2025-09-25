@@ -28,23 +28,25 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
-import io.spine.protodata.gradle.Names
-import io.spine.protodata.gradle.Names.GRADLE_PLUGIN_ID
-import io.spine.protodata.gradle.plugin.LaunchProtoData
-import io.spine.protodata.gradle.protoDataWorkingDir
-import io.spine.protodata.java.style.JavaCodeStyleFormatterPlugin
-import io.spine.protodata.params.WorkingDirectory
+import io.spine.tools.compiler.gradle.api.CompilerSettings
+import io.spine.tools.compiler.gradle.api.Names
+import io.spine.tools.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
+import io.spine.tools.compiler.gradle.api.compilerSettings
+import io.spine.tools.compiler.gradle.api.compilerWorkingDir
+import io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler
+import io.spine.tools.compiler.jvm.style.JavaCodeStyleFormatterPlugin
+import io.spine.tools.compiler.params.WorkingDirectory
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmCompiler.allPlugins
 import io.spine.tools.core.jvm.gradle.ValidationSdk
+import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
 import io.spine.tools.core.jvm.gradle.generatedJavaDirName
-import io.spine.tools.core.jvm.gradle.coreJvmOptions
-import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
-import io.spine.tools.core.jvm.gradle.plugins.ProtoDataConfigPlugin.Companion.WRITE_PROTODATA_SETTINGS
-import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_SETTINGS
+import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
 import io.spine.tools.core.jvm.marker.MarkerPlugin
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.signal.SignalPlugin
@@ -56,29 +58,27 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.provider.Provider
-import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
-import io.spine.protodata.gradle.CodegenSettings as ProtoDataSettings
-import io.spine.protodata.plugin.Plugin as ProtoDataPlugin
+import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
 
 /**
- * The plugin that configures ProtoData for the associated project.
+ * The plugin that configures the Spine Compiler for the associated project.
  *
  * This plugin does the following:
- *   1. Applies the `io.spine.protodata` Gradle plugin to the project.
- *   2. Configures the ProtoData extension of a Gradle project, passing codegen
- *      plugins of ProtoData, such
- *      as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin].
- *   3. Creates a [WriteProtoDataSettings] task for passing configuration to ProtoData, and
- *      links it to the [LaunchProtoData] task.
+ *   1. Applies the `io.spine.compiler` Gradle plugin to the project.
+ *   2. Configures the Compiler extension of the Gradle project, passing the compiler plugins,
+ *      such as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin] and
+ *      the plugins introduced by the modules of the CoreJvm Compiler modules.
+ *   3. Creates a [WriteCompilerSettings] task for passing configuration to the Compiler, and
+ *      links it to the [LaunchSpineCompiler] task.
  *   4. Adds required dependencies.
  */
-internal class ProtoDataConfigPlugin : Plugin<Project> {
+internal class CompilerConfigPlugin : Plugin<Project> {
 
     /**
-     * Applies the `io.spine.protodata` plugin to the project and, if the user needs
-     * validation code generation, configures ProtoData to generate Java validation code.
+     * Applies the `io.spine.compiler` plugin to the project and, if the user needs
+     * validation code generation, configures the Compiler to generate Java validation code.
      *
      * ProtoData configuration is a tricky operation because of Gradle's lifecycle.
      * We need to squeeze our configuration before the `LaunchProtoData` task is configured.
@@ -87,7 +87,7 @@ internal class ProtoDataConfigPlugin : Plugin<Project> {
      */
     override fun apply(project: Project) {
         project.afterEvaluate {
-            it.configureProtoData()
+            it.configureCompiler()
         }
         project.pluginManager.apply(GRADLE_PLUGIN_ID)
     }
@@ -95,9 +95,9 @@ internal class ProtoDataConfigPlugin : Plugin<Project> {
     companion object {
 
         /**
-         * The name of the task for writing ProtoData settings.
+         * The name of the task for writing the Compiler settings.
          */
-        const val WRITE_PROTODATA_SETTINGS = "writeProtoDataSettings"
+        const val WRITE_COMPILER_SETTINGS = "writeSpineCompilerSettings"
 
         /**
          * The name of the Validation plugin for ProtoData.
@@ -106,10 +106,10 @@ internal class ProtoDataConfigPlugin : Plugin<Project> {
     }
 }
 
-private fun Project.configureProtoData() {
-    configureProtoDataPlugins()
+private fun Project.configureCompiler() {
+    configureCompilerPlugins()
     val writeSettingsTask = createWriteSettingsTask()
-    tasks.withType<LaunchProtoData>().all { task ->
+    tasks.withType<LaunchSpineCompiler>().all { task ->
         task.apply {
             dependsOn(writeSettingsTask)
             setStandardOutput(System.out)
@@ -118,9 +118,9 @@ private fun Project.configureProtoData() {
     }
 }
 
-private fun Project.createWriteSettingsTask(): Provider<WriteProtoDataSettings> {
-    val result = tasks.register<WriteProtoDataSettings>(WRITE_PROTODATA_SETTINGS) {
-        val workingDir = WorkingDirectory(protoDataWorkingDir.asFile.toPath())
+private fun Project.createWriteSettingsTask(): Provider<WriteCompilerSettings> {
+    val result = tasks.register<WriteCompilerSettings>(WRITE_COMPILER_SETTINGS) {
+        val workingDir = WorkingDirectory(compilerWorkingDir.asFile.toPath())
         val settingsDir = workingDir.settingsDirectory.path.toFile()
         val settingsDirProvider = project.layout.dir(provider { settingsDir })
         this.settingsDir.set(settingsDirProvider)
@@ -129,19 +129,20 @@ private fun Project.createWriteSettingsTask(): Provider<WriteProtoDataSettings> 
 }
 
 /**
- * Configures ProtoData with plugins for the given Gradle project.
+ * Configures the Compiler with plugins for the given Gradle project.
  */
-private fun Project.configureProtoDataPlugins() {
-    // Pass the uber JAR of McJava so that plugins from all the submodules are available.
+private fun Project.configureCompilerPlugins() {
+    // Pass the uber JAR of the CoreJvm Compiler Plugins so that plugins from
+    // all the submodules are available.
     addUserClasspathDependency(allPlugins)
 
-    val protodata = extensions.getByType<ProtoDataSettings>()
-    protodata.setSubdirectories()
+    val compiler = compilerSettings
+    compiler.setSubdirectories()
 
-    configureValidation(protodata)
-    configureSignals(protodata)
+    configureValidation(compiler)
+    configureSignals(compiler)
 
-    protodata.run {
+    compiler.run {
         addPlugin<MarkerPlugin>()
         addPlugin<MessageGroupPlugin>()
         addPlugin<UuidPlugin>()
@@ -157,10 +158,10 @@ private fun Project.configureProtoDataPlugins() {
     }
 }
 
-private val Project.messageOptions: CompilerSettings
-    get() = coreJvmOptions.codegen!!
+private val Project.messageOptions: CoreJvmCompilerSettings
+    get() = coreJvmOptions.compiler!!
 
-private fun ProtoDataSettings.setSubdirectories() {
+private fun CompilerSettings.setSubdirectories() {
     subDirs = listOf(
         generatedJavaDirName.value(),
         generatedGrpcDirName.value(),
@@ -168,12 +169,12 @@ private fun ProtoDataSettings.setSubdirectories() {
     )
 }
 
-private fun Project.configureValidation(protodata: ProtoDataSettings) {
+private fun Project.configureValidation(compiler: CompilerSettings) {
     val validationConfig = messageOptions.validation
     val version = validationConfig.version.get()
     if (validationConfig.enabled.get()) {
         addUserClasspathDependency(ValidationSdk.javaCodegenBundle(version))
-        protodata.plugins(
+        compiler.plugins(
             VALIDATION_PLUGIN_CLASS
         )
     } else {
@@ -191,12 +192,12 @@ private fun Project.configureValidation(protodata: ProtoDataSettings) {
     addDependency("implementation", ValidationSdk.javaRuntime(version))
 }
 
-private fun Project.configureSignals(protodata: ProtoDataSettings) {
-    protodata.addPlugin<SignalPlugin>()
+private fun Project.configureSignals(compiler: CompilerSettings) {
+    compiler.addPlugin<SignalPlugin>()
 
     val rejectionCodegen = messageOptions.rejections
     if (rejectionCodegen.enabled.get()) {
-        protodata.addPlugin<RThrowablePlugin>()
+        compiler.addPlugin<RThrowablePlugin>()
     }
 }
 
@@ -218,6 +219,6 @@ private fun Project.findDependency(artifact: Artifact): Dependency? {
     return found
 }
 
-private inline fun <reified T : ProtoDataPlugin> ProtoDataSettings.addPlugin() {
+private inline fun <reified T : CompilerPlugin> CompilerSettings.addPlugin() {
     plugins(T::class.java.name)
 }

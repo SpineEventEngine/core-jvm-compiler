@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.marker
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * The ProtoData plugin which performs code generation in response to discovering

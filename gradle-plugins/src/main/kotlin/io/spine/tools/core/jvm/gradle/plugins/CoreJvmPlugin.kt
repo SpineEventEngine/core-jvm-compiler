@@ -34,10 +34,11 @@ import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.Artifact
 import io.spine.tools.gradle.DependencyVersions
-import io.spine.tools.gradle.protobuf.ProtobufDependencies.gradlePlugin
+import io.spine.tools.gradle.DslSpec
+import io.spine.tools.gradle.lib.LibraryPlugin
+import io.spine.tools.gradle.protobuf.ProtobufDependencies
 import io.spine.tools.gradle.protobuf.ProtobufDependencies.protobufCompiler
 import io.spine.tools.gradle.protobuf.protobufExtension
-import io.spine.tools.mc.gradle.LanguagePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -46,7 +47,9 @@ import org.gradle.api.Project
  *
  * Applies all McJava sub-plugins to the given project.
  */
-public class CoreJvmPlugin : LanguagePlugin(name(), CoreJvmOptions::class.java.kotlin) {
+public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
+    DslSpec(name(), CoreJvmOptions::class)
+) {
 
     public companion object {
 
@@ -61,7 +64,7 @@ public class CoreJvmPlugin : LanguagePlugin(name(), CoreJvmOptions::class.java.k
 
     public override fun apply(project: Project) {
         super.apply(project)
-        project.pluginManager.withPlugin(gradlePlugin.id) { _ ->
+        project.pluginManager.withPlugin(ProtobufDependencies.gradlePlugin.id) { _ ->
             project.applyCoreJvmPlugins()
         }
     }
@@ -69,7 +72,7 @@ public class CoreJvmPlugin : LanguagePlugin(name(), CoreJvmOptions::class.java.k
 
 private fun Project.applyCoreJvmPlugins() {
     logApplying()
-    setProtocArtifact()
+    setProtobufProtocArtifact()
     val extension = project.coreJvmOptions
     extension.injectProject(project)
     createAndApplyPlugins()
@@ -80,7 +83,13 @@ private fun Project.logApplying() {
     logger.warn("Applying `${simply<CoreJvmPlugin>()}` (version: $version) to `$name`.")
 }
 
-private fun Project.setProtocArtifact() {
+/**
+ * Configures the [protobufExtension] with the `protoc` artifact.
+ *
+ * The version of the `protoc` artifact is loaded from the resources of
+ * the `spine-plugin-base` artifact.
+ */
+private fun Project.setProtobufProtocArtifact() {
     val ofPluginBase = DependencyVersions.loadFor(Artifact.PLUGIN_BASE_ID)
     val protocArtifact = protobufCompiler.withVersionFrom(ofPluginBase).notation()
     protobufExtension!!.protoc { locator ->
@@ -89,13 +98,13 @@ private fun Project.setProtocArtifact() {
 }
 
 /**
- * Creates all the plugins that are parts of `mc-java` and applies them to this project.
+ * Creates all the plugins that are parts of the CoreJvm Compiler and applies them to this project.
  */
 private fun Project.createAndApplyPlugins() {
     val plugins: List<Plugin<Project>> = listOf(
         CleaningPlugin(),
         EnableGrpcPlugin(),
-        ProtoDataConfigPlugin(),
+        CompilerConfigPlugin(),
         RoutingPlugin()
     )
     plugins.forEach {

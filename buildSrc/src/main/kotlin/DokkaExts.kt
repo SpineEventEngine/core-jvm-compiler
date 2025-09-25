@@ -40,6 +40,7 @@ import org.jetbrains.dokka.gradle.AbstractDokkaTask
 import org.jetbrains.dokka.gradle.DokkaExtension
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.GradleDokkaSourceSetBuilder
+import org.jetbrains.dokka.gradle.engine.parameters.DokkaSourceSetSpec
 import org.jetbrains.dokka.gradle.engine.parameters.VisibilityModifier
 import org.jetbrains.dokka.gradle.engine.plugins.DokkaHtmlPluginParameters
 
@@ -68,11 +69,17 @@ fun DependencyHandlerScope.useDokkaWithSpineExtensions() {
 private fun DependencyHandler.dokkaPlugin(dependencyNotation: Any): Dependency? =
     add("dokkaPlugin", dependencyNotation)
 
+/**
+ * Resolves the directory where Dokka outputs HTML documentation for the given language.
+ */
 internal fun Project.dokkaOutput(language: String): File {
     val lng = language.titleCaseFirstChar()
     return layout.buildDirectory.dir("docs/dokka$lng").get().asFile
 }
 
+/**
+ * Locates a Dokka configuration file under the `buildSrc` resources.
+ */
 fun Project.dokkaConfigFile(file: String): File {
     val dokkaConfDir = project.rootDir.resolve("buildSrc/src/main/resources/dokka")
     return dokkaConfDir.resolve(file)
@@ -103,42 +110,80 @@ fun DokkaHtmlPluginParameters.configureStyle(project: Project) {
 private fun DokkaExtension.configureFor(
     project: Project,
     language: String,
-    sourceLinkRemoveUrl: String
+    sourceLinkRemoteUrl: String
 ) {
-    dokkaPublications.named("html") {
+    dokkaPublications.named("html").configure {
         suppressInheritedMembers.set(true)
         failOnWarning.set(true)
     }
 
-    dokkaSourceSets.named("main") {
-        val moduleDoc = "Module.md"
-        if (project.file(moduleDoc).exists()) {
-            includes.from(moduleDoc)
+    val commonMain = "commonMain"
+    val jvmMain = "jvmMain"
+
+    val commonMainDir = project.file("src/$commonMain")
+    val jvmMainDir = project.file("src/$jvmMain")
+    val isKmp = commonMainDir.exists() || jvmMainDir.exists()
+
+    if (isKmp) {
+        if (commonMainDir.exists()) {
+            dokkaSourceSets.named(commonMain).configure {
+                configureSourceSet(
+                    SourceSetConfig(commonMainDir, sourceLinkRemoteUrl)
+                )
+            }
         }
 
-        // Please see Dokka docs for more details:
-        //   https://kotlinlang.org/docs/dokka-gradle.html#source-link-configuration
-        sourceLink {
-            localDirectory.set(project.file("src/main/${language.lowercase()}"))
-            remoteUrl(sourceLinkRemoveUrl)
-            remoteLineSuffix.set(DocumentationSettings.SourceLink.lineSuffix)
+        if (jvmMainDir.exists()) {
+            dokkaSourceSets.named(jvmMain).configure {
+                configureSourceSet(
+                    SourceSetConfig(jvmMainDir, sourceLinkRemoteUrl, null)
+                )
+            }
         }
-
-        // Configures links to the external Java documentation.
-        jdkVersion.set(BuildSettings.javaVersion.asInt())
-        skipEmptyPackages.set(true)
-
-        documentedVisibilities.set(
-            setOf(
-                VisibilityModifier.Public,
-                VisibilityModifier.Protected
+    } else {
+        dokkaSourceSets.named("main").configure {
+            configureSourceSet(
+                SourceSetConfig(
+                    sourceDir = project.file("src/main/${language.lowercase()}"),
+                    sourceLinkRemoteUrl = sourceLinkRemoteUrl,
+                )
             )
-        )
+        }
     }
 
-    pluginsConfiguration.named("html") { this as DokkaHtmlPluginParameters
+    pluginsConfiguration.named("html").configure { this as DokkaHtmlPluginParameters
         configureStyle(project)
     }
+}
+
+private data class SourceSetConfig(
+    val sourceDir: File,
+    val sourceLinkRemoteUrl: String,
+    val moduleDoc: String? = "Module.md"
+)
+
+private fun DokkaSourceSetSpec.configureSourceSet(config: SourceSetConfig) {
+    config.moduleDoc?.let { doc ->
+        if (File(doc).exists()) {
+            this@configureSourceSet.includes.from(doc)
+        }
+    }
+
+    sourceLink {
+        localDirectory.set(config.sourceDir)
+        remoteUrl(config.sourceLinkRemoteUrl)
+        remoteLineSuffix.set(DocumentationSettings.SourceLink.lineSuffix)
+    }
+
+    jdkVersion.set(BuildSettings.javaVersion.asInt())
+    skipEmptyPackages.set(true)
+
+    documentedVisibilities.set(
+        setOf(
+            VisibilityModifier.Public,
+            VisibilityModifier.Protected
+        )
+    )
 }
 
 /**

@@ -26,11 +26,11 @@
 
 package io.spine.tools.core.jvm.comparable
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * Looks for messages with `compare_by` option and applies render actions specified in
- * [CodegenSettings][io.spine.tools.core.jvm.gradle.settings.CompilerSettings.forComparables].
+ * [io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings.forComparables].
  *
  * The default list of actions is configured in
  * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].

@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.signal.rejection
 import com.google.common.annotations.VisibleForTesting
 import com.squareup.javapoet.CodeBlock
 import com.squareup.javapoet.ParameterSpec
-import io.spine.protodata.ast.MessageType
+import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.java.codeBlock
 import io.spine.tools.java.javadoc.JavadocText.fromEscaped
 import io.spine.tools.java.javadoc.JavadocText.fromUnescaped

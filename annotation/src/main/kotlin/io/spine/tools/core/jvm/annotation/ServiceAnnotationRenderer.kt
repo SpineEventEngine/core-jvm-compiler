@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.ast.ProtoFileHeader
-import io.spine.protodata.java.GrpcServiceConvention
-import io.spine.protodata.java.file.hasGrpcRoot
-import io.spine.protodata.render.SourceFileSet
+import io.spine.tools.compiler.ast.ProtoFileHeader
+import io.spine.tools.compiler.jvm.GrpcServiceConvention
+import io.spine.tools.compiler.jvm.file.hasGrpcRoot
+import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.ServiceAnnotations
 

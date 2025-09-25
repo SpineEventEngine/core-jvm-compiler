@@ -27,8 +27,8 @@
 package io.spine.tools.core.jvm.comparable
 
 import io.spine.core.Subscribe
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.plugin.View
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.plugin.View
 import io.spine.server.entity.alter
 import io.spine.tools.core.jvm.comparable.event.ComparableMessageDiscovered
 

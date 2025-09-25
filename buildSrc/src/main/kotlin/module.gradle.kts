@@ -33,21 +33,19 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
-import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ProtoData
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.dependency.test.JUnit
-import io.spine.dependency.test.Truth
 import io.spine.gradle.VersionWriter
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.javac.configureErrorProne
@@ -56,12 +54,7 @@ import io.spine.gradle.javadoc.JavadocConfig
 import io.spine.gradle.kotlin.setFreeCompilerArgs
 import io.spine.gradle.publish.IncrementGuard
 import io.spine.gradle.report.license.LicenseReporter
-import io.spine.gradle.testing.configureLogging
-import io.spine.gradle.testing.registerTestTasks
 import java.util.*
-import org.gradle.kotlin.dsl.invoke
-import org.jetbrains.dokka.gradle.DokkaTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
 
 plugins {
     java
@@ -125,15 +118,25 @@ fun Module.forceConfigurations() {
         forceVersions()
         excludeProtobufLite()
         all {
+            val config = this
             // Exclude outdated module.
             exclude(group = "io.spine", module = "spine-logging-backend")
 
             // Exclude in favor of `spine-validation-java-runtime`.
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
+                // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
+                dependencySubstitution {
+                    substitute(module("io.spine.tools:spine-tool-base"))
+                        .using(module(ToolBase.lib))
+                    substitute(module("io.spine.tools:spine-plugin-base"))
+                        .using(module(ToolBase.pluginBase))
+                }
+
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    JUnit.bom,
                     Kotlin.bom,
                     Kotlin.Compiler.embeddable,
                     Kotlin.GradlePlugin.api,
@@ -151,22 +154,36 @@ fun Module.forceConfigurations() {
                     TestLib.lib,
                     ToolBase.lib,
                     ToolBase.pluginBase,
+                    ToolBase.jvmTools,
+                    ToolBase.gradlePluginApi,
+                    ToolBase.intellijPlatform,
+                    ToolBase.intellijPlatformJava,
                     ToolBase.psiJava,
                     Logging.lib,
                     Logging.libJvm,
-                    Logging.middleware,
                     Logging.grpcContext,
-
-                    // Force the version to avoid the version conflict for
-                    // the `:gradle-plugins:ProtoData` configuration.
-                    Validation.runtime,
-                    Validation.java,
-                    Validation.javaBundle,
-                    Validation.config,
-                    ProtoData.api,
-                    ProtoData.gradleApi,
-                    ProtoData.java,
+                    Compiler.api,
+                    Compiler.gradleApi,
+                    Compiler.jvm,
                 )
+                // Force the version to avoid the version conflict for
+                // the `:gradle-plugins:ProtoData` configuration.
+                if(config.name.contains("protodata", ignoreCase = true)) {
+                    val compatVersion = Validation.pdCompatibleVersion
+                    force(
+                        "${Validation.runtimeModule}:$compatVersion",
+                        "${Validation.javaBundleModule}:$compatVersion",
+                        "${Validation.javaModule}:$compatVersion",
+                        "${Validation.configModule}:$compatVersion",
+                    )
+                } else {
+                    force(
+                        Validation.runtime,
+                        Validation.java,
+                        Validation.javaBundle,
+                        Validation.config
+                    )
+                }
             }
         }
     }
@@ -186,6 +203,7 @@ fun Module.configureKotlin() {
     kotlin {
         explicitApi()
         compilerOptions {
+            jvmTarget.set(BuildSettings.jvmTarget)
             setFreeCompilerArgs()
         }
     }

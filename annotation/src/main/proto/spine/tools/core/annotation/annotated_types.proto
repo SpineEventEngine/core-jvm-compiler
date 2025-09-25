@@ -35,8 +35,8 @@ option java_package = "io.spine.tools.core.annotation";
 option java_outer_classname = "AnnotatedTypesProto";
 option java_multiple_files = true;
 
-import "spine/protodata/file.proto";
-import "spine/protodata/ast.proto";
+import "spine/compiler/file.proto";
+import "spine/compiler/ast.proto";
 
 // About API level options
 // ========================
@@ -68,7 +68,7 @@ message FileOptions {
     option (is).java_type = "WithOptions";
 
     // The name of the file.
-    protodata.File file = 1;
+    compiler.File file = 1;
 
     // The options applied to the file.
     //
@@ -79,7 +79,7 @@ message FileOptions {
     // That is why this field is not `required`.
     // See `FileOptionsProcess` for the example of filtering the options.
     //
-    repeated protodata.Option option = 2;
+    repeated compiler.Option option = 2;
 }
 
 // A message type which has been annotated with one or more API level options.
@@ -91,13 +91,13 @@ message MessageAnnotations {
     option (is).java_type = "WithOptions";
 
     // The name of the message type.
-    protodata.TypeName type = 1;
+    compiler.TypeName type = 1;
 
     // The proto file where the message is defined.
-    protodata.File file = 2 [(required) = true];
+    compiler.File file = 2 [(required) = true];
 
     // The options applied to the type.
-    repeated protodata.Option option = 3 [(required) = true];
+    repeated compiler.Option option = 3 [(required) = true];
 }
 
 // The API level options applied to fields of a message type.
@@ -105,10 +105,10 @@ message MessageFieldAnnotations {
     option (entity).kind = VIEW;
 
     // The name of the message type.
-    protodata.TypeName type = 1;
+    compiler.TypeName type = 1;
 
     // The proto file where the message is defined.
-    protodata.File file = 2 [(required) = true];
+    compiler.File file = 2 [(required) = true];
 
     // The options applied to the fields of the type.
     //
@@ -120,10 +120,10 @@ message MessageFieldAnnotations {
 // The API level options applied to a field of a message.
 message FieldOptions {
     // The field with the options applied.
-    protodata.FieldName field = 1 [(required) = true];
+    compiler.FieldName field = 1 [(required) = true];
 
     // One or more applied options.
-    repeated protodata.Option option = 2 [(required) = true];
+    repeated compiler.Option option = 2 [(required) = true];
 }
 
 // The API level options applied to an enum.
@@ -132,13 +132,13 @@ message EnumAnnotations {
     option (is).java_type = "WithOptions";
 
     // The name of the enum.
-    protodata.TypeName type = 1;
+    compiler.TypeName type = 1;
 
     // The proto file where the enum is defined.
-    protodata.File file = 2 [(required) = true];
+    compiler.File file = 2 [(required) = true];
 
     // The options applied to the enum.
-    repeated protodata.Option option = 3;
+    repeated compiler.Option option = 3;
 }
 
 // The API level options applied to a service.
@@ -147,11 +147,11 @@ message ServiceAnnotations {
     option (is).java_type = "WithOptions";
 
     // The name of the service.
-    protodata.ServiceName service = 1;
+    compiler.ServiceName service = 1;
 
     // The proto file where the service is defined.
-    protodata.File file = 2 [(required) = true];
+    compiler.File file = 2 [(required) = true];
 
     // The options applied to the service.
-    repeated protodata.Option option = 3;
+    repeated compiler.Option option = 3;
 }

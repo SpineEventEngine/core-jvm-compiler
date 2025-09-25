@@ -32,9 +32,9 @@ import io.spine.base.CommandMessage
 import io.spine.base.EventMessage
 import io.spine.base.EventMessageField
 import io.spine.base.RejectionMessage
-import io.spine.protodata.ast.filePattern
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.superInterface
+import io.spine.tools.compiler.ast.filePattern
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.superInterface
 import io.spine.tools.core.jvm.field.AddFieldClass
 import io.spine.tools.core.jvm.settings.ActionMap
 import io.spine.tools.core.jvm.settings.Signals

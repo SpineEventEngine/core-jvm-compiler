@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.annotation
 
 import io.spine.core.External
-import io.spine.protodata.ast.File
-import io.spine.protodata.ast.event.FileEntered
-import io.spine.protodata.java.javaMultipleFiles
+import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.event.FileEntered
+import io.spine.tools.compiler.jvm.javaMultipleFiles
 import io.spine.server.entity.alter
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React

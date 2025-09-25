@@ -35,24 +35,24 @@ option java_package = "io.spine.tools.core.jvm.signal";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/file.proto";
-import "spine/protodata/render_actions.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/file.proto";
+import "spine/compiler/render_actions.proto";
 
-option (every_is).java_type = "io.spine.protodata.render.TypeListActions";
+option (every_is).java_type = "io.spine.tools.compiler.render.TypeListActions";
 
 // Provides commands declared in a proto file.
 message CommandActions {
     option (entity).kind = PROJECTION;
 
     // The file which declares commands.
-    protodata.File file = 1;
+    compiler.File file = 1;
 
     // Declared command types.
-    repeated protodata.MessageType type = 2;
+    repeated compiler.MessageType type = 2;
 
     // Rendering actions to be applied to commands.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }
 
 // Provides events declared in a proto file.
@@ -60,13 +60,13 @@ message EventActions {
     option (entity).kind = PROJECTION;
 
     // The file which declares events.
-    protodata.File file = 1;
+    compiler.File file = 1;
 
     // Declared event types.
-    repeated protodata.MessageType type = 2;
+    repeated compiler.MessageType type = 2;
 
     // Rendering actions to be applied to events.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }
 
 // Provides rejections declared in a proto file.
@@ -74,11 +74,11 @@ message RejectionActions {
     option (entity).kind = PROJECTION;
 
     // The file which declares rejections.
-    protodata.File file = 1;
+    compiler.File file = 1;
 
     // Declared rejection types.
-    repeated protodata.MessageType type = 2;
+    repeated compiler.MessageType type = 2;
 
     // Rendering actions to be applied to rejections.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }

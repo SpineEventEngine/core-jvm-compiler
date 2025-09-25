@@ -28,11 +28,11 @@
 package io.spine.tools.core.jvm.field
 
 import com.intellij.psi.javadoc.PsiDocComment
-import io.spine.protodata.ast.Field
-import io.spine.protodata.ast.isList
-import io.spine.protodata.ast.isMap
-import io.spine.protodata.java.javaType
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.ast.isList
+import io.spine.tools.compiler.ast.isMap
+import io.spine.tools.compiler.jvm.javaType
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.psi.java.Environment.elementFactory
 import org.intellij.lang.annotations.Language
 

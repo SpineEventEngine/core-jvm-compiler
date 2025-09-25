@@ -28,8 +28,8 @@
 
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJava
-import io.spine.dependency.local.ProtoData
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
 import io.spine.gradle.RunGradle
@@ -49,7 +49,7 @@ buildscript {
     val coreJava = io.spine.dependency.local.CoreJava
     val validation = io.spine.dependency.local.Validation
     val logging = io.spine.dependency.local.Logging
-    val protoData = io.spine.dependency.local.ProtoData
+    val compiler = io.spine.dependency.local.Compiler
     doForceVersions(configurations)
     configurations {
         all {
@@ -71,10 +71,14 @@ buildscript {
                     coreJava.server,
                     logging.lib,
                     logging.libJvm,
-                    logging.middleware,
-                    "${protoData.module}:${protoData.dogfoodingVersion}",
-                    validation.runtime,
-                    validation.javaBundle
+                    "${compiler.module}:${compiler.dogfoodingVersion}",
+
+                    // Force ProtoData-compatible version because the build still uses McJava.
+                    // See `classpath` dependencies below.
+                    // When McJava is replaced with CoreJvmCompiler, these lines must be either removed
+                    // or changed with the latest version of Validation.
+                    "${validation.runtimeModule}:${validation.pdCompatibleVersion}",
+                    "${validation.javaBundleModule}:${validation.pdCompatibleVersion}"
                 )
             }
         }
@@ -82,6 +86,7 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
+        classpath(io.spine.dependency.local.ToolBase.jvmToolPlugins)
         classpath(mcJava.pluginLib)
     }
 }
@@ -192,9 +197,9 @@ val coreJvmCompilerVersion: String by extra
 
 val prepareBuildPerformanceSettings by tasks.registering(Exec::class) {
     environment(
-        "MC_JAVA_VERSION" to coreJvmCompilerVersion,
+        "CORE_JVM_COMPILER_VERSION" to coreJvmCompilerVersion,
         "CORE_VERSION" to CoreJava.version,
-        "PROTO_DATA_VERSION" to ProtoData.version,
+        "COMPILER_VERSION" to Compiler.version,
         "VALIDATION_VERSION" to Validation.version
     )
     workingDir = File(rootDir, "BuildSpeed")
@@ -208,8 +213,8 @@ tasks.register<RunGradle>("checkPerformance") {
     dependsOn(prepareBuildPerformanceSettings, localPublish)
     shouldRunAfter(check)
 
-    // Do not run `BuildSpeed` until Validation is migrated to new ProtoData.
-    // Uncomment the below line, and remove `task()`
+    // Do not run `BuildSpeed` until Validation is migrated to the Compiler.
+    //TODO:2025-06-16:alexander.yevsyukov: Uncomment the below line, and remove `task()`
     // task("clean", "build")
     task("tasks")
 }

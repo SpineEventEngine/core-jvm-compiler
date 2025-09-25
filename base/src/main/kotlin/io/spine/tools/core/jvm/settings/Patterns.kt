@@ -28,8 +28,8 @@
 
 package io.spine.tools.core.jvm.settings
 
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.matches
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.matches
 import io.spine.tools.core.jvm.settings.Pattern.KindCase.FILE
 import io.spine.tools.core.jvm.settings.Pattern.KindCase.TYPE
 import io.spine.tools.core.jvm.settings.TypePattern.ValueCase.EXPECTED_TYPE
@@ -38,7 +38,7 @@ import io.spine.tools.core.jvm.settings.TypePattern.ValueCase.REGEX
 /**
  * Tells if this pattern matches the given [type].
  *
- * @see io.spine.protodata.ast.FilePattern.matches
+ * @see io.spine.tools.compiler.ast.FilePattern.matches
  * @see TypePattern.matches
  */
 public fun Pattern.matches(type: MessageType): Boolean {

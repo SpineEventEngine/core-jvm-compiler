@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.ast.ProtoFileHeader
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.javaOuterClassName
-import io.spine.protodata.java.javaPackage
+import io.spine.tools.compiler.ast.ProtoFileHeader
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.javaOuterClassName
+import io.spine.tools.compiler.jvm.javaPackage
 import io.spine.tools.core.annotation.ApiOption
 
 /**

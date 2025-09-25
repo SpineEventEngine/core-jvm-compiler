@@ -26,11 +26,11 @@
 
 package io.spine.tools.core.jvm.mgroup
 
-import io.spine.protodata.java.file.hasJavaRoot
-import io.spine.protodata.java.render.JavaRenderer
-import io.spine.protodata.java.render.RenderActions
-import io.spine.protodata.render.SourceFile
-import io.spine.protodata.render.SourceFileSet
+import io.spine.tools.compiler.jvm.file.hasJavaRoot
+import io.spine.tools.compiler.jvm.render.JavaRenderer
+import io.spine.tools.compiler.jvm.render.RenderActions
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.settings.GroupSettings
 import io.spine.tools.psi.java.execute

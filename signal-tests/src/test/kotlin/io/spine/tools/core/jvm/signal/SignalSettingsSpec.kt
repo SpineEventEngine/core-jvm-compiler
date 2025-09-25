@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.collections.shouldContainExactly
-import io.spine.protodata.java.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.ImplementInterface
 import io.spine.tools.core.jvm.field.AddFieldClass
-import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
+import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
 import java.io.File
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.BeforeEach
@@ -47,12 +47,12 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("`SignalSettings` should")
 internal class SignalSettingsSpec {
 
-    private lateinit var compilerSettings: CompilerSettings
+    private lateinit var compilerSettings: CoreJvmCompilerSettings
 
     @BeforeEach
     fun createProject(@TempDir projectDir: File) {
         val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
-        compilerSettings = CompilerSettings(project)
+        compilerSettings = CoreJvmCompilerSettings(project)
     }
 
     @Test

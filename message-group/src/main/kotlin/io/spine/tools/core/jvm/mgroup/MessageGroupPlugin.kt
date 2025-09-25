@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.mgroup
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * The ProtoData plugin responsible for code generation for groups of messages

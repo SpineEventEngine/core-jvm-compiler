@@ -45,7 +45,7 @@ import org.gradle.api.provider.SetProperty
  *
  * @param project The project for which settings are created.
  *
- * @see CompilerSettings.forEntities
+ * @see CoreJvmCompilerSettings.forEntities
  */
 public class EntitySettings @VisibleForTesting public constructor(project: Project) :
     SettingsWithFields<Entities>(project, DEFAULT_ACTIONS) {
@@ -55,7 +55,7 @@ public class EntitySettings @VisibleForTesting public constructor(project: Proje
      *
      * By default, the `(entity)` option is used.
      */
-    @get:Internal
+    @Internal
     public val options: SetProperty<String>
 
     private val generateQueries: Property<Boolean>

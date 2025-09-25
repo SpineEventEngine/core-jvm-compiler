@@ -26,7 +26,7 @@
 
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
@@ -49,7 +49,7 @@ dependencies {
     arrayOf(
         gradleTestKit(),
         TestLib.lib,
-        ProtoData.testlib
+        Compiler.testlib
     ).forEach {
         testImplementation(it)
     }

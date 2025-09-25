@@ -29,4 +29,4 @@ plugins {
     id("io.spine.core-jvm")
 }
 
-protoDataRemoteDebug(enabled = false)
+spineCompilerRemoteDebug(enabled = false)

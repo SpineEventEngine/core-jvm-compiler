@@ -27,10 +27,10 @@
 package io.spine.tools.core.jvm
 
 import com.google.protobuf.Empty
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.context.CodegenContext
-import io.spine.protodata.render.MessageAction
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.render.MessageAction
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 
 /**

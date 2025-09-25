@@ -27,10 +27,10 @@
 package io.spine.tools.core.jvm.annotation
 
 import com.intellij.psi.PsiMethod
-import io.spine.protodata.ast.FieldName
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.file.locate
-import io.spine.protodata.render.InsertionPoint
+import io.spine.tools.compiler.ast.FieldName
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.file.locate
+import io.spine.tools.compiler.render.InsertionPoint
 import io.spine.string.Separator
 import io.spine.string.camelCase
 import io.spine.text.TextCoordinates

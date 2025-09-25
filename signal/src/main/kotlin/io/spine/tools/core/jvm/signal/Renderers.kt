@@ -28,12 +28,12 @@ package io.spine.tools.core.jvm.signal
 
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper
 import io.spine.base.EntityState
-import io.spine.protodata.ast.File
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.java.render.RenderActions
-import io.spine.protodata.java.render.TypeListRenderer
-import io.spine.protodata.render.SourceFile
-import io.spine.protodata.render.TypeListActions
+import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.render.RenderActions
+import io.spine.tools.compiler.jvm.render.TypeListRenderer
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.render.TypeListActions
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.settings.SignalSettings
 import io.spine.tools.core.jvm.settings.Signals

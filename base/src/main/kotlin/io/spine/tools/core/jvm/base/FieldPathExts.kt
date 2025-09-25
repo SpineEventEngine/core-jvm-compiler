@@ -28,10 +28,10 @@ package io.spine.tools.core.jvm.base
 
 import io.spine.base.FieldPath
 import io.spine.base.fieldPath
-import io.spine.protodata.ast.Field
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.ast.field
-import io.spine.protodata.type.TypeSystem
+import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.field
+import io.spine.tools.compiler.type.TypeSystem
 
 /**
  * Tells if this [FieldPath] doesn't denote a nested field.

@@ -128,6 +128,11 @@ val detektVersion = "1.23.8"
 val kotestJvmPluginVersion = "0.4.10"
 
 /**
+ * @see [io.spine.dependency.test.Kotest.MultiplatformGradlePlugin]
+ */
+val kotestMultiplatformPluginVersion = "5.9.1"
+
+/**
  * @see [io.spine.dependency.test.Kover]
  */
 val koverVersion = "0.9.1"
@@ -137,9 +142,9 @@ val koverVersion = "0.9.1"
  *
  * `7.1.2` is the last version compatible with Gradle 7.x. Newer versions require Gradle v8.x.
  *
- * @see <a href="https://github.com/johnrengelman/shadow/releases">Shadow Plugin releases</a>
+ * @see <a href="https://github.com/GradleUp/shadow">Shadow Plugin releases</a>
  */
-val shadowVersion = "7.1.2"
+val shadowVersion = "8.3.6"
 
 configurations.all {
     resolutionStrategy {
@@ -153,6 +158,11 @@ configurations.all {
             "org.jetbrains.kotlin:kotlin-reflect:$kotlinEmbeddedVersion"
         )
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 kotlin {
@@ -172,15 +182,16 @@ dependencies {
         "com.github.jk1:gradle-license-report:$licenseReportVersion",
         "com.google.guava:guava:$guavaVersion",
         "com.google.protobuf:protobuf-gradle-plugin:$protobufPluginVersion",
-        "gradle.plugin.com.github.johnrengelman:shadow:$shadowVersion",
+        "com.gradleup.shadow:shadow-gradle-plugin:$shadowVersion",
         "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$detektVersion",
         "io.kotest:kotest-gradle-plugin:$kotestJvmPluginVersion",
+        "io.kotest:kotest-framework-multiplatform-plugin-gradle:$kotestMultiplatformPluginVersion",
         // https://github.com/srikanth-lingala/zip4j
         "net.lingala.zip4j:zip4j:2.10.0",
         "net.ltgt.gradle:gradle-errorprone-plugin:$errorPronePluginVersion",
         "org.ajoberstar.grgit:grgit-core:$grGitVersion",
         "org.jetbrains.dokka:dokka-base:$dokkaVersion",
-        "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}",
+        "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion",
         "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinEmbeddedVersion",
         "org.jetbrains.kotlin:kotlin-reflect:$kotlinEmbeddedVersion",
         "org.jetbrains.kotlinx:kover-gradle-plugin:$koverVersion"

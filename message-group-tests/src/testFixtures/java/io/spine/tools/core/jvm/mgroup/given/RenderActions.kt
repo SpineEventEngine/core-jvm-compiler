@@ -27,10 +27,10 @@
 package io.spine.tools.core.jvm.mgroup.given
 
 import com.intellij.psi.PsiAnnotation
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.context.CodegenContext
-import io.spine.protodata.java.render.CreateNestedClass
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.jvm.render.CreateNestedClass
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.mgroup.given.StudentIdClass.Companion.CLASS_NAME
 import org.intellij.lang.annotations.Language

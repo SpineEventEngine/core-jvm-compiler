@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.java.ClassName
-import io.spine.protodata.java.annotation.TypeAnnotation
-import io.spine.protodata.render.SourceFile
-import io.spine.protodata.render.SourceFileSet
+import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.annotation.TypeAnnotation
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.render.SourceFileSet
 import io.spine.tools.code.Java
 
 /**

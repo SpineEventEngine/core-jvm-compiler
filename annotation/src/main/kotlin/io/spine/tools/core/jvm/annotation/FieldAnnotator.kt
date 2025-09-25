@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.ast.FieldName
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.java.MessageOrBuilderConvention
-import io.spine.protodata.java.MessageOrEnumConvention
+import io.spine.tools.compiler.ast.FieldName
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.MessageOrBuilderConvention
+import io.spine.tools.compiler.jvm.MessageOrEnumConvention
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.FieldOptions
 import io.spine.tools.core.annotation.MessageFieldAnnotations

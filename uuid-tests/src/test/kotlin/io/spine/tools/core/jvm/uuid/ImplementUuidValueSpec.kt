@@ -28,8 +28,8 @@ package io.spine.tools.core.jvm.uuid
 
 import io.kotest.matchers.shouldBe
 import io.spine.base.UuidValue
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.superInterface
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.superInterface
 import io.spine.tools.core.jvm.implementsInterface
 import io.spine.tools.java.reference
 import java.nio.file.Path

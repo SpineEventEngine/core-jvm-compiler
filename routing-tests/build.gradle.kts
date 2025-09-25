@@ -32,10 +32,40 @@ import io.spine.dependency.local.CoreJava
 import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
 
-plugins {
-    id("io.spine.mc-java")
+buildscript {
+    standardSpineSdkRepositories()
+    configurations {
+        all {
+            resolutionStrategy {
+                force(io.spine.dependency.local.Logging.grpcContext)
+            }
+        }
+    }
 }
+
+plugins {
+    `java-library`
+    id("com.google.devtools.ksp")
+    `java-test-fixtures`
+}
+
+apply {
+    plugin("io.spine.mc-java")
+}
+
 apply<BomsPlugin>()
+
+configurations.all {
+    resolutionStrategy {
+        dependencySubstitution {
+            // Use `:routing` module of this project for generating routing schemas
+            // instead of the code from McJava.
+            // When this project is built with CoreJvm Compiler instead of McJava,
+            // the module coordinates should be replaced to: "io.spine.tools:core-jvm-routing".
+            substitute(module("io.spine.tools:spine-mc-java-routing")).using(project(":routing"))
+        }
+    }
+}
 
 dependencies {
     testImplementation(CoreJava.testUtilServer)
@@ -85,7 +115,7 @@ sourceSets.testFixtures {
     kotlin.srcDir("generated/testFixtures/java")
 
     /* Temporarily add redirected output of KSP processor
-       until a newer dogfooding version of McJava is applied. */
+       until a newer dogfooding version of Core JVM Compiler is applied. */
     kotlin.srcDir("generated/ksp/testFixtures/kotlin")
 }
 

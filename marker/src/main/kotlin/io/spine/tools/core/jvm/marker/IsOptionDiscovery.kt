@@ -28,9 +28,9 @@ package io.spine.tools.core.jvm.marker
 
 import io.spine.core.External
 import io.spine.option.IsOption
-import io.spine.protodata.ast.event.TypeDiscovered
-import io.spine.protodata.ast.find
-import io.spine.protodata.plugin.Policy
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.ast.find
+import io.spine.tools.compiler.plugin.Policy
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.event.asA

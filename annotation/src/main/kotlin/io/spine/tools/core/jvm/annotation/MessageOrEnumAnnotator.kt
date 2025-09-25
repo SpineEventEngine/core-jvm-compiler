@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.annotation
 
 import io.spine.base.EntityState
-import io.spine.protodata.ast.ProtoFileHeader
-import io.spine.protodata.java.MessageOrEnumConvention
-import io.spine.protodata.java.javaMultipleFiles
+import io.spine.tools.compiler.ast.ProtoFileHeader
+import io.spine.tools.compiler.jvm.MessageOrEnumConvention
+import io.spine.tools.compiler.jvm.javaMultipleFiles
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.WithOptions
 

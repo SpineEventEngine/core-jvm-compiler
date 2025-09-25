@@ -38,7 +38,7 @@ import io.spine.tools.gradle.ThirdPartyDependency
 import io.spine.tools.gradle.artifact
 
 /**
- * This file declares artifacts used and exposed by McJava.
+ * This file declares artifacts used and exposed by the CoreJvm Compiler.
  */
 @Suppress("unused")
 private const val ABOUT = ""
@@ -76,7 +76,7 @@ internal val gRpcProtocPlugin: Artifact by lazy {
 }
 
 /**
- * Artifacts of Core JVM Compiler.
+ * Artifacts of the CoreJvm Compiler.
  */
 internal object CoreJvmCompiler {
 
@@ -94,7 +94,7 @@ internal object CoreJvmCompiler {
     }
 
     /**
-     * The Maven artifact containing the `corr-jvm-plugins:all` fat JAR artifact.
+     * The Maven artifact containing the `core-jvm-plugins:all` fat JAR artifact.
      */
     @JvmStatic
     @get:JvmName("allPlugins")
@@ -131,9 +131,8 @@ internal object ValidationSdk {
     /**
      * The Maven artifact containing the `spine-validation-java-bundle` module.
      *
-     * @param version
-     *         the version of Validation library to be used.
-     *         If empty, the version of the build time dependency used is used.
+     * @param version The version of the Validation library to be used.
+     *   If empty, the version of the build time dependency used is used.
      * @see javaRuntime
      */
     @JvmStatic

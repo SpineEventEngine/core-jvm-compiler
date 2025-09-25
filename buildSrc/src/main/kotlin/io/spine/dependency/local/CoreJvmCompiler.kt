@@ -26,8 +26,10 @@
 
 package io.spine.dependency.local
 
+import io.spine.dependency.local.ToolBase
+
 /**
- * Dependencies on the Core JVM Compiler artifacts.
+ * Dependencies on the CoreJvm Compiler artifacts.
  *
  * See [mc-java](https://github.com/SpineEventEngine/core-jvm-compiler).
  */
@@ -41,17 +43,17 @@ object CoreJvmCompiler {
     /**
      * The Compiler belongs to the `tools` group.
      */
-    const val group = Spine.toolsGroup
+    const val group = ToolBase.group
 
     /**
      * The version used to in the build classpath.
      */
-    const val dogfoodingVersion = "2.0.0-SNAPSHOT.001"
+    const val dogfoodingVersion = "2.0.0-SNAPSHOT.003"
 
     /**
      * The version to be used for integration tests.
      */
-    const val version = "2.0.0-SNAPSHOT.001"
+    const val version = "2.0.0-SNAPSHOT.003"
 
     /**
      * The ID of the Gradle plugin.

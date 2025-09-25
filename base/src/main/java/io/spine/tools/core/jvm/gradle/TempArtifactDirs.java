@@ -51,7 +51,7 @@ import static kotlin.jvm.JvmClassMappingKt.getKotlinClass;
  */
 public class TempArtifactDirs {
 
-    private static final Logger<?> log = LoggingFactory.getLogger(
+    private static final Logger log = LoggingFactory.getLogger(
             getKotlinClass(TempArtifactDirs.class)
     );
 

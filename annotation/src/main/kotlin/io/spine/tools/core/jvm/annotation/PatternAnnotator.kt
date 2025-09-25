@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.annotation
 
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.annotation.ApiOption
 import java.io.File
@@ -62,5 +62,8 @@ internal abstract class PatternAnnotator : Annotator() {
         patterns.any { it.matches(codeElement) }
 }
 
-internal fun SourceFile<Java>.qualifiedTopClassName(): String
-    = relativePath.toString().replace(File.separator, ".").replace(".java", "")
+/**
+ * Obtains the fully qualified name of the top-level class defined in this file.
+ */
+internal fun SourceFile<Java>.qualifiedTopClassName(): String =
+    relativePath.toString().replace(File.separator, ".").replace(".java", "")

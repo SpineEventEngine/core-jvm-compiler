@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.lib.Roaster
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
@@ -36,6 +37,11 @@ plugins {
 dependencies {
     implementation(project(":base"))
     implementation(Logging.lib)
+
+    // Generate routing schemas using the CoreJvm Compiler, avoiding the missing
+    // `io/spine/tools/code/manifest/Version` class issue.
+    // This dependency must be removed when `io.spine.core-jvm` plugin is used.
+    ksp(CoreJvmCompiler.pluginLib)
 
     testFixturesImplementation(ToolBase.lib)
     testFixturesImplementation(TestLib.lib)
@@ -69,7 +75,7 @@ tasks.withType<ProcessResources>().configureEach {
  * Disable the generation of rejections because:
  *  1. We don't have rejections in this code.
  *  2. We want to avoid errors that may be caused by the code which has not yet
- *     fully migrated to the latest ProtoData API.
+ *     fully migrated to the latest Compiler API.
  */
 modelCompiler {
     java {
@@ -79,4 +85,4 @@ modelCompiler {
     }
 }
 
-protoDataRemoteDebug(enabled = false)
+//spineCompilerRemoteDebug(enabled = false)

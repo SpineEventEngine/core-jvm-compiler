@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.signal
 
-import io.spine.protodata.plugin.Plugin
+import io.spine.tools.compiler.plugin.Plugin
 
 /**
  * A ProtoData plugin responsible for code generation of signal messages.

@@ -26,13 +26,13 @@
 
 import io.spine.dependency.lib.JavaPoet
 import io.spine.dependency.local.CoreJvmCompiler
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.ToolBase
 
-// Turn off validation codegen during the transition to the new ProtoData API.
-modelCompiler {
-    java {
-        codegen {
+// Turn off validation codegen during the transition to the new Compiler API.
+spine {
+    coreJvm {
+        compiler {
             validation.enabled.set(false)
         }
     }
@@ -46,7 +46,7 @@ modelCompiler {
 dependencies {
     implementation(JavaPoet.lib)
     implementation(ToolBase.lib)
-    implementation(ProtoData.api)!!.because("Custom codegen actions use ProtoData API.")
+    implementation(Compiler.api)!!.because("Custom codegen actions use the Compiler API.")
     val coreJvmBase = CoreJvmCompiler.base(version.toString())
     implementation(coreJvmBase)!!.because("We take abstract base classes from this artifact.")
 }

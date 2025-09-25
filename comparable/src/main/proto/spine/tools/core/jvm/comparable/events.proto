@@ -35,18 +35,18 @@ option java_package = "io.spine.tools.core.jvm.comparable.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
-import "spine/protodata/render_actions.proto";
+import "spine/compiler/ast.proto";
+import "spine/compiler/render_actions.proto";
 
 // A message with `compare_by` option was discovered.
 message ComparableMessageDiscovered {
 
     // The type in which the option was discovered.
-    protodata.MessageType type = 1;
+    compiler.MessageType type = 1;
 
     // The option itself.
     CompareByOption option = 2;
 
     // The code generation actions to apply.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }

@@ -35,7 +35,7 @@ option java_package = "io.spine.tools.core.jvm.mgroup.event";
 option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
+import "spine/compiler/ast.proto";
 
 import "spine/tools/core/jvm/settings.proto";
 
@@ -44,7 +44,7 @@ import "spine/tools/core/jvm/settings.proto";
 message GroupedMessageDiscovered {
 
     // The discovered type.
-    protodata.MessageType type = 2 [(required) = true];
+    compiler.MessageType type = 2 [(required) = true];
 
     // One or more groups matching the type.
     repeated MessageGroup group = 3 [(required) = true];

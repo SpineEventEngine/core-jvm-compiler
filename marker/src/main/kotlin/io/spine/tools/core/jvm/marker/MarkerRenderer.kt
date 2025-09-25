@@ -27,10 +27,10 @@
 package io.spine.tools.core.jvm.marker
 
 import io.spine.base.EntityState
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.java.render.BaseRenderer
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.SuperInterface
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.render.BaseRenderer
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.SuperInterface
 import org.checkerframework.checker.signature.qual.FullyQualifiedName
 
 /**

@@ -27,23 +27,14 @@
 import io.spine.dependency.lib.JavaX
 
 plugins {
+    `java-library`
     id("io.spine.core-jvm")
 }
 
 tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
 
-// Turn off validation codegen during the transition to new ProtoData API.
-modelCompiler {
-    java {
-        codegen {
-            validation.enabled.set(false)
-        }
-    }
-}
-
-// Add Validation Java Runtime because the generated code reference
-// the `ValidatingBuilder` interface even if validation codegen is turned off.
+// Add Validation Java Runtime because the generated code references it anyway.
 dependencies {
-    compileOnly(JavaX.annotations)
+    compileOnlyApi(JavaX.annotations)?.because("gRPC generator uses it.")
     implementation(io.spine.dependency.local.Validation.runtime)
 }

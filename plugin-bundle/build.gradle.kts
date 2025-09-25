@@ -25,12 +25,12 @@
  */
 
 import groovy.util.Node
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.gradle.publish.SpinePublishing
 
 plugins {
     `maven-publish`
-    id("com.github.johnrengelman.shadow")
+    id("com.gradleup.shadow")
 }
 
 /** The publishing settings from the root project. */
@@ -59,26 +59,22 @@ publishing {
             artifact(tasks.shadowJar)
 
             /**
-             * Manually add the dependency onto `io.spine:protodata`,
+             * Manually add the dependency onto `io.spine.tools:compiler-api`,
              * as there is no good way to remove all the dependencies
              * from the fat JAR artifact, but leave just this one.
              *
-             * This dependency is required in order to place the ProtoData plugin
-             * onto the build classpath, so that `mc-java` routines
+             * This dependency is required in order to place the Spine Compiler API
+             * onto the build classpath, so that `core-jvm` routines
              * could apply it programmatically.
              *
              * The appended content should look like this:
              * ```
              *     <dependency>
-             *         <groupId>io.spine</groupId>
-             *         <artifactId>protodata</artifactId>
-             *         <version>$protoDataVersion</version>
+             *         <groupId>io.spine.tools</groupId>
+             *         <artifactId>compiler-api</artifactId>
+             *         <version>$compilerVersion</version>
              *         <scope>runtime</scope>
              *         <exclusions>
-             *              <exclusion>
-             *                  <groupId>io.spine.protodata</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
              *              <exclusion>
              *                  <groupId>org.jetbrains.kotlin</groupId>
              *                  <artifactId>*</artifactId>
@@ -99,9 +95,9 @@ publishing {
                 val projectNode: Node = asNode()
                 val dependencies = Node(projectNode, "dependencies")
                 val dependency = Node(dependencies, "dependency")
-                Node(dependency, "groupId", "io.spine")
-                Node(dependency, "artifactId", "protodata")
-                Node(dependency, "version", ProtoData.version)
+                Node(dependency, "groupId", "io.spine.tools")
+                Node(dependency, "artifactId", "compiler-api")
+                Node(dependency, "version", Compiler.version)
                 Node(dependency, "scope", "runtime")
 
                 val exclusions = Node(dependency, "exclusions")

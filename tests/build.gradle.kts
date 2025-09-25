@@ -34,7 +34,7 @@ import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJava
 import io.spine.dependency.local.Logging
-import io.spine.dependency.local.ProtoData
+import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.Time
@@ -58,7 +58,7 @@ buildscript {
     standardSpineSdkRepositories()
 
     val coreJvmCompilerVersion: String by extra
-    val protoData = io.spine.dependency.local.ProtoData
+    val compiler = io.spine.dependency.local.Compiler
     dependencies {
         classpath(io.spine.dependency.lib.Guava.lib)
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib) {
@@ -67,7 +67,7 @@ buildscript {
         classpath(io.spine.dependency.build.ErrorProne.GradlePlugin.lib) {
             exclude(group = "com.google.guava")
         }
-        classpath(protoData.pluginLib)
+        classpath(compiler.pluginLib)
         classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib(coreJvmCompilerVersion))
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
@@ -84,7 +84,6 @@ buildscript {
                 io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
                 force(
                     io.spine.dependency.lib.Kotlin.bom,
-                    "io.spine:protodata:${protoData.version}",
                     io.spine.dependency.local.Reflect.lib,
                     io.spine.dependency.local.Base.lib,
                     io.spine.dependency.local.Time.lib,
@@ -119,7 +118,7 @@ allprojects {
         standardToSpineSdk()
         gitHub("base")
         gitHub("tool-base")
-        gitHub("model-compiler")
+        gitHub("core-jvm-compiler")
         mavenLocal()
     }
 
@@ -144,9 +143,11 @@ allprojects {
                     ToolBase.pluginBase,
                     Logging.lib,
                     Logging.libJvm,
-                    Logging.middleware,
+                    ToolBase.intellijPlatform,
+                    ToolBase.intellijPlatformJava,
                     ToolBase.psiJava,
-                    ProtoData.api,
+                    Compiler.api,
+                    Validation.javaBundle,
                     Validation.config,
                     Validation.runtime,
                 )
@@ -201,6 +202,7 @@ subprojects {
         all {
             resolutionStrategy {
                 force(
+                    ToolBase.gradlePluginApi,
                     Validation.runtime,
                 )
             }

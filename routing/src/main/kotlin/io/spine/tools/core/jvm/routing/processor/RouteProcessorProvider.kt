@@ -36,8 +36,7 @@ import com.google.devtools.ksp.processing.SymbolProcessorProvider
  *
  * @see RouteProcessor
  */
-//TODO:2025-06-13:alexander.yevsyukov: Uncomment after bootstrapping.
-//@AutoService(SymbolProcessorProvider::class)
+@AutoService(SymbolProcessorProvider::class)
 public class RouteProcessorProvider : SymbolProcessorProvider {
     override fun create(environment: SymbolProcessorEnvironment): SymbolProcessor =
         RouteProcessor(environment.codeGenerator, environment.logger)

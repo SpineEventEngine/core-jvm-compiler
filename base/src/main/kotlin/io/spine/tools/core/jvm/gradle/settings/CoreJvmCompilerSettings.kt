@@ -31,8 +31,8 @@ package io.spine.tools.core.jvm.gradle.settings
 import com.google.common.collect.ImmutableList
 import io.spine.annotation.Internal
 import io.spine.base.MessageFile
-import io.spine.protodata.ast.FilePattern
-import io.spine.protodata.ast.FilePatternFactory
+import io.spine.tools.compiler.ast.FilePattern
+import io.spine.tools.compiler.ast.FilePatternFactory
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_COMMAND_ACTIONS
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_EVENT_ACTIONS
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_REJECTION_ACTIONS
@@ -50,10 +50,10 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.compile.JavaCompile
 
 /**
- * A part of [McJavaOptions][io.spine.tools.core.jvm.gradle.CoreJvmOptions] responsible
+ * A part of [CoreJvmOptions][io.spine.tools.core.jvm.gradle.CoreJvmOptions] responsible
  * for code generation settings.
  */
-public class CompilerSettings @Internal public constructor(private val project: Project) :
+public class CoreJvmCompilerSettings @Internal public constructor(private val project: Project) :
     Settings<Combined>(project) {
 
     /**
@@ -207,7 +207,7 @@ public class CompilerSettings @Internal public constructor(private val project: 
     }
 
     override fun toProto(): Combined {
-        val self = this@CompilerSettings
+        val self = this@CoreJvmCompilerSettings
         val ss = signalSettings {
             commands = self.commands.toProto()
             events = self.events.toProto()

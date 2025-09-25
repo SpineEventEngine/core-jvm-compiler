@@ -26,6 +26,8 @@
 
 package io.spine.dependency.local
 
+import io.spine.dependency.local.ToolBase
+
 /**
  * Dependencies on `core-java` modules.
  *
@@ -34,7 +36,7 @@ package io.spine.dependency.local
 @Suppress("ConstPropertyName", "unused")
 object CoreJava {
     const val group = Spine.group
-    const val version = "2.0.0-SNAPSHOT.316"
+    const val version = "2.0.0-SNAPSHOT.330"
 
     const val coreArtifact = "spine-core"
     const val clientArtifact = "spine-client"
@@ -44,5 +46,5 @@ object CoreJava {
     const val client = "$group:$clientArtifact:$version"
     const val server = "$group:$serverArtifact:$version"
 
-    const val testUtilServer = "${Spine.toolsGroup}:spine-testutil-server:$version"
+    const val testUtilServer = "${ToolBase.group}:spine-testutil-server:$version"
 }

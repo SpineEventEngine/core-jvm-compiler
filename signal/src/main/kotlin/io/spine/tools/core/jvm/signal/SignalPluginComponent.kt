@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.signal
 
-import io.spine.protodata.settings.LoadsSettings
+import io.spine.tools.compiler.settings.LoadsSettings
 
 /**
  * A part of [SignalPlugin] parts that loads shared

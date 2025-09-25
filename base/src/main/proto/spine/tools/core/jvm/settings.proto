@@ -38,8 +38,8 @@ option (internal_all) = true;
 
 import "spine/tools/java/java.proto";
 import "spine/tools/proto/proto.proto";
-import "spine/protodata/file_pattern.proto";
-import "spine/protodata/render_actions.proto";
+import "spine/compiler/file_pattern.proto";
+import "spine/compiler/render_actions.proto";
 
 // Code generation settings passed to Spine Protoc Plugin.
 //
@@ -107,14 +107,14 @@ message Signals {
     // NOTE: Code generators do not presume any conventions.
     // Conventional file patterns described above must be added to the `pattern` field explicitly.
     //
-    repeated protodata.FilePattern pattern = 1;
+    repeated compiler.FilePattern pattern = 1;
 
     reserved 2, 3;
     reserved "add_interface";
     reserved "generate_fields";
 
     // Code generation actions applied to the signal message types.
-    protodata.Actions actions = 4;
+    compiler.Actions actions = 4;
 }
 
 // Code generation settings for `Signal` messages.
@@ -156,7 +156,7 @@ message Entities {
     bool generate_queries = 5;
 
     // The code generation actions applied to entity state types.
-    protodata.Actions actions = 6;
+    compiler.Actions actions = 6;
 }
 
 // Code generation settings for an arbitrary group of messages.
@@ -178,7 +178,7 @@ message MessageGroup {
     reserved "generate_fields";
 
     // The code generation actions applied to selected message types.
-    protodata.Actions actions = 6;
+    compiler.Actions actions = 6;
 }
 
 // A pattern which matches one or multiple messages.
@@ -187,7 +187,7 @@ message Pattern {
     oneof kind {
 
         // File name pattern.
-        protodata.FilePattern file = 1;
+        compiler.FilePattern file = 1;
 
         // Type name pattern.
         TypePattern type = 2;
@@ -225,9 +225,9 @@ message Uuids {
     reserved "add_interface";
     reserved "method_factory";
 
-    // Names of classes implementing the `io.spine.protodata.renderer.RenderAction` class
+    // Names of classes implementing the `io.spine.compiler.renderer.RenderAction` class
     // that are to be applied to the UUID messages.
-    protodata.Actions actions = 3;
+    compiler.Actions actions = 3;
 }
 
 // Code generation settings for comparable messages.
@@ -237,5 +237,5 @@ message Uuids {
 message Comparables {
 
     // A collection of code generation actions.
-    protodata.Actions actions = 1;
+    compiler.Actions actions = 1;
 }

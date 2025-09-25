@@ -29,10 +29,10 @@ package io.spine.tools.core.jvm.gradle.settings
 import com.google.common.annotations.VisibleForTesting
 import com.google.protobuf.Message
 import com.google.protobuf.stringValue
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.superInterface
-import io.spine.protodata.render.Actions
-import io.spine.protodata.render.actions
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.superInterface
+import io.spine.tools.compiler.render.Actions
+import io.spine.tools.compiler.render.actions
 import io.spine.tools.core.jvm.settings.ActionMap
 import io.spine.tools.core.jvm.settings.BinaryClassName
 import io.spine.tools.core.jvm.settings.noParameter
@@ -43,7 +43,7 @@ import org.gradle.api.provider.MapProperty
 /**
  * Code generation settings that cover applying code generation
  * actions specified as fully qualified binary names of classes that
- * extend [io.spine.protodata.java.render.MessageAction].
+ * extend [io.spine.tools.compiler.jvm.render.MessageAction].
  *
  * @param S Protobuf type reflecting a snapshot of these settings.
  *

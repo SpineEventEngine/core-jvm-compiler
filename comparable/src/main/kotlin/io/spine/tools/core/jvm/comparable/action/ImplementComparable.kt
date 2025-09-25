@@ -26,11 +26,11 @@
 
 package io.spine.tools.core.jvm.comparable.action
 
-import io.spine.protodata.ast.MessageType
-import io.spine.protodata.context.CodegenContext
-import io.spine.protodata.java.render.ImplementInterface
-import io.spine.protodata.java.render.superInterface
-import io.spine.protodata.render.SourceFile
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.context.CodegenContext
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.compiler.jvm.render.superInterface
+import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 
 /**

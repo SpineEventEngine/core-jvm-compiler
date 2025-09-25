@@ -35,7 +35,7 @@ option java_package = "io.spine.tools.core.jvm.mgroup";
 option java_outer_classname = "ViewsProto";
 option java_multiple_files = true;
 
-import "spine/protodata/ast.proto";
+import "spine/compiler/ast.proto";
 import "spine/tools/core/jvm/settings.proto";
 
 // Matches a message type to corresponding code generation settings of a group
@@ -44,7 +44,7 @@ message GroupedMessage {
     option (entity).kind = VIEW;
 
     // The type of the message.
-    protodata.MessageType type = 1 [(required) = true];
+    compiler.MessageType type = 1 [(required) = true];
 
     // Code generation settings for the matching group.
     repeated MessageGroup group = 2;

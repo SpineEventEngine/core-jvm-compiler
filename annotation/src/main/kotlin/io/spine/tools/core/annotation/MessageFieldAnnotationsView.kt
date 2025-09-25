@@ -28,9 +28,9 @@ package io.spine.tools.core.annotation
 
 import io.spine.core.External
 import io.spine.core.Subscribe
-import io.spine.protodata.ast.TypeName
-import io.spine.protodata.ast.event.FieldOptionDiscovered
-import io.spine.protodata.plugin.View
+import io.spine.tools.compiler.ast.TypeName
+import io.spine.tools.compiler.ast.event.FieldOptionDiscovered
+import io.spine.tools.compiler.plugin.View
 import io.spine.server.entity.alter
 import io.spine.server.route.Route
 

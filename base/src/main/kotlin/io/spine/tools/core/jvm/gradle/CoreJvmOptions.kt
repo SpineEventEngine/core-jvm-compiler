@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.gradle
 
 import groovy.lang.Closure
-import io.spine.protodata.java.style.JavaCodeStyle
-import io.spine.protodata.java.style.javaCodeStyleDefaults
-import io.spine.tools.core.jvm.gradle.settings.CompilerSettings
+import io.spine.tools.compiler.jvm.style.JavaCodeStyle
+import io.spine.tools.compiler.jvm.style.javaCodeStyleDefaults
+import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
 import io.spine.tools.java.fs.DefaultJavaPaths
 import org.gradle.api.Action
 import org.gradle.api.Project
@@ -50,13 +50,7 @@ public abstract class CoreJvmOptions {
      * Code generation settings related to specific kinds of messages and their validation.
      */
     @JvmField
-    public var codegen: CompilerSettings? = null
-
-    /**
-     * The indent for the generated code.
-     */
-    @Deprecated(message = "Please use `style` instead.")
-    public abstract val indent: Property<Int>
+    public var compiler: CoreJvmCompilerSettings? = null
 
     /**
      * Code style settings for the generated Java code.
@@ -81,29 +75,36 @@ public abstract class CoreJvmOptions {
      * Injects the dependency to the given project.
      */
     public fun injectProject(project: Project) {
-        this.codegen = CompilerSettings(project)
+        this.compiler = CoreJvmCompilerSettings(project)
     }
 
+    /**
+     * Applies the given action for `compiler` options.
+     */
     public fun annotation(action: Action<AnnotationSettings>) {
         action.execute(annotation)
     }
 
     /**
-     * Applies the given action for code generation options.
+     * Applies the given action for `compiler` options.
      */
-    public fun codegen(action: Action<CompilerSettings>) {
-        action.execute(codegen!!)
+    public fun compiler(action: Action<CoreJvmCompilerSettings>) {
+        action.execute(compiler!!)
     }
 
+    /**
+     * Configures the `generateAnnotations` closure.
+     */
     @Suppress("unused")
-    public // Configures `generateAnnotations` closure.
-    fun generateAnnotations(closure: Closure<*>) {
+    public fun generateAnnotations(closure: Closure<*>) {
         project.configure(annotation, closure)
     }
 
+    /**
+     * Configures the `generateAnnotations` closure.
+     */
     @Suppress("unused")
-    public // Configures `generateAnnotations` closure.
-    fun generateAnnotations(action: Action<in AnnotationSettings>) {
+    public fun generateAnnotations(action: Action<in AnnotationSettings>) {
         action.execute(annotation)
     }
 
@@ -112,7 +113,7 @@ public abstract class CoreJvmOptions {
         /**
          * The name of the extension, as it appears in a Gradle build script.
          */
-        public const val NAME: String = "java"
+        public const val NAME: String = "coreJvm"
 
         /**
          * Obtains the extension name of the plugin.

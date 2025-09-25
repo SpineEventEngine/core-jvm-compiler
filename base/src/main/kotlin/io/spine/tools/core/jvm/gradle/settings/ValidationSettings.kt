@@ -38,9 +38,10 @@ public class ValidationSettings internal constructor(project: Project) :
     Settings<Validation>(project) {
 
     /**
-     * Allows specifying a version of the validation code generator used by McJava.
+     * Allows specifying a version of the Validation Compiler used by
+     * the CoreJvm Compiler.
      *
-     * If empty, the version on which McJava depends during build time will be used.
+     * If empty, the version on which the CoreJvm Compiler depends during build time will be used.
      * The default value of this property is an empty string.
      */
     public val version: Property<String> = project.objects.property(String::class.java)
