@@ -32,7 +32,7 @@ import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Reflect
@@ -133,7 +133,7 @@ allprojects {
                     KotlinPoet.lib,
                     Reflect.lib,
                     Base.lib,
-                    CoreJava.server,
+                    CoreJvm.server,
                     Time.lib,
                     TestLib.lib,
                     ToolBase.lib,

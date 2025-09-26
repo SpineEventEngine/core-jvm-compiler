@@ -28,7 +28,7 @@ import com.google.devtools.ksp.KspExperimental
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
 
@@ -66,13 +66,13 @@ configurations.all {
 }
 
 dependencies {
-    testImplementation(CoreJava.testUtilServer)
+    testImplementation(CoreJvm.testUtilServer)
 
     /* This makes our KSP processor work on the `testFixtures` source set. */
     testFixturesCompileOnly(AutoService.annotations)
     kspTestFixtures(project(":routing"))
     kspTestFixtures(AutoServiceKsp.processor)
-    testFixturesImplementation(CoreJava.server)
+    testFixturesImplementation(CoreJvm.server)
 }
 
 ksp {

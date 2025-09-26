@@ -26,8 +26,6 @@
 
 package io.spine.dependency.local
 
-import io.spine.dependency.local.ToolBase
-
 /**
  * Dependencies on the CoreJvm Compiler artifacts.
  *

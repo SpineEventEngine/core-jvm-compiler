@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Reflect
@@ -39,7 +39,7 @@ dependencies {
     arrayOf(
         Reflect.lib,
         Logging.lib,
-        CoreJava.server,
+        CoreJvm.server,
         ToolBase.psiJava,
         project(":base")
     ).forEach {

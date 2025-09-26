@@ -29,7 +29,7 @@
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
 import io.spine.gradle.RunGradle
@@ -46,7 +46,7 @@ buildscript {
     standardSpineSdkRepositories()
 
     val toolBase = io.spine.dependency.local.ToolBase
-    val coreJava = io.spine.dependency.local.CoreJava
+    val coreJava = io.spine.dependency.local.CoreJvm
     val validation = io.spine.dependency.local.Validation
     val logging = io.spine.dependency.local.Logging
     val compiler = io.spine.dependency.local.Compiler
@@ -197,10 +197,10 @@ val coreJvmCompilerVersion: String by extra
 
 val prepareBuildPerformanceSettings by tasks.registering(Exec::class) {
     environment(
-        "CORE_JVM_COMPILER_VERSION" to coreJvmCompilerVersion,
-        "CORE_VERSION" to CoreJava.version,
         "COMPILER_VERSION" to Compiler.version,
-        "VALIDATION_VERSION" to Validation.version
+        "VALIDATION_VERSION" to Validation.version,
+        "CORE_JVM_VERSION" to CoreJvm.version,
+        "CORE_JVM_COMPILER_VERSION" to coreJvmCompilerVersion,
     )
     workingDir = File(rootDir, "BuildSpeed")
     commandLine("./substitute-settings.py")
@@ -214,7 +214,5 @@ tasks.register<RunGradle>("checkPerformance") {
     shouldRunAfter(check)
 
     // Do not run `BuildSpeed` until Validation is migrated to the Compiler.
-    //TODO:2025-06-16:alexander.yevsyukov: Uncomment the below line, and remove `task()`
-    // task("clean", "build")
-    task("tasks")
+    task("clean", "build")
 }

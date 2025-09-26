@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
  */
 
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Reflect
@@ -40,7 +40,7 @@ dependencies {
         Base.lib,
         Reflect.lib,
         Logging.lib,
-        CoreJava.server,
+        CoreJvm.server,
         Compiler.jvm,
         project(":base")
     ).forEach {
