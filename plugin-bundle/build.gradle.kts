@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,8 @@
 
 import groovy.util.Node
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.TestLib
+import io.spine.dependency.local.ToolBase
 import io.spine.gradle.publish.SpinePublishing
 
 plugins {
@@ -45,6 +47,15 @@ val projectArtifact = spinePublishing.artifactPrefix + "plugins"
 
 dependencies {
     implementation(project(":gradle-plugins"))
+
+    arrayOf(
+        gradleTestKit(),
+        TestLib.lib,
+        ToolBase.jvmTools,
+        ToolBase.pluginTestlib,
+    ).forEach {
+        testImplementation(it)
+    }
 }
 
 publishing {
@@ -153,8 +164,24 @@ tasks.shadowJar {
         "io/spine/protodata/java/file/**",
         "io/spine/protodata/protoc/**",
 
-        "spine/protodata/**", // Protobuf definitions
-        "META-INF/gradle-plugins/io.spine.protodata.properties",  // Plugin declaration
+        "io/spine/tools/compiler/*",
+        "io/spine/tools/compiler/plugin/**",
+        "io/spine/tools/compiler/renderer/**",
+        "io/spine/tools/compiler/type/**",
+        "io/spine/tools/compiler/cli/app/**",
+        "io/spine/tools/compiler/gradle/plugin/**",
+        "io/spine/tools/compiler/jvm/*",
+        "io/spine/tools/compiler/jvm/annotation/**",
+        "io/spine/tools/compiler/jvm/file/**",
+        "io/spine/tools/compiler/protoc/**",
+
+        // Protobuf definitions
+        "spine/protodata/**",
+        "spine/compiler/**",
+
+        // Plugin declaration
+        "META-INF/gradle-plugins/io.spine.protodata.properties",
+        "META-INF/gradle-plugins/io.spine.compiler.properties",
 
         /**
          * Exclude Gradle types to reduce the size of the resulting JAR.
@@ -199,4 +226,11 @@ fun excludeGroupId(exclusions: Node, groupId: String) {
     val exclusion = Node(exclusions, "exclusion")
     Node(exclusion, "groupId", groupId)
     Node(exclusion, "artifactId", "*")
+}
+
+/**
+ * Tests use the artifacts published to `mavenLocal`, so we need to publish them all first.
+ */
+tasks.test {
+    dependsOn(rootProject.tasks.named("localPublish"))
 }
