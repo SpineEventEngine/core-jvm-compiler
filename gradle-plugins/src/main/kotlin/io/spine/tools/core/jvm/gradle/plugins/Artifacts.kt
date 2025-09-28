@@ -28,6 +28,7 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
+import io.spine.annotation.VisibleForTesting
 import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
@@ -46,7 +47,7 @@ private const val GRPC_PLUGIN_NAME = "protoc-gen-grpc-java"
 /**
  * Artifacts of the CoreJvm Compiler.
  */
-internal object CoreJvmCompiler {
+public object CoreJvmCompiler {
 
     /**
      * The Maven module of the CoreJvm Compiler.
@@ -63,7 +64,8 @@ internal object CoreJvmCompiler {
     /**
      * The Maven artifact of the CoreJvm Compiler.
      */
-    internal val artifact: MavenArtifact
+    @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugin-bundle` module.
+    public val artifact: MavenArtifact
         get() = meta.artifact
 
     /**
