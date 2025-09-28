@@ -181,7 +181,7 @@ tasks.shadowJar {
 
         // Plugin declaration
         "META-INF/gradle-plugins/io.spine.protodata.properties",
-        "META-INF/gradle-plugins/io.spine.compiler.properties",
+//      "META-INF/gradle-plugins/io.spine.compiler.properties",
 
         /**
          * Exclude Gradle types to reduce the size of the resulting JAR.
