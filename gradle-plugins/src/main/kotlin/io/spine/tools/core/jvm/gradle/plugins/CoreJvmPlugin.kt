@@ -29,6 +29,7 @@ package io.spine.tools.core.jvm.gradle.plugins
 import io.spine.string.simply
 import io.spine.tools.core.jvm.VersionHolder
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
+import io.spine.tools.core.jvm.gradle.CoreJvmOptions.Companion.name
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
@@ -43,7 +44,7 @@ import org.gradle.api.Project
  * Applies all McJava sub-plugins to the given project.
  */
 public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
-    DslSpec(CoreJvmOptions.NAME, CoreJvmOptions::class)
+    DslSpec(name(), CoreJvmOptions::class)
 ) {
 
     public companion object {
