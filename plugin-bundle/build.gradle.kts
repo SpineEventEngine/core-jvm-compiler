@@ -164,20 +164,20 @@ tasks.shadowJar {
         "io/spine/protodata/java/file/**",
         "io/spine/protodata/protoc/**",
 
-        "io/spine/tools/compiler/*",
-        "io/spine/tools/compiler/plugin/**",
-        "io/spine/tools/compiler/renderer/**",
-        "io/spine/tools/compiler/type/**",
-        "io/spine/tools/compiler/cli/app/**",
-        "io/spine/tools/compiler/gradle/plugin/**",
-        "io/spine/tools/compiler/jvm/*",
-        "io/spine/tools/compiler/jvm/annotation/**",
-        "io/spine/tools/compiler/jvm/file/**",
-        "io/spine/tools/compiler/protoc/**",
+//        "io/spine/tools/compiler/*",
+//        "io/spine/tools/compiler/plugin/**",
+//        "io/spine/tools/compiler/renderer/**",
+//        "io/spine/tools/compiler/type/**",
+//        "io/spine/tools/compiler/cli/app/**",
+//        "io/spine/tools/compiler/gradle/plugin/**",
+//        "io/spine/tools/compiler/jvm/*",
+//        "io/spine/tools/compiler/jvm/annotation/**",
+//        "io/spine/tools/compiler/jvm/file/**",
+//        "io/spine/tools/compiler/protoc/**",
+//        "spine/compiler/**",
 
         // Protobuf definitions
         "spine/protodata/**",
-        "spine/compiler/**",
 
         // Plugin declaration
         "META-INF/gradle-plugins/io.spine.protodata.properties",
