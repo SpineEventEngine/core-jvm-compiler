@@ -213,6 +213,5 @@ tasks.register<RunGradle>("checkPerformance") {
     dependsOn(prepareBuildPerformanceSettings, localPublish)
     shouldRunAfter(check)
 
-    // Do not run `BuildSpeed` until Validation is migrated to the Compiler.
     task("clean", "build")
 }
