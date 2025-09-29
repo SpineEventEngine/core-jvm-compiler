@@ -26,7 +26,7 @@
 
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.local.Base
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.Kotest
@@ -55,7 +55,7 @@ dependencies {
     implementation(Base.annotations)
     implementation(ToolBase.jvmTools)
     implementation(KotlinPoet.ksp)
-    implementation(CoreJava.server)
+    implementation(CoreJvm.server)
     implementation(project(":base"))
 
     testImplementation(gradleTestKit())

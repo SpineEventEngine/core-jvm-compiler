@@ -78,9 +78,9 @@ internal class CompilerConfigPlugin : Plugin<Project> {
      * Applies the `io.spine.compiler` plugin to the project and, if the user needs
      * validation code generation, configures the Compiler to generate Java validation code.
      *
-     * ProtoData configuration is a tricky operation because of Gradle's lifecycle.
-     * We need to squeeze our configuration before the `LaunchProtoData` task is configured.
-     * This means adding the `afterEvaluate(..)` hook before the ProtoData Gradle plugin
+     * Spine Compiler configuration is a tricky operation because of Gradle's lifecycle.
+     * We need to squeeze our configuration before the `LaunchSpineCompiler` task is configured.
+     * This means adding the `afterEvaluate(..)` hook before the Compiler Gradle plugin
      * is applied to the project.
      */
     override fun apply(project: Project) {

@@ -38,7 +38,7 @@ import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Compiler
-import io.spine.dependency.local.CoreJava
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.TestLib
@@ -148,9 +148,9 @@ fun Module.forceConfigurations() {
                     Reflect.lib,
                     Base.lib,
                     Time.lib,
-                    CoreJava.core,
-                    CoreJava.client,
-                    CoreJava.server,
+                    CoreJvm.core,
+                    CoreJvm.client,
+                    CoreJvm.server,
                     TestLib.lib,
                     ToolBase.lib,
                     ToolBase.pluginBase,
