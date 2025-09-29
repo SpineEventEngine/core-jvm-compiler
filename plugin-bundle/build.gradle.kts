@@ -164,6 +164,8 @@ tasks.shadowJar {
         "io/spine/protodata/java/file/**",
         "io/spine/protodata/protoc/**",
 
+//       TODO: Uncomment these after the Spine Compiler is available from Gradle Plugin Portal.
+//
 //        "io/spine/tools/compiler/*",
 //        "io/spine/tools/compiler/plugin/**",
 //        "io/spine/tools/compiler/renderer/**",
