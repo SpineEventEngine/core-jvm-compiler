@@ -200,6 +200,7 @@ subprojects {
             resolutionStrategy {
                 force(
                     ToolBase.gradlePluginApi,
+                    ToolBase.jvmTools,
                     Validation.runtime,
                 )
             }
