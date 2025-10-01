@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,31 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.local.Base
-import io.spine.dependency.local.Validation
+package io.spine.dependency.lib
 
-plugins {
-    java
-    `java-test-fixtures`
-}
+import io.spine.dependency.Dependency
 
-dependencies {
-    arrayOf(
-        Base.lib,
-        Validation.runtime
-    ).forEach {
-        testFixturesImplementation(it)?.because(
-            """
-            We do not apply CoreJvm Compiler Gradle plugin which adds
-            the `implementation` dependency on Validation runtime automatically 
-            (see `Project.configureValidation()` function in `CompilerConfigPlugin.kt`).
-            
-            In a test module we use vanilla `protoc` (via ProtoTap) and then run codegen
-            using the Spine Compiler `Pipeline` and the plugins of the module under the test.
+/**
+ * Palantir Java Format.
+ *
+ * @see <a href="https://github.com/palantir/palantir-java-format">GitHub Repo</a>
+ */
+object PalantirJavaFormat : Dependency() {
 
-            Because of this we need to add the dependencies above explicitly for the
-            generated code of test fixtures to compile.                
-            """.trimIndent()
-        )
-    }
+    override val group = "com.palantir.javaformat"
+    override val version = "2.75.0"
+    override val modules: List<String> = listOf("$group:palantir-java-format")
+
+    val lib = artifact(modules[0])
 }
