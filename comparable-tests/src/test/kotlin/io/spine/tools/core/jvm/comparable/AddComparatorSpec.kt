@@ -45,6 +45,7 @@ import io.spine.tools.core.jvm.comparable.given.NoCompareByOption
 import io.spine.tools.core.jvm.comparable.given.Traveler
 import io.spine.tools.core.jvm.comparable.given.WithTimestampAndDuration
 import io.spine.tools.core.jvm.comparable.given.WithValues
+import io.spine.tools.psi.java.canonicalCode
 import java.nio.file.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
@@ -198,7 +199,7 @@ internal class AddComparatorSpec {
         val psiClass = generatedCodeOf(message.substringAfterLast("."))
         val field = psiClass.findComparatorField()
         field.shouldNotBeNull()
-        field.text shouldContain expected
+        field.canonicalCode() shouldContain expected
     }
 }
 

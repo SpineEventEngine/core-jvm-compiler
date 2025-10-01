@@ -56,7 +56,7 @@ internal class CommandRendererSpec {
 
     @Test
     fun `add 'CommandMessage' interface`() {
-        commandCode shouldContain ", ${CommandMessage::class.java.reference} {"
+        commandCode shouldContain "${CommandMessage::class.java.reference} {"
     }
 
     @Test

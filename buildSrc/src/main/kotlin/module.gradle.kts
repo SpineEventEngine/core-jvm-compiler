@@ -33,6 +33,7 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
+import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -135,7 +136,12 @@ fun Module.forceConfigurations() {
 
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    Jackson.bom,
+                    Jackson.annotations,
                     JUnit.bom,
                     Kotlin.bom,
                     Kotlin.Compiler.embeddable,
@@ -148,6 +154,7 @@ fun Module.forceConfigurations() {
                     Reflect.lib,
                     Base.lib,
                     Time.lib,
+                    Compiler.params,
                     CoreJvm.core,
                     CoreJvm.client,
                     CoreJvm.server,

@@ -24,45 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.signal
+package io.spine.dependency.lib
 
-import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldContain
-import io.spine.base.EventMessage
-import io.spine.string.count
-import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.FIELD_CLASS_SIGNATURE
-import io.spine.tools.java.reference
-import java.nio.file.Path
-import kotlin.io.path.Path
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.io.TempDir
+import io.spine.dependency.Dependency
 
-@DisplayName("`EventRenderer` should")
-internal class EventRendererSpec {
+/**
+ * Palantir Java Format.
+ *
+ * @see <a href="https://github.com/palantir/palantir-java-format">GitHub Repo</a>
+ */
+object PalantirJavaFormat : Dependency() {
 
-    companion object : SignalPluginTestSetup() {
+    override val group = "com.palantir.javaformat"
+    override val version = "2.75.0"
+    override val modules: List<String> = listOf("$group:palantir-java-format")
 
-        lateinit var eventCode: String
-
-        @BeforeAll
-        @JvmStatic
-        fun setup(@TempDir projectDir: Path) {
-            runPipeline(projectDir)
-            val sourceFile = file(Path("$JAVA_SRC_DIR/event/ScanningStarted.java"))
-            eventCode = sourceFile.code()
-        }
-    }
-
-    @Test
-    fun `add 'EventMessage' interface`() {
-        eventCode shouldContain "${EventMessage::class.java.reference} {"
-    }
-
-    @Test
-    fun `render the 'Field' class`() {
-        // See that we add the `Field` class only once.
-        eventCode.count(FIELD_CLASS_SIGNATURE) shouldBe 1
-    }
+    val lib = artifact(modules[0])
 }

@@ -41,17 +41,17 @@ object CoreJvmCompiler {
     /**
      * The Compiler belongs to the `tools` group.
      */
-    const val group = ToolBase.group
+    const val group = Spine.toolsGroup
 
     /**
      * The version used to in the build classpath.
      */
-    const val dogfoodingVersion = "2.0.0-SNAPSHOT.007"
+    const val dogfoodingVersion = "2.0.0-SNAPSHOT.008"
 
     /**
      * The version to be used for integration tests.
      */
-    const val version = "2.0.0-SNAPSHOT.007"
+    const val version = "2.0.0-SNAPSHOT.008"
 
     /**
      * The ID of the Gradle plugin.
@@ -77,7 +77,7 @@ object CoreJvmCompiler {
     val base = base(version)
 
     /**
-     * The `mc-java-base` artifact with the given [version].
+     * The `core-jvm-base` artifact with the given [version].
      */
     fun base(version: String): String = "$group:core-jvm-base:$version"
 }

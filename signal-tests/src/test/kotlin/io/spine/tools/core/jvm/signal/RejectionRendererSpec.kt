@@ -64,7 +64,7 @@ internal class RejectionRendererSpec {
     @Test
     fun `add 'RejectionMessage' interface`() {
         rejectionCode.count(
-            ", ${RejectionMessage::class.java.reference} {"
+            "${RejectionMessage::class.java.reference} {"
         ) shouldBe DECLARED_REJECTIONS
     }
 

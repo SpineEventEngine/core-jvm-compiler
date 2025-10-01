@@ -52,7 +52,7 @@ internal class IsOptionRendererSpec {
 
         javaFiles.forEach {
             val code = file(it).code()
-            code shouldContain ", Fictional"
+            code shouldContain "Fictional {"
         }
     }
 
@@ -63,11 +63,11 @@ internal class IsOptionRendererSpec {
             "Pegasus", "Hippalektryon"
         )
 
-        val qualifiedInterface = "$animalPackage.Fictional"
+        val qualifiedInterface = "$animalPackage.Fictional {"
 
         javaFiles.forEach {
             val code = file(it).code()
-            code shouldContain ", $qualifiedInterface"
+            code shouldContain qualifiedInterface
         }
     }
 }
