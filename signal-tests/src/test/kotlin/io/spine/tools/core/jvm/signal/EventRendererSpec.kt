@@ -57,7 +57,7 @@ internal class EventRendererSpec {
 
     @Test
     fun `add 'EventMessage' interface`() {
-        eventCode shouldContain ", ${EventMessage::class.java.reference} {"
+        eventCode shouldContain "${EventMessage::class.java.reference} {"
     }
 
     @Test
