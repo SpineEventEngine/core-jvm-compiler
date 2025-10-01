@@ -106,7 +106,9 @@ internal class EveryIsOptionRendererSpec {
         fun `in the same package`() {
             javaFiles.forEach {
                 val code = file(it).code()
-                code shouldContain "Animal {"
+                (code.contains("Animal {") // The interface comes the last.
+                        || code.contains("Animal,") // The interface is in between.
+                        ) shouldBe true
             }
         }
     }
