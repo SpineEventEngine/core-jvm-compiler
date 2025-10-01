@@ -28,6 +28,7 @@
 
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.lib.Grpc
+import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.boms.BomsPlugin
@@ -80,6 +81,7 @@ buildscript {
                 val rs = this@resolutionStrategy
                 io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
                 force(
+                    io.spine.dependency.lib.Jackson.bom,
                     io.spine.dependency.lib.Kotlin.bom,
                     io.spine.dependency.local.Reflect.lib,
                     io.spine.dependency.local.Base.lib,
@@ -129,6 +131,7 @@ allprojects {
             resolutionStrategy {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    Jackson.bom,
                     Kotlin.bom,
                     KotlinPoet.lib,
                     Reflect.lib,
@@ -198,7 +201,11 @@ subprojects {
         doForceVersions(this)
         all {
             resolutionStrategy {
+                Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    Jackson.annotations,
                     ToolBase.gradlePluginApi,
                     ToolBase.jvmTools,
                     Validation.runtime,
