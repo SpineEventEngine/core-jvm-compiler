@@ -27,9 +27,9 @@
 package io.spine.tools.core.jvm.routing.gradle
 
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin
-import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.Module
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 
 /**
  * Applies the [module][thisModule] to which this plugin belongs as

@@ -43,6 +43,11 @@ import org.gradle.api.Project
 import org.gradle.api.file.FileCollection
 
 /**
+ * The Maven group to which Spine SDK tool artifacts belong.
+ */
+public const val SPINE_TOOLS_GROUP: String = "io.spine.tools"
+
+/**
  * Obtains options of the CoreJvm Compiler.
  */
 public val Project.coreJvmOptions: CoreJvmOptions
