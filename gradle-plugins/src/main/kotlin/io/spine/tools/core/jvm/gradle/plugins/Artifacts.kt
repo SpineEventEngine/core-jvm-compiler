@@ -29,10 +29,10 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.annotation.VisibleForTesting
-import io.spine.tools.gradle.Artifact.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 
 /**
  * This file declares artifacts used and exposed by the CoreJvm Compiler.
@@ -40,36 +40,33 @@ import io.spine.tools.meta.Module
 @Suppress("unused")
 private const val ABOUT = ""
 
-private const val CORE_JVM_GRADLE_PLUGINS = "core-jvm-gradle-plugins"
-private const val GRPC_GROUP = "io.grpc"
-private const val GRPC_PLUGIN_NAME = "protoc-gen-grpc-java"
-
 /**
- * Artifacts of the CoreJvm Compiler.
+ * Artifacts and dependencies of the CoreJvm Compiler.
  */
 public object CoreJvmCompiler {
 
     /**
-     * The Maven module of the CoreJvm Compiler.
+     * The Maven module of the CoreJvm Compiler which stores [meta].
      */
-    private val module = Module(SPINE_TOOLS_GROUP, CORE_JVM_GRADLE_PLUGINS)
+    private val pluginsModule = Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins")
 
     /**
-     * The meta-data of the CoreJvm Compiler module.
+     * The meta-data of the CoreJvm Compiler.
      */
-    private val meta by lazy {
-        ArtifactMeta.loadFromResource(module, this::class.java)
+    private val meta: ArtifactMeta by lazy {
+        ArtifactMeta.loadFromResource(pluginsModule, this::class.java)
     }
 
     /**
-     * The Maven artifact of the CoreJvm Compiler.
+     * The Maven artifact of the CoreJvm Compiler Gradle plugins.
      */
     @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugin-bundle` module.
     public val artifact: MavenArtifact
         get() = meta.artifact
 
     /**
-     * Obtains the dependency of the CoreJvm Compiler specified by the given [module].
+     * Obtains the dependency of the CoreJvm Compiler specified by the given [module]
+     * as stored in the module [meta].
      *
      * @throws IllegalStateException if no dependency is found.
      */
@@ -78,17 +75,27 @@ public object CoreJvmCompiler {
             ?: error("Unable to find the dependency `$module` in `$meta`.")
         return found as MavenArtifact
     }
+}
+
+/**
+ * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
+ * Protobuf Gradle Plugin when the Compiler's Gradle plugin is applied.
+ *
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
+ *
+ * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
+ */
+internal object GrpcProtocPlugin {
 
     /**
-     * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
-     * Protobuf Gradle Plugin.
-     *
-     * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
-     *
-     * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
+     * The module of the `protoc` plugin of gRPC for Java.
      */
-    internal val gRpcProtocPluginDependency: MavenArtifact
-        get() = dependency(Module(GRPC_GROUP, GRPC_PLUGIN_NAME))
+    private val module = Module("io.grpc", "protoc-gen-grpc-java")
+
+    /**
+     * The artifact of the gRPC `protoc` plugin for Java.
+     */
+    internal val artifact: MavenArtifact = CoreJvmCompiler.dependency(module)
 }
 
 /**

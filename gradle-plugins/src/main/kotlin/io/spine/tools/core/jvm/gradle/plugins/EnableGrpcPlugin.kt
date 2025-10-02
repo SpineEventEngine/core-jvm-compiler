@@ -43,7 +43,7 @@ public class EnableGrpcPlugin : ProtocConfigurationPlugin() {
         project: Project
     ) {
         plugins.create(grpc.name) { locator ->
-            locator.artifact = CoreJvmCompiler.gRpcProtocPluginDependency.coordinates
+            locator.artifact = GrpcProtocPlugin.artifact.coordinates
         }
     }
 
