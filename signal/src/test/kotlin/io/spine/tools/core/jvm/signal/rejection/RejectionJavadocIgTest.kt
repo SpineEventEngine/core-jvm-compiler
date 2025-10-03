@@ -42,7 +42,7 @@ import io.spine.tools.core.jvm.signal.rejection.Method.BUILD
 import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
 import io.spine.tools.gradle.task.JavaTaskName.Companion.compileJava
 import io.spine.tools.gradle.testing.GradleProject.Companion.setupAt
-import io.spine.tools.java.fullTextNormalized
+import io.spine.tools.java.code.fullTextNormalized
 import org.gradle.testkit.runner.internal.DefaultGradleRunner
 import org.jboss.forge.roaster.Roaster
 import org.jboss.forge.roaster.model.source.JavaClassSource

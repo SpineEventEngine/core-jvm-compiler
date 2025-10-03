@@ -37,9 +37,9 @@ import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forConstructorOfThrowable
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forThrowableOf
-import io.spine.tools.java.classSpec
-import io.spine.tools.java.constructorSpec
-import io.spine.tools.java.methodSpec
+import io.spine.tools.java.code.classSpec
+import io.spine.tools.java.code.constructorSpec
+import io.spine.tools.java.code.methodSpec
 import javax.lang.model.element.Modifier.FINAL
 import javax.lang.model.element.Modifier.PRIVATE
 import javax.lang.model.element.Modifier.PUBLIC
