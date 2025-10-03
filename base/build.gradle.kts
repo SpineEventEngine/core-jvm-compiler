@@ -44,6 +44,7 @@ dependencies {
         Compiler.api,
         Compiler.jvm,
         Validation.configuration,
+        ToolBase.classicCodegen,
         ToolBase.pluginBase,
         KotlinPoet.lib,
     )
