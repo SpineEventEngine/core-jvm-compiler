@@ -60,11 +60,11 @@ import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofRejectionMessageMethod
 import io.spine.tools.core.jvm.signal.rejection.Method.BUILD
 import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
 import io.spine.tools.core.jvm.signal.rejection.Method.REJECTION_MESSAGE
-import io.spine.tools.java.classSpec
-import io.spine.tools.java.codeBlock
-import io.spine.tools.java.constructorSpec
+import io.spine.tools.java.code.classSpec
+import io.spine.tools.java.code.codeBlock
+import io.spine.tools.java.code.constructorSpec
 import io.spine.tools.java.javadoc.JavadocText
-import io.spine.tools.java.methodSpec
+import io.spine.tools.java.code.methodSpec
 import io.spine.validate.Validate
 import io.spine.validate.Validated
 import javax.lang.model.element.Modifier.FINAL
