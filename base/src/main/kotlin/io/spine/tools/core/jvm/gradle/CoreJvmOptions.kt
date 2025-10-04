@@ -26,7 +26,6 @@
 
 package io.spine.tools.core.jvm.gradle
 
-import groovy.lang.Closure
 import io.spine.tools.compiler.jvm.style.JavaCodeStyle
 import io.spine.tools.compiler.jvm.style.javaCodeStyleDefaults
 import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
@@ -40,8 +39,6 @@ import org.gradle.api.tasks.Nested
  * Code generation options exposed in a project with CoreJvm Compiler Gradle plugin applied.
  */
 public abstract class CoreJvmOptions {
-
-    private lateinit var project: Project
 
     @get:Nested
     public abstract val annotation: AnnotationSettings
@@ -90,14 +87,6 @@ public abstract class CoreJvmOptions {
      */
     public fun compiler(action: Action<CoreJvmCompilerSettings>) {
         action.execute(compiler!!)
-    }
-
-    /**
-     * Configures the `generateAnnotations` closure.
-     */
-    @Suppress("unused")
-    public fun generateAnnotations(closure: Closure<*>) {
-        project.configure(annotation, closure)
     }
 
     /**
