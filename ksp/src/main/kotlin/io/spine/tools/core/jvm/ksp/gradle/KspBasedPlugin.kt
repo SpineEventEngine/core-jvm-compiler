@@ -57,7 +57,7 @@ import org.gradle.kotlin.dsl.findByType
  *  1. Adds the [KSP Gradle Plugin](https://github.com/google/ksp) to the project
  *     if it is not added already.
  *
- *  2. Makes a KSP task depend on a `LaunchProtoData` task for the same source set.
+ *  2. Makes a KSP task depend on a `LaunchSpineCompiler` task for the same source set.
  *
  *  3. Adds the artifact specified by the [mavenCoordinates] property, and [autoServiceKsp]
  *   as the dependencies of the KSP configurations of the project.
@@ -92,8 +92,8 @@ public abstract class KspBasedPlugin : Plugin<Project> {
                 useKsp2()
                 addDependencies()
                 makeKspIgnoreGeneratedSourceProtoDir()
-                addProtoDataGeneratedSources()
-                makeKspTasksDependOnProtoData()
+                addSourcesGeneratedBySpineCompiler()
+                makeKspTasksDependOnSpineCompiler()
                 makeCompileKotlinTasksDependOnKspTasks()
                 replaceKspOutputDirs()
                 commonSettingsApplied.add(this)
@@ -181,7 +181,7 @@ private fun Project.makeKspIgnoreGeneratedSourceProtoDir() {
  * Adds `generated/<SourceSetName>/java`, `kotlin`, and `grpc` directories
  * to the Kotlin directory set for all source sets of this project.
  */
-private fun Project.addProtoDataGeneratedSources() {
+private fun Project.addSourcesGeneratedBySpineCompiler() {
     sourceSets.configureEach {
         val ssn = SourceSetName(it.name)
         val sourceSetDir = generated(ssn)
@@ -205,12 +205,12 @@ private fun Project.applyKspPlugin() = with(KspGradlePlugin) {
 
 /**
  * Makes `ksp<SourceSetName>Kotlin` tasks depend on corresponding
- * `launch<SourceSetName>ProtoData` tasks.
+ * `launch<SourceSetName>SpineCompiler` tasks.
  *
  * This dependency is needed to avoid Gradle warning on disabled execution
  * optimization because of the absence of explicit or implicit dependencies.
  */
-private fun Project.makeKspTasksDependOnProtoData() {
+private fun Project.makeKspTasksDependOnSpineCompiler() {
     afterEvaluate {
         val kspTasks = kspTasks()
         kspTasks.forEach { (ssn, kspTask) ->
