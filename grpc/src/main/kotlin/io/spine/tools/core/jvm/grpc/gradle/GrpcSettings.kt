@@ -26,29 +26,36 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
-import com.google.protobuf.gradle.ExecutableLocator
-import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.tools.gradle.ProtocConfigurationPlugin
-import io.spine.tools.gradle.ProtocPluginName.grpc
-import org.gradle.api.NamedDomainObjectContainer
+import com.google.protobuf.BoolValue
+import com.google.protobuf.boolValue
+import io.spine.tools.core.jvm.gradle.settings.Settings
 import org.gradle.api.Project
 
 /**
- * A Gradle plugin that enablers gRPC in a project.
+ * Allows configuring the usage of gRPC in a Spine-based project.
+ *
+ * The DSL syntax looks like this:
+ *
+ * ```kotlin
+ * spine {
+ *     coreJvm {
+ *        grpc {
+ *           enabled.set(true)
+ *        }
+ *     }
+ * }
+ * ```
+ * The default value is `false`.
+ *
+ * @see GrpcCoreJvmPlugin
  */
-public class GrpcCoreJvmPlugin : ProtocConfigurationPlugin() {
+public class GrpcSettings(project: Project) : Settings<BoolValue>(project) {
 
-    override fun configureProtocPlugins(
-        plugins: NamedDomainObjectContainer<ExecutableLocator>,
-        project: Project
-    ) {
-        plugins.create(grpc.name) { locator ->
-            locator.artifact = GrpcProtocPlugin.artifact.coordinates
-        }
+    init {
+        enabled.convention(false)
     }
 
-    override fun customizeTask(protocTask: GenerateProtoTask) {
-        protocTask.plugins.create(grpc.name)
-        //TODO:2025-10-04:alexander.yevsyukov: Add gRPC Kotlin too.
+    override fun toProto(): BoolValue {
+        return boolValue { value = enabled.get() }
     }
 }
