@@ -128,7 +128,7 @@ public abstract class SettingsWithActions<S : Message>(
 
     /**
      * Instructs the CoreJvm Compiler to use
-     * the [code generation action][io.spine.protodata.renderer.RenderAction]
+     * the [code generation action][io.spine.tools.compiler.renderer.RenderAction]
      * specified by the binary name of the class.
      *
      * This is a convenience method for creating an action with
@@ -146,7 +146,7 @@ public abstract class SettingsWithActions<S : Message>(
 
     /**
      * Instructs the CoreJvm Compiler to apply
-     * [code generation actions][io.spine.protodata.renderer.RenderAction]
+     * [code generation actions][io.spine.tools.compiler.renderer.RenderAction]
      * to the code generated for messages of this group.
      *
      * @param classNames The binary names of the action class
@@ -157,7 +157,7 @@ public abstract class SettingsWithActions<S : Message>(
 
     /**
      * Instructs the CoreJvm Compiler to apply
-     * [code generation actions][io.spine.protodata.renderer.RenderAction]
+     * [code generation actions][io.spine.tools.compiler.renderer.RenderAction]
      * to the code generated for messages of this group.
      *
      * @param classNames The binary names of the action classes
