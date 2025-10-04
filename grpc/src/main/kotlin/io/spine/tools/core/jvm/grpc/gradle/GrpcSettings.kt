@@ -60,17 +60,21 @@ public abstract class GrpcSettings @Inject public constructor(
 
     init {
         enabled.convention(false)
-        project.afterEvaluate {
-            turnGrpc(enabled.get())
-        }
+        configureEnablingGrpc()
     }
 
-    private fun turnGrpc(value: Boolean) {
+    private fun configureEnablingGrpc() {
         val protobuf = project.protobufExtension!!
-        protobuf.plugins { plugins ->
-            if (value) {
-                plugins.create(PROTOC_PLUGIN_ID) {
-                    it.artifact = GrpcProtocPlugin.artifact.coordinates
+        protobuf.generateProtoTasks { // This delays the execution until `afterEvaluate`.
+            if (enabled.get()) {
+                protobuf.plugins { plugins ->
+                    plugins.create(PROTOC_PLUGIN_ID) { locator ->
+                        locator.artifact = GrpcProtocPlugin.artifact.coordinates
+                    }
+                }
+                val protocTasks = protobuf.generateProtoTasks.all()
+                protocTasks.forEach { t ->
+                    t.plugins.create(PROTOC_PLUGIN_ID)
                 }
             }
         }
