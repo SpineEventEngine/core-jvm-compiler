@@ -38,3 +38,11 @@ dependencies {
     compileOnlyApi(JavaX.annotations)?.because("gRPC generator uses it.")
     implementation(io.spine.dependency.local.Validation.runtime)
 }
+
+spine {
+    coreJvm {
+        grpc {
+            enabled.set(true)
+        }
+    }
+}
