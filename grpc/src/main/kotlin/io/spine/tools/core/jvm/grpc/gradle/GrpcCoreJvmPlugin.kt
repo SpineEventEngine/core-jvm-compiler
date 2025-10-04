@@ -26,29 +26,18 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
-import com.google.protobuf.gradle.ExecutableLocator
-import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.tools.gradle.ProtocConfigurationPlugin
-import io.spine.tools.gradle.ProtocPluginName.grpc
-import org.gradle.api.NamedDomainObjectContainer
+import io.spine.tools.core.jvm.gradle.coreJvmOptions
+import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 
 /**
  * A Gradle plugin that enablers gRPC in a project.
  */
-public class GrpcCoreJvmPlugin : ProtocConfigurationPlugin() {
+public class GrpcCoreJvmPlugin : Plugin<Project> {
 
-    override fun configureProtocPlugins(
-        plugins: NamedDomainObjectContainer<ExecutableLocator>,
-        project: Project
-    ) {
-        plugins.create(grpc.name) { locator ->
-            locator.artifact = GrpcProtocPlugin.artifact.coordinates
-        }
-    }
-
-    override fun customizeTask(protocTask: GenerateProtoTask) {
-        protocTask.plugins.create(grpc.name)
-        //TODO:2025-10-04:alexander.yevsyukov: Add gRPC Kotlin too.
+    override fun apply(target: Project) {
+        (target.coreJvmOptions as ExtensionAware)
+            .extensions.create(GrpcSettings.NAME, GrpcSettings::class.java)
     }
 }

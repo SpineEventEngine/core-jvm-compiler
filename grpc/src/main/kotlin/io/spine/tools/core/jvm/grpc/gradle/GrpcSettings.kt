@@ -26,10 +26,10 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
-import com.google.protobuf.BoolValue
-import com.google.protobuf.boolValue
-import io.spine.tools.core.jvm.gradle.settings.Settings
+import io.spine.tools.gradle.protobuf.protobufExtension
+import javax.inject.Inject
 import org.gradle.api.Project
+import org.gradle.api.provider.Property
 
 /**
  * Allows configuring the usage of gRPC in a Spine-based project.
@@ -49,13 +49,43 @@ import org.gradle.api.Project
  *
  * @see GrpcCoreJvmPlugin
  */
-public class GrpcSettings(project: Project) : Settings<BoolValue>(project) {
+public abstract class GrpcSettings @Inject public constructor(
+    private val project: Project
+) {
+    /**
+     * Tells if the project to which the [GrpcCoreJvmPlugin] is applied
+     * is going to have generated gRPC code.
+     */
+    public var enabled: Property<Boolean> = project.objects.property(Boolean::class.java)
 
     init {
         enabled.convention(false)
+        project.afterEvaluate {
+            turnGrpc(enabled.get())
+        }
     }
 
-    override fun toProto(): BoolValue {
-        return boolValue { value = enabled.get() }
+    private fun turnGrpc(value: Boolean) {
+        val protobuf = project.protobufExtension!!
+        protobuf.plugins { plugins ->
+            if (value) {
+                plugins.create(PROTOC_PLUGIN_ID) {
+                    it.artifact = GrpcProtocPlugin.artifact.coordinates
+                }
+            }
+        }
+    }
+
+    internal companion object {
+
+        /**
+         * The name of the DSL element under `coreJvm`.
+         */
+        internal const val NAME = "grpc"
+
+        /**
+         * The name of the gRPC plugin to `protoc` for Java.
+         */
+        private const val PROTOC_PLUGIN_ID = "grpc"
     }
 }
