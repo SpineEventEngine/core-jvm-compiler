@@ -37,7 +37,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Nested
 
 /**
- * Code generation options exposed in a project with McJava Gradle plugin applied.
+ * Code generation options exposed in a project with CoreJvm Compiler Gradle plugin applied.
  */
 public abstract class CoreJvmOptions {
 
