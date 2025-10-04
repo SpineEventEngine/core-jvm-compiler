@@ -1,3 +1,7 @@
+import io.spine.dependency.lib.Grpc
+import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Validation
+
 /*
  * Copyright 2025, TeamDev. All rights reserved.
  *
@@ -5,7 +9,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,35 +28,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+plugins {
+    id("io.spine.artifact-meta")
+}
 
-include(
-    "gradle-plugins",
-    "plugin-bundle",
-    "annotation",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "core-jvm-grpc"
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    addDependencies(
+        // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
+        Grpc.ProtocPlugin.artifact,
+    )
+    excludeConfigurations {
+        containing(*buildToolConfigurations)
     }
+}
+
+dependencies {
+    compileOnly(Protobuf.GradlePlugin.lib)
+        ?.because("We access the Protobuf Gradle Plugin extension.")
+    implementation(project(":base"))
 }

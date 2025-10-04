@@ -5,7 +5,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ * https://www.apache.org/licenses/LICENSE-2.0
  *
  * Redistribution and use in source and/or binary forms, with or without
  * modification, must retain the above copyright notice and the following
@@ -24,35 +24,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.grpc.gradle
 
-include(
-    "gradle-plugins",
-    "plugin-bundle",
-    "annotation",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import com.google.protobuf.gradle.ExecutableLocator
+import com.google.protobuf.gradle.GenerateProtoTask
+import io.spine.tools.gradle.ProtocConfigurationPlugin
+import io.spine.tools.gradle.ProtocPluginName.grpc
+import org.gradle.api.NamedDomainObjectContainer
+import org.gradle.api.Project
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+/**
+ * A Gradle plugin that enablers gRPC in a project.
+ */
+public class GrpcCoreJvmPlugin : ProtocConfigurationPlugin() {
+
+    override fun configureProtocPlugins(
+        plugins: NamedDomainObjectContainer<ExecutableLocator>,
+        project: Project
+    ) {
+        plugins.create(grpc.name) { locator ->
+            locator.artifact = GrpcProtocPlugin.artifact.coordinates
+        }
+    }
+
+    override fun customizeTask(protocTask: GenerateProtoTask) {
+        protocTask.plugins.create(grpc.name)
     }
 }
