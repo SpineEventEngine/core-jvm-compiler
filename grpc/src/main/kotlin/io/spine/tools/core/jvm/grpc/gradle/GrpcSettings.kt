@@ -43,7 +43,7 @@ public abstract class GrpcSettings @Inject public constructor(
      * Tells if the project to which the [GrpcCoreJvmPlugin] is applied
      * is going to have generated gRPC code.
      */
-    public var enabled: Property<Boolean> = project.objects.property(Boolean::class.java)
+    public abstract val enabled: Property<Boolean>
 
     init {
         enabled.convention(false)
