@@ -26,9 +26,9 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
-import io.spine.tools.core.jvm.gradle.LazyDependency
-import io.spine.tools.core.jvm.gradle.LazyMeta
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.meta.LazyDependency
+import io.spine.tools.meta.LazyMeta
 import io.spine.tools.meta.Module
 
 /**

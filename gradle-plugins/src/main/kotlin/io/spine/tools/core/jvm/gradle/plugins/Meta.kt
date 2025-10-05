@@ -29,9 +29,10 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.annotation.VisibleForTesting
-import io.spine.tools.core.jvm.gradle.LazyMeta
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.core.jvm.gradle.plugins.Meta.artifact
 import io.spine.tools.core.jvm.gradle.plugins.ValidationSdk.javaCodegenBundle
+import io.spine.tools.meta.LazyMeta
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
 
