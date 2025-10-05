@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
+import io.spine.tools.core.jvm.gradle.LazyDependency
 import io.spine.tools.core.jvm.gradle.LazyMeta
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.MavenArtifact
@@ -45,29 +46,24 @@ internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-grpc"))
 internal object GrpcKotlin {
 
     /**
+     * The Maven group of the artifacts.
+     */
+    private const val group = "io.grpc"
+
+    private fun dependency(artifact: String) = LazyDependency(Meta, Module(group, artifact))
+
+    /**
      * The artifact of Java gRPC plugin to `protoc`.
      */
-    internal val javaProtocPlugin: MavenArtifact by lazy {
-        Meta.dependency(
-            Module("io.grpc", "protoc-gen-grpc-java")
-        )
-    }
+    internal val javaProtocPlugin = dependency("protoc-gen-grpc-java")
 
     /**
      * The artifact of Kotlin gRPC plugin to `protoc`.
      */
-    internal val kotlinProtocPlugin: MavenArtifact by lazy {
-        Meta.dependency(
-            Module("io.grpc", "protoc-gen-grpc-kotlin")
-        )
-    }
+    internal val kotlinProtocPlugin = dependency("protoc-gen-grpc-kotlin")
 
     /**
      * The artifact of the gRPC Stub library.
      */
-    internal val stubLibrary: MavenArtifact by lazy {
-        Meta.dependency(
-            Module("io.grpc", "grpc-kotlin-stub")
-        )
-    }
+    internal val stubLibrary = dependency("grpc-kotlin-stub")
 }

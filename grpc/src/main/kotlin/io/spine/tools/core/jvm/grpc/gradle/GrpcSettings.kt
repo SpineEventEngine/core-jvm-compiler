@@ -59,10 +59,10 @@ public abstract class GrpcSettings @Inject public constructor(
             }
             protobuf.plugins { plugins ->
                 plugins.create(PROTOC_PLUGIN_JAVA_ID) { locator ->
-                    locator.artifact = GrpcKotlin.javaProtocPlugin.coordinates
+                    locator.artifact = GrpcKotlin.javaProtocPlugin.artifact.coordinates
                 }
                 plugins.create(PROTOC_PLUGIN_KOTLIN_ID) { locator ->
-                    locator.artifact = GrpcKotlin.kotlinProtocPlugin.coordinates
+                    locator.artifact = GrpcKotlin.kotlinProtocPlugin.artifact.coordinates
                 }
             }
             val protocTasks = protobuf.generateProtoTasks.all()
@@ -70,8 +70,10 @@ public abstract class GrpcSettings @Inject public constructor(
                 t.plugins.create(PROTOC_PLUGIN_JAVA_ID)
                 t.plugins.create(PROTOC_PLUGIN_KOTLIN_ID)
             }
+            // Add dependencies in the scope of `generateProtoTasks` so that we add it
+            // only when the project is evaluated, and we know the value of the `enabled` property.
+            project.dependencies.add("implementation", GrpcKotlin.stubLibrary.artifact.coordinates)
         }
-        project.dependencies.add("implementation", GrpcKotlin.stubLibrary.coordinates)
     }
 
     internal companion object {

@@ -64,3 +64,17 @@ public abstract class LazyMeta(
         return found as MavenArtifact
     }
 }
+
+/**
+ * A dependency stored in [meta] for the given [module].
+ *
+ * @property meta The metadata of the [module] lazily loaded from resources.
+ * @property module The module of the dependency.
+ * @property artifact The artifact with full coordinates of the dependency.
+ */
+public data class LazyDependency(
+    private val meta: LazyMeta,
+    private val module: Module
+) {
+    public val artifact: MavenArtifact by lazy { meta.dependency(module) }
+}
