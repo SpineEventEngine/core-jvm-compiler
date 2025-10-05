@@ -32,7 +32,25 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 
 /**
- * A Gradle plugin that enablers gRPC in a project.
+ * A Gradle plugin which controls enabling gRPC in a project.
+ *
+ *
+ * The DSL syntax looks like this:
+ *
+ * ```kotlin
+ * spine {
+ *     coreJvm {
+ *        grpc {
+ *           enabled.set(true)
+ *        }
+ *     }
+ * }
+ * ```
+ * The default value is `false`.
+ *
+ * The plugin adds [GrpcSettings] extension under [Project.coreJvmOptions].
+ * The extension controls via its [enabled][GrpcSettings.enabled] property if the project gets gRPC.
+ * The project must have Protobuf Gradle Plugin applied.
  */
 public class GrpcCoreJvmPlugin : Plugin<Project> {
 

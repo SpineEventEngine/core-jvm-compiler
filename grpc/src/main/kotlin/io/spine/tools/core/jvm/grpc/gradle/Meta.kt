@@ -26,35 +26,48 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
-import io.spine.tools.core.jvm.gradle.DependencyHolder
+import io.spine.tools.core.jvm.gradle.LazyMeta
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
 
 /**
  * Provides dependencies of this module stored in resources by Artifact Meta Gradle plugin.
- */
-internal object GrpcCoreJvmPluginArtifact : DependencyHolder(
-    module = Module(SPINE_TOOLS_GROUP, "core-jvm-grpc")
-)
-
-/**
- * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
- * Protobuf Gradle Plugin when the Compiler's Gradle plugin is applied.
  *
  * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
- *
- * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
  */
-internal object GrpcProtocPlugin {
+internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-grpc"))
+
+/**
+ * Dependencies of gRPC Kotlin which [GrpcCoreJvmPlugin] passed to the project
+ * to which it is applied.
+ */
+internal object GrpcKotlin {
 
     /**
-     * The module of the `protoc` plugin of gRPC for Java.
+     * The artifact of Java gRPC plugin to `protoc`.
      */
-    private val module = Module("io.grpc", "protoc-gen-grpc-java")
+    internal val javaProtocPlugin: MavenArtifact by lazy {
+        Meta.dependency(
+            Module("io.grpc", "protoc-gen-grpc-java")
+        )
+    }
 
     /**
-     * The artifact of the gRPC `protoc` plugin for Java.
+     * The artifact of Kotlin gRPC plugin to `protoc`.
      */
-    internal val artifact: MavenArtifact = GrpcCoreJvmPluginArtifact.dependency(module)
+    internal val kotlinProtocPlugin: MavenArtifact by lazy {
+        Meta.dependency(
+            Module("io.grpc", "protoc-gen-grpc-kotlin")
+        )
+    }
+
+    /**
+     * The artifact of the gRPC Stub library.
+     */
+    internal val stubLibrary: MavenArtifact by lazy {
+        Meta.dependency(
+            Module("io.grpc", "grpc-kotlin-stub")
+        )
+    }
 }

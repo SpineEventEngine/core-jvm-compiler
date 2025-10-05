@@ -50,7 +50,7 @@ dependencies {
 
     arrayOf(
         gradleTestKit(),
-        project(":base") /* Open the `DependencyHolder` class to tests. */,
+        project(":base") /* Open the `DependencyHolder` class to tests. `*/,
         TestLib.lib,
         ToolBase.jvmTools,
         ToolBase.pluginTestlib,

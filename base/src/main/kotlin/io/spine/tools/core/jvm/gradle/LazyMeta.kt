@@ -31,12 +31,16 @@ import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.MavenArtifact
 
 /**
- * The base class for objects that hold a dependency on another software artifact.
+ * Provides lazy loading of [ArtifactMeta] for a [Module].
  *
- * The dependency is used in a configuration of a project in which the holder of
- * the dependency is also used.
+ * The metadata must be written into the resources of the module using
+ * the Artifact Meta Gradle Plugin (ID: `io.spine.artifact-meta`).
+ * Otherwise, accessing the [meta] property would result in an [IllegalStateException].
+ *
+ * @property module The module of the implementing class.
+ * @property meta The lazily loaded metadata of the module to which the implementing class belongs.
  */
-public abstract class DependencyHolder(
+public abstract class LazyMeta(
     protected val module: Module,
 ) {
     /**

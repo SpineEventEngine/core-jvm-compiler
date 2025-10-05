@@ -34,19 +34,6 @@ import org.gradle.api.provider.Property
 /**
  * Allows configuring the usage of gRPC in a Spine-based project.
  *
- * The DSL syntax looks like this:
- *
- * ```kotlin
- * spine {
- *     coreJvm {
- *        grpc {
- *           enabled.set(true)
- *        }
- *     }
- * }
- * ```
- * The default value is `false`.
- *
  * @see GrpcCoreJvmPlugin
  */
 public abstract class GrpcSettings @Inject public constructor(
@@ -71,15 +58,20 @@ public abstract class GrpcSettings @Inject public constructor(
                 return@generateProtoTasks
             }
             protobuf.plugins { plugins ->
-                plugins.create(PROTOC_PLUGIN_ID) { locator ->
-                    locator.artifact = GrpcProtocPlugin.artifact.coordinates
+                plugins.create(PROTOC_PLUGIN_JAVA_ID) { locator ->
+                    locator.artifact = GrpcKotlin.javaProtocPlugin.coordinates
+                }
+                plugins.create(PROTOC_PLUGIN_KOTLIN_ID) { locator ->
+                    locator.artifact = GrpcKotlin.kotlinProtocPlugin.coordinates
                 }
             }
             val protocTasks = protobuf.generateProtoTasks.all()
             protocTasks.forEach { t ->
-                t.plugins.create(PROTOC_PLUGIN_ID)
+                t.plugins.create(PROTOC_PLUGIN_JAVA_ID)
+                t.plugins.create(PROTOC_PLUGIN_KOTLIN_ID)
             }
         }
+        project.dependencies.add("implementation", GrpcKotlin.stubLibrary.coordinates)
     }
 
     internal companion object {
@@ -90,8 +82,13 @@ public abstract class GrpcSettings @Inject public constructor(
         internal const val NAME = "grpc"
 
         /**
-         * The name of the gRPC plugin to `protoc` for Java.
+         * The name of the `protoc` gRPC plugin for Java.
          */
-        private const val PROTOC_PLUGIN_ID = "grpc"
+        private const val PROTOC_PLUGIN_JAVA_ID = "grpc"
+
+        /**
+         * The name of the `protoc` gRPC plugin for Kotlin.
+         */
+        private const val PROTOC_PLUGIN_KOTLIN_ID = "grpckt"
     }
 }

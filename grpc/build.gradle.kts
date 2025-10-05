@@ -1,7 +1,3 @@
-import io.spine.dependency.lib.Grpc
-import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.Validation
-
 /*
  * Copyright 2025, TeamDev. All rights reserved.
  *
@@ -28,6 +24,10 @@ import io.spine.dependency.local.Validation
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.lib.Grpc
+import io.spine.dependency.lib.GrpcKotlin
+import io.spine.dependency.lib.Protobuf
+
 plugins {
     id("io.spine.artifact-meta")
 }
@@ -40,8 +40,10 @@ val moduleArtifactId = "core-jvm-grpc"
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
-        // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
+        // Add gRPC `protoc` plugin artifacts as we pass it to Protobuf Gradle Plugin.
         Grpc.ProtocPlugin.artifact,
+        GrpcKotlin.ProtocPlugin.artifact,
+        GrpcKotlin.stub
     )
     excludeConfigurations {
         containing(*buildToolConfigurations)
