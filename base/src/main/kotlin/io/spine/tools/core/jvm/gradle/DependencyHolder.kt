@@ -40,7 +40,7 @@ public abstract class DependencyHolder(
     protected val module: Module,
 ) {
     /**
-     * The meta-data of this artifcat.
+     * The meta-data of this artifact.
      */
     protected val meta: ArtifactMeta by lazy {
         ArtifactMeta.loadFromResource(module, this::class.java)
@@ -51,7 +51,7 @@ public abstract class DependencyHolder(
      * as stored in the module [meta].
      *
      * The dependency must be previously written into the module resources using
-     * the Artifact Meta (`io.spine.artifact-meta`) Grdle plugin.
+     * the Artifact Meta (`io.spine.artifact-meta`) Gradle plugin.
      * @throws IllegalStateException if no dependency is found.
      */
     public fun dependency(module: Module): MavenArtifact {
