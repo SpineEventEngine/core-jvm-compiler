@@ -36,15 +36,11 @@ import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
 
 /**
- * This file declares artifacts used and exposed by the CoreJvm Compiler.
- */
-@Suppress("unused")
-private const val ABOUT = ""
-
-/**
  * Provides the dependencies of the CoreJvm Compiler.
+ *
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
-public object CoreJvmCompilerArtifact : DependencyHolder(
+public object CoreJvmCompiler : DependencyHolder(
     module = Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins")
 ) {
     /**
@@ -56,9 +52,7 @@ public object CoreJvmCompilerArtifact : DependencyHolder(
 }
 
 /**
- * Artifacts of the Spine Validation SDK on which [CoreJvmCompilerArtifact] depends.
- *
- * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
+ * Artifacts of the Spine Validation SDK on which CoreJvm Compiler depends.
  */
 @Suppress("ConstPropertyName")
 internal object ValidationSdk {
@@ -84,7 +78,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun javaCodegenBundle(version: String = ""): MavenArtifact =
-        CoreJvmCompilerArtifact.dependency(javaCodegenBundle).withVersion(version)
+        CoreJvmCompiler.dependency(javaCodegenBundle).withVersion(version)
 
     /**
      * The Maven artifact containing the `spine-validation-java-runtime` module.
@@ -95,7 +89,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun javaRuntime(version: String = ""): MavenArtifact =
-        CoreJvmCompilerArtifact.dependency(javaRuntime).withVersion(version)
+        CoreJvmCompiler.dependency(javaRuntime).withVersion(version)
 
     /**
      * The Maven artifact containing the `spine-validation-configuration` module.
@@ -106,5 +100,5 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun configuration(version: String = ""): MavenArtifact =
-        CoreJvmCompilerArtifact.dependency(configuration).withVersion(version)
+        CoreJvmCompiler.dependency(configuration).withVersion(version)
 }
