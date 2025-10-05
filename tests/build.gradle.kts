@@ -88,6 +88,7 @@ buildscript {
                     io.spine.dependency.local.Time.lib,
                     toolBase.lib,
                     toolBase.pluginBase,
+                    toolBase.jvmTools,
                     logging.lib,
                     logging.libJvm,
                     logging.middleware,
