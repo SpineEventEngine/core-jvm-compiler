@@ -24,25 +24,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.JavaX
+package io.spine.tools.core.jvm.gradle
 
-plugins {
-    `java-library`
-    id("io.spine.core-jvm")
-}
+import io.spine.tools.meta.Module
+import io.spine.tools.meta.ArtifactMeta
+import io.spine.tools.meta.MavenArtifact
 
-tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
+/**
+ * The base class for objects that hold a dependency on another software artifact.
+ *
+ * The dependency is used in a configuration of a project in which the holder of
+ * the dependency is also used.
+ */
+public abstract class DependencyHolder(
+    protected val module: Module,
+) {
+    /**
+     * The meta-data of this artifcat.
+     */
+    protected val meta: ArtifactMeta by lazy {
+        ArtifactMeta.loadFromResource(module, this::class.java)
+    }
 
-// Add Validation Java Runtime because the generated code references it anyway.
-dependencies {
-    compileOnlyApi(JavaX.annotations)?.because("gRPC generator uses it.")
-    implementation(io.spine.dependency.local.Validation.runtime)
-}
-
-spine {
-    coreJvm {
-        grpc {
-            enabled.set(true)
-        }
+    /**
+     * Obtains the dependency of this artifact specified by the given [module]
+     * as stored in the module [meta].
+     *
+     * The dependency must be previously written into the module resources using
+     * the Artifact Meta (`io.spine.artifact-meta`) Grdle plugin.
+     * @throws IllegalStateException if no dependency is found.
+     */
+    public fun dependency(module: Module): MavenArtifact {
+        val found = meta.dependencies.find(module)
+            ?: error("Unable to find the dependency `$module` in `$meta`.")
+        return found as MavenArtifact
     }
 }

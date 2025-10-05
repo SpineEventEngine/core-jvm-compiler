@@ -1,3 +1,7 @@
+import io.spine.dependency.lib.Grpc
+import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Validation
+
 /*
  * Copyright 2025, TeamDev. All rights reserved.
  *
@@ -24,25 +28,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.JavaX
-
 plugins {
-    `java-library`
-    id("io.spine.core-jvm")
+    id("io.spine.artifact-meta")
 }
 
-tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "core-jvm-grpc"
 
-// Add Validation Java Runtime because the generated code references it anyway.
-dependencies {
-    compileOnlyApi(JavaX.annotations)?.because("gRPC generator uses it.")
-    implementation(io.spine.dependency.local.Validation.runtime)
-}
-
-spine {
-    coreJvm {
-        grpc {
-            enabled.set(true)
-        }
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    addDependencies(
+        // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
+        Grpc.ProtocPlugin.artifact,
+    )
+    excludeConfigurations {
+        containing(*buildToolConfigurations)
     }
+}
+
+dependencies {
+    compileOnly(Protobuf.GradlePlugin.lib)
+        ?.because("We access the Protobuf Gradle Plugin extension.")
+    implementation(project(":base"))
 }

@@ -73,6 +73,14 @@ dependencies {
     spineCompiler(customAnnotations)
 }
 
+spine {
+    coreJvm {
+        grpc {
+            enabled.set(true)
+        }
+    }
+}
+
 tasks.findByName("launchTestSpineCompiler")?.apply { this as JavaExec
     debugOptions {
         enabled.set(false) // Set this option to `true` to enable remote debugging.

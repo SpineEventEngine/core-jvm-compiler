@@ -1,4 +1,4 @@
-# About tests in McJava
+# About tests in CoreJvm Compiler
 
 There are several levels of testing in this project.
 
@@ -12,9 +12,9 @@ There are several levels of testing in this project.
 
 ## About `*-tests` modules
 
-A modules with the `-tests` suffix in their names is a test-only module for the module which
-has the name before the suffix. For example, `mc-java-signal-tests` is the test module for
-`mc-java-signal`
+A modules with the `-tests` suffix in their names is a test-only module for
+the module which has the name before the suffix.
+For example, `signal-tests` is the test module for the `signal` module.
 
 We need to have separate test-only modules because of the following reasons.
 
@@ -22,19 +22,19 @@ We need to have separate test-only modules because of the following reasons.
 resources by [ProtoTap][prototap] using [`PipelineSetup`][pipeline-setup] API.
 
  * We need this code to be "vanilla" Protobuf — not the one produced by the previous
-version of McJava — because the Compiler plugins run on top of such code.
+version of the CoreJvm Compiler — because the Compiler plugins run on top of such code.
 
  * We use `testFixtures` source set for storing input proto files for the code generation tests.
 
  * It is not possible to apply a Gradle plugin to a source set. Plugins are applied to a project.
 
- * The module `mc-java-signal` needs McJava plugin for generating events and entity states for
-the Signal Compiler plugin. Once McJava plugin is applied to a project, it serves all 
-the source sets, including `testFixtures`, making the generated code enhanced with Spine features,
-which we need to avoid.
+ * The module `signal` needs CoreJvm Compiler Plugin for generating events and entity states for
+   the Signal Compiler plugin. Once CoreJvm Compiler Gradle Plugin is applied to a project, it
+   serves all the source sets, including `testFixtures`, making the generated code enhanced
+   with Spine features, which we need to avoid.
 
-Therefore, to have "vanilla" Protobuf code generated for our stub types, we need to have
-a separate Gradle project
+Therefore, to have "vanilla" Protobuf code generated for our stub types that are used for checking
+the correctness of the code generation, we need to have separate Gradle projects for tests.
 
 [prototap]: https://github.com/SpineEventEngine/ProtoTap
 [pipeline-setup]: https://github.com/SpineEventEngine/compiler/blob/master/testlib/src/main/kotlin/io/spine/compiler/testing/PipelineSetup.kt

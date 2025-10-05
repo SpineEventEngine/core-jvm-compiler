@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.signal.rejection
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import com.squareup.javapoet.CodeBlock
 import com.squareup.javapoet.ParameterSpec
 import io.spine.tools.compiler.ast.MessageType

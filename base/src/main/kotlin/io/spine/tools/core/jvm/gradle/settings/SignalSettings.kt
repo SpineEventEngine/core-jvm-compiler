@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import com.google.protobuf.stringValue
 import io.spine.base.CommandMessage
 import io.spine.base.EventMessage

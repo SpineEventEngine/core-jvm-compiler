@@ -24,30 +24,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.gradle.plugins
+package io.spine.tools.core.jvm.grpc.gradle
 
-import com.google.protobuf.gradle.ExecutableLocator
-import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.tools.gradle.ProtocConfigurationPlugin
-import io.spine.tools.gradle.ProtocPluginName.grpc
-import org.gradle.api.NamedDomainObjectContainer
-import org.gradle.api.Project
+import io.spine.tools.core.jvm.gradle.DependencyHolder
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.meta.Module
 
 /**
- * A Gradle plugin that enablers gRPC in a project.
+ * Provides dependencies of this module stored in resources by Artifact Meta Gradle plugin.
  */
-public class EnableGrpcPlugin : ProtocConfigurationPlugin() {
+internal object GrpcCoreJvmPluginArtifact : DependencyHolder(
+    module = Module(SPINE_TOOLS_GROUP, "core-jvm-grpc")
+)
 
-    override fun configureProtocPlugins(
-        plugins: NamedDomainObjectContainer<ExecutableLocator>,
-        project: Project
-    ) {
-        plugins.create(grpc.name) { locator ->
-            locator.artifact = GrpcProtocPlugin.artifact.coordinates
-        }
-    }
+/**
+ * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
+ * Protobuf Gradle Plugin when the Compiler's Gradle plugin is applied.
+ *
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
+ *
+ * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
+ */
+internal object GrpcProtocPlugin {
 
-    override fun customizeTask(protocTask: GenerateProtoTask) {
-        protocTask.plugins.create(grpc.name)
-    }
+    /**
+     * The module of the `protoc` plugin of gRPC for Java.
+     */
+    private val module = Module("io.grpc", "protoc-gen-grpc-java")
+
+    /**
+     * The artifact of the gRPC `protoc` plugin for Java.
+     */
+    internal val artifact: MavenArtifact = GrpcCoreJvmPluginArtifact.dependency(module)
 }

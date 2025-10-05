@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.base.UuidValue
 import io.spine.tools.compiler.jvm.render.ImplementInterface
 import io.spine.tools.compiler.jvm.render.superInterface

@@ -26,7 +26,7 @@
 
 package io.spine.given.home
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.core.Subscribe
 import io.spine.given.home.commands.AddDevice
 import io.spine.given.home.commands.SetState

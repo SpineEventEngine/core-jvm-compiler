@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.entity
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.tools.compiler.plugin.Plugin
 
 /**

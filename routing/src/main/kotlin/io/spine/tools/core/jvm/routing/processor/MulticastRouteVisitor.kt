@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.routing.processor
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import com.squareup.kotlinpoet.ksp.toClassName
 import io.spine.tools.core.jvm.routing.processor.Environment.SetupType
 

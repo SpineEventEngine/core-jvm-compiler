@@ -24,25 +24,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.lib.JavaX
+package io.spine.tools.core.jvm.grpc.gradle
 
-plugins {
-    `java-library`
-    id("io.spine.core-jvm")
-}
+import io.spine.tools.core.jvm.gradle.coreJvmOptions
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.api.plugins.ExtensionAware
 
-tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
+/**
+ * A Gradle plugin that enablers gRPC in a project.
+ */
+public class GrpcCoreJvmPlugin : Plugin<Project> {
 
-// Add Validation Java Runtime because the generated code references it anyway.
-dependencies {
-    compileOnlyApi(JavaX.annotations)?.because("gRPC generator uses it.")
-    implementation(io.spine.dependency.local.Validation.runtime)
-}
-
-spine {
-    coreJvm {
-        grpc {
-            enabled.set(true)
-        }
+    override fun apply(target: Project) {
+        (target.coreJvmOptions as ExtensionAware)
+            .extensions.create(GrpcSettings.NAME, GrpcSettings::class.java)
     }
 }

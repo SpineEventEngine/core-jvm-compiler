@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2025, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import org.gradle.api.Project
 import org.gradle.api.provider.Property
 
 /**
- * Settings for a specific aspect of the Model Compiler, established through Gradle.
+ * Settings for a specific aspect of the CoreJvm Compiler, established through Gradle.
  *
  * @param S The type that captures a snapshot of the current settings state.
  */
@@ -40,7 +40,7 @@ public abstract class Settings<S : Message>(project: Project) {
     /**
      * Whether this configuration is enabled.
      *
-     * If `false`, the configuration is ignored by the Model Compiler.
+     * If `false`, the configuration is ignored by the CoreJvm Compiler.
      * The default value is `true`.
      */
     public val enabled: Property<Boolean> = project.objects.property(Boolean::class.java)
