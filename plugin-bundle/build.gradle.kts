@@ -71,48 +71,42 @@ publishing {
             version = versionName
             artifact(tasks.shadowJar)
 
-            /**
-             * Manually add the dependency onto `io.spine.tools:compiler-api`,
-             * as there is no good way to remove all the dependencies
-             * from the fat JAR artifact, but leave just this one.
-             *
-             * This dependency is required in order to place the Spine Compiler API
-             * onto the build classpath, so that `core-jvm` routines
-             * could apply it programmatically.
-             *
-             * The appended content should look like this:
-             * ```
-             *     <dependency>
-             *         <groupId>io.spine.tools</groupId>
-             *         <artifactId>compiler-api</artifactId>
-             *         <version>$compilerVersion</version>
-             *         <scope>runtime</scope>
-             *         <exclusions>
-             *              <exclusion>
-             *                  <groupId>org.jetbrains.kotlin</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
-             *              <exclusion>
-             *                  <groupId>com.google.protobuf</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
-             *              <exclusion>
-             *                  <groupId>io.spine.tools</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
-             *         </exclusions>
-             *    </dependency>
-             *     <dependency>
-             *         <groupId>com.google.protobuf</groupId>
-             *         <artifactId>protobuf-gradle-plugin</artifactId>
-             *         <version>${Protobuf.GradlePlugin.version}</version>
-             *         <scope>runtime</scope>
-             *    </dependency>
-             * ```
-             */
             pom.withXml {
                 val projectNode: Node = asNode()
                 val dependencies = Node(projectNode, "dependencies")
+                /*
+                 * Add the dependency onto `io.spine.tools:compiler-api`,
+                 * as there is no good way to remove all the dependencies
+                 * from the fat JAR artifact, but leave just this one.
+                 *
+                 * This dependency is required in order to place the Spine Compiler API
+                 * onto the build classpath, so that `core-jvm` routines
+                 * could apply it programmatically.
+                 *
+                 * The appended code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>io.spine.tools</groupId>
+                 *     <artifactId>compiler-api</artifactId>
+                 *     <version>${Compiler.version}</version>
+                 *     <scope>runtime</scope>
+                 *     <exclusions>
+                 *          <exclusion>
+                 *              <groupId>org.jetbrains.kotlin</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *          <exclusion>
+                 *              <groupId>com.google.protobuf</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *          <exclusion>
+                 *              <groupId>io.spine.tools</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *     </exclusions>
+                 * </dependency>
+                 * ```
+                 */
                 val dependency = Node(dependencies, "dependency")
                 Node(dependency, "groupId", "io.spine.tools")
                 Node(dependency, "artifactId", "compiler-api")
@@ -124,6 +118,18 @@ publishing {
                 excludeGroupId(exclusions, "com.google.protobuf")
                 excludeGroupId(exclusions, "io.spine.tools")
 
+                /*
+                 * Add the dependency on Protobuf Gradle Plugin so that we can add it
+                 * from our code. The code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *      <groupId>com.google.protobuf</groupId>
+                 *      <artifactId>protobuf-gradle-plugin</artifactId>
+                 *      <version>${Protobuf.GradlePlugin.version}</version>
+                 *      <scope>runtime</scope>
+                 * </dependency>
+                 * ```
+                 */
                 val protoDependency = Node(dependencies, "dependency")
                 Node(protoDependency, "groupId", "com.google.protobuf")
                 Node(protoDependency, "artifactId", "protobuf-gradle-plugin")
