@@ -59,9 +59,14 @@ class CoreJvmPluginIgTest {
             |
             |plugins {
             |    java
+            |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
+            |    id("com.google.protobuf").version("${ProtobufGradlePlugin.version}")
             |}
             |
             |apply(plugin = "io.spine.core-jvm")
+            |
+            |group = "io.spine.tools.tests"
+            |version = "1.0.0-SNAPSHOT"
             |
             |tasks.register("verify") {
             |    doLast {
@@ -73,7 +78,7 @@ class CoreJvmPluginIgTest {
             |rootProject.name = "core-jvm-plugin-ig-test"
         """.trimMargin()
         val project = GradleProject.setupAt(projectDir)
-            .copyBuildSrc()
+            //.copyBuildSrc()
             .withSharedTestKitDirectory()
             .addFile("settings.gradle.kts", settingsFile.lines())
             .addFile("build.gradle.kts", buildFile.lines())
