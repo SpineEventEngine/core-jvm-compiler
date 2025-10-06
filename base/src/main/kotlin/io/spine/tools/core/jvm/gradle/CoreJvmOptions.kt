@@ -28,6 +28,7 @@ package io.spine.tools.core.jvm.gradle
 
 import io.spine.tools.compiler.jvm.style.JavaCodeStyle
 import io.spine.tools.compiler.jvm.style.javaCodeStyleDefaults
+import io.spine.tools.core.jvm.gradle.module.ModuleOptions
 import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
 import io.spine.tools.java.fs.DefaultJavaPaths
 import org.gradle.api.Action
@@ -40,6 +41,9 @@ import org.gradle.api.tasks.Nested
  */
 public abstract class CoreJvmOptions {
 
+    /**
+     * Options for adding API level annotations to the generated code.
+     */
     @get:Nested
     public abstract val annotation: AnnotationSettings
 
@@ -59,6 +63,12 @@ public abstract class CoreJvmOptions {
      */
     @JvmField
     public var tempArtifactDirs: List<String> = ArrayList()
+
+    /**
+     * The options for the module to which the CoreJvm Gradle Plugin is applied.
+     */
+    @get:Nested
+    public abstract val module: ModuleOptions
 
     init {
         initConventions()

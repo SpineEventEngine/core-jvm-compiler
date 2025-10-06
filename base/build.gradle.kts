@@ -27,13 +27,31 @@
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 
 plugins {
+    id("io.spine.artifact-meta")
     id("io.spine.core-jvm")
+}
+
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId = "core-jvm-base"
+
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    addDependencies(
+        CoreJvm.server,
+        CoreJvm.client,
+    )
+    excludeConfigurations {
+        containing(*buildToolConfigurations)
+    }
 }
 
 dependencies {
