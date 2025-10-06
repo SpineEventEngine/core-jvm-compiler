@@ -28,11 +28,13 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import io.kotest.matchers.shouldBe
 import io.spine.tools.core.jvm.gradle.module.ArtifactRegistry
+import io.spine.tools.gradle.task.BaseTaskName
 import io.spine.tools.gradle.task.TaskName
 import io.spine.tools.gradle.testing.GradleProject
 import io.spine.tools.gradle.testing.get
 import java.io.File
 import org.gradle.testkit.runner.TaskOutcome
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
@@ -54,6 +56,11 @@ class CoreJvmPluginIgTest {
             |    }
             |}
             |""".trimMargin()
+
+        private val settingsFile = """
+            |rootProject.name = "core-jvm-plugin-ig-test"
+        """.trimMargin()
+
     }
 
     @Test
@@ -75,9 +82,6 @@ class CoreJvmPluginIgTest {
             |        println("`CoreJvmPlugin` applied via `classpath` successfully.")
             |    }
             |}
-        """.trimMargin()
-        val settingsFile = """
-            |rootProject.name = "core-jvm-plugin-ig-test"
         """.trimMargin()
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
@@ -110,17 +114,45 @@ class CoreJvmPluginIgTest {
             |    }
             |}
         """.trimMargin()
-        val settingsFile = """
-            |rootProject.name = "core-jvm-plugin-ig-test"
-        """.trimMargin()
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
             .addFile("settings.gradle.kts", settingsFile.lines())
             .addFile("build.gradle.kts", buildFile.lines())
-            .enableRunnerDebug()
             .create()
         val verify = TaskName.of("verify")
         val result = project.executeTask(verify)
         result[verify] shouldBe TaskOutcome.SUCCESS
+    }
+
+    @Test
+    @Disabled("Until plugin publishing is compared with those of `artifact-meta` and fixed")
+    fun `be available via its ID and version`(@TempDir projectDir: File) {
+        val buildFile = buildscriptBlock + """
+            |plugins {
+            |    java
+            |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
+            |    id("io.spine.core-jvm") version "${Meta.artifact.version}"
+            |}
+            |
+        """.trimMargin()
+
+        val settingsFileWithCustomRepository = """
+            |rootProject.name = "core-jvm-plugin-ig-test"
+            |pluginManagement {
+            |    repositories {
+            |        mavenLocal()
+            |        mavenCentral()
+            |    }
+            |}
+        """.trimMargin()
+
+        val project = GradleProject.setupAt(projectDir)
+            .withSharedTestKitDirectory()
+            .addFile("settings.gradle.kts", settingsFileWithCustomRepository.lines())
+            .addFile("build.gradle.kts", buildFile.lines())
+            .create()
+        val task = BaseTaskName.build
+        val result = project.executeTask(task)
+        result[task] shouldBe TaskOutcome.SUCCESS
     }
 }
