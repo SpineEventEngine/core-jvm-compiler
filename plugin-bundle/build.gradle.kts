@@ -144,7 +144,7 @@ tasks.shadowJar {
 
         /**
          * The Protobuf Gradle Plugin will be available in the classpath because
-         * McJava Gradle Plugin is applied after it.
+         * CoreJvm Gradle Plugin is applied after it.
          */
         "com/google/protobuf/gradle/**",
 
