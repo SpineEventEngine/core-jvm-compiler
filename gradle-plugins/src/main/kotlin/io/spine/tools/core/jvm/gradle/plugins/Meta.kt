@@ -29,33 +29,22 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.annotation.VisibleForTesting
-import io.spine.tools.meta.ArtifactMeta
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.core.jvm.gradle.plugins.Meta.artifact
+import io.spine.tools.core.jvm.gradle.plugins.ValidationSdk.javaCodegenBundle
+import io.spine.tools.meta.LazyMeta
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
-import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 
 /**
- * This file declares artifacts used and exposed by the CoreJvm Compiler.
+ * Provides the dependencies of the CoreJvm Compiler.
+ *
+ * The class is public because its [artifact] property is used in
+ * the integration tests module.
+ *
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
-@Suppress("unused")
-private const val ABOUT = ""
-
-/**
- * Artifacts and dependencies of the CoreJvm Compiler.
- */
-public object CoreJvmCompiler {
-
-    /**
-     * The Maven module of the CoreJvm Compiler which stores [meta].
-     */
-    private val pluginsModule = Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins")
-
-    /**
-     * The meta-data of the CoreJvm Compiler.
-     */
-    private val meta: ArtifactMeta by lazy {
-        ArtifactMeta.loadFromResource(pluginsModule, this::class.java)
-    }
+public object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins")) {
 
     /**
      * The Maven artifact of the CoreJvm Compiler Gradle plugins.
@@ -63,45 +52,10 @@ public object CoreJvmCompiler {
     @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugin-bundle` module.
     public val artifact: MavenArtifact
         get() = meta.artifact
-
-    /**
-     * Obtains the dependency of the CoreJvm Compiler specified by the given [module]
-     * as stored in the module [meta].
-     *
-     * @throws IllegalStateException if no dependency is found.
-     */
-    internal fun dependency(module: Module): MavenArtifact {
-        val found = meta.dependencies.find(module)
-            ?: error("Unable to find the dependency `$module` in `$meta`.")
-        return found as MavenArtifact
-    }
 }
 
 /**
- * The gRPC plugin to `protoc` which CoreJvm Compiler passes to
- * Protobuf Gradle Plugin when the Compiler's Gradle plugin is applied.
- *
- * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
- *
- * @see io.spine.tools.core.jvm.gradle.plugins.EnableGrpcPlugin
- */
-internal object GrpcProtocPlugin {
-
-    /**
-     * The module of the `protoc` plugin of gRPC for Java.
-     */
-    private val module = Module("io.grpc", "protoc-gen-grpc-java")
-
-    /**
-     * The artifact of the gRPC `protoc` plugin for Java.
-     */
-    internal val artifact: MavenArtifact = CoreJvmCompiler.dependency(module)
-}
-
-/**
- * Artifacts of the Spine Validation SDK on which [CoreJvmCompiler] depends.
- *
- * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
+ * Artifacts of the Spine Validation SDK on which CoreJvm Compiler depends.
  */
 @Suppress("ConstPropertyName")
 internal object ValidationSdk {
@@ -127,7 +81,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun javaCodegenBundle(version: String = ""): MavenArtifact =
-        CoreJvmCompiler.dependency(javaCodegenBundle).withVersion(version)
+        Meta.dependency(javaCodegenBundle).withVersion(version)
 
     /**
      * The Maven artifact containing the `spine-validation-java-runtime` module.
@@ -138,7 +92,7 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun javaRuntime(version: String = ""): MavenArtifact =
-        CoreJvmCompiler.dependency(javaRuntime).withVersion(version)
+        Meta.dependency(javaRuntime).withVersion(version)
 
     /**
      * The Maven artifact containing the `spine-validation-configuration` module.
@@ -149,5 +103,5 @@ internal object ValidationSdk {
      */
     @JvmStatic
     fun configuration(version: String = ""): MavenArtifact =
-        CoreJvmCompiler.dependency(configuration).withVersion(version)
+        Meta.dependency(configuration).withVersion(version)
 }

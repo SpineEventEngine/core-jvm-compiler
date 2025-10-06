@@ -45,8 +45,6 @@ val moduleArtifactId = "core-jvm-gradle-plugins"
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
-        // Add gRPC `protoc` plugin artifact as we pass it to Protobuf Gradle Plugin.
-        Grpc.ProtocPlugin.artifact,
         // Add Validation module dependencies that we use for project configuration
         // to which the CoreJvm Gradle Plugin is applied.
         Validation.javaBundle,
@@ -63,7 +61,7 @@ dependencies {
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
 
-    implementation(Protobuf.GradlePlugin.lib)
+    compileOnly(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")
 
     // Module dependencies
@@ -71,6 +69,7 @@ dependencies {
         ":base",
         ":annotation",
         ":entity",
+        ":grpc",
         ":signal",
         ":marker",
         ":message-group",

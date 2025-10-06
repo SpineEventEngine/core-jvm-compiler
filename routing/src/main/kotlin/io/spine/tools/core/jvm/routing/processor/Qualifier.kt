@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.routing.processor
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 
 /**

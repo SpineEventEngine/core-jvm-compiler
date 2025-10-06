@@ -31,6 +31,7 @@ import io.spine.tools.core.jvm.VersionHolder
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions.Companion.name
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
+import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
@@ -84,7 +85,7 @@ private fun Project.logApplying() {
 private fun Project.createAndApplyPlugins() {
     val plugins: List<Plugin<Project>> = listOf(
         CleaningPlugin(),
-        EnableGrpcPlugin(),
+        GrpcCoreJvmPlugin(),
         CompilerConfigPlugin(),
         RoutingPlugin()
     )

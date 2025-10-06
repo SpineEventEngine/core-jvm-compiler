@@ -132,7 +132,7 @@ private fun Project.createWriteSettingsTask(): Provider<WriteCompilerSettings> {
 private fun Project.configureCompilerPlugins() {
     // Pass the uber JAR of the CoreJvm Compiler Plugins so that plugins from
     // all the submodules are available.
-    addUserClasspathDependency(CoreJvmCompiler.artifact)
+    addUserClasspathDependency(Meta.artifact)
 
     val compiler = compilerSettings
     compiler.setSubdirectories()

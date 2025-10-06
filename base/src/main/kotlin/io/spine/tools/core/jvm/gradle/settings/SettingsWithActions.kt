@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import com.google.protobuf.Message
 import com.google.protobuf.stringValue
 import io.spine.tools.compiler.jvm.render.ImplementInterface
@@ -104,8 +104,8 @@ public abstract class SettingsWithActions<S : Message>(
     }
 
     /**
-     * Instructs Model Compiler to use
-     * the [code generation action][io.spine.protodata.render.RenderAction]
+     * Instructs the CoreJvm Compiler to use
+     * the [code generation action][io.spine.tools.compiler.render.RenderAction]
      * specified by the binary name of the class.
      *
      * @param className The binary name of the action class.
@@ -115,8 +115,8 @@ public abstract class SettingsWithActions<S : Message>(
     }
 
     /**
-     * Instructs Model Compiler to use
-     * the [code generation action][io.spine.protodata.render.RenderAction]
+     * Instructs the CoreJvm Compiler to use
+     * the [code generation action][io.spine.tools.compiler.render.RenderAction]
      * specified by the binary name of the class.
      *
      * @param className The binary name of the action class.
@@ -127,8 +127,8 @@ public abstract class SettingsWithActions<S : Message>(
     }
 
     /**
-     * Instructs Model Compiler to use
-     * the [code generation action][io.spine.protodata.renderer.RenderAction]
+     * Instructs the CoreJvm Compiler to use
+     * the [code generation action][io.spine.tools.compiler.render.RenderAction]
      * specified by the binary name of the class.
      *
      * This is a convenience method for creating an action with
@@ -145,8 +145,8 @@ public abstract class SettingsWithActions<S : Message>(
     }
 
     /**
-     * Instructs Model Compiler to apply
-     * [code generation actions][io.spine.protodata.renderer.RenderAction]
+     * Instructs the CoreJvm Compiler to apply
+     * [code generation actions][io.spine.tools.compiler.render.RenderAction]
      * to the code generated for messages of this group.
      *
      * @param classNames The binary names of the action class
@@ -156,8 +156,8 @@ public abstract class SettingsWithActions<S : Message>(
     }
 
     /**
-     * Instructs Model Compiler to apply
-     * [code generation actions][io.spine.protodata.renderer.RenderAction]
+     * Instructs the CoreJvm Compiler to apply
+     * [code generation actions][io.spine.tools.compiler.render.RenderAction]
      * to the code generated for messages of this group.
      *
      * @param classNames The binary names of the action classes

@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.signal
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.core.External
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.event.TypeDiscovered

@@ -35,6 +35,7 @@ include(
     "comparable-tests",
     "entity",
     "entity-tests",
+    "grpc",
     "signal",
     "signal-tests",
     "ksp",

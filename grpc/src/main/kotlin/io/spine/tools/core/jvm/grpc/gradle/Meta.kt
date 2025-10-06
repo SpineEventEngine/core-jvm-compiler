@@ -24,30 +24,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.gradle.plugins
+package io.spine.tools.core.jvm.grpc.gradle
 
-import com.google.protobuf.gradle.ExecutableLocator
-import com.google.protobuf.gradle.GenerateProtoTask
-import io.spine.tools.gradle.ProtocConfigurationPlugin
-import io.spine.tools.gradle.ProtocPluginName.grpc
-import org.gradle.api.NamedDomainObjectContainer
-import org.gradle.api.Project
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.meta.LazyDependency
+import io.spine.tools.meta.LazyMeta
+import io.spine.tools.meta.Module
 
 /**
- * A Gradle plugin that enablers gRPC in a project.
+ * Provides dependencies of this module stored in resources by Artifact Meta Gradle plugin.
+ *
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
-public class EnableGrpcPlugin : ProtocConfigurationPlugin() {
+internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-grpc"))
 
-    override fun configureProtocPlugins(
-        plugins: NamedDomainObjectContainer<ExecutableLocator>,
-        project: Project
-    ) {
-        plugins.create(grpc.name) { locator ->
-            locator.artifact = GrpcProtocPlugin.artifact.coordinates
-        }
-    }
+/**
+ * Dependencies of gRPC Kotlin which [GrpcCoreJvmPlugin] passed to the project
+ * to which it is applied.
+ */
+internal object GrpcKotlin {
 
-    override fun customizeTask(protocTask: GenerateProtoTask) {
-        protocTask.plugins.create(grpc.name)
-    }
+    /**
+     * The Maven group of the artifacts.
+     */
+    private const val group = "io.grpc"
+
+    private fun dependency(artifact: String) = LazyDependency(Meta, Module(group, artifact))
+
+    /**
+     * The artifact of Java gRPC plugin to `protoc`.
+     */
+    internal val javaProtocPlugin = dependency("protoc-gen-grpc-java")
+
+    /**
+     * The artifact of Kotlin gRPC plugin to `protoc`.
+     */
+    internal val kotlinProtocPlugin = dependency("protoc-gen-grpc-kotlin")
+
+    /**
+     * The artifact of the gRPC Stub library.
+     */
+    internal val stubLibrary = dependency("grpc-kotlin-stub")
 }

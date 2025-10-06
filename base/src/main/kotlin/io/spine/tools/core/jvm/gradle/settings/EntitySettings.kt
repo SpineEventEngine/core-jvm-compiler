@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import com.google.common.annotations.VisibleForTesting
+import io.spine.annotation.VisibleForTesting
 import io.spine.annotation.Internal
 import io.spine.option.OptionsProto
 import io.spine.query.EntityStateField
