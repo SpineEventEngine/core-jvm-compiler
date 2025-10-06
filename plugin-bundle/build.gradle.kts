@@ -108,33 +108,37 @@ publishing {
                  * ```
                  */
                 val dependency = Node(dependencies, "dependency")
-                Node(dependency, "groupId", "io.spine.tools")
-                Node(dependency, "artifactId", "compiler-api")
-                Node(dependency, "version", Compiler.version)
-                Node(dependency, "scope", "runtime")
+                dependency.let {
+                    Node(it, "groupId", "io.spine.tools")
+                    Node(it, "artifactId", "compiler-api")
+                    Node(it, "version", Compiler.version)
+                    Node(it, "scope", "runtime")
+                }
 
-                val exclusions = Node(dependency, "exclusions")
-                excludeGroupId(exclusions, "org.jetbrains.kotlin")
-                excludeGroupId(exclusions, "com.google.protobuf")
-                excludeGroupId(exclusions, "io.spine.tools")
+                Node(dependency, "exclusions").let {
+                    excludeGroup(it, "org.jetbrains.kotlin")
+                    excludeGroup(it, "com.google.protobuf")
+                    excludeGroup(it, "io.spine.tools")
+                }
 
                 /*
                  * Add the dependency on Protobuf Gradle Plugin so that we can add it
                  * from our code. The code in `pom.xml` would look like this:
                  * ```
                  * <dependency>
-                 *      <groupId>com.google.protobuf</groupId>
-                 *      <artifactId>protobuf-gradle-plugin</artifactId>
-                 *      <version>${Protobuf.GradlePlugin.version}</version>
-                 *      <scope>runtime</scope>
+                 *     <groupId>com.google.protobuf</groupId>
+                 *     <artifactId>protobuf-gradle-plugin</artifactId>
+                 *     <version>${Protobuf.GradlePlugin.version}</version>
+                 *     <scope>runtime</scope>
                  * </dependency>
                  * ```
                  */
-                val protoDependency = Node(dependencies, "dependency")
-                Node(protoDependency, "groupId", "com.google.protobuf")
-                Node(protoDependency, "artifactId", "protobuf-gradle-plugin")
-                Node(protoDependency, "version", Protobuf.GradlePlugin.version)
-                Node(protoDependency, "scope", "runtime")
+                Node(dependencies, "dependency").let {
+                    Node(it, "groupId", "com.google.protobuf")
+                    Node(it, "artifactId", "protobuf-gradle-plugin")
+                    Node(it, "version", Protobuf.GradlePlugin.version)
+                    Node(it, "scope", "runtime")
+                }
             }
         }
     }
@@ -247,10 +251,11 @@ tasks.shadowJar {
     mergeServiceFiles("META-INF/services/io.spine.option.OptionsProvider")
 }
 
-fun excludeGroupId(exclusions: Node, groupId: String) {
-    val exclusion = Node(exclusions, "exclusion")
-    Node(exclusion, "groupId", groupId)
-    Node(exclusion, "artifactId", "*")
+fun excludeGroup(exclusions: Node, groupId: String) {
+    Node(exclusions, "exclusion").let {
+        Node(it, "groupId", groupId)
+        Node(it, "artifactId", "*")
+    }
 }
 
 /**
