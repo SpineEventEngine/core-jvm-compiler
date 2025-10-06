@@ -26,6 +26,10 @@
 
 package io.spine.tools.core.jvm.gradle.module
 
+import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.api.artifacts.repositories.MavenArtifactRepository
+import org.gradle.kotlin.dsl.maven
+
 /**
  * Custom Maven repository that hosts Spine SDK artifacts.
  */
@@ -33,6 +37,19 @@ package io.spine.tools.core.jvm.gradle.module
 internal object ArtifactRegistry {
 
     private const val baseUrl = "https://europe-maven.pkg.dev/spine-event-engine"
-    const val releases = "$baseUrl/releases"
-    const val snapshots = "$baseUrl/snapshots"
+
+    context(handler: RepositoryHandler)
+    fun releases() = handler.maven("$baseUrl/releases").includeSpineOnly()
+
+    context(handler: RepositoryHandler)
+    fun snapshots() = handler.maven("$baseUrl/snapshots").includeSpineOnly()
+}
+
+/**
+ * Narrows down the search for this repository to Spine-related artifact groups.
+ */
+private fun MavenArtifactRepository.includeSpineOnly() {
+    content {
+        it.includeGroupByRegex("io\\.spine.*")
+    }
 }

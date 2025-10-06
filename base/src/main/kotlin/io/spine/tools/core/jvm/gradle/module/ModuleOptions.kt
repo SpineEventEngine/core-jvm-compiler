@@ -30,7 +30,6 @@ import io.spine.tools.core.jvm.gradle.CoreJvm
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
-import org.gradle.kotlin.dsl.maven
 import org.gradle.kotlin.dsl.repositories
 
 /**
@@ -42,15 +41,16 @@ public abstract class ModuleOptions @Inject constructor(private val project: Pro
 
     init {
         kind.convention(ModuleKind.SERVER)
+        addRepositories()
         project.afterEvaluate {
-            addRepositories()
             applyDependencies()
         }
     }
+
     private fun addRepositories() {
         project.repositories {
-            maven(ArtifactRegistry.releases)
-            maven(ArtifactRegistry.snapshots)
+            ArtifactRegistry.releases()
+            ArtifactRegistry.snapshots()
             mavenCentral()
         }
     }
