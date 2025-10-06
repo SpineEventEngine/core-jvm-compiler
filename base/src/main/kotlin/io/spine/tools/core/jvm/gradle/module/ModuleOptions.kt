@@ -48,10 +48,9 @@ public abstract class ModuleOptions @Inject constructor(private val project: Pro
         }
     }
     private fun addRepositories() {
-        val artifactRegistryBaseUrl = "https://europe-maven.pkg.dev/spine-event-engine"
         project.repositories {
-            maven("$artifactRegistryBaseUrl/releases")
-            maven("$artifactRegistryBaseUrl/snapshots")
+            maven(ArtifactRegistry.releases)
+            maven(ArtifactRegistry.snapshots)
             mavenCentral()
         }
     }
