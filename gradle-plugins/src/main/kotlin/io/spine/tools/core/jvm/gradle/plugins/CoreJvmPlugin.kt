@@ -73,7 +73,8 @@ public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
  */
 private fun Project.applyProtobufPlugin() {
     if (!pluginManager.hasPlugin(ProtobufGradlePlugin.id)) {
-        // We carry the plugin in the fat JAR, so it will be available.
+        // We carry the plugin as a runtime dependency of the fat JAR.
+        // So it will be available in the build classpath and found by the ID.
         pluginManager.apply(ProtobufGradlePlugin.id)
     }
 }
@@ -91,7 +92,8 @@ private fun Project.logApplying() {
 }
 
 /**
- * Creates all the plugins that are parts of the CoreJvm Compiler and applies them to this project.
+ * Creates all the plugins that are parts of the CoreJvm Compiler and
+ * applies them to this project.
  */
 private fun Project.createAndApplyPlugins() {
     val plugins: List<Plugin<Project>> = listOf(
