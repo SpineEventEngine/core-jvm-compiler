@@ -123,8 +123,7 @@ public object KotlinGradlePlugin {
 }
 
 /**
- * The dependency on Protobuf Gradle Plugin used when setting
- * the version of the plugin in integration tests.
+ * The dependency on Protobuf Gradle Plugin.
  */
 public object ProtobufGradlePlugin {
 
@@ -133,14 +132,19 @@ public object ProtobufGradlePlugin {
      */
     public const val id: String = "com.google.protobuf"
 
+    /**
+     * This module is used when setting the version of the plugin in integration tests.
+     *
+     * We do not have a dependency on the plugin from this (`gradle-plugins`) module.
+     * Instead, a `runtime` Maven dependency on the Protobuf Plugin is added in
+     * `plugin-bundle` module, which produces fat JAR artifact.
+     */
     private val module = Module("com.google.protobuf", "protobuf-gradle-plugin")
     private val dependency: LazyDependency = LazyDependency(Meta, module)
 
     /**
      * The version of the plugin.
      */
+    @VisibleForTesting
     public val version: String = dependency.artifact.version
-
-    public val coordinates: String
-        get() = dependency.artifact.coordinates
 }
