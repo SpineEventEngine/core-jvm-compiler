@@ -47,7 +47,7 @@ internal object CoreJvm {
     private fun dependency(artifact: String) = LazyDependency(Meta, Module(group, artifact))
 
     /**
-     * The the CoreJvm Server artifact.
+     * The CoreJvm Server artifact.
      */
     internal val server = dependency("spine-server")
 
