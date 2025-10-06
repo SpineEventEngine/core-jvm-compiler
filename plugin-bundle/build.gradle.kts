@@ -160,14 +160,15 @@ tasks.publish {
 tasks.shadowJar {
     exclude(
         /**
-         * Exclude Kotlin runtime because it will be provided by Gradle runtime.
+         * Exclude Kotlin runtime because it will be provided by the Gradle runtime.
          */
         "kotlin/**",
         "kotlinx/**",
 
         /**
          * The Protobuf Gradle Plugin will be available in the classpath because
-         * CoreJvm Gradle Plugin is applied after it.
+         * fat JAR has Maven `runtime` dependency on it.
+         * Please see manipulations with `pom.xml` below.
          */
         "com/google/protobuf/gradle/**",
         "META-INF/gradle-plugins/com.google.protobuf.properties",
