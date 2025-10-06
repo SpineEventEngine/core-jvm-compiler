@@ -43,7 +43,7 @@ import org.junit.jupiter.api.io.TempDir
 class CoreJvmPluginIgTest {
 
     companion object {
-        private val buildscriptBlock = """
+        private val buildscriptWithClasspathDependency = """
             |buildscript {
             |    repositories {
             |        mavenLocal()
@@ -52,7 +52,18 @@ class CoreJvmPluginIgTest {
             |        mavenCentral()
             |    }
             |    dependencies {
-            |        classpath("io.spine.tools:core-jvm-plugins:${Meta.artifact.version}:all")
+            |        classpath("io.spine.tools:core-jvm-plugins:${Meta.artifact.version}")
+            |    }
+            |}
+            |""".trimMargin()
+
+        private val buildscript = """
+            |buildscript {
+            |    repositories {
+            |        mavenLocal()
+            |        maven { url = uri("${ArtifactRegistry.releases}") }
+            |        maven { url = uri("${ArtifactRegistry.snapshots}") }
+            |        mavenCentral()
             |    }
             |}
             |""".trimMargin()
@@ -61,11 +72,21 @@ class CoreJvmPluginIgTest {
             |rootProject.name = "core-jvm-plugin-ig-test"
         """.trimMargin()
 
+        val settingsWithRepositories = """
+            |rootProject.name = "core-jvm-plugin-ig-test"
+            |pluginManagement {
+            |    repositories {
+            |        gradlePluginPortal()
+            |        mavenLocal()
+            |        mavenCentral()
+            |    }
+            |}
+        """.trimMargin()
     }
 
     @Test
     fun `apply to a single-module project via classpath`(@TempDir projectDir: File) {
-        val buildFile = buildscriptBlock + """
+        val buildFile = buildscriptWithClasspathDependency + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
@@ -97,7 +118,7 @@ class CoreJvmPluginIgTest {
     fun `apply Protobuf Gradle Plugin automatically, if not yet applied`(
         @TempDir projectDir: File
     ) {
-        val buildFile = buildscriptBlock + """
+        val buildFile = buildscriptWithClasspathDependency + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
@@ -125,30 +146,31 @@ class CoreJvmPluginIgTest {
     }
 
     @Test
-    @Disabled("Until plugin publishing is compared with those of `artifact-meta` and fixed")
+    @Disabled("Until fat JAR has all the new dependencies of `Logging` e.g. kotlinx-datetime")
     fun `be available via its ID and version`(@TempDir projectDir: File) {
-        val buildFile = buildscriptBlock + """
+        val buildFile = buildscript + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
+            |    id("com.google.protobuf").version("${ProtobufGradlePlugin.version}")
             |    id("io.spine.core-jvm") version "${Meta.artifact.version}"
+            |}
+            |
+            |group = "io.spine.tools.tests"
+            |version = "1.0.0-SNAPSHOT"
+            |
+            |repositories {
+            |    mavenLocal()
+            |    maven { url = uri("${ArtifactRegistry.releases}") }
+            |    maven { url = uri("${ArtifactRegistry.snapshots}") }
+            |    mavenCentral()
             |}
             |
         """.trimMargin()
 
-        val settingsFileWithCustomRepository = """
-            |rootProject.name = "core-jvm-plugin-ig-test"
-            |pluginManagement {
-            |    repositories {
-            |        mavenLocal()
-            |        mavenCentral()
-            |    }
-            |}
-        """.trimMargin()
-
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
-            .addFile("settings.gradle.kts", settingsFileWithCustomRepository.lines())
+            .addFile("settings.gradle.kts", settingsWithRepositories.lines())
             .addFile("build.gradle.kts", buildFile.lines())
             .create()
         val task = BaseTaskName.build
