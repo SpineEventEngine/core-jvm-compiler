@@ -126,8 +126,12 @@ public object KotlinGradlePlugin {
  * The dependency on Protobuf Gradle Plugin used when setting
  * the version of the plugin in integration tests.
  */
-@VisibleForTesting
 public object ProtobufGradlePlugin {
+
+    /**
+     * The ID of the plugin.
+     */
+    public const val id: String = "com.google.protobuf"
 
     private val module = Module("com.google.protobuf", "protobuf-gradle-plugin")
     private val dependency: LazyDependency = LazyDependency(Meta, module)
@@ -136,4 +140,7 @@ public object ProtobufGradlePlugin {
      * The version of the plugin.
      */
     public val version: String = dependency.artifact.version
+
+    public val coordinates: String
+        get() = dependency.artifact.coordinates
 }

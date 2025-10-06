@@ -25,6 +25,7 @@
  */
 
 import groovy.util.Node
+import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
@@ -101,6 +102,12 @@ publishing {
              *              </exclusion>
              *         </exclusions>
              *    </dependency>
+             *     <dependency>
+             *         <groupId>com.google.protobuf</groupId>
+             *         <artifactId>protobuf-gradle-plugin</artifactId>
+             *         <version>${Protobuf.GradlePlugin.version}</version>
+             *         <scope>runtime</scope>
+             *    </dependency>
              * ```
              */
             pom.withXml {
@@ -116,6 +123,13 @@ publishing {
                 excludeGroupId(exclusions, "org.jetbrains.kotlin")
                 excludeGroupId(exclusions, "com.google.protobuf")
                 excludeGroupId(exclusions, "io.spine.tools")
+
+                val protoDependency = Node(dependencies, "dependency")
+                Node(protoDependency, "groupId", "com.google.protobuf")
+                Node(protoDependency, "artifactId", "protobuf-gradle-plugin")
+                Node(protoDependency, "version", Protobuf.GradlePlugin.version)
+                Node(protoDependency, "scope", "runtime")
+
             }
         }
     }
@@ -147,6 +161,7 @@ tasks.shadowJar {
          * CoreJvm Gradle Plugin is applied after it.
          */
         "com/google/protobuf/gradle/**",
+        "META-INF/gradle-plugins/com.google.protobuf.properties",
 
         /**
          * Excluding these types to avoid clashes at user's build classpath.
@@ -179,12 +194,14 @@ tasks.shadowJar {
 //        "io/spine/tools/compiler/protoc/**",
 //        "spine/compiler/**",
 
-        // Protobuf definitions
-        "spine/protodata/**",
-
+        // TODO: Uncomment these as well once the Spine Compiler is ready.
         // Plugin declaration
         "META-INF/gradle-plugins/io.spine.protodata.properties",
 //      "META-INF/gradle-plugins/io.spine.compiler.properties",
+
+
+        // Protobuf definitions
+        "spine/protodata/**",
 
         /**
          * Exclude Gradle types to reduce the size of the resulting JAR.
