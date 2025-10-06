@@ -357,34 +357,29 @@ all modules and does not describe the project structure per-subproject.
     <version>1.23.8</version>
   </dependency>
   <dependency>
-    <groupId>io.grpc</groupId>
-    <artifactId>protoc-gen-grpc-java</artifactId>
-    <version>1.72.0</version>
-  </dependency>
-  <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-cli-all</artifactId>
-    <version>2.0.0-SNAPSHOT.022</version>
+    <version>2.0.0-SNAPSHOT.023</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-protoc-plugin</artifactId>
-    <version>2.0.0-SNAPSHOT.022</version>
+    <version>2.0.0-SNAPSHOT.023</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-gradle-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.010</version>
+    <version>2.0.0-SNAPSHOT.012</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.010</version>
+    <version>2.0.0-SNAPSHOT.012</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-routing</artifactId>
-    <version>2.0.0-SNAPSHOT.010</version>
+    <version>2.0.0-SNAPSHOT.012</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
