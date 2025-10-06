@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm.gradle.module
 
+import io.spine.annotation.VisibleForTesting
 import org.gradle.api.artifacts.dsl.RepositoryHandler
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
@@ -33,16 +34,39 @@ import org.gradle.kotlin.dsl.maven
 /**
  * Custom Maven repository that hosts Spine SDK artifacts.
  */
+@VisibleForTesting
 @Suppress("ConstPropertyName")
-internal object ArtifactRegistry {
+public object ArtifactRegistry {
 
-    private const val baseUrl = "https://europe-maven.pkg.dev/spine-event-engine"
+    private const val baseUrl: String = "https://europe-maven.pkg.dev/spine-event-engine"
 
+    /**
+     * The URL of the repository with releases.
+     */
+    @VisibleForTesting
+    public const val releases: String = "$baseUrl/releases"
+
+    /**
+     * The URL of the repository with snapshots.
+     */
+    @VisibleForTesting
+    public const val snapshots: String = "$baseUrl/snapshots"
+
+    /**
+     * Adds the releases repository which handles Spine-only artifacts.
+     */
     context(handler: RepositoryHandler)
-    fun releases() = handler.maven("$baseUrl/releases").includeSpineOnly()
+    internal fun releases() {
+        handler.maven(releases).includeSpineOnly()
+    }
 
+    /**
+     * Adds the snapshots repository which handles Spine-only artifacts.
+     */
     context(handler: RepositoryHandler)
-    fun snapshots() = handler.maven("$baseUrl/snapshots").includeSpineOnly()
+    internal fun snapshots() {
+        handler.maven(snapshots).includeSpineOnly()
+    }
 }
 
 /**
