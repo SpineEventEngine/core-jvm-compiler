@@ -129,7 +129,6 @@ publishing {
                 Node(protoDependency, "artifactId", "protobuf-gradle-plugin")
                 Node(protoDependency, "version", Protobuf.GradlePlugin.version)
                 Node(protoDependency, "scope", "runtime")
-
             }
         }
     }
