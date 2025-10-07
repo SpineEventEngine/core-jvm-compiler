@@ -164,7 +164,7 @@ class CoreJvmPluginIgTest {
             |    mavenCentral()
             |}
             |
-        """.trimMargin()
+            |""".trimMargin()
 
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
