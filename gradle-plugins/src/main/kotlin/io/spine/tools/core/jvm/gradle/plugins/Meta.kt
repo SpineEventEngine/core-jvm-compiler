@@ -149,6 +149,9 @@ public object ProtobufGradlePlugin {
     public val version: String = dependency.artifact.version
 }
 
+/**
+ * The dependency on KSP Gradle Plugin.
+ */
 public object KspGradlePlugin {
 
     /**
@@ -158,10 +161,6 @@ public object KspGradlePlugin {
 
     /**
      * This module is used when setting the version of the plugin in integration tests.
-     *
-     * We do not have a dependency on the plugin from this (`gradle-plugins`) module.
-     * Instead, a `runtime` Maven dependency on the Protobuf Plugin is added in
-     * `plugin-bundle` module, which produces fat JAR artifact.
      */
     private val module = Module("com.google.devtools.ksp", "symbol-processing-gradle-plugin")
     private val dependency: LazyDependency = LazyDependency(Meta, module)

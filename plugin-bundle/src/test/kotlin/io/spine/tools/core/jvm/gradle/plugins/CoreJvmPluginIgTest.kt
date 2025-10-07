@@ -158,8 +158,8 @@ class CoreJvmPluginIgTest {
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
-            |    id(${ProtobufGradlePlugin.id}) version "${ProtobufGradlePlugin.version}"
-            |    id(${KspGradlePlugin.id}) version "${KspGradlePlugin.version}"
+            |    id("${ProtobufGradlePlugin.id}") version "${ProtobufGradlePlugin.version}"
+            |    id("${KspGradlePlugin.id}) version "${KspGradlePlugin.version}"
             |    id("io.spine.core-jvm") version "${Meta.artifact.version}"
             |}
             |
