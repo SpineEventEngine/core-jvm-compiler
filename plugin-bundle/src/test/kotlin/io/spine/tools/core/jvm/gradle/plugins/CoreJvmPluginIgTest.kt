@@ -34,6 +34,7 @@ import io.spine.tools.gradle.testing.GradleProject
 import io.spine.tools.gradle.testing.get
 import java.io.File
 import org.gradle.testkit.runner.TaskOutcome
+import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
@@ -42,6 +43,7 @@ import org.junit.jupiter.api.io.TempDir
 class CoreJvmPluginIgTest {
 
     companion object {
+        @Language("kotlin")
         private val buildscriptWithClasspathDependency = """
             |buildscript {
             |    repositories {
@@ -56,6 +58,7 @@ class CoreJvmPluginIgTest {
             |}
             |""".trimMargin()
 
+        @Language("kotlin")
         private val buildscript = """
             |buildscript {
             |    repositories {
@@ -67,10 +70,12 @@ class CoreJvmPluginIgTest {
             |}
             |""".trimMargin()
 
+        @Language("kotlin")
         private val settingsFile = """
             |rootProject.name = "core-jvm-plugin-ig-test"
         """.trimMargin()
 
+        @Language("kotlin")
         val settingsWithRepositories = """
             |rootProject.name = "core-jvm-plugin-ig-test"
             |pluginManagement {
@@ -85,6 +90,7 @@ class CoreJvmPluginIgTest {
 
     @Test
     fun `apply to a single-module project via classpath`(@TempDir projectDir: File) {
+        @Language("kotlin")
         val buildFile = buildscriptWithClasspathDependency + """
             |plugins {
             |    java
@@ -117,6 +123,7 @@ class CoreJvmPluginIgTest {
     fun `apply Protobuf Gradle Plugin automatically, if not yet applied`(
         @TempDir projectDir: File
     ) {
+        @Language("kotlin")
         val buildFile = buildscriptWithClasspathDependency + """
             |plugins {
             |    java
@@ -146,6 +153,7 @@ class CoreJvmPluginIgTest {
 
     @Test
     fun `be available via its ID and version`(@TempDir projectDir: File) {
+        @Language("kotlin")
         val buildFile = buildscript + """
             |plugins {
             |    java
