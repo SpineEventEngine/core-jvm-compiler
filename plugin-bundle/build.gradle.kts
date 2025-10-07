@@ -221,17 +221,6 @@ fun JarFile.entriesAsSet(): Set<String> = sequence {
     }
 }.toSet()
 
-val intellijPlatformJar = JarFile(intellijPlatform.files.single())
-val intellijPlatformJavaJar = JarFile(intellijPlatformJava.files.single())
-
-val pathsToExcludeProvider = providers.provider<Set<String>> {
-    intellijPlatformJar.use { p ->
-        intellijPlatformJavaJar.use { pj ->
-            p.entriesAsSet() + pj.entriesAsSet()
-        }
-    }
-}
-
 tasks.shadowJar {
     // Exclude files that are already provided by the IntelliJ Platform artifacts
     // from ToolBase so that we don't duplicate them in the fat JAR.
@@ -240,6 +229,17 @@ tasks.shadowJar {
 
     // Resolve lazily at task execution time to avoid unnecessary resolution during configuration.
     doFirst {
+        val intellijPlatformJar = JarFile(intellijPlatform.files.single())
+        val intellijPlatformJavaJar = JarFile(intellijPlatformJava.files.single())
+
+        val pathsToExcludeProvider = providers.provider<Set<String>> {
+            intellijPlatformJar.use { p ->
+                intellijPlatformJavaJar.use { pj ->
+                    p.entriesAsSet() + pj.entriesAsSet()
+                }
+            }
+        }
+
         // We still need Google Guava's types.
         pathsToExclude = pathsToExcludeProvider.get().filter {
             !(it.contains("com/google/common") || it.contains("com/google/thirdparty"))
