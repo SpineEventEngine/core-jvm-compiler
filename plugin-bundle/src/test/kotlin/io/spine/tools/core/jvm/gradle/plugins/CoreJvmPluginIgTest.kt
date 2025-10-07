@@ -171,7 +171,6 @@ class CoreJvmPluginIgTest {
             |    maven { url = uri("${ArtifactRegistry.snapshots}") }
             |    mavenCentral()
             |}
-            |
             |""".trimMargin()
 
         val project = GradleProject.setupAt(projectDir)
