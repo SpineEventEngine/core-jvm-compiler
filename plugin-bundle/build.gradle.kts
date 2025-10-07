@@ -269,9 +269,12 @@ tasks.shadowJar {
         "resources/com/pty4j/**",
     )
 
-    setZip64(true)  /* The archive has way too many items. So using the Zip64 mode. */
+    /* The archive has way too many items. So using the Zip64 mode. */
+    setZip64(true)
+
+    /* Prevent Gradle setting something like `osx-x86_64`. */
     archiveClassifier.set("")
-    /** To prevent Gradle setting something like `osx-x86_64`. */
+
     mergeServiceFiles("desc.ref")
     mergeServiceFiles("META-INF/services/io.spine.option.OptionsProvider")
 }
@@ -295,9 +298,10 @@ gradlePlugin {
     vcsUrl.set("https://github.com/SpineEventEngine/core-jvm-compiler.git")
     plugins {
         val pluginTags = listOf(
-            "codegen",
             "ddd",
+            "codegen",
             "java",
+            "kotlin",
             "jvm"
         )
 
