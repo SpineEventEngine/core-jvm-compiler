@@ -80,7 +80,7 @@ class CoreJvmPluginIgTest {
             |        mavenCentral()
             |    }
             |}
-        """.trimMargin()
+            |""".trimMargin()
     }
 
     @Test
@@ -102,7 +102,7 @@ class CoreJvmPluginIgTest {
             |        println("`CoreJvmPlugin` applied via `classpath` successfully.")
             |    }
             |}
-        """.trimMargin()
+            |""".trimMargin()
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
             .addFile("settings.gradle.kts", settingsFile.lines())
@@ -133,7 +133,7 @@ class CoreJvmPluginIgTest {
             |        println("`CoreJvmPlugin` applied via `classpath` successfully.")
             |    }
             |}
-        """.trimMargin()
+            |""".trimMargin()
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
             .addFile("settings.gradle.kts", settingsFile.lines())
