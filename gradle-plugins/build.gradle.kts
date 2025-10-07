@@ -24,6 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
@@ -54,6 +55,7 @@ artifactMeta {
         // These dependencies are written for integration tests.
         Kotlin.GradlePlugin.lib,
         Protobuf.GradlePlugin.lib,
+        Ksp.artifact(Ksp.gradlePlugin),
     )
     excludeConfigurations {
         containing(*buildToolConfigurations)

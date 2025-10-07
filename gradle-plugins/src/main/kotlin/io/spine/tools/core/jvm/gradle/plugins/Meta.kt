@@ -148,3 +148,26 @@ public object ProtobufGradlePlugin {
     @VisibleForTesting
     public val version: String = dependency.artifact.version
 }
+
+/**
+ * The dependency on KSP Gradle Plugin.
+ */
+public object KspGradlePlugin {
+
+    /**
+     * The ID of the plugin.
+     */
+    public const val id: String = "com.google.devtools.ksp"
+
+    /**
+     * This module is used when setting the version of the plugin in integration tests.
+     */
+    private val module = Module("com.google.devtools.ksp", "symbol-processing-gradle-plugin")
+    private val dependency: LazyDependency = LazyDependency(Meta, module)
+
+    /**
+     * The version of the plugin.
+     */
+    @VisibleForTesting
+    public val version: String = dependency.artifact.version
+}

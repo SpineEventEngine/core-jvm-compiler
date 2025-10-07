@@ -25,12 +25,14 @@
  */
 
 import groovy.util.Node
+import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.SpinePublishing
+import java.util.jar.JarFile
 
 plugins {
     `maven-publish`
@@ -49,6 +51,20 @@ val spinePublishing = rootProject.the<SpinePublishing>()
  */
 val projectArtifact = spinePublishing.artifactPrefix + "plugins"
 
+// Resolvable configurations to obtain IntelliJ Platform artifacts
+// without bringing them as runtime deps.
+val intellijPlatform: Configuration by configurations.creating {
+    isCanBeConsumed = false
+    isCanBeResolved = true
+    isTransitive = false
+}
+
+val intellijPlatformJava: Configuration by configurations.creating {
+    isCanBeConsumed = false
+    isCanBeResolved = true
+    isTransitive = false
+}
+
 dependencies {
     implementation(project(":gradle-plugins"))
 
@@ -61,6 +77,10 @@ dependencies {
     ).forEach {
         testImplementation(it)
     }
+
+    // Add IntelliJ Platform artifacts to dedicated resolvable configurations.
+    add(intellijPlatform.name, ToolBase.intellijPlatform)
+    add(intellijPlatformJava.name, ToolBase.intellijPlatformJava)
 }
 
 @Suppress("unused")
@@ -157,6 +177,24 @@ publishing {
                     Node(it, "version", Protobuf.GradlePlugin.version)
                     Node(it, "scope", "runtime")
                 }
+                /*
+                 * Add the dependency on KSP Gradle Plugin as well.
+                 * The expected XML output:
+                 * ```
+                 * <dependency>
+                 *     <groupId>${Ksp.group}</groupId>
+                 *     <artifactId>${Ksp.gradlePluginArtifactName}</artifactId>
+                 *     <version>${Ksp.version}</version>
+                 *     <scope>runtime</scope>
+                 * </dependency>
+                 * ```
+                 */
+                Node(dependencies, "dependency").let {
+                    Node(it, "groupId", Ksp.group)
+                    Node(it, "artifactId", Ksp.gradlePluginArtifactName)
+                    Node(it, "version", Ksp.version)
+                    Node(it, "scope", "runtime")
+                }
             }
         }
     }
@@ -176,7 +214,37 @@ tasks.publish {
     dependsOn(publishPlugins)
 }
 
+fun JarFile.entriesAsSet(): Set<String> = entries().asSequence().map { it.name }.toSet()
+
 tasks.shadowJar {
+    // Exclude files that are already provided by the IntelliJ Platform artifacts
+    // from ToolBase so that we don't duplicate them in the fat JAR.
+
+    var pathsToExclude = setOf<String>()
+
+    // Resolve lazily at task execution time to avoid unnecessary resolution during configuration.
+    doFirst {
+        val ijPlatformJar = JarFile(intellijPlatform.files.single())
+        val ijPlatformJavaJar = JarFile(intellijPlatformJava.files.single())
+
+        val filesCombined =
+            ijPlatformJar.use { pJar ->
+                ijPlatformJavaJar.use { pjJar ->
+                    pJar.entriesAsSet() + pjJar.entriesAsSet()
+                }
+            }
+
+        // We still need Google Guava's types.
+        pathsToExclude = filesCombined.filter {
+            !(it.contains("com/google/common")
+                    || it.contains("com/google/thirdparty"))
+        }.toSet()
+    }
+
+    exclude {
+        it.path in pathsToExclude
+    }
+
     exclude(
         /*
          * Exclude Kotlin runtime because it will be provided by the Gradle runtime.
@@ -242,6 +310,14 @@ tasks.shadowJar {
          * Those required for the plugins are available at runtime anyway.
          */
         "org/gradle/**",
+
+        // These types should be available at run-time via Kotlin compiler.
+        "ksp/**",
+        "com/google/devtools/ksp/**",
+
+        // Do not declare third-party Gradle plugins,
+        // especially those stripped above.
+        "META-INF/gradle-plugins/com.google**",
 
         // Exclude license files that cause or may cause issues with LicenseReport.
         // We analyze these files when building artifacts we depend on.
