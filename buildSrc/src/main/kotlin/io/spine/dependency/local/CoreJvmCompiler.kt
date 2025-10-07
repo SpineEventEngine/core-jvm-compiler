@@ -68,6 +68,7 @@ object CoreJvmCompiler {
      *
      * This is the notation before the version `2.0.0-SNAPSHOT.013`
      */
+    @Deprecated("Use `pluginLibNew()` instead.")
     fun pluginLib(version: String): String = "$group:core-jvm-plugins:$version:all"
 
     /**
