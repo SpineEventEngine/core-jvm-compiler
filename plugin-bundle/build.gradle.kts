@@ -78,11 +78,6 @@ afterEvaluate {
     val testFixturesJar by tasks.getting {
         enabled = false
     }
-
-    // There's `shadowJar` task instead.
-    val jar: Task by tasks.getting {
-        enabled = false
-    }
 }
 
 publishing {
@@ -183,21 +178,25 @@ tasks.publish {
 
 tasks.shadowJar {
     exclude(
-        /**
+        /*
          * Exclude Kotlin runtime because it will be provided by the Gradle runtime.
          */
         "kotlin/**",
-        "kotlinx/**",
 
-        /**
+        /*
+         * Exclude Coroutines. They also will be present. The rest of `kotlinx` should stay.
+         */
+        "kotlinx/coroutines/**",
+
+        /*
          * The Protobuf Gradle Plugin will be available in the classpath because
-         * fat JAR has Maven `runtime` dependency on it.
+         * fat JAR has the Maven `runtime` dependency on it.
          * Please see manipulations with `pom.xml` below.
          */
         "com/google/protobuf/gradle/**",
         "META-INF/gradle-plugins/com.google.protobuf.properties",
 
-        /**
+        /*
          * Excluding these types to avoid clashes at user's build classpath.
          *
          * The ProtoData plugin will be added to the user's build via a dependency.

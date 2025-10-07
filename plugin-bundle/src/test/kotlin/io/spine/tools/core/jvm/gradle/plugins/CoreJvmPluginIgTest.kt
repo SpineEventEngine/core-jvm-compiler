@@ -146,13 +146,12 @@ class CoreJvmPluginIgTest {
     }
 
     @Test
-    @Disabled("Until fat JAR has all the new dependencies of `Logging` e.g. kotlinx-datetime")
     fun `be available via its ID and version`(@TempDir projectDir: File) {
         val buildFile = buildscript + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
-            |    id("com.google.protobuf").version("${ProtobufGradlePlugin.version}")
+            |    id("com.google.protobuf") version "${ProtobufGradlePlugin.version}"
             |    id("io.spine.core-jvm") version "${Meta.artifact.version}"
             |}
             |
