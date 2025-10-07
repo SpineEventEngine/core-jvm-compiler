@@ -241,7 +241,9 @@ tasks.shadowJar {
     // Resolve lazily at task execution time to avoid unnecessary resolution during configuration.
     doFirst {
         // We still need Google Guava's types.
-        pathsToExclude = pathsToExcludeProvider.get().filter { !it.contains("com/google") }.toSet()
+        pathsToExclude = pathsToExcludeProvider.get().filter {
+            !(it.contains("com/google/common") || it.contains("com/google/thirdparty"))
+        }.toSet()
     }
 
     exclude {
