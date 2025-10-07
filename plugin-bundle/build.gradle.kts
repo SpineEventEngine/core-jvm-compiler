@@ -214,12 +214,7 @@ tasks.publish {
     dependsOn(publishPlugins)
 }
 
-fun JarFile.entriesAsSet(): Set<String> = sequence {
-    val e = entries()
-    while (e.hasMoreElements()) {
-        yield(e.nextElement().name)
-    }
-}.toSet()
+fun JarFile.entriesAsSet(): Set<String> = entries().asSequence().map { it.name }.toSet()
 
 tasks.shadowJar {
     // Exclude files that are already provided by the IntelliJ Platform artifacts
