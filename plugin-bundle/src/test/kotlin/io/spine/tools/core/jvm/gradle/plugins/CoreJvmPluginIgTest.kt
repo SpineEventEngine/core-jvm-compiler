@@ -34,7 +34,6 @@ import io.spine.tools.gradle.testing.GradleProject
 import io.spine.tools.gradle.testing.get
 import java.io.File
 import org.gradle.testkit.runner.TaskOutcome
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
