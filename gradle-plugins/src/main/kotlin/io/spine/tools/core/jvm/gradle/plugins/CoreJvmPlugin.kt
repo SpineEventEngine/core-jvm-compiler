@@ -35,7 +35,6 @@ import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
-import io.spine.tools.gradle.protobuf.ProtobufDependencies
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -53,17 +52,30 @@ public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
         /**
          * The ID of the Gradle plugin.
          *
-         * Please make sure it is sync with the name of the file
-         * under `resources/META-INF/`.
+         * Make sure it is sync with the name of the file under `resources/META-INF/`.
          */
         public const val ID: String = "io.spine.core-jvm"
     }
 
     public override fun apply(project: Project) {
         super.apply(project)
-        project.pluginManager.withPlugin(ProtobufDependencies.gradlePlugin.id) { _ ->
-            project.applyCoreJvmPlugins()
+        project.run {
+            applyProtobufPlugin()
+            pluginManager.withPlugin(ProtobufGradlePlugin.id) { _ ->
+                applyCoreJvmPlugins()
+            }
         }
+    }
+}
+
+/**
+ * Applies [ProtobufGradlePlugin] if it has not been applied yet.
+ */
+private fun Project.applyProtobufPlugin() {
+    if (!pluginManager.hasPlugin(ProtobufGradlePlugin.id)) {
+        // We carry the plugin as a runtime dependency of the fat JAR.
+        // So it will be available in the build classpath and found by the ID.
+        pluginManager.apply(ProtobufGradlePlugin.id)
     }
 }
 
@@ -80,7 +92,8 @@ private fun Project.logApplying() {
 }
 
 /**
- * Creates all the plugins that are parts of the CoreJvm Compiler and applies them to this project.
+ * Creates all the plugins that are parts of the CoreJvm Compiler and
+ * applies them to this project.
  */
 private fun Project.createAndApplyPlugins() {
     val plugins: List<Plugin<Project>> = listOf(

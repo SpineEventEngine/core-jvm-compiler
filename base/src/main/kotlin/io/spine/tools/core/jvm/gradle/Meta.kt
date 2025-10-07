@@ -24,10 +24,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+package io.spine.tools.core.jvm.gradle
+
+import io.spine.tools.meta.LazyDependency
+import io.spine.tools.meta.LazyMeta
+import io.spine.tools.meta.Module
+
 /**
- * The version of modules to publish.
+ * Provides dependencies of this module stored in resources by Artifact Meta Gradle plugin.
  *
- * Do not rename this property, as it is also used in the integration tests via its name.
+ * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
-val coreJvmCompilerVersion by extra("2.0.0-SNAPSHOT.013")
-val versionToPublish by extra(coreJvmCompilerVersion)
+internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-base"))
+
+internal object CoreJvm {
+
+    /**
+     * The group of the CoreJvm Library artifacts.
+     */
+    private const val group = "io.spine"
+
+    private fun dependency(artifact: String) = LazyDependency(Meta, Module(group, artifact))
+
+    /**
+     * The CoreJvm Server artifact.
+     */
+    internal val server = dependency("spine-server")
+
+    /**
+     * The CoreJvm Client artifact.
+     */
+    internal val client = dependency("spine-client")
+}

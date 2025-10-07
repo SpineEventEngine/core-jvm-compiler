@@ -30,8 +30,8 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.annotation.VisibleForTesting
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
-import io.spine.tools.core.jvm.gradle.plugins.Meta.artifact
 import io.spine.tools.core.jvm.gradle.plugins.ValidationSdk.javaCodegenBundle
+import io.spine.tools.meta.LazyDependency
 import io.spine.tools.meta.LazyMeta
 import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
@@ -104,4 +104,47 @@ internal object ValidationSdk {
     @JvmStatic
     fun configuration(version: String = ""): MavenArtifact =
         Meta.dependency(configuration).withVersion(version)
+}
+
+/**
+ * The dependency on Kotlin Gradle Plugin used when setting
+ * the version of the plugin in integration tests.
+ */
+@VisibleForTesting
+public object KotlinGradlePlugin {
+
+    private val module = Module("org.jetbrains.kotlin", "kotlin-gradle-plugin")
+    private val dependency: LazyDependency = LazyDependency(Meta, module)
+
+    /**
+     * The version of the plugin.
+     */
+    public val version: String = dependency.artifact.version
+}
+
+/**
+ * The dependency on Protobuf Gradle Plugin.
+ */
+public object ProtobufGradlePlugin {
+
+    /**
+     * The ID of the plugin.
+     */
+    public const val id: String = "com.google.protobuf"
+
+    /**
+     * This module is used when setting the version of the plugin in integration tests.
+     *
+     * We do not have a dependency on the plugin from this (`gradle-plugins`) module.
+     * Instead, a `runtime` Maven dependency on the Protobuf Plugin is added in
+     * `plugin-bundle` module, which produces fat JAR artifact.
+     */
+    private val module = Module("com.google.protobuf", "protobuf-gradle-plugin")
+    private val dependency: LazyDependency = LazyDependency(Meta, module)
+
+    /**
+     * The version of the plugin.
+     */
+    @VisibleForTesting
+    public val version: String = dependency.artifact.version
 }

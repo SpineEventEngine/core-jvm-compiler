@@ -107,7 +107,11 @@ private object BuildSettings {
 }
 
 spinePublishing {
+    val pluginBundleModule = "plugin-bundle"
     modules = productionModules.map { it.name }.toSet()
+    modulesWithCustomPublishing = setOf(
+        pluginBundleModule
+    )
     destinations = PublishingRepos.run {
         setOf(
             cloudArtifactRegistry,

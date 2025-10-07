@@ -25,14 +25,18 @@
  */
 
 import groovy.util.Node
+import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
+import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.SpinePublishing
 
 plugins {
     `maven-publish`
     id("com.gradleup.shadow")
+    `plugin-publish`
+    `write-manifest`
 }
 
 /** The publishing settings from the root project. */
@@ -50,7 +54,7 @@ dependencies {
 
     arrayOf(
         gradleTestKit(),
-        project(":base") /* Open the `DependencyHolder` class to tests. */,
+        project(":base"), /* Open dependency objects to tests. */
         TestLib.lib,
         ToolBase.jvmTools,
         ToolBase.pluginTestlib,
@@ -59,96 +63,140 @@ dependencies {
     }
 }
 
-publishing {
-    val groupName = project.group.toString()
-    val versionName = project.version.toString()
+@Suppress("unused")
+afterEvaluate {
+    // This module does not have source code.
+    val sourcesJar: Task by tasks.getting {
+        enabled = false
+    }
 
+    // This module does not have source code.
+    val javadocJar: Task by tasks.getting {
+        enabled = false
+    }
+
+    val testFixturesJar by tasks.getting {
+        enabled = false
+    }
+}
+
+publishing {
     publications {
-        create("fatJar", MavenPublication::class) {
-            groupId = groupName
+        clear()
+        create("maven", MavenPublication::class) {
+            groupId = project.group.toString()
             artifactId = projectArtifact
-            version = versionName
+            version = project.version.toString()
             artifact(tasks.shadowJar)
 
-            /**
-             * Manually add the dependency onto `io.spine.tools:compiler-api`,
-             * as there is no good way to remove all the dependencies
-             * from the fat JAR artifact, but leave just this one.
-             *
-             * This dependency is required in order to place the Spine Compiler API
-             * onto the build classpath, so that `core-jvm` routines
-             * could apply it programmatically.
-             *
-             * The appended content should look like this:
-             * ```
-             *     <dependency>
-             *         <groupId>io.spine.tools</groupId>
-             *         <artifactId>compiler-api</artifactId>
-             *         <version>$compilerVersion</version>
-             *         <scope>runtime</scope>
-             *         <exclusions>
-             *              <exclusion>
-             *                  <groupId>org.jetbrains.kotlin</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
-             *              <exclusion>
-             *                  <groupId>com.google.protobuf</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
-             *              <exclusion>
-             *                  <groupId>io.spine.tools</groupId>
-             *                  <artifactId>*</artifactId>
-             *              </exclusion>
-             *         </exclusions>
-             *    </dependency>
-             * ```
-             */
             pom.withXml {
                 val projectNode: Node = asNode()
                 val dependencies = Node(projectNode, "dependencies")
+                /*
+                 * Add the dependency onto `io.spine.tools:compiler-api`,
+                 * as there is no good way to remove all the dependencies
+                 * from the fat JAR artifact, but leave just this one.
+                 *
+                 * This dependency is required in order to place the Spine Compiler API
+                 * onto the build classpath, so that `core-jvm` routines
+                 * could apply it programmatically.
+                 *
+                 * The appended code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>io.spine.tools</groupId>
+                 *     <artifactId>compiler-api</artifactId>
+                 *     <version>${Compiler.version}</version>
+                 *     <scope>runtime</scope>
+                 *     <exclusions>
+                 *          <exclusion>
+                 *              <groupId>org.jetbrains.kotlin</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *          <exclusion>
+                 *              <groupId>com.google.protobuf</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *          <exclusion>
+                 *              <groupId>io.spine.tools</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *     </exclusions>
+                 * </dependency>
+                 * ```
+                 */
                 val dependency = Node(dependencies, "dependency")
-                Node(dependency, "groupId", "io.spine.tools")
-                Node(dependency, "artifactId", "compiler-api")
-                Node(dependency, "version", Compiler.version)
-                Node(dependency, "scope", "runtime")
+                dependency.let {
+                    Node(it, "groupId", "io.spine.tools")
+                    Node(it, "artifactId", "compiler-api")
+                    Node(it, "version", Compiler.version)
+                    Node(it, "scope", "runtime")
+                }
 
-                val exclusions = Node(dependency, "exclusions")
-                excludeGroupId(exclusions, "org.jetbrains.kotlin")
-                excludeGroupId(exclusions, "com.google.protobuf")
-                excludeGroupId(exclusions, "io.spine.tools")
+                Node(dependency, "exclusions").let {
+                    excludeGroup(it, "org.jetbrains.kotlin")
+                    excludeGroup(it, "com.google.protobuf")
+                    excludeGroup(it, "io.spine.tools")
+                }
+
+                /*
+                 * Add the dependency on Protobuf Gradle Plugin so that we can add it
+                 * from our code. The code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>com.google.protobuf</groupId>
+                 *     <artifactId>protobuf-gradle-plugin</artifactId>
+                 *     <version>${Protobuf.GradlePlugin.version}</version>
+                 *     <scope>runtime</scope>
+                 * </dependency>
+                 * ```
+                 */
+                Node(dependencies, "dependency").let {
+                    Node(it, "groupId", "com.google.protobuf")
+                    Node(it, "artifactId", "protobuf-gradle-plugin")
+                    Node(it, "version", Protobuf.GradlePlugin.version)
+                    Node(it, "scope", "runtime")
+                }
             }
         }
     }
 }
 
-/**
- * Declare dependency explicitly to address the Gradle warning.
- */
-@Suppress("unused")
-val publishFatJarPublicationToMavenLocal: Task by tasks.getting {
-    dependsOn(tasks.jar)
-    println("Task `${this.name}` now depends on `${tasks.jar.name}`.")
+// As defined in `versions.gradle.kts`.
+val versionToPublish: String by extra
+
+// Do not publish to Gradle Plugin Portal snapshot versions.
+// It is prohibited by their policy: https://plugins.gradle.org/docs/publish-plugin
+val publishPlugins: Task by tasks.getting {
+    enabled = !versionToPublish.isSnapshot()
 }
 
 tasks.publish {
     dependsOn(tasks.shadowJar)
+    dependsOn(publishPlugins)
 }
 
 tasks.shadowJar {
     exclude(
-        /**
-         * Exclude Kotlin runtime because it will be provided by Gradle runtime.
+        /*
+         * Exclude Kotlin runtime because it will be provided by the Gradle runtime.
          */
         "kotlin/**",
-        "kotlinx/**",
 
-        /**
+        /*
+         * Exclude Coroutines. They also will be present. The rest of `kotlinx` should stay.
+         */
+        "kotlinx/coroutines/**",
+
+        /*
          * The Protobuf Gradle Plugin will be available in the classpath because
-         * McJava Gradle Plugin is applied after it.
+         * fat JAR has the Maven `runtime` dependency on it.
+         * Please see manipulations with `pom.xml` below.
          */
         "com/google/protobuf/gradle/**",
+        "META-INF/gradle-plugins/com.google.protobuf.properties",
 
-        /**
+        /*
          * Excluding these types to avoid clashes at user's build classpath.
          *
          * The ProtoData plugin will be added to the user's build via a dependency.
@@ -179,12 +227,14 @@ tasks.shadowJar {
 //        "io/spine/tools/compiler/protoc/**",
 //        "spine/compiler/**",
 
-        // Protobuf definitions
-        "spine/protodata/**",
-
+        // TODO: Uncomment these as well once the Spine Compiler is ready.
         // Plugin declaration
         "META-INF/gradle-plugins/io.spine.protodata.properties",
 //      "META-INF/gradle-plugins/io.spine.compiler.properties",
+
+
+        // Protobuf definitions
+        "spine/protodata/**",
 
         /**
          * Exclude Gradle types to reduce the size of the resulting JAR.
@@ -219,16 +269,21 @@ tasks.shadowJar {
         "resources/com/pty4j/**",
     )
 
-    setZip64(true)  /* The archive has way too many items. So using the Zip64 mode. */
-    archiveClassifier.set("all")    /** To prevent Gradle setting something like `osx-x86_64`. */
+    /* The archive has way too many items. So use the Zip64 mode. */
+    setZip64(true)
+
+    /* Prevent Gradle setting something like `osx-x86_64`. */
+    archiveClassifier.set("")
+
     mergeServiceFiles("desc.ref")
     mergeServiceFiles("META-INF/services/io.spine.option.OptionsProvider")
 }
 
-fun excludeGroupId(exclusions: Node, groupId: String) {
-    val exclusion = Node(exclusions, "exclusion")
-    Node(exclusion, "groupId", groupId)
-    Node(exclusion, "artifactId", "*")
+fun excludeGroup(exclusions: Node, groupId: String) {
+    Node(exclusions, "exclusion").let {
+        Node(it, "groupId", groupId)
+        Node(it, "artifactId", "*")
+    }
 }
 
 /**
@@ -236,4 +291,26 @@ fun excludeGroupId(exclusions: Node, groupId: String) {
  */
 tasks.test {
     dependsOn(rootProject.tasks.named("localPublish"))
+}
+
+gradlePlugin {
+    website.set("https://spine.io/")
+    vcsUrl.set("https://github.com/SpineEventEngine/core-jvm-compiler.git")
+    plugins {
+        val pluginTags = listOf(
+            "ddd",
+            "codegen",
+            "java",
+            "kotlin",
+            "jvm"
+        )
+
+        create("coreJvmCompilerPlugins") {
+            id = "io.spine.core-jvm"
+            implementationClass = "io.spine.tools.core.jvm.gradle.plugins.CoreJvmPlugin"
+            displayName = "Spine CoreJvm Compiler Plugins"
+            description = "Compiles Protobuf files with custom options of CoreJvm Library"
+            tags.set(pluginTags)
+        }
+    }
 }

@@ -49,7 +49,11 @@ artifactMeta {
         // to which the CoreJvm Gradle Plugin is applied.
         Validation.javaBundle,
         Validation.runtime,
-        Validation.configuration
+        Validation.configuration,
+
+        // These dependencies are written for integration tests.
+        Kotlin.GradlePlugin.lib,
+        Protobuf.GradlePlugin.lib,
     )
     excludeConfigurations {
         containing(*buildToolConfigurations)

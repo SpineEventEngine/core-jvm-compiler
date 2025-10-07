@@ -43,7 +43,7 @@ buildscript {
         classpath(io.spine.dependency.lib.Protobuf.GradlePlugin.lib) {
             exclude(group = "com.google.guava")
         }
-        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib(coreJvmCompilerVersion))
+        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLibNew(coreJvmCompilerVersion))
     }
 }
 
