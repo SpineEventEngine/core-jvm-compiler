@@ -229,20 +229,20 @@ tasks.shadowJar {
 
     // Resolve lazily at task execution time to avoid unnecessary resolution during configuration.
     doFirst {
-        val intellijPlatformJar = JarFile(intellijPlatform.files.single())
-        val intellijPlatformJavaJar = JarFile(intellijPlatformJava.files.single())
+        val ijPlatformJar = JarFile(intellijPlatform.files.single())
+        val ijPlatformJavaJar = JarFile(intellijPlatformJava.files.single())
 
-        val pathsToExcludeProvider = providers.provider<Set<String>> {
-            intellijPlatformJar.use { p ->
-                intellijPlatformJavaJar.use { pj ->
-                    p.entriesAsSet() + pj.entriesAsSet()
+        val filesCombined =
+            ijPlatformJar.use { pJar ->
+                ijPlatformJavaJar.use { pjJar ->
+                    pJar.entriesAsSet() + pjJar.entriesAsSet()
                 }
             }
-        }
 
         // We still need Google Guava's types.
-        pathsToExclude = pathsToExcludeProvider.get().filter {
-            !(it.contains("com/google/common") || it.contains("com/google/thirdparty"))
+        pathsToExclude = filesCombined.filter {
+            !(it.contains("com/google/common")
+                    || it.contains("com/google/thirdparty"))
         }.toSet()
     }
 
