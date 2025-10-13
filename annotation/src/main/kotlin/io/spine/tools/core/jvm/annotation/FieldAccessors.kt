@@ -27,14 +27,14 @@
 package io.spine.tools.core.jvm.annotation
 
 import com.intellij.psi.PsiMethod
+import io.spine.string.Separator
+import io.spine.string.camelCase
 import io.spine.tools.compiler.ast.FieldName
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.file.locate
 import io.spine.tools.compiler.render.InsertionPoint
-import io.spine.string.Separator
-import io.spine.string.camelCase
-import io.spine.text.TextCoordinates
-import io.spine.text.TextFactory.text
+import io.spine.tools.compiler.render.TextCoordinates
+import io.spine.tools.compiler.render.TextFactory.text
 import io.spine.tools.psi.document
 
 /**

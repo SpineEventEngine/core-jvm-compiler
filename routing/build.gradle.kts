@@ -87,3 +87,11 @@ if (JavaVersion.current() >= JavaVersion.VERSION_16) {
         )
     }
 }
+
+afterEvaluate {
+    val writeSpineCompilerSettings by tasks.getting
+    val processResources by tasks.getting
+    processResources.dependsOn(writeSpineCompilerSettings)
+    val sourcesJar by tasks.getting
+    sourcesJar.dependsOn(writeSpineCompilerSettings)
+}
