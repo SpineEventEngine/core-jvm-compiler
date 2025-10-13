@@ -351,8 +351,9 @@ tasks.shadowJar {
     /* Prevent Gradle setting something like `osx-x86_64`. */
     archiveClassifier.set("")
 
-    mergeServiceFiles("desc.ref")
-    mergeServiceFiles("META-INF/services/io.spine.option.OptionsProvider")
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE  // To allow further merging.
+    append("desc.ref")
+    append("META-INF/services/io.spine.option.OptionsProvider")
 }
 
 fun excludeGroup(exclusions: Node, groupId: String) {
