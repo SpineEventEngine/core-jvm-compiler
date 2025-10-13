@@ -152,6 +152,7 @@ fun Module.forceConfigurations() {
                     Caffeine.lib,
 
                     Reflect.lib,
+                    Base.annotations,
                     Base.lib,
                     Time.lib,
                     Compiler.params,
