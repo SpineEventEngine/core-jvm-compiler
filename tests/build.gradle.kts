@@ -84,6 +84,7 @@ buildscript {
                     io.spine.dependency.lib.Jackson.bom,
                     io.spine.dependency.lib.Kotlin.bom,
                     io.spine.dependency.local.Reflect.lib,
+                    io.spine.dependency.local.Base.annotations,
                     io.spine.dependency.local.Base.lib,
                     io.spine.dependency.local.Time.lib,
                     toolBase.lib,
@@ -136,6 +137,7 @@ allprojects {
                     Kotlin.bom,
                     KotlinPoet.lib,
                     Reflect.lib,
+                    Base.annotations,
                     Base.lib,
                     CoreJvm.server,
                     Time.lib,
@@ -216,4 +218,14 @@ subprojects {
     }
 
     disableDocumentationTasks()
+
+    afterEvaluate {
+        val kspKotlin by tasks.getting
+        val launchSpineCompiler by tasks.getting
+        kspKotlin.dependsOn(launchSpineCompiler)
+
+        val kspTestKotlin by tasks.getting
+        val launchTestSpineCompiler by tasks.getting
+        kspTestKotlin.dependsOn(launchTestSpineCompiler)
+    }
 }
