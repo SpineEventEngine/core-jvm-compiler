@@ -25,13 +25,10 @@
  */
 
 import io.spine.dependency.lib.Grpc
-import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Base
 import io.spine.gradle.repo.standardToSpineSdk
 import org.gradle.api.tasks.JavaExec
-import org.gradle.kotlin.dsl.all
 import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.resolutionStrategy
 
 buildscript {
 
