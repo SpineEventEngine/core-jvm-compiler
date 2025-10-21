@@ -66,7 +66,7 @@ configurations.all {
 }
 
 dependencies {
-    testImplementation(CoreJvm.testUtilServer)
+    testImplementation(CoreJvm.serverTestLib)
 
     /* This makes our KSP processor work on the `testFixtures` source set. */
     testFixturesCompileOnly(AutoService.annotations)
