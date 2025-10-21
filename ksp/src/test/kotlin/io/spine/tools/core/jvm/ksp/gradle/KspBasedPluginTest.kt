@@ -34,6 +34,7 @@ import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import io.spine.io.toUnix
 import io.spine.testing.SlowTest
+import io.spine.tools.compiler.gradle.plugin.Plugin
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPluginTest.Companion.removeTempDir
 import io.spine.tools.gradle.project.sourceSets
 import java.io.File
@@ -104,9 +105,11 @@ internal class KspBasedPluginTest {
                 apply("java")
                 // This plugin is in the test classpath dependency, so it comes without the version.
                 apply("org.jetbrains.kotlin.jvm")
+                apply("com.google.protobuf")
+                apply(Plugin::class.java) // Ensure `Project.generatedDir` property.
                 apply(StubPlugin::class.java)
             }
-
+            project.group = "io.spine.stubs"
             val customSourceSet = "integrationTest"
             project.sourceSets.run {
                 create(customSourceSet)

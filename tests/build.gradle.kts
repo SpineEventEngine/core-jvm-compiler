@@ -211,6 +211,7 @@ subprojects {
                     Jackson.annotations,
                     ToolBase.gradlePluginApi,
                     ToolBase.jvmTools,
+                    ToolBase.protobufSetupPlugins,
                     Validation.runtime,
                 )
             }

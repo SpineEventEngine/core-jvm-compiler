@@ -32,10 +32,8 @@ import io.spine.tools.code.SourceSetName
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.fs.DirectoryName.grpc
 import io.spine.tools.fs.DirectoryName.java
-import io.spine.tools.fs.DirectoryName.spine
 import io.spine.tools.gradle.project.sourceSet
-import io.spine.tools.gradle.protobuf.ProtobufDependencies.sourceSetExtensionName
-import io.spine.tools.gradle.protobuf.generated
+import io.spine.tools.protobuf.gradle.ProtobufDependencies.sourceSetExtensionName
 import io.spine.tools.java.fs.DefaultJavaPaths
 import io.spine.tools.gradle.lib.spineExtension
 import java.nio.file.Path
@@ -82,16 +80,3 @@ public val generatedJavaDirName: DirectoryName = java
  * The short name of the directory containing generated gRPC source code.
  */
 public val generatedGrpcDirName: DirectoryName = grpc
-
-/**
- * The short name of the directory containing generated rejections source code.
- */
-public val generatedRejectionsDirName: DirectoryName = spine
-
-/**
- * Obtains the directory with the rejection source code generated for the specified source set.
- */
-public fun Project.generatedRejectionsDir(ss: SourceSetName): Path =
-    generated(ss).resolve(generatedRejectionsDirName)
-
-private fun Path.resolve(dir: DirectoryName) = this.resolve(dir.value())

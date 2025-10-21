@@ -64,6 +64,7 @@ dependencies {
         Validation.configuration,
         ToolBase.classicCodegen,
         ToolBase.pluginBase,
+        ToolBase.protobufSetupPlugins,
         KotlinPoet.lib,
     )
     apiDeps.forEach {
