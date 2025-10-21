@@ -75,6 +75,7 @@ dependencies {
         gradleKotlinDsl(),
         Kotlin.GradlePlugin.lib,
         TestLib.lib,
+        Compiler.pluginLib(Compiler.version),
         Kotest.assertions
     ).forEach {
         testImplementation(it)

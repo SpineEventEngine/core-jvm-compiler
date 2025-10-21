@@ -26,7 +26,7 @@
 
 package io.spine.tools.core.jvm.grpc.gradle
 
-import io.spine.tools.gradle.protobuf.protobufExtension
+import io.spine.tools.protobuf.gradle.protobufExtension
 import javax.inject.Inject
 import org.gradle.api.Project
 import org.gradle.api.provider.Property
