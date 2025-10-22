@@ -42,6 +42,7 @@ import io.spine.tools.gradle.project.sourceSets
 import io.spine.tools.gradle.task.findKotlinDirectorySet
 import java.io.File
 import kotlin.io.path.pathString
+import ksp.com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
@@ -69,6 +70,7 @@ public abstract class KspBasedPlugin : Plugin<Project> {
      */
     protected abstract val mavenCoordinates: String
 
+    @OverridingMethodsMustInvokeSuper
     override fun apply(project: Project) {
         project.run {
             pluginManager.withPlugin(KspGradlePlugin.id) {
