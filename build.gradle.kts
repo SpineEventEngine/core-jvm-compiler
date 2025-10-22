@@ -57,8 +57,6 @@ buildscript {
             resolutionStrategy {
                 val configuration = this@all
                 val strategy = this@resolutionStrategy
-                io.spine.dependency.build.Ksp
-                    .forceArtifacts(project, configuration, strategy)
                 io.spine.dependency.lib.Kotlin
                     .forceArtifacts(project, configuration, strategy)
                 io.spine.dependency.lib.Kotlin.StdLib

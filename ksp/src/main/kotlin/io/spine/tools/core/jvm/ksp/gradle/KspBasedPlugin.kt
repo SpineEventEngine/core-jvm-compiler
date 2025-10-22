@@ -41,9 +41,10 @@ import io.spine.tools.gradle.project.sourceSet
 import io.spine.tools.gradle.project.sourceSets
 import io.spine.tools.gradle.task.findKotlinDirectorySet
 import java.io.File
+import kotlin.io.path.pathString
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.provider.Property
+import org.gradle.api.file.DirectoryProperty
 import org.gradle.kotlin.dsl.findByType
 
 /**
@@ -263,10 +264,10 @@ private fun Project.replaceKspOutputDirs() {
         val underProject = generatedDir.toString()
         kspTasks().forEach { (ssn, kspTask) ->
             kspTask.kspConfig.run {
-                outputBaseDir.replace(underBuild, underProject)
-                kotlinOutputDir.replace(underBuild, underProject)
-                javaOutputDir.replace(underBuild, underProject)
-                resourceOutputDir.replace(underBuild, underProject)
+                outputBaseDir.replacePath(underBuild, underProject)
+                kotlinOutputDir.replacePath(underBuild, underProject)
+                javaOutputDir.replacePath(underBuild, underProject)
+                resourceOutputDir.replacePath(underBuild, underProject)
 
                 val sourceSet = sourceSet(ssn)
                 sourceSet.run {
@@ -290,8 +291,9 @@ private fun Project.replaceKspOutputDirs() {
  * where the [oldValue] is replaced with the [newValue].
  */
 @Suppress("unused") // See docs for `Project.replaceKspOutputDirs()`.
-private fun Property<File>.replace(oldValue: String, newValue: String) {
-    val current = get().path
-    val replaced = current.replace(oldValue, newValue)
-    set(File(replaced))
+context(project: Project)
+private fun DirectoryProperty.replacePath(oldValue: String, newValue: String) {
+    val currentDir = get().asFile.toPath()
+    val replacedPath = currentDir.pathString.replace(oldValue, newValue)
+    set(project.layout.projectDirectory.dir(replacedPath))
 }
