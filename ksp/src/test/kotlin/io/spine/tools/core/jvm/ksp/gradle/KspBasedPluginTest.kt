@@ -148,7 +148,7 @@ internal class KspBasedPluginTest {
                 task.kspConfig.javaOutputDir,
                 task.kspConfig.kotlinOutputDir
             ).forEach {
-                it.get().absolutePath.toUnix().let { path ->
+                it.get().asFile.absolutePath.toUnix().let { path ->
                     path shouldNotContain "/build/"
                     path shouldContain "$projectRoot/generated/ksp"
                 }
