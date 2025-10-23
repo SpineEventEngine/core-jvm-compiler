@@ -232,8 +232,9 @@ private fun Project.makeKspTasksDependOnSpineCompiler() {
         // We do this instead of `dependsOn` because historically it
         // proves to be unreliable in this particular case.
         kspTask.mustRunAfter(taskName.value())
-        System.err.println(
-            "**** `${kspTask.name}` set to run after `${taskName.value()}` in project `$name`."
+        logger.warn(
+            "[CoreJvm Compiler]" +
+                    " `${kspTask.name}` set to run after `${taskName.value()}` in project `$name`."
         )
     }
 }
