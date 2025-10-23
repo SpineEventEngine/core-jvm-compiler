@@ -230,6 +230,7 @@ private fun Project.applyKspPlugin() = with(KspGradlePlugin) {
 private fun Project.makeKspTasksDependOnSpineCompiler() {
     afterEvaluate {
         val kspTasks = kspTasks()
+        logger.warn("[CoreJvm Compiler] Found ${kspTasks.size} KSP tasks in the project `$name`.")
         kspTasks.forEach { (ssn, kspTask) ->
             val taskName = CompilerTaskName(ssn)
             // Even if a task with `taskName` does not exist, the call
