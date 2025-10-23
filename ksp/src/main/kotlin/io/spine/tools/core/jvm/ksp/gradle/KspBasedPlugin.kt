@@ -224,18 +224,21 @@ private fun Project.applyKspPlugin() = with(KspGradlePlugin) {
  * optimization because of the absence of explicit or implicit dependencies.
  */
 private fun Project.makeKspTasksDependOnSpineCompiler() {
-    val kspTasks = kspTasks()
-    kspTasks.forEach { (ssn, kspTask) ->
-        val taskName = CompilerTaskName(ssn)
-        // Even if a task with `taskName` does not exist, the call
-        // to `mustRunAfter` won't fail.
-        // We do this instead of `dependsOn` because historically it
-        // proves to be unreliable in this particular case.
-        kspTask.mustRunAfter(taskName.value())
-        logger.warn(
-            "[CoreJvm Compiler]" +
-                    " `${kspTask.name}` set to run after `${taskName.value()}` in project `$name`."
-        )
+    afterEvaluate {
+        val kspTasks = kspTasks()
+        kspTasks.forEach { (ssn, kspTask) ->
+            val taskName = CompilerTaskName(ssn)
+            // Even if a task with `taskName` does not exist, the call
+            // to `mustRunAfter` won't fail.
+            // We do this instead of `dependsOn` because historically it
+            // proves to be unreliable in this particular case.
+            kspTask.mustRunAfter(taskName.value())
+            logger.warn(
+                "[CoreJvm Compiler]" +
+                        " `${kspTask.name}` set to run after" +
+                        " `${taskName.value()}` in the project `$name`."
+            )
+        }
     }
 }
 
