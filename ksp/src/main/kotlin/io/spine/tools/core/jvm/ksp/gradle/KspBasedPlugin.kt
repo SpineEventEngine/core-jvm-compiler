@@ -72,8 +72,12 @@ public abstract class KspBasedPlugin : Plugin<Project> {
 
     @OverridingMethodsMustInvokeSuper
     override fun apply(project: Project) {
+        val pluginClass = this::class.java.simpleName
         project.run {
             pluginManager.withPlugin(KspGradlePlugin.id) {
+                logger.warn("[CoreJvm Compiler] " +
+                    "Applying `$pluginClass` to the project `${project.name}`."
+                )
                 applyCommonSettings()
                 addPluginsToKspConfigurations()
             }
