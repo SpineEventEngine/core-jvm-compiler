@@ -117,7 +117,8 @@ public abstract class KspBasedPlugin : Plugin<Project> {
     private fun Project.addDependencies() {
         sourceSets.forEach { sourceSet ->
             val configurationName = sourceSet.compileOnlyConfigurationName
-            dependencies.add(configurationName,
+            dependencies.add(
+                configurationName,
                 autoServiceAnnotations
             )
         }
@@ -227,10 +228,11 @@ private fun Project.makeKspTasksDependOnSpineCompiler() {
         val kspTasks = kspTasks()
         kspTasks.forEach { (ssn, kspTask) ->
             val taskName = CompilerTaskName(ssn)
-            val compilerTask = tasks.findByName(taskName.value())
-            if (compilerTask != null) {
-                kspTask.dependsOn(compilerTask)
-            }
+            // Even if a task with `taskName` does not exist, the call
+            // to `mustRunAfter` won't fail.
+            // We do this instead of `dependsOn` because historically it
+            // proves to be unreliable in this particular case.
+            kspTask.mustRunAfter(taskName.value())
         }
     }
 }
