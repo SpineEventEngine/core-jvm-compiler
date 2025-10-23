@@ -219,4 +219,14 @@ subprojects {
     }
 
     disableDocumentationTasks()
+
+    afterEvaluate {
+        val kspKotlin by tasks.getting
+        val launchSpineCompiler by tasks.getting
+        kspKotlin.dependsOn(launchSpineCompiler)
+
+        val kspTestKotlin by tasks.getting
+        val launchTestSpineCompiler by tasks.getting
+        kspTestKotlin.dependsOn(launchTestSpineCompiler)
+    }
 }
