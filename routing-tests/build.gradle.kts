@@ -117,13 +117,6 @@ sourceSets.testFixtures {
     kotlin.srcDir("generated/ksp/testFixtures/kotlin")
 }
 
-// Avoid Gradle warning on disabled execution optimization because of the absence of
-// explicit or implicit dependencies.
-afterEvaluate {
-    val kspTestFixturesKotlin by tasks.getting
-    val launchTestFixturesSpineCompiler by tasks.getting
-    kspTestFixturesKotlin.dependsOn(launchTestFixturesSpineCompiler)
-}
 
 configurations
     // https://detekt.dev/docs/gettingstarted/gradle/#dependencies
@@ -135,3 +128,11 @@ configurations
             )
         }
     }
+
+// Avoid Gradle warning on disabled execution optimization because of the absence of
+// explicit or implicit dependencies.
+afterEvaluate {
+    val kspTestFixturesKotlin by tasks.getting
+    val launchTestFixturesSpineCompiler by tasks.getting
+    kspTestFixturesKotlin.dependsOn(launchTestFixturesSpineCompiler)
+}

@@ -64,13 +64,6 @@ dependencies {
     testImplementation(Logging.testLib)
 }
 
-// Avoid the missing file error for generated code when running tests out of the IDE.
-afterEvaluate {
-    val kspTestKotlin by tasks.getting
-    val launchTestSpineCompiler by tasks.getting
-    kspTestKotlin.dependsOn(launchTestSpineCompiler)
-}
-
 if (JavaVersion.current() >= JavaVersion.VERSION_16) {
     tasks.withType<Test>().configureEach {
         jvmArgs(
@@ -86,6 +79,13 @@ if (JavaVersion.current() >= JavaVersion.VERSION_16) {
             "--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
         )
     }
+}
+
+// Avoid the missing file error for generated code when running tests out of the IDE.
+afterEvaluate {
+    val kspTestKotlin by tasks.getting
+    val launchTestSpineCompiler by tasks.getting
+    kspTestKotlin.dependsOn(launchTestSpineCompiler)
 }
 
 afterEvaluate {
