@@ -24,12 +24,6 @@ all modules and does not describe the project structure per-subproject.
 
 <dependencies>
   <dependency>
-    <groupId>com.google.auto.service</groupId>
-    <artifactId>auto-service-annotations</artifactId>
-    <version>1.1.1</version>
-    <scope>compile</scope>
-  </dependency>
-  <dependency>
     <groupId>com.google.devtools.ksp</groupId>
     <artifactId>symbol-processing-aa-embeddable</artifactId>
     <version>2.2.20-2.0.4</version>
@@ -286,6 +280,12 @@ all modules and does not describe the project structure per-subproject.
     <artifactId>junit-jupiter-params</artifactId>
     <version>5.13.2</version>
     <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>com.google.auto.service</groupId>
+    <artifactId>auto-service-annotations</artifactId>
+    <version>1.1.1</version>
+    <scope>provided</scope>
   </dependency>
   <dependency>
     <groupId>com.google.code.findbugs</groupId>
