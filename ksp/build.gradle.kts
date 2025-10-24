@@ -26,12 +26,25 @@
 
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.AutoService
+import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.Kotest
+
+plugins {
+    id("io.spine.artifact-meta")
+}
+
+artifactMeta {
+    artifactId.set("core-jvm-ksp")
+    addDependencies(
+        AutoService.annotations,
+        AutoServiceKsp.processor
+    )
+}
 
 @Suppress("unused")
 val compileClasspath by configurations.getting {

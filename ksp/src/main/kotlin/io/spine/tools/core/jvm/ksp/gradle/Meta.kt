@@ -26,37 +26,31 @@
 
 package io.spine.tools.core.jvm.ksp.gradle
 
-import java.nio.file.Path
-import org.gradle.api.Project
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.meta.LazyDependency
+import io.spine.tools.meta.LazyMeta
+import io.spine.tools.meta.Module
 
 /**
- * The coordinates and utilities for working with Kotlin Symbol Processing Gradle Plugin.
- *
- * @see <a href="https://github.com/google/ksp">KSP GitHub repository</a>
+ * Dependencies of the `core-jvm-ksp` module stored in `artifactMeta` resources.
  */
-@Suppress("ConstPropertyName")
-internal object KspGradlePlugin {
+internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-ksp")) {
 
     /**
-     * The ID of the Gradle plugin.
+     * The Maven coordinates of Google Auto Service annotations that
+     * we add as `compileOnly` dependency to
+     * the source sets of the project to which a [KspBasedPlugin] is applied.
      */
-    const val id: String = "com.google.devtools.ksp"
+    val autoServiceAnnotations = LazyDependency(
+        this,
+        Module("com.google.auto.service", "auto-service-annotations")
+    )
 
     /**
-     * Returns the path to the directory where KSP generates sources for the given [project].
+     * The Maven coordinates for the Auto Service processor for Kotlin.
      */
-    fun defaultTargetDirectory(project: Project): Path {
-        val generatedDir = project.layout.buildDirectory.dir("generated")
-        return generatedDir.get().asFile.toPath()
-    }
-
-    /**
-     * The Maven group of the KSP tools.
-     */
-    private const val group = "com.google.devtools.ksp"
-
-    /**
-     * The Maven reference to the plugin module
-     */
-    const val module: String = "$group:symbol-processing-gradle-plugin"
+    val autoServiceKspProcessor = LazyDependency(
+        this,
+        Module("dev.zacsweers.autoservice", "auto-service-ksp")
+    )
 }

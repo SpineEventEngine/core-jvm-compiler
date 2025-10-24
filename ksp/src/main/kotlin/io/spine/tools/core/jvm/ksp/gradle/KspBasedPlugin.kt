@@ -33,7 +33,8 @@ import io.spine.tools.compiler.gradle.api.CompilerTaskName
 import io.spine.tools.compiler.gradle.api.generatedDir
 import io.spine.tools.core.jvm.gradle.debug
 import io.spine.tools.core.jvm.gradle.info
-import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin.Companion.autoServiceKsp
+import io.spine.tools.core.jvm.ksp.gradle.Meta.autoServiceAnnotations
+import io.spine.tools.core.jvm.ksp.gradle.Meta.autoServiceKspProcessor
 import io.spine.tools.fs.DirectoryName.grpc
 import io.spine.tools.fs.DirectoryName.java
 import io.spine.tools.fs.DirectoryName.kotlin
@@ -57,13 +58,13 @@ import org.gradle.kotlin.dsl.findByType
  *
  * The plugin performs the following configuration steps:
  *
- *  1. Adds the [KSP Gradle Plugin](https://github.com/google/ksp) to the project
- *     if it is not added already.
+ * 1. Adds the [KSP Gradle Plugin](https://github.com/google/ksp) to the project
+ *   if it is not added already.
  *
- *  2. Makes a KSP task depend on a `LaunchSpineCompiler` task for the same source set.
+ * 2. Makes a KSP task depend on a `LaunchSpineCompiler` task for the same source set.
  *
- *  3. Adds the artifact specified by the [mavenCoordinates] property, and [autoServiceKsp]
- *   as the dependencies of the KSP configurations of the project.
+ * 3. Adds the artifact specified by the [mavenCoordinates] property,
+ *   and [AutoServiceKsp.processor] as the dependencies of the KSP configurations of the project.
  */
 public abstract class KspBasedPlugin : Plugin<Project> {
 
@@ -124,7 +125,7 @@ public abstract class KspBasedPlugin : Plugin<Project> {
                 val configName = kspConfiguration.name
                 dependencies.run {
                     add(configName, mavenCoordinates)
-                    add(configName, autoServiceKsp)
+                    add(configName, autoServiceKspProcessor.artifact.coordinates)
                 }
             }
     }
@@ -134,7 +135,7 @@ public abstract class KspBasedPlugin : Plugin<Project> {
             val configurationName = sourceSet.compileOnlyConfigurationName
             dependencies.add(
                 configurationName,
-                autoServiceAnnotations
+                autoServiceAnnotations.artifact.coordinates
             )
         }
     }
@@ -151,20 +152,6 @@ public abstract class KspBasedPlugin : Plugin<Project> {
          * The prefix common to all KSP configurations of a project.
          */
         private const val configurationNamePrefix: String = "ksp"
-
-        /**
-         * The Maven coordinates of Google Auto Service annotations that
-         * we [add][Project.addDependencies] as `compileOnly` dependencies to
-         * the source sets of the project to which th
-         */
-        private const val autoServiceAnnotations: String =
-            "com.google.auto.service:auto-service-annotations:1.1.1"
-
-        /**
-         * The Maven coordinates for the Auto Service processor for Kotlin.
-         */
-        private const val autoServiceKsp: String =
-            "dev.zacsweers.autoservice:auto-service-ksp:1.2.0"
     }
 }
 
