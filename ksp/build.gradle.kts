@@ -65,6 +65,7 @@ dependencies {
         "This is `api` dependency because we add this plugin from our code" +
                 " and want its API being visible to users."
     )
+    api(project(":base"))
     implementation(Protobuf.GradlePlugin.lib)?.because(
         "We need `ProtobufExtension` for ignoring `generated/sources/proto/` directory."
     )

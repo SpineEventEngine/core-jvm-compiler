@@ -31,6 +31,8 @@ import io.spine.tools.core.jvm.VersionHolder
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions.Companion.name
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
+import io.spine.tools.core.jvm.gradle.warn
+import io.spine.tools.core.jvm.gradle.debug
 import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
@@ -88,7 +90,7 @@ private fun Project.applyCoreJvmPlugins() {
 
 private fun Project.logApplying() {
     val version = VersionHolder.version.value
-    logger.warn("Applying `${simply<CoreJvmPlugin>()}` (version: $version) to `$name`.")
+    logger.warn { "Applying `${simply<CoreJvmPlugin>()}` (version: $version) to `$name`." }
 }
 
 /**
@@ -108,8 +110,6 @@ private fun Project.createAndApplyPlugins() {
 }
 
 private fun Project.apply(plugin: Plugin<Project>) {
-    if (logger.isDebugEnabled) {
-        logger.debug("Applying `${plugin.javaClass.name}` plugin.")
-    }
+    logger.debug { "Applying `${plugin.javaClass.name}` plugin." }
     plugin.apply(project)
 }
