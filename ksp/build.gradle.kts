@@ -49,7 +49,7 @@ dependencies {
 
     implementation(Ksp.artifact(Ksp.symbolProcessingAaEmb))?.because(
         "It was not resolved automatically by KSP Gradle Plugin in integration tests." +
-                " We need go re-visit this in future versions of KSP Gradle Plugin."
+                " We need to re-visit this in future versions of KSP Gradle Plugin."
     )
 
     // The dependencies for the Gradle plugin part.
