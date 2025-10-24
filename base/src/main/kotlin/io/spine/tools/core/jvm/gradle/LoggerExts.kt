@@ -27,7 +27,6 @@
 package io.spine.tools.core.jvm.gradle
 
 import org.gradle.api.logging.Logger
-import org.gradle.internal.cc.base.logger
 
 /**
  * The prefix for logging messages produced by CoreJvm Compiler Gradle plugins.
@@ -38,7 +37,7 @@ public const val LOG_PREFIX: String = "[CoreJvm Compiler] "
  * Logs the [message] at the `INFO` level with the [prefix][LOG_PREFIX].
  */
 public fun Logger.info(message: () -> String) {
-    if (logger.isInfoEnabled) {
+    if (isInfoEnabled) {
         info(LOG_PREFIX + message())
     }
 }
@@ -47,7 +46,7 @@ public fun Logger.info(message: () -> String) {
  * Logs the [message] at the `WARN` level with the [prefix][LOG_PREFIX].
  */
 public fun Logger.warn(message: () -> String) {
-    if (logger.isWarnEnabled) {
+    if (isWarnEnabled) {
         warn(LOG_PREFIX + message())
     }
 }
@@ -56,7 +55,7 @@ public fun Logger.warn(message: () -> String) {
  * Logs the [message] at the `DEBUG` level with the [prefix][LOG_PREFIX].
  */
 public fun Logger.debug(message: () -> String) {
-    if (logger.isDebugEnabled) {
+    if (isDebugEnabled) {
         debug(LOG_PREFIX + message())
     }
 }
