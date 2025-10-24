@@ -24,10 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+package io.spine.tools.core.jvm.gradle
+
+import org.gradle.api.logging.Logger
+
 /**
- * The version of modules to publish.
- *
- * Do not rename this property, as it is also used in the integration tests via its name.
+ * The prefix for logging messages produced by CoreJvm Compiler Gradle plugins.
  */
-val coreJvmCompilerVersion by extra("2.0.0-SNAPSHOT.020")
-val versionToPublish by extra(coreJvmCompilerVersion)
+public const val LOG_PREFIX: String = "[CoreJvm Compiler] "
+
+/**
+ * Logs the [message] at the `INFO` level with the [prefix][LOG_PREFIX].
+ */
+public fun Logger.info(message: () -> String) {
+    if (isInfoEnabled) {
+        info(LOG_PREFIX + message())
+    }
+}
+
+/**
+ * Logs the [message] at the `WARN` level with the [prefix][LOG_PREFIX].
+ */
+public fun Logger.warn(message: () -> String) {
+    if (isWarnEnabled) {
+        warn(LOG_PREFIX + message())
+    }
+}
+
+/**
+ * Logs the [message] at the `DEBUG` level with the [prefix][LOG_PREFIX].
+ */
+public fun Logger.debug(message: () -> String) {
+    if (isDebugEnabled) {
+        debug(LOG_PREFIX + message())
+    }
+}

@@ -31,8 +31,10 @@ import com.google.devtools.ksp.gradle.KspExtension
 import com.google.protobuf.gradle.ProtobufExtension
 import io.spine.tools.compiler.gradle.api.CompilerTaskName
 import io.spine.tools.compiler.gradle.api.generatedDir
-import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin.Companion.autoServiceKsp
-import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin.Companion.commonSettingsApplied
+import io.spine.tools.core.jvm.gradle.debug
+import io.spine.tools.core.jvm.gradle.info
+import io.spine.tools.core.jvm.ksp.gradle.Meta.autoServiceAnnotations
+import io.spine.tools.core.jvm.ksp.gradle.Meta.autoServiceKspProcessor
 import io.spine.tools.fs.DirectoryName.grpc
 import io.spine.tools.fs.DirectoryName.java
 import io.spine.tools.fs.DirectoryName.kotlin
@@ -46,6 +48,8 @@ import ksp.com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.services.BuildService
+import org.gradle.api.services.BuildServiceParameters
 import org.gradle.kotlin.dsl.findByType
 
 /**
@@ -54,13 +58,13 @@ import org.gradle.kotlin.dsl.findByType
  *
  * The plugin performs the following configuration steps:
  *
- *  1. Adds the [KSP Gradle Plugin](https://github.com/google/ksp) to the project
- *     if it is not added already.
+ * 1. Adds the [KSP Gradle Plugin](https://github.com/google/ksp) to the project
+ *   if it is not added already.
  *
- *  2. Makes a KSP task depend on a `LaunchSpineCompiler` task for the same source set.
+ * 2. Makes a KSP task depend on a `LaunchSpineCompiler` task for the same source set.
  *
- *  3. Adds the artifact specified by the [mavenCoordinates] property, and [autoServiceKsp]
- *   as the dependencies of the KSP configurations of the project.
+ * 3. Adds the artifact specified by the [mavenCoordinates] property,
+ *   and [AutoServiceKsp.processor] as the dependencies of the KSP configurations of the project.
  */
 public abstract class KspBasedPlugin : Plugin<Project> {
 
@@ -89,6 +93,7 @@ public abstract class KspBasedPlugin : Plugin<Project> {
      */
     private fun Project.applyCommonSettings() {
         synchronized(lock) {
+            val commonSettingsApplied = commonSettingsApplied()
             if (!commonSettingsApplied.contains(this)) {
                 useKsp2()
                 addDependencies()
@@ -98,8 +103,19 @@ public abstract class KspBasedPlugin : Plugin<Project> {
                 makeCompileKotlinTasksDependOnKspTasks()
                 replaceKspOutputDirs()
                 commonSettingsApplied.add(this)
+            } else {
+                logger.debug {
+                    "Common settings already applied to the project `${project.name}`."
+                }
             }
         }
+    }
+
+    private fun Project.commonSettingsApplied(): MutableSet<Project> {
+        val serviceProvider = gradle.sharedServices
+            .registerIfAbsent(KspPluginRunState::class.java.name, KspPluginRunState::class.java)
+        val result = serviceProvider.get().commonSettingsApplied
+        return result
     }
 
     private fun Project.addPluginsToKspConfigurations() {
@@ -107,9 +123,9 @@ public abstract class KspBasedPlugin : Plugin<Project> {
             .filter { it.name.startsWith(configurationNamePrefix) }
             .forEach { kspConfiguration ->
                 val configName = kspConfiguration.name
-                project.dependencies.run {
+                dependencies.run {
                     add(configName, mavenCoordinates)
-                    add(configName, autoServiceKsp)
+                    add(configName, autoServiceKspProcessor.artifact.coordinates)
                 }
             }
     }
@@ -119,7 +135,7 @@ public abstract class KspBasedPlugin : Plugin<Project> {
             val configurationName = sourceSet.compileOnlyConfigurationName
             dependencies.add(
                 configurationName,
-                autoServiceAnnotations
+                autoServiceAnnotations.artifact.coordinates
             )
         }
     }
@@ -136,26 +152,25 @@ public abstract class KspBasedPlugin : Plugin<Project> {
          * The prefix common to all KSP configurations of a project.
          */
         private const val configurationNamePrefix: String = "ksp"
-
-        /**
-         * The Maven coordinates of Google Auto Service annotations that
-         * we [add][Project.addDependencies] as `compileOnly` dependencies to
-         * the source sets of the project to which th
-         */
-        private const val autoServiceAnnotations: String =
-            "com.google.auto.service:auto-service-annotations:1.1.1"
-
-        /**
-         * The Maven coordinates for the Auto Service processor for Kotlin.
-         */
-        private const val autoServiceKsp: String =
-            "dev.zacsweers.autoservice:auto-service-ksp:1.2.0"
-
-        /**
-         * Contains projects to which [KspBasedPlugin]s already applied common settings.
-         */
-        private val commonSettingsApplied: MutableSet<Project> = mutableSetOf()
     }
+}
+
+/**
+ * Defines the state of [KspBasedPlugin] in the scope of the current Gradle build.
+ *
+ * The state persists only during the build run.
+ *
+ * This mechanism replaces the `companion object`-based one,
+ * which unfortunately was scoped by the Gradle's classloader,
+ * and was persisted between the build runs — in case the same Gradle daemon
+ * was reused.
+ */
+private abstract class KspPluginRunState : BuildService<BuildServiceParameters.None> {
+
+    /**
+     * Contains projects to which [KspBasedPlugin]s already applied common settings.
+     */
+    val commonSettingsApplied: MutableSet<Project> = mutableSetOf()
 }
 
 private val Project.kspExtension: KspExtension?
@@ -226,6 +241,7 @@ private fun Project.applyKspPlugin() = with(KspGradlePlugin) {
 private fun Project.makeKspTasksDependOnSpineCompiler() {
     afterEvaluate {
         val kspTasks = kspTasks()
+        logger.debug { "Found ${kspTasks.size} KSP tasks in the project `$name`." }
         kspTasks.forEach { (ssn, kspTask) ->
             val taskName = CompilerTaskName(ssn)
             // Even if a task with `taskName` does not exist, the call
@@ -233,6 +249,10 @@ private fun Project.makeKspTasksDependOnSpineCompiler() {
             // We do this instead of `dependsOn` because historically it
             // proves to be unreliable in this particular case.
             kspTask.mustRunAfter(taskName.value())
+            logger.info {
+                " `${kspTask.name}` set to run after" +
+                        " `${taskName.value()}` in the project `$name`."
+            }
         }
     }
 }

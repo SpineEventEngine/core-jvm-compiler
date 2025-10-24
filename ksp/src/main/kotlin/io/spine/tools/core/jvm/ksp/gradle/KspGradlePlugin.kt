@@ -35,17 +35,17 @@ import org.gradle.api.Project
  * @see <a href="https://github.com/google/ksp">KSP GitHub repository</a>
  */
 @Suppress("ConstPropertyName")
-public object KspGradlePlugin {
+internal object KspGradlePlugin {
 
     /**
      * The ID of the Gradle plugin.
      */
-    public const val id: String = "com.google.devtools.ksp"
+    const val id: String = "com.google.devtools.ksp"
 
     /**
      * Returns the path to the directory where KSP generates sources for the given [project].
      */
-    public fun defaultTargetDirectory(project: Project): Path {
+    fun defaultTargetDirectory(project: Project): Path {
         val generatedDir = project.layout.buildDirectory.dir("generated")
         return generatedDir.get().asFile.toPath()
     }
@@ -58,5 +58,5 @@ public object KspGradlePlugin {
     /**
      * The Maven reference to the plugin module
      */
-    public const val module: String = "$group:symbol-processing-gradle-plugin"
+    const val module: String = "$group:symbol-processing-gradle-plugin"
 }

@@ -24,10 +24,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+package io.spine.tools.core.jvm.ksp.gradle
+
+import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
+import io.spine.tools.meta.LazyDependency
+import io.spine.tools.meta.LazyMeta
+import io.spine.tools.meta.Module
+
 /**
- * The version of modules to publish.
- *
- * Do not rename this property, as it is also used in the integration tests via its name.
+ * Dependencies of the `core-jvm-ksp` module stored in `artifactMeta` resources.
  */
-val coreJvmCompilerVersion by extra("2.0.0-SNAPSHOT.020")
-val versionToPublish by extra(coreJvmCompilerVersion)
+internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-ksp")) {
+
+    /**
+     * The Maven coordinates of Google Auto Service annotations that
+     * we add as `compileOnly` dependency to
+     * the source sets of the project to which a [KspBasedPlugin] is applied.
+     */
+    val autoServiceAnnotations = LazyDependency(
+        this,
+        Module("com.google.auto.service", "auto-service-annotations")
+    )
+
+    /**
+     * The Maven coordinates for the Auto Service processor for Kotlin.
+     */
+    val autoServiceKspProcessor = LazyDependency(
+        this,
+        Module("dev.zacsweers.autoservice", "auto-service-ksp")
+    )
+}

@@ -26,12 +26,25 @@
 
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.AutoService
+import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.Kotest
+
+plugins {
+    id("io.spine.artifact-meta")
+}
+
+artifactMeta {
+    artifactId.set("core-jvm-ksp")
+    addDependencies(
+        AutoService.annotations,
+        AutoServiceKsp.processor
+    )
+}
 
 @Suppress("unused")
 val compileClasspath by configurations.getting {
@@ -49,7 +62,7 @@ dependencies {
 
     implementation(Ksp.artifact(Ksp.symbolProcessingAaEmb))?.because(
         "It was not resolved automatically by KSP Gradle Plugin in integration tests." +
-                " We need go re-visit this in future versions of KSP Gradle Plugin."
+                " We need to re-visit this in future versions of KSP Gradle Plugin."
     )
 
     // The dependencies for the Gradle plugin part.
@@ -65,6 +78,7 @@ dependencies {
         "This is `api` dependency because we add this plugin from our code" +
                 " and want its API being visible to users."
     )
+    api(project(":base"))
     implementation(Protobuf.GradlePlugin.lib)?.because(
         "We need `ProtobufExtension` for ignoring `generated/sources/proto/` directory."
     )
