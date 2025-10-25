@@ -145,6 +145,7 @@ fun Module.forceConfigurations() {
                     JUnit.bom,
                     Kotlin.bom,
                     Kotlin.Compiler.embeddable,
+                    Kotlin.scriptRuntime,
                     Kotlin.GradlePlugin.api,
                     KotlinPoet.ksp,
                     KotlinPoet.lib,

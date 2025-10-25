@@ -128,11 +128,3 @@ configurations
             )
         }
     }
-
-// Avoid Gradle warning on disabled execution optimization because of the absence of
-// explicit or implicit dependencies.
-afterEvaluate {
-    val kspTestFixturesKotlin by tasks.getting
-    val launchTestFixturesSpineCompiler by tasks.getting
-    kspTestFixturesKotlin.dependsOn(launchTestFixturesSpineCompiler)
-}
