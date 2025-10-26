@@ -81,13 +81,6 @@ if (JavaVersion.current() >= JavaVersion.VERSION_16) {
     }
 }
 
-// Avoid the missing file error for generated code when running tests out of the IDE.
-afterEvaluate {
-    val kspTestKotlin by tasks.getting
-    val launchTestSpineCompiler by tasks.getting
-    kspTestKotlin.dependsOn(launchTestSpineCompiler)
-}
-
 afterEvaluate {
     val writeSpineCompilerSettings by tasks.getting
     val processResources by tasks.getting
