@@ -370,6 +370,14 @@ tasks.test {
     dependsOn(rootProject.tasks.named("localPublish"))
 }
 
+tasks.jar {
+    // There is no production source code in this module.
+    // This module is for publishing only.
+    enabled = false
+}
+
+disableDocumentationTasks()
+
 gradlePlugin {
     website.set("https://spine.io/")
     vcsUrl.set("https://github.com/SpineEventEngine/core-jvm-compiler.git")
