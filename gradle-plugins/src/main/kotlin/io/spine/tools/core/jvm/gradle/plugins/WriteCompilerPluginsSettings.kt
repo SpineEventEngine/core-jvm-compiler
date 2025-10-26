@@ -61,7 +61,7 @@ import org.gradle.api.tasks.TaskAction
  * A task that writes settings for CoreJvm plugins of the Spine Compiler.
  *
  * The [settingsDir] property defines the directory where settings files for
- * the Compiler plugins are stored.
+ * the CoreJvm Compiler plugins are stored.
  *
  * This task writes settings files for the CoreJvm plugins to the Compiler.
  */
