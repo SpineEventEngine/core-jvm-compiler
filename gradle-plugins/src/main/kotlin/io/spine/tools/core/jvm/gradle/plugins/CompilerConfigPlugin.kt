@@ -43,7 +43,7 @@ import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
 import io.spine.tools.core.jvm.gradle.generatedJavaDirName
 import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
-import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_SETTINGS
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_PLUGINS_SETTINGS
 import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
 import io.spine.tools.core.jvm.marker.MarkerPlugin
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
@@ -51,6 +51,8 @@ import io.spine.tools.core.jvm.signal.SignalPlugin
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
+import io.spine.tools.gradle.task.JavaTaskName.Companion.processResources
+import io.spine.tools.gradle.task.JavaTaskName.Companion.sourcesJar
 import io.spine.tools.meta.MavenArtifact
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -68,7 +70,7 @@ import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
  *   2. Configures the Compiler extension of the Gradle project, passing the compiler plugins,
  *      such as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin] and
  *      the plugins introduced by the modules of the CoreJvm Compiler modules.
- *   3. Creates a [WriteCompilerSettings] task for passing configuration to the Compiler, and
+ *   3. Creates a [WriteCompilerPluginsSettings] task for passing configuration to the Compiler, and
  *      links it to the [LaunchSpineCompiler] task.
  *   4. Adds required dependencies.
  */
@@ -93,9 +95,9 @@ internal class CompilerConfigPlugin : Plugin<Project> {
     companion object {
 
         /**
-         * The name of the task for writing the Compiler settings.
+         * The name of the task for writing the settings of CoreJvm Compiler plugins.
          */
-        const val WRITE_COMPILER_SETTINGS = "writeSpineCompilerSettings"
+        const val WRITE_COMPILER_PLUGINS_SETTINGS = "writeSpineCompilerPluginsSettings"
 
         /**
          * The name of the Validation plugin for ProtoData.
@@ -110,14 +112,19 @@ private fun Project.configureCompiler() {
     tasks.withType<LaunchSpineCompiler>().all { task ->
         task.apply {
             dependsOn(writeSettingsTask)
-            setStandardOutput(System.out)
-            setErrorOutput(System.err)
+            standardOutput = System.out
+            errorOutput = System.err
         }
     }
+    // Make `processResources` and `sourceJar` depend on `writeSpineCompilerPluginsSettings`
+    // as demanded by Gradle 9.x. The settings task does not produce resources or sources,
+    // but we want to avoid forcing users set the dependencies manually in their projects.
+    tasks.findByName(processResources.value())?.mustRunAfter(writeSettingsTask)
+    tasks.findByName(sourcesJar.value())?.mustRunAfter(writeSettingsTask)
 }
 
-private fun Project.createWriteSettingsTask(): Provider<WriteCompilerSettings> {
-    val result = tasks.register<WriteCompilerSettings>(WRITE_COMPILER_SETTINGS) {
+private fun Project.createWriteSettingsTask(): Provider<WriteCompilerPluginsSettings> {
+    val result = tasks.register<WriteCompilerPluginsSettings>(WRITE_COMPILER_PLUGINS_SETTINGS) {
         val workingDir = WorkingDirectory(compilerWorkingDir.asFile.toPath())
         val settingsDir = workingDir.settingsDirectory.path.toFile()
         val settingsDirProvider = project.layout.dir(provider { settingsDir })

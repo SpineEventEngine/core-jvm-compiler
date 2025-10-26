@@ -88,7 +88,7 @@ internal class CompilerConfigPluginSpec {
 
     @Test
     fun `add a task for passing configuration file`() {
-        val task = project.tasks.withType<WriteCompilerSettings>()
+        val task = project.tasks.withType<WriteCompilerPluginsSettings>()
         task shouldNotBe null
         task.shouldNotBeEmpty()
     }
