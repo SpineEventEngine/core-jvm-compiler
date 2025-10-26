@@ -119,8 +119,8 @@ private fun Project.configureCompiler() {
     // Make `processResources` and `sourceJar` depend on `writeSpineCompilerPluginsSettings`
     // as demanded by Gradle 9.x. The settings task does not produce resources or sources,
     // but we want to avoid forcing users set the dependencies manually in their projects.
-    tasks.findByName(processResources.value())?.dependsOn(writeSettingsTask)
-    tasks.findByName(sourcesJar.value())?.dependsOn(writeSettingsTask)
+    tasks.findByName(processResources.value())?.mustRunAfter(writeSettingsTask)
+    tasks.findByName(sourcesJar.value())?.mustRunAfter(writeSettingsTask)
 }
 
 private fun Project.createWriteSettingsTask(): Provider<WriteCompilerPluginsSettings> {
