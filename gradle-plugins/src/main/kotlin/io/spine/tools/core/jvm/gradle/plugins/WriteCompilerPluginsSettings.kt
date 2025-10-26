@@ -61,9 +61,9 @@ import org.gradle.api.tasks.TaskAction
  * A task that writes settings for CoreJvm plugins of the Spine Compiler.
  *
  * The [settingsDir] property defines the directory where settings files for
- * ProtoData plugins are stored.
+ * the Compiler plugins are stored.
  *
- * This task writes settings files for ProtoData components.
+ * This task writes settings files for the CoreJvm plugins to the Compiler.
  */
 @Suppress("unused") // Gradle creates a subtype for this class.
 public abstract class WriteCompilerPluginsSettings : DefaultTask() {
