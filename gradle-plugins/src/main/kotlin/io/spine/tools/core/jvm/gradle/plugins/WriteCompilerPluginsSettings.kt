@@ -40,8 +40,8 @@ import io.spine.tools.core.jvm.comparable.ComparablePlugin
 import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
-import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerSettings.Companion.JAVA_CODE_STYLE_ID
-import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerSettings.Companion.VALIDATION_SETTINGS_ID
+import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.JAVA_CODE_STYLE_ID
+import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.VALIDATION_SETTINGS_ID
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.settings.Combined
 import io.spine.tools.core.jvm.settings.signalSettings
@@ -58,7 +58,7 @@ import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
 
 /**
- * A task that writes settings for ProtoData.
+ * A task that writes settings for CoreJvm plugins of the Spine Compiler.
  *
  * The [settingsDir] property defines the directory where settings files for
  * ProtoData plugins are stored.
@@ -66,7 +66,7 @@ import org.gradle.api.tasks.TaskAction
  * This task writes settings files for ProtoData components.
  */
 @Suppress("unused") // Gradle creates a subtype for this class.
-public abstract class WriteCompilerSettings : DefaultTask() {
+public abstract class WriteCompilerPluginsSettings : DefaultTask() {
 
     @get:OutputDirectory
     public abstract val settingsDir: DirectoryProperty
@@ -83,7 +83,7 @@ public abstract class WriteCompilerSettings : DefaultTask() {
 
     @TaskAction
     @Throws(IOException::class)
-    public fun writeFile() {
+    public fun writeFiles() {
         val dir = settingsDirectory()
         forValidationPlugin(dir)
         forAnnotationPlugin(dir)
@@ -111,9 +111,9 @@ public abstract class WriteCompilerSettings : DefaultTask() {
 
 /**
  * Obtains an instance of [SettingsDirectory] to be used for writing files which
- * points to the directory specified by the [WriteCompilerSettings.settingsDir] property.
+ * points to the directory specified by the [WriteCompilerPluginsSettings.settingsDir] property.
  */
-private fun WriteCompilerSettings.settingsDirectory(): SettingsDirectory {
+private fun WriteCompilerPluginsSettings.settingsDirectory(): SettingsDirectory {
     val dir = project.file(settingsDir)
     dir.mkdirs()
     val settings = SettingsDirectory(dir.toPath())
@@ -126,7 +126,7 @@ private fun WriteCompilerSettings.settingsDirectory(): SettingsDirectory {
  * The settings are taken from McJava extension object and converted to
  * [io.spine.validation.ValidationConfig], which is later written as JSON file.
  */
-private fun WriteCompilerSettings.forValidationPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forValidationPlugin(dir: SettingsDirectory) {
     val compilerSettings = compilerSettings
     val signalSettings = compilerSettings.signalSettings
     val markers = messageMarkers {
@@ -148,7 +148,7 @@ private fun WriteCompilerSettings.forValidationPlugin(dir: SettingsDirectory) {
 private fun Combined.entityOptionsNames(): Iterable<String> =
     entities.optionList.map { it.name }
 
-private fun WriteCompilerSettings.forAnnotationPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forAnnotationPlugin(dir: SettingsDirectory) {
     val annotation = options.annotation
     val proto = settings {
         val javaType = annotation.types
@@ -164,12 +164,12 @@ private fun WriteCompilerSettings.forAnnotationPlugin(dir: SettingsDirectory) {
     dir.write(ApiAnnotationsPlugin.SETTINGS_ID, proto)
 }
 
-private fun WriteCompilerSettings.forEntityPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forEntityPlugin(dir: SettingsDirectory) {
     val entitySettings = compilerSettings.entities
     dir.write(EntityPlugin.SETTINGS_ID, entitySettings)
 }
 
-private fun WriteCompilerSettings.forSignalPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forSignalPlugin(dir: SettingsDirectory) {
     val codegen = compilerSettings.signalSettings
     val signalSettings = signalSettings {
         commands = codegen.commands
@@ -179,22 +179,22 @@ private fun WriteCompilerSettings.forSignalPlugin(dir: SettingsDirectory) {
     dir.write(SignalPlugin.SETTINGS_ID, signalSettings)
 }
 
-private fun WriteCompilerSettings.forMessageGroupPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forMessageGroupPlugin(dir: SettingsDirectory) {
     val groupSettings = compilerSettings.groupSettings
     dir.write(MessageGroupPlugin.SETTINGS_ID, groupSettings)
 }
 
-private fun WriteCompilerSettings.forUuidPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forUuidPlugin(dir: SettingsDirectory) {
     val uuidSettings = compilerSettings.uuids
     dir.write(UuidPlugin.SETTINGS_ID, uuidSettings)
 }
 
-private fun WriteCompilerSettings.forComparablePlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forComparablePlugin(dir: SettingsDirectory) {
     val settings = compilerSettings.comparables
     dir.write(ComparablePlugin.SETTINGS_ID, settings)
 }
 
-private fun WriteCompilerSettings.forStyleFormattingPlugin(dir: SettingsDirectory) {
+private fun WriteCompilerPluginsSettings.forStyleFormattingPlugin(dir: SettingsDirectory) {
     val styleSettings = options.style.get()
     dir.write(JAVA_CODE_STYLE_ID, styleSettings)
 }
