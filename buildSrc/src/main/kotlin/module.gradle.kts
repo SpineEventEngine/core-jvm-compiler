@@ -47,7 +47,6 @@ import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.dependency.test.JUnit
-import io.spine.gradle.VersionWriter
 import io.spine.gradle.checkstyle.CheckStyleConfig
 import io.spine.gradle.javac.configureErrorProne
 import io.spine.gradle.javac.configureJavac
@@ -76,7 +75,6 @@ plugins {
 }
 apply<BomsPlugin>()
 apply<IncrementGuard>()
-apply<VersionWriter>()
 
 LicenseReporter.generateReportIn(project)
 JavadocConfig.applyTo(project)
