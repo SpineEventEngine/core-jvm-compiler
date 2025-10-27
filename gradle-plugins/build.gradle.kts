@@ -25,14 +25,12 @@
  */
 
 import io.spine.dependency.build.Ksp
-import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
-import io.spine.gradle.WriteVersions
 
 plugins {
     id("io.spine.artifact-meta")
@@ -112,19 +110,5 @@ tasks {
     // The task fails complaining about this fact.
     javadoc {
         enabled = false
-    }
-
-    withType<WriteVersions>().configureEach {
-
-        // Store the version of gRPC so that we can set the artifact for `protoc`.
-        version(Grpc.ProtocPlugin.artifact)
-
-        // Store the version of Validation so that we can add the dependency for
-        // the `spineCompiler` configuration.
-        version(Validation.java)
-
-        // Store the version of `tool-base` so that we can load the version of
-        // Protobuf `protoc` artifact.
-        version(ToolBase.lib)
     }
 }
