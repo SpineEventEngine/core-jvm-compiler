@@ -1,3 +1,5 @@
+import io.spine.dependency.lib.Protobuf
+
 /*
  * Copyright 2024, TeamDev. All rights reserved.
  *
@@ -40,3 +42,7 @@ dependencies {
 }
 
 forceSpineBase()
+
+protobuf {
+    protoc { artifact = Protobuf.compiler }
+}

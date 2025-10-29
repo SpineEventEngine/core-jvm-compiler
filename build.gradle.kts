@@ -130,7 +130,6 @@ allprojects {
 
 subprojects {
     apply(plugin = "module")
-    setupProtocArtifact()
 }
 
 JacocoConfig.applyTo(project)
@@ -186,15 +185,6 @@ val check by tasks.existing {
 }
 
 typealias Module = Project
-
-/**
- * Specify `protoc` artifact for all the modules for simplicity.
- */
-fun Module.setupProtocArtifact() {
-    protobuf {
-        protoc { artifact = Protobuf.compiler }
-    }
-}
 
 apply(from = "version.gradle.kts")
 val coreJvmCompilerVersion: String by extra

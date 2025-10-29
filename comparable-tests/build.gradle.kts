@@ -24,6 +24,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 
@@ -37,4 +38,8 @@ dependencies {
     testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
     testImplementation(project(":comparable"))
     testImplementation(testFixtures(project(":base")))
+}
+
+protobuf {
+    protoc { artifact = Protobuf.compiler }
 }

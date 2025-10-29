@@ -1,3 +1,5 @@
+import io.spine.dependency.lib.Protobuf
+
 /*
  * Copyright 2024, TeamDev. All rights reserved.
  *
@@ -37,4 +39,8 @@ dependencies {
     ).forEach {
         testImplementation(it)
     }
+}
+
+protobuf {
+    protoc { artifact = Protobuf.compiler }
 }
