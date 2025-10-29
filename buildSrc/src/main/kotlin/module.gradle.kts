@@ -138,6 +138,7 @@ fun Module.forceConfigurations() {
                 Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    Grpc.bom,
                     Jackson.bom,
                     Jackson.annotations,
                     JUnit.bom,
@@ -149,7 +150,6 @@ fun Module.forceConfigurations() {
                     KotlinPoet.lib,
                     Protobuf.compiler,
                     Caffeine.lib,
-
                     Reflect.lib,
                     Base.annotations,
                     Base.lib,
