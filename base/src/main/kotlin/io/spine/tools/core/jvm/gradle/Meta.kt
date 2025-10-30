@@ -64,11 +64,10 @@ internal object CoreJvm {
  * Dependencies on Spine Compiler.
  */
 public object Compiler {
-    private const val group = "io.spine.tools"
 
     /**
      * The dependency on the Compiler's Gradle plugin.
      */
     public val pluginLib: LazyDependency =
-        LazyDependency(Meta, Module(group, "compiler-gradle-plugin"))
+        LazyDependency(Meta, Module(SPINE_TOOLS_GROUP, "compiler-gradle-plugin"))
 }
