@@ -189,8 +189,6 @@ val check by tasks.existing {
     dependsOn(integrationTests)
 }
 
-typealias Module = Project
-
 apply(from = "version.gradle.kts")
 val coreJvmCompilerVersion: String by extra
 
