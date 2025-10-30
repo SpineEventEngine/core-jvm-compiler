@@ -27,6 +27,7 @@ import io.spine.dependency.lib.Protobuf
  */
 
 plugins {
+    module
     prototap
     `test-module`
 }

@@ -33,6 +33,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 
 plugins {
+    module
     id("io.spine.artifact-meta")
 }
 

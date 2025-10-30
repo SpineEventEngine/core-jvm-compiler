@@ -33,6 +33,7 @@ import io.spine.dependency.test.Kotest
 import io.spine.dependency.test.KotlinCompileTesting
 
 plugins {
+    module
     id("io.spine.artifact-meta")
     id("io.spine.core-jvm")
 }

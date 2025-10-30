@@ -29,6 +29,7 @@ import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 
 plugins {
+    module
     prototap
     `test-module`
 }

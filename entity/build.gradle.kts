@@ -30,6 +30,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 
 plugins {
+    module
     id("io.spine.core-jvm")
 }
 

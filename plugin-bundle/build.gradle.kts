@@ -33,6 +33,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.SpinePublishing
+import io.spine.gradle.report.license.LicenseReporter
 import java.util.jar.JarFile
 
 plugins {
@@ -41,6 +42,7 @@ plugins {
     `plugin-publish`
     `write-manifest`
 }
+LicenseReporter.generateReportIn(project)
 
 /** The publishing settings from the root project. */
 val spinePublishing = rootProject.the<SpinePublishing>()
@@ -93,10 +95,6 @@ afterEvaluate {
 
     // This module does not have source code.
     val javadocJar: Task by tasks.getting {
-        enabled = false
-    }
-
-    val testFixturesJar by tasks.getting {
         enabled = false
     }
 }

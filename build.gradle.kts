@@ -49,6 +49,7 @@ buildscript {
     val jackson = io.spine.dependency.lib.Jackson
     val kotlin = io.spine.dependency.lib.Kotlin
     val logging = io.spine.dependency.local.Logging
+    val time = io.spine.dependency.local.Time
     val toolBase = io.spine.dependency.local.ToolBase
     val validation = io.spine.dependency.local.Validation
     doForceVersions(configurations)
@@ -72,17 +73,14 @@ buildscript {
                     io.spine.dependency.local.Reflect.lib,
                     toolBase.lib,
                     coreJava.server,
+                    time.lib,
+                    time.javaExtensions,
                     logging.lib,
                     logging.libJvm,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
                     compiler.api,
-
-                    // Force ProtoData-compatible version because the build still uses McJava.
-                    // See `classpath` dependencies below.
-                    // When McJava is replaced with CoreJvmCompiler, these lines must be either removed
-                    // or changed with the latest version of Validation.
-                    "${validation.runtimeModule}:${validation.pdCompatibleVersion}",
-                    "${validation.javaBundleModule}:${validation.pdCompatibleVersion}"
+                    "${validation.runtimeModule}:${validation.version}",
+                    "${validation.runtimeModule}:${validation.version}"
                 )
             }
         }

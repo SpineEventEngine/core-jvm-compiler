@@ -46,12 +46,11 @@ buildscript {
 
 plugins {
     `java-library`
+    kotlin("jvm")
+    `test-module`
+    protobuf
+    id("io.spine.core-jvm")
     id("com.google.devtools.ksp")
-    `java-test-fixtures`
-}
-
-apply {
-    plugin("io.spine.core-jvm")
 }
 
 apply<BomsPlugin>()

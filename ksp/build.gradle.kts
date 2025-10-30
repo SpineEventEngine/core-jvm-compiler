@@ -35,6 +35,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.test.Kotest
 
 plugins {
+    module
     id("io.spine.artifact-meta")
 }
 
