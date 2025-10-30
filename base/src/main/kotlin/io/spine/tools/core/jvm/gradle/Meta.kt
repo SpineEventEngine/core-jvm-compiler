@@ -56,3 +56,13 @@ internal object CoreJvm {
      */
     internal val client = dependency("spine-client")
 }
+
+/**
+ * Dependency on Spine Compiler.
+ */
+public object Compiler {
+    private const val group = "io.spine.tools"
+
+    public val pluginLib: LazyDependency =
+        LazyDependency(Meta, Module(group, "compiler-gradle-plugin"))
+}
