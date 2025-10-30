@@ -37,6 +37,9 @@ import io.spine.tools.meta.Module
  */
 internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-base"))
 
+/**
+ * Dependencies on the CoreJvm Library.
+ */
 internal object CoreJvm {
 
     /**
@@ -55,4 +58,16 @@ internal object CoreJvm {
      * The CoreJvm Client artifact.
      */
     internal val client = dependency("spine-client")
+}
+
+/**
+ * Dependencies on Spine Compiler.
+ */
+public object Compiler {
+
+    /**
+     * The dependency on the Compiler's Gradle plugin.
+     */
+    public val pluginLib: LazyDependency =
+        LazyDependency(Meta, Module(SPINE_TOOLS_GROUP, "compiler-gradle-plugin"))
 }

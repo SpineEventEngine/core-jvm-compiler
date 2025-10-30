@@ -46,6 +46,7 @@ val moduleArtifactId = "core-jvm-base"
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
+        Compiler.pluginLib,
         CoreJvm.server,
         CoreJvm.client,
     )

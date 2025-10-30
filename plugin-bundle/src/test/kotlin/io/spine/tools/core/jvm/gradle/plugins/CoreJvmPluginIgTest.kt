@@ -27,6 +27,7 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.kotest.matchers.shouldBe
+import io.spine.tools.core.jvm.gradle.Compiler
 import io.spine.tools.core.jvm.gradle.module.ArtifactRegistry
 import io.spine.tools.gradle.task.BaseTaskName
 import io.spine.tools.gradle.task.TaskName
@@ -43,29 +44,31 @@ import org.junit.jupiter.api.io.TempDir
 class CoreJvmPluginIgTest {
 
     companion object {
+        val repos = """
+            |repositories {
+            |    mavenLocal()
+            |    maven { url = uri("${ArtifactRegistry.releases}") }
+            |    maven { url = uri("${ArtifactRegistry.snapshots}") }
+            |    mavenCentral()
+            |}""".trimMargin()
+
         @Language("kotlin")
-        private val buildscriptWithClasspathDependency = """
+        private val buildscriptWithFullClasspath = """
             |buildscript {
-            |    repositories {
-            |        mavenLocal()
-            |        maven { url = uri("${ArtifactRegistry.releases}") }
-            |        maven { url = uri("${ArtifactRegistry.snapshots}") }
-            |        mavenCentral()
-            |    }
+            |    $repos
             |    dependencies {
             |        classpath("io.spine.tools:core-jvm-plugins:${Meta.artifact.version}")
+            |        classpath("${Compiler.pluginLib.artifact.coordinates}")
             |    }
             |}
             |""".trimMargin()
 
         @Language("kotlin")
-        private val buildscript = """
+        private val buildscriptWithShortClasspath = """
             |buildscript {
-            |    repositories {
-            |        mavenLocal()
-            |        maven { url = uri("${ArtifactRegistry.releases}") }
-            |        maven { url = uri("${ArtifactRegistry.snapshots}") }
-            |        mavenCentral()
+            |    $repos
+            |    dependencies {
+            |        classpath("${Compiler.pluginLib.artifact.coordinates}")
             |    }
             |}
             |""".trimMargin()
@@ -91,7 +94,7 @@ class CoreJvmPluginIgTest {
     @Test
     fun `apply to a single-module project via classpath`(@TempDir projectDir: File) {
         @Language("kotlin")
-        val buildFile = buildscriptWithClasspathDependency + """
+        val buildFile = buildscriptWithFullClasspath + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
@@ -124,7 +127,7 @@ class CoreJvmPluginIgTest {
         @TempDir projectDir: File
     ) {
         @Language("kotlin")
-        val buildFile = buildscriptWithClasspathDependency + """
+        val buildFile = buildscriptWithFullClasspath + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
@@ -154,7 +157,7 @@ class CoreJvmPluginIgTest {
     @Test
     fun `be available via its ID and version`(@TempDir projectDir: File) {
         @Language("kotlin")
-        val buildFile = buildscript + """
+        val buildFile = buildscriptWithShortClasspath + """
             |plugins {
             |    java
             |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
