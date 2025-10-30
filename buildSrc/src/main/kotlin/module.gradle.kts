@@ -156,6 +156,8 @@ fun Module.forceConfigurations() {
                     Time.lib,
                     Time.javaExtensions,
                     Compiler.params,
+                    Compiler.gradleApi,
+                    Compiler.pluginLib,
                     CoreJvm.core,
                     CoreJvm.client,
                     CoreJvm.server,

@@ -27,7 +27,6 @@
 @file:Suppress("RemoveRedundantQualifierName") // To prevent IDEA replacing FQN imports.
 
 import io.spine.dependency.build.Dokka
-import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Validation
@@ -72,6 +71,7 @@ buildscript {
                     logging.lib,
                     logging.libJvm,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
+                    compiler.api,
 
                     // Force ProtoData-compatible version because the build still uses McJava.
                     // See `classpath` dependencies below.
@@ -87,6 +87,7 @@ buildscript {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
         classpath(io.spine.dependency.local.ToolBase.jvmToolPluginDogfooding)
+        classpath(compiler.pluginLib)
         classpath(coreJvmCompiler.pluginLib)
     }
 }
