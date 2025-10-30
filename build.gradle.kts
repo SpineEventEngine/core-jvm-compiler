@@ -43,28 +43,32 @@ import java.time.Duration
 
 buildscript {
     standardSpineSdkRepositories()
-
-    val toolBase = io.spine.dependency.local.ToolBase
-    val coreJava = io.spine.dependency.local.CoreJvm
-    val validation = io.spine.dependency.local.Validation
-    val logging = io.spine.dependency.local.Logging
+    val base = io.spine.dependency.local.Base
     val compiler = io.spine.dependency.local.Compiler
+    val coreJava = io.spine.dependency.local.CoreJvm
+    val jackson = io.spine.dependency.lib.Jackson
+    val kotlin = io.spine.dependency.lib.Kotlin
+    val logging = io.spine.dependency.local.Logging
+    val toolBase = io.spine.dependency.local.ToolBase
+    val validation = io.spine.dependency.local.Validation
     doForceVersions(configurations)
     configurations {
         all {
             exclude(group = "io.spine", module = "spine-logging-backend")
             resolutionStrategy {
-                val configuration = this@all
-                val strategy = this@resolutionStrategy
-                io.spine.dependency.lib.Kotlin
-                    .forceArtifacts(project, configuration, strategy)
-                io.spine.dependency.lib.Kotlin.StdLib
-                    .forceArtifacts(project, configuration, strategy)
+                val cfg = this@all
+                val rs = this@resolutionStrategy
+                kotlin.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
+                jackson.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.Jackson.DataType.forceArtifacts(project, cfg, rs)
+
                 force(
-                    io.spine.dependency.lib.Kotlin.bom,
-                    io.spine.dependency.lib.Jackson.bom,
-                    io.spine.dependency.local.Base.annotations,
-                    io.spine.dependency.local.Base.libForBuildScript,
+                    kotlin.bom,
+                    jackson.annotations,
+                    jackson.bom,
+                    base.annotations,
+                    base.libForBuildScript,
                     io.spine.dependency.local.Reflect.lib,
                     toolBase.lib,
                     coreJava.server,
@@ -86,7 +90,7 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
-        classpath(io.spine.dependency.local.ToolBase.jvmToolPluginDogfooding)
+        classpath(toolBase.jvmToolPluginDogfooding)
         classpath(compiler.pluginLib)
         classpath(coreJvmCompiler.pluginLib)
     }
