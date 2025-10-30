@@ -133,10 +133,6 @@ allprojects {
     repositories.standardToSpineSdk()
 }
 
-subprojects {
-    apply(plugin = "module")
-}
-
 JacocoConfig.applyTo(project)
 PomGenerator.applyTo(project)
 LicenseReporter.mergeAllReports(project)
