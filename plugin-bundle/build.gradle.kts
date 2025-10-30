@@ -26,7 +26,6 @@
 
 import groovy.util.Node
 import groovy.util.NodeList
-import groovy.xml.XmlNodePrinter
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
@@ -34,7 +33,6 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.SpinePublishing
-import java.io.PrintWriter
 import java.util.jar.JarFile
 
 plugins {
@@ -148,15 +146,61 @@ publishing {
                  * </dependency>
                  * ```
                  */
-                val dependency = Node(dependencies, "dependency")
-                dependency.let {
+                val compilerApi = Node(dependencies, "dependency")
+                compilerApi.let {
                     Node(it, "groupId", "io.spine.tools")
                     Node(it, "artifactId", "compiler-api")
                     Node(it, "version", Compiler.version)
                     Node(it, "scope", "runtime")
                 }
 
-                Node(dependency, "exclusions").let {
+                Node(compilerApi, "exclusions").let {
+                    excludeGroup(it, "org.jetbrains.kotlin")
+                    excludeGroup(it, "com.google.protobuf")
+                    excludeGroup(it, "io.spine.tools")
+                }
+
+                /*
+                 * Add the dependency onto `io.spine.tools:compiler-jvm`,
+                 * due to the same reasons as stated above.
+                 *
+                 * This dependency is required, in particular, to access
+                 * the Proto definitions used by CoreJvm Gradle plugin extension
+                 * via `CoreJvmOptions`.
+                 *
+                 * The appended code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>io.spine.tools</groupId>
+                 *     <artifactId>compiler-jvm</artifactId>
+                 *     <version>${Compiler.version}</version>
+                 *     <scope>runtime</scope>
+                 *     <exclusions>
+                 *          <exclusion>
+                 *              <groupId>org.jetbrains.kotlin</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *          <exclusion>
+                 *              <groupId>com.google.protobuf</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *          <exclusion>
+                 *              <groupId>io.spine.tools</groupId>
+                 *              <artifactId>*</artifactId>
+                 *          </exclusion>
+                 *     </exclusions>
+                 * </dependency>
+                 * ```
+                 */
+                val compilerJvm = Node(dependencies, "dependency")
+                compilerJvm.let {
+                    Node(it, "groupId", "io.spine.tools")
+                    Node(it, "artifactId", "compiler-jvm")
+                    Node(it, "version", Compiler.version)
+                    Node(it, "scope", "runtime")
+                }
+
+                Node(compilerJvm, "exclusions").let {
                     excludeGroup(it, "org.jetbrains.kotlin")
                     excludeGroup(it, "com.google.protobuf")
                     excludeGroup(it, "io.spine.tools")
@@ -312,23 +356,9 @@ tasks.shadowJar {
          * The Compiler Gradle plugin will be added to the user's build via a dependency.
          * See the `pom.xml` manipulations above.
          */
-        "io/spine/tools/compiler/*",
-        "io/spine/tools/compiler/plugin/**",
-        "io/spine/tools/compiler/renderer/**",
-        "io/spine/tools/compiler/type/**",
-        "io/spine/tools/compiler/cli/app/**",
-        "io/spine/tools/compiler/gradle/plugin/**",
-        "io/spine/tools/compiler/jvm/*",
-        "io/spine/tools/compiler/jvm/annotation/**",
-        "io/spine/tools/compiler/jvm/file/**",
-        "io/spine/tools/compiler/protoc/**",
-        "spine/compiler/**",
-
-        // Plugin declaration
-        "META-INF/gradle-plugins/io.spine.compiler.properties",
-
-        // Protobuf definitions
-        "spine/compiler/**",
+        "io/spine/tools/compiler/**",
+        "spine/compiler/**", // Protobuf definitions
+        "META-INF/gradle-plugins/io.spine.compiler.properties", // Plugin declaration
 
         /**
          * Exclude Gradle types to reduce the size of the resulting JAR.
