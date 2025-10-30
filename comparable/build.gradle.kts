@@ -27,6 +27,7 @@
 import io.spine.dependency.local.TestLib
 
 plugins {
+    module
     id("io.spine.core-jvm")
 }
 

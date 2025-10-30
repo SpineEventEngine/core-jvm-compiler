@@ -25,23 +25,18 @@
  */
 
 import io.spine.dependency.lib.Roaster
-import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 
 plugins {
+    module
     id("io.spine.core-jvm")
 }
 
 dependencies {
     implementation(project(":base"))
     implementation(Logging.lib)
-
-    // Generate routing schemas using the CoreJvm Compiler, avoiding the missing
-    // `io/spine/tools/code/manifest/Version` class issue.
-    // This dependency must be removed when `io.spine.core-jvm` plugin is used.
-    ksp(CoreJvmCompiler.pluginLib)
 
     testFixturesImplementation(ToolBase.lib)
     testFixturesImplementation(TestLib.lib)

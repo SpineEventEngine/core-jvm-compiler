@@ -29,6 +29,7 @@ import io.spine.dependency.lib.GrpcKotlin
 import io.spine.dependency.lib.Protobuf
 
 plugins {
+    module
     id("io.spine.artifact-meta")
 }
 
