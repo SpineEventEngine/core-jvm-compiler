@@ -80,7 +80,10 @@ buildscript {
                 val cfg = this@all
                 val rs = this@resolutionStrategy
                 io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.Jackson.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.Jackson.DataType.forceArtifacts(project, cfg, rs)
                 force(
+                    io.spine.dependency.lib.Jackson.annotations,
                     io.spine.dependency.lib.Jackson.bom,
                     io.spine.dependency.lib.Kotlin.bom,
                     io.spine.dependency.local.Reflect.lib,
