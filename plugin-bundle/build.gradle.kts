@@ -25,6 +25,8 @@
  */
 
 import groovy.util.Node
+import groovy.util.NodeList
+import groovy.xml.XmlNodePrinter
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
@@ -32,6 +34,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.SpinePublishing
+import java.io.PrintWriter
 import java.util.jar.JarFile
 
 plugins {
@@ -177,6 +180,45 @@ publishing {
                     Node(it, "version", Protobuf.GradlePlugin.version)
                     Node(it, "scope", "runtime")
                 }
+
+                /*
+                 * Add the dependency on Protobuf Java library so that we can add it
+                 * from our code. The code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>com.google.protobuf</groupId>
+                 *     <artifactId>protobuf-java</artifactId>
+                 *     <version>${Protobuf.version}</version>
+                 *     <scope>runtime</scope>
+                 * </dependency>
+                 * ```
+                 */
+                Node(dependencies, "dependency").let {
+                    Node(it, "groupId", "com.google.protobuf")
+                    Node(it, "artifactId", "protobuf-java")
+                    Node(it, "version", Protobuf.version)
+                    Node(it, "scope", "runtime")
+                }
+
+                /*
+                 * Add the dependency on Protobuf Kotlin library so that we can add it
+                 * from our code. The code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>com.google.protobuf</groupId>
+                 *     <artifactId>protobuf-kotlin</artifactId>
+                 *     <version>${Protobuf.version}</version>
+                 *     <scope>runtime</scope>
+                 * </dependency>
+                 * ```
+                 */
+                Node(dependencies, "dependency").let {
+                    Node(it, "groupId", "com.google.protobuf")
+                    Node(it, "artifactId", "protobuf-kotlin")
+                    Node(it, "version", Protobuf.version)
+                    Node(it, "scope", "runtime")
+                }
+
                 /*
                  * Add the dependency on KSP Gradle Plugin as well.
                  * The expected XML output:
@@ -257,52 +299,36 @@ tasks.shadowJar {
         "kotlinx/coroutines/**",
 
         /*
-         * The Protobuf Gradle Plugin will be available in the classpath because
+         * Protobuf runtime and Gradle plugin will be available in the classpath because
          * fat JAR has the Maven `runtime` dependency on it.
-         * Please see manipulations with `pom.xml` below.
+         * Please see manipulations with `pom.xml` in the `publishing` block above.
          */
-        "com/google/protobuf/gradle/**",
+        "com/google/protobuf/**",
         "META-INF/gradle-plugins/com.google.protobuf.properties",
 
         /*
          * Excluding these types to avoid clashes at user's build classpath.
          *
-         * The ProtoData plugin will be added to the user's build via a dependency.
+         * The Compiler Gradle plugin will be added to the user's build via a dependency.
          * See the `pom.xml` manipulations above.
          */
-        "io/spine/protodata/*",
-        "io/spine/protodata/plugin/**",
-        "io/spine/protodata/renderer/**",
-        "io/spine/protodata/type/**",
-        "io/spine/protodata/cli/app/**",
-        "io/spine/protodata/gradle/plugin/**",
-        "io/spine/protodata/java/*",
-        "io/spine/protodata/java/annotation/**",
-        "io/spine/protodata/java/file/**",
-        "io/spine/protodata/protoc/**",
+        "io/spine/tools/compiler/*",
+        "io/spine/tools/compiler/plugin/**",
+        "io/spine/tools/compiler/renderer/**",
+        "io/spine/tools/compiler/type/**",
+        "io/spine/tools/compiler/cli/app/**",
+        "io/spine/tools/compiler/gradle/plugin/**",
+        "io/spine/tools/compiler/jvm/*",
+        "io/spine/tools/compiler/jvm/annotation/**",
+        "io/spine/tools/compiler/jvm/file/**",
+        "io/spine/tools/compiler/protoc/**",
+        "spine/compiler/**",
 
-//       TODO: Uncomment these after the Spine Compiler is available from Gradle Plugin Portal.
-//
-//        "io/spine/tools/compiler/*",
-//        "io/spine/tools/compiler/plugin/**",
-//        "io/spine/tools/compiler/renderer/**",
-//        "io/spine/tools/compiler/type/**",
-//        "io/spine/tools/compiler/cli/app/**",
-//        "io/spine/tools/compiler/gradle/plugin/**",
-//        "io/spine/tools/compiler/jvm/*",
-//        "io/spine/tools/compiler/jvm/annotation/**",
-//        "io/spine/tools/compiler/jvm/file/**",
-//        "io/spine/tools/compiler/protoc/**",
-//        "spine/compiler/**",
-
-        // TODO: Uncomment these as well once the Spine Compiler is ready.
         // Plugin declaration
-        "META-INF/gradle-plugins/io.spine.protodata.properties",
-//      "META-INF/gradle-plugins/io.spine.compiler.properties",
-
+        "META-INF/gradle-plugins/io.spine.compiler.properties",
 
         // Protobuf definitions
-        "spine/protodata/**",
+        "spine/compiler/**",
 
         /**
          * Exclude Gradle types to reduce the size of the resulting JAR.
@@ -398,4 +424,42 @@ gradlePlugin {
             tags.set(pluginTags)
         }
     }
+}
+
+/**
+ * Make the `PluginMarkerMaven` publication refer to the fat JAR produced
+ * the `plugin-bundle` module.
+ *
+ * The publication will still refer to the `plubin-bundle` artifact which
+ * should be probably removed eventually.
+ */
+afterEvaluate {
+    publishing {
+        publications.withType<MavenPublication>().configureEach {
+            if (name.endsWith("PluginMarkerMaven")) {
+                pom.withXml {
+                    val dependencies = dependenciesNode()
+                    val dependency = Node(dependencies, "dependency")
+                    dependency.let {
+                        Node(it, "groupId", "io.spine.tools")
+                        Node(it, "artifactId", "core-jvm-plugins")
+                        Node(it, "version", project.version)
+                        Node(it, "scope", "runtime")
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Finds or creates the `dependencies` node at the project node.
+ */
+private fun XmlProvider.dependenciesNode(): Node {
+    val nodeName = "dependencies"
+    val projectNode = asNode()
+    val dependencies = (projectNode.get(nodeName) as? NodeList)
+        ?.firstOrNull() as? Node
+        ?: projectNode.appendNode(nodeName)
+    return dependencies
 }
