@@ -24,6 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.lib.Protobuf
+
 plugins {
     prototap
     `test-module`
@@ -41,4 +43,8 @@ dependencies {
     ).forEach {
         testImplementation(it)
     }
+}
+
+protobuf {
+    protoc { artifact = Protobuf.compiler }
 }

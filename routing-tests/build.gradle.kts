@@ -28,6 +28,7 @@ import com.google.devtools.ksp.KspExperimental
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
+import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
@@ -128,3 +129,7 @@ configurations
             )
         }
     }
+
+protobuf {
+    protoc { artifact = Protobuf.compiler }
+}
