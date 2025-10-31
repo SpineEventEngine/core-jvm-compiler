@@ -55,9 +55,8 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
         /**
          * Obtains a path to a Java source file for the proto type with this name.
          */
-        val String.java get() = Path(
-            "io/spine/tools/core/jvm/entity/given/$this.java"
-        )
+        val String.java: Path
+            get() = Path("io/spine/tools/core/jvm/entity/given/$this.java")
     }
 
     override fun createSettings(projectDir: Path): Entities {
