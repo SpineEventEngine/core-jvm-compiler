@@ -24,45 +24,56 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.entity.query
+package io.spine.tools.core.jvm.entity
 
-import com.intellij.psi.PsiJavaFile
-import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
-import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_BUILDER_CLASS_NAME
-import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_METHOD_NAME
-import io.spine.tools.core.jvm.entity.EntityPluginTestSetup
-import io.spine.tools.psi.java.method
-import io.spine.tools.psi.java.topLevelClass
+import io.kotest.matchers.string.shouldContain
+import io.spine.base.AggregateState
+import io.spine.base.EntityState
+import io.spine.base.ProcessManagerState
+import io.spine.base.ProjectionState
+import io.spine.tools.code.Java
+import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.core.jvm.entity.EntityPluginTestSetup.Companion.java
+import io.spine.tools.java.reference
 import java.nio.file.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("`QueryMethod` should")
-internal class QueryMethodSpec {
+@DisplayName("`ImplementEntityState` action should")
+class ImplementEntityStateSpec {
 
     companion object : EntityPluginTestSetup() {
-
-        lateinit var psiFile: PsiJavaFile
 
         @BeforeAll
         @JvmStatic
         fun setup(@TempDir projectDir: Path) {
             runPipeline(projectDir)
-            val sourceFile = file(departmentJava)
-            psiFile = sourceFile.psi() as PsiJavaFile
         }
     }
 
     @Test
-    fun `generated the 'query()' method`() {
-        val method = assertDoesNotThrow {
-            psiFile.topLevelClass.method(QUERY_METHOD_NAME)
-        }
-        method.returnType shouldNotBe null
-        method.returnType!!.presentableText shouldBe QUERY_BUILDER_CLASS_NAME
+    fun `use 'AggregateState' interface for 'AGGREGATE' kind`() {
+        val sourceFile = file("Employee".java)
+        sourceFile.code().shouldContain(AggregateState::class.java.reference)
+    }
+
+    @Test
+    fun `use 'ProjectionState' interface for 'PROJECTION' kind`() {
+        val sourceFile = file("Organization".java)
+        sourceFile.code().shouldContain(ProjectionState::class.java.reference)
+    }
+
+    @Test
+    fun `use 'ProcessManagerState' interface for 'PROCESS_MANAGER' kind`() {
+        val sourceFile = file("Transition".java)
+        sourceFile.code().shouldContain(ProcessManagerState::class.java.reference)
+    }
+
+    @Test
+    fun `use 'EntityState' interface for 'ENTITY' kind`() {
+        val sourceFile = file("Blob".java)
+        sourceFile.code().shouldContain(EntityState::class.java.reference)
     }
 }

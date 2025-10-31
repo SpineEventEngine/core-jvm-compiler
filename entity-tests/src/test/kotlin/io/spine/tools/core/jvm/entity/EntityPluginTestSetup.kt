@@ -32,6 +32,7 @@ import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
 import java.nio.file.Path
+import kotlin.io.path.Path
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
@@ -45,10 +46,17 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
 ) {
 
     companion object {
+
         /**
          * The path to the Java file generated for the `Department` entity state.
          */
-        const val DEPARTMENT_JAVA = "io/spine/tools/core/jvm/entity/given/Department.java"
+        val departmentJava = "Department".java
+
+        /**
+         * Obtains a path to a Java source file for the proto type with this name.
+         */
+        val String.java: Path
+            get() = Path("io/spine/tools/core/jvm/entity/given/$this.java")
     }
 
     override fun createSettings(projectDir: Path): Entities {

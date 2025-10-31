@@ -36,7 +36,6 @@ import io.spine.tools.core.jvm.entity.EntityPluginTestSetup
 import io.spine.tools.kotlin.reference
 import io.spine.tools.psi.java.topLevelClass
 import java.nio.file.Path
-import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -53,7 +52,7 @@ internal class QueryClassSpec {
         @JvmStatic
         fun setup(@TempDir projectDir: Path) {
             runPipeline(projectDir)
-            val sourceFile = file(Path(DEPARTMENT_JAVA))
+            val sourceFile = file(departmentJava)
             val psiFile = sourceFile.psi() as PsiJavaFile
             entityStateClass = psiFile.topLevelClass
         }
