@@ -44,8 +44,6 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("`ImplementEntityState` action should")
 class ImplementEntityStateSpec {
 
-    private lateinit var sourceFile: SourceFile<Java>
-
     companion object : EntityPluginTestSetup() {
 
         @BeforeAll
@@ -57,25 +55,25 @@ class ImplementEntityStateSpec {
 
     @Test
     fun `use 'AggregateState' interface for 'AGGREGATE' kind`() {
-        sourceFile = file("Employee".java)
+        val sourceFile = file("Employee".java)
         sourceFile.code().shouldContain(AggregateState::class.java.reference)
     }
 
     @Test
     fun `use 'ProjectionState' interface for 'PROJECTION' kind`() {
-        sourceFile = file("Organization".java)
+        val sourceFile = file("Organization".java)
         sourceFile.code().shouldContain(ProjectionState::class.java.reference)
     }
 
     @Test
     fun `use 'ProcessManagerState' interface for 'PROCESS_MANAGER' kind`() {
-        sourceFile = file("Transition".java)
+        val sourceFile = file("Transition".java)
         sourceFile.code().shouldContain(ProcessManagerState::class.java.reference)
     }
 
     @Test
     fun `use 'EntityState' interface for 'ENTITY' kind`() {
-        sourceFile = file("Blob".java)
+        val sourceFile = file("Blob".java)
         sourceFile.code().shouldContain(EntityState::class.java.reference)
     }
 }
