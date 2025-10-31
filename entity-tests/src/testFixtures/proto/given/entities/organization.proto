@@ -77,4 +77,5 @@ message Transition {
 message Blob {
     option (entity).kind = ENTITY;
     int32 id = 1;
+    bytes data = 2;
 }
