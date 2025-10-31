@@ -59,7 +59,7 @@ internal class AddFieldClassSpec {
         @JvmStatic
         fun setup(@TempDir projectDir: Path) {
             runPipeline(projectDir)
-            val sourceFile = file(Path(DEPARTMENT_JAVA))
+            val sourceFile = file(departmentJava)
             entityStateCode = sourceFile.code()
             psiFile = sourceFile.psi() as PsiJavaFile
         }

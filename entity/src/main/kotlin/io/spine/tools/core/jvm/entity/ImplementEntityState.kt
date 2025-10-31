@@ -27,7 +27,15 @@
 package io.spine.tools.core.jvm.entity
 
 import com.google.protobuf.Empty
+import io.spine.base.AggregateState
 import io.spine.base.EntityState
+import io.spine.base.ProcessManagerState
+import io.spine.base.ProjectionState
+import io.spine.option.EntityOption
+import io.spine.option.EntityOption.Kind.AGGREGATE
+import io.spine.option.EntityOption.Kind.ENTITY
+import io.spine.option.EntityOption.Kind.PROCESS_MANAGER
+import io.spine.option.EntityOption.Kind.PROJECTION
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.firstField
 import io.spine.tools.compiler.context.CodegenContext
@@ -37,11 +45,19 @@ import io.spine.tools.compiler.jvm.render.ImplementInterface
 import io.spine.tools.compiler.jvm.render.superInterface
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
+import io.spine.tools.compiler.ast.option
+import io.spine.tools.compiler.ast.unpack
 import io.spine.tools.java.reference
+import kotlin.reflect.KClass
 
 /**
  * Updates the Java code of a message type which qualifies as [EntityState] by
- * making it implement this interface.
+ * making it implement this interface, or an interface derived from [EntityState].
+ *
+ * The type of the selected interface is defined by the value of
+ * the [kind][EntityOption.Kind] property of [EntityOption].
+ *
+ * ## API Note
  *
  * The class is public because its fully qualified name is used as a default
  * value in [EntitySettings][io.spine.tools.core.jvm.gradle.settings.EntitySettings].
@@ -69,15 +85,28 @@ public class ImplementEntityState(
 
     override fun doRender() {
         val idFieldType = type.firstField.javaType(typeSystem)
+        val option = type.option<EntityOption>()
+        val entityOption = option.unpack<EntityOption>()
+        val iface = entityStateInterface(entityOption)
         val action = ImplementInterface(
             type,
             file,
             superInterface {
-                name = EntityState::class.java.reference
+                name = iface.java.reference
                 genericArgument.add(idFieldType)
             },
             context
         )
         action.render()
+    }
+}
+
+private fun entityStateInterface(option: EntityOption): KClass<out EntityState<*>> {
+    return when (option.kind) {
+        AGGREGATE -> AggregateState::class
+        PROCESS_MANAGER -> ProcessManagerState::class
+        PROJECTION -> ProjectionState::class
+        ENTITY -> EntityState::class
+        else -> error("Unable to convert the entity kind: `${option.kind}`.")
     }
 }

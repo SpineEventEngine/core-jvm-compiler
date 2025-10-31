@@ -66,3 +66,15 @@ message Organization {
     string name = 2 [(required) = true, (column) = true];
     repeated Department department = 3 [(required) = true];
 }
+
+message Transition {
+    option (entity).kind = PROCESS_MANAGER;
+    EmployeeId id = 1;
+    DepartmentKey from = 2 [(required) = true];
+    DepartmentKey to = 3 [(required) = true];
+}
+
+message Blob {
+    option (entity).kind = ENTITY;
+    int32 id = 1;
+}

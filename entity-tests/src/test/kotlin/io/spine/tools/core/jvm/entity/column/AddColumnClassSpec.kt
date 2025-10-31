@@ -40,7 +40,6 @@ import io.spine.tools.core.jvm.entity.assertHasMethod
 import io.spine.tools.java.reference
 import io.spine.tools.psi.java.locate
 import java.nio.file.Path
-import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -60,7 +59,7 @@ internal class AddColumnClassSpec {
         @JvmStatic
         fun setup(@TempDir projectDir: Path) {
             runPipeline(projectDir)
-            val sourceFile = file(Path(DEPARTMENT_JAVA))
+            val sourceFile = file(departmentJava)
             entityStateCode = sourceFile.code()
             psiFile = sourceFile.psi() as PsiJavaFile
         }
