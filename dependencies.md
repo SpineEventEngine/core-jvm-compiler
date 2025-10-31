@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -1172,14 +1172,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -2359,14 +2359,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -3538,14 +3538,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -4524,14 +4524,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:49 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -5703,14 +5703,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:49 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -6689,14 +6689,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-gradle-plugins:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-gradle-plugins:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -7931,14 +7931,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -9077,14 +9077,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -10303,14 +10303,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -11490,14 +11490,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 ## Compile, tests, and tooling
@@ -12059,14 +12059,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:53 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:49 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -13246,14 +13246,14 @@ This report was generated on **Thu Oct 30 20:59:53 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 ## Compile, tests, and tooling
@@ -13807,14 +13807,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:53 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:49 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-plugin-bundle:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-plugin-bundle:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -14656,14 +14656,14 @@ This report was generated on **Thu Oct 30 20:59:53 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:49 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -15923,14 +15923,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -16688,14 +16688,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:49 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -17875,14 +17875,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 ## Compile, tests, and tooling
@@ -18444,14 +18444,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -19631,14 +19631,14 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.027`
+# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.028`
 
 ## Runtime
 ## Compile, tests, and tooling
@@ -20200,6 +20200,6 @@ This report was generated on **Thu Oct 30 20:59:54 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 30 20:59:54 WET 2025** using 
+This report was generated on **Fri Oct 31 16:34:50 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
