@@ -107,6 +107,6 @@ private fun entityStateInterface(option: EntityOption): KClass<out EntityState<*
         PROCESS_MANAGER -> ProcessManagerState::class
         PROJECTION -> ProjectionState::class
         ENTITY -> EntityState::class
-        else -> error("Unable to convert the entity kind: `${option.kind}`.")
+        else -> error("Unsupported entity kind: `${option.kind}`.")
     }
 }
