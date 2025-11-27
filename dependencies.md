@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -473,6 +473,10 @@
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -839,27 +843,31 @@
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -987,9 +995,17 @@
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -1172,14 +1188,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -1652,6 +1668,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -2026,27 +2046,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -2174,9 +2198,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -2359,14 +2391,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -2839,6 +2871,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -3205,27 +3241,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -3353,9 +3393,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -3538,14 +3586,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -3828,6 +3876,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
+
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
 
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
@@ -4191,27 +4243,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -4339,9 +4395,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -4524,14 +4588,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -5004,6 +5068,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -5370,27 +5438,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -5518,9 +5590,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -5703,14 +5783,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -5994,6 +6074,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -6356,27 +6440,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -6504,9 +6592,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -6689,14 +6785,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-gradle-plugins:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-gradle-plugins:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -7192,6 +7288,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -7562,27 +7662,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -7738,9 +7842,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -7931,14 +8043,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -8386,6 +8498,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -8744,27 +8860,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -8892,9 +9012,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -9077,14 +9205,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -9576,6 +9704,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -9934,27 +10066,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -10110,9 +10246,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -10303,14 +10447,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -10783,6 +10927,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -11157,27 +11305,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11305,9 +11457,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -11490,18 +11650,18 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11510,35 +11670,35 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -11563,15 +11723,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
@@ -11583,7 +11738,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -11662,11 +11817,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -11778,18 +11945,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/perfmark/perfmark](https://github.com/perfmark/perfmark)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
 1.  **Group** : javax.annotation. **Name** : javax.annotation-api. **Version** : 1.3.2.
      * **Project URL:** [http://jcp.org/en/jsr/detail?id=250](http://jcp.org/en/jsr/detail?id=250)
      * **License:** [CDDL + GPLv2 with classpath exception](https://github.com/javaee/javax.annotation/blob/master/LICENSE)
@@ -11867,23 +12022,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11911,7 +12066,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11919,7 +12074,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11927,7 +12082,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -12059,14 +12214,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -12539,6 +12694,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -12913,27 +13072,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13061,9 +13224,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -13246,18 +13417,18 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13266,35 +13437,35 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -13319,15 +13490,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
@@ -13339,7 +13505,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -13410,15 +13576,15 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -13530,18 +13696,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/perfmark/perfmark](https://github.com/perfmark/perfmark)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
 1.  **Group** : javax.annotation. **Name** : javax.annotation-api. **Version** : 1.3.2.
      * **Project URL:** [http://jcp.org/en/jsr/detail?id=250](http://jcp.org/en/jsr/detail?id=250)
      * **License:** [CDDL + GPLv2 with classpath exception](https://github.com/javaee/javax.annotation/blob/master/LICENSE)
@@ -13615,23 +13769,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13659,7 +13813,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13667,7 +13821,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13675,7 +13829,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13807,14 +13961,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-plugin-bundle:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-plugin-bundle:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -13933,15 +14087,15 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -14098,7 +14252,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -14108,35 +14262,35 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -14161,15 +14315,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
@@ -14181,7 +14330,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -14276,15 +14425,15 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -14395,18 +14544,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/perfmark/perfmark](https://github.com/perfmark/perfmark)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
 1.  **Group** : javax.annotation. **Name** : javax.annotation-api. **Version** : 1.3.2.
      * **Project URL:** [http://jcp.org/en/jsr/detail?id=250](http://jcp.org/en/jsr/detail?id=250)
      * **License:** [CDDL + GPLv2 with classpath exception](https://github.com/javaee/javax.annotation/blob/master/LICENSE)
@@ -14480,23 +14617,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -14524,7 +14661,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -14532,7 +14669,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -14544,7 +14681,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -14656,14 +14793,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -15167,6 +15304,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
+
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
 
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
@@ -15562,27 +15703,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -15923,14 +16068,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -16013,7 +16158,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16023,35 +16168,35 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16076,15 +16221,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
@@ -16096,7 +16236,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16223,6 +16363,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.31.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
@@ -16231,11 +16375,19 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.31.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -16365,18 +16517,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 1.  **Group** : io.perfmark. **Name** : perfmark-api. **Version** : 0.27.0.
      * **Project URL:** [https://github.com/perfmark/perfmark](https://github.com/perfmark/perfmark)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
 
 1.  **Group** : javax.annotation. **Name** : javax.annotation-api. **Version** : 1.3.2.
      * **Project URL:** [http://jcp.org/en/jsr/detail?id=250](http://jcp.org/en/jsr/detail?id=250)
@@ -16472,23 +16612,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -16688,14 +16828,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -17168,6 +17308,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -17542,27 +17686,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -17690,9 +17838,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -17875,18 +18031,18 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -17895,35 +18051,35 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -17948,15 +18104,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
@@ -17968,7 +18119,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -18047,11 +18198,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -18163,18 +18326,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/perfmark/perfmark](https://github.com/perfmark/perfmark)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
 1.  **Group** : javax.annotation. **Name** : javax.annotation-api. **Version** : 1.3.2.
      * **Project URL:** [http://jcp.org/en/jsr/detail?id=250](http://jcp.org/en/jsr/detail?id=250)
      * **License:** [CDDL + GPLv2 with classpath exception](https://github.com/javaee/javax.annotation/blob/master/LICENSE)
@@ -18252,23 +18403,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -18296,7 +18447,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -18304,7 +18455,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -18312,7 +18463,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -18444,14 +18595,14 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -18924,6 +19075,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
+     * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
+     * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
+
 1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
      * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -19298,27 +19453,31 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : javadoc-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : kotlin-as-java-plugin. **Version** : 2.1.0.
+     * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -19446,9 +19605,17 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk7. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-jdk8. **Version** : 2.2.21.
+     * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
+     * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-tooling-core. **Version** : 2.2.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
@@ -19631,18 +19798,18 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.028`
+# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.029`
 
 ## Runtime
 ## Compile, tests, and tooling
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -19651,35 +19818,35 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.12.7.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.12.7.1.
-     * **Project URL:** [http://github.com/FasterXML/jackson](http://github.com/FasterXML/jackson)
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.15.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -19704,15 +19871,10 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-jaxb-annotations. **Version** : 2.12.7.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-base](https://github.com/FasterXML/jackson-modules-base)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.12.7.
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.20.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
@@ -19724,7 +19886,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.2.4.
+1.  **Group** : com.fasterxml.woodstox. **Name** : woodstox-core. **Version** : 6.5.1.
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -19803,11 +19965,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
+1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.33.1.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
 1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.0.
+     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
+     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.33.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -19919,18 +20093,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/perfmark/perfmark](https://github.com/perfmark/perfmark)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : jakarta.activation. **Name** : jakarta.activation-api. **Version** : 1.2.1.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [EDL 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
-1.  **Group** : jakarta.xml.bind. **Name** : jakarta.xml.bind-api. **Version** : 2.3.2.
-     * **Project URL:** [https://www.eclipse.org](https://www.eclipse.org)
-     * **License:** [Eclipse Distribution License - v 1.0](http://www.eclipse.org/org/documents/edl-v10.php)
-     * **License:** [Eclipse Public License v. 2.0](https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.txt)
-     * **License:** [GNU General Public License, version 2 with the GNU Classpath Exception](https://www.gnu.org/software/classpath/license.html)
-
 1.  **Group** : javax.annotation. **Name** : javax.annotation-api. **Version** : 1.3.2.
      * **Project URL:** [http://jcp.org/en/jsr/detail?id=250](http://jcp.org/en/jsr/detail?id=250)
      * **License:** [CDDL + GPLv2 with classpath exception](https://github.com/javaee/javax.annotation/blob/master/LICENSE)
@@ -20008,23 +20170,23 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://github.com/JetBrains/markdown](https://github.com/JetBrains/markdown)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-descriptors. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-kotlin-symbols. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : analysis-markdown. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-base. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : dokka-core. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.0.0.
+1.  **Group** : org.jetbrains.dokka. **Name** : templating-plugin. **Version** : 2.1.0.
      * **Project URL:** [https://github.com/Kotlin/dokka](https://github.com/Kotlin/dokka)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -20052,7 +20214,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-reflect. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -20060,7 +20222,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -20068,7 +20230,7 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [Apache-2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.20.
+1.  **Group** : org.jetbrains.kotlin. **Name** : kotlin-stdlib-common. **Version** : 2.0.21.
      * **Project URL:** [https://kotlinlang.org/](https://kotlinlang.org/)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -20200,6 +20362,6 @@ This report was generated on **Fri Oct 31 16:48:47 WET 2025** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 31 16:48:47 WET 2025** using 
+This report was generated on **Thu Nov 27 22:01:01 WET 2025** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
