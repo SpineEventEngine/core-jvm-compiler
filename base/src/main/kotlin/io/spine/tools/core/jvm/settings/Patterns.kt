@@ -53,7 +53,7 @@ public fun Pattern.matches(type: MessageType): Boolean {
  * Tells if this type pattern matches the given type.
  *
  * @see Pattern.matches
- * @see io.spine.protodata.ast.FilePattern.matches
+ * @see io.spine.tools.compiler.ast.FilePattern.matches
  */
 public fun TypePattern.matches(type: MessageType): Boolean {
     val qualifiedName = type.qualifiedName
