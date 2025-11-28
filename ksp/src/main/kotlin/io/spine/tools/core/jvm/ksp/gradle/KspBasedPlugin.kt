@@ -64,7 +64,7 @@ import org.gradle.kotlin.dsl.findByType
  * 2. Makes a KSP task depend on a `LaunchSpineCompiler` task for the same source set.
  *
  * 3. Adds the artifact specified by the [mavenCoordinates] property,
- *   and [AutoServiceKsp.processor] as the dependencies of the KSP configurations of the project.
+ *   and `AutoServiceKsp.processor` as the dependencies of the KSP configurations of the project.
  */
 public abstract class KspBasedPlugin : Plugin<Project> {
 

@@ -64,8 +64,7 @@ plugins {
     id("write-manifest")
     id("com.google.protobuf")
     id("module-testing")
-    id("dokka-for-java")
-    id("dokka-for-kotlin")
+    id("dokka-setup")
     id("net.ltgt.errorprone")
     id("pmd-settings")
     `maven-publish`

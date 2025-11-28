@@ -36,6 +36,7 @@ import io.spine.option.EntityOption.Kind.AGGREGATE
 import io.spine.option.EntityOption.Kind.ENTITY
 import io.spine.option.EntityOption.Kind.PROCESS_MANAGER
 import io.spine.option.EntityOption.Kind.PROJECTION
+import io.spine.option.EntityOption.Kind.VIEW
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.firstField
 import io.spine.tools.compiler.context.CodegenContext
@@ -105,7 +106,7 @@ private fun entityStateInterface(option: EntityOption): KClass<out EntityState<*
     return when (option.kind) {
         AGGREGATE -> AggregateState::class
         PROCESS_MANAGER -> ProcessManagerState::class
-        PROJECTION -> ProjectionState::class
+        PROJECTION, VIEW -> ProjectionState::class
         ENTITY -> EntityState::class
         else -> error("Unsupported entity kind: `${option.kind}`.")
     }
