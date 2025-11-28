@@ -7,9 +7,18 @@
 This repository hosts the plugins to the Spine Compiler that the Core JVM library offers for
 building a client or a server application.
 
-### Environment
+## Environment
 
 The modules in this repository are built with Java 17.
+
+For the versions of other dependencies, refer to the Kotlin source code under
+[io.spine.dependency](./buildSrc/src/main/kotlin/io/spine/dependency).
+
+## Testing modules in the project structure
+
+### Integration testing
+
+Please refer to [TESTING.md](./TESTING.md).
 
 ### Performance testing
 
