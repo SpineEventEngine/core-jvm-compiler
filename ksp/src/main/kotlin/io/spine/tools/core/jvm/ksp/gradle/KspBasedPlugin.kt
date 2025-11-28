@@ -27,11 +27,9 @@
 package io.spine.tools.core.jvm.ksp.gradle
 
 import io.spine.tools.core.jvm.ksp.gradle.Meta.autoServiceKspProcessor
-import kotlin.io.path.pathString
 import ksp.com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.file.DirectoryProperty
 
 /**
  * Configures a Gradle project to run [KSP](https://kotlinlang.org/docs/ksp-overview.html) with
