@@ -201,7 +201,7 @@ private fun Project.replaceKspOutputDirs() {
                 sourceSet.run {
                     // KSP Gradle Plugin already added its output to source sets.
                     // We need to add the replacement manually because we filtered
-                    // it before in `Project.makeKspIgnoreGeneratedSourceProtoDir()`.
+                    // it before in `Project.makeKspIgnoreProtocOutputDir()`.
 
                     java.srcDirs(javaOutputDir)
                     findKotlinDirectorySet()?.srcDirs(kotlinOutputDir)
