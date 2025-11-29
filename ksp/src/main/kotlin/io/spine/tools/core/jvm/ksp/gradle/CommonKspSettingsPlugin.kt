@@ -48,11 +48,15 @@ import org.gradle.api.Project
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.kotlin.dsl.findByType
 
+/**
+ * Applies and configures the KSP plugin with the setting common to all [KspBasedPlugin]s.
+ *
+ * This plugin is applied by a [KspBasedPlugin] in its [apply][KspBasedPlugin.apply] function.
+ */
 public class CommonKspSettingsPlugin : Plugin<Project> {
 
     override fun apply(project: Project): Unit = project.run {
         applyKspPlugin()
-
         useKsp2()
         addDependencies()
         makeKspIgnoreProtocOutputDir()
@@ -60,7 +64,6 @@ public class CommonKspSettingsPlugin : Plugin<Project> {
         makeKspTasksDependOnSpineCompiler()
         makeCompileKotlinTasksDependOnKspTasks()
         replaceKspOutputDirs()
-
     }
 
     private fun Project.addDependencies() {
@@ -72,7 +75,6 @@ public class CommonKspSettingsPlugin : Plugin<Project> {
             )
         }
     }
-
 }
 
 internal val Project.kspExtension: KspExtension?
@@ -87,7 +89,6 @@ private val Project.protocOutputDir: File?
         val path = protobufExtension?.generatedFilesBaseDir
         return path?.let { File(it) }
     }
-
 
 /**
  * Applies [KspGradlePlugin], if it is not yet added, to this project.
