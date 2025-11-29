@@ -179,7 +179,7 @@ private fun Project.makeCompileKotlinTasksDependOnKspTasks() {
 }
 
 /**
- * The function replaces default destination directory defied by
+ * The function replaces default destination directory defined by
  * [com.google.devtools.ksp.gradle.KspGradleSubplugin.getKspOutputDir] to
  * the one we used for all the generated code at the level of the project root.
  *
