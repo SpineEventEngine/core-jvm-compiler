@@ -27,6 +27,7 @@
 package io.spine.dependency.local
 
 // For backward compatibility.
+@Suppress("unused")
 typealias CoreJava = CoreJvm
 
 /**
