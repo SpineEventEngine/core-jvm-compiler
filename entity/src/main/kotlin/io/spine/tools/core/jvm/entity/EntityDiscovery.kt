@@ -27,10 +27,10 @@
 package io.spine.tools.core.jvm.entity
 
 import io.spine.core.External
-import io.spine.tools.compiler.ast.event.TypeDiscovered
-import io.spine.tools.compiler.plugin.Policy
-import io.spine.tools.compiler.settings.loadSettings
 import io.spine.server.event.React
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.plugin.Reaction
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.entity.event.EntityStateDiscovered
 import io.spine.tools.core.jvm.entity.event.entityStateDiscovered
 import io.spine.tools.core.jvm.settings.Entities
@@ -46,7 +46,7 @@ import io.spine.tools.core.jvm.settings.Entities
  * @see Entities
  * @see EntityStateDiscovered
  */
-internal class EntityDiscovery : Policy<TypeDiscovered>(), EntityPluginComponent {
+internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginComponent {
 
     /**
      * The settings passed by McJava to [EntityPlugin].

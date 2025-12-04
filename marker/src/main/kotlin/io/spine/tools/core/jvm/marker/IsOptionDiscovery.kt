@@ -28,21 +28,21 @@ package io.spine.tools.core.jvm.marker
 
 import io.spine.core.External
 import io.spine.option.IsOption
-import io.spine.tools.compiler.ast.event.TypeDiscovered
-import io.spine.tools.compiler.ast.find
-import io.spine.tools.compiler.plugin.Policy
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.event.asA
 import io.spine.server.event.asB
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.ast.find
+import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.core.jvm.marker.event.IsOptionDiscovered
 import io.spine.tools.core.jvm.marker.event.isOptionDiscovered
 
 /**
  * Finds message types with `(is)` option emitting [IsOptionDiscovered], if found.
  */
-internal class IsOptionDiscovery : Policy<TypeDiscovered>() {
+internal class IsOptionDiscovery : Reaction<TypeDiscovered>() {
 
     @React
     override fun whenever(

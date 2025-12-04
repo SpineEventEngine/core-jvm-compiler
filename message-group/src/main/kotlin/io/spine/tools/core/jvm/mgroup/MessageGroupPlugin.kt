@@ -35,7 +35,7 @@ import io.spine.tools.compiler.plugin.Plugin
  * @see io.spine.tools.core.jvm.settings.GroupSettings
  */
 public class MessageGroupPlugin : Plugin(
-    policies = setOf(GroupedMessageDiscovery()),
+    reactions = setOf(GroupedMessageDiscovery()),
     views = setOf(GroupedMessageView::class.java),
     renderers = listOf(GroupedMessageRenderer())
 ) {

@@ -36,7 +36,7 @@ import io.spine.tools.compiler.plugin.Plugin
  * [ComparableSettings][io.spine.tools.core.jvm.gradle.settings.ComparableSettings].
  */
 public class ComparablePlugin : Plugin(
-    policies = setOf(ComparableMessageDiscovery()),
+    reactions = setOf(ComparableMessageDiscovery()),
     views = setOf(ComparableMessageView::class.java),
     renderers = listOf(ComparableActionsRenderer())
 ) {

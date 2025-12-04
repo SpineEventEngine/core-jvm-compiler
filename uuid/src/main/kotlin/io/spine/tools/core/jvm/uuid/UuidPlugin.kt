@@ -34,7 +34,7 @@ import io.spine.tools.compiler.plugin.Plugin
  * [io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings.forUuids] clause.
  */
 public class UuidPlugin : Plugin(
-    policies = setOf(UuidValueDiscovery()),
+    reactions = setOf(UuidValueDiscovery()),
     views = setOf(UuidMessageView::class.java),
     renderers = listOf(UuidActionRenderer())
 ) {
