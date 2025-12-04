@@ -28,14 +28,14 @@ package io.spine.tools.core.jvm.signal
 
 import io.spine.annotation.VisibleForTesting
 import io.spine.core.External
-import io.spine.tools.compiler.ast.MessageType
-import io.spine.tools.compiler.ast.event.TypeDiscovered
-import io.spine.tools.compiler.ast.matches
-import io.spine.tools.compiler.plugin.Policy
-import io.spine.tools.compiler.settings.loadSettings
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf4
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.ast.matches
+import io.spine.tools.compiler.plugin.Reaction
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.settings.SignalSettings
 import io.spine.tools.core.jvm.settings.Signals
 import io.spine.tools.core.jvm.signal.event.CommandDiscovered
@@ -57,7 +57,7 @@ import io.spine.tools.core.jvm.signal.event.rejectionDiscovered
  * @see EventsPerFile
  * @see RejectionsPerFile
  */
-internal class SignalDiscovery : Policy<TypeDiscovered>(), SignalPluginComponent {
+internal class SignalDiscovery : Reaction<TypeDiscovered>(), SignalPluginComponent {
 
     private val settings: SignalSettings by lazy {
         loadSettings()
@@ -71,7 +71,7 @@ internal class SignalDiscovery : Policy<TypeDiscovered>(), SignalPluginComponent
             EitherOf4<CommandDiscovered, EventDiscovered, RejectionDiscovered, NoReaction> {
         val msg = event.type
         if (msg.isNested) {
-            // Signals are only top level messages. Ignore nested types.
+            // Signals are only top-level messages. Ignore nested types.
             return EitherOf4.withD(noReaction())
         }
         return if (commands.match(msg)) {

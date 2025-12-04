@@ -27,16 +27,16 @@
 package io.spine.tools.core.jvm.uuid
 
 import io.spine.core.External
-import io.spine.tools.compiler.ast.MessageType
-import io.spine.tools.compiler.ast.PrimitiveType
-import io.spine.tools.compiler.ast.event.TypeDiscovered
-import io.spine.tools.compiler.plugin.Policy
-import io.spine.tools.compiler.settings.loadSettings
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.event.asA
 import io.spine.server.event.asB
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.PrimitiveType
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.plugin.Reaction
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.settings.Uuids
 import io.spine.tools.core.jvm.uuid.event.UuidValueDiscovered
 import io.spine.tools.core.jvm.uuid.event.uuidValueDiscovered
@@ -44,7 +44,7 @@ import io.spine.tools.core.jvm.uuid.event.uuidValueDiscovered
 /**
  * Detects messages that qualify as [UuidValue][io.spine.base.UuidValue].
  */
-internal class UuidValueDiscovery : Policy<TypeDiscovered>(), UuidPluginComponent {
+internal class UuidValueDiscovery : Reaction<TypeDiscovered>(), UuidPluginComponent {
 
     private val settings: Uuids by lazy {
         loadSettings()

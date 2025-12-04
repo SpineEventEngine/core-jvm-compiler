@@ -28,21 +28,21 @@ package io.spine.tools.core.jvm.marker
 
 import io.spine.core.External
 import io.spine.option.EveryIsOption
-import io.spine.tools.compiler.ast.event.FileEntered
-import io.spine.tools.compiler.ast.find
-import io.spine.tools.compiler.plugin.Policy
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.event.asA
 import io.spine.server.event.asB
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.ast.event.FileEntered
+import io.spine.tools.compiler.ast.find
+import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.core.jvm.marker.event.EveryIsOptionDiscovered
 import io.spine.tools.core.jvm.marker.event.everyIsOptionDiscovered
 
 /**
  * Finds files with `(every_is)` option emitting [EveryIsOptionDiscovered], if found.
  */
-internal class EveryIsOptionDiscovery : Policy<FileEntered>() {
+internal class EveryIsOptionDiscovery : Reaction<FileEntered>() {
 
     @React
     override fun whenever(

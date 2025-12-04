@@ -34,7 +34,7 @@ import io.spine.tools.compiler.plugin.Plugin
  * message type option.
  */
 public class MarkerPlugin : Plugin(
-    policies = setOf(EveryIsOptionDiscovery(), IsOptionDiscovery()),
+    reactions = setOf(EveryIsOptionDiscovery(), IsOptionDiscovery()),
     views = setOf(EveryIsMessagesView::class.java),
     viewRepositories = setOf(MessagesWithIsView.Repository()),
     renderers = listOf(EveryIsOptionRenderer(), IsOptionRenderer())

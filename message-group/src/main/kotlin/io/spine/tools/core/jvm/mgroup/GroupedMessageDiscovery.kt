@@ -27,15 +27,15 @@
 package io.spine.tools.core.jvm.mgroup
 
 import io.spine.core.External
-import io.spine.tools.compiler.ast.event.TypeDiscovered
-import io.spine.tools.compiler.ast.isTopLevel
-import io.spine.tools.compiler.plugin.Policy
-import io.spine.tools.compiler.settings.loadSettings
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.event.asA
 import io.spine.server.event.asB
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.ast.isTopLevel
+import io.spine.tools.compiler.plugin.Reaction
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.mgroup.event.GroupedMessageDiscovered
 import io.spine.tools.core.jvm.mgroup.event.groupedMessageDiscovered
 import io.spine.tools.core.jvm.settings.GroupSettings
@@ -46,7 +46,7 @@ import io.spine.tools.core.jvm.settings.matches
  *
  * If the type matches one or more groups emits [GroupedMessageDiscovered] event.
  */
-internal class GroupedMessageDiscovery : Policy<TypeDiscovered>(), MessageGroupPluginComponent {
+internal class GroupedMessageDiscovery : Reaction<TypeDiscovered>(), MessageGroupPluginComponent {
 
     private val settings: GroupSettings by lazy {
         loadSettings()

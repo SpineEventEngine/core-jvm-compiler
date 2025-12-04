@@ -28,15 +28,15 @@ package io.spine.tools.core.jvm.comparable
 
 import io.spine.core.External
 import io.spine.option.CompareByOption
-import io.spine.tools.compiler.ast.event.TypeDiscovered
-import io.spine.tools.compiler.ast.find
-import io.spine.tools.compiler.plugin.Policy
-import io.spine.tools.compiler.settings.loadSettings
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf2
 import io.spine.server.tuple.EitherOf2.withA
 import io.spine.server.tuple.EitherOf2.withB
+import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.ast.find
+import io.spine.tools.compiler.plugin.Reaction
+import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.comparable.event.ComparableMessageDiscovered
 import io.spine.tools.core.jvm.comparable.event.comparableMessageDiscovered
 import io.spine.tools.core.jvm.settings.Comparables
@@ -44,7 +44,7 @@ import io.spine.tools.core.jvm.settings.Comparables
 /**
  * Discovers comparable messages.
  */
-internal class ComparableMessageDiscovery : Policy<TypeDiscovered>(), ComparableComponent {
+internal class ComparableMessageDiscovery : Reaction<TypeDiscovered>(), ComparableComponent {
 
     private val settings: Comparables by lazy { loadSettings() }
 
