@@ -358,14 +358,18 @@ tasks.shadowJar {
         "spine/compiler/**", // Protobuf definitions
         "META-INF/gradle-plugins/io.spine.compiler.properties", // Plugin declaration
 
-        /**
+        // Strip ArtifactMeta for:
+        "META-INF/spine.io/io.spine.tools_compiler-gradle-plugin.meta", // Compiler Gradle Plugin
+        "META-INF/spine.io/io.spine.tools_protobuf-setup-plugins.meta", // Protobuf Setup Plugins
+
+        /*
          * Exclude Gradle types to reduce the size of the resulting JAR.
          *
          * Those required for the plugins are available at runtime anyway.
          */
         "org/gradle/**",
 
-        // These types should be available at run-time via Kotlin compiler.
+        // These types should be available at run-time via the Kotlin compiler.
         "ksp/**",
         "com/google/devtools/ksp/**",
 
