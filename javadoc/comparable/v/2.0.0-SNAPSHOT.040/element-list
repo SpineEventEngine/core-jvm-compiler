@@ -1,0 +1,29 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.CompareByOptionField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.CompareByOptionField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.comparable.event/ComparableMessageDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/comparable/event/ComparableMessageDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Builder///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Builder.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Column///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Column.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.CompareByOptionField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.CompareByOptionField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Field///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Field.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.Query///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.Query.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessage.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessage.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparableMessageKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparableMessageKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.comparable/ComparablePlugin.Companion///PointingToDeclaration/io/spine/tools/core/jvm/comparable/ComparablePlugin.Companion.html
+io.spine.tools.core.jvm.comparable
+io.spine.tools.core.jvm.comparable.action
+io.spine.tools.core.jvm.comparable.event
