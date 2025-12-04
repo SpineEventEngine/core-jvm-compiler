@@ -369,7 +369,7 @@ tasks.shadowJar {
          */
         "org/gradle/**",
 
-        // These types should be available at run-time via the Kotlin compiler.
+        // These types should be available at runtime via the Kotlin compiler.
         "ksp/**",
         "com/google/devtools/ksp/**",
 
