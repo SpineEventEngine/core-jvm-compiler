@@ -63,7 +63,7 @@ internal object ValidationSdk {
     private const val group = "io.spine.tools"
     private const val prefix = "validation"
     private val javaCodegenBundle = Module(group, "$prefix-java-bundle")
-    private val jvmRuntime = Module(group, "spine-$prefix-jvm-runtime")
+    private val jvmRuntime = Module("io.spine", "spine-$prefix-jvm-runtime")
     private val configuration = Module(group, "$prefix-configuration")
 
     private fun MavenArtifact.withVersion(version: String): MavenArtifact {
