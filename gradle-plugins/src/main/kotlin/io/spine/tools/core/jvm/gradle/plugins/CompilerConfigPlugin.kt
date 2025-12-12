@@ -100,9 +100,9 @@ internal class CompilerConfigPlugin : Plugin<Project> {
         const val WRITE_COMPILER_PLUGINS_SETTINGS = "writeSpineCompilerPluginsSettings"
 
         /**
-         * The name of the Validation plugin for ProtoData.
+         * The name of the Validation plugin for the Compiler.
          */
-        const val VALIDATION_PLUGIN_CLASS = "io.spine.validation.java.JavaValidationPlugin"
+        const val VALIDATION_PLUGIN_CLASS = "io.spine.tools.validation.java.JavaValidationPlugin"
     }
 }
 
@@ -194,7 +194,7 @@ private fun Project.configureValidation(compiler: CompilerSettings) {
     //     the generated code. This includes current and new implementation for validation
     //     rules for the already existing generated Protobuf code.
     //
-    addDependency("implementation", ValidationSdk.javaRuntime(version))
+    addDependency("implementation", ValidationSdk.jvmRuntime(version))
 }
 
 private fun Project.configureSignals(compiler: CompilerSettings) {
