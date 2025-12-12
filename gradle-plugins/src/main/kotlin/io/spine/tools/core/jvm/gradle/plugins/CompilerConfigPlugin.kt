@@ -52,8 +52,11 @@ import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.gradle.task.JavaTaskName.Companion.processResources
 import io.spine.tools.gradle.task.JavaTaskName.Companion.sourcesJar
+import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.validation.gradle.ValidationGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
@@ -65,8 +68,7 @@ import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
  * This plugin does the following:
  *   1. Applies the `io.spine.compiler` Gradle plugin to the project.
  *   2. Configures the Compiler extension of the Gradle project, passing the compiler plugins,
- *      such as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin] and
- *      the plugins introduced by the modules of the CoreJvm Compiler modules.
+ *      introduced by the modules of the CoreJvm Compiler modules.
  *   3. Creates a [WriteCompilerPluginsSettings] task for passing configuration to the Compiler, and
  *      links it to the [LaunchSpineCompiler] task.
  *   4. Adds required dependencies.
@@ -141,7 +143,7 @@ private fun Project.configureCompilerPlugins() {
     val compiler = compilerSettings
     compiler.setSubdirectories()
 
-//    configureValidation(compiler)
+    configureValidation()
     configureSignals(compiler)
 
     compiler.run {
@@ -158,6 +160,20 @@ private fun Project.configureCompilerPlugins() {
         // The Java style formatting comes last to conclude all the rendering.
         addPlugin<JavaCodeStyleFormatterPlugin>()
     }
+}
+
+private fun Project.configureValidation() {
+    pluginManager.apply(ValidationGradlePlugin::class.java)
+
+    // We add the dependency on runtime anyway for the following reasons:
+    //  1. We do not want users to change their Gradle build files when they turn on or off
+    //     code generation for the validation code.
+    //
+    //  2. We have run-time validation rules that are going to be used in parallel with
+    //     the generated code. This includes current and new implementation for validation
+    //     rules for the already existing generated Protobuf code.
+    //
+    addDependency("implementation", ValidationSdk.jvmRuntime())
 }
 
 private val Project.messageOptions: CoreJvmCompilerSettings
@@ -182,4 +198,18 @@ private fun Project.configureSignals(compiler: CompilerSettings) {
 
 private inline fun <reified T : CompilerPlugin> CompilerSettings.addPlugin() {
     plugins(T::class.java.name)
+}
+
+private fun Project.addDependency(configuration: String, artifact: MavenArtifact) {
+    val dependency = findDependency(artifact) ?: artifact.coordinates
+    dependencies.add(configuration, dependency)
+}
+
+private fun Project.findDependency(artifact: MavenArtifact): Dependency? {
+    val dependencies = configurations.flatMap { c -> c.dependencies }
+    val found = dependencies.firstOrNull { d ->
+        artifact.group == d.group // `d.group` could be `null`.
+                && artifact.name == d.name
+    }
+    return found
 }
