@@ -37,8 +37,11 @@ import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
+import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.validation.gradle.ValidationGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Dependency
 
 /**
  * Spine Model Compiler for Java Gradle plugin.
@@ -63,6 +66,9 @@ public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
         super.apply(project)
         project.run {
             applyProtobufPlugin()
+            afterEvaluate {
+                configureValidation()
+            }
             pluginManager.withPlugin(ProtobufGradlePlugin.id) { _ ->
                 applyCoreJvmPlugins()
             }
@@ -79,6 +85,20 @@ private fun Project.applyProtobufPlugin() {
         // So it will be available in the build classpath and found by the ID.
         pluginManager.apply(ProtobufGradlePlugin.id)
     }
+}
+
+private fun Project.configureValidation() {
+    pluginManager.apply(ValidationGradlePlugin::class.java)
+
+    // We add the dependency on runtime anyway for the following reasons:
+    //  1. We do not want users to change their Gradle build files when they turn on or off
+    //     code generation for the validation code.
+    //
+    //  2. We have run-time validation rules that are going to be used in parallel with
+    //     the generated code. This includes current and new implementation for validation
+    //     rules for the already existing generated Protobuf code.
+    //
+    addDependency("implementation", ValidationSdk.jvmRuntime())
 }
 
 private fun Project.applyCoreJvmPlugins() {
@@ -112,4 +132,18 @@ private fun Project.createAndApplyPlugins() {
 private fun Project.apply(plugin: Plugin<Project>) {
     logger.debug { "Applying `${plugin.javaClass.name}` plugin." }
     plugin.apply(project)
+}
+
+internal fun Project.addDependency(configuration: String, artifact: MavenArtifact) {
+    val dependency = findDependency(artifact) ?: artifact.coordinates
+    dependencies.add(configuration, dependency)
+}
+
+private fun Project.findDependency(artifact: MavenArtifact): Dependency? {
+    val dependencies = configurations.flatMap { c -> c.dependencies }
+    val found = dependencies.firstOrNull { d ->
+        artifact.group == d.group // `d.group` could be `null`.
+                && artifact.name == d.name
+    }
+    return found
 }
