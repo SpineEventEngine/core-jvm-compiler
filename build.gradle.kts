@@ -80,7 +80,8 @@ buildscript {
                     "${compiler.module}:${compiler.dogfoodingVersion}",
                     compiler.api,
                     "${validation.runtimeModule}:${validation.version}",
-                    "${validation.runtimeModule}:${validation.version}"
+                    "${validation.runtimeModule}:${validation.version}",
+                    "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.360"
                 )
             }
         }

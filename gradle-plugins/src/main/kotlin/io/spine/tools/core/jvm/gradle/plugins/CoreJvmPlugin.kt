@@ -37,8 +37,11 @@ import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
+import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.validation.gradle.ValidationGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Dependency
 
 /**
  * Spine Model Compiler for Java Gradle plugin.
@@ -80,6 +83,7 @@ private fun Project.applyProtobufPlugin() {
         pluginManager.apply(ProtobufGradlePlugin.id)
     }
 }
+
 
 private fun Project.applyCoreJvmPlugins() {
     logApplying()

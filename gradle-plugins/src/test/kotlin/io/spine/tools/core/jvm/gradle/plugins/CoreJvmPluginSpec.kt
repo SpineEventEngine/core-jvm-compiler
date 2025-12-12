@@ -45,8 +45,8 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-@DisplayName("`CompilerConfigPlugin` should")
-internal class CompilerConfigPluginSpec {
+@DisplayName("`CoreJvmPlugin` should")
+internal class CoreJvmPluginSpec {
 
     companion object {
 
