@@ -46,12 +46,12 @@ object Validation {
     const val group = Spine.toolsGroup
     private const val prefix = "validation"
 
+    const val gradlePluginLib = "$group:$prefix-gradle-plugin:$version"
+
     const val runtimeModule = "${Spine.group}:spine-$prefix-jvm-runtime"
     const val runtime = "$runtimeModule:$version"
     const val javaModule = "$group:$prefix-java"
     const val java = "$javaModule:$version"
-
-    const val gradlePlugin = "$group:$prefix-gradle-plugin"
     const val javaBundleModule = "$group:$prefix-java-bundle"
 
     /** Obtains the artifact for the `java-bundle` artifact of the given version. */
