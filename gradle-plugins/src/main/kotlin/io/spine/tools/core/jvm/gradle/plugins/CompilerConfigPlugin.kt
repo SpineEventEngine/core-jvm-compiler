@@ -162,6 +162,17 @@ private fun Project.configureCompilerPlugins() {
     }
 }
 
+private val Project.messageOptions: CoreJvmCompilerSettings
+    get() = coreJvmOptions.compiler!!
+
+private fun CompilerSettings.setSubdirectories() {
+    subDirs = listOf(
+        generatedJavaDirName.value(),
+        generatedGrpcDirName.value(),
+        DirectoryName.kotlin.value()
+    )
+}
+
 private fun Project.configureValidation() {
     pluginManager.apply(ValidationGradlePlugin::class.java)
 
@@ -174,17 +185,6 @@ private fun Project.configureValidation() {
     //     rules for the already existing generated Protobuf code.
     //
     addDependency("implementation", ValidationSdk.jvmRuntime())
-}
-
-private val Project.messageOptions: CoreJvmCompilerSettings
-    get() = coreJvmOptions.compiler!!
-
-private fun CompilerSettings.setSubdirectories() {
-    subDirs = listOf(
-        generatedJavaDirName.value(),
-        generatedGrpcDirName.value(),
-        DirectoryName.kotlin.value()
-    )
 }
 
 private fun Project.configureSignals(compiler: CompilerSettings) {
