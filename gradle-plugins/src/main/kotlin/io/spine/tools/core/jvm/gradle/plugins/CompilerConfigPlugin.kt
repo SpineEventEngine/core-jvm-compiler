@@ -29,8 +29,8 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.tools.compiler.gradle.api.CompilerSettings
-import io.spine.tools.compiler.gradle.api.Names
 import io.spine.tools.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
+import io.spine.tools.compiler.gradle.api.addUserClasspathDependency
 import io.spine.tools.compiler.gradle.api.compilerSettings
 import io.spine.tools.compiler.gradle.api.compilerWorkingDir
 import io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler
@@ -42,7 +42,6 @@ import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
 import io.spine.tools.core.jvm.gradle.generatedJavaDirName
-import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
 import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_PLUGINS_SETTINGS
 import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
 import io.spine.tools.core.jvm.marker.MarkerPlugin
@@ -53,10 +52,9 @@ import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.gradle.task.JavaTaskName.Companion.processResources
 import io.spine.tools.gradle.task.JavaTaskName.Companion.sourcesJar
-import io.spine.tools.meta.MavenArtifact
+import io.spine.tools.validation.gradle.ValidationGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Dependency
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
@@ -68,8 +66,7 @@ import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
  * This plugin does the following:
  *   1. Applies the `io.spine.compiler` Gradle plugin to the project.
  *   2. Configures the Compiler extension of the Gradle project, passing the compiler plugins,
- *      such as [JavaValidationPlugin][io.spine.validation.java.JavaValidationPlugin] and
- *      the plugins introduced by the modules of the CoreJvm Compiler modules.
+ *      introduced by the modules of the CoreJvm Compiler modules.
  *   3. Creates a [WriteCompilerPluginsSettings] task for passing configuration to the Compiler, and
  *      links it to the [LaunchSpineCompiler] task.
  *   4. Adds required dependencies.
@@ -100,9 +97,9 @@ internal class CompilerConfigPlugin : Plugin<Project> {
         const val WRITE_COMPILER_PLUGINS_SETTINGS = "writeSpineCompilerPluginsSettings"
 
         /**
-         * The name of the Validation plugin for ProtoData.
+         * The name of the Validation plugin for the Compiler.
          */
-        const val VALIDATION_PLUGIN_CLASS = "io.spine.validation.java.JavaValidationPlugin"
+        const val VALIDATION_PLUGIN_CLASS = "io.spine.tools.validation.java.JavaValidationPlugin"
     }
 }
 
@@ -144,7 +141,10 @@ private fun Project.configureCompilerPlugins() {
     val compiler = compilerSettings
     compiler.setSubdirectories()
 
-    configureValidation(compiler)
+    // The Validation plugin must be applied first so that the Validation Compiler plugin
+    // comes first in the pipeline.
+    pluginManager.apply(ValidationGradlePlugin::class.java)
+
     configureSignals(compiler)
 
     compiler.run {
@@ -174,29 +174,6 @@ private fun CompilerSettings.setSubdirectories() {
     )
 }
 
-private fun Project.configureValidation(compiler: CompilerSettings) {
-    val validationConfig = messageOptions.validation
-    val version = validationConfig.version.get()
-    if (validationConfig.enabled.get()) {
-        addUserClasspathDependency(ValidationSdk.javaCodegenBundle(version))
-        compiler.plugins(
-            VALIDATION_PLUGIN_CLASS
-        )
-    } else {
-        addUserClasspathDependency(ValidationSdk.configuration(version))
-    }
-
-    // We add the dependency on runtime anyway for the following reasons:
-    //  1. We do not want users to change their Gradle build files when they turn on or off
-    //     code generation for the validation code.
-    //
-    //  2. We have run-time validation rules that are going to be used in parallel with
-    //     the generated code. This includes current and new implementation for validation
-    //     rules for the already existing generated Protobuf code.
-    //
-    addDependency("implementation", ValidationSdk.javaRuntime(version))
-}
-
 private fun Project.configureSignals(compiler: CompilerSettings) {
     compiler.addPlugin<SignalPlugin>()
 
@@ -204,25 +181,6 @@ private fun Project.configureSignals(compiler: CompilerSettings) {
     if (rejectionCodegen.enabled.get()) {
         compiler.addPlugin<RThrowablePlugin>()
     }
-}
-
-private fun Project.addUserClasspathDependency(vararg artifacts: MavenArtifact) =
-    artifacts.forEach {
-        addDependency(Names.USER_CLASSPATH_CONFIGURATION, it)
-    }
-
-private fun Project.addDependency(configuration: String, artifact: MavenArtifact) {
-    val dependency = findDependency(artifact) ?: artifact.coordinates
-    dependencies.add(configuration, dependency)
-}
-
-private fun Project.findDependency(artifact: MavenArtifact): Dependency? {
-    val dependencies = configurations.flatMap { c -> c.dependencies }
-    val found = dependencies.firstOrNull { d ->
-        artifact.group == d.group // `d.group` could be `null`.
-                && artifact.name == d.name
-    }
-    return found
 }
 
 private inline fun <reified T : CompilerPlugin> CompilerSettings.addPlugin() {

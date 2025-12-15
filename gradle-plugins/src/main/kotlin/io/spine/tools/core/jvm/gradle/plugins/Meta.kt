@@ -30,7 +30,6 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.annotation.VisibleForTesting
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
-import io.spine.tools.core.jvm.gradle.plugins.ValidationSdk.javaCodegenBundle
 import io.spine.tools.meta.LazyDependency
 import io.spine.tools.meta.LazyMeta
 import io.spine.tools.meta.MavenArtifact
@@ -52,58 +51,6 @@ public object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins
     @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugin-bundle` module.
     public val artifact: MavenArtifact
         get() = meta.artifact
-}
-
-/**
- * Artifacts of the Spine Validation SDK on which CoreJvm Compiler depends.
- */
-@Suppress("ConstPropertyName")
-internal object ValidationSdk {
-
-    private const val group = "io.spine.validation"
-    private const val prefix = "spine-validation"
-    private val javaCodegenBundle = Module(group, "$prefix-java-bundle")
-    private val javaRuntime = Module(group, "$prefix-java-runtime")
-    private val configuration = Module(group, "$prefix-configuration")
-
-    private fun MavenArtifact.withVersion(version: String): MavenArtifact {
-        version.ifEmpty {
-            return this
-        }
-        return MavenArtifact(group, name, version, classifier, extension)
-    }
-
-    /**
-     * The Maven artifact containing the `spine-validation-java-bundle` module.
-     *
-     * @param version The version of the Validation library to be used.
-     *        If empty, the version of the build-time dependency is used.
-     */
-    @JvmStatic
-    fun javaCodegenBundle(version: String = ""): MavenArtifact =
-        Meta.dependency(javaCodegenBundle).withVersion(version)
-
-    /**
-     * The Maven artifact containing the `spine-validation-java-runtime` module.
-     *
-     * @param version The version of the Validation library to be used.
-     *        If empty, the version of the build-time dependency is used.
-     * @see javaCodegenBundle
-     */
-    @JvmStatic
-    fun javaRuntime(version: String = ""): MavenArtifact =
-        Meta.dependency(javaRuntime).withVersion(version)
-
-    /**
-     * The Maven artifact containing the `spine-validation-configuration` module.
-     *
-     * @param version The version of the Validation library to be used.
-     *        If empty, the version of the build-time dependency is used.
-     * @see javaCodegenBundle
-     */
-    @JvmStatic
-    fun configuration(version: String = ""): MavenArtifact =
-        Meta.dependency(configuration).withVersion(version)
 }
 
 /**

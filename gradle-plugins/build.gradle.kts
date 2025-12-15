@@ -49,7 +49,6 @@ artifactMeta {
         // to which the CoreJvm Gradle Plugin is applied.
         Validation.javaBundle,
         Validation.runtime,
-        Validation.configuration,
 
         // These dependencies are written for integration tests.
         Kotlin.GradlePlugin.lib,
@@ -65,6 +64,7 @@ dependencies {
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
+    implementation(Validation.gradlePluginLib)
 
     compileOnly(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")
