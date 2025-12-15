@@ -1,0 +1,26 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscoveredKt.Dsl.GroupProxy///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscoveredKt.Dsl.GroupProxy.html
+$dokka.location:io.spine.tools.core.jvm.mgroup.event/GroupedMessageDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/event/GroupedMessageDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Builder///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Builder.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Column///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Column.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Field///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Field.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.Query///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.Query.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessage.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessage.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessageKt.Dsl.GroupProxy///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessageKt.Dsl.GroupProxy.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/GroupedMessageKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/GroupedMessageKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.mgroup/MessageGroupPlugin.Companion///PointingToDeclaration/io/spine/tools/core/jvm/mgroup/MessageGroupPlugin.Companion.html
+io.spine.tools.core.jvm.mgroup
+io.spine.tools.core.jvm.mgroup.event
