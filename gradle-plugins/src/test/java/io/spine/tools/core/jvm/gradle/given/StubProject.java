@@ -75,6 +75,7 @@ public final class StubProject {
         var project = ProjectBuilder.builder()
                 .withProjectDir(projectDir)
                 .build();
+        project.setGroup("io.spine.stub");
         return project;
     }
 
