@@ -84,7 +84,6 @@ private fun Project.applyProtobufPlugin() {
     }
 }
 
-
 private fun Project.applyCoreJvmPlugins() {
     logApplying()
     val extension = project.coreJvmOptions
