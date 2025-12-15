@@ -178,6 +178,7 @@ fun Module.forceConfigurations() {
                     Compiler.api,
                     Compiler.gradleApi,
                     Compiler.jvm,
+                    "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.360"
                 )
                 // Force the version to avoid the version conflict for
                 // the `:gradle-plugins:ProtoData` configuration.

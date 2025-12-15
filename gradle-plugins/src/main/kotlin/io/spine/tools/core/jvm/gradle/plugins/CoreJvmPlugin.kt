@@ -43,7 +43,7 @@ import org.gradle.api.Project
 /**
  * Spine Model Compiler for Java Gradle plugin.
  *
- * Applies all McJava sub-plugins to the given project.
+ * Applies all CoreJvm Compiler sub-plugins to the given project.
  */
 public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
     DslSpec(name(), CoreJvmOptions::class)
@@ -63,6 +63,7 @@ public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
         super.apply(project)
         project.run {
             applyProtobufPlugin()
+            applyValidationPlugin()
             pluginManager.withPlugin(ProtobufGradlePlugin.id) { _ ->
                 applyCoreJvmPlugins()
             }
@@ -79,6 +80,10 @@ private fun Project.applyProtobufPlugin() {
         // So it will be available in the build classpath and found by the ID.
         pluginManager.apply(ProtobufGradlePlugin.id)
     }
+}
+
+private fun Project.applyValidationPlugin() {
+    pluginManager.apply("io.spine.validation")
 }
 
 private fun Project.applyCoreJvmPlugins() {

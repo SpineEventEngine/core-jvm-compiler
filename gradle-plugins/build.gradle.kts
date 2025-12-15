@@ -65,6 +65,7 @@ dependencies {
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
+    implementation(Validation.gradlePlugin)
 
     compileOnly(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")
