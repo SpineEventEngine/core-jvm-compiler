@@ -31,17 +31,14 @@ import io.spine.tools.core.jvm.VersionHolder
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions.Companion.name
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
-import io.spine.tools.core.jvm.gradle.warn
 import io.spine.tools.core.jvm.gradle.debug
+import io.spine.tools.core.jvm.gradle.warn
 import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
-import io.spine.tools.meta.MavenArtifact
-import io.spine.tools.validation.gradle.ValidationGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Dependency
 
 /**
  * Spine Model Compiler for Java Gradle plugin.
