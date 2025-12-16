@@ -63,6 +63,7 @@ dependencies {
     val apiDeps = arrayOf(
         Compiler.api,
         Compiler.jvm,
+        Validation.context,
         Validation.configuration,
         ToolBase.classicCodegen,
         ToolBase.pluginBase,
