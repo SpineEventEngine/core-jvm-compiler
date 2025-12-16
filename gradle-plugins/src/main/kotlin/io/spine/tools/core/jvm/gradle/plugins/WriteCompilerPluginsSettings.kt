@@ -41,15 +41,11 @@ import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.JAVA_CODE_STYLE_ID
-import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.VALIDATION_SETTINGS_ID
 import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
-import io.spine.tools.core.jvm.settings.Combined
 import io.spine.tools.core.jvm.settings.signalSettings
 import io.spine.tools.core.jvm.signal.SignalPlugin
 import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.type.toJson
-import io.spine.validation.messageMarkers
-import io.spine.validation.validationConfig
 import java.io.IOException
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
@@ -85,7 +81,6 @@ public abstract class WriteCompilerPluginsSettings : DefaultTask() {
     @Throws(IOException::class)
     public fun writeFiles() {
         val dir = settingsDirectory()
-        forValidationPlugin(dir)
         forAnnotationPlugin(dir)
         forEntityPlugin(dir)
         forSignalPlugin(dir)
@@ -119,34 +114,6 @@ private fun WriteCompilerPluginsSettings.settingsDirectory(): SettingsDirectory 
     val settings = SettingsDirectory(dir.toPath())
     return settings
 }
-
-/**
- * Writes settings for Validation codegen.
- *
- * The settings are taken from McJava extension object and converted to
- * [io.spine.validation.ValidationConfig], which is later written as JSON file.
- */
-private fun WriteCompilerPluginsSettings.forValidationPlugin(dir: SettingsDirectory) {
-    val compilerSettings = compilerSettings
-    val signalSettings = compilerSettings.signalSettings
-    val markers = messageMarkers {
-        signalSettings.let {
-            commandPattern.addAll(it.commands.patternList)
-            eventPattern.addAll(it.events.patternList)
-            rejectionPattern.addAll(it.rejections.patternList)
-        }
-        entityOptionName.addAll(compilerSettings.entityOptionsNames())
-    }
-    val settings = validationConfig {
-        messageMarkers = markers
-    }
-
-    dir.write(VALIDATION_SETTINGS_ID, settings)
-}
-
-
-private fun Combined.entityOptionsNames(): Iterable<String> =
-    entities.optionList.map { it.name }
 
 private fun WriteCompilerPluginsSettings.forAnnotationPlugin(dir: SettingsDirectory) {
     val annotation = options.annotation
