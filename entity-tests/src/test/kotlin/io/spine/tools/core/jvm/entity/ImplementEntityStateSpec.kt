@@ -31,8 +31,6 @@ import io.spine.base.AggregateState
 import io.spine.base.EntityState
 import io.spine.base.ProcessManagerState
 import io.spine.base.ProjectionState
-import io.spine.tools.code.Java
-import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.core.jvm.entity.EntityPluginTestSetup.Companion.java
 import io.spine.tools.java.reference
 import java.nio.file.Path
