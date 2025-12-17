@@ -27,26 +27,24 @@
 package io.spine.tools.core.jvm.signal
 
 import io.spine.core.External
+import io.spine.server.event.NoReaction
+import io.spine.server.event.React
+import io.spine.server.tuple.EitherOf2
 import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.firstField
 import io.spine.tools.compiler.ast.matches
-import io.spine.server.event.NoReaction
-import io.spine.server.event.React
-import io.spine.server.tuple.EitherOf2
 import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.field.RequiredIdReaction
 import io.spine.tools.core.jvm.settings.SignalSettings
-import io.spine.validation.MessageMarkers
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 
 /**
  * A reaction that marks ID fields in entity state messages and signal
  * messages as required.
  *
- * The messages are discovered via the [file patterns][MessageMarkers],
- * specified in [ValidationConfig][io.spine.validation.ValidationConfig].
+ * The messages are discovered via the file patterns specified in [SignalSettings].
  */
 internal class RequiredIdPatternReaction : RequiredIdReaction(), SignalPluginComponent {
 
