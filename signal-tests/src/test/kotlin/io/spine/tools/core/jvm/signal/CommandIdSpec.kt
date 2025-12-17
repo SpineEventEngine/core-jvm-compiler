@@ -28,14 +28,16 @@ package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.string.shouldContain
 import io.spine.tools.core.jvm.field.RequiredIdReaction.Companion.ID_FIELD_MUST_BE_SET
+import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.JAVA_SRC_DIR
 import java.nio.file.Path
+import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 @DisplayName("A command message should")
-class CommandIdSpec {
+internal class CommandIdSpec {
 
     companion object : SignalPluginTestSetup() {
 
