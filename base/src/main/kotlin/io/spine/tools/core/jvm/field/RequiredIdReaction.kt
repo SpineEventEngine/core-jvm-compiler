@@ -39,7 +39,6 @@ import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 import io.spine.tools.validation.event.requiredFieldDiscovered
 import io.spine.tools.validation.option.required.RequiredFieldSupport.isSupported
-import org.mozilla.javascript.regexp.SubString
 
 /**
  * An abstract base for reactions that control whether an ID field
