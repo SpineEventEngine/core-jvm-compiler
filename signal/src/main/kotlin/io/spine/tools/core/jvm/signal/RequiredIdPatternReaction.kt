@@ -48,7 +48,7 @@ import io.spine.tools.validation.event.RequiredFieldDiscovered
  */
 internal class RequiredIdPatternReaction : RequiredIdReaction(), SignalPluginComponent {
 
-    val settings: SignalSettings by lazy {
+    private val settings: SignalSettings by lazy {
         loadSettings()
     }
 
