@@ -94,6 +94,9 @@ dependencies {
         // Expose using API level for the submodules.
         testFixturesApi(it)
     }
+    testFixturesImplementation(Validation.java)?.because(
+        "We apply `JavaValidationPlugin` before a plugin under a test in `PluginTestSetup`."
+    )
 
     testImplementation(TestLib.lib)
     testImplementation(gradleTestKit())
