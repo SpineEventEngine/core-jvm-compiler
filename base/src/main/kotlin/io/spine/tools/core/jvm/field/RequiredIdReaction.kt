@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm.field
 
+import io.spine.annotation.VisibleForTesting
 import io.spine.option.OptionsProto
 import io.spine.server.event.NoReaction
 import io.spine.server.event.asA
@@ -38,6 +39,7 @@ import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 import io.spine.tools.validation.event.requiredFieldDiscovered
 import io.spine.tools.validation.option.required.RequiredFieldSupport.isSupported
+import org.mozilla.javascript.regexp.SubString
 
 /**
  * An abstract base for reactions that control whether an ID field
@@ -89,10 +91,15 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
             subject = field
         }.asA()
     }
-}
 
-/**
- * The error message template used for violations.
- */
-private const val ID_FIELD_MUST_BE_SET = "The ID field `\${parent.type}.\${field.path}`" +
-        " of the type `\${field.type}` must have a non-default value."
+    public companion object {
+
+        /**
+         * The error message template used for violations.
+         */
+        @VisibleForTesting
+        public const val ID_FIELD_MUST_BE_SET: String =
+            "The ID field `\${parent.type}.\${field.path}`" +
+                " of the type `\${field.type}` must have a non-default value."
+    }
+}

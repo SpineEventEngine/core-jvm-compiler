@@ -47,6 +47,7 @@ import io.spine.format.Format
 import io.spine.tools.code.Java
 import io.spine.tools.code.SourceSetName
 import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
+import io.spine.tools.validation.java.JavaValidationPlugin
 import io.spine.type.toJson
 import java.nio.file.Path
 import kotlin.io.path.exists
@@ -128,6 +129,9 @@ abstract class PluginTestSetup<S: Message>(
         val setup = byResources(
             params = params,
             plugins = listOf(
+                // Apply the Java Validation plugin first to ensure
+                // that custom validations are handled by the Validation backend.
+                JavaValidationPlugin(),
                 plugin,
                 // We want to be able to see the code in debug formatted for easier reading.
                 JavaCodeStyleFormatterPlugin()
