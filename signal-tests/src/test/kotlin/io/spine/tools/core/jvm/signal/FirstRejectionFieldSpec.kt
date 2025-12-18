@@ -34,7 +34,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("The first field of an rejection message should")
+@DisplayName("The first field of a rejection message should")
 internal class FirstRejectionFieldSpec {
 
     companion object : SignalPluginTestSetup() {
