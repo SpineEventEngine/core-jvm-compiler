@@ -42,6 +42,11 @@ import io.spine.tools.validation.event.RequiredFieldDiscovered
  * A reaction that marks ID fields in entity state messages as required.
  *
  * The entity state messages are discovered according to settings specified in [Entities].
+ * If a message type is annotated with the corresponding [option][Entities.getOptionList],
+ * the reaction will mark the first field as required.
+ *
+ * For such messages, the [TypeDiscovered] event results in [RequiredFieldDiscovered] event
+ * which is handled by `ValidationPlugin` of the Validation Compiler.
  */
 internal class EntityStateIdReaction : RequiredIdReaction(), EntityPluginComponent {
 

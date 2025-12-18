@@ -42,10 +42,15 @@ import io.spine.tools.core.jvm.settings.SignalSettings
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 
 /**
- * A reaction that marks ID fields in entity state messages and signal
- * messages as required.
+ * A reaction that makes the first field in command messages required.
  *
- * The messages are discovered via the file patterns specified in [SignalSettings].
+ * By convention in the Spine SDK, the first field of a command messages holds an ID
+ * of the target entity. As such, it is required to ensure proper command routing and processing.
+ *
+ * This reaction takes the list of file patterns for command messages specified
+ * in [SignalSettings] to identify a message belonging to a command file.
+ * For such messages, the [TypeDiscovered] event results in [RequiredFieldDiscovered] event
+ * which is handled by `ValidationPlugin` of the Validation Compiler.
  */
 internal class CommandTargetReaction : RequiredIdReaction(), SignalPluginComponent {
 
