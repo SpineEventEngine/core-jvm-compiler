@@ -51,7 +51,7 @@ message TelescopeIsOffline {
     TelescopeId telescope = 1 [(required) = true];
 }
 
-// The rejection with the first field not required.
+// The rejection with the non-required first field.
 message ObservationRejected {
     TelescopeId telescope = 1;
     string observation_details = 2 [(required) = true];
