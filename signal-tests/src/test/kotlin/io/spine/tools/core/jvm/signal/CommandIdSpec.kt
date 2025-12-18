@@ -48,7 +48,7 @@ internal class CommandIdSpec {
     }
 
     @Test
-    @DisplayName("have the first field assumed '(required)' being the ID of the command")
+    @DisplayName("have the first field assumed '(required)' being the ID of the target entity")
     fun commandId() {
         val sourceFile = file(Path("$JAVA_SRC_DIR/command/StartScanning.java"))
         sourceFile.code().shouldContain(TARGET_ENTITY_ID_MUST_BE_SET)
