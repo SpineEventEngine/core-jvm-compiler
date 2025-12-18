@@ -28,7 +28,6 @@ package io.spine.tools.core.jvm.entity
 
 import io.kotest.matchers.string.shouldContain
 import io.spine.tools.core.jvm.entity.EntityPluginTestSetup.Companion.departmentJava
-import io.spine.tools.core.jvm.field.RequiredIdReaction.Companion.ID_FIELD_MUST_BE_SET
 import java.nio.file.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName

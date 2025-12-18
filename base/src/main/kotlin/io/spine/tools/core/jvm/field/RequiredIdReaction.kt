@@ -26,7 +26,6 @@
 
 package io.spine.tools.core.jvm.field
 
-import io.spine.annotation.VisibleForTesting
 import io.spine.option.OptionsProto
 import io.spine.server.event.NoReaction
 import io.spine.server.event.asA
@@ -71,9 +70,13 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
      * The method emits [NoReaction] in case of violation of the above conditions.
      *
      * @param field The ID field.
+     * @param message The error message for the violation.
      */
     @Suppress("ReturnCount") // Prefer sooner exit and precise conditions.
-    protected fun withField(field: Field): EitherOf2<RequiredFieldDiscovered, NoReaction> {
+    protected fun withField(
+        field: Field,
+        message: String
+    ): EitherOf2<RequiredFieldDiscovered, NoReaction> {
         val requiredOption = field.findOption(OptionsProto.required)
         if (requiredOption != null) {
             return ignore()
@@ -86,19 +89,8 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
 
         return requiredFieldDiscovered {
             id = field.ref
-            defaultErrorMessage = ID_FIELD_MUST_BE_SET
+            defaultErrorMessage = message
             subject = field
         }.asA()
-    }
-
-    public companion object {
-
-        /**
-         * The error message template used for violations.
-         */
-        @VisibleForTesting
-        public const val ID_FIELD_MUST_BE_SET: String =
-            "The ID field `\${parent.type}.\${field.path}`" +
-                " of the type `\${field.type}` must have a non-default value."
     }
 }

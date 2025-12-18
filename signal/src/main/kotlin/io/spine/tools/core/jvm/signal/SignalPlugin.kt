@@ -41,7 +41,7 @@ import io.spine.tools.compiler.plugin.Plugin
 public class SignalPlugin : Plugin(
     reactions = setOf(
         SignalDiscovery(),
-        RequiredIdPatternReaction()
+        CommandTargetReaction()
     ),
     views = setOf(
         CommandsPerFile::class.java,

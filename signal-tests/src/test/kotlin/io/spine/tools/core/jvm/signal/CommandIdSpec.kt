@@ -27,7 +27,6 @@
 package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.string.shouldContain
-import io.spine.tools.core.jvm.field.RequiredIdReaction.Companion.ID_FIELD_MUST_BE_SET
 import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.JAVA_SRC_DIR
 import java.nio.file.Path
 import kotlin.io.path.Path
@@ -52,6 +51,6 @@ internal class CommandIdSpec {
     @DisplayName("have the first field assumed '(required)' being the ID of the command")
     fun commandId() {
         val sourceFile = file(Path("$JAVA_SRC_DIR/command/StartScanning.java"))
-        sourceFile.code().shouldContain(ID_FIELD_MUST_BE_SET)
+        sourceFile.code().shouldContain(TARGET_ENTITY_ID_MUST_BE_SET)
     }
 }

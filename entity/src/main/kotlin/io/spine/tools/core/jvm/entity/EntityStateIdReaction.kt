@@ -24,40 +24,29 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.signal
+package io.spine.tools.core.jvm.entity
 
+import io.spine.annotation.VisibleForTesting
 import io.spine.core.External
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf2
-import io.spine.tools.compiler.ast.File
-import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.firstField
-import io.spine.tools.compiler.ast.matches
 import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.field.RequiredIdReaction
-import io.spine.tools.core.jvm.settings.SignalSettings
+import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 
 /**
- * A reaction that marks ID fields in entity state messages and signal
- * messages as required.
+ * A reaction that marks ID fields in entity state messages as required.
  *
- * The messages are discovered via the file patterns specified in [SignalSettings].
+ * The entity state messages are discovered according to settings specified in [Entities].
  */
-internal class RequiredIdPatternReaction : RequiredIdReaction(), SignalPluginComponent {
+internal class EntityStateIdReaction : RequiredIdReaction(), EntityPluginComponent {
 
-    private val settings: SignalSettings by lazy {
+    private val settings: Entities by lazy {
         loadSettings()
-    }
-
-    private val filePatterns: Set<FilePattern> by lazy {
-        if (!settingsAvailable()) {
-            emptySet()
-        } else {
-            settings.allPatterns()
-        }
     }
 
     @React
@@ -65,28 +54,22 @@ internal class RequiredIdPatternReaction : RequiredIdReaction(), SignalPluginCom
     override fun whenever(
         @External event: TypeDiscovered
     ): EitherOf2<RequiredFieldDiscovered, NoReaction> {
-        if (filePatterns.isEmpty()) {
-            return ignore()
-        }
-        if (!event.file.matchesPatterns()) {
+        if (settings.optionList.isEmpty()) {
             return ignore()
         }
         val type = event.type
-        val field = type.firstField
-        return withField(field)
-    }
-
-    private fun File.matchesPatterns(): Boolean =
-        filePatterns.any {
-            it.matches(this)
+        if (!type.isEntityState(settings)) {
+            return ignore()
         }
+        val field = type.firstField
+        return withField(field, ID_FIELD_MUST_BE_SET)
+    }
 }
 
 /**
- * All the file patterns that mark different types of Protobuf files.
+ * The error message template used when the ID field of an entity state is not set.
  */
-private fun SignalSettings.allPatterns() = buildSet {
-    addAll(commands.patternList)
-    addAll(events.patternList)
-    addAll(rejections.patternList)
-}
+@VisibleForTesting
+public const val ID_FIELD_MUST_BE_SET: String =
+    "The ID field `\${parent.type}.\${field.path}`" +
+            " of the type `\${field.type}` must have a non-default value."
