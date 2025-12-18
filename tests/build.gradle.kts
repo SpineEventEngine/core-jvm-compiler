@@ -157,7 +157,6 @@ allprojects {
                     ToolBase.lib,
                     ToolBase.pluginBase,
                     ToolBase.psiJava,
-                    Validation.configuration,
                     Validation.javaBundle,
                     Validation.runtime,
                     "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.354"

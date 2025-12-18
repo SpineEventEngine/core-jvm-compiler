@@ -24,25 +24,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.entity
+package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.string.shouldContain
-import io.spine.base.AggregateState
-import io.spine.base.EntityState
-import io.spine.base.ProcessManagerState
-import io.spine.base.ProjectionState
-import io.spine.tools.core.jvm.entity.EntityPluginTestSetup.Companion.java
-import io.spine.tools.java.reference
+import io.spine.tools.core.jvm.signal.SignalPluginTestSetup.Companion.JAVA_SRC_DIR
 import java.nio.file.Path
+import kotlin.io.path.Path
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
-@DisplayName("`ImplementEntityState` action should")
-class ImplementEntityStateSpec {
+@DisplayName("A command message should")
+internal class CommandIdSpec {
 
-    companion object : EntityPluginTestSetup() {
+    companion object : SignalPluginTestSetup() {
 
         @BeforeAll
         @JvmStatic
@@ -52,26 +48,9 @@ class ImplementEntityStateSpec {
     }
 
     @Test
-    fun `use 'AggregateState' interface for 'AGGREGATE' kind`() {
-        val sourceFile = file("Employee".java)
-        sourceFile.code().shouldContain(AggregateState::class.java.reference)
-    }
-
-    @Test
-    fun `use 'ProjectionState' interface for 'PROJECTION' kind`() {
-        val sourceFile = file("Organization".java)
-        sourceFile.code().shouldContain(ProjectionState::class.java.reference)
-    }
-
-    @Test
-    fun `use 'ProcessManagerState' interface for 'PROCESS_MANAGER' kind`() {
-        val sourceFile = file("Transition".java)
-        sourceFile.code().shouldContain(ProcessManagerState::class.java.reference)
-    }
-
-    @Test
-    fun `use 'EntityState' interface for 'ENTITY' kind`() {
-        val sourceFile = file("Blob".java)
-        sourceFile.code().shouldContain(EntityState::class.java.reference)
+    @DisplayName("have the first field assumed '(required)' being the ID of the target entity")
+    fun commandId() {
+        val sourceFile = file(Path("$JAVA_SRC_DIR/command/StartScanning.java"))
+        sourceFile.code().shouldContain(TARGET_ENTITY_ID_MUST_BE_SET)
     }
 }

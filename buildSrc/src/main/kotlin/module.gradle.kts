@@ -195,7 +195,6 @@ fun Module.forceConfigurations() {
                         Validation.runtime,
                         Validation.java,
                         Validation.javaBundle,
-                        Validation.configuration
                     )
                 }
             }

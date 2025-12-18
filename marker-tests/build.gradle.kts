@@ -1,5 +1,3 @@
-import io.spine.dependency.lib.Protobuf
-
 /*
  * Copyright 2024, TeamDev. All rights reserved.
  *
@@ -26,7 +24,10 @@ import io.spine.dependency.lib.Protobuf
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import io.spine.dependency.lib.Protobuf
+
 plugins {
+    module
     protobuf
     prototap
     `test-module`

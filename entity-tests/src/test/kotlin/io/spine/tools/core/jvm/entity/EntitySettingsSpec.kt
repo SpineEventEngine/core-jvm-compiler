@@ -42,7 +42,7 @@ import org.junit.jupiter.api.io.TempDir
 
 /**
  * This is a test suite for [io.spine.tools.core.jvm.gradle.settings.EntitySettings] class
- * which belongs to `mc-java-base` module.
+ * which belongs to `base` module.
  *
  * We have this test suite in another module to check the correctness of default settings
  * specified as strings against classes of this module.

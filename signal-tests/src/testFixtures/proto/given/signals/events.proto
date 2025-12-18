@@ -49,3 +49,9 @@ message ScanningStopped {
     TelescopeId telescope = 1 [(required) = true];
     google.protobuf.Duration elapsed_time = 2 [(required) = true];
 }
+
+// The event with the non-required first field.
+message ObservationMade {
+    TelescopeId telescope = 1;
+    string description = 2 [(required) = true];
+}

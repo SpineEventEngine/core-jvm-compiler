@@ -48,7 +48,7 @@ internal class RejectionRendererSpec {
         /**
          * The number of rejections declared in `given/signals/rejections.proto`.
          */
-        const val DECLARED_REJECTIONS = 6
+        const val DECLARED_REJECTIONS = 7
 
         lateinit var rejectionCode: String
 

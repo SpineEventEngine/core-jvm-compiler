@@ -36,7 +36,10 @@ import io.spine.tools.compiler.plugin.Plugin
  * @see EntityPluginComponent
  */
 public class EntityPlugin : Plugin(
-    reactions = setOf(EntityDiscovery()),
+    reactions = setOf(
+        EntityDiscovery(),
+        EntityStateIdReaction()
+    ),
     views = setOf(DiscoveredEntitiesView::class.java),
     renderers = listOf(EntityStateRenderer())
 ) {

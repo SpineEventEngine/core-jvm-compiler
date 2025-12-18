@@ -39,7 +39,10 @@ import io.spine.tools.compiler.plugin.Plugin
  * @see io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
  */
 public class SignalPlugin : Plugin(
-    reactions = setOf(SignalDiscovery()),
+    reactions = setOf(
+        SignalDiscovery(),
+        CommandTargetReaction()
+    ),
     views = setOf(
         CommandsPerFile::class.java,
         EventsPerFile::class.java,
