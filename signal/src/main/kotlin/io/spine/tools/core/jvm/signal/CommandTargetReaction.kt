@@ -95,4 +95,4 @@ internal class CommandTargetReaction : RequiredIdReaction(), SignalPluginCompone
 @VisibleForTesting
 public const val TARGET_ENTITY_ID_MUST_BE_SET: String =
     "The ID field of the target entity `\${parent.type}.\${field.path}`" +
-            "  of the type `\${field.type}` must have a non-default value."
+            " of the type `\${field.type}` must have a non-default value."
