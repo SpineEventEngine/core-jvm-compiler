@@ -61,7 +61,7 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
      * The method emits [RequiredFieldDiscovered] event if the following
      * conditions are met:
      *
-     * 1. The field does not have the `(required)` option applied explicitly.
+     * 1. The field does not have the `(required)` option specified explicitly.
      *   If it has, the field is handled by
      *   `io.spine.tools.validation.option.required.RequiredReaction` then
      *   by the Validation context.
