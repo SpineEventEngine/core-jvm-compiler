@@ -44,7 +44,7 @@ import io.spine.tools.validation.event.RequiredFieldDiscovered
 /**
  * A reaction that makes the first field in command messages required.
  *
- * By convention in the Spine SDK, the first field of a command messages holds an ID
+ * By convention in the Spine SDK, the first field of a command message holds an ID
  * of the target entity. As such, it is required to ensure proper command routing and processing.
  *
  * This reaction takes the list of file patterns for command messages specified
