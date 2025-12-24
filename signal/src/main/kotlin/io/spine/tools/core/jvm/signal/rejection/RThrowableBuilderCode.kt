@@ -174,6 +174,7 @@ internal class RThrowableBuilderCode internal constructor(
         return RepeatedFieldType.typeNameFor(elementType)
     }
 
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // Used in the generated Java code.
     private fun mapTypeOf(keyType: PrimitiveType, valueType: Type): PoTypeName {
         val keyTypeName = keyType.toPoet()
         val valueTypeName = valueType.toPoet()
