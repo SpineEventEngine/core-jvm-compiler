@@ -50,8 +50,8 @@ import "spine/compiler/render_actions.proto";
 //
 message Combined {
 
-    // The configuration related to validation code.
-    Validation validation = 1;
+    reserved 1;
+    reserved "validation";
 
     // The configuration related to entity states.
     Entities entities = 2;
@@ -73,22 +73,6 @@ message Combined {
 
     // The code generation settings for comparable messages.
     Comparables comparables = 11;
-}
-
-// Configuration related to validation code.
-message Validation {
-
-    // Validating builders are always generated. This property is deprecated and ignored.
-    bool skip_builders = 1 [deprecated = true];
-
-    // Validating builders are always generated. This property is deprecated and ignored.
-    bool skip_validation = 2 [deprecated = true];
-
-    // If specified, provides a version of the Java validation code generator to use.
-    //
-    // Otherwise, McJava uses the version of the generator that is bundled with the plugin.
-    //
-    string version = 3;
 }
 
 // Code generation settings for a group of signal messages.
