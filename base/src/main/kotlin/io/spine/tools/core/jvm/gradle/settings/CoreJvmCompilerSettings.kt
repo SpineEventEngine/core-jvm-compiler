@@ -99,20 +99,9 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
     public val comparables: ComparableSettings = ComparableSettings(project)
 
     /**
-     * Settings for the generated validation code.
-     */
-    public val validation: ValidationSettings = ValidationSettings(project)
-
-    /**
      * Settings for the generated code of grouped messages.
      */
     public val messageGroups: MutableSet<MessageGroup> = mutableSetOf()
-
-    /**
-     * Obtains the configuration settings for the generated validation code.
-     */
-    @Deprecated("Please use property syntax instead.", ReplaceWith("validation"))
-    public fun validation(): ValidationSettings = validation
 
     /**
      * Obtains an instance of [FilePatternFactory] which creates file patterns.
@@ -199,13 +188,6 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
         action.execute(comparables)
     }
 
-    /**
-     * Configures code generation for validation messages.
-     */
-    public fun validation(action: Action<ValidationSettings>) {
-        action.execute(validation)
-    }
-
     override fun toProto(): Combined {
         val self = this@CoreJvmCompilerSettings
         val ss = signalSettings {
@@ -222,7 +204,6 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
             signalSettings = ss
             groupSettings = gs
             entities = self.entities.toProto()
-            validation = self.validation.toProto()
             uuids = self.uuids.toProto()
             comparables = self.comparables.toProto()
             classpath = cp

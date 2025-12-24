@@ -374,14 +374,6 @@ class CoreJvmOptionsSpec {
                         })
                         .buildPartial()
         }
-
-        @Test
-        fun validation() {
-            val validation = options.compiler!!.toProto().validation
-            validation.run {
-                version.shouldBeEmpty()
-            }
-        }
     }
 
     @Nested
