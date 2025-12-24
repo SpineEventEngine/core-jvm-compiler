@@ -37,7 +37,7 @@ import io.spine.given.devices.Device
 import io.spine.logging.WithLogging
 import io.spine.logging.testing.ConsoleTap
 import io.spine.server.route.Route
-import io.spine.validate.ValidatingBuilder
+import io.spine.validation.ValidatingBuilder
 import org.gradle.api.JavaVersion
 import org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi
 import org.junit.jupiter.api.BeforeAll
