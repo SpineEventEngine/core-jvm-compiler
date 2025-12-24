@@ -31,7 +31,6 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.string.shouldBeEmpty
 import io.spine.base.MessageFile
 import io.spine.option.OptionsProto
 import io.spine.testing.SlowTest
