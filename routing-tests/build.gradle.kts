@@ -30,6 +30,7 @@ import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.Validation
 import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
 
@@ -58,6 +59,9 @@ apply<BomsPlugin>()
 configurations.all {
     resolutionStrategy {
         dependencySubstitution {
+            substitute(module(Validation.oldJavaBundleModule))
+                .using(module(Validation.javaBundle))
+
             // Use `:routing` module of this project for generating routing schemas
             // instead of the code the previous version of CoreJvm Compiler.
             substitute(module("io.spine.tools:core-jvm-routing")).using(project(":routing"))
