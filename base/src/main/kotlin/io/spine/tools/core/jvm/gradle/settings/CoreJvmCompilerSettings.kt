@@ -159,7 +159,7 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
     }
 
     /**
-     * Configures code generation for particular message.
+     * Configures code generation for a particular message.
      */
     public fun forMessage(protoTypeName: String, action: Action<MessageGroupSettings>) {
         val pattern = pattern {
