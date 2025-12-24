@@ -32,16 +32,7 @@ plugins {
     id("io.spine.core-jvm")
 }
 
-// Turn off validation codegen during the transition to new Compiler API.
-spine {
-    coreJvm {
-        compiler {
-            validation.enabled.set(false)
-        }
-    }
-}
-
-/* 
+/*
     This Smoke Tests module holds a `TestMethodFactory` that is used in
     the `model-compiler` module.
 */

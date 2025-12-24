@@ -29,16 +29,7 @@ import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.ToolBase
 
-// Turn off validation codegen during the transition to the new Compiler API.
-spine {
-    coreJvm {
-        compiler {
-            validation.enabled.set(false)
-        }
-    }
-}
-
-/* 
+/*
     This Smoke Tests module holds a `TestMethodFactory` that is used in
     the `model-compiler` module.
 */
