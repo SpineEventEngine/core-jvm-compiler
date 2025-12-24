@@ -33,11 +33,6 @@ plugins {
 
 spine {
     coreJvm {
-        // Turn off validation codegen during the transition to new Compiler API.
-        compiler {
-            validation.enabled.set(false)
-        }
-
         annotation {
             types {
                 internal.set("io.spine.test.annotation.Private")
