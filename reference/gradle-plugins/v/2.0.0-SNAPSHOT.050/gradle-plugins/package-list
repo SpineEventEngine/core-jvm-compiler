@@ -1,0 +1,26 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins////PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CleaningPlugin///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-cleaning-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CleaningPlugin/CleaningPlugin/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-cleaning-plugin/-cleaning-plugin.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CleaningPlugin/apply/#org.gradle.api.Project/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-cleaning-plugin/apply.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CoreJvmPlugin.Companion///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-core-jvm-plugin/-companion/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CoreJvmPlugin.Companion/ID/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-core-jvm-plugin/-companion/-i-d.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CoreJvmPlugin///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-core-jvm-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CoreJvmPlugin/CoreJvmPlugin/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-core-jvm-plugin/-core-jvm-plugin.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/CoreJvmPlugin/apply/#org.gradle.api.Project/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-core-jvm-plugin/apply.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/KotlinGradlePlugin///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-kotlin-gradle-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/KotlinGradlePlugin/version/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-kotlin-gradle-plugin/version.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/KspGradlePlugin///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-ksp-gradle-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/KspGradlePlugin/id/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-ksp-gradle-plugin/id.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/KspGradlePlugin/version/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-ksp-gradle-plugin/version.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/Meta///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-meta/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/Meta/artifact/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-meta/artifact.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/ProtobufGradlePlugin///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-protobuf-gradle-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/ProtobufGradlePlugin/id/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-protobuf-gradle-plugin/id.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/ProtobufGradlePlugin/version/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-protobuf-gradle-plugin/version.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/WriteCompilerPluginsSettings///PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-write-compiler-plugins-settings/index.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/WriteCompilerPluginsSettings/WriteCompilerPluginsSettings/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-write-compiler-plugins-settings/-write-compiler-plugins-settings.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/WriteCompilerPluginsSettings/settingsDir/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-write-compiler-plugins-settings/settings-dir.html
+$dokka.location:io.spine.tools.core.jvm.gradle.plugins/WriteCompilerPluginsSettings/writeFiles/#/PointingToDeclaration/gradle-plugins/io.spine.tools.core.jvm.gradle.plugins/-write-compiler-plugins-settings/write-files.html
+io.spine.tools.core.jvm.gradle.plugins
