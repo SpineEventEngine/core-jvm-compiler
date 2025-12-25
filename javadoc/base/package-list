@@ -16,7 +16,6 @@ $dokka.location:io.spine.tools.core.jvm.settings/SignalsKt.Dsl.PatternProxy///Po
 $dokka.location:io.spine.tools.core.jvm.settings/SignalsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/SignalsKt.Dsl.html
 $dokka.location:io.spine.tools.core.jvm.settings/TypePatternKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/TypePatternKt.Dsl.html
 $dokka.location:io.spine.tools.core.jvm.settings/UuidsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/UuidsKt.Dsl.html
-$dokka.location:io.spine.tools.core.jvm.settings/ValidationKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/ValidationKt.Dsl.html
 io.spine.tools.core.jvm
 io.spine.tools.core.jvm.base
 io.spine.tools.core.jvm.field
