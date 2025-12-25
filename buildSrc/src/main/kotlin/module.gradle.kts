@@ -125,19 +125,23 @@ fun Module.forceConfigurations() {
             // Exclude in favor of `spine-validation-java-runtime`.
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
-                // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
                 dependencySubstitution {
+                    // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
                     substitute(module("io.spine.tools:spine-tool-base"))
                         .using(module(ToolBase.lib))
                     substitute(module("io.spine.tools:spine-plugin-base"))
                         .using(module(ToolBase.pluginBase))
+                    substitute(module(Validation.oldJavaBundleModule))
+                        .using(module(Validation.javaBundle))
                 }
 
-                Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
-                Ksp.forceArtifacts(project, this@all, this@resolutionStrategy)
-                Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
-                Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
-                Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
+                val rs = this@resolutionStrategy
+                val cfg = this@all
+                Grpc.forceArtifacts(project, cfg, rs)
+                Ksp.forceArtifacts(project, cfg, rs)
+                Jackson.forceArtifacts(project, cfg, rs)
+                Jackson.DataFormat.forceArtifacts(project, cfg, rs)
+                Jackson.DataType.forceArtifacts(project, cfg, rs)
                 force(
                     Grpc.bom,
                     Jackson.bom,
@@ -156,6 +160,8 @@ fun Module.forceConfigurations() {
                     Base.lib,
                     Time.lib,
                     Time.javaExtensions,
+                    Compiler.api,
+                    Compiler.backend,
                     Compiler.params,
                     Compiler.gradleApi,
                     Compiler.pluginLib,
@@ -178,25 +184,9 @@ fun Module.forceConfigurations() {
                     Compiler.api,
                     Compiler.gradleApi,
                     Compiler.jvm,
-                    "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.360"
+                    Validation.javaBundle,
+                    Validation.runtime,
                 )
-                // Force the version to avoid the version conflict for
-                // the `:gradle-plugins:ProtoData` configuration.
-                if(config.name.contains("protodata", ignoreCase = true)) {
-                    val compatVersion = Validation.pdCompatibleVersion
-                    force(
-                        "${Validation.runtimeModule}:$compatVersion",
-                        "${Validation.javaBundleModule}:$compatVersion",
-                        "${Validation.javaModule}:$compatVersion",
-                        "${Validation.configModule}:$compatVersion",
-                    )
-                } else {
-                    force(
-                        Validation.runtime,
-                        Validation.java,
-                        Validation.javaBundle,
-                    )
-                }
             }
         }
     }

@@ -63,10 +63,9 @@ import io.spine.tools.core.jvm.signal.rejection.Method.REJECTION_MESSAGE
 import io.spine.tools.java.code.classSpec
 import io.spine.tools.java.code.codeBlock
 import io.spine.tools.java.code.constructorSpec
-import io.spine.tools.java.javadoc.JavadocText
 import io.spine.tools.java.code.methodSpec
-import io.spine.validate.Validate
-import io.spine.validate.Validated
+import io.spine.tools.java.javadoc.JavadocText
+import io.spine.validation.Validated
 import javax.lang.model.element.Modifier.FINAL
 import javax.lang.model.element.Modifier.PRIVATE
 import javax.lang.model.element.Modifier.PUBLIC
@@ -77,7 +76,7 @@ import com.squareup.javapoet.TypeName as PoTypeName
 /**
  * Generates code for a rejection builder.
  *
- * A generated builder validates rejection messages using [Validate.check].
+ * A generated builder validates rejection messages using [io.spine.validation.Validate.check].
  */
 internal class RThrowableBuilderCode internal constructor(
     private val rejection: MessageType,
@@ -174,6 +173,7 @@ internal class RThrowableBuilderCode internal constructor(
         return RepeatedFieldType.typeNameFor(elementType)
     }
 
+    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // Used in the generated Java code.
     private fun mapTypeOf(keyType: PrimitiveType, valueType: Type): PoTypeName {
         val keyTypeName = keyType.toPoet()
         val valueTypeName = valueType.toPoet()
@@ -232,7 +232,7 @@ private fun PoClassName.buildMethod(): MethodSpec = methodSpec(BUILD) {
  * Generates the code for the method named as defined by the [REJECTION_MESSAGE] constant.
  *
  * The method creates a new instance by calling the builder's `build()` method.
- * Then it validates the new instance via [Validate.check] and returns it.
+ * Then it validates the new instance via [io.spine.validation.Validate.check] and returns it.
  */
 private fun PoClassName.rejectionMessageMethod(): MethodSpec = methodSpec(REJECTION_MESSAGE) {
     val messageType = this@rejectionMessageMethod

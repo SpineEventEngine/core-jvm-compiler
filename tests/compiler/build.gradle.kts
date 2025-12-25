@@ -37,11 +37,6 @@ dependencies {
 spine {
     coreJvm {
         compiler {
-            // Turn off validation codegen during the transition to the new ProtoData API.
-            validation {
-                enabled.set(false)
-            }
-
             val actionStubs = "io.spine.tools.core.jvm.mgroup.given"
             val methodAction = "$actionStubs.AddOwnTypeMethod"
             val nestedClassAction = "$actionStubs.NestClassAction"

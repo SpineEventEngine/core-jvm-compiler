@@ -28,7 +28,7 @@ package io.spine.tools.mc.java.rejection.gradle;
 
 import io.spine.base.Identifier;
 import io.spine.tools.rejections.CannotUpdateUsername;
-import io.spine.validate.ValidationException;
+import io.spine.validation.ValidationException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
