@@ -55,6 +55,7 @@ object Validation {
 
     @Deprecated("Use `runtime` instead.", ReplaceWith("runtime"))
     const val oldRuntime = "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.354"
+    const val oldJavaBundleModule = "io.spine.validation:spine-validation-java-bundle"
 
     const val javaModule = "$group:$prefix-java"
     const val java = "$javaModule:$version"
