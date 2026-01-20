@@ -36,7 +36,7 @@ object Validation {
     /**
      * The version of the Validation library artifacts.
      */
-    const val version = "2.0.0-SNAPSHOT.390"
+    const val version = "2.0.0-SNAPSHOT.393"
 
     /**
      * The last version of Validation compatible with ProtoData.
@@ -49,12 +49,17 @@ object Validation {
     const val gradlePluginLib = "$group:$prefix-gradle-plugin:$version"
 
     const val runtimeModule = "${Spine.group}:spine-$prefix-jvm-runtime"
-    const val oldRuntimeModule = "io.spine.validation:spine-validation-java-runtime"
-    const val runtime = "$runtimeModule:$version"
+
+    fun runtime(version: String) = "$runtimeModule:$version"
+    val runtime = runtime(version)
+
+    @Deprecated("Use `runtime` instead.", ReplaceWith("runtime"))
+    const val oldRuntime = "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.354"
+    const val oldJavaBundleModule = "io.spine.validation:spine-validation-java-bundle"
+
     const val javaModule = "$group:$prefix-java"
     const val java = "$javaModule:$version"
     const val javaBundleModule = "$group:$prefix-java-bundle"
-    const val oldJavaBundleModule = "io.spine.validation:spine-validation-java-bundle"
 
     /** Obtains the artifact for the `java-bundle` artifact of the given version. */
     fun javaBundle(version: String) = "$javaBundleModule:$version"

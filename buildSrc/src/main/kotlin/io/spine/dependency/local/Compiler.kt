@@ -72,7 +72,7 @@ object Compiler : Dependency() {
      * The version of the Compiler dependencies.
      */
     override val version: String
-    private const val fallbackVersion = "2.0.0-SNAPSHOT.037"
+    private const val fallbackVersion = "2.0.0-SNAPSHOT.038"
 
     /**
      * The distinct version of the Compiler used by other build tools.
@@ -81,7 +81,7 @@ object Compiler : Dependency() {
      * transitive dependencies, this is the version used to build the project itself.
      */
     val dogfoodingVersion: String
-    private const val fallbackDfVersion = "2.0.0-SNAPSHOT.037"
+    private const val fallbackDfVersion = "2.0.0-SNAPSHOT.038"
 
     /**
      * The artifact for the Compiler Gradle plugin.
@@ -132,7 +132,19 @@ object Compiler : Dependency() {
         get() = "$group:compiler-testlib:$version"
 
     override val modules: List<String>
-        get() = listOf(api, backend, params, protocPlugin, gradleApi, cliApi, jvm, fatCli, testlib)
+        get() = listOf(
+            api,
+            backend,
+            params,
+            protocPlugin,
+            gradleApi,
+            cliApi,
+            jvm,
+            fatCli,
+            testlib
+        ).map {
+            it.split(":").let { (group, artifact) -> "$group:$artifact" }
+        }
 
     /**
      * An env variable storing a custom [version].
