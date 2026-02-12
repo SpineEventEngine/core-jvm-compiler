@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
+import com.google.protobuf.gradle.ProtobufPlugin
 import io.spine.string.simply
 import io.spine.tools.core.jvm.VersionHolder
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
@@ -39,6 +40,7 @@ import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.apply
 
 /**
  * Spine Model Compiler for Java Gradle plugin.
@@ -76,8 +78,7 @@ public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
 private fun Project.applyProtobufPlugin() {
     if (!pluginManager.hasPlugin(ProtobufGradlePlugin.id)) {
         // We carry the plugin as a runtime dependency of the fat JAR.
-        // So it will be available in the build classpath and found by the ID.
-        pluginManager.apply(ProtobufGradlePlugin.id)
+        project.apply<ProtobufPlugin>()
     }
 }
 
@@ -105,11 +106,11 @@ private fun Project.createAndApplyPlugins() {
         RoutingPlugin()
     )
     plugins.forEach {
-        apply(it)
+        doApply(it)
     }
 }
 
-private fun Project.apply(plugin: Plugin<Project>) {
+private fun Project.doApply(plugin: Plugin<Project>) {
     logger.debug { "Applying `${plugin.javaClass.name}` plugin." }
     plugin.apply(project)
 }

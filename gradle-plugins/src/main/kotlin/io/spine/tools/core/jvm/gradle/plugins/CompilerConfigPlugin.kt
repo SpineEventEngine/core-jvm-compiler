@@ -29,7 +29,6 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.tools.compiler.gradle.api.CompilerSettings
-import io.spine.tools.compiler.gradle.api.Names.GRADLE_PLUGIN_ID
 import io.spine.tools.compiler.gradle.api.addUserClasspathDependency
 import io.spine.tools.compiler.gradle.api.compilerSettings
 import io.spine.tools.compiler.gradle.api.compilerWorkingDir
@@ -59,6 +58,8 @@ import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
 import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
+import io.spine.tools.compiler.gradle.plugin.Plugin as CompilerGradlePlugin
+import org.gradle.kotlin.dsl.apply
 
 /**
  * The plugin that configures the Spine Compiler for the associated project.
@@ -86,7 +87,9 @@ internal class CompilerConfigPlugin : Plugin<Project> {
         project.afterEvaluate {
             it.configureCompiler()
         }
-        project.pluginManager.apply(GRADLE_PLUGIN_ID)
+        // Apply the Compiler Gradle Plugin so that we can manipulate the compiler settings.
+        // We do not want the user to add it manually.
+        project.apply<CompilerGradlePlugin>()
     }
 
     companion object {

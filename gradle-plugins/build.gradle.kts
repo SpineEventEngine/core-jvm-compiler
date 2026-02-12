@@ -61,6 +61,7 @@ artifactMeta {
 }
 
 dependencies {
+    compileOnly(gradleKotlinDsl())
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
