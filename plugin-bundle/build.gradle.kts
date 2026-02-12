@@ -294,8 +294,10 @@ publishing {
                 }
 
                 /*
-                 * Add the dependency on the Protobuf Java Util library so that we can add it
-                 * from our code. The code in `pom.xml` would look like this:
+                 * Add the dependency on the Protobuf Java Util library because it is
+                 * used from the `compiler-params` module. Since we exclude the dependencies
+                 * on Protobuf, we need to add the Util library manually.
+                 *  The code in `pom.xml` would look like this:
                  * ```
                  * <dependency>
                  *     <groupId>com.google.protobuf</groupId>
