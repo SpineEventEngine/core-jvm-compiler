@@ -56,6 +56,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
 import org.gradle.kotlin.dsl.register
+import org.gradle.kotlin.dsl.withType
 import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
 import io.spine.tools.compiler.gradle.plugin.Plugin as CompilerGradlePlugin
 import org.gradle.kotlin.dsl.apply
