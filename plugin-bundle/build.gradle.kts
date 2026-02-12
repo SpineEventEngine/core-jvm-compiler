@@ -205,6 +205,57 @@ publishing {
                 }
 
                 /*
+                 * Add the dependency onto `io.spine.tools:compiler-gradle-plugin`,
+                 * so that CoreJvm Gradle Plugin can add it to a project.
+                 */
+                val compilerGradlePlugin = Node(dependencies, "dependency")
+                compilerGradlePlugin.let {
+                    Node(it, "groupId", "io.spine.tools")
+                    Node(it, "artifactId", "compiler-gradle-plugin")
+                    Node(it, "version", Compiler.version)
+                    Node(it, "scope", "runtime")
+                }
+                Node(compilerGradlePlugin, "exclusions").let {
+                    excludeGroup(it, "org.jetbrains.kotlin")
+                    excludeGroup(it, "com.google.protobuf")
+                    excludeGroup(it, "io.spine.tools")
+                }
+
+                /*
+                 * Add the dependency onto `io.spine.tools:compiler-gradle-api`,
+                 * so that CoreJvm Gradle Plugin can add it to a project.
+                 */
+                val compilerGradleApi = Node(dependencies, "dependency")
+                compilerGradleApi.let {
+                    Node(it, "groupId", "io.spine.tools")
+                    Node(it, "artifactId", "compiler-gradle-api")
+                    Node(it, "version", Compiler.version)
+                    Node(it, "scope", "runtime")
+                }
+                Node(compilerGradleApi, "exclusions").let {
+                    excludeGroup(it, "org.jetbrains.kotlin")
+                    excludeGroup(it, "com.google.protobuf")
+                    excludeGroup(it, "io.spine.tools")
+                }
+
+                /*
+                 * Add the dependency onto `io.spine.tools:compiler-params`,
+                 * so that it is available in the classpath.
+                 */
+                val compilerParams = Node(dependencies, "dependency")
+                compilerParams.let {
+                    Node(it, "groupId", "io.spine.tools")
+                    Node(it, "artifactId", "compiler-params")
+                    Node(it, "version", Compiler.version)
+                    Node(it, "scope", "runtime")
+                }
+                Node(compilerParams, "exclusions").let {
+                    excludeGroup(it, "org.jetbrains.kotlin")
+                    excludeGroup(it, "com.google.protobuf")
+                    excludeGroup(it, "io.spine.tools")
+                }
+
+                /*
                  * Add the dependency on Protobuf Gradle Plugin so that we can add it
                  * from our code. The code in `pom.xml` would look like this:
                  * ```
@@ -224,7 +275,7 @@ publishing {
                 }
 
                 /*
-                 * Add the dependency on Protobuf Java library so that we can add it
+                 * Add the dependency on the Protobuf Java library so that we can add it
                  * from our code. The code in `pom.xml` would look like this:
                  * ```
                  * <dependency>
@@ -238,6 +289,25 @@ publishing {
                 Node(dependencies, "dependency").let {
                     Node(it, "groupId", "com.google.protobuf")
                     Node(it, "artifactId", "protobuf-java")
+                    Node(it, "version", Protobuf.version)
+                    Node(it, "scope", "runtime")
+                }
+
+                /*
+                 * Add the dependency on the Protobuf Java Util library so that we can add it
+                 * from our code. The code in `pom.xml` would look like this:
+                 * ```
+                 * <dependency>
+                 *     <groupId>com.google.protobuf</groupId>
+                 *     <artifactId>protobuf-java-util</artifactId>
+                 *     <version>${Protobuf.version}</version>
+                 *     <scope>runtime</scope>
+                 * </dependency>
+                 * ```
+                 */
+                Node(dependencies, "dependency").let {
+                    Node(it, "groupId", "com.google.protobuf")
+                    Node(it, "artifactId", "protobuf-java-util")
                     Node(it, "version", Protobuf.version)
                     Node(it, "scope", "runtime")
                 }
