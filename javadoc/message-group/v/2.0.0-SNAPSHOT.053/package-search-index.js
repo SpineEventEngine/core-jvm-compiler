@@ -1,0 +1,1 @@
+var packageSearchIndex = [{"l":"io.spine.tools.core.jvm.mgroup","url":"io/spine/tools/core/jvm/mgroup/package-summary.html"}, {"l":"io.spine.tools.core.jvm.mgroup.event","url":"io/spine/tools/core/jvm/mgroup/event/package-summary.html"}, {"l":"All packages","url":"index.html"}]
