@@ -1,0 +1,27 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.UuidsField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.UuidsField.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Builder///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Builder.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Column///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Column.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Query///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Query.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidActionsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActionsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.uuid/UuidPlugin.Companion///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidPlugin.Companion.html
+io.spine.tools.core.jvm.uuid
+io.spine.tools.core.jvm.uuid.event
