@@ -1,0 +1,1 @@
+var typeSearchIndex = [{"p":"io.spine.tools.core.jvm.grpc.gradle","l":"GrpcCoreJvmPlugin","url":"io/spine/tools/core/jvm/grpc/gradle/GrpcCoreJvmPlugin.html"}, {"p":"io.spine.tools.core.jvm.grpc.gradle","l":"GrpcSettings","url":"io/spine/tools/core/jvm/grpc/gradle/GrpcSettings.html"}, {"l":"All classes","url":"allclasses.html"}]
