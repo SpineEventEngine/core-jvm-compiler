@@ -79,6 +79,9 @@ buildscript {
                     logging.libJvm,
                     "${compiler.module}:${compiler.dogfoodingVersion}",
                     compiler.api,
+                    compiler.params,
+                    compiler.gradleApi,
+                    compiler.pluginLib,
                     "${validation.runtimeModule}:${validation.version}",
                     "${validation.runtimeModule}:${validation.version}",
                     "io.spine.validation:spine-validation-java-runtime:2.0.0-SNAPSHOT.360"
