@@ -1,0 +1,1 @@
+var typeSearchIndex = [{"p":"io.spine.tools.core.jvm.routing.gradle","l":"RoutingPlugin","url":"io/spine/tools/core/jvm/routing/gradle/RoutingPlugin.html"}, {"p":"io.spine.tools.core.jvm.routing.processor","l":"RouteProcessorProvider","url":"io/spine/tools/core/jvm/routing/processor/RouteProcessorProvider.html"}, {"l":"All classes","url":"allclasses.html"}]
