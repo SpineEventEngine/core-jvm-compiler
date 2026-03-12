@@ -1,0 +1,57 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/CommandDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/CommandDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/EventDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/EventDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.signal.event/RejectionDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/signal/event/RejectionDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.Builder///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.Builder.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.Column///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.Column.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.Field///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.Field.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.Query///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.Query.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActions.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActions.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActionsKt.Dsl.TypeProxy///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActionsKt.Dsl.TypeProxy.html
+$dokka.location:io.spine.tools.core.jvm.signal/CommandActionsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/signal/CommandActionsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.Builder///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.Builder.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.Column///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.Column.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.Field///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.Field.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.Query///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.Query.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActions.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActions.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActionsKt.Dsl.TypeProxy///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActionsKt.Dsl.TypeProxy.html
+$dokka.location:io.spine.tools.core.jvm.signal/EventActionsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/signal/EventActionsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.Builder///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.Builder.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.Column///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.Column.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.Field///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.Field.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.Query///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.Query.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActions.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActions.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActionsKt.Dsl.TypeProxy///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActionsKt.Dsl.TypeProxy.html
+$dokka.location:io.spine.tools.core.jvm.signal/RejectionActionsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/signal/RejectionActionsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.signal/SignalPlugin.Companion///PointingToDeclaration/io/spine/tools/core/jvm/signal/SignalPlugin.Companion.html
+io.spine.tools.core.jvm.signal
+io.spine.tools.core.jvm.signal.event
+io.spine.tools.core.jvm.signal.rejection
