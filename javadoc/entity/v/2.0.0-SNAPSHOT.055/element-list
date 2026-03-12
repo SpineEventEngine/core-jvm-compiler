@@ -1,0 +1,24 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.entity.event/EntityStateDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/entity/event/EntityStateDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.Builder///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.Builder.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.Column///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.Column.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.Field.ActionsField.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.Field///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.Field.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.Query///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.Query.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntities.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntities.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntitiesKt.Dsl.TypeProxy///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntitiesKt.Dsl.TypeProxy.html
+$dokka.location:io.spine.tools.core.jvm.entity/DiscoveredEntitiesKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/entity/DiscoveredEntitiesKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.entity/EntityPlugin.Companion///PointingToDeclaration/io/spine/tools/core/jvm/entity/EntityPlugin.Companion.html
+io.spine.tools.core.jvm.entity
+io.spine.tools.core.jvm.entity.column
+io.spine.tools.core.jvm.entity.event
+io.spine.tools.core.jvm.entity.query
