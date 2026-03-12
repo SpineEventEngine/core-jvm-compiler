@@ -70,6 +70,7 @@ buildscript {
                     jackson.bom,
                     base.annotations,
                     base.libForBuildScript,
+                    base.environment,
                     io.spine.dependency.local.Reflect.lib,
                     toolBase.lib,
                     coreJava.server,

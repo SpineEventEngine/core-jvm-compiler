@@ -47,6 +47,13 @@ public class EntityStateRenderer :
     TypeListRenderer<DiscoveredEntities, Entities>(),
     EntityPluginComponent {
 
+    /**
+     * Resolve the ambiguity of the property value in the multiple inheritance
+     * from [TypeListRenderer] and [EntityPluginComponent].
+     */
+    override val consumerId: String
+        get() = EntityPlugin.SETTINGS_ID
+
     override fun isEnabled(settings: Entities): Boolean = settings.generateQueries
 
     override fun doRender(type: MessageType, file: SourceFile<Java>) {

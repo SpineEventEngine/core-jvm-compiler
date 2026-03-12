@@ -50,6 +50,13 @@ internal abstract class SignalRenderer<V> :
         where V : EntityState<File>, V : TypeListActions {
 
     /**
+     * Resolve the ambiguity of the property value in the multiple inheritance
+     * from [TypeListRenderer] and [SignalPluginComponent].
+     */
+    override val consumerId: String
+        get() = SignalPlugin.SETTINGS_ID
+
+    /**
      * The settings for the kind of signals served by this renderer, obtained from [settings].
      */
     protected abstract val typeSettings: Signals
