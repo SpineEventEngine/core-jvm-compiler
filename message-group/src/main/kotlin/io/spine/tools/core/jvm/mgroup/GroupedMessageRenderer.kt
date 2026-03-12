@@ -40,6 +40,13 @@ import io.spine.tools.psi.java.execute
  */
 internal class GroupedMessageRenderer : JavaRenderer(), MessageGroupPluginComponent {
 
+    /**
+     * Resolve the ambiguity of the property value in the multiple inheritance
+     * from [JavaRenderer] and [MessageGroupPluginComponent].
+     */
+    override val consumerId: String
+        get() = MessageGroupPlugin.SETTINGS_ID
+
     private val settings: GroupSettings by lazy {
         loadSettings(GroupSettings::class.java)
     }
