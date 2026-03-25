@@ -88,6 +88,7 @@ buildscript {
                     io.spine.dependency.local.Reflect.lib,
                     io.spine.dependency.local.Base.annotations,
                     io.spine.dependency.local.Base.lib,
+                    io.spine.dependency.local.Base.environment,
                     io.spine.dependency.local.Time.lib,
                     io.spine.dependency.local.Time.javaExtensions,
                     toolBase.lib,
@@ -136,6 +137,7 @@ allprojects {
         all {
             resolutionStrategy {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Kotlin.StdLib.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
                     Base.annotations,
                     Base.lib,

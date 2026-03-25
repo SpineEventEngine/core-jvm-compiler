@@ -59,9 +59,6 @@ apply<BomsPlugin>()
 configurations.all {
     resolutionStrategy {
         dependencySubstitution {
-            substitute(module(Validation.oldJavaBundleModule))
-                .using(module(Validation.javaBundle))
-
             // Use `:routing` module of this project for generating routing schemas
             // instead of the code the previous version of CoreJvm Compiler.
             substitute(module("io.spine.tools:core-jvm-routing")).using(project(":routing"))
