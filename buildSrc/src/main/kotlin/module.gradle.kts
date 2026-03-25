@@ -131,8 +131,6 @@ fun Module.forceConfigurations() {
                         .using(module(ToolBase.lib))
                     substitute(module("io.spine.tools:spine-plugin-base"))
                         .using(module(ToolBase.pluginBase))
-                    substitute(module(Validation.oldJavaBundleModule))
-                        .using(module(Validation.javaBundle))
                 }
 
                 val rs = this@resolutionStrategy
