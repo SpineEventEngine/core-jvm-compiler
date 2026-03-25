@@ -93,11 +93,13 @@ private val Project.protocOutputDir: File?
 /**
  * Applies [KspGradlePlugin], if it is not yet added, to this project.
  */
-private fun Project.applyKspPlugin() = with(KspGradlePlugin) {
-    if (pluginManager.hasPlugin(id)) {
-        return
+private fun Project.applyKspPlugin() {
+    with(KspGradlePlugin) {
+        if (pluginManager.hasPlugin(id)) {
+            return
+        }
+        pluginManager.apply(id)
     }
-    pluginManager.apply(id)
 }
 
 private fun Project.useKsp2() {
