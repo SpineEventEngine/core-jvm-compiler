@@ -137,6 +137,7 @@ allprojects {
         all {
             resolutionStrategy {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
+                Kotlin.StdLib.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
                     Base.annotations,
                     Base.lib,
@@ -145,7 +146,6 @@ allprojects {
                     Grpc.bom,
                     Jackson.bom,
                     Kotlin.bom,
-                    Kotlin.StdLib.artifact(Kotlin.StdLib.itself),
                     KotlinPoet.lib,
                     Logging.lib,
                     Logging.libJvm,
