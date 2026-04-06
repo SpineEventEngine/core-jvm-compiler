@@ -103,9 +103,7 @@ publishing {
     publications {
         clear()
         create("pluginBundle", MavenPublication::class) {
-            groupId = project.group.toString()
-            artifactId = "core-jvm-plugins"
-            version = project.version.toString()
+            // `groupId`, `artifactId` and `version` are filled in by `CustomPublicationHandler`.
             artifact(tasks.shadowJar)
             tuneDependencies()
         }
