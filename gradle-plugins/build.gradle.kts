@@ -40,7 +40,7 @@ plugins {
 /**
  * The ID used for publishing this module.
  */
-val moduleArtifactId = "core-jvm-gradle-plugins"
+val moduleArtifactId = "core-jvm-plugins"
 
 artifactMeta {
     artifactId.set(moduleArtifactId)

@@ -43,7 +43,7 @@ import io.spine.tools.meta.Module
  *
  * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
-public object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins")) {
+public object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-plugins")) {
 
     /**
      * The Maven artifact of the CoreJvm Compiler Gradle plugins.
