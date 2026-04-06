@@ -44,16 +44,6 @@ plugins {
 }
 LicenseReporter.generateReportIn(project)
 
-/** The publishing settings from the root project. */
-val spinePublishing = rootProject.the<SpinePublishing>()
-
-/**
- * The ID of the far JAR artifact.
- *
- * This value is also used in `io.spine.tools.mc.java.gradle.Artifacts.kt`.
- */
-val projectArtifact = spinePublishing.toolArtifactPrefix + "plugins"
-
 // Resolvable configurations to obtain IntelliJ Platform artifacts
 // without bringing them as runtime deps.
 val intellijPlatform: Configuration by configurations.creating {
