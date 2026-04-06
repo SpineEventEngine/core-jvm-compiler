@@ -28,7 +28,7 @@ rootProject.name = "core-jvm-compiler"
 
 include(
     "gradle-plugins",
-    "plugin-bundle",
+    "plugins",
     "annotation",
     "base",
     "comparable",

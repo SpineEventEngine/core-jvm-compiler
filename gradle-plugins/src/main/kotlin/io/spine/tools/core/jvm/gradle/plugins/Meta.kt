@@ -48,7 +48,7 @@ public object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins
     /**
      * The Maven artifact of the CoreJvm Compiler Gradle plugins.
      */
-    @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugin-bundle` module.
+    @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugins` module.
     public val artifact: MavenArtifact
         get() = meta.artifact
 }

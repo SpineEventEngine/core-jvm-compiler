@@ -345,13 +345,14 @@ open class SpinePublishing(private val project: Project) {
      *
      * @see modules
      */
-    private fun projectsToPublish(): Collection<Project> {
+    fun projectsToPublish(): Set<Project> {
         if (project.subprojects.isEmpty()) {
             return setOf(project)
         }
         return modules.union(modulesWithCustomPublishing)
             .map { name -> project.project(name) }
             .ifEmpty { setOf(project) }
+            .toSet()
     }
 
     /**
