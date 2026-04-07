@@ -469,7 +469,7 @@ tasks.shadowJar {
     )
 
     /* The archive has way too many items. So use the Zip64 mode. */
-    setZip64(true)
+    isZip64 = true
 
     /* Prevent Gradle setting something like `osx-x86_64`. */
     archiveClassifier.set("")
@@ -477,6 +477,10 @@ tasks.shadowJar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE  // To allow further merging.
     append("desc.ref")
     append("META-INF/services/io.spine.option.OptionsProvider")
+    append("META-INF/services/io.spine.validation.MessageValidator")
+    append("META-INF/services/io.spine.server.route.setup.CommandRoutingSetup")
+    append("META-INF/services/io.spine.server.route.setup.EventRoutingSetup")
+    append("META-INF/services/io.spine.server.route.setup.StateRoutingSetup")
 }
 
 fun excludeGroup(exclusions: Node, groupId: String) {
