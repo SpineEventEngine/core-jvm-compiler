@@ -72,7 +72,7 @@ internal class ServiceAnnotationsView :
         @Route
         fun route(e: FileOptionMatched) = e.toServiceName()
 
-        @Route @JvmStatic
+        @Route
         fun route(e: ServiceOptionDiscovered) = e.subject.name
     }
 }
