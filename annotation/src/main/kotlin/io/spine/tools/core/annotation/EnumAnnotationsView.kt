@@ -54,7 +54,7 @@ internal class EnumAnnotationsView : View<TypeName, EnumAnnotations, EnumAnnotat
 
     companion object {
 
-        @Route @JvmStatic
+        @Route
         fun route(e: FileOptionMatched) = e.toEnumTypeName()
 
         @Route
