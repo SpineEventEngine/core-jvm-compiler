@@ -61,7 +61,7 @@ internal class MessageFieldAnnotationsView:
 
     companion object {
 
-        @Route
+        @Route @JvmStatic
         fun route(e: FieldOptionDiscovered) =
             if (ApiOption.findMatching(e.option) != null) {
                 setOf(e.subject.declaringType)
