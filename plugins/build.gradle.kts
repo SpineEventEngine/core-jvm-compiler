@@ -485,7 +485,7 @@ fun excludeGroup(exclusions: Node, groupId: String) {
 }
 
 /**
- * Tests use the artifacts published to `mavenLocal`, so we need to publish them all first.
+ * Tests use the artifacts published to `mavenLocal`, so we need to publish first.
  */
 tasks.test {
     dependsOn(rootProject.tasks.named("localPublish"))
