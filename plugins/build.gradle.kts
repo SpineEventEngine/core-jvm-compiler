@@ -460,12 +460,6 @@ tasks.shadowJar {
 
         // Java source code files of the package `org.osgi`.
         "OSGI-OPT/**",
-
-        /*
-          Exclude `https://github.com/JetBrains/pty4j`.
-          We don't need the terminal.
-         */
-        "resources/com/pty4j/**",
     )
 
     /* The archive has way too many items. So use the Zip64 mode. */
