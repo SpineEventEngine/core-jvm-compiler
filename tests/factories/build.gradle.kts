@@ -39,8 +39,8 @@ dependencies {
     implementation(ToolBase.lib)
     implementation(Compiler.api)!!.because("Custom codegen actions use the Compiler API.")
     implementation(Compiler.jvm)
-    val coreJvmBundle = CoreJvmCompiler.pluginLib(version.toString())
-    implementation(coreJvmBundle)!!.because(
+    val pluginLib = CoreJvmCompiler.pluginLib(version.toString())
+    implementation(pluginLib)!!.because(
         "We take abstract base classes from the CoreJvm Compiler Base module."
     )
 }
