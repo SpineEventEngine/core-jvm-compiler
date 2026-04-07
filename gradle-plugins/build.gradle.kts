@@ -28,6 +28,7 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
@@ -40,7 +41,7 @@ plugins {
 /**
  * The ID used for publishing this module.
  */
-val moduleArtifactId = "core-jvm-plugins"
+val moduleArtifactId: String = CoreJvmCompiler.fatJarArtifact
 
 artifactMeta {
     artifactId.set(moduleArtifactId)

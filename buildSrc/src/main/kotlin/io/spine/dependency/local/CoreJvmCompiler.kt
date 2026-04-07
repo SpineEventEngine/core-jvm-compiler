@@ -64,6 +64,11 @@ object CoreJvmCompiler {
     val pluginLib = pluginLibNew(dogfoodingVersion)
 
     /**
+     * The name of the published fat JAR artifact.
+     */
+    val fatJarArtifact = "core-jvm-plugins"
+
+    /**
      * The library with the given [version].
      *
      * This is the notation before the version `2.0.0-SNAPSHOT.013`
@@ -78,16 +83,20 @@ object CoreJvmCompiler {
      */
     fun pluginLibNew(version: String): String = "$group:core-jvm-plugins:$version"
 
-    /** The artifact reference for forcing in configurations. */
-    const val pluginsArtifact: String = "$group:core-jvm-plugins:$version"
+    /**
+     * The artifact reference for forcing in configurations.
+     */
+    val pluginsArtifact: String = pluginLibNew(version)
 
     /**
      * The `core-jvm-base` artifact with the [version].
      */
+    @Deprecated("Use `pluginLib` instead.")
     val base = base(version)
 
     /**
      * The `core-jvm-base` artifact with the given [version].
      */
+    @Deprecated("Use `pluginLibNew()` instead.")
     fun base(version: String): String = "$group:core-jvm-base:$version"
 }

@@ -141,6 +141,7 @@ allprojects {
                 force(
                     Base.annotations,
                     Base.lib,
+                    Base.environment,
                     Compiler.api,
                     CoreJvm.server,
                     Grpc.bom,

@@ -38,6 +38,9 @@ dependencies {
     implementation(JavaPoet.lib)
     implementation(ToolBase.lib)
     implementation(Compiler.api)!!.because("Custom codegen actions use the Compiler API.")
-    val coreJvmBase = CoreJvmCompiler.base(version.toString())
-    implementation(coreJvmBase)!!.because("We take abstract base classes from this artifact.")
+    implementation(Compiler.jvm)
+    val coreJvmBundle = CoreJvmCompiler.pluginLibNew(version.toString())
+    implementation(coreJvmBundle)!!.because(
+        "We take abstract base classes from the CoreJvm Compiler Base module."
+    )
 }

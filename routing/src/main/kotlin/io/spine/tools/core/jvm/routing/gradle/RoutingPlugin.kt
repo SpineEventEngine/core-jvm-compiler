@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm.routing.gradle
 
+import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
 import io.spine.tools.core.jvm.ksp.gradle.KspBasedPlugin
 import io.spine.tools.meta.ArtifactMeta
 import io.spine.tools.meta.Module
@@ -39,8 +40,12 @@ import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
  */
 public class RoutingPlugin : KspBasedPlugin() {
 
+    /**
+     * The Maven coordinates of the CoreJvm Compiler fat JAR
+     * to be passed to the KSP Gradle plugin.
+     */
     override val mavenCoordinates: String
-        get() = meta.artifact.coordinates
+        get() = CoreJvmCompiler.fatJar(meta.version).coordinates
 
     private companion object {
 
@@ -50,7 +55,7 @@ public class RoutingPlugin : KspBasedPlugin() {
         private val thisModule = Module(SPINE_TOOLS_GROUP, "core-jvm-routing")
 
         /**
-         * The meta-data of [thisModule] loaded from resources.
+         * The metadata of [thisModule] loaded from resources.
          *
          * The resource is created by `io.spine.artifact-meta` Gradle
          * plugin applied to the project.

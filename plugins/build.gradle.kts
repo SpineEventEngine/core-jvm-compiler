@@ -29,6 +29,7 @@ import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Spine
@@ -572,7 +573,7 @@ afterEvaluate {
                     val dependency = Node(dependencies, "dependency")
                     dependency.let {
                         Node(it, "groupId", Spine.toolsGroup)
-                        Node(it, "artifactId", "core-jvm-plugins")
+                        Node(it, "artifactId", CoreJvmCompiler.fatJarArtifact)
                         Node(it, "version", project.version)
                         Node(it, "scope", "runtime")
                     }
