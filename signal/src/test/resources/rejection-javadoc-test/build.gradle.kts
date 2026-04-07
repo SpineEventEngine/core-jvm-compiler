@@ -46,7 +46,7 @@ buildscript {
             exclude(group = "com.google.guava")
         }
         classpath(io.spine.dependency.local.Compiler.pluginLib)
-        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLibNew(coreJvmCompilerVersion))
+        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib(coreJvmCompilerVersion))
     }
 }
 
