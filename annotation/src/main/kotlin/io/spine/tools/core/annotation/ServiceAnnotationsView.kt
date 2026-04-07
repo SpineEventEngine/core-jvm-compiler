@@ -69,7 +69,7 @@ internal class ServiceAnnotationsView :
 
     companion object {
 
-        @Route @JvmStatic
+        @Route
         fun route(e: FileOptionMatched) = e.toServiceName()
 
         @Route @JvmStatic

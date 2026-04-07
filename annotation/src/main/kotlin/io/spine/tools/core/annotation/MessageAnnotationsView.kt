@@ -72,13 +72,13 @@ internal class MessageAnnotationsView :
 
     companion object {
 
-        @Route @JvmStatic
+        @Route
         fun route(e: FileOptionMatched) = e.toMessageTypeName()
 
-        @Route @JvmStatic
+        @Route
         fun route(e: MessageOptionDiscovered) = e.subject.name
 
-        @Route @JvmStatic
+        @Route
         fun route(e: FieldOptionDiscovered) = e.subject.declaringType
     }
 }
