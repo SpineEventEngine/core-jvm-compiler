@@ -547,9 +547,6 @@ tasks.withType<Jar>().configureEach {
     }
 }
 
-// Documentation tasks are enabled: this module now has real source code.
-// disableDocumentationTasks()
-
 tasks {
     // There are no public Java types in this module.
     // The task fails complaining about this fact.
