@@ -49,10 +49,10 @@ import io.spine.type.toJson
 import java.io.IOException
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
-import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
+import org.gradle.work.DisableCachingByDefault
 
 /**
  * A task that writes settings for CoreJvm plugins of the Spine Compiler.
@@ -62,7 +62,9 @@ import org.gradle.api.tasks.TaskAction
  *
  * This task writes settings files for the CoreJvm plugins to the Compiler.
  */
-@CacheableTask
+@DisableCachingByDefault(because =
+    "We cannot have the `options` property as declared task input, but settings are fast to write."
+)
 @Suppress("unused") // Gradle creates a subtype for this class.
 public abstract class WriteCompilerPluginsSettings : DefaultTask() {
 
