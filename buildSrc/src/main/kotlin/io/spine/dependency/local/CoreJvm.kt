@@ -50,9 +50,9 @@ object CoreJvm {
     const val server = "$group:$serverArtifact:$version"
 
     @Deprecated("Use `serverTestLib` instead.", ReplaceWith("serverTestLib"))
-    const val testUtilServer = "${Spine.toolsGroup}:spine-server-testlib:$version"
+    const val testUtilServer = "${Spine.toolsGroup}:server-testlib:$version"
 
-    const val coreTestLib = "${Spine.toolsGroup}:spine-core-testlib:$version"
-    const val clientTestLib = "${Spine.toolsGroup}:spine-client-testlib:$version"
-    const val serverTestLib = "${Spine.toolsGroup}:spine-server-testlib:$version"
+    const val coreTestLib = "${Spine.toolsGroup}:core-testlib:$version"
+    const val clientTestLib = "${Spine.toolsGroup}:client-testlib:$version"
+    const val serverTestLib = "${Spine.toolsGroup}:server-testlib:$version"
 }
