@@ -509,6 +509,15 @@ tasks.shadowJar {
     /* Prevent Gradle setting something like `osx-x86_64`. */
     archiveClassifier.set("")
 
+    // Keep only the first copy of each `.class` file to suppress Shadow duplicate warnings.
+    // Non-`.class` files (e.g. `desc.ref`, `META-INF/services/*`) are intentionally not
+    // excluded here so that all their copies reach the `AppendingTransformer` registered
+    // by `handleMergingServiceFiles()` below. That is why `INCLUDE` must be kept as the
+    // strategy: `EXCLUDE` would filter entries before transformers can accumulate them.
+    val seenClasses = mutableSetOf<String>()
+    doFirst { seenClasses.clear() }
+    exclude { it.path.endsWith(".class") && !seenClasses.add(it.path) }
+
     duplicatesStrategy = DuplicatesStrategy.INCLUDE  // To allow further merging.
     handleMergingServiceFiles()
 }
