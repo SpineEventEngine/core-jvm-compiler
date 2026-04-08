@@ -27,11 +27,13 @@
 import groovy.util.Node
 import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
+import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
+import io.spine.dependency.local.Validation
 import io.spine.dependency.local.Spine
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.handleMergingServiceFiles
@@ -41,12 +43,37 @@ import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 
 plugins {
+    module
+    id("io.spine.artifact-meta")
     `maven-publish`
     id("com.gradleup.shadow")
     `plugin-publish`
     `write-manifest`
 }
 LicenseReporter.generateReportIn(project)
+
+/**
+ * The ID used for publishing this module.
+ */
+val moduleArtifactId: String = CoreJvmCompiler.fatJarArtifact
+
+artifactMeta {
+    artifactId.set(moduleArtifactId)
+    addDependencies(
+        // Add Validation module dependencies that we use for project configuration
+        // to which the CoreJvm Gradle Plugin is applied.
+        Validation.javaBundle,
+        Validation.runtime,
+
+        // These dependencies are written for integration tests.
+        Kotlin.GradlePlugin.lib,
+        Protobuf.GradlePlugin.lib,
+        Ksp.artifact(Ksp.gradlePlugin),
+    )
+    excludeConfigurations {
+        containing(*buildToolConfigurations)
+    }
+}
 
 // Resolvable configurations to obtain IntelliJ Platform artifacts
 // without bringing them as runtime deps.
@@ -63,14 +90,40 @@ val intellijPlatformJava: Configuration by configurations.creating {
 }
 
 dependencies {
-    implementation(project(":gradle-plugins"))
+    compileOnly(gradleKotlinDsl())
+    implementation(Compiler.pluginLib)
+    implementation(Compiler.params)
+    implementation(ToolBase.jvmTools)
+    implementation(Validation.gradlePluginLib)
+
+    compileOnly(Protobuf.GradlePlugin.lib)
+        ?.because("We access the Protobuf Gradle Plugin extension.")
+
+    // Module dependencies
+    listOf(
+        ":base",
+        ":annotation",
+        ":entity",
+        ":grpc",
+        ":signal",
+        ":marker",
+        ":message-group",
+        ":uuid",
+        ":comparable",
+        ":routing"
+    ).forEach {
+        implementation(project(it))
+    }
 
     arrayOf(
+        gradleApi(),
+        gradleKotlinDsl(),
         gradleTestKit(),
         project(":base"), /* Open dependency objects to tests. */
         TestLib.lib,
-        ToolBase.jvmTools,
+        Kotlin.GradlePlugin.lib,
         ToolBase.pluginTestlib,
+        testFixtures(project(":base")),
     ).forEach {
         testImplementation(it)
     }
@@ -78,19 +131,6 @@ dependencies {
     // Add IntelliJ Platform artifacts to dedicated resolvable configurations.
     add(intellijPlatform.name, ToolBase.intellijPlatform)
     add(intellijPlatformJava.name, ToolBase.intellijPlatformJava)
-}
-
-@Suppress("unused")
-afterEvaluate {
-    // This module does not have source code.
-    val sourcesJar: Task by tasks.getting {
-        enabled = false
-    }
-
-    // This module does not have source code.
-    val javadocJar: Task by tasks.getting {
-        enabled = false
-    }
 }
 
 publishing {
@@ -487,13 +527,36 @@ tasks.test {
     dependsOn(rootProject.tasks.named("localPublish"))
 }
 
-tasks.jar {
-    // There is no production source code in this module.
-    // This module is for publishing only.
-    enabled = false
+/**
+ * Wire `sourcesJar` dependencies explicitly.
+ *
+ * `java-gradle-plugin` (applied via `plugin-publish`) creates `sourcesJar` in its own
+ * `afterEvaluate`, which runs after the `module` convention plugin's `afterEvaluate`
+ * that wires common task dependencies. Using `configureEach` captures the task lazily
+ * regardless of registration order and avoids implicit-dependency validation failures.
+ */
+tasks.withType<Jar>().configureEach {
+    if (name == "sourcesJar") {
+        listOf(
+            "writeArtifactMeta",
+            "prepareProtocConfigVersions",
+            "kspKotlin",
+        ).forEach { taskName ->
+            tasks.findByName(taskName)?.let { dependsOn(it) }
+        }
+    }
 }
 
-disableDocumentationTasks()
+// Documentation tasks are enabled: this module now has real source code.
+// disableDocumentationTasks()
+
+tasks {
+    // There are no public Java types in this module.
+    // The task fails complaining about this fact.
+    javadoc {
+        enabled = false
+    }
+}
 
 gradlePlugin {
     website.set("https://spine.io/")

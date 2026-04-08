@@ -49,6 +49,7 @@ import io.spine.type.toJson
 import java.io.IOException
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.tasks.CacheableTask
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputDirectory
 import org.gradle.api.tasks.TaskAction
@@ -61,6 +62,7 @@ import org.gradle.api.tasks.TaskAction
  *
  * This task writes settings files for the CoreJvm plugins to the Compiler.
  */
+@CacheableTask
 @Suppress("unused") // Gradle creates a subtype for this class.
 public abstract class WriteCompilerPluginsSettings : DefaultTask() {
 
