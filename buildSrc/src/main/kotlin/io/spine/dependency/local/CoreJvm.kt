@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ typealias CoreJava = CoreJvm
 @Suppress("ConstPropertyName", "unused")
 object CoreJvm {
     const val group = Spine.group
-    const val version = "2.0.0-SNAPSHOT.372"
+    const val version = "2.0.0-SNAPSHOT.373"
 
     const val coreArtifact = "spine-core"
     const val clientArtifact = "spine-client"
