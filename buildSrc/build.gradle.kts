@@ -135,11 +135,9 @@ val koverVersion = "0.9.1"
 /**
  * The version of the Shadow Plugin.
  *
- * `7.1.2` is the last version compatible with Gradle 7.x. Newer versions require Gradle v8.x.
- *
  * @see <a href="https://github.com/GradleUp/shadow">Shadow Plugin releases</a>
  */
-val shadowVersion = "9.2.2"
+val shadowVersion = "9.4.1"
 
 /**
  * The version of JUnit used to test the build scripts.
