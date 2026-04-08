@@ -36,8 +36,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.dependency.local.Spine
 import io.spine.gradle.isSnapshot
-import io.spine.gradle.publish.deduplicateEntries
-import io.spine.gradle.publish.handleMergingServiceFiles
+import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
 import java.util.jar.JarFile
 import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
@@ -510,9 +509,7 @@ tasks.shadowJar {
     /* Prevent Gradle setting something like `osx-x86_64`. */
     archiveClassifier.set("")
 
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE  // Required for service-file merging.
-    handleMergingServiceFiles()
-    deduplicateEntries()
+    setup()
 }
 
 fun excludeGroup(exclusions: Node, groupId: String) {
