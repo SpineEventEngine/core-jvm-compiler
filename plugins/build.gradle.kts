@@ -34,6 +34,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Spine
 import io.spine.gradle.isSnapshot
+import io.spine.gradle.publish.handleMergingServiceFiles
 import io.spine.gradle.report.license.LicenseReporter
 import java.util.jar.JarFile
 import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
@@ -469,12 +470,7 @@ tasks.shadowJar {
     archiveClassifier.set("")
 
     duplicatesStrategy = DuplicatesStrategy.INCLUDE  // To allow further merging.
-    append("desc.ref")
-    append("META-INF/services/io.spine.option.OptionsProvider")
-    append("META-INF/services/io.spine.validation.MessageValidator")
-    append("META-INF/services/io.spine.server.route.setup.CommandRoutingSetup")
-    append("META-INF/services/io.spine.server.route.setup.EventRoutingSetup")
-    append("META-INF/services/io.spine.server.route.setup.StateRoutingSetup")
+    handleMergingServiceFiles()
 }
 
 fun excludeGroup(exclusions: Node, groupId: String) {

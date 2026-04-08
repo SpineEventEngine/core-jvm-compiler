@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -668,27 +668,27 @@
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -1163,14 +1163,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -1838,27 +1838,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -2341,14 +2341,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -3016,27 +3016,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -3511,14 +3511,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -3989,27 +3989,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -4480,14 +4480,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:21 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -5155,27 +5155,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -5650,14 +5650,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -6128,27 +6128,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -6619,14 +6619,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:21 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-gradle-plugins:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-gradle-plugins:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -7321,27 +7321,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -7856,14 +7856,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -8498,27 +8498,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -8985,14 +8985,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:21 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -9679,27 +9679,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -10206,14 +10206,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -10881,27 +10881,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -11384,14 +11384,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -11862,27 +11862,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -12353,14 +12353,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:21 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -13028,27 +13028,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -13531,14 +13531,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -14009,27 +14009,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -14500,14 +14500,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:21 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-plugins:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-plugins:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -15344,14 +15344,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:11:59 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:18 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -16079,27 +16079,27 @@ This report was generated on **Tue Apr 07 21:11:59 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -16598,14 +16598,14 @@ This report was generated on **Tue Apr 07 21:11:59 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:23 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -16952,27 +16952,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -17273,14 +17273,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:11:59 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:19 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -17948,27 +17948,27 @@ This report was generated on **Tue Apr 07 21:11:59 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -18451,14 +18451,14 @@ This report was generated on **Tue Apr 07 21:11:59 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:24 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -18929,27 +18929,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -19420,14 +19420,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:24 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.20.0.
@@ -20095,27 +20095,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -20598,14 +20598,14 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:25 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.059`
+# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.060`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -21076,27 +21076,27 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-core-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-assertions-shared-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.10.
+1.  **Group** : io.kotest. **Name** : kotest-common-jvm. **Version** : 6.1.11.
      * **Project URL:** [https://github.com/kotest/kotest](https://github.com/kotest/kotest)
      * **License:** [Apache-2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -21567,6 +21567,6 @@ This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Tue Apr 07 21:12:00 WEST 2026** using 
+This report was generated on **Wed Apr 08 16:51:24 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
