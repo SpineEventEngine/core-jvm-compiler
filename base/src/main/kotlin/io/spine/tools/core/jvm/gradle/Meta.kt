@@ -28,6 +28,7 @@ package io.spine.tools.core.jvm.gradle
 
 import io.spine.tools.meta.LazyDependency
 import io.spine.tools.meta.LazyMeta
+import io.spine.tools.meta.MavenArtifact
 import io.spine.tools.meta.Module
 
 /**
@@ -70,4 +71,21 @@ public object Compiler {
      */
     public val pluginLib: LazyDependency =
         LazyDependency(Meta, Module(SPINE_TOOLS_GROUP, "compiler-gradle-plugin"))
+}
+
+/**
+ * Dependencies on the CoreJvm Compiler.
+ */
+public object CoreJvmCompiler {
+
+    /**
+     * The module of the published fat JAR.
+     */
+    public val fatJar: Module = Module(SPINE_TOOLS_GROUP, "core-jvm-plugins")
+
+    /**
+     * The artifact of the published fat JAR.
+     */
+    public fun fatJar(version: String): MavenArtifact =
+       MavenArtifact(fatJar.group, fatJar.name, version)
 }

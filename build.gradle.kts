@@ -29,6 +29,7 @@
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
 import io.spine.gradle.RunGradle
@@ -114,10 +115,8 @@ private object BuildSettings {
 }
 
 spinePublishing {
-    val pluginBundleModule = "plugin-bundle"
-    modules = productionModules.map { it.name }.toSet()
     modulesWithCustomPublishing = setOf(
-        pluginBundleModule
+        "plugins"
     )
     destinations = PublishingRepos.run {
         setOf(
@@ -125,13 +124,13 @@ spinePublishing {
             gitHub("core-jvm-compiler"),
         )
     }
-    artifactPrefix = "core-jvm-"
+    toolArtifactPrefix = "core-jvm-"
 }
 
 allprojects {
     apply(plugin = Dokka.GradlePlugin.id)
     apply(from = "$rootDir/version.gradle.kts")
-    group = "io.spine.tools"
+    group = Spine.toolsGroup
     version = extra["versionToPublish"]!!
     repositories.standardToSpineSdk()
 }
@@ -144,12 +143,11 @@ LicenseReporter.mergeAllReports(project)
  * Collect `publishToMavenLocal` tasks for all subprojects that are specified for
  * publishing in the root project.
  */
-val publishedModules: Set<String> = extensions.getByType<SpinePublishing>().modules
+val publishedModules: Set<Project> = extensions.getByType<SpinePublishing>().projectsToPublish()
 
 val localPublish by tasks.registering {
     val pubTasks = publishedModules.map { p ->
-        val subProject = project(p)
-        subProject.tasks["publishToMavenLocal"]
+        p.tasks["publishToMavenLocal"]
     }
     dependsOn(pubTasks)
 }

@@ -29,6 +29,7 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.spine.annotation.VisibleForTesting
+import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
 import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 import io.spine.tools.meta.LazyDependency
 import io.spine.tools.meta.LazyMeta
@@ -43,12 +44,12 @@ import io.spine.tools.meta.Module
  *
  * See `artifactMeta/addDependencies` in `build.gradle.kts` of this module.
  */
-public object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugins")) {
+public object Meta : LazyMeta(CoreJvmCompiler.fatJar) {
 
     /**
      * The Maven artifact of the CoreJvm Compiler Gradle plugins.
      */
-    @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugin-bundle` module.
+    @VisibleForTesting // See `CoreJvmPluginIgTest` under the `plugins` module.
     public val artifact: MavenArtifact
         get() = meta.artifact
 }

@@ -65,7 +65,7 @@ buildscript {
         classpath(io.spine.dependency.build.ErrorProne.GradlePlugin.lib) {
             exclude(group = "com.google.guava")
         }
-        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLibNew(coreJvmCompilerVersion))
+        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib(coreJvmCompilerVersion))
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
     }
@@ -141,6 +141,7 @@ allprojects {
                 force(
                     Base.annotations,
                     Base.lib,
+                    Base.environment,
                     Compiler.api,
                     CoreJvm.server,
                     Grpc.bom,

@@ -104,9 +104,3 @@ dependencies {
 }
 
 forceSpineBase()
-
-project.afterEvaluate {
-    (tasks.getByName("sourcesJar") as Jar).apply {
-        duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    }
-}
