@@ -38,6 +38,29 @@ fun ShadowJar.handleMergingServiceFiles() {
     }
 }
 
+/**
+ * Installs a first-copy-wins exclusion predicate for all JAR entries except those
+ * registered for merging by [handleMergingServiceFiles].
+ *
+ * Shadow's [org.gradle.api.file.DuplicatesStrategy.INCLUDE] must remain on the task so
+ * that every copy of a merged file reaches its
+ * [com.github.jengelman.gradle.plugins.shadow.transformers.AppendingTransformer].
+ * All other entries — `.class` files, settings JSONs, Kotlin module descriptors,
+ * Maven metadata, etc. — are deduplicated here to suppress duplicate-entry warnings
+ * and keep the fat JAR size minimal.
+ */
+@Suppress("unused")
+fun ShadowJar.deduplicateEntries() {
+    val mergePaths = ServiceFiles.all
+    val seenPaths = mutableSetOf<String>()
+    doFirst { seenPaths.clear() }
+    eachFile {
+        if (path !in mergePaths && !seenPaths.add(path)) {
+            exclude()
+        }
+    }
+}
+
 @Suppress("ConstPropertyName")
 private object ServiceFiles {
 
@@ -62,6 +85,11 @@ private object ServiceFiles {
     private const val messageValidators = "$servicesDir/io.spine.validation.MessageValidator"
 
     /**
+     * Comparator providers provided by the libraries.
+     */
+    private const val comparatorProviders = "$servicesDir/io.spine.compare.ComparatorProvider"
+
+    /**
      * KSP symbol processor provider.
      */
     private const val kspSymbolProcessorProviders =
@@ -76,10 +104,11 @@ private object ServiceFiles {
     private const val eventRoutingSetupClasses = "$routeSetupPrefix.EventRoutingSetup"
     private const val stateRoutingSetupClasses = "$routeSetupPrefix.StateRoutingSetup"
 
-    val all = arrayOf(
+    val all = setOf(
         descriptorSetReferences,
         optionProviders,
         messageValidators,
+        comparatorProviders,
         kspSymbolProcessorProviders,
         commandRoutingSetupClasses,
         eventRoutingSetupClasses,
