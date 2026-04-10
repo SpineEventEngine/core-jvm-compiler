@@ -37,23 +37,13 @@ import org.gradle.api.file.DuplicatesStrategy
 @Suppress("unused")
 fun ShadowJar.setup() {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE  // Required for service-file merging.
-    handleMergingServiceFiles()
+    mergeServiceFiles()
     deduplicateEntries()
 }
 
 /**
- * Calls [ShadowJar.mergeServiceFiles] for the files we use in the Spine SDK.
- */
-private fun ShadowJar.handleMergingServiceFiles() {
-    ServiceFiles.all.forEach {
-        append(it)
-    }
-    append(DescriptorSetReferenceFile.name)
-}
-
-/**
  * Installs a first-copy-wins exclusion predicate for all JAR entries except those
- * registered for merging by [handleMergingServiceFiles].
+ * registered for merging, such as service files, descriptor set references, etc.
  *
  * Shadow's [org.gradle.api.file.DuplicatesStrategy.INCLUDE] must remain on the task so
  * that every copy of a merged file reaches its
@@ -71,13 +61,14 @@ private fun ShadowJar.deduplicateEntries() {
             exclude()
         }
     }
+    append(DescriptorSetReferenceFile.name)
 }
 
 /**
  * Returns `true` for file paths containing references to descriptor set files.
  */
 private val String.isDescriptorSetReference: Boolean
-    get() = this == DescriptorSetReferenceFile.name
+    get() = contains(DescriptorSetReferenceFile.name)
 
 /**
  * Tells if the path belongs to a service file.
