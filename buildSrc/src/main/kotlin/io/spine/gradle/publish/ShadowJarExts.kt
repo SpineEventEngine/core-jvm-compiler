@@ -24,6 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@file:Suppress("ConstPropertyName")
+
 package io.spine.gradle.publish
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
@@ -46,6 +48,7 @@ private fun ShadowJar.handleMergingServiceFiles() {
     ServiceFiles.all.forEach {
         append(it)
     }
+    append(DescriptorSetReferenceFile.name)
 }
 
 /**
@@ -60,23 +63,34 @@ private fun ShadowJar.handleMergingServiceFiles() {
  * and keep the fat JAR size minimal.
  */
 private fun ShadowJar.deduplicateEntries() {
-    val mergePaths = ServiceFiles.all
     val seenPaths = mutableSetOf<String>()
     doFirst { seenPaths.clear() }
     eachFile {
-        if (path !in mergePaths && !seenPaths.add(path)) {
+        val needsMerging = (path in ServiceFiles.all) || path.isDescriptorSetReference
+        if (!needsMerging && !seenPaths.add(path)) {
             exclude()
         }
     }
 }
 
-@Suppress("ConstPropertyName")
-private object ServiceFiles {
+/**
+ * Returns `true` for file paths containing references to descriptor set files.
+ */
+private val String.isDescriptorSetReference: Boolean
+    get() = this == DescriptorSetReferenceFile.name
+
+/**
+ * Provides the name of the file which contains the reference to the descriptor set file.
+ */
+internal object DescriptorSetReferenceFile {
 
     /**
-     * Files containing references to descriptor set files.
+     * This value must match `io.spine.code.proto.DescriptorSetReferenceFile.NAME`.
      */
-    private const val descriptorSetReferences = "desc.ref"
+    const val name = "desc.ref"
+}
+
+private object ServiceFiles {
 
     /**
      * The resource directory where service provider files are stored.
@@ -114,7 +128,6 @@ private object ServiceFiles {
     private const val stateRoutingSetupClasses = "$routeSetupPrefix.StateRoutingSetup"
 
     val all = setOf(
-        descriptorSetReferences,
         optionProviders,
         messageValidators,
         comparatorProviders,
