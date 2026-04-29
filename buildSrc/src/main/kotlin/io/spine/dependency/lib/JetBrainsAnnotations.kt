@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,34 +24,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-@file:Suppress("unused")
-
-package io.spine.dependency.test
+package io.spine.dependency.lib
 
 /**
- * Testing framework for Kotlin.
+ * Annotations library from JetBrains.
  *
- * @see <a href="https://kotest.io/">Kotest site</a>
+ * https://github.com/JetBrains/java-annotations
  */
-@Suppress("unused", "ConstPropertyName")
-object Kotest {
-    const val version = "6.1.11"
-    const val group = "io.kotest"
-    const val gradlePluginId = "io.kotest"
-    const val assertions = "$group:kotest-assertions-core:$version"
-    const val runnerJUnit5 = "$group:kotest-runner-junit5:$version"
-    const val runnerJUnit5Jvm = "$group:kotest-runner-junit5-jvm:$version"
-    const val frameworkEngine = "$group:kotest-framework-engine:$version"
-    const val common = "$group:kotest-common:$version"
-
+object JetBrainsAnnotations {
     /**
-     * @deprecated Use `frameworkEngine` instead.
+     * The version of the library transitively used.
      */
-    @Deprecated("Use `frameworkEngine` instead.", ReplaceWith("frameworkEngine"))
-    const val frameworkApi = "$group:kotest-framework-api:$version"
-    /**
-     * @deprecated The dependency was merged into the core framework.
-     */
-    @Deprecated("The dependency was merged into the core framework.")
-    const val datatest = "$group:kotest-framework-datatest:$version"
+    const val version = "23.0.0"
+    const val groupId = "org.jetbrains"
+    const val artifactId = "annotations"
+    const val lib = "$groupId:$artifactId:$version"
 }
