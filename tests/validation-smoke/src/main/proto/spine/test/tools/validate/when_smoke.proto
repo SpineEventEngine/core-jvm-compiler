@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,24 +24,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.local.Base
-import io.spine.dependency.local.TestLib
-import io.spine.dependency.local.Time
-import io.spine.dependency.test.Kotest
+syntax = "proto3";
 
-plugins {
-    java
-    kotlin("jvm")
-    id("io.spine.core-jvm")
+package spine.test.tools.validate;
+
+import "spine/options.proto";
+import "spine/time_options.proto";
+import "google/protobuf/timestamp.proto";
+import "spine/time/time.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.test.tools.validate";
+option java_outer_classname = "WhenSmokeProto";
+option java_multiple_files = true;
+
+// Tests `PAST` restriction with a Protobuf timestamp.
+message PastTimestamp {
+    google.protobuf.Timestamp value = 1 [(when).in = PAST];
 }
 
-dependencies {
-    implementation(Base.lib)
-    implementation(Time.lib)
-    implementation(Time.javaExtensions)
-
-    testImplementation(TestLib.lib)
-    testImplementation(Kotest.assertions)
+// Tests `FUTURE` restriction with a Protobuf timestamp.
+message FutureTimestamp {
+    google.protobuf.Timestamp value = 1 [(when).in = FUTURE];
 }
 
-spineCompilerRemoteDebug(enabled = false)
+// Tests `PAST` restriction with a Spine temporal.
+message PastSpineTemporal {
+    spine.time.LocalDateTime value = 1 [(when).in = PAST];
+}
+
+// Tests `FUTURE` restriction with a Spine temporal.
+message FutureSpineTemporal {
+    spine.time.LocalDateTime value = 1 [(when).in = FUTURE];
+}
