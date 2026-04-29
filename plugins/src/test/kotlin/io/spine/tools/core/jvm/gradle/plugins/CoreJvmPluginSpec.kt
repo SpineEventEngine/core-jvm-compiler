@@ -39,11 +39,13 @@ import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VAL
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.testing.GradleProject
+import java.io.File
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.withType
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
 
 @DisplayName("`CoreJvmPlugin` should")
 internal class CoreJvmPluginSpec {
@@ -55,8 +57,8 @@ internal class CoreJvmPluginSpec {
 
         @BeforeAll
         @JvmStatic
-        fun createProjectAndPlugins() {
-            project = StubProject.createFor(this::class.java)
+        fun createProjectAndPlugins(@TempDir tempDir: File) {
+            project = StubProject.createIn(tempDir)
                 .withMavenRepositories()
                 .get()
 

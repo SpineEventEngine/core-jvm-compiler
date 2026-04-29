@@ -55,6 +55,13 @@ public final class StubProject {
      */
     public static StubProject createFor(Class<?> testSuiteClass) {
         var tempDir = TempDir.forClass(testSuiteClass);
+        return createIn(tempDir);
+    }
+
+    /**
+     * Creates a new stub Gradle project located in the specified folder.
+     */
+    public static StubProject createIn(File tempDir) {
         var project = createAt(tempDir);
         return new StubProject(project);
     }
