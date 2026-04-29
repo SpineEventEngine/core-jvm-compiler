@@ -38,6 +38,7 @@ import io.spine.tools.core.jvm.grpc.gradle.GrpcCoreJvmPlugin
 import io.spine.tools.core.jvm.routing.gradle.RoutingPlugin
 import io.spine.tools.gradle.DslSpec
 import io.spine.tools.gradle.lib.LibraryPlugin
+import io.spine.tools.time.gradle.TimeGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -103,7 +104,8 @@ private fun Project.createAndApplyPlugins() {
         CleaningPlugin(),
         GrpcCoreJvmPlugin(),
         CompilerConfigPlugin(),
-        RoutingPlugin()
+        RoutingPlugin(),
+        TimeGradlePlugin(),
     )
     plugins.forEach {
         doApply(it)

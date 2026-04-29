@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,5 +29,5 @@
  *
  * Do not rename this property, as it is also used in the integration tests via its name.
  */
-val coreJvmCompilerVersion by extra("2.0.0-SNAPSHOT.062")
+val coreJvmCompilerVersion by extra("2.0.0-SNAPSHOT.063")
 val versionToPublish by extra(coreJvmCompilerVersion)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,24 +24,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-import io.spine.dependency.local.Base
-import io.spine.dependency.local.TestLib
-import io.spine.dependency.local.Time
-import io.spine.dependency.test.Kotest
+package io.spine.dependency.lib
 
-plugins {
-    java
-    kotlin("jvm")
-    id("io.spine.core-jvm")
+/**
+ * Annotations library from JetBrains.
+ *
+ * https://github.com/JetBrains/java-annotations
+ */
+object JetBrainsAnnotations {
+    /**
+     * The version of the library transitively used.
+     */
+    const val version = "23.0.0"
+    const val groupId = "org.jetbrains"
+    const val artifactId = "annotations"
+    const val lib = "$groupId:$artifactId:$version"
 }
-
-dependencies {
-    implementation(Base.lib)
-    implementation(Time.lib)
-    implementation(Time.javaExtensions)
-
-    testImplementation(TestLib.lib)
-    testImplementation(Kotest.assertions)
-}
-
-spineCompilerRemoteDebug(enabled = false)

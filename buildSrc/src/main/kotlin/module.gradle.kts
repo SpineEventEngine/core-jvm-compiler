@@ -179,6 +179,7 @@ fun Module.forceConfigurations() {
                     ToolBase.psiJava,
                     Logging.lib,
                     Logging.libJvm,
+                    Logging.testLib,
                     Logging.grpcContext,
                     Compiler.api,
                     Compiler.gradleApi,

@@ -35,6 +35,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.dependency.local.Spine
+import io.spine.dependency.local.Time
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
@@ -95,6 +96,7 @@ dependencies {
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
     implementation(Validation.gradlePluginLib)
+    implementation(Time.gradlePlugin)
 
     compileOnly(Protobuf.GradlePlugin.lib)
         ?.because("We access the Protobuf Gradle Plugin extension.")
