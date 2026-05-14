@@ -315,6 +315,19 @@ private fun MavenPublication.tuneDependencies() {
         }
         addExclusions(validationGradlePlugin)
 
+        /*
+         * Add dependency onto `io.spine.tools:time-gradle-plugin`
+         * because we exclude the code of Time Gradle plugin from the fat JAR artifact.
+         */
+        val timeGradlePlugin = dependencyNode()
+        timeGradlePlugin.let {
+            spineToolsGroup(it)
+            artifactId(it, "time-gradle-plugin")
+            version(it, Time.version)
+            runtimeScope(it)
+        }
+        addExclusions(timeGradlePlugin)
+
         fun protobufGroup(parent: Node) = Node(parent, "groupId", Protobuf.group)
 
         /*
@@ -522,6 +535,10 @@ tasks.shadowJar {
         // Strip the Validation library code generation code.
         // It is going to be available as runtime dependencies via `pom.xml`.
         "io/spine/tools/validation/**",
+
+        // Strip the code of Time Gradle plugin.
+        // It is going to be available via `pom.xml`.
+        "io/spine/time/tools/**",
 
         /*
          * Exclude Gradle types to reduce the size of the resulting JAR.
