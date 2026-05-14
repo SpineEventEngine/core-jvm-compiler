@@ -538,7 +538,7 @@ tasks.shadowJar {
 
         // Strip the code of Time Gradle plugin.
         // It is going to be available via `pom.xml`.
-        "io/spine/time/tools/**",
+        "io/spine/tools/time/**",
 
         /*
          * Exclude Gradle types to reduce the size of the resulting JAR.
