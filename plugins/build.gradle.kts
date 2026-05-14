@@ -285,6 +285,36 @@ private fun MavenPublication.tuneDependencies() {
         }
         addExclusions(compilerParams)
 
+        /*
+         * Add the dependency onto `io.spine.tools:validation-java-bundle`.
+         *
+         * We filter out the content of the `io/spine/tools/validation/` directory
+         * from the fat JAR artifact, so we need to add the dependency on the bundle.
+         */
+        val validationJavaBundle = dependencyNode()
+        validationJavaBundle.let {
+            spineToolsGroup(it)
+            artifactId(it, "validation-java-bundle")
+            version(it, Validation.version)
+            runtimeScope(it)
+        }
+        addExclusions(validationJavaBundle)
+
+        /*
+         * Add the dependency onto `io.spine.tools:validation-java-bundle`.
+         *
+         * Similarly to the above, we need to add the dependency on
+         * the Gradle plugin artifact as well.
+         */
+        val validationGradlePlugin = dependencyNode()
+        validationGradlePlugin.let {
+            spineToolsGroup(it)
+            artifactId(it, "validation-gradle-plugin")
+            version(it, Validation.version)
+            runtimeScope(it)
+        }
+        addExclusions(validationGradlePlugin)
+
         fun protobufGroup(parent: Node) = Node(parent, "groupId", Protobuf.group)
 
         /*
@@ -471,7 +501,7 @@ tasks.shadowJar {
         "META-INF/io.spine/io.spine.tools_compiler-gradle-plugin.meta", // Compiler Gradle Plugin
         "META-INF/io.spine/io.spine.tools_protobuf-setup-plugins.meta", // Protobuf Setup Plugins
 
-        // Strip code provided by Spine Compiler.
+        // Strip code provided by the Spine Compiler CLI fat JAR.
         "android/**",
         "com/google/api/**",
         "com/google/apps/**",
@@ -488,6 +518,10 @@ tasks.shadowJar {
         "io/perfmark/**",
         "fj/**",
         "javax/annotation/**",
+
+        // Strip the Validation library code generation code.
+        // It is going to be available as runtime dependencies via `pom.xml`.
+        "io/spine/tools/validation/**",
 
         /*
          * Exclude Gradle types to reduce the size of the resulting JAR.
