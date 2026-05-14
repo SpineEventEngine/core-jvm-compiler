@@ -149,10 +149,14 @@ private fun MavenPublication.tuneDependencies() {
     pom.withXml {
         val projectNode: Node = asNode()
         val dependencies = Node(projectNode, "dependencies")
+        fun dependencyNode() = Node(dependencies, "dependency")
+
+        fun spineToolsGroup(parent: Node) = Node(parent, "groupId", Spine.toolsGroup)
+
         /*
          * Add the dependency onto `io.spine.tools:compiler-api`,
          * as there is no good way to remove all the dependencies
-         * from the fat JAR artifact, but leave just this one.
+         * from the fat JAR artifact but leave just this one.
          *
          * This dependency is required in order to place the Spine Compiler API
          * onto the build classpath, so that `core-jvm` routines
@@ -182,9 +186,9 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        val compilerApi = Node(dependencies, "dependency")
+        val compilerApi = dependencyNode()
         compilerApi.let {
-            Node(it, "groupId", "io.spine.tools")
+            spineToolsGroup(it)
             Node(it, "artifactId", "compiler-api")
             Node(it, "version", Compiler.version)
             Node(it, "scope", "runtime")
@@ -228,9 +232,9 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        val compilerJvm = Node(dependencies, "dependency")
+        val compilerJvm = dependencyNode()
         compilerJvm.let {
-            Node(it, "groupId", "io.spine.tools")
+            spineToolsGroup(it)
             Node(it, "artifactId", "compiler-jvm")
             Node(it, "version", Compiler.version)
             Node(it, "scope", "runtime")
@@ -246,9 +250,9 @@ private fun MavenPublication.tuneDependencies() {
          * Add the dependency onto `io.spine.tools:compiler-gradle-plugin`,
          * so that CoreJvm Gradle Plugin can add it to a project.
          */
-        val compilerGradlePlugin = Node(dependencies, "dependency")
+        val compilerGradlePlugin = dependencyNode()
         compilerGradlePlugin.let {
-            Node(it, "groupId", "io.spine.tools")
+            spineToolsGroup(it)
             Node(it, "artifactId", "compiler-gradle-plugin")
             Node(it, "version", Compiler.version)
             Node(it, "scope", "runtime")
@@ -263,9 +267,9 @@ private fun MavenPublication.tuneDependencies() {
          * Add the dependency onto `io.spine.tools:compiler-gradle-api`,
          * so that CoreJvm Gradle Plugin can add it to a project.
          */
-        val compilerGradleApi = Node(dependencies, "dependency")
+        val compilerGradleApi = dependencyNode()
         compilerGradleApi.let {
-            Node(it, "groupId", "io.spine.tools")
+            spineToolsGroup(it)
             Node(it, "artifactId", "compiler-gradle-api")
             Node(it, "version", Compiler.version)
             Node(it, "scope", "runtime")
@@ -280,9 +284,9 @@ private fun MavenPublication.tuneDependencies() {
          * Add the dependency onto `io.spine.tools:compiler-params`,
          * so that it is available in the classpath.
          */
-        val compilerParams = Node(dependencies, "dependency")
+        val compilerParams = dependencyNode()
         compilerParams.let {
-            Node(it, "groupId", "io.spine.tools")
+            spineToolsGroup(it)
             Node(it, "artifactId", "compiler-params")
             Node(it, "version", Compiler.version)
             Node(it, "scope", "runtime")
@@ -292,6 +296,8 @@ private fun MavenPublication.tuneDependencies() {
             excludeGroup(it, "com.google.protobuf")
             excludeGroup(it, "io.spine.tools")
         }
+
+        fun protobufGroup(parent: Node) = Node(parent, "groupId", Protobuf.group)
 
         /*
          * Add the dependency on Protobuf Gradle Plugin so that we can add it
@@ -305,8 +311,8 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        Node(dependencies, "dependency").let {
-            Node(it, "groupId", "com.google.protobuf")
+        dependencyNode().let {
+            protobufGroup(it)
             Node(it, "artifactId", "protobuf-gradle-plugin")
             Node(it, "version", Protobuf.GradlePlugin.version)
             Node(it, "scope", "runtime")
@@ -324,8 +330,8 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        Node(dependencies, "dependency").let {
-            Node(it, "groupId", "com.google.protobuf")
+        dependencyNode().let {
+            protobufGroup(it)
             Node(it, "artifactId", "protobuf-java")
             Node(it, "version", Protobuf.version)
             Node(it, "scope", "runtime")
@@ -345,8 +351,8 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        Node(dependencies, "dependency").let {
-            Node(it, "groupId", "com.google.protobuf")
+        dependencyNode().let {
+            protobufGroup(it)
             Node(it, "artifactId", "protobuf-java-util")
             Node(it, "version", Protobuf.version)
             Node(it, "scope", "runtime")
@@ -364,8 +370,8 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        Node(dependencies, "dependency").let {
-            Node(it, "groupId", "com.google.protobuf")
+        dependencyNode().let {
+            protobufGroup(it)
             Node(it, "artifactId", "protobuf-kotlin")
             Node(it, "version", Protobuf.version)
             Node(it, "scope", "runtime")
@@ -383,7 +389,7 @@ private fun MavenPublication.tuneDependencies() {
          * </dependency>
          * ```
          */
-        Node(dependencies, "dependency").let {
+        dependencyNode().let {
             Node(it, "groupId", Ksp.group)
             Node(it, "artifactId", Ksp.gradlePluginArtifactName)
             Node(it, "version", Ksp.version)
@@ -392,11 +398,18 @@ private fun MavenPublication.tuneDependencies() {
     }
 }
 
-// As defined in `versions.gradle.kts`.
-val versionToPublish: String by extra
+fun excludeGroup(exclusions: Node, groupId: String) {
+    Node(exclusions, "exclusion").let {
+        Node(it, "groupId", groupId)
+        Node(it, "artifactId", "*")
+    }
+}
 
+// As defined in `versions.gradle.kts`.
 // Do not publish to Gradle Plugin Portal snapshot versions.
 // It is prohibited by their policy: https://plugins.gradle.org/docs/publish-plugin
+val versionToPublish: String by extra
+
 val publishPlugins: Task by tasks.getting {
     enabled = !versionToPublish.isSnapshot()
 }
@@ -466,9 +479,22 @@ tasks.shadowJar {
         "spine/compiler/**", // Protobuf definitions
         "META-INF/gradle-plugins/io.spine.compiler.properties", // Plugin declaration
 
-        // Strip ArtifactMeta for:
+        // Strip `ArtifactMeta` for:
         "META-INF/io.spine/io.spine.tools_compiler-gradle-plugin.meta", // Compiler Gradle Plugin
         "META-INF/io.spine/io.spine.tools_protobuf-setup-plugins.meta", // Protobuf Setup Plugins
+
+        // Strip code provided by Spine Compiler.
+//        "com/google/api/**",
+//        "com/google/apps/**",
+//        "com/google/cloud/**",
+//        "com/google/geo/**",
+//        "com/google/logging/**",
+//        "com/google/longrunning/**",
+//        "com/google/rpc/**",
+//        "com/google/shopping/**",
+//        "com/google/type/**",
+//        "com/palantir/**",
+//        "com/github/benmanes/caffeine/**",
 
         /*
          * Exclude Gradle types to reduce the size of the resulting JAR.
@@ -512,13 +538,6 @@ tasks.shadowJar {
     archiveClassifier.set("")
 
     setup()
-}
-
-fun excludeGroup(exclusions: Node, groupId: String) {
-    Node(exclusions, "exclusion").let {
-        Node(it, "groupId", groupId)
-        Node(it, "artifactId", "*")
-    }
 }
 
 /**
