@@ -484,6 +484,7 @@ tasks.shadowJar {
         "META-INF/io.spine/io.spine.tools_protobuf-setup-plugins.meta", // Protobuf Setup Plugins
 
         // Strip code provided by Spine Compiler.
+        "android/**",
         "com/google/api/**",
         "com/google/apps/**",
         "com/google/cloud/**",
@@ -495,6 +496,10 @@ tasks.shadowJar {
         "com/google/type/**",
         "com/palantir/**",
         "com/github/benmanes/caffeine/**",
+        "io/grpc/**",
+        "io/perfmark/**",
+        "fj/**",
+        "javax/annotation/**",
 
         /*
          * Exclude Gradle types to reduce the size of the resulting JAR.
