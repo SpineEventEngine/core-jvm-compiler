@@ -301,7 +301,7 @@ private fun MavenPublication.tuneDependencies() {
         addExclusions(validationJavaBundle)
 
         /*
-         * Add the dependency onto `io.spine.tools:validation-java-bundle`.
+         * Add the dependency onto `io.spine.tools:validation-gradle-plugin`.
          *
          * Similarly to the above, we need to add the dependency on
          * the Gradle plugin artifact as well.
