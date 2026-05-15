@@ -202,8 +202,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "compiler-api")
             version(it, Compiler.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(compilerApi)
 
         /*
          * Add the dependency onto `io.spine.tools:compiler-jvm`,
@@ -243,8 +243,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "compiler-jvm")
             version(it, Compiler.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(compilerJvm)
 
         /*
          * Add the dependency onto `io.spine.tools:compiler-gradle-plugin`,
@@ -256,8 +256,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "compiler-gradle-plugin")
             version(it, Compiler.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(compilerGradlePlugin)
 
         /*
          * Add the dependency onto `io.spine.tools:compiler-gradle-api`,
@@ -269,8 +269,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "compiler-gradle-api")
             version(it, Compiler.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(compilerGradleApi)
 
         /*
          * Add the dependency onto `io.spine.tools:compiler-params`,
@@ -282,8 +282,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "compiler-params")
             version(it, Compiler.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(compilerParams)
 
         /*
          * Add the dependency onto `io.spine.tools:validation-java-bundle`.
@@ -297,8 +297,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "validation-java-bundle")
             version(it, Validation.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(validationJavaBundle)
 
         /*
          * Add the dependency onto `io.spine.tools:validation-gradle-plugin`.
@@ -312,8 +312,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "validation-gradle-plugin")
             version(it, Validation.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(validationGradlePlugin)
 
         /*
          * Add dependency onto `io.spine.tools:time-gradle-plugin`
@@ -325,8 +325,8 @@ private fun MavenPublication.tuneDependencies() {
             artifactId(it, "time-gradle-plugin")
             version(it, Time.version)
             runtimeScope(it)
+            addExclusions(it)
         }
-        addExclusions(timeGradlePlugin)
 
         fun protobufGroup(parent: Node) = Node(parent, "groupId", Protobuf.group)
 
