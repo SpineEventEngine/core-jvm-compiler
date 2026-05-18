@@ -28,7 +28,7 @@ import com.google.devtools.ksp.KspExperimental
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
-import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Validation
 import io.spine.dependency.test.KotlinCompileTesting
@@ -63,6 +63,11 @@ configurations.all {
             // instead of the code the previous version of CoreJvm Compiler.
             substitute(module("io.spine.tools:core-jvm-routing")).using(project(":routing"))
         }
+        force(
+            Base.lib,
+            Validation.runtime,
+            Validation.javaBundle,
+        )
     }
 }
 
@@ -118,7 +123,6 @@ sourceSets.testFixtures {
     kotlin.srcDir("generated/ksp/testFixtures/kotlin")
 }
 
-
 configurations
     // https://detekt.dev/docs/gettingstarted/gradle/#dependencies
     .matching { it.name != "detekt" }
@@ -129,17 +133,3 @@ configurations
             )
         }
     }
-
-protobuf {
-    protoc { artifact = Protobuf.compiler }
-}
-
-patchGeneratedTemplateString(
-    upstreamTask = "launchTestFixturesSpineCompiler",
-    generatedPath = "generated/testFixtures",
-    patchedTaskNames = listOf(
-        "compileTestFixturesJava",
-        "compileTestFixturesKotlin",
-        "kspTestFixturesKotlin",
-    ),
-)
