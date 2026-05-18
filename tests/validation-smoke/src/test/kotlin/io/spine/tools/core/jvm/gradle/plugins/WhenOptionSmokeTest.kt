@@ -47,6 +47,7 @@ import org.junit.jupiter.api.assertThrows
 import io.spine.time.LocalDateTime as SpineTimeLocalDateTime
 
 @DisplayName("`(when)` constraint should")
+@Disabled("Until Spine Time migrates to new `TemplateString` API.")
 internal class WhenOptionSmokeTest {
 
     @Nested
