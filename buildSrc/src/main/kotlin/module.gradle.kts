@@ -157,6 +157,7 @@ fun Module.forceConfigurations() {
                     Base.annotations,
                     Base.lib,
                     Base.environment,
+                    Base.format,
                     Time.lib,
                     Time.javaExtensions,
                     Compiler.api,
