@@ -29,7 +29,6 @@ package io.spine.tools.core.jvm.signal.rejection
 import io.kotest.matchers.shouldBe
 import io.spine.code.java.SimpleClassName
 import io.spine.testing.SlowTest
-import io.spine.testing.TempDir
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.BUILD_METHOD_ABSTRACT
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.NEW_BUILDER_METHOD_ABSTRACT
 import io.spine.tools.core.jvm.signal.rejection.JavadocTestEnv.expectedBuilderClassComment
@@ -43,6 +42,7 @@ import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
 import io.spine.tools.gradle.task.JavaTaskName.Companion.compileJava
 import io.spine.tools.gradle.testing.GradleProject.Companion.setupAt
 import io.spine.tools.java.code.fullTextNormalized
+import java.io.File
 import org.gradle.testkit.runner.internal.DefaultGradleRunner
 import org.jboss.forge.roaster.Roaster
 import org.jboss.forge.roaster.model.source.JavaClassSource
@@ -51,6 +51,7 @@ import org.jboss.forge.roaster.model.source.MethodSource
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
 
 @SlowTest
 @DisplayName("Rejection code generator should produce Javadoc for")
@@ -63,8 +64,7 @@ internal class RejectionJavadocIgTest {
 
         @BeforeAll
         @JvmStatic
-        fun generateSources() {
-            val projectDir = TempDir.forClass(RejectionJavadocIgTest::class.java)
+        fun generateSources(@TempDir projectDir: File) {
             val project = setupAt(projectDir)
                 .copyBuildSrc()
                 .withSharedTestKitDirectory()
