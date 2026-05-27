@@ -24,6 +24,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+@file:Suppress("AvoidApplyPluginMethod") // We apply some plugins via classes, not by id.
+
 import com.google.common.io.Files
 import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.build.CheckerFramework
@@ -118,7 +120,6 @@ fun Module.forceConfigurations() {
         forceVersions()
         excludeProtobufLite()
         all {
-            val config = this
             // Exclude outdated module.
             exclude(group = "io.spine", module = "spine-logging-backend")
 
