@@ -73,6 +73,7 @@ buildscript {
                     base.annotations,
                     base.libForBuildScript,
                     base.environment,
+                    base.format,
                     io.spine.dependency.local.Reflect.lib,
                     toolBase.lib,
                     coreJava.server,
