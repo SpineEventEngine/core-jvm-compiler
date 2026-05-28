@@ -1,0 +1,35 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.marker.event/EveryIsOptionDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/EveryIsOptionDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/EveryIsOptionDiscovered.Field.EveryIsOptionField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/EveryIsOptionDiscovered.Field.EveryIsOptionField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/EveryIsOptionDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/EveryIsOptionDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/EveryIsOptionDiscovered.Field.ProtoFileHeaderField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/EveryIsOptionDiscovered.Field.ProtoFileHeaderField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/EveryIsOptionDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/EveryIsOptionDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/EveryIsOptionDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/EveryIsOptionDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Builder///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Builder.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Field.DocField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Field.DocField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Field.MessageTypeField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Field.MessageTypeField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Field.SpanField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Field.SpanField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscovered.Field.html
+$dokka.location:io.spine.tools.core.jvm.marker.event/IsOptionDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/marker/event/IsOptionDiscoveredKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Builder///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Builder.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Column///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Column.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Field.EveryIsOptionField///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Field.EveryIsOptionField.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Field.ProtoFileHeaderField///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Field.ProtoFileHeaderField.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Field///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Field.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.Query///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.Query.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessages.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessages.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessagesKt.Dsl.TypeProxy///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessagesKt.Dsl.TypeProxy.html
+$dokka.location:io.spine.tools.core.jvm.marker/EveryIsMessagesKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/marker/EveryIsMessagesKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIs.Builder///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIs.Builder.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIs.Column///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIs.Column.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIs.Field///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIs.Field.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIs.Query///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIs.Query.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIs.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIs.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIsKt.Dsl.TypeProxy///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIsKt.Dsl.TypeProxy.html
+$dokka.location:io.spine.tools.core.jvm.marker/MessagesWithIsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/marker/MessagesWithIsKt.Dsl.html
+io.spine.tools.core.jvm.marker
+io.spine.tools.core.jvm.marker.event
