@@ -1,0 +1,25 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.gradle.settings/EntitySettings.Companion///PointingToDeclaration/io/spine/tools/core/jvm/gradle/settings/EntitySettings.Companion.html
+$dokka.location:io.spine.tools.core.jvm.gradle.settings/SignalSettings.Companion///PointingToDeclaration/io/spine/tools/core/jvm/gradle/settings/SignalSettings.Companion.html
+$dokka.location:io.spine.tools.core.jvm.gradle.settings/UuidSettings.Companion///PointingToDeclaration/io/spine/tools/core/jvm/gradle/settings/UuidSettings.Companion.html
+$dokka.location:io.spine.tools.core.jvm.settings/CombinedKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/CombinedKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/ComparablesKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/ComparablesKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/EntitiesKt.Dsl.OptionProxy///PointingToDeclaration/io/spine/tools/core/jvm/settings/EntitiesKt.Dsl.OptionProxy.html
+$dokka.location:io.spine.tools.core.jvm.settings/EntitiesKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/EntitiesKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/GroupSettingsKt.Dsl.GroupProxy///PointingToDeclaration/io/spine/tools/core/jvm/settings/GroupSettingsKt.Dsl.GroupProxy.html
+$dokka.location:io.spine.tools.core.jvm.settings/GroupSettingsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/GroupSettingsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/MessageGroupKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/MessageGroupKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/PatternKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/PatternKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/SignalSettingsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/SignalSettingsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/SignalsKt.Dsl.PatternProxy///PointingToDeclaration/io/spine/tools/core/jvm/settings/SignalsKt.Dsl.PatternProxy.html
+$dokka.location:io.spine.tools.core.jvm.settings/SignalsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/SignalsKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/TypePatternKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/TypePatternKt.Dsl.html
+$dokka.location:io.spine.tools.core.jvm.settings/UuidsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/settings/UuidsKt.Dsl.html
+io.spine.tools.core.jvm
+io.spine.tools.core.jvm.base
+io.spine.tools.core.jvm.field
+io.spine.tools.core.jvm.gradle
+io.spine.tools.core.jvm.gradle.module
+io.spine.tools.core.jvm.gradle.settings
+io.spine.tools.core.jvm.settings
