@@ -36,7 +36,7 @@ option java_outer_classname = "EventsProto";
 option java_multiple_files = true;
 
 import "spine/compiler/ast.proto";
-import "spine/compiler/render_actions.proto";
+import "spine/compiler/actions.proto";
 
 // A message with `compare_by` option was discovered.
 message ComparableMessageDiscovered {

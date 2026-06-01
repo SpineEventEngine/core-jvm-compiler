@@ -37,7 +37,7 @@ option java_multiple_files = true;
 
 import "spine/compiler/ast.proto";
 import "spine/compiler/file.proto";
-import "spine/compiler/render_actions.proto";
+import "spine/compiler/actions.proto";
 
 // Provides entity state types declared in a proto file.
 message DiscoveredEntities {

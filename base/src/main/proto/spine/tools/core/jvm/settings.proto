@@ -39,7 +39,7 @@ option (internal_all) = true;
 import "spine/tools/java/java.proto";
 import "spine/tools/proto/proto.proto";
 import "spine/compiler/file_pattern.proto";
-import "spine/compiler/render_actions.proto";
+import "spine/compiler/actions.proto";
 
 // Code generation settings passed to Spine Protoc Plugin.
 //
