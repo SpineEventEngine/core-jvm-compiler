@@ -27,6 +27,7 @@
 package io.spine.gradle.report.coverage
 
 import io.spine.dependency.test.Jacoco
+import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.applyPlugin
 import io.spine.gradle.getTask
 import io.spine.gradle.report.coverage.TaskName.check
@@ -38,6 +39,7 @@ import java.io.File
 import java.util.*
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection
+import org.gradle.api.file.SourceDirectorySet
 import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.SourceSetContainer
@@ -61,10 +63,19 @@ import org.gradle.testing.jacoco.tasks.JacocoReport
  * In a single-module Gradle project, this utility is NOT needed. Just a plain `jacoco` plugin
  * applied to the project is sufficient.
  *
- * Therefore, tn case this utility is applied to a single-module Gradle project,
+ * Therefore, in case this utility is applied to a single-module Gradle project,
  * an `IllegalStateException` is thrown.
  */
-@Suppress("unused")
+@Deprecated(
+    message = "Use `KoverConfig.applyTo(rootProject)`, the Kover-based " +
+            "successor that aggregates per-subproject coverage into the " +
+            "root `koverXmlReport` and excludes classes compiled from " +
+            "`generated/` source directories. " +
+            "The `raise-coverage` skill performs this migration automatically. " +
+            "See .agents/skills/raise-coverage/references/migrate-to-kover.md.",
+    level = DeprecationLevel.WARNING
+)
+@Suppress("unused", "DEPRECATION")
 class JacocoConfig(
     private val rootProject: Project,
     private val reportsDir: File,
@@ -150,18 +161,20 @@ class JacocoConfig(
         copyReports: TaskProvider<Copy>
     ): TaskProvider<JacocoReport> {
         val allSourceSets = Projects(projects).sourceSets()
-        val mainJavaSrcDirs = allSourceSets.mainJavaSrcDirs()
+        val mainSrcDirs = allSourceSets.mainSrcDirs()
         val humanProducedSourceFolders =
-            FileFilter.producedByHuman(mainJavaSrcDirs)
+            FileFilter.producedByHuman(mainSrcDirs)
 
         val filter = CodebaseFilter(
             rootProject,
-            mainJavaSrcDirs,
+            mainSrcDirs,
             allSourceSets.mainOutputs()
         )
         val humanProducedCompiledFiles = filter.humanProducedCompiledFiles()
 
         val rootReport = tasks.register(jacocoRootReport.name, JacocoReport::class.java) {
+            group = SpineTaskGroup.name
+            description = "Aggregates JaCoCo coverage data from subprojects into a single report"
             dependsOn(copyReports)
 
             additionalSourceDirs.from(humanProducedSourceFolders)
@@ -193,6 +206,8 @@ class JacocoConfig(
         val originalLocation = rootProject.files(everyExecData)
 
         val copyReports = tasks.register(copyReports.name, Copy::class.java) {
+            group = SpineTaskGroup.name
+            description = "Copies JaCoCo `.exec` files from subprojects into root reports folder"
             from(originalLocation)
             into(reportsDir)
             rename {
@@ -228,12 +243,26 @@ private class SourceSets(
 ) {
 
     /**
-     * Returns all Java source folders corresponding to the `main` source set type.
+     * Returns the union of Java and Kotlin source folders corresponding to the `main`
+     * source set across all underlying [SourceSetContainer]s.
+     *
+     * Kotlin source directories are registered as a separate [SourceDirectorySet]
+     * extension on the source set, not exposed via [allJava][org.gradle.api.tasks.SourceSet.getAllJava].
+     * They are surfaced explicitly here so that generated Kotlin code (for example,
+     * the output of `protoc-gen-kotlin`) is visible to the coverage filter alongside
+     * the Java sources.
      */
-    fun mainJavaSrcDirs(): Set<File> {
+    fun mainSrcDirs(): Set<File> {
         return sourceSets
             .asSequence()
-            .flatMap { it["main"].allJava.srcDirs }
+            .flatMap { container ->
+                val main = container["main"]
+                val javaDirs = main.allJava.srcDirs
+                val kotlinDirs = (main.extensions.findByName("kotlin") as? SourceDirectorySet)
+                    ?.srcDirs
+                    ?: emptySet()
+                javaDirs + kotlinDirs
+            }
             .toSet()
     }
 

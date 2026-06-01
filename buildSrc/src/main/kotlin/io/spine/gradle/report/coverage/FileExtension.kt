@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,12 +29,25 @@ package io.spine.gradle.report.coverage
 /**
  * File extensions.
  */
+@Deprecated(
+    message = "Used only by the deprecated `JacocoConfig` pipeline. " +
+            "Removed when `JacocoConfig` is. " +
+            "See `KoverConfig` for the Kover-based successor and " +
+            "`.agents/skills/raise-coverage/references/migrate-to-kover.md` " +
+            "for the migration recipe.",
+    level = DeprecationLevel.WARNING
+)
 internal enum class FileExtension(val value: String) {
 
     /**
      * Extension of a Java source file.
      */
     JAVA_SOURCE(".java"),
+
+    /**
+     * Extension of a Kotlin source file.
+     */
+    KOTLIN_SOURCE(".kt"),
 
     /**
      * Extension of a Java compiled file.
