@@ -37,7 +37,7 @@ import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.spinePublishing
 import io.spine.gradle.repo.standardToSpineSdk
-import io.spine.gradle.report.coverage.JacocoConfig
+import io.spine.gradle.report.coverage.KoverConfig
 import io.spine.gradle.report.license.LicenseReporter
 import io.spine.gradle.report.pom.PomGenerator
 import java.time.Duration
@@ -105,7 +105,7 @@ buildscript {
 plugins {
     idea
     errorprone
-    jacoco
+    id("org.jetbrains.kotlinx.kover")
     `gradle-doctor`
     id("project-report")
     protobuf
@@ -137,7 +137,7 @@ allprojects {
     repositories.standardToSpineSdk()
 }
 
-JacocoConfig.applyTo(project)
+KoverConfig.applyTo(rootProject)
 PomGenerator.applyTo(project)
 LicenseReporter.mergeAllReports(project)
 

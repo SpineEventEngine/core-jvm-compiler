@@ -72,6 +72,7 @@ plugins {
     id("pmd-settings")
     `maven-publish`
     id("detekt-code-analysis")
+    id("org.jetbrains.kotlinx.kover")
     id("project-report")
     idea
 }
