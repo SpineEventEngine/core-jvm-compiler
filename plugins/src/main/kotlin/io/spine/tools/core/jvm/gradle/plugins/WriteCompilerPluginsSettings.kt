@@ -45,7 +45,6 @@ import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.settings.signalSettings
 import io.spine.tools.core.jvm.signal.SignalPlugin
 import io.spine.tools.core.jvm.uuid.UuidPlugin
-import io.spine.tools.gradle.task.SpineTaskGroup
 import io.spine.type.toJson
 import java.io.IOException
 import org.gradle.api.DefaultTask
