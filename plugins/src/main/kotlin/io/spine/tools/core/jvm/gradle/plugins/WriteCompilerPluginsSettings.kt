@@ -24,7 +24,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-
 @file:Suppress("TooManyFunctions")
 
 package io.spine.tools.core.jvm.gradle.plugins
