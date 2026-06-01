@@ -784,6 +784,15 @@
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -1115,6 +1124,16 @@
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -1151,7 +1170,7 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -1950,6 +1969,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -2281,6 +2309,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -2317,7 +2355,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -3108,6 +3146,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -3439,6 +3486,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -3475,7 +3532,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -4077,6 +4134,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -4408,6 +4474,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -4444,7 +4520,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -5235,6 +5311,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -5566,6 +5651,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -5602,7 +5697,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -6204,6 +6299,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -6535,6 +6639,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -6571,7 +6685,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -7333,6 +7447,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -7664,6 +7787,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -7700,7 +7833,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -8514,6 +8647,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -8885,6 +9027,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -8921,7 +9073,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -9720,6 +9872,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -10051,6 +10212,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -10087,7 +10258,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -10689,6 +10860,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -11020,6 +11200,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -11056,7 +11246,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -11855,6 +12045,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -12186,6 +12385,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -12222,7 +12431,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -12824,6 +13033,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -13155,6 +13373,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -13191,7 +13419,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -14021,6 +14249,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -14392,6 +14629,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -14428,7 +14675,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -15295,6 +15542,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -15650,6 +15906,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -15686,7 +15952,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -15770,11 +16036,20 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.21.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.20.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.21.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -15784,6 +16059,11 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.20.0.
+     * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.21.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -15798,6 +16078,11 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.21.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-xml. **Version** : 2.15.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformat-xml](https://github.com/FasterXML/jackson-dataformat-xml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -15808,7 +16093,17 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-yaml. **Version** : 2.21.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson-dataformats-text](https://github.com/FasterXML/jackson-dataformats-text)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-guava. **Version** : 2.20.0.
+     * **Project URL:** [https://github.com/FasterXML/jackson-datatypes-collections](https://github.com/FasterXML/jackson-datatypes-collections)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-guava. **Version** : 2.21.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-datatypes-collections](https://github.com/FasterXML/jackson-datatypes-collections)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -15818,7 +16113,17 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-jdk8. **Version** : 2.21.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jdk8](https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jdk8)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-jsr310. **Version** : 2.20.0.
+     * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jsr310](https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jsr310)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-jsr310. **Version** : 2.21.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jsr310](https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jsr310)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -15833,7 +16138,17 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.21.3.
+     * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-parameter-names. **Version** : 2.20.0.
+     * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names](https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-parameter-names. **Version** : 2.21.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names](https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16370,10 +16685,14 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [https://bitbucket.org/snakeyaml/snakeyaml](https://bitbucket.org/snakeyaml/snakeyaml)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.yaml. **Name** : snakeyaml. **Version** : 2.5.
+     * **Project URL:** [https://bitbucket.org/snakeyaml/snakeyaml](https://bitbucket.org/snakeyaml/snakeyaml)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -17172,6 +17491,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -17503,6 +17831,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -17539,7 +17877,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:29 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -18141,6 +18479,15 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -18472,6 +18819,16 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -18508,7 +18865,7 @@ This report was generated on **Mon Jun 01 15:42:29 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -19307,6 +19664,15 @@ This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -19638,6 +20004,16 @@ This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -19674,7 +20050,7 @@ This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -20276,6 +20652,15 @@ This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using
      * **Project URL:** [http://hamcrest.org/JavaHamcrest/](http://hamcrest.org/JavaHamcrest/)
      * **License:** [BSD-3-Clause](https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE)
 
+1.  **Group** : org.jacoco. **Name** : org.jacoco.agent. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.core. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
+1.  **Group** : org.jacoco. **Name** : org.jacoco.report. **Version** : 0.8.14.
+     * **License:** [EPL-2.0](https://www.eclipse.org/legal/epl-2.0/)
+
 1.  **Group** : org.javassist. **Name** : javassist. **Version** : 3.28.0-GA.
      * **Project URL:** [http://www.javassist.org/](http://www.javassist.org/)
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
@@ -20607,6 +20992,16 @@ This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using
      * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : org.ow2.asm. **Name** : asm-commons. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.ow2.asm. **Name** : asm-tree. **Version** : 9.6.
+     * **Project URL:** [http://asm.ow2.io/](http://asm.ow2.io/)
+     * **License:** [BSD-3-Clause](https://asm.ow2.io/license.html)
+     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : org.pcollections. **Name** : pcollections. **Version** : 4.0.1.
      * **Project URL:** [https://github.com/hrldcpr/pcollections](https://github.com/hrldcpr/pcollections)
      * **License:** [The MIT License](https://opensource.org/licenses/mit-license.php)
@@ -20643,6 +21038,6 @@ This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Jun 01 15:42:30 WEST 2026** using 
+This report was generated on **Mon Jun 01 16:09:30 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
