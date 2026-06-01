@@ -45,6 +45,7 @@ import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.settings.signalSettings
 import io.spine.tools.core.jvm.signal.SignalPlugin
 import io.spine.tools.core.jvm.uuid.UuidPlugin
+import io.spine.tools.gradle.task.SpineTaskGroup
 import io.spine.type.toJson
 import java.io.IOException
 import org.gradle.api.DefaultTask
@@ -67,6 +68,11 @@ import org.gradle.work.DisableCachingByDefault
 )
 @Suppress("unused") // Gradle creates a subtype for this class.
 public abstract class WriteCompilerPluginsSettings : DefaultTask() {
+
+    init {
+        group = SpineTaskGroup.name
+        description = "Writes settings for CoreJvm plugins of the Spine Compiler."
+    }
 
     @get:OutputDirectory
     public abstract val settingsDir: DirectoryProperty

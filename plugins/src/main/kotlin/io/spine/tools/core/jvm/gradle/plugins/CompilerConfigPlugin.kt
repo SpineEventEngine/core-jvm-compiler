@@ -51,15 +51,16 @@ import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.gradle.task.JavaTaskName.Companion.processResources
 import io.spine.tools.gradle.task.JavaTaskName.Companion.sourcesJar
+import io.spine.tools.gradle.task.SpineTaskGroup
 import io.spine.tools.validation.gradle.ValidationGradlePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.provider.Provider
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.register
 import org.gradle.kotlin.dsl.withType
-import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
 import io.spine.tools.compiler.gradle.plugin.Plugin as CompilerGradlePlugin
-import org.gradle.kotlin.dsl.apply
+import io.spine.tools.compiler.plugin.Plugin as CompilerPlugin
 
 /**
  * The plugin that configures the Spine Compiler for the associated project.
@@ -125,6 +126,9 @@ private fun Project.configureCompiler() {
 
 private fun Project.createWriteSettingsTask(): Provider<WriteCompilerPluginsSettings> {
     val result = tasks.register<WriteCompilerPluginsSettings>(WRITE_COMPILER_PLUGINS_SETTINGS) {
+        group = SpineTaskGroup.name
+        description = "Writes settings for Spine Compiler plugins of this project."
+
         val workingDir = WorkingDirectory(compilerWorkingDir.asFile.toPath())
         val settingsDir = workingDir.settingsDirectory.path.toFile()
         val settingsDirProvider = project.layout.dir(provider { settingsDir })
