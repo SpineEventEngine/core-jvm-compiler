@@ -98,7 +98,7 @@ message Signals {
     reserved "generate_fields";
 
     // Code generation actions applied to the signal message types.
-    compiler.RenderActions actions = 4;
+    compiler.Actions actions = 4;
 }
 
 // Code generation settings for `Signal` messages.
@@ -140,7 +140,7 @@ message Entities {
     bool generate_queries = 5;
 
     // The code generation actions applied to entity state types.
-    compiler.RenderActions actions = 6;
+    compiler.Actions actions = 6;
 }
 
 // Code generation settings for an arbitrary group of messages.
@@ -162,7 +162,7 @@ message MessageGroup {
     reserved "generate_fields";
 
     // The code generation actions applied to selected message types.
-    compiler.RenderActions actions = 6;
+    compiler.Actions actions = 6;
 }
 
 // A pattern which matches one or multiple messages.
@@ -211,7 +211,7 @@ message Uuids {
 
     // Names of classes implementing the `io.spine.compiler.renderer.RenderAction` class
     // that are to be applied to the UUID messages.
-    compiler.RenderActions actions = 3;
+    compiler.Actions actions = 3;
 }
 
 // Code generation settings for comparable messages.
@@ -221,5 +221,5 @@ message Uuids {
 message Comparables {
 
     // A collection of code generation actions.
-    compiler.RenderActions actions = 1;
+    compiler.Actions actions = 1;
 }
