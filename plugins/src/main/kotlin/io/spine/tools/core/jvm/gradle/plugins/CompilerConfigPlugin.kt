@@ -127,7 +127,7 @@ private fun Project.configureCompiler() {
 private fun Project.createWriteSettingsTask(): Provider<WriteCompilerPluginsSettings> {
     val result = tasks.register<WriteCompilerPluginsSettings>(WRITE_COMPILER_PLUGINS_SETTINGS) {
         group = SpineTaskGroup.name
-        description = "Writes settings for Spine Compiler plugins of this project."
+        description = "Writes settings for Spine Compiler plugins of this project"
 
         val workingDir = WorkingDirectory(compilerWorkingDir.asFile.toPath())
         val settingsDir = workingDir.settingsDirectory.path.toFile()
