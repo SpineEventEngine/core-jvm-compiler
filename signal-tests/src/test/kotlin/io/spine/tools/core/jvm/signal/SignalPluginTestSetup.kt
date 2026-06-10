@@ -26,9 +26,9 @@
 
 package io.spine.tools.core.jvm.signal
 
+import io.spine.base.MessageFile
 import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.FilePatternFactory.suffix
-import io.spine.tools.core.jvm.MessageFile
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.SignalSettings
 import java.nio.file.Path
@@ -62,4 +62,4 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
 /**
  * Creates [FilePattern] corresponding to this [MessageFile] type.
  */
-internal fun MessageFile.pattern(): FilePattern = suffix(this.suffix)
+internal fun MessageFile.pattern(): FilePattern = suffix(this.suffix())
