@@ -30,9 +30,9 @@ package io.spine.tools.core.jvm.gradle.settings
 
 import com.google.common.collect.ImmutableList
 import io.spine.annotation.Internal
+import io.spine.base.MessageFile
 import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.FilePatternFactory
-import io.spine.tools.core.jvm.MessageFile
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_COMMAND_ACTIONS
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_EVENT_ACTIONS
 import io.spine.tools.core.jvm.gradle.settings.SignalSettings.Companion.DEFAULT_REJECTION_ACTIONS
@@ -61,7 +61,7 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
      */
     public val commands: SignalSettings = SignalSettings(
         project,
-        MessageFile.COMMANDS.suffix,
+        MessageFile.COMMANDS.suffix(),
         DEFAULT_COMMAND_ACTIONS
     )
 
@@ -70,7 +70,7 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
      */
     public val events: SignalSettings = SignalSettings(
         project,
-        MessageFile.EVENTS.suffix,
+        MessageFile.EVENTS.suffix(),
         DEFAULT_EVENT_ACTIONS
     )
 
@@ -79,7 +79,7 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
      */
     public val rejections: SignalSettings = SignalSettings(
         project,
-        MessageFile.REJECTIONS.suffix,
+        MessageFile.REJECTIONS.suffix(),
         DEFAULT_REJECTION_ACTIONS
     )
 
