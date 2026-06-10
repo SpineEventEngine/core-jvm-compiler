@@ -36,22 +36,22 @@ import java.util.function.Predicate
 public enum class MessageFile(fileName: String) : Predicate<FileDescriptorProto> {
 
     /**
-     * Commands are declared in a file which name ends with `"commands.proto"`.
+     * Commands are declared in a file whose name ends with `"commands.proto"`.
      */
     COMMANDS("commands"),
 
     /**
-     * Events are declared in a file which name ends with `"events.proto"`.
+     * Events are declared in a file whose name ends with `"events.proto"`.
      */
     EVENTS("events"),
 
     /**
-     * Rejections are declared in a file which name ends with `"rejections.proto"`.
+     * Rejections are declared in a file whose name ends with `"rejections.proto"`.
      */
     REJECTIONS("rejections");
 
     /**
-     * The suffix required for this kind of files.
+     * The suffix required for this kind of file.
      */
     public val suffix: String = fileName + FileName.EXTENSION
 

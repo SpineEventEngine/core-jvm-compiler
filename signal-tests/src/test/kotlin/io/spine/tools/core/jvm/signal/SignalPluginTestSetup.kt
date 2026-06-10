@@ -62,4 +62,4 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
 /**
  * Creates [FilePattern] corresponding to this [MessageFile] type.
  */
-internal fun MessageFile.pattern(): FilePattern = suffix(suffix)
+internal fun MessageFile.pattern(): FilePattern = suffix(this.suffix)
