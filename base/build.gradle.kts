@@ -104,3 +104,9 @@ dependencies {
 }
 
 forceSpineBase()
+
+afterEvaluate {
+    val launchSpineCompiler by tasks.getting {
+        mustRunAfter("writeArtifactMeta")
+    }
+}

@@ -48,7 +48,7 @@ spinePublishing {
     // This prefix does not apply to the modules of this project because they all belong
     // to the `io.spine.tools` group, and therefore `toolArtifactPrefix` applies instead.
     artifactPrefix = ""
-    toolArtifactPrefix = SpinePublishing.NONE_PREFIX
+    toolArtifactPrefix = "NONE"
     destinations = rootProject.the<SpinePublishing>().destinations
     customPublishing = true
 }

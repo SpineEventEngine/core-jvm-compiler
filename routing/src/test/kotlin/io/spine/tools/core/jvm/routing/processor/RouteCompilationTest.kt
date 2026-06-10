@@ -88,7 +88,7 @@ sealed class RouteCompilationTest {
 
         compilation.apply {
             javaPackagePrefix = "io.spine.routing.given"
-            configureKsp (useKsp2 = true) {
+            configureKsp {
                 symbolProcessorProviders += RouteProcessorProvider()
             }
             classpaths = classpaths + dependencyJars

@@ -32,10 +32,9 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
-import io.spine.io.toUnix
+import io.spine.io.toUnixPath
 import io.spine.testing.SlowTest
 import io.spine.tools.compiler.gradle.plugin.Plugin
-import io.spine.tools.core.jvm.ksp.gradle.KspBasedPluginTest.Companion.removeTempDir
 import io.spine.tools.gradle.project.sourceSets
 import java.io.File
 import org.gradle.api.Action
@@ -139,7 +138,7 @@ internal class KspBasedPluginTest {
     @Test
     @Disabled("Until `File.toRelativeString()` in `kotlin.io.Utils.kt` supports our case")
     fun `redirect KSP tasks output`() {
-        val projectRoot = project.projectDir.absolutePath.toUnix()
+        val projectRoot = project.projectDir.absoluteFile.toUnixPath()
         val tasks = project.tasks.withType<KspAATask>()
         tasks.size shouldBeGreaterThan 0
         tasks.forEach { task ->
@@ -148,7 +147,7 @@ internal class KspBasedPluginTest {
                 task.kspConfig.javaOutputDir,
                 task.kspConfig.kotlinOutputDir
             ).forEach {
-                it.get().asFile.absolutePath.toUnix().let { path ->
+                it.get().asFile.absoluteFile.toUnixPath().let { path ->
                     path shouldNotContain "/build/"
                     path shouldContain "$projectRoot/generated/ksp"
                 }
