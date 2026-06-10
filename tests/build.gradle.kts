@@ -203,7 +203,6 @@ subprojects {
 
     dependencies {
         errorprone(ErrorProne.core)
-        errorproneJavac(ErrorProne.javacPlugin)
         ErrorProne.annotations.forEach { compileOnly(it) }
         implementation(Base.lib)
         implementation(Logging.lib)
