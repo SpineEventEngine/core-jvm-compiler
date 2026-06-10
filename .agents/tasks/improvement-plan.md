@@ -55,8 +55,10 @@ Milestone 2 — high-leverage:
       with the `compiler` repo task narrowing `jvm → backend`.
       Effort M, risk Medium.
 - [ ] (T1) Add direct unit specs for `base` (settings round-trips,
-      extension defaults) and `grpc`. Kotest assertions, `Spec` suffix,
-      stubs not mocks. Effort M, risk Low.
+      extension defaults) and `grpc`. PR #92 added the first spec to
+      `base` (`MessageFileSpec`); the settings DSL and `grpc` remain
+      untested directly. Kotest assertions, `Spec` suffix, stubs not
+      mocks. Effort M, risk Low.
 
 Milestone 3 — polish:
 
@@ -73,3 +75,6 @@ Milestone 3 — polish:
 - 2026-06-10 — audit completed; plan drafted together with the filled
   `project.md`; awaiting human review of the audit's open questions
   (audit report, section 6) before execution starts.
+- 2026-06-10 — merged `master` (PR #92 landed: `MessageFile` adoption,
+  version `.069` published); re-bumped to `.070`; T1 wording refreshed
+  to account for the new `MessageFileSpec`.
