@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,6 @@ package io.spine.tools.core.jvm.signal
 import com.google.protobuf.Descriptors.FileDescriptor
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.spine.base.EntityState
-import io.spine.base.MessageFile
-import io.spine.base.MessageFile.COMMANDS
-import io.spine.base.MessageFile.EVENTS
-import io.spine.base.MessageFile.REJECTIONS
 import io.spine.code.proto.FileSet
 import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.matches
@@ -40,6 +36,10 @@ import io.spine.tools.compiler.backend.Pipeline
 import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toMessageType
 import io.spine.tools.compiler.render.TypeListActions
+import io.spine.tools.core.jvm.MessageFile
+import io.spine.tools.core.jvm.MessageFile.COMMANDS
+import io.spine.tools.core.jvm.MessageFile.EVENTS
+import io.spine.tools.core.jvm.MessageFile.REJECTIONS
 import io.spine.testing.compiler.PipelineSetup
 import io.spine.testing.server.blackbox.BlackBox
 import java.nio.file.Path

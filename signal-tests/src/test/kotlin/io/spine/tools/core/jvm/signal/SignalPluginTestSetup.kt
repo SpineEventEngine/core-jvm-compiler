@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@
 
 package io.spine.tools.core.jvm.signal
 
-import io.spine.base.MessageFile
 import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.FilePatternFactory.suffix
+import io.spine.tools.core.jvm.MessageFile
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.SignalSettings
 import java.nio.file.Path
@@ -62,4 +62,4 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
 /**
  * Creates [FilePattern] corresponding to this [MessageFile] type.
  */
-internal fun MessageFile.pattern(): FilePattern = suffix(suffix())
+internal fun MessageFile.pattern(): FilePattern = suffix(this.suffix)
