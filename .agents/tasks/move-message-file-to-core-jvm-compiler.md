@@ -2,7 +2,7 @@
 slug: move-message-file-to-core-jvm-compiler
 branch: claude/cool-lamport-rnwzpu
 owner: claude
-status: in-progress
+status: ready-for-review
 started: 2026-06-10
 ---
 
@@ -47,10 +47,11 @@ all in-repo consumers switched to the new type and the ported unit test green.
 - [x] Bump `version.gradle.kts` → `2.0.0-SNAPSHOT.069`; project version
       strings in `docs/dependencies/*` updated to match (no dependency
       changed, so the regenerated content differs only in those strings).
-- [ ] Build the affected modules and run the tests — **blocked locally**:
-      the remote session's network policy returns 403 for the Spine
-      artifact repositories, so Gradle cannot resolve the SDK snapshot
-      dependencies. Verification delegated to PR CI.
+- [x] Build the affected modules and run the tests — done locally on a
+      machine with artifact-repository access: `:base:test` runs
+      `MessageFileSpec` green (3/3), and `:plugins`/`:signal-tests` test
+      sources compile against the moved type. (Original remote session
+      hit 403 from the Spine repos; that block is now resolved.)
 - [x] Commit, push, draft PR referencing base-libraries#941.
 
 ## Log
@@ -58,3 +59,6 @@ all in-repo consumers switched to the new type and the ported unit test green.
 - 2026-06-10 — drafted; executing (work authorized by the issue assignment).
 - 2026-06-10 — sources done; local Gradle build impossible (403 from all
   Spine repos under the session network policy); relying on PR CI.
+- 2026-06-10 — verified locally (JDK 17): `:base:test --tests MessageFileSpec`
+  passes 3/3; `:plugins` and `:signal-tests` test sources compile. CI green on
+  Ubuntu; only the Windows build remained pending.
