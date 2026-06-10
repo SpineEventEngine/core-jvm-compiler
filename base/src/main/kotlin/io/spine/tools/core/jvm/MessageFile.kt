@@ -24,10 +24,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+package io.spine.tools.core.jvm
+
+import com.google.protobuf.DescriptorProtos.FileDescriptorProto
+import io.spine.code.proto.FileName
+import java.util.function.Predicate
+
 /**
- * The version of modules to publish.
- *
- * Do not rename this property, as it is also used in the integration tests via its name.
+ * An enumeration of file naming conventions for pre-defined types of messages.
  */
-val coreJvmCompilerVersion by extra("2.0.0-SNAPSHOT.069")
-val versionToPublish by extra(coreJvmCompilerVersion)
+public enum class MessageFile(fileName: String) : Predicate<FileDescriptorProto> {
+
+    /**
+     * Commands are declared in a file whose name ends with `"commands.proto"`.
+     */
+    COMMANDS("commands"),
+
+    /**
+     * Events are declared in a file whose name ends with `"events.proto"`.
+     */
+    EVENTS("events"),
+
+    /**
+     * Rejections are declared in a file whose name ends with `"rejections.proto"`.
+     */
+    REJECTIONS("rejections");
+
+    /**
+     * The suffix required for this kind of file.
+     */
+    public val suffix: String = fileName + FileName.EXTENSION
+
+    /**
+     * Checks if the name of the given file matches this suffix.
+     */
+    override fun test(file: FileDescriptorProto): Boolean = file.name.endsWith(suffix)
+}
