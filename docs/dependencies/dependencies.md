@@ -345,11 +345,7 @@
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -1162,7 +1158,7 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -2144,7 +2140,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -2496,11 +2492,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -3321,7 +3313,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -3673,11 +3665,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -4490,7 +4478,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -5472,7 +5460,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -5824,11 +5812,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -6641,7 +6625,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -7623,7 +7607,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -8763,7 +8747,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -9979,7 +9963,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -10331,11 +10315,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -11156,7 +11136,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -12138,7 +12118,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -12490,11 +12470,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -13315,7 +13291,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -14297,7 +14273,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -15529,7 +15505,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -15913,7 +15889,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -16778,7 +16754,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -16857,11 +16833,6 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.fasterxml.jackson. **Name** : jackson-bom. **Version** : 2.22.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-bom](https://github.com/FasterXML/jackson-bom)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16871,20 +16842,11 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.21.
-     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-annotations. **Version** : 2.22.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.15.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-core. **Version** : 2.21.3.
      * **Project URL:** [https://github.com/FasterXML/jackson-core](https://github.com/FasterXML/jackson-core)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16899,11 +16861,6 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.fasterxml.jackson.core. **Name** : jackson-databind. **Version** : 2.22.0.
      * **Project URL:** [https://github.com/FasterXML/jackson](https://github.com/FasterXML/jackson)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16914,18 +16871,8 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-yaml. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-dataformats-text](https://github.com/FasterXML/jackson-dataformats-text)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.fasterxml.jackson.dataformat. **Name** : jackson-dataformat-yaml. **Version** : 2.22.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-dataformats-text](https://github.com/FasterXML/jackson-dataformats-text)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-guava. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-datatypes-collections](https://github.com/FasterXML/jackson-datatypes-collections)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -16934,18 +16881,8 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-jdk8. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jdk8](https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jdk8)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-jdk8. **Version** : 2.22.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jdk8](https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jdk8)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.datatype. **Name** : jackson-datatype-jsr310. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jsr310](https://github.com/FasterXML/jackson-modules-java8/jackson-datatype-jsr310)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -16959,20 +16896,10 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-kotlin. **Version** : 2.22.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-module-kotlin](https://github.com/FasterXML/jackson-module-kotlin)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-parameter-names. **Version** : 2.21.3.
-     * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names](https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names)
-     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-     * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.fasterxml.jackson.module. **Name** : jackson-module-parameter-names. **Version** : 2.22.0.
      * **Project URL:** [https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names](https://github.com/FasterXML/jackson-modules-java8/jackson-module-parameter-names)
@@ -16983,10 +16910,6 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/FasterXML/woodstox](https://github.com/FasterXML/woodstox)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.1.8.
-     * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
-     * **License:** [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.github.ben-manes.caffeine. **Name** : caffeine. **Version** : 3.2.4.
      * **Project URL:** [https://github.com/ben-manes/caffeine](https://github.com/ben-manes/caffeine)
@@ -17020,11 +16943,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson/gson](https://github.com/google/gson/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.6.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -17032,23 +16951,11 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing-api. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing-api. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing-common-deps. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
 1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing-common-deps. **Version** : 2.3.9.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing-gradle-plugin. **Version** : 2.3.6.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -17102,27 +17009,11 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
      * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.9.6.
-     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
-     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.35.0.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
-1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.34.1.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java-util. **Version** : 4.35.0.
-     * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
-     * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
-
-1.  **Group** : com.google.protobuf. **Name** : protobuf-kotlin. **Version** : 4.34.1.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
      * **License:** [BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 
@@ -17147,25 +17038,13 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 1.  **Group** : com.google.truth.extensions. **Name** : truth-proto-extension. **Version** : 1.4.5.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.75.0.
-     * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
-     * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
 1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format. **Version** : 2.91.0.
-     * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
-     * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.75.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : com.palantir.javaformat. **Name** : palantir-java-format-spi. **Version** : 2.91.0.
      * **Project URL:** [https://github.com/palantir/palantir-java-format](https://github.com/palantir/palantir-java-format)
      * **License:** [The Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 2.1.2.
-     * **Project URL:** [http://www.github.com/sksamuel/aedile](http://www.github.com/sksamuel/aedile)
-     * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
@@ -17290,10 +17169,6 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **License:** [GNU General Public License, version 2 (GPL2), with the classpath exception](http://www.gnu.org/software/classpath/license.html)
      * **License:** [The MIT License](http://opensource.org/licenses/MIT)
 
-1.  **Group** : org.checkerframework. **Name** : checker-qual. **Version** : 3.37.0.
-     * **Project URL:** [https://checkerframework.org/](https://checkerframework.org/)
-     * **License:** [The MIT License](http://opensource.org/licenses/MIT)
-
 1.  **Group** : org.checkerframework. **Name** : checker-qual. **Version** : 4.2.0.
      * **Project URL:** [https://checkerframework.org/](https://checkerframework.org/)
      * **License:** [The MIT License](https://opensource.org/licenses/MIT)
@@ -17310,10 +17185,6 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 1.  **Group** : org.freemarker. **Name** : freemarker. **Version** : 2.3.32.
      * **Project URL:** [https://freemarker.apache.org/](https://freemarker.apache.org/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 4.8.
-     * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
-     * **License:** [The BSD3 License](https://github.com/functionaljava/functionaljava/blob/master/etc/LICENCE)
 
 1.  **Group** : org.functionaljava. **Name** : functionaljava. **Version** : 5.0.
      * **Project URL:** [http://functionaljava.org/](http://functionaljava.org/)
@@ -17556,7 +17427,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -17908,11 +17779,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -18733,7 +18600,7 @@ This report was generated on **Thu Jun 11 20:57:12 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -19715,7 +19582,7 @@ This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -20067,11 +19934,7 @@ This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.6.
-     * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
-     * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : com.google.devtools.ksp. **Name** : symbol-processing. **Version** : 2.3.9.
+1.  **Group** : com.google.devtools.ksp. **Name** : com.google.devtools.ksp.gradle.plugin. **Version** : 2.3.9.
      * **Project URL:** [https://goo.gle/ksp](https://goo.gle/ksp)
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -20892,7 +20755,7 @@ This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -21874,6 +21737,6 @@ This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 20:57:13 WEST 2026** using 
+This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).

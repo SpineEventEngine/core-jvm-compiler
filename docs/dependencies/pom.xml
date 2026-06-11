@@ -98,25 +98,25 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-api</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-gradle-api</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-jvm</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-params</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -218,13 +218,13 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-gradle-plugin</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
     <scope>test</scope>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -313,11 +313,6 @@ all modules and does not describe the project structure per-subproject.
   </dependency>
   <dependency>
     <groupId>com.google.devtools.ksp</groupId>
-    <artifactId>symbol-processing</artifactId>
-    <version>2.3.9</version>
-  </dependency>
-  <dependency>
-    <groupId>com.google.devtools.ksp</groupId>
     <artifactId>symbol-processing-api</artifactId>
     <version>2.3.9</version>
   </dependency>
@@ -367,17 +362,17 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-cli-all</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>compiler-protoc-plugin</artifactId>
-    <version>2.0.0-SNAPSHOT.051</version>
+    <version>2.0.0-SNAPSHOT.052</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.069</version>
+    <version>2.0.0-SNAPSHOT.070</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
