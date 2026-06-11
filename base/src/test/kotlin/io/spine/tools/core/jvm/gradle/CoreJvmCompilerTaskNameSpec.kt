@@ -24,28 +24,46 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.annotation
+package io.spine.tools.core.jvm.gradle
 
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
-import io.spine.tools.core.annotation.ApiAnnotationsPlugin
+import io.spine.tools.code.SourceSetName
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-@DisplayName("`ApiAnnotationsPlugin` should")
-internal class ApiAnnotationsPluginSpec {
+@DisplayName("`CoreJvmCompilerTaskName` should provide the name of")
+internal class CoreJvmCompilerTaskNameSpec {
+
+    private val test = SourceSetName.test
 
     @Test
-    fun `provide views and renderers`() {
-        val plugin = ApiAnnotationsPlugin()
-        plugin shouldNotBe null
-        plugin.views.size shouldNotBe 0
-        plugin.renderers.size shouldNotBe 0
+    fun `the 'preClean' task`() {
+        CoreJvmCompilerTaskName.preClean.name() shouldBe "preClean"
     }
 
     @Test
-    fun `expose the settings ID`() {
-        ApiAnnotationsPlugin.SETTINGS_ID shouldBe
-                "io.spine.tools.core.annotation.ApiAnnotationsPlugin"
+    fun `the descriptor set merging task`() {
+        CoreJvmCompilerTaskName.mergeDescriptorSet.name() shouldBe
+                "mergeDescriptorSet"
+        CoreJvmCompilerTaskName.mergeDescriptorSet(test).name() shouldBe
+                CoreJvmCompilerTaskName.mergeTestDescriptorSet.name()
+    }
+
+    @Test
+    fun `the plugin configuration task`() {
+        CoreJvmCompilerTaskName.writePluginConfiguration(test).name() shouldBe
+                "writeTestPluginConfiguration"
+    }
+
+    @Test
+    fun `the descriptor reference task`() {
+        CoreJvmCompilerTaskName.writeDescriptorReference(test).name() shouldBe
+                "writeTestDescriptorReferences"
+    }
+
+    @Test
+    fun `the compiler launch task`() {
+        CoreJvmCompilerTaskName.launchSpineCompiler.name() shouldBe
+                CoreJvmCompilerTaskName.launchSpineCompiler(SourceSetName.main).name()
     }
 }

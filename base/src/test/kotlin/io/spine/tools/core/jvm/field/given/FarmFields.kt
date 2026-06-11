@@ -24,35 +24,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.field.given
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import com.google.protobuf.Descriptors.FieldDescriptor
+import io.spine.code.proto.FieldDeclaration
+import io.spine.tools.core.jvm.given.base.Farm
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
-}
+/**
+ * Obtains the descriptor of the [Farm] field with the given name.
+ */
+internal fun farmField(name: String): FieldDescriptor =
+    Farm.getDescriptor().findFieldByName(name)
+        ?: error("The field `$name` is not declared in `Farm`.")
+
+/**
+ * Obtains the declaration of the [Farm] field with the given name.
+ */
+internal fun farmDeclaration(name: String): FieldDeclaration =
+    FieldDeclaration(farmField(name))

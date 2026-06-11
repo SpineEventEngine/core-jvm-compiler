@@ -24,35 +24,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.annotation
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotContain
+import java.nio.file.Path
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`ClassPatternAnnotator` should")
+internal class ClassPatternAnnotatorSpec {
+
+    companion object : AnnotationPluginTestSetup(
+        internalClassPatterns = listOf(".*PlainOne")
+    ) {
+
+        @BeforeAll
+        @JvmStatic
+        fun setup(@TempDir projectDir: Path) {
+            generateCode(projectDir)
+        }
+    }
+
+    @Test
+    fun `annotate classes matching a pattern as 'internal'`() {
+        val code = code("PlainOne")
+        code.substringBefore("class PlainOne") shouldContain INTERNAL
+    }
+
+    @Test
+    fun `not annotate classes which do not match`() {
+        code("PlainOneOrBuilder") shouldNotContain INTERNAL
+        code("PlainLevel") shouldNotContain INTERNAL
     }
 }

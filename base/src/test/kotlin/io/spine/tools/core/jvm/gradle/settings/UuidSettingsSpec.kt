@@ -24,35 +24,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.gradle.settings
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.maps.shouldContainKey
+import io.spine.tools.compiler.jvm.render.ImplementInterface
+import io.spine.tools.core.jvm.gradle.given.newProject
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`UuidSettings` should")
+internal class UuidSettingsSpec {
+
+    @Test
+    fun `apply default actions`() {
+        val settings = UuidSettings(newProject())
+        settings.enabled.get().shouldBeTrue()
+
+        val proto = settings.toProto()
+        val actions = proto.actions.actionMap
+        actions shouldContainKey ImplementInterface::class.java.name
+        actions shouldContainKey "io.spine.tools.core.jvm.uuid.AddFactoryMethods"
     }
 }

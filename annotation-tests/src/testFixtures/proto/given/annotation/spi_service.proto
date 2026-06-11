@@ -23,36 +23,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+syntax = "proto3";
 
-rootProject.name = "core-jvm-compiler"
+package given.annotation;
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import "spine/options.proto";
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+option java_multiple_files = true;
+
+// A request and response type for the service below.
+message Ping {
+    string value = 1;
+}
+
+// A service with the `SPI_service` option.
+service SpiServ {
+    option (SPI_service) = true;
+
+    rpc Serve(Ping) returns (Ping);
 }

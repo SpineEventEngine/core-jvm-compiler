@@ -23,36 +23,29 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+syntax = "proto3";
 
-rootProject.name = "core-jvm-compiler"
+package given.annotation;
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import "spine/options.proto";
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+option java_multiple_files = true;
+
+// A message with fields bearing API level options.
+message Carrier {
+
+    // Accessors of this field must be annotated as `internal`.
+    string value = 1 [(internal) = true];
+
+    // Accessors of this field must not be annotated.
+    string open = 2;
+
+    // Accessors of this repeated field must be annotated as `beta`.
+    repeated string tags = 3 [(beta) = true];
+
+    // Accessors of this map field must be annotated as `experimental`.
+    map<string, string> attrs = 4 [(experimental) = true];
+
+    // Accessors of this field must get both annotations.
+    string both = 5 [(internal) = true, (beta) = true];
 }

@@ -24,35 +24,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.annotation
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.string.shouldContain
+import io.kotest.matchers.string.shouldNotContain
+import java.nio.file.Path
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.io.TempDir
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`OuterClassAnnotator` should")
+internal class OuterClassAnnotatorSpec {
+
+    companion object : AnnotationPluginTestSetup() {
+
+        @BeforeAll
+        @JvmStatic
+        fun setup(@TempDir projectDir: Path) {
+            generateCode(projectDir)
+        }
+    }
+
+    @Test
+    fun `annotate the outer class of a single-file proto with a file-wide option`() {
+        val code = code("OuterInternal")
+        code shouldContain INTERNAL
+        // The annotation must precede the outer class declaration.
+        val outerClass = code.substringBefore("class OuterInternal")
+        outerClass shouldContain INTERNAL
+    }
+
+    @Test
+    fun `not annotate the outer class when the file-wide option is 'false'`() {
+        code("OuterReverting") shouldNotContain INTERNAL
     }
 }

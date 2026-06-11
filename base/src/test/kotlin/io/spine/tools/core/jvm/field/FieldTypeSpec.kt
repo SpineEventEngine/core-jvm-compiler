@@ -24,35 +24,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.field
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.types.shouldBeInstanceOf
+import io.spine.tools.core.jvm.field.given.farmDeclaration
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`FieldType` should")
+internal class FieldTypeSpec {
+
+    @Test
+    fun `create a map field type for a map field`() {
+        FieldType.of(farmDeclaration("barns_by_name")).shouldBeInstanceOf<MapFieldType>()
+    }
+
+    @Test
+    fun `create a repeated field type for a repeated field`() {
+        FieldType.of(farmDeclaration("tags")).shouldBeInstanceOf<RepeatedFieldType>()
+    }
+
+    @Test
+    fun `create a singular field type for an ordinary field`() {
+        FieldType.of(farmDeclaration("name")).shouldBeInstanceOf<SingularFieldType>()
     }
 }

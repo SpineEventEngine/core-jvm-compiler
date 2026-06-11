@@ -24,35 +24,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.gradle
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.assertions.throwables.shouldNotThrowAny
+import io.kotest.matchers.shouldBe
+import org.gradle.api.logging.Logging
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("Extensions for Gradle `Logger` should")
+internal class LoggerExtsSpec {
+
+    private val logger = Logging.getLogger(LoggerExtsSpec::class.java)
+
+    @Test
+    fun `expose the logging prefix`() {
+        LOG_PREFIX shouldBe "[CoreJvm Compiler] "
+    }
+
+    @Test
+    fun `log messages of supported levels without failure`() {
+        shouldNotThrowAny {
+            logger.info { "info message" }
+            logger.warn { "warn message" }
+            logger.debug { "debug message" }
+        }
     }
 }

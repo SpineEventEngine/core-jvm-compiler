@@ -24,35 +24,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.annotation
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.shouldBe
+import io.spine.tools.compiler.ast.enumType
+import io.spine.tools.compiler.ast.event.enumOptionDiscovered
+import io.spine.tools.core.annotation.given.apiOption
+import io.spine.tools.core.annotation.given.enumName
+import io.spine.tools.core.annotation.given.fileOptionMatchedWithEnum
+import io.spine.tools.core.annotation.given.testFile
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`EnumAnnotationsView` should route")
+internal class EnumAnnotationsViewSpec {
+
+    @Test
+    fun `'FileOptionMatched' to the target enum type`() {
+        val event = fileOptionMatchedWithEnum()
+        EnumAnnotationsView.route(event) shouldBe setOf(enumName)
+    }
+
+    @Test
+    fun `'EnumOptionDiscovered' to the subject type`() {
+        val event = enumOptionDiscovered {
+            file = testFile
+            subject = enumType {
+                name = enumName
+                file = testFile
+            }
+            option = apiOption("deprecated")
+        }
+        EnumAnnotationsView.route(event) shouldBe enumName
     }
 }

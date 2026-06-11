@@ -24,35 +24,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.field
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.optional.shouldBeEmpty
+import io.kotest.matchers.optional.shouldBePresent
+import io.kotest.matchers.shouldBe
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`PrimitiveType` should")
+internal class PrimitiveTypeSpec {
+
+    @Test
+    fun `provide wrappers for all supported primitives`() {
+        PrimitiveType.wrapperFor("int").shouldBePresent() shouldBe Int::class.javaObjectType
+        PrimitiveType.wrapperFor("long").shouldBePresent() shouldBe Long::class.javaObjectType
+        PrimitiveType.wrapperFor("float").shouldBePresent() shouldBe Float::class.javaObjectType
+        PrimitiveType.wrapperFor("double").shouldBePresent() shouldBe Double::class.javaObjectType
+        PrimitiveType.wrapperFor("boolean").shouldBePresent() shouldBe Boolean::class.javaObjectType
+    }
+
+    @Test
+    fun `return empty wrapper for a non-primitive name`() {
+        PrimitiveType.wrapperFor("String").shouldBeEmpty()
+    }
+
+    @Test
+    fun `reject an empty type name`() {
+        shouldThrow<IllegalArgumentException> {
+            PrimitiveType.wrapperFor("")
+        }
     }
 }

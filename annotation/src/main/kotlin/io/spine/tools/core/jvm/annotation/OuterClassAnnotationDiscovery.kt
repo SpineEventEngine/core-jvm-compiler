@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ import io.spine.server.procman.ProcessManager
 import io.spine.server.procman.ProcessManagerRepository
 import io.spine.server.route.EventRouting
 import io.spine.tools.core.annotation.ApiOption.Companion.findMatching
+import io.spine.tools.core.annotation.isTrue
 
 /**
  * A process manager which discovers the API annotation options set on the outer
@@ -55,16 +56,17 @@ internal class OuterClassAnnotationDiscovery:
             alter {
                 file = e.file
                 header = e.header
-                e.header.optionList.mapNotNull {
-                    findMatching(it)
-                }.forEach {
-                    // We care here only about the message options because service options
-                    // are handled by `ServiceAnnotationsView`, and gRPC services are top
-                    // level classes anyway. Using the message option would trigger
-                    // the annotation that would have been added to a message class if it
-                    // were a top level.
-                    addOption(it.messageOption)
-                }
+                e.header.optionList
+                    .filter { it.value.isTrue() }
+                    .mapNotNull { findMatching(it) }
+                    .forEach {
+                        // We care here only about the message options because service options
+                        // are handled by `ServiceAnnotationsView`, and gRPC services are top
+                        // level classes anyway. Using the message option would trigger
+                        // the annotation that would have been added to a message class if it
+                        // were a top level.
+                        addOption(it.messageOption)
+                    }
             }
         }
         return noReaction()

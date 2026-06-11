@@ -24,35 +24,30 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.gradle.given
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.spine.tools.core.jvm.gradle.CoreJvmOptions
+import io.spine.tools.gradle.root.RootPlugin
+import io.spine.tools.gradle.root.rootExtension
+import java.io.File
+import org.gradle.api.Project
+import org.gradle.testfixtures.ProjectBuilder
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+/**
+ * Creates a Gradle project in the given directory.
+ */
+internal fun newProject(dir: File? = null, parent: Project? = null): Project {
+    val builder = ProjectBuilder.builder()
+    dir?.let { builder.withProjectDir(it) }
+    parent?.let { builder.withParent(it) }
+    return builder.build()
+}
+
+/**
+ * Registers the `coreJvm` extension in this project the way
+ * the CoreJvm Gradle plugin does it.
+ */
+internal fun Project.createCoreJvmOptions(): CoreJvmOptions {
+    pluginManager.apply(RootPlugin::class.java)
+    return rootExtension.extensions.create(CoreJvmOptions.NAME, CoreJvmOptions::class.java)
 }

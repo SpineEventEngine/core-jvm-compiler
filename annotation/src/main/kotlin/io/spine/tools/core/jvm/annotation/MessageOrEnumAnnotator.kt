@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,7 @@ import io.spine.tools.compiler.jvm.MessageOrEnumConvention
 import io.spine.tools.compiler.jvm.javaMultipleFiles
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.WithOptions
+import io.spine.tools.core.annotation.isTrue
 
 /**
  * An abstract base for annotators of message types and enums.
@@ -49,7 +50,13 @@ internal sealed class MessageOrEnumAnnotator<T>(viewClass: Class<T>) :
 
     override fun needsAnnotation(apiOption: ApiOption, header: ProtoFileHeader): Boolean {
         val singleFile = !header.javaMultipleFiles()
-        val alreadyInHeader = header.optionList.contains(apiOption.fileOption)
+        // Compiler-produced options carry extra fields such as the option field
+        // number, so match by the name and the value instead of comparing
+        // whole `Option` instances.
+        val fileOption = apiOption.fileOption
+        val alreadyInHeader = header.optionList.any {
+            it.name == fileOption.name && it.value.isTrue()
+        }
         return !(singleFile && alreadyInHeader)
     }
 }

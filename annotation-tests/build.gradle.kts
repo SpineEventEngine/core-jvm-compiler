@@ -24,35 +24,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+import io.spine.dependency.lib.Protobuf
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+plugins {
+    module
+    protobuf
+    prototap
+    `test-module`
+}
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+dependencies {
+    arrayOf(
+        project(":base"),
+        project(":annotation"),
+        testFixtures(project(":base"))
+    ).forEach {
+        testImplementation(it)
     }
+}
+
+forceSpineBase()
+
+protobuf {
+    protoc { artifact = Protobuf.compiler }
 }

@@ -24,35 +24,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.annotation
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.shouldBe
+import io.spine.tools.compiler.ast.event.FieldOptionDiscovered
+import io.spine.tools.compiler.ast.event.fieldOptionDiscovered
+import io.spine.tools.core.annotation.given.apiOption
+import io.spine.tools.core.annotation.given.stringField
+import io.spine.tools.core.annotation.given.messageName
+import io.spine.tools.core.annotation.given.testFile
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`MessageFieldAnnotationsView` should route")
+internal class MessageFieldAnnotationsViewSpec {
+
+    private fun event(optionName: String): FieldOptionDiscovered = fieldOptionDiscovered {
+        file = testFile
+        subject = stringField("value", messageName)
+        option = apiOption(optionName)
+    }
+
+    @Test
+    fun `an API option to the declaring type`() {
+        MessageFieldAnnotationsView.route(event("internal")) shouldBe setOf(messageName)
+    }
+
+    @Test
+    fun `a non-API option to no targets`() {
+        MessageFieldAnnotationsView.route(event("deprecated")).shouldBeEmpty()
     }
 }

@@ -24,35 +24,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.annotation
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.shouldBe
+import io.spine.tools.compiler.ast.event.serviceOptionDiscovered
+import io.spine.tools.compiler.ast.service
+import io.spine.tools.core.annotation.given.apiOption
+import io.spine.tools.core.annotation.given.fileOptionMatchedWithService
+import io.spine.tools.core.annotation.given.serviceTestName
+import io.spine.tools.core.annotation.given.testFile
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`ServiceAnnotationsView` should route")
+internal class ServiceAnnotationsViewSpec {
+
+    @Test
+    fun `'FileOptionMatched' to the target service`() {
+        val event = fileOptionMatchedWithService()
+        ServiceAnnotationsView.route(event) shouldBe setOf(serviceTestName)
+    }
+
+    @Test
+    fun `'ServiceOptionDiscovered' to the subject service`() {
+        val event = serviceOptionDiscovered {
+            file = testFile
+            subject = service {
+                name = serviceTestName
+                file = testFile
+            }
+            option = apiOption("SPI_service")
+        }
+        ServiceAnnotationsView.route(event) shouldBe serviceTestName
     }
 }

@@ -24,28 +24,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.annotation
+package io.spine.tools.core.annotation
 
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
-import io.spine.tools.core.annotation.ApiAnnotationsPlugin
+import io.spine.tools.core.annotation.given.enumName
+import io.spine.tools.core.annotation.given.fileOptionMatchedWithEnum
+import io.spine.tools.core.annotation.given.fileOptionMatchedWithMessage
+import io.spine.tools.core.annotation.given.fileOptionMatchedWithService
+import io.spine.tools.core.annotation.given.messageName
+import io.spine.tools.core.annotation.given.serviceTestName
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-@DisplayName("`ApiAnnotationsPlugin` should")
-internal class ApiAnnotationsPluginSpec {
+@DisplayName("Routing extensions for `FileOptionMatched` should")
+internal class RoutingExtsSpec {
 
     @Test
-    fun `provide views and renderers`() {
-        val plugin = ApiAnnotationsPlugin()
-        plugin shouldNotBe null
-        plugin.views.size shouldNotBe 0
-        plugin.renderers.size shouldNotBe 0
+    fun `route to a message type`() {
+        fileOptionMatchedWithMessage().toMessageTypeName() shouldBe setOf(messageName)
+        fileOptionMatchedWithEnum().toMessageTypeName().shouldBeEmpty()
     }
 
     @Test
-    fun `expose the settings ID`() {
-        ApiAnnotationsPlugin.SETTINGS_ID shouldBe
-                "io.spine.tools.core.annotation.ApiAnnotationsPlugin"
+    fun `route to an enum type`() {
+        fileOptionMatchedWithEnum().toEnumTypeName() shouldBe setOf(enumName)
+        fileOptionMatchedWithMessage().toEnumTypeName().shouldBeEmpty()
+    }
+
+    @Test
+    fun `route to a service`() {
+        fileOptionMatchedWithService().toServiceName() shouldBe setOf(serviceTestName)
+        fileOptionMatchedWithMessage().toServiceName().shouldBeEmpty()
     }
 }

@@ -24,35 +24,18 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.field.given
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.spine.tools.compiler.protobuf.ProtoFileList
+import io.spine.tools.compiler.protobuf.toPbSourceFile
+import io.spine.tools.compiler.type.TypeSystem
+import io.spine.tools.core.jvm.given.base.Farm
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
-}
+/**
+ * Creates a [TypeSystem] which knows only the types declared in `farm.proto`.
+ */
+internal fun farmTypeSystem(): TypeSystem =
+    TypeSystem(
+        ProtoFileList(emptyList()),
+        setOf(Farm.getDescriptor().file.toPbSourceFile())
+    )

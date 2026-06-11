@@ -24,35 +24,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.field
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import com.google.common.testing.EqualsTester
+import io.kotest.matchers.shouldBe
+import io.spine.testing.ClassTest
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`Accessor` should")
+internal class AccessorSpec : ClassTest<Accessor>(Accessor::class.java) {
+
+    @Test
+    fun `create a prefix-only template`() {
+        Accessor.prefix("get").toString() shouldBe "get%s"
+    }
+
+    @Test
+    fun `create a template with a prefix and a postfix`() {
+        Accessor.prefixAndPostfix("get", "Map").toString() shouldBe "get%sMap"
+    }
+
+    @Test
+    fun `provide equality based on the template`() {
+        EqualsTester()
+            .addEqualityGroup(Accessor.prefix("get"), Accessor.prefixAndPostfix("get", ""))
+            .addEqualityGroup(Accessor.prefix("set"))
+            .addEqualityGroup(Accessor.prefixAndPostfix("get", "Count"))
+            .testEquals()
     }
 }

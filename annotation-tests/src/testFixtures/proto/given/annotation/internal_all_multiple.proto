@@ -23,36 +23,32 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+syntax = "proto3";
 
-rootProject.name = "core-jvm-compiler"
+package given.annotation;
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import "spine/options.proto";
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+option java_multiple_files = true;
+option (internal_all) = true;
+
+// A message which must get the `internal` annotation from the file-wide option.
+message Probe {
+    string value = 1;
+}
+
+// Another message in the same file.
+message Sonde {
+    string value = 1;
+}
+
+// An enum which must get the `internal` annotation from the file-wide option.
+enum Level {
+    LEVEL_UNDEFINED = 0;
+    HIGH = 1;
+}
+
+// A service declared in the file with the `internal_all` option.
+service Watching {
+    rpc Watch(Probe) returns (Sonde);
 }

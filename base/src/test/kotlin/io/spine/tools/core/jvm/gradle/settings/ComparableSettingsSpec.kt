@@ -24,35 +24,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.gradle.settings
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.maps.shouldContainKey
+import io.spine.tools.core.jvm.gradle.given.newProject
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("`ComparableSettings` should")
+internal class ComparableSettingsSpec {
+
+    @Test
+    fun `apply default actions`() {
+        val settings = ComparableSettings(newProject())
+        val actions = settings.toProto().actions.actionMap
+
+        actions shouldContainKey "io.spine.tools.core.jvm.comparable.action.AddComparator"
+        actions shouldContainKey "io.spine.tools.core.jvm.comparable.action.AddCompareTo"
+        actions shouldContainKey
+                "io.spine.tools.core.jvm.comparable.action.ImplementComparable"
     }
 }

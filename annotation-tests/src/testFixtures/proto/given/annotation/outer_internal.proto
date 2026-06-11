@@ -23,36 +23,22 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+syntax = "proto3";
 
-rootProject.name = "core-jvm-compiler"
+package given.annotation;
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import "spine/options.proto";
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+// `java_multiple_files` is `false` by default; we set it for clarity.
+option java_multiple_files = false;
+option (internal_all) = true;
+
+// Messages below are nested under the outer class `OuterInternal`,
+// which must get the `internal` annotation.
+message Uno {
+    string value = 1;
+}
+
+message Dos {
+    string value = 1;
 }

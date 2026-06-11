@@ -24,35 +24,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.jvm.settings
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import com.google.protobuf.Any
+import com.google.protobuf.StringValue
+import com.google.protobuf.stringValue
+import io.kotest.matchers.shouldBe
+import io.spine.protobuf.pack
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("Extensions for `ActionMap` should")
+internal class ActionsExtsSpec {
+
+    @Test
+    fun `provide the default 'Any' as the no-parameter marker`() {
+        noParameter shouldBe Any.getDefaultInstance()
+    }
+
+    @Test
+    fun `keep values which are already packed`() {
+        val packed = stringValue { value = "already packed" }.pack()
+        val map: ActionMap = mapOf("custom.Action" to packed)
+
+        map.pack() shouldBe mapOf("custom.Action" to packed)
+    }
+
+    @Test
+    fun `pack message values`() {
+        val raw = stringValue { value = "raw" }
+        val map: ActionMap = mapOf("custom.Action" to raw)
+
+        val packed = map.pack()
+        packed.getValue("custom.Action").unpack(StringValue::class.java) shouldBe raw
     }
 }

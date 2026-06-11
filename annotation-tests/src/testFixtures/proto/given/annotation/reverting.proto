@@ -24,35 +24,21 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+syntax = "proto3";
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+package given.annotation;
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
-    }
+import "spine/options.proto";
+
+option java_multiple_files = true;
+option (internal_all) = true;
+
+// This message overrides the `(internal_all)` option set for the file.
+message Reverting {
+    option (internal_type) = false;
+
+    string value = 1;
+
+    // Accessors of this field must not be annotated: the option is set to `false`.
+    string off = 2 [(internal) = false];
 }

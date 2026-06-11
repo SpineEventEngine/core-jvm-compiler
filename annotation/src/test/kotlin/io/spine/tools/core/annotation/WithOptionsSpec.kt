@@ -24,35 +24,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "core-jvm-compiler"
+package io.spine.tools.core.annotation
 
-include(
-    "plugins",
-    "annotation",
-    "annotation-tests",
-    "base",
-    "comparable",
-    "comparable-tests",
-    "entity",
-    "entity-tests",
-    "grpc",
-    "signal",
-    "signal-tests",
-    "ksp",
-    "marker",
-    "marker-tests",
-    "message-group",
-    "message-group-tests",
-    "routing",
-    "routing-tests",
-    "uuid",
-    "uuid-tests",
-)
+import io.kotest.matchers.shouldBe
+import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.Option
+import io.spine.tools.core.annotation.given.apiOption
+import io.spine.tools.core.annotation.given.testFile
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        mavenLocal()
-        mavenCentral()
+@DisplayName("Extensions for `WithOptions` should")
+internal class WithOptionsSpec {
+
+    private val options = listOf(apiOption("internal_all"))
+
+    /**
+     * A stub implementation backed by fixed values.
+     */
+    private val withOptions = object : WithOptions {
+        override fun getOptionList(): List<Option> = options
+        override fun getFile(): File = testFile
+    }
+
+    @Test
+    fun `provide a shortcut for the option list`() {
+        withOptions.optionList shouldBe options
+    }
+
+    @Test
+    fun `provide a shortcut for the file`() {
+        withOptions.file shouldBe testFile
     }
 }

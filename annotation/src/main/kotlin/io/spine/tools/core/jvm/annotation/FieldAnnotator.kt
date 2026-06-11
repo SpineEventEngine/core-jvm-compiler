@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import io.spine.tools.compiler.jvm.MessageOrEnumConvention
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.FieldOptions
 import io.spine.tools.core.annotation.MessageFieldAnnotations
+import io.spine.tools.core.annotation.isTrue
 import io.spine.tools.java.reference
 
 /**
@@ -61,7 +62,9 @@ internal class FieldAnnotator :
         fieldOption: FieldOptions
     ) {
         val messageType = typeSystem.findMessage(view.type)!!.first
-        fieldOption.optionList.forEach { option ->
+        // Options with the `false` value do not produce annotations.
+        val enabledOptions = fieldOption.optionList.filter { it.value.isTrue() }
+        enabledOptions.forEach { option ->
             val apiOption = ApiOption.findMatching(option)
             check(apiOption != null) {
                 "Unable to find an API option for `${option.name}`."
