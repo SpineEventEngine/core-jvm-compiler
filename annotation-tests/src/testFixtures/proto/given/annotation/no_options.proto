@@ -35,6 +35,12 @@ message PlainOne {
 }
 
 // An enum without API level options. It must not be annotated.
+//
+// The standard `deprecated` option makes the compiler dispatch
+// `EnumOptionDiscovered` for this enum, checking that non-API
+// options do not produce annotations.
 enum PlainLevel {
+    option deprecated = true;
+
     PLAIN_LEVEL_UNDEFINED = 0;
 }
