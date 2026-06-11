@@ -139,14 +139,25 @@ allprojects {
 }
 
 subprojects {
-    pluginManager.withPlugin(ProtoTap.gradlePluginId) {
-        tasks.withType<com.google.protobuf.gradle.GenerateProtoTask>().configureEach {
+    tasks.withType<com.google.protobuf.gradle.GenerateProtoTask>().configureEach {
+        outputs.cacheIf(
+            "Protoc plugins used in this repository — ProtoTap in `*-tests`" +
+                    " modules and the Spine Compiler protoc plugin elsewhere —" +
+                    " write captures (`CodeGeneratorRequest.binpb`, descriptor" +
+                    " references) as side effects without declaring them as task" +
+                    " outputs. A build-cache hit restores only the declared" +
+                    " outputs, breaking the downstream codegen and" +
+                    " `PipelineSetup`-based test suites. Always run protoc."
+        ) { false }
+    }
+    tasks.configureEach {
+        if (name.startsWith("launch") && name.endsWith("SpineCompiler")) {
             outputs.cacheIf(
-                "ProtoTap stores `CodeGeneratorRequest.binpb` and the generated code" +
-                        " in test resources as a side effect without declaring them as" +
-                        " task outputs. A build-cache hit restores only the declared" +
-                        " outputs, so `PipelineSetup`-based suites fail to find" +
-                        " the capture. Always execute the task in tapped modules."
+                "The Spine Compiler launch exchanges request and descriptor" +
+                        " files with other tasks outside the declared task" +
+                        " outputs. A build-cache hit restores only the generated" +
+                        " sources, leaving the module without the descriptor" +
+                        " resources required by `KnownTypes` at test runtime."
             ) { false }
         }
     }
