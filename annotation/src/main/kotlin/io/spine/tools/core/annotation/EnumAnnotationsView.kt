@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,11 +44,22 @@ internal class EnumAnnotationsView : View<TypeName, EnumAnnotations, EnumAnnotat
 
     @Subscribe
     fun on(e: FileOptionMatched) = alter {
+        file = e.file
+        // If the option is already present at the enum level, do not overwrite it.
+        optionList.find { it.name == e.assumed.name }?.let {
+            return@alter
+        }
         addOption(e.assumed)
     }
 
     @Subscribe
     fun on(@External e: EnumOptionDiscovered) = alter {
+        file = e.file
+        // If the option was defined at the file level, overwrite it.
+        optionBuilderList.find { it.name == e.option.name }?.let {
+            it.value = e.option.value
+            return@alter
+        }
         addOption(e.option)
     }
 
