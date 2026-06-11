@@ -10,7 +10,7 @@ all modules and does not describe the project structure per-subproject.
  -->
 <groupId>io.spine.tools</groupId>
 <artifactId>core-jvm-compiler</artifactId>
-<version>2.0.0-SNAPSHOT.070</version>
+<version>2.0.0-SNAPSHOT.072</version>
 
 <inceptionYear>2015</inceptionYear>
 
@@ -56,12 +56,6 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-annotations</artifactId>
-    <version>2.0.0-SNAPSHOT.410</version>
-    <scope>compile</scope>
-  </dependency>
-  <dependency>
-    <groupId>io.spine</groupId>
-    <artifactId>spine-base</artifactId>
     <version>2.0.0-SNAPSHOT.410</version>
     <scope>compile</scope>
   </dependency>
@@ -207,6 +201,12 @@ all modules and does not describe the project structure per-subproject.
     <groupId>io.kotest</groupId>
     <artifactId>kotest-assertions-core</artifactId>
     <version>6.1.11</version>
+    <scope>test</scope>
+  </dependency>
+  <dependency>
+    <groupId>io.spine</groupId>
+    <artifactId>spine-base</artifactId>
+    <version>2.0.0-SNAPSHOT.410</version>
     <scope>test</scope>
   </dependency>
   <dependency>
