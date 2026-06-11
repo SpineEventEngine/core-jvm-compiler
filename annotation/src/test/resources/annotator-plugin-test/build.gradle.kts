@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -104,7 +104,6 @@ subprojects {
         main {
             java.srcDirs("$projectDir/generated/main/java", "$projectDir/generated/main/spine")
             resources.srcDir("$projectDir/generated/main/resources")
-            (extensions.getByName("proto") as SourceDirectorySet).srcDir("$projectDir/src/main/proto")
         }
     }
 }

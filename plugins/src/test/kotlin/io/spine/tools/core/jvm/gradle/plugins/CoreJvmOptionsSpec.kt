@@ -31,12 +31,12 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
+import io.spine.base.MessageFile
 import io.spine.option.OptionsProto
 import io.spine.testing.SlowTest
 import io.spine.tools.compiler.jvm.render.ImplementInterface
 import io.spine.tools.compiler.render.actions
 import io.spine.tools.compiler.render.add
-import io.spine.tools.core.jvm.MessageFile
 import io.spine.tools.core.jvm.NoOpMessageAction
 import io.spine.tools.core.jvm.applyStandard
 import io.spine.tools.core.jvm.field.AddFieldClass
@@ -311,7 +311,7 @@ class CoreJvmOptionsSpec {
         fun commands() {
             signalSettings.commands.run {
                 patternList shouldHaveSize 1
-                patternList[0].suffix shouldBe MessageFile.COMMANDS.suffix
+                patternList[0].suffix shouldBe MessageFile.COMMANDS.suffix()
             }
         }
 
@@ -319,7 +319,7 @@ class CoreJvmOptionsSpec {
         fun events() {
             signalSettings.events.run {
                 patternList shouldHaveSize 1
-                patternList[0].suffix shouldBe MessageFile.EVENTS.suffix
+                patternList[0].suffix shouldBe MessageFile.EVENTS.suffix()
             }
         }
 
@@ -327,7 +327,7 @@ class CoreJvmOptionsSpec {
         fun rejections() {
             signalSettings.rejections.run {
                 patternList shouldHaveSize 1
-                patternList[0].suffix shouldBe MessageFile.REJECTIONS.suffix
+                patternList[0].suffix shouldBe MessageFile.REJECTIONS.suffix()
             }
         }
 
