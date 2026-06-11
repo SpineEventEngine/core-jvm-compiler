@@ -9,7 +9,7 @@ See [README.md](README.md) for the format and routing rules.
 
 ## Project (durable context & rationale)
 
-*(no entries yet)*
+- [windows-ci-needs-real-symlinks](project/windows-ci-needs-real-symlinks.md) — `tests/` build needs git symlinks checked out natively; never set `core.symlinks false` in Windows CI.
 
 ## Reference (external systems)
 
