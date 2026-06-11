@@ -150,17 +150,6 @@ subprojects {
                     " `PipelineSetup`-based test suites. Always run protoc."
         ) { false }
     }
-    tasks.configureEach {
-        if (name.startsWith("launch") && name.endsWith("SpineCompiler")) {
-            outputs.cacheIf(
-                "The Spine Compiler launch exchanges request and descriptor" +
-                        " files with other tasks outside the declared task" +
-                        " outputs. A build-cache hit restores only the generated" +
-                        " sources, leaving the module without the descriptor" +
-                        " resources required by `KnownTypes` at test runtime."
-            ) { false }
-        }
-    }
 }
 
 KoverConfig.applyTo(rootProject)
