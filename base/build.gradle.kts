@@ -32,6 +32,7 @@ import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
+import io.spine.gradle.report.coverage.creditTestCoverageFrom
 
 plugins {
     module
@@ -108,3 +109,8 @@ dependencies {
 }
 
 forceSpineBase()
+
+/**
+ * Add coverage of the `AddFieldClass` from the integration tests executed the referenced project.
+ */
+creditTestCoverageFrom(project(":entity-tests"))
