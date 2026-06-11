@@ -8,7 +8,7 @@ started: 2026-06-10
 
 ## Goal
 
-Close the findings of the 2026-06 repository audit that are owned by
+Close the findings of the 2026-06 [repository audit][repo-audit] that are owned by
 this repository: unify the dual plugin-registration paths, trim the
 `api(...)` re-exports of `base`, and add direct tests for modules that
 have none. The full audit report (covering this repo and `compiler`)
@@ -78,3 +78,6 @@ Milestone 3 — polish:
 - 2026-06-10 — merged `master` (PR #92 landed: `MessageFile` adoption,
   version `.069` published); re-bumped to `.070`; T1 wording refreshed
   to account for the new `MessageFileSpec`.
+
+
+[repo-audit]: https://claude.ai/code/session_01J8FpY1sQd1ehN3upW7HiUr
