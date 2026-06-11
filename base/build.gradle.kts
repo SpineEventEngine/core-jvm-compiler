@@ -104,7 +104,3 @@ dependencies {
 }
 
 forceSpineBase()
-
-tasks.matching { it.name == "launchSpineCompiler" }.configureEach {
-    mustRunAfter("writeArtifactMeta")
-}
