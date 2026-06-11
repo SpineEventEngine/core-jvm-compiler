@@ -2,7 +2,7 @@
 slug: honor-false-api-options
 branch: raise-coverage
 owner: claude
-status: in-progress
+status: in-review
 started: 2026-06-11
 ---
 
@@ -49,10 +49,12 @@ types of the (empty) outer class.
       `false`-valued options.
 - [x] IgTest: make "if message option overrides file option" non-vacuous
       via `checkTypeAnnotations` (the proto is `java_multiple_files = true`).
-- [ ] Run `:annotation:test` and `:annotation-tests:test`; fix fallout.
+- [x] Run `:annotation:test` and `:annotation-tests:test`; fix fallout.
   - `:annotation-tests:build` green (26/26) with `--no-build-cache`;
     see the `prototap-build-cache` memory for the cache gotcha.
-  - `:annotation:test` (incl. the IgTest) running.
+  - `:annotation:test` green (48/48) after clearing the staleness layers
+    described in the `igtest-stale-plugins` memory; the non-vacuous
+    IgTest check now passes against the `.072` fat jar.
 
 ## Log
 
@@ -61,3 +63,11 @@ types of the (empty) outer class.
 - 2026-06-11 — code changes done; `:annotation-tests` suite green
   (the user flipped the `Reverting` test concurrently in the IDE;
   kept their wording, added the `OrBuilder` assertion).
+- 2026-06-11 — first `:annotation:test` run failed only on the
+  newly non-vacuous IgTest check: the nested build ran fat jar `.070`
+  (stale `writeArtifactMeta` resource + build cache + warm daemons; see
+  the `igtest-stale-plugins` memory). After `writeArtifactMeta --rerun`,
+  republishing, `--stop`, and clearing the TestKit daemon/cache, the
+  manual repro generates `ReveringFileOption` without `@Internal`,
+  keeps `InternalMessage` nested types annotated, and annotates only
+  the outer class in `OuterInternal` (1 annotation vs 7 before).
