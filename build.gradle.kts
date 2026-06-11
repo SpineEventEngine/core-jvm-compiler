@@ -29,6 +29,7 @@
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
@@ -135,6 +136,20 @@ allprojects {
     group = Spine.toolsGroup
     version = extra["versionToPublish"]!!
     repositories.standardToSpineSdk()
+}
+
+subprojects {
+    pluginManager.withPlugin(ProtoTap.gradlePluginId) {
+        tasks.withType<com.google.protobuf.gradle.GenerateProtoTask>().configureEach {
+            outputs.cacheIf(
+                "ProtoTap stores `CodeGeneratorRequest.binpb` and the generated code" +
+                        " in test resources as a side effect without declaring them as" +
+                        " task outputs. A build-cache hit restores only the declared" +
+                        " outputs, so `PipelineSetup`-based suites fail to find" +
+                        " the capture. Always execute the task in tapped modules."
+            ) { false }
+        }
+    }
 }
 
 KoverConfig.applyTo(rootProject)

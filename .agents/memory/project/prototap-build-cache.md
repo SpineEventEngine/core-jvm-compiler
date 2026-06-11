@@ -18,7 +18,9 @@ then fails in `@BeforeAll` with
 :annotation-tests:build` failed all specs after a cache hit; the identical
 build with `--no-build-cache` passed.
 
-**How to apply:** after `clean` of a `*-tests` module — or whenever the
-`.binpb` resource error appears — rerun the build with `--no-build-cache`.
-The root fix belongs in the ProtoTap plugin: declare the capture files as
-task outputs.
+**How to apply:** the root `build.gradle.kts` now disables build caching
+for `GenerateProtoTask`s in modules applying ProtoTap (see the
+`subprojects` block), so the capture is always produced. If the error
+still appears, check that the module applies the `prototap` plugin and
+that the guard is in place. The proper fix belongs in the ProtoTap
+plugin: declare the capture files as task outputs.
