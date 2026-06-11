@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +28,7 @@ import io.spine.dependency.lib.Roaster
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
+import io.spine.gradle.report.coverage.creditTestCoverageFrom
 
 plugins {
     module
@@ -54,6 +55,14 @@ dependencies {
 }
 
 forceBaseInProtoTasks()
+
+/**
+ * The renderers and views of this module are exercised end-to-end by
+ * the `annotation-tests` module, which runs the Compiler pipeline in-process.
+ * Credit that coverage to this module's own Kover report, which otherwise
+ * sees only this module's `test` data.
+ */
+creditTestCoverageFrom(project(":annotation-tests"))
 
 /**
  * Tests use the artifacts published to `mavenLocal`, so we need to publish them all first.
