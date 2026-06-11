@@ -77,7 +77,7 @@ public object GeneratedAnnotation {
      */
     public fun forJavaPoet(value: String = defaultValue): JAnnotationSpec =
         JAnnotationSpec.builder(Generated::class.java)
-            .addMember("value", "\"\$L\"", value)
+            .addMember("value", "\$S", value)
             .build()
 
     /**
@@ -88,6 +88,6 @@ public object GeneratedAnnotation {
      */
     public fun forKotlinPoet(value: String = defaultValue): KAnnotationSpec =
         KAnnotationSpec.builder(Generated::class)
-            .addMember("\"%L\"", value)
+            .addMember("%S", value)
             .build()
 }

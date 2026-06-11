@@ -44,7 +44,7 @@ internal class SettingsWithActionsSpec {
     private lateinit var settings: UuidSettings
 
     /**
-     * The name of the interface action as used by [markAs] methods.
+     * The name of the interface action as used by [SettingsWithActions.markAs] methods.
      */
     private val implementInterface = ImplementInterface::class.java.name
 

@@ -46,7 +46,7 @@ internal class EnumAnnotationsView : View<TypeName, EnumAnnotations, EnumAnnotat
     fun on(e: FileOptionMatched) = alter {
         file = e.file
         // If the option is already present at the enum level, do not overwrite it.
-        optionList.find { it.name == e.assumed.name }?.let {
+        if (optionList.any { it.name == e.assumed.name }) {
             return@alter
         }
         addOption(e.assumed)

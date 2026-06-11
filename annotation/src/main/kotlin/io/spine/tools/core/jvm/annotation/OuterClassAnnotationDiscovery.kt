@@ -50,8 +50,9 @@ internal class OuterClassAnnotationDiscovery:
 
     @React
     fun on(@External e: FileEntered): NoReaction {
-        // The check here is a safety net. We should get only events for
-        // proto files with `java_multiple_files` set to `true`. See `Repository.setEventRouting`.
+        // The check here is a safety net. We should get only events for proto
+        // files with `java_multiple_files` set to `false`, for which a single
+        // outer class is generated. See `Repository.setupEventRouting`.
         if (!e.header.javaMultipleFiles()) {
             alter {
                 file = e.file

@@ -75,9 +75,21 @@ internal abstract class AnnotationPluginTestSetup(
 }
 
 /**
- * The annotation lines added to the generated code.
+ * The `@Internal` annotation line added to the generated code.
  */
 internal const val INTERNAL = "@io.spine.annotation.Internal"
+
+/**
+ * The `@Beta` annotation line added to the generated code.
+ */
 internal const val BETA = "@io.spine.annotation.Beta"
+
+/**
+ * The `@Experimental` annotation line added to the generated code.
+ */
 internal const val EXPERIMENTAL = "@io.spine.annotation.Experimental"
+
+/**
+ * The `@SPI` annotation line added to the generated code.
+ */
 internal const val SPI_ANNOTATION = "@io.spine.annotation.SPI"
