@@ -22,5 +22,11 @@ build with `--no-build-cache` passed.
 for `GenerateProtoTask`s in modules applying ProtoTap (see the
 `subprojects` block), so the capture is always produced. If the error
 still appears, check that the module applies the `prototap` plugin and
-that the guard is in place. The proper fix belongs in the ProtoTap
-plugin: declare the capture files as task outputs.
+that the guard is in place.
+
+**Root fix:** implemented in ProtoTap 0.15.0 (branch
+`support-gradle-build-cache`, 2026-06-11): the Gradle plugin declares the
+tapped files (`CodeGeneratorRequest.binpb`, `CodeGeneratorRequest.pb.json`,
+`CompiledProtoFiles.txt`) as `GenerateProtoTask` outputs, so build-cache
+hits restore them. Once this repo depends on ProtoTap ≥ 0.15.0, remove
+the root-build guard and delete this memory.
