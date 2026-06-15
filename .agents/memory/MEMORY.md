@@ -10,6 +10,7 @@ See [README.md](README.md) for the format and routing rules.
 ## Project (durable context & rationale)
 
 - [windows-ci-needs-real-symlinks](project/windows-ci-needs-real-symlinks.md) — `tests/` build needs git symlinks checked out natively; never set `core.symlinks false` in Windows CI.
+- [gradle-needs-utf8-locale](project/gradle-needs-utf8-locale.md) — Run Gradle with `LC_ALL=C.UTF-8`; the default POSIX locale makes `sun.jnu.encoding` ASCII and breaks expansion of dependency jars with non-ASCII entries (e.g. KSP).
 
 ## Reference (external systems)
 
