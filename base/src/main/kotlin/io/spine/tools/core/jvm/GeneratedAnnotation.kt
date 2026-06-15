@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,9 +77,8 @@ public object GeneratedAnnotation {
      */
     public fun forJavaPoet(value: String = defaultValue): JAnnotationSpec =
         JAnnotationSpec.builder(Generated::class.java)
-            .addMember("value", "\"%L\"", value)
+            .addMember("value", "\$S", value)
             .build()
-
 
     /**
      * Creates a new [PsiAnnotation] with the [Generated] annotation.
@@ -89,6 +88,6 @@ public object GeneratedAnnotation {
      */
     public fun forKotlinPoet(value: String = defaultValue): KAnnotationSpec =
         KAnnotationSpec.builder(Generated::class)
-            .addMember("\"%L\"", value)
+            .addMember("%S", value)
             .build()
 }
