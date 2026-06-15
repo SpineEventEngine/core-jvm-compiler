@@ -20,7 +20,10 @@ extraction to disk fails.
 **Why:** Hit on 2026-06-15 while running `publishToMavenLocal` to verify
 issue #29. `gradle.properties` already sets `-Dfile.encoding=UTF-8`, but that
 does **not** affect file names: `sun.jnu.encoding` is derived from the OS
-locale, not from `-D` system properties, so the build still breaks.
+locale, not from `-D` system properties, so the build still breaks. This is a
+known Gradle/JVM limitation, not specific to this repo — see
+[gradle/gradle#13526](https://github.com/gradle/gradle/issues/13526) for the
+same failure on the sibling `kotlin-compiler-embeddable` jar.
 
 **How to apply:** Run Gradle under a UTF-8 locale, e.g.
 `LC_ALL=C.UTF-8 LANG=C.UTF-8 ./gradlew …` (`C.utf8` is the same locale). Stop
