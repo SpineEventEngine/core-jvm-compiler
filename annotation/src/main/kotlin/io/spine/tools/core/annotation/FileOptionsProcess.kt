@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import io.spine.tools.core.annotation.event.fileOptionMatched
 /**
  * Transforms options defined in a Protobuf file into [FileOptionMatched] events that match
  * a file-level option with an option for a corresponding Protobuf type such as
- * a message or a service defined in the file.
+ * a message, an enum, or a service defined in the file.
  *
  * @see io.spine.tools.core.annotation.event.FileOptionMatched
  */
@@ -99,6 +99,7 @@ private fun ProtobufSourceFile.addEvents(
     apiOption: ApiOption
 ) {
     addMessageEvents(events, fileOption, apiOption.messageOption)
+    addEnumEvents(events, fileOption, apiOption.messageOption)
     apiOption.serviceOption?.let { serviceOption ->
         addServiceEvents(events, fileOption, serviceOption)
     }
@@ -115,6 +116,22 @@ private fun ProtobufSourceFile.addMessageEvents(
             file = thisSource.file
             this.fileOption = fileOption
             this@fileOptionMatched.messageType = message.name
+            assumed = typeOption
+        })
+    }
+}
+
+private fun ProtobufSourceFile.addEnumEvents(
+    events: MutableList<FileOptionMatched>,
+    fileOption: Option,
+    typeOption: Option
+) {
+    val thisSource = this
+    enumTypeMap.values.forEach { enumType ->
+        events.add(fileOptionMatched {
+            file = thisSource.file
+            this.fileOption = fileOption
+            this@fileOptionMatched.enumType = enumType.name
             assumed = typeOption
         })
     }

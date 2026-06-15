@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ public abstract class ModuleOptions @Inject constructor(private val project: Pro
             ModuleKind.SERVER -> CoreJvm.server
             ModuleKind.CLIENT -> CoreJvm.client
         }
-        project.dependencies.add("implementation", dependency)
+        project.dependencies.add("implementation", dependency.artifact.coordinates)
     }
 }
 

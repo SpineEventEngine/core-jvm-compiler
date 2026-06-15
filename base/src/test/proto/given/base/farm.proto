@@ -1,0 +1,115 @@
+/*
+ * Copyright 2026, TeamDev. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Redistribution and use in source and/or binary forms, with or without
+ * modification, must retain the above copyright notice and the following
+ * disclaimer.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+syntax = "proto3";
+
+package given.base;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.core.jvm.given.base";
+option java_outer_classname = "FarmProto";
+option java_multiple_files = true;
+
+import "google/protobuf/timestamp.proto";
+
+// A message with fields of various shapes used in tests of the `field` package
+// and field-path resolution.
+message Farm {
+
+    // The ID field marked as `(required)` explicitly.
+    string id = 1 [(required) = true];
+
+    // A singular `string` field.
+    string name = 2;
+
+    // A singular primitive field.
+    int32 size = 3;
+
+    // A singular `bool` field.
+    bool active = 4;
+
+    // A singular `bytes` field.
+    bytes data = 5;
+
+    // A singular `double` field.
+    double rating = 6;
+
+    // A singular message-typed field.
+    Barn barn = 7;
+
+    // A field of a nested message type.
+    Barn.Stall stall = 8;
+
+    // A repeated `string` field.
+    repeated string tags = 9;
+
+    // A repeated primitive field.
+    repeated int32 counts = 10;
+
+    // A repeated message-typed field.
+    repeated Barn barns = 11;
+
+    // A map with a message value type.
+    map<string, Barn> barns_by_name = 12;
+
+    // A map with a primitive key type.
+    map<int32, string> names_by_id = 13;
+
+    // A field of a type declared in another proto file.
+    google.protobuf.Timestamp built = 14;
+
+    // An enum field.
+    Color color = 15;
+}
+
+// A message nested structure used for testing nested field resolution.
+message Barn {
+
+    // A singular `string` field.
+    string title = 1;
+
+    // A field of the type nested into this message.
+    Stall stall = 2;
+
+    // A nested message type.
+    message Stall {
+
+        // A singular `string` field.
+        string id = 1;
+    }
+}
+
+// An enumeration for testing enum-typed fields.
+enum Color {
+
+    // The default value.
+    COLOR_UNDEFINED = 0;
+
+    // The red color.
+    RED = 1;
+}

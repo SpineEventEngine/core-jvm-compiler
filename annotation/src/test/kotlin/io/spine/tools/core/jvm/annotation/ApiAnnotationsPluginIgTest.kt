@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -286,9 +286,13 @@ internal class ApiAnnotationsPluginIgTest {
         fun `gRPC services if service option is false`() =
             checkServiceAnnotations(GivenProtoFile.NO_INTERNAL_OPTIONS, Internal::class.java, false)
 
+        /**
+         * The `reverting.proto` file declares `java_multiple_files = true`, so
+         * the message classes are top-level, and we check them directly.
+         */
         @Test
         fun `if message option overrides file option`() =
-            checkNestedTypesAnnotations(GivenProtoFile.REVERTING, Internal::class.java, false)
+            checkTypeAnnotations(GivenProtoFile.REVERTING, Internal::class.java, false)
     }
 
     @Test

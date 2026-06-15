@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,9 +31,7 @@ import io.spine.core.Subscribe
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.EnumOptionDiscovered
 import io.spine.tools.compiler.plugin.View
-import io.spine.tools.compiler.plugin.ViewRepository
 import io.spine.server.entity.alter
-import io.spine.server.route.EventRouting
 import io.spine.server.route.Route
 import io.spine.tools.core.annotation.event.FileOptionMatched
 
@@ -44,11 +42,22 @@ internal class EnumAnnotationsView : View<TypeName, EnumAnnotations, EnumAnnotat
 
     @Subscribe
     fun on(e: FileOptionMatched) = alter {
+        file = e.file
+        // If the option is already present at the enum level, do not overwrite it.
+        if (optionList.any { it.name == e.assumed.name }) {
+            return@alter
+        }
         addOption(e.assumed)
     }
 
     @Subscribe
     fun on(@External e: EnumOptionDiscovered) = alter {
+        file = e.file
+        // If the option was defined at the file level, overwrite it.
+        optionBuilderList.find { it.name == e.option.name }?.let {
+            it.value = e.option.value
+            return@alter
+        }
         addOption(e.option)
     }
 
@@ -59,17 +68,5 @@ internal class EnumAnnotationsView : View<TypeName, EnumAnnotations, EnumAnnotat
 
         @Route
         fun route(e: EnumOptionDiscovered) = e.subject.name
-    }
-
-    class Repository: ViewRepository<TypeName, EnumAnnotationsView, EnumAnnotations>() {
-
-        override fun setupEventRouting(routing: EventRouting<TypeName>) {
-            super.setupEventRouting(routing)
-            routing.route<FileOptionMatched> { e, _ ->
-                e.toEnumTypeName()
-            }.unicast<EnumOptionDiscovered> { e, _ ->
-                e.subject.name
-            }
-        }
     }
 }

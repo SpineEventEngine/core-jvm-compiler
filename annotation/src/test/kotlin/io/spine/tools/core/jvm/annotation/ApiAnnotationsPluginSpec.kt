@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +26,14 @@
 
 package io.spine.tools.core.jvm.annotation
 
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 @DisplayName("`ApiAnnotationsPlugin` should")
-class ApiAnnotationsPluginSpec {
+internal class ApiAnnotationsPluginSpec {
 
     @Test
     fun `provide views and renderers`() {
@@ -40,5 +41,11 @@ class ApiAnnotationsPluginSpec {
         plugin shouldNotBe null
         plugin.views.size shouldNotBe 0
         plugin.renderers.size shouldNotBe 0
+    }
+
+    @Test
+    fun `expose the settings ID`() {
+        ApiAnnotationsPlugin.SETTINGS_ID shouldBe
+                "io.spine.tools.core.annotation.ApiAnnotationsPlugin"
     }
 }

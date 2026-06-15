@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +33,7 @@ import io.spine.tools.compiler.context.findHeader
 import io.spine.tools.core.annotation.ApiOption
 import io.spine.tools.core.annotation.WithOptions
 import io.spine.tools.core.annotation.file
+import io.spine.tools.core.annotation.isTrue
 import io.spine.tools.core.annotation.optionList
 
 /**
@@ -42,9 +43,16 @@ internal abstract class TypeAnnotator<T>(
     viewClass: Class<T>
 ): ProtoAnnotator<T>(viewClass) where T : EntityState<*>, T : WithOptions {
 
+    /**
+     * Annotates the type in accordance with the API level options of the given view.
+     *
+     * Options with the `false` value are skipped. Setting an API option to `false`
+     * reverts the effect of the corresponding file-wide option, if any.
+     */
     @OverridingMethodsMustInvokeSuper
     override fun annotate(view: T) {
         view.optionList
+            .filter { it.value.isTrue() }
             .mapNotNull { ApiOption.findMatching(it) }
             .filter {
                 val header = findHeader(view.file)!!

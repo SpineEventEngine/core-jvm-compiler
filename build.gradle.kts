@@ -29,6 +29,7 @@
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
@@ -135,6 +136,20 @@ allprojects {
     group = Spine.toolsGroup
     version = extra["versionToPublish"]!!
     repositories.standardToSpineSdk()
+}
+
+subprojects {
+    tasks.withType<com.google.protobuf.gradle.GenerateProtoTask>().configureEach {
+        outputs.cacheIf(
+            "Protoc plugins used in this repository — ProtoTap in `*-tests`" +
+                    " modules and the Spine Compiler protoc plugin elsewhere —" +
+                    " write captures (`CodeGeneratorRequest.binpb`, descriptor" +
+                    " references) as side effects without declaring them as task" +
+                    " outputs. A build-cache hit restores only the declared" +
+                    " outputs, breaking the downstream codegen and" +
+                    " `PipelineSetup`-based test suites. Always run protoc."
+        ) { false }
+    }
 }
 
 KoverConfig.applyTo(rootProject)
