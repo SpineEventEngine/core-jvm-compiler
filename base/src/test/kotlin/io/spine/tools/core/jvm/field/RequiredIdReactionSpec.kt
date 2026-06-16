@@ -77,12 +77,10 @@ internal class RequiredIdReactionSpec {
         val error = assertThrows<Compilation.Error> {
             reaction.test(farmField("empty_id"), MESSAGE)
         }
-        error.message.let {
-            it shouldContain "empty_id"
-            it shouldContain "of type `google.protobuf.Empty`"
-            it shouldContain "is assumed to be `(required)` by convention"
-            it shouldContain "always equal to the default value"
-        }
+        error.message.assertErrorContains(
+            "empty_id",
+            "of type `google.protobuf.Empty`"
+        )
     }
 
     @Test
@@ -90,12 +88,10 @@ internal class RequiredIdReactionSpec {
         val error = assertThrows<Compilation.Error> {
             reaction.test(farmField("empty_ids"), MESSAGE)
         }
-        error.message.let {
-            it shouldContain "empty_ids"
-            it shouldContain "of type `repeated google.protobuf.Empty`"
-            it shouldContain "is assumed to be `(required)` by convention"
-            it shouldContain "always equal to the default value"
-        }
+        error.message.assertErrorContains(
+            "empty_ids",
+            "of type `repeated google.protobuf.Empty`"
+        )
     }
 
     @Test
@@ -103,12 +99,10 @@ internal class RequiredIdReactionSpec {
         val error = assertThrows<Compilation.Error> {
             reaction.test(farmField("empty_by_name"), MESSAGE)
         }
-        error.message.let {
-            it shouldContain "empty_by_name"
-            it shouldContain "of type `map<string, google.protobuf.Empty>`"
-            it shouldContain "is assumed to be `(required)` by convention"
-            it shouldContain "always equal to the default value"
-        }
+        error.message.assertErrorContains(
+            "empty_by_name",
+            "of type `map<string, google.protobuf.Empty>`"
+        )
     }
 
     @Test
@@ -126,6 +120,17 @@ internal class RequiredIdReactionSpec {
     private companion object {
         const val MESSAGE = "The ID field must be set."
     }
+}
+
+/**
+ * Asserts that this nullable String contains the given field name and type description,
+ * as well as the standard required field convention messages.
+ */
+private fun String?.assertErrorContains(fieldName: String, typeDescription: String) {
+    this shouldContain fieldName
+    this shouldContain typeDescription
+    this shouldContain "is assumed to be `(required)` by convention"
+    this shouldContain "always equal to the default value"
 }
 
 /**
