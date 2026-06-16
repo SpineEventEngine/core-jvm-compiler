@@ -57,6 +57,7 @@ message StopScanning {
 // Such a field can never be satisfied at runtime, so it must be rejected at
 // compile time. The type is excluded from regular pipeline runs (see
 // `SignalPluginTestSetup.defaultExclusions`) and exercised by `CommandIdErrorSpec`.
+//
 message BrokenIdCommand {
     google.protobuf.Empty telescope = 1;
 }

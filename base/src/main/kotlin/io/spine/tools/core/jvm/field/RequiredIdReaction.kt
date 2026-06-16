@@ -125,9 +125,9 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
  */
 private fun checkFieldIsNotEmpty(field: Field, file: File) =
     Compilation.check(!field.type.refersToEmpty(), file, field.span) {
-        "The field `${field.qualifiedName}` of type `${field.type.name}` cannot be marked" +
-                " as `(required)` because `google.protobuf.Empty` has no fields and its" +
-                " instances are always equal to the default value."
+        "The field `${field.qualifiedName}` of type `${field.type.name}` is assumed to be" +
+                " `(required)` by convention, but `google.protobuf.Empty` has no fields and" +
+                " its instances are always equal to the default value."
     }
 
 /**

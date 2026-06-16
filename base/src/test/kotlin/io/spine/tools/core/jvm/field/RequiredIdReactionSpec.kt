@@ -77,7 +77,12 @@ internal class RequiredIdReactionSpec {
         val error = assertThrows<Compilation.Error> {
             reaction.test(farmField("empty_id"), MESSAGE)
         }
-        error.message.assertRejectsEmpty("empty_id", "google.protobuf.Empty")
+        error.message.let {
+            it shouldContain "empty_id"
+            it shouldContain "of type `google.protobuf.Empty`"
+            it shouldContain "is assumed to be `(required)` by convention"
+            it shouldContain "always equal to the default value"
+        }
     }
 
     @Test
@@ -85,7 +90,12 @@ internal class RequiredIdReactionSpec {
         val error = assertThrows<Compilation.Error> {
             reaction.test(farmField("empty_ids"), MESSAGE)
         }
-        error.message.assertRejectsEmpty("empty_ids", "repeated google.protobuf.Empty")
+        error.message.let {
+            it shouldContain "empty_ids"
+            it shouldContain "of type `repeated google.protobuf.Empty`"
+            it shouldContain "is assumed to be `(required)` by convention"
+            it shouldContain "always equal to the default value"
+        }
     }
 
     @Test
@@ -93,25 +103,16 @@ internal class RequiredIdReactionSpec {
         val error = assertThrows<Compilation.Error> {
             reaction.test(farmField("empty_by_name"), MESSAGE)
         }
-        error.message.assertRejectsEmpty("empty_by_name", "map<string, google.protobuf.Empty>")
+        error.message.let {
+            it shouldContain "empty_by_name"
+            it shouldContain "of type `map<string, google.protobuf.Empty>`"
+            it shouldContain "is assumed to be `(required)` by convention"
+            it shouldContain "always equal to the default value"
+        }
     }
 
     private companion object {
         const val MESSAGE = "The ID field must be set."
-
-        /**
-         * Asserts that the compilation error message mentions the rejected [field] and
-         * its [type], and explains why an `Empty`-typed field cannot be required.
-         */
-        fun String?.assertRejectsEmpty(field: String, type: String) {
-            val message = this
-            check(message != null) { "The compilation error must have a message." }
-            message shouldContain field
-            message shouldContain "of type `$type`"
-            message shouldContain "cannot be marked as `(required)`"
-            message shouldContain "`google.protobuf.Empty` has no fields"
-            message shouldContain "always equal to the default value"
-        }
     }
 }
 

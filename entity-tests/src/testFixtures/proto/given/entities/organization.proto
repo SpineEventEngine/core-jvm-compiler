@@ -86,6 +86,7 @@ message Blob {
 // Such a field can never be satisfied at runtime, so it must be rejected at
 // compile time. The type is excluded from regular pipeline runs (see
 // `EntityPluginTestSetup.defaultExclusions`) and exercised by `IdFieldErrorSpec`.
+//
 message BrokenIdEntity {
     option (entity).kind = ENTITY;
     google.protobuf.Empty id = 1;

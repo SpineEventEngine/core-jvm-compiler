@@ -52,7 +52,7 @@ internal class CommandIdErrorSpec {
         error.message.let {
             it shouldContain "${descriptor.fullName}.telescope"
             it shouldContain "of type `google.protobuf.Empty`"
-            it shouldContain "cannot be marked as `(required)`"
+            it shouldContain "is assumed to be `(required)` by convention"
             it shouldContain "always equal to the default value"
         }
     }
