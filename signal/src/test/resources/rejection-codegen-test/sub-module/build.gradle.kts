@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,12 @@ plugins {
 }
 
 dependencies {
+    // Bring the Protobuf definitions of the shared, proto-only module into this module
+    // via the `protobuf()` configuration scope. The rejection throwables for the types
+    // declared there are expected to be generated in this module, exactly as if the
+    // `rejections.proto` had been declared in this module's own source set.
+    protobuf(project(":proto-dependency"))
+
     // Add Validation Java Runtime because the generated code reference
     // the `ValidatingBuilder` interface even if validation codegen is turned off.
     implementation(Validation.runtime)
