@@ -112,12 +112,15 @@ internal class RequiredIdReactionSpec {
     }
 
     @Test
-    fun `not reject a non-'Empty' message field, be it singular, 'repeated', or 'map'`() {
-        // A non-`Empty` message type must not be mistaken for `Empty` in any cardinality;
-        // such an ID field stays implicitly required.
-        reaction.test(farmField("barn"), MESSAGE).hasA().shouldBeTrue()
-        reaction.test(farmField("barns"), MESSAGE).hasA().shouldBeTrue()
-        reaction.test(farmField("barns_by_name"), MESSAGE).hasA().shouldBeTrue()
+    fun `not reject a field that does not refer to 'Empty', whatever its type or cardinality`() {
+        // None of these refer to `google.protobuf.Empty`, so the field stays implicitly
+        // required rather than being rejected:
+        //  - `barn`, `barns`, `barns_by_name`: singular, repeated, and mapped messages;
+        //  - `tags`, `names_by_id`: repeated and mapped primitives;
+        //  - `built`: a non-`Empty` well-known type (`google.protobuf.Timestamp`).
+        listOf("barn", "barns", "barns_by_name", "tags", "names_by_id", "built").forEach {
+            reaction.test(farmField(it), MESSAGE).hasA().shouldBeTrue()
+        }
     }
 
     private companion object {
