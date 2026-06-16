@@ -151,7 +151,7 @@
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -638,7 +638,7 @@
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -1158,7 +1158,7 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -1616,7 +1616,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -2140,7 +2140,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -2298,7 +2298,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -2785,7 +2785,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -3313,7 +3313,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -3471,7 +3471,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -3958,7 +3958,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -4478,7 +4478,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -4936,7 +4936,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -5460,7 +5460,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -5618,7 +5618,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -6105,7 +6105,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -6625,7 +6625,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -7083,7 +7083,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -7607,7 +7607,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -7765,7 +7765,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -8227,7 +8227,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -8747,7 +8747,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -8929,7 +8929,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -9411,7 +9411,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -9963,7 +9963,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -10121,7 +10121,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -10608,7 +10608,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -11136,7 +11136,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -11594,7 +11594,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -12118,7 +12118,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -12276,7 +12276,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -12763,7 +12763,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -13291,7 +13291,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -13749,7 +13749,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -14273,7 +14273,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -14459,7 +14459,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -14945,7 +14945,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -15505,7 +15505,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -15691,7 +15691,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -16214,7 +16214,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -16754,7 +16754,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:37 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -16923,6 +16923,10 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/googleapis/sdk-platform-java](https://github.com/googleapis/sdk-platform-java)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.api.grpc. **Name** : proto-google-common-protos. **Version** : 2.64.1.
+     * **Project URL:** [https://github.com/googleapis/sdk-platform-java](https://github.com/googleapis/sdk-platform-java)
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 1.  **Group** : com.google.auto.service. **Name** : auto-service-annotations. **Version** : 1.1.1.
      * **Project URL:** [https://github.com/google/auto/tree/main/service](https://github.com/google/auto/tree/main/service)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -16936,6 +16940,10 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.google.code.gson. **Name** : gson. **Version** : 2.11.0.
+     * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.code.gson. **Name** : gson. **Version** : 2.13.2.
      * **Project URL:** [https://github.com/google/gson](https://github.com/google/gson)
      * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -16964,6 +16972,10 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **License:** [The Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.google.errorprone. **Name** : error_prone_annotations. **Version** : 2.47.0.
+     * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
+     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.errorprone. **Name** : error_prone_annotations. **Version** : 2.48.0.
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
@@ -17088,7 +17100,15 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : io.grpc. **Name** : grpc-api. **Version** : 1.81.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : io.grpc. **Name** : grpc-bom. **Version** : 1.76.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
+1.  **Group** : io.grpc. **Name** : grpc-bom. **Version** : 1.81.0.
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -17096,7 +17116,15 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : io.grpc. **Name** : grpc-context. **Version** : 1.81.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : io.grpc. **Name** : grpc-core. **Version** : 1.76.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
+1.  **Group** : io.grpc. **Name** : grpc-core. **Version** : 1.81.0.
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -17104,7 +17132,15 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : io.grpc. **Name** : grpc-inprocess. **Version** : 1.81.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+     * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -17112,11 +17148,23 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : io.grpc. **Name** : grpc-protobuf. **Version** : 1.81.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : io.grpc. **Name** : grpc-protobuf-lite. **Version** : 1.76.0.
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
+1.  **Group** : io.grpc. **Name** : grpc-protobuf-lite. **Version** : 1.81.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : io.grpc. **Name** : grpc-stub. **Version** : 1.76.0.
+     * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
+     * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
+
+1.  **Group** : io.grpc. **Name** : grpc-stub. **Version** : 1.81.0.
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -17176,6 +17224,10 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 1.  **Group** : org.codehaus.mojo. **Name** : animal-sniffer-annotations. **Version** : 1.24.
      * **License:** [MIT license](https://spdx.org/licenses/MIT.txt)
      * **License:** [The Apache Software License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : org.codehaus.mojo. **Name** : animal-sniffer-annotations. **Version** : 1.27.
+     * **License:** [Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0.txt)
+     * **License:** [MIT license](https://spdx.org/licenses/MIT.txt)
 
 1.  **Group** : org.codehaus.woodstox. **Name** : stax2-api. **Version** : 4.2.1.
      * **Project URL:** [http://github.com/FasterXML/stax2-api](http://github.com/FasterXML/stax2-api)
@@ -17427,7 +17479,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:36 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -17585,7 +17637,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -18072,7 +18124,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -18600,7 +18652,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:37 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -19058,7 +19110,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -19582,7 +19634,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:37 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -19740,7 +19792,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -20227,7 +20279,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -20755,7 +20807,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:37 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
@@ -21213,7 +21265,7 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
      * **Project URL:** [https://github.com/grpc/grpc-java](https://github.com/grpc/grpc-java)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
-1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.4.1.
+1.  **Group** : io.grpc. **Name** : grpc-kotlin-stub. **Version** : 1.5.0.
      * **Project URL:** [https://github.com/grpc/grpc-kotlin](https://github.com/grpc/grpc-kotlin)
      * **License:** [Apache 2.0](https://opensource.org/licenses/Apache-2.0)
 
@@ -21737,6 +21789,6 @@ This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Jun 11 21:47:45 WEST 2026** using 
+This report was generated on **Tue Jun 16 23:27:37 WEST 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).

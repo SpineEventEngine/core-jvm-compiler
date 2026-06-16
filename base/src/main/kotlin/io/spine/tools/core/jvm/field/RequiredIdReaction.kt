@@ -127,7 +127,9 @@ private fun checkFieldIsNotEmpty(field: Field, file: File) =
     Compilation.check(!field.type.refersToEmpty(), file, field.span) {
         "The field `${field.qualifiedName}` of type `${field.type.name}` is assumed to be" +
                 " `(required)` by convention, but `google.protobuf.Empty` has no fields and" +
-                " its instances are always equal to the default value."
+                " its instances are always equal to the default value." +
+                " Please change the type of the field or explicitly mark" +
+                " it as not required using the `(required)` option."
     }
 
 /**
