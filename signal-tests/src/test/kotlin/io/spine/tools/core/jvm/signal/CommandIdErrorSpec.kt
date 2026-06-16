@@ -24,39 +24,36 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-syntax = "proto3";
+package io.spine.tools.core.jvm.signal
 
-package given.signals;
+import io.kotest.matchers.string.shouldContain
+import io.spine.testing.compiler.acceptingOnly
+import io.spine.tools.compiler.Compilation
+import io.spine.tools.core.signal.given.command.BrokenIdCommand
+import java.nio.file.Path
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.api.io.TempDir
 
-import "spine/options.proto";
+@DisplayName("`CommandTargetReaction` should")
+internal class CommandIdErrorSpec {
 
-option (type_url_prefix) = "type.spine.io";
-option java_package = "io.spine.tools.core.signal.given.command";
-option java_outer_classname = "CommandsProto";
-option java_multiple_files = true;
+    companion object : SignalPluginTestSetup()
 
-import "google/protobuf/duration.proto";
-import "google/protobuf/empty.proto";
-import "given/signals/domain.proto";
-
-// The command to the telescope to start scanning signals coming for the given star.
-message StartScanning {
-    TelescopeId telescope = 1;
-    Star star = 2 [(required) = true, (validate) = true];
-    google.protobuf.Duration duration = 3 [(required) = true];
-}
-
-// The command to stop scanning.
-message StopScanning {
-    TelescopeId telescope = 1;
-}
-
-// A command whose target-entity ID field (the first field) is of type
-// `google.protobuf.Empty`.
-//
-// Such a field can never be satisfied at runtime, so it must be rejected at
-// compile time. The type is excluded from regular pipeline runs (see
-// `SignalPluginTestSetup.defaultExclusions`) and exercised by `CommandIdErrorSpec`.
-message BrokenIdCommand {
-    google.protobuf.Empty telescope = 1;
+    @Test
+    fun `reject the target-entity ID field of type 'google_protobuf_Empty'`(
+        @TempDir projectDir: Path
+    ) {
+        val descriptor = BrokenIdCommand.getDescriptor()
+        val error = assertThrows<Compilation.Error> {
+            runPipeline(projectDir, acceptingOnly(descriptor))
+        }
+        error.message.let {
+            it shouldContain "${descriptor.fullName}.telescope"
+            it shouldContain "of type `google.protobuf.Empty`"
+            it shouldContain "cannot be marked as `(required)`"
+            it shouldContain "always equal to the default value"
+        }
+    }
 }

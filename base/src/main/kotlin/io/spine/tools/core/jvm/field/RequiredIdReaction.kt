@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,10 +30,19 @@ import io.spine.option.OptionsProto
 import io.spine.server.event.NoReaction
 import io.spine.server.event.asA
 import io.spine.server.tuple.EitherOf2
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.ast.FieldType
+import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.findOption
+import io.spine.tools.compiler.ast.isList
+import io.spine.tools.compiler.ast.isMap
+import io.spine.tools.compiler.ast.name
+import io.spine.tools.compiler.ast.qualifiedName
 import io.spine.tools.compiler.ast.ref
+import io.spine.tools.compiler.check
 import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 import io.spine.tools.validation.event.requiredFieldDiscovered
@@ -66,22 +75,30 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
      *   `io.spine.tools.validation.option.required.RequiredReaction` of
      *   the Validation Compiler.
      *
-     * 2. The field type is supported by the option.
+     * 2. The field type is not `google.protobuf.Empty`, nor a `repeated` of `Empty`,
+     *   nor a `map` with `Empty` values. Otherwise, the method reports a compilation
+     *   error because such an implicitly required field can never be satisfied.
      *
-     * The method emits [NoReaction] in case of violation of the above conditions.
+     * 3. The field type is supported by the option.
+     *
+     * The method emits [NoReaction] in case of violation of conditions (1) or (3).
      *
      * @param field The ID field.
+     * @param file The file declaring the type which owns the [field].
      * @param message The error message for the violation.
      */
     @Suppress("ReturnCount") // Prefer sooner exit and precise conditions.
     protected fun withField(
         field: Field,
+        file: File,
         message: String
     ): EitherOf2<RequiredFieldDiscovered, NoReaction> {
         val requiredOption = field.findOption(OptionsProto.required)
         if (requiredOption != null) {
             return ignore()
         }
+
+        checkFieldIsNotEmpty(field, file)
 
         val fieldTypeUnsupported = field.type.isSupported().not()
         if (fieldTypeUnsupported) {
@@ -95,3 +112,34 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
         }.asA()
     }
 }
+
+/**
+ * Reports a compilation error if the type of the given [field] refers to
+ * `google.protobuf.Empty`.
+ *
+ * An implicitly required ID field of type `Empty`, a `repeated` of `Empty`, or
+ * a `map` with `Empty` values cannot be satisfied at runtime: every `Empty`
+ * instance equals the default value, so the generated required-check is always
+ * violated. Such a field is therefore rejected at compile time, mirroring the
+ * check performed by the Validation Compiler for the explicit `(required)` option.
+ */
+private fun checkFieldIsNotEmpty(field: Field, file: File) =
+    Compilation.check(!field.type.refersToEmpty(), file, field.span) {
+        "The field `${field.qualifiedName}` of type `${field.type.name}` cannot be marked" +
+                " as `(required)` because `google.protobuf.Empty` has no fields and its" +
+                " instances are always equal to the default value."
+    }
+
+/**
+ * Tells if this [FieldType] is `google.protobuf.Empty`, a `repeated` of `Empty`,
+ * or a `map` with `Empty` values.
+ */
+private fun FieldType.refersToEmpty(): Boolean = when {
+    isMessage -> message.isProtobufEmpty
+    isList -> list.isMessage && list.message.isProtobufEmpty
+    isMap -> map.valueType.isMessage && map.valueType.message.isProtobufEmpty
+    else -> false
+}
+
+private val TypeName.isProtobufEmpty: Boolean
+    get() = packageName == "google.protobuf" && simpleName == "Empty"

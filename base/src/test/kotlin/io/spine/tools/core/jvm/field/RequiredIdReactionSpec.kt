@@ -26,19 +26,23 @@
 
 package io.spine.tools.core.jvm.field
 
+import com.google.protobuf.Descriptors.FieldDescriptor
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.spine.core.External
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf2
-import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toField
 import io.spine.tools.core.jvm.field.given.farmField
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 @DisplayName("`RequiredIdReaction` should")
 internal class RequiredIdReactionSpec {
@@ -47,29 +51,67 @@ internal class RequiredIdReactionSpec {
 
     @Test
     fun `ignore a field with the explicit 'required' option`() {
-        val outcome = reaction.test(farmField("id").toField(), MESSAGE)
+        val outcome = reaction.test(farmField("id"), MESSAGE)
         outcome.hasB().shouldBeTrue()
     }
 
     @Test
     fun `ignore a field of an unsupported type`() {
-        val outcome = reaction.test(farmField("rating").toField(), MESSAGE)
+        val outcome = reaction.test(farmField("rating"), MESSAGE)
         outcome.hasB().shouldBeTrue()
     }
 
     @Test
     fun `discover an implicitly required ID field`() {
-        val field = farmField("name").toField()
-        val outcome = reaction.test(field, MESSAGE)
+        val descriptor = farmField("name")
+        val outcome = reaction.test(descriptor, MESSAGE)
 
         outcome.hasA().shouldBeTrue()
         val event = outcome.a
-        event.subject shouldBe field
+        event.subject shouldBe descriptor.toField()
         event.defaultErrorMessage shouldBe MESSAGE
+    }
+
+    @Test
+    fun `reject an implicitly required ID field of type 'Empty'`() {
+        val error = assertThrows<Compilation.Error> {
+            reaction.test(farmField("empty_id"), MESSAGE)
+        }
+        error.message.assertRejectsEmpty("empty_id", "google.protobuf.Empty")
+    }
+
+    @Test
+    fun `reject an implicitly required 'repeated' ID field of type 'Empty'`() {
+        val error = assertThrows<Compilation.Error> {
+            reaction.test(farmField("empty_ids"), MESSAGE)
+        }
+        error.message.assertRejectsEmpty("empty_ids", "repeated google.protobuf.Empty")
+    }
+
+    @Test
+    fun `reject an implicitly required 'map' ID field with 'Empty' values`() {
+        val error = assertThrows<Compilation.Error> {
+            reaction.test(farmField("empty_by_name"), MESSAGE)
+        }
+        error.message.assertRejectsEmpty("empty_by_name", "map<string, google.protobuf.Empty>")
     }
 
     private companion object {
         const val MESSAGE = "The ID field must be set."
+
+        /**
+         * Asserts that the compilation error message mentions the rejected [field] and
+         * its [type], and explains why an `Empty`-typed field cannot be required.
+         */
+        fun String?.assertRejectsEmpty(field: String, type: String) {
+            val message = this
+            check(message != null) { "The compilation error must have a message." }
+            message shouldContain field
+            message shouldContain "of type `$type`"
+            message shouldContain "cannot be marked as `(required)`"
+            message shouldContain "`google.protobuf.Empty` has no fields"
+            message shouldContain "always equal to the default value"
+        }
     }
 }
 
@@ -83,6 +125,9 @@ private class TestReaction : RequiredIdReaction() {
         @External event: TypeDiscovered
     ): EitherOf2<RequiredFieldDiscovered, NoReaction> = ignore()
 
-    fun test(field: Field, message: String): EitherOf2<RequiredFieldDiscovered, NoReaction> =
-        withField(field, message)
+    fun test(
+        field: FieldDescriptor,
+        message: String
+    ): EitherOf2<RequiredFieldDiscovered, NoReaction> =
+        withField(field.toField(), field.file.file(), message)
 }
