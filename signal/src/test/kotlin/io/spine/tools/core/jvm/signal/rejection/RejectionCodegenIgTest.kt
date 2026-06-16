@@ -220,8 +220,6 @@ internal class RejectionCodegenIgTest {
      * Verifies that rejection throwables are generated for `rejections.proto` files
      * brought into the module via the `protobuf()` configuration scope, as opposed to
      * being declared in the module's own source set.
-     *
-     * @see <a href="https://github.com/SpineEventEngine/core-jvm-compiler/issues/33">Issue #33</a>
      */
     @Test
     fun `generate rejections from a 'protobuf()'-scoped dependency`() {

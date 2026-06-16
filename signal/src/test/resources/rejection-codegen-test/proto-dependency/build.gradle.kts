@@ -31,7 +31,7 @@ import io.spine.dependency.lib.Protobuf
 // through the `protobuf()` configuration scope. The `java` and `com.google.protobuf` plugins are
 // applied by the root `subprojects` block. Unlike the other modules, it does not apply the
 // `io.spine.core-jvm` plugin, so that it stays a plain Protobuf producer and does not export the
-// well-known or Spine option types to its consumers. See issue #33.
+// well-known or Spine option types to its consumers (which would clash with the consumer's own).
 
 // Configure the `protoc` executable, which the `io.spine.core-jvm` plugin would otherwise set up.
 configure<ProtobufExtension> {

@@ -36,7 +36,8 @@ plugins {
 dependencies {
     // Bring the Protobuf definitions of the shared, proto-only module into this module
     // via the `protobuf()` configuration scope. The rejection throwables for the types
-    // declared there are expected to be generated in this module. See issue #33.
+    // declared there are expected to be generated in this module, exactly as if the
+    // `rejections.proto` had been declared in this module's own source set.
     protobuf(project(":proto-dependency"))
 
     // Add Validation Java Runtime because the generated code reference

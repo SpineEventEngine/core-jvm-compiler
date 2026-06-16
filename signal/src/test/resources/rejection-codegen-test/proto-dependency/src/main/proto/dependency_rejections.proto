@@ -33,8 +33,8 @@ option java_multiple_files = false;
 // Do not specify `java_outer_classname` so that the outer class name is derived from the file name.
 
 // This file emulates a shared, proto-only module that is brought into a consuming module
-// via the `protobuf()` configuration scope (see issue #33). The consuming module
-// (`sub-module`) is expected to generate the rejection throwable for the type declared here.
+// via the `protobuf()` configuration scope. The consuming module (`sub-module`) is expected
+// to generate the rejection throwable for the type declared here.
 
 message RejectionFromDependency {
     string id = 1;

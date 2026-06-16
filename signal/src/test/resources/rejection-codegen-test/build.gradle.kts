@@ -75,7 +75,7 @@ subprojects {
     // Protobuf sources (via the Protobuf Gradle plugin) so that they can be consumed through the
     // `protobuf()` configuration scope. It deliberately does not apply the CoreJvm Compiler, so
     // that it neither runs code generation itself nor exports the well-known and Spine option
-    // types to its consumers (which would clash with the consumer's own copies). See issue #33.
+    // types to its consumers (which would clash with the consumer's own copies).
     if (name != "proto-dependency") {
         apply(plugin = "io.spine.core-jvm")
 
