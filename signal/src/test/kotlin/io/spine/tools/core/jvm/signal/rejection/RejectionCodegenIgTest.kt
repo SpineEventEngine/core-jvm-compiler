@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -78,7 +78,7 @@ internal class RejectionCodegenIgTest {
          * The directory where the generated code is expected to be located.
          */
         private const val PACKAGE_DIR = "io/spine/sample/rejections"
-        
+
         private lateinit var moduleDir: File
 
         @TempDir
@@ -214,6 +214,23 @@ internal class RejectionCodegenIgTest {
             assertJavaFileExists(packageDir, "TestRejection1")
             assertJavaFileExists(packageDir, "TestRejection2")
         }
+    }
+
+    /**
+     * Verifies that rejection throwables are generated for `rejections.proto` files
+     * brought into the module via the `protobuf()` configuration scope, as opposed to
+     * being declared in the module's own source set.
+     *
+     * @see <a href="https://github.com/SpineEventEngine/core-jvm-compiler/issues/33">Issue #33</a>
+     */
+    @Test
+    fun `generate rejections from a 'protobuf()'-scoped dependency`() {
+        // As defined in `resources/.../proto-dependency/.../dependency_rejections.proto`,
+        // which `sub-module` consumes via `protobuf(project(":proto-dependency"))`.
+        val packageDir = targetMainDir().resolve(java)
+            .resolve("io/spine/sample/rejections/dependency")
+        assertExists(packageDir)
+        assertJavaFileExists(packageDir, "RejectionFromDependency")
     }
 }
 

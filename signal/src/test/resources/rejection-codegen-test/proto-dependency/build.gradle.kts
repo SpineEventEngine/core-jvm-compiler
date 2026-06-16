@@ -24,39 +24,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import com.google.protobuf.gradle.ProtobufExtension
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.Base
-import io.spine.dependency.local.Validation
-import org.gradle.api.tasks.JavaExec
 
-plugins {
-    `java-test-fixtures`
+// A shared, proto-only module. It only declares Protobuf types and is consumed by `sub-module`
+// through the `protobuf()` configuration scope. The `java` and `com.google.protobuf` plugins are
+// applied by the root `subprojects` block. Unlike the other modules, it does not apply the
+// `io.spine.core-jvm` plugin, so that it stays a plain Protobuf producer and does not export the
+// well-known or Spine option types to its consumers. See issue #33.
+
+// Configure the `protoc` executable, which the `io.spine.core-jvm` plugin would otherwise set up.
+configure<ProtobufExtension> {
+    protoc {
+        artifact = Protobuf.compiler
+    }
 }
 
 dependencies {
-    // Bring the Protobuf definitions of the shared, proto-only module into this module
-    // via the `protobuf()` configuration scope. The rejection throwables for the types
-    // declared there are expected to be generated in this module. See issue #33.
-    protobuf(project(":proto-dependency"))
-
-    // Add Validation Java Runtime because the generated code reference
-    // the `ValidatingBuilder` interface even if validation codegen is turned off.
-    implementation(Validation.runtime)
-
-    Protobuf.libs.forEach {
-        testFixturesImplementation(it)
-    }
-    testFixturesImplementation(Base.lib)
-    testFixturesImplementation(Validation.runtime)
-}
-
-tasks.processResources.get().duplicatesStrategy = DuplicatesStrategy.INCLUDE
-
-tasks.findByName("launchSpineCompiler")?.apply { this as JavaExec
-    debugOptions {
-        enabled.set(false) // Set this option to `true` to enable remote debugging.
-        port.set(5566)
-        server.set(true)
-        suspend.set(true)
-    }
+    // The Protobuf runtime is needed to compile the Java code generated from this module's
+    // own `.proto` file. Spine Base is intentionally not used here (see the note above).
+    implementation(Protobuf.javaLib)
 }
