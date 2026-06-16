@@ -1,5 +1,5 @@
 /*
- * Copyright 2024, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.Logging
 
 plugins {
     module
@@ -40,6 +41,7 @@ dependencies {
     ).forEach {
         testImplementation(it)
     }
+    testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
 }
 
 protobuf {

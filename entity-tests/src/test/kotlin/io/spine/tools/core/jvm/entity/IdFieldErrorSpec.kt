@@ -27,6 +27,7 @@
 package io.spine.tools.core.jvm.entity
 
 import io.kotest.matchers.string.shouldContain
+import io.spine.logging.testing.tapConsole
 import io.spine.testing.compiler.acceptingOnly
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
@@ -45,7 +46,10 @@ internal class IdFieldErrorSpec {
     fun `reject an ID field of type 'google_protobuf_Empty'`(@TempDir projectDir: Path) {
         val descriptor = BrokenIdEntity.getDescriptor()
         val error = assertThrows<Compilation.Error> {
-            runPipeline(projectDir, acceptingOnly(descriptor))
+            // Mute the expected compilation error so it does not surface in the build log.
+            tapConsole {
+                runPipeline(projectDir, acceptingOnly(descriptor))
+            }
         }
         error.message.let {
             it shouldContain "${descriptor.fullName}.id"

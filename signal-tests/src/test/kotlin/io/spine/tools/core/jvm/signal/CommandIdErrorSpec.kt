@@ -27,6 +27,7 @@
 package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.string.shouldContain
+import io.spine.logging.testing.tapConsole
 import io.spine.testing.compiler.acceptingOnly
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.core.signal.given.command.BrokenIdCommand
@@ -47,7 +48,10 @@ internal class CommandIdErrorSpec {
     ) {
         val descriptor = BrokenIdCommand.getDescriptor()
         val error = assertThrows<Compilation.Error> {
-            runPipeline(projectDir, acceptingOnly(descriptor))
+            // Mute the expected compilation error so it does not surface in the build log.
+            tapConsole {
+                runPipeline(projectDir, acceptingOnly(descriptor))
+            }
         }
         error.message.let {
             it shouldContain "${descriptor.fullName}.telescope"
