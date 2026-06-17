@@ -24,7 +24,7 @@ please run the following command:
 ./gradlew integrationTest
 ```
 
-If your current directory is `tests`, just run the Gradle build as usualy:
+If your current directory is `tests`, just run the Gradle build as usual:
 
 ```bash
 ./gradlew clean build
