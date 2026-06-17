@@ -59,7 +59,7 @@ message MoveDevice {
 // Normally the first field of a command is the ID of the target entity.
 // Here we simulate the case when the "real" ID field is not the first one,
 // but the one which is used by the routing function.
-// See `HomeAUtomationContext.kt` file and the companion object of
+// See `HomeAutomationContext.kt` file and the companion object of
 // `DeviceAggregate` class for the routing function that relies on the `device` field.
 //
 message SetState {
