@@ -90,7 +90,7 @@ import org.junit.jupiter.api.io.TempDir
  *  3. Under "Debugger mode" select "Attach to remote JVM".
  *  4. Under "Host" enter `localhost`.
  *  5. Under "Port" enter `5566`.
- *  6. Under "Use module classpath" selection `io.spine.tools.mc-java-annotations.test`.
+ *  6. Under "Use module classpath" selection `io.spine.tools.core-jvm-annotation.test`.
  *
  *  ### Starting debugging session
  *  1. Put a breakpoint on `project.executeTask(launchSpineCompile)` in the `AnnotatorPluginSpec`.

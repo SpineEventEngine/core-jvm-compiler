@@ -84,7 +84,7 @@ subprojects {
         }
     }
 
-    tasks.findByName("launchProtoData")?.apply { this as JavaExec
+    tasks.findByName("launchSpineCompiler")?.apply { this as JavaExec
         debugOptions {
             enabled.set(false) // Set this option to `true` to enable remote debugging.
             port.set(5566)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * This is a test suite for [UuidSettings] class which belongs to `mc-java-base` module.
+ * This is a test suite for [UuidSettings] class which belongs to the `base` module.
  *
  * We have this test suite in another module to check the correctness of default settings
  * specified as strings against classes of this module.
