@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,7 +79,7 @@ internal class CommandTargetReaction : RequiredIdReaction(), SignalPluginCompone
         }
         val type = event.type
         val field = type.firstField
-        return withField(field, TARGET_ENTITY_ID_MUST_BE_SET)
+        return withField(field, event.file, TARGET_ENTITY_ID_MUST_BE_SET)
     }
 
     private fun File.matchesPatterns(): Boolean =

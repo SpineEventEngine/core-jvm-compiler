@@ -26,19 +26,23 @@
 
 package io.spine.tools.core.jvm.field
 
+import com.google.protobuf.Descriptors.FieldDescriptor
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.spine.core.External
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf2
-import io.spine.tools.compiler.ast.Field
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.event.TypeDiscovered
+import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toField
 import io.spine.tools.core.jvm.field.given.farmField
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 @DisplayName("`RequiredIdReaction` should")
 internal class RequiredIdReactionSpec {
@@ -47,30 +51,64 @@ internal class RequiredIdReactionSpec {
 
     @Test
     fun `ignore a field with the explicit 'required' option`() {
-        val outcome = reaction.test(farmField("id").toField(), MESSAGE)
+        val outcome = reaction.test(farmField("id"), MESSAGE)
         outcome.hasB().shouldBeTrue()
     }
 
     @Test
     fun `ignore a field of an unsupported type`() {
-        val outcome = reaction.test(farmField("rating").toField(), MESSAGE)
+        val outcome = reaction.test(farmField("rating"), MESSAGE)
         outcome.hasB().shouldBeTrue()
     }
 
     @Test
     fun `discover an implicitly required ID field`() {
-        val field = farmField("name").toField()
-        val outcome = reaction.test(field, MESSAGE)
+        val descriptor = farmField("name")
+        val outcome = reaction.test(descriptor, MESSAGE)
 
         outcome.hasA().shouldBeTrue()
         val event = outcome.a
-        event.subject shouldBe field
+        event.subject shouldBe descriptor.toField()
         event.defaultErrorMessage shouldBe MESSAGE
+    }
+
+    @Test
+    fun `reject an implicitly required ID field of type 'Empty'`() {
+        val error = assertThrows<Compilation.Error> {
+            reaction.test(farmField("empty"), MESSAGE)
+        }
+        error.message.assertErrorContains(
+            "empty",
+            "of type `google.protobuf.Empty`"
+        )
+    }
+
+    @Test
+    fun `not reject a field that does not refer to 'Empty', whatever its type or cardinality`() {
+        // None of these refer to `google.protobuf.Empty`, so the field stays implicitly
+        // required rather than being rejected:
+        //  - `barn`, `barns`, `barns_by_name`: singular, repeated, and mapped messages;
+        //  - `tags`, `names_by_id`: repeated and mapped primitives;
+        //  - `built`: a non-`Empty` well-known type (`google.protobuf.Timestamp`).
+        listOf("barn", "barns", "barns_by_name", "tags", "names_by_id", "built").forEach {
+            reaction.test(farmField(it), MESSAGE).hasA().shouldBeTrue()
+        }
     }
 
     private companion object {
         const val MESSAGE = "The ID field must be set."
     }
+}
+
+/**
+ * Asserts that this nullable String contains the given field name and type description,
+ * as well as the standard required field convention messages.
+ */
+private fun String?.assertErrorContains(fieldName: String, typeDescription: String) {
+    this shouldContain fieldName
+    this shouldContain typeDescription
+    this shouldContain "is assumed to be `(required)` by convention"
+    this shouldContain "always equal to the default value"
 }
 
 /**
@@ -83,6 +121,9 @@ private class TestReaction : RequiredIdReaction() {
         @External event: TypeDiscovered
     ): EitherOf2<RequiredFieldDiscovered, NoReaction> = ignore()
 
-    fun test(field: Field, message: String): EitherOf2<RequiredFieldDiscovered, NoReaction> =
-        withField(field, message)
+    fun test(
+        field: FieldDescriptor,
+        message: String
+    ): EitherOf2<RequiredFieldDiscovered, NoReaction> =
+        withField(field.toField(), field.file.file(), message)
 }
