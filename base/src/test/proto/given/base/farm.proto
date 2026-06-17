@@ -38,8 +38,7 @@ option java_multiple_files = true;
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
-// A message with fields of various shapes used in tests of the `field` package
-// and field-path resolution.
+// A message with fields of various shapes used in tests.
 message Farm {
 
     // The ID field marked as `(required)` explicitly.
