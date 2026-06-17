@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -149,14 +149,25 @@ abstract class PluginTestSetup<S: Message>(
     }
 
     /**
+     * Descriptors excluded from [runPipeline] by default.
+     *
+     * Override this method to keep types that intentionally fail compilation
+     * (e.g., compile-fail fixtures) out of the regular pipeline runs. Such types
+     * are exercised separately by dedicated error specs which run the pipeline
+     * [accepting only][io.spine.testing.compiler.acceptingOnly] the type of interest.
+     */
+    protected open fun defaultExclusions(): List<GenericDescriptor> = emptyList()
+
+    /**
      * Runs the pipeline with the plugin settings obtained from [createSettings].
      *
      * @param excludedDescriptors The descriptors to be excluded from the compilation.
+     *   Defaults to [defaultExclusions].
      * @see createSettings
      */
     fun runPipeline(
         projectDir: Path,
-        excludedDescriptors: List<GenericDescriptor> = listOf()
+        excludedDescriptors: List<GenericDescriptor> = defaultExclusions()
     ) {
         val descriptorFilter: DescriptorFilter = {
             excludedDescriptors.find { d -> d.fullName == it.fullName } == null

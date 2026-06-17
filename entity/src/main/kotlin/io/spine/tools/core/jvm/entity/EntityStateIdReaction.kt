@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ internal class EntityStateIdReaction : RequiredIdReaction(), EntityPluginCompone
             return ignore()
         }
         val field = type.firstField
-        return withField(field, ID_FIELD_MUST_BE_SET)
+        return withField(field, event.file, ID_FIELD_MUST_BE_SET)
     }
 }
 
