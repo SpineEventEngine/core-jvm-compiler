@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,15 +30,14 @@ import com.google.protobuf.Message
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import io.kotest.matchers.nulls.shouldBeNull
-import io.spine.logging.testing.tapConsole
 import io.spine.protobuf.defaultInstance
 import io.spine.testing.compiler.acceptingOnly
 import io.spine.testing.logging.mute.withLoggingMutedIn
 import io.spine.tools.compiler.Compilation
+import io.spine.tools.core.jvm.assertCompilationError
 import io.spine.tools.core.jvm.comparable.AddComparatorSpec.Companion.generatedCodeOf
 import io.spine.tools.core.jvm.comparable.action.AddComparator
 import java.nio.file.Path
-import org.junit.jupiter.api.assertThrows
 
 /**
  * Runs the [block] with logging muted in the `io.spine.tools.core.jvm.comparable` package.
@@ -71,10 +70,7 @@ internal fun PsiClass.findComparatorField(): PsiField? =
 inline fun <reified M: Message> assertCompilationFails(projectDir: Path): Compilation.Error {
     val message = M::class.java.defaultInstance.descriptorForType
     val setup = ComparablePluginTestSetup(AddComparator::class)
-    val error = assertThrows<Compilation.Error> {
-        tapConsole {
-            setup.runPipeline(projectDir, acceptingOnly(message))
-        }
+    return assertCompilationError {
+        setup.runPipeline(projectDir, acceptingOnly(message))
     }
-    return error
 }

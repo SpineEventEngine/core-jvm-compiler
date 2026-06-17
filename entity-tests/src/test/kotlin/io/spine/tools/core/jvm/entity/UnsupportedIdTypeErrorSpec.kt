@@ -27,14 +27,12 @@
 package io.spine.tools.core.jvm.entity
 
 import io.kotest.matchers.string.shouldContain
-import io.spine.logging.testing.tapConsole
 import io.spine.testing.compiler.acceptingOnly
-import io.spine.tools.compiler.Compilation
+import io.spine.tools.core.jvm.assertCompilationError
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.io.TempDir
 
 /**
@@ -55,11 +53,8 @@ internal class UnsupportedIdTypeErrorSpec {
     @Test
     fun `reject a 'repeated' ID field`(@TempDir projectDir: Path) {
         val descriptor = RepeatedIdEntity.getDescriptor()
-        val error = assertThrows<Compilation.Error> {
-            // Mute the expected compilation error so it does not surface in the build log.
-            tapConsole {
-                runPipeline(projectDir, acceptingOnly(descriptor))
-            }
+        val error = assertCompilationError {
+            runPipeline(projectDir, acceptingOnly(descriptor))
         }
         error.message.let {
             it shouldContain "${descriptor.fullName}.id"

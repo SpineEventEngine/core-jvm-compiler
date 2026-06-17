@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,10 @@
 
 package io.spine.tools.core.jvm
 
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.java.reference
 import kotlin.text.RegexOption.DOT_MATCHES_ALL
+import org.junit.jupiter.api.assertThrows
 
 /**
  * Tells if [javaCode] contains a class that implements the given [superInterface].
@@ -36,3 +38,18 @@ fun implementsInterface(javaCode: String, superInterface: Class<*>): Boolean {
     val regex = Regex("implements[^{}]*${superInterface.reference}[^{}]*\\{", DOT_MATCHES_ALL)
     return regex.containsMatchIn(javaCode)
 }
+
+/**
+ * Asserts that the given [action] fails compilation, returning the thrown error.
+ *
+ * The console output produced by the [action] is muted via [muteCompilationError],
+ * so that the deliberately provoked compilation error does not pollute the build log.
+ *
+ * @param action The code expected to fail with a [Compilation.Error].
+ * @return The [Compilation.Error] thrown by the [action].
+ * @see muteCompilationError
+ */
+fun assertCompilationError(action: () -> Unit): Compilation.Error =
+    assertThrows<Compilation.Error> {
+        muteCompilationError(action)
+    }

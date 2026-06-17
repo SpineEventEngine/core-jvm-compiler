@@ -24,35 +24,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.signal
+package io.spine.tools.core.jvm
 
-import io.kotest.matchers.string.shouldContain
-import io.spine.testing.compiler.acceptingOnly
-import io.spine.tools.core.jvm.assertCompilationError
-import io.spine.tools.core.signal.given.command.EmptyIdCommand
-import java.nio.file.Path
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.io.TempDir
+import io.spine.logging.testing.tapConsole
 
-@DisplayName("`CommandTargetReaction` should")
-internal class CommandIdErrorSpec {
-
-    companion object : SignalPluginTestSetup()
-
-    @Test
-    fun `reject the target-entity ID field of type 'google_protobuf_Empty'`(
-        @TempDir projectDir: Path
-    ) {
-        val descriptor = EmptyIdCommand.getDescriptor()
-        val error = assertCompilationError {
-            runPipeline(projectDir, acceptingOnly(descriptor))
-        }
-        error.message.let {
-            it shouldContain "${descriptor.fullName}.telescope"
-            it shouldContain "of type `google.protobuf.Empty`"
-            it shouldContain "is assumed to be `(required)` by convention"
-            it shouldContain "always equal to the default value"
-        }
-    }
+/**
+ * Runs the given [action], suppressing the console output it produces.
+ *
+ * Intended for wrapping a block that is expected to fail compilation — typically
+ * the body of an `assertThrows<Compilation.Error>` block — so that the deliberately
+ * provoked compilation error does not pollute the build log.
+ *
+ * Only the console output is muted. Any exception thrown by the [action],
+ * including a `Compilation.Error`, still propagates to the caller, so the
+ * surrounding assertion works as usual.
+ *
+ * @param action The code to run with the console output muted.
+ * @see tapConsole
+ */
+fun muteCompilationError(action: () -> Unit) {
+    tapConsole(action)
 }

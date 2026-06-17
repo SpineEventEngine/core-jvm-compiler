@@ -106,7 +106,9 @@ dependencies {
                 " which are `compileOnly` and thus needed on the test runtime classpath."
     )
     testImplementation(ToolBase.pluginTestlib)
-    testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
+    testFixturesImplementation(Logging.testLib)?.because(
+        "The `muteCompilationError` test fixture delegates to `tapConsole`."
+    )
 }
 
 forceSpineBase()
