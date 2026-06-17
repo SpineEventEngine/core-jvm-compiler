@@ -34,7 +34,7 @@ import io.spine.tools.version.Version
 public object VersionHolder {
 
     /**
-     * The version of McJava loaded from the manifest.
+     * The version of CoreJvm Compiler loaded from the manifest.
      */
     public val version: Version by lazy {
         Version.fromManifestOf(this::class.java)

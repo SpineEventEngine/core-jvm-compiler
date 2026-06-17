@@ -49,7 +49,7 @@ import io.spine.tools.core.jvm.settings.Entities
 internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginComponent {
 
     /**
-     * The settings passed by McJava to [EntityPlugin].
+     * The settings passed by the CoreJvm Compiler to [EntityPlugin].
      */
     private val settings: Entities by lazy {
         loadSettings()
