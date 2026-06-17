@@ -278,7 +278,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
         const val ROUTE_FUN_NAME: String = "route"
 
         /**
-         * The name of the inline extension function for classing extending
+         * The name of the inline extension function for classes extending
          * [MessageRouting][io.spine.server.route.MessageRouting] that are used in
          * the generated code of [RoutingSetup][io.spine.server.route.setup.RoutingSetup] classes
          * for returning only [one entity identifier][io.spine.server.route.Unicast].

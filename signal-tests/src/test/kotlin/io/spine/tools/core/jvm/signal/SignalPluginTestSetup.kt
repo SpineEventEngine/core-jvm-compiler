@@ -52,8 +52,8 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
     }
 
     /**
-     * Creates an instance of [SignalSettings] as if it was created by
-     * the CoreJvm Compiler added to a Gradle project.
+     * Creates an instance of [SignalSettings] as the CoreJvm Compiler would
+     * create it when added to a Gradle project.
      */
     override fun createSettings(projectDir: Path): SignalSettings {
         val codegenConfig = createCompilerSettings(projectDir)

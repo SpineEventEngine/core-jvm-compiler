@@ -12,7 +12,7 @@ There are several levels of testing in this project.
 
 ## About `*-tests` modules
 
-A modules with the `-tests` suffix in their names is a test-only module for
+A module with the `-tests` suffix in its name is a test-only module for
 the module that has the name before the suffix.
 For example, `signal-tests` is the test module for the `signal` module.
 
