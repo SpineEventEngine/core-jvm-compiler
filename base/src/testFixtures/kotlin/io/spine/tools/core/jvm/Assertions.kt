@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm
 
+import io.spine.logging.testing.tapConsole
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.java.reference
 import kotlin.text.RegexOption.DOT_MATCHES_ALL
@@ -42,14 +43,14 @@ fun implementsInterface(javaCode: String, superInterface: Class<*>): Boolean {
 /**
  * Asserts that the given [action] fails compilation, returning the thrown error.
  *
- * The console output produced by the [action] is muted via [muteCompilationError],
- * so that the deliberately provoked compilation error does not pollute the build log.
+ * The console output produced by the [action] is muted via [tapConsole], so that
+ * the deliberately provoked compilation error does not pollute the build log.
  *
  * @param action The code expected to fail with a [Compilation.Error].
  * @return The [Compilation.Error] thrown by the [action].
- * @see muteCompilationError
+ * @see tapConsole
  */
 fun assertCompilationError(action: () -> Unit): Compilation.Error =
     assertThrows<Compilation.Error> {
-        muteCompilationError(action)
+        tapConsole(action)
     }
