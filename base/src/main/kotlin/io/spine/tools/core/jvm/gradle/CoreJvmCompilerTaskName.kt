@@ -46,7 +46,7 @@ public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
         public val preClean: TaskName = PreCleanTaskName()
 
         /**
-         * Obtains the name of the task which merges descriptor set files of the specified
+         * Obtains the name of the task that merges descriptor set files of the specified
          * source set.
          */
         @JvmStatic
@@ -54,7 +54,7 @@ public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
             CoreJvmCompilerTaskName("merge${ssn.toInfix()}DescriptorSet", ssn)
 
         /**
-         * Obtains the name of the task which creates Protobuf compiler plugin configuration for
+         * Obtains the name of the task that creates Protobuf compiler plugin configuration for
          * the code in the specified source set.
          */
         @JvmStatic
@@ -62,7 +62,7 @@ public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
             CoreJvmCompilerTaskName("write${ssn.toInfix()}PluginConfiguration", ssn)
 
         /**
-         * Obtains the name of the task which creates the `desc.ref` file containing the reference
+         * Obtains the name of the task that creates the `desc.ref` file containing the reference
          * to the descriptor file(s) with the known types from the specified source set.
          */
         @JvmStatic
@@ -70,12 +70,12 @@ public class CoreJvmCompilerTaskName(value: String, ssn: SourceSetName) :
             CoreJvmCompilerTaskName("write${ssn.toInfix()}DescriptorReferences", ssn)
 
         /**
-         * Obtains the name of the task which launches the Spine Compiler for the given source set.
+         * Obtains the name of the task that launches the Spine Compiler for the given source set.
          */
         @JvmStatic
         public fun launchSpineCompiler(ssn: SourceSetName): TaskName = CompilerTaskName(ssn)
 
-        /** The name of the task which launches the Spine Compiler for the main source set. */
+        /** The name of the task that launches the Spine Compiler for the main source set. */
         @JvmField
         public val launchSpineCompiler: TaskName = launchSpineCompiler(main)
 

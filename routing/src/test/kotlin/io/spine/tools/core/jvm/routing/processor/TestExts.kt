@@ -37,7 +37,7 @@ import org.intellij.lang.annotations.Language
 import org.jetbrains.kotlin.compiler.plugin.ExperimentalCompilerApi
 
 /**
- * Obtains the path to the classpath element which contains the receiver class.
+ * Obtains the path to the classpath element that contains the receiver class.
  */
 internal fun Class<*>.classpathFile(): File = File(protectionDomain.codeSource.location.path)
 

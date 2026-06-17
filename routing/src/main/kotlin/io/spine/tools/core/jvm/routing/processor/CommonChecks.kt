@@ -100,7 +100,7 @@ private fun KSFunctionDeclaration.acceptsOneOrTwoParameters(logger: KSPLogger): 
 }
 
 /**
- * Obtains the entity class which declares this function.
+ * Obtains the entity class that declares this function.
  *
  * If the function is declared in a Kotlin companion object (which is the right way to declare
  * routing functions in Kotlin), the function obtains the class enclosing the companion object.
@@ -109,7 +109,7 @@ private fun KSFunctionDeclaration.acceptsOneOrTwoParameters(logger: KSPLogger): 
  * If it does not, the error is logged using the logger of the [environment] pointing to
  * this function declaration as the source of the error, and `null` is returned.
  *
- * @return The entity class which declares this routing function, or `null` if the class
+ * @return The entity class that declares this routing function, or `null` if the class
  *  does not implement the [Entity] interface.
  */
 internal fun KSFunctionDeclaration.declaringClass(environment: Environment): EntityClass? {

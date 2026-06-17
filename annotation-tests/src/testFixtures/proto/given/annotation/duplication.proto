@@ -32,7 +32,7 @@ import "spine/options.proto";
 option java_multiple_files = true;
 option (internal_all) = true;
 
-// This message has the option which semantically repeats
+// This message has the option that semantically repeats
 // the `(internal_all)` option set for the file.
 // It must be annotated only once.
 message DoubleMarked {

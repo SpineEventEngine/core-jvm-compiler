@@ -44,7 +44,7 @@ import java.util.*
 import org.intellij.lang.annotations.Language
 
 /**
- * Updates the code of the message which qualifies as [UuidValue] type by
+ * Updates the code of the message that qualifies as [UuidValue] type by
  * adding `generate()` and `of(String)` static factory methods.
  *
  * The class is public because its fully qualified name is used as a default
@@ -67,7 +67,7 @@ public class AddFactoryMethods(
 }
 
 /**
- * Renders a static method `generate()` which creates an instance of [UuidValue]
+ * Renders a static method `generate()` that creates an instance of [UuidValue]
  * using [UUID.randomUUID] value.
  */
 private class MethodGenerate(private val cls: PsiClass) {
@@ -105,7 +105,7 @@ private class MethodGenerate(private val cls: PsiClass) {
 }
 
 /**
- * Renders a static method `of()` which creates an instance of [UuidValue]
+ * Renders a static method `of()` that creates an instance of [UuidValue]
  * using the given string value.
  *
  * The value is checked using [UuidValue.checkValid].

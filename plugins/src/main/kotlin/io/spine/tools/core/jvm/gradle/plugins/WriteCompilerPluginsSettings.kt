@@ -108,7 +108,7 @@ public abstract class WriteCompilerPluginsSettings : DefaultTask() {
 }
 
 /**
- * Obtains an instance of [SettingsDirectory] to be used for writing files which
+ * Obtains an instance of [SettingsDirectory] to be used for writing files that
  * points to the directory specified by the [WriteCompilerPluginsSettings.settingsDir] property.
  */
 private fun WriteCompilerPluginsSettings.settingsDirectory(): SettingsDirectory {

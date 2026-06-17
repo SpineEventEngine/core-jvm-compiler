@@ -43,7 +43,7 @@ import io.spine.tools.psi.java.addLast
 import org.intellij.lang.annotations.Language
 
 /**
- * Generates the method which produces a column criterion for
+ * Generates the method that produces a column criterion for
  * [EntityQueryBuilder][io.spine.query.EntityQueryBuilder] to restrict the value of the column.
  */
 internal class QueryColumn(

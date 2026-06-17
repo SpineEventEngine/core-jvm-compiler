@@ -24,7 +24,7 @@ please run the following command:
 ./gradlew integrationTest
 ```
 
-If your current directory is `tests`, just run the Gradle build as usualy:
+If your current directory is `tests`, just run the Gradle build as usual:
 
 ```bash
 ./gradlew clean build
@@ -32,7 +32,7 @@ If your current directory is `tests`, just run the Gradle build as usualy:
 
 ## Symlinks
 
-The `test` directory contains _soft_ symlinks to directories and files from the root project which
+The `tests` directory contains _soft_ symlinks to directories and files from the root project that
 this Gradle project needs for execution:
 
 | Symlink       | Target           |

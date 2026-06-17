@@ -167,7 +167,7 @@ private fun Project.makeKspTasksDependOnSpineCompiler() {
  * Makes `compile<SourceSetName>Kotlin` tasks depend on `ksp<SourceSetName>Kotlin` tasks.
  *
  * Strangely, at the time of writing, this is not arranged by KSP Gradle Plugin.
- * So, we set this dependency to avoid the Gradle error when McJava is applied.
+ * So, we set this dependency to avoid the Gradle error when the CoreJvm Compiler is applied.
  */
 private fun Project.makeCompileKotlinTasksDependOnKspTasks() {
     afterEvaluate {

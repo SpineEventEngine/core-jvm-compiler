@@ -27,7 +27,7 @@
 /**
  * This package contains annotation types to use for generated code.
  *
- * <p>Please see {@code annotator} subproject for the code which uses the annotation
+ * <p>Please see {@code annotator} subproject for the code that uses the annotation
  * types provided by this subproject.
  */
 package io.spine.test.annotation;

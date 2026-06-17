@@ -39,7 +39,7 @@ option java_multiple_files = true;
 // 1. Message types that are to implement `io.spine.base.UuidValue` interface.
 // 2. Regular message types and enums.
 // 3. Services.
-// 2nd and 3rd items are added to test how `UuidPlugin` works in a pipeline which
+// 2nd and 3rd items are added to test how `UuidPlugin` works in a pipeline that
 // contains variety of Protobuf declarations.
 
 message AccountId {

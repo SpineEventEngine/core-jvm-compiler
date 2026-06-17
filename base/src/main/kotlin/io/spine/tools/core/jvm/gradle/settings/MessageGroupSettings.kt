@@ -34,7 +34,7 @@ import io.spine.type.shortDebugString
 import org.gradle.api.Project
 
 /**
- * Codegen settings for messages which match a certain pattern.
+ * Codegen settings for messages that match a certain pattern.
  *
  * @param project The project for which settings are created.
  * @property pattern The pattern to select message types.

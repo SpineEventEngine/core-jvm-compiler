@@ -30,7 +30,7 @@ import io.spine.annotation.VisibleForTesting
 import com.google.devtools.ksp.symbol.KSFunctionDeclaration
 
 /**
- * The helper class which transforms the incoming sequence with [functions] into
+ * The helper class that transforms the incoming sequence with [functions] into
  * a list containing [CommandRouteFun], [EventRouteFun], or [StateUpdateRouteFun].
  *
  * If a function is not recognized to be one of these types,
@@ -91,7 +91,7 @@ internal class Qualifier(
 
         /**
          * The prefix used by [Qualifier] for reporting a function
-         * which was not recognized as a valid routing function.
+         * that was not recognized as a valid routing function.
          */
         @VisibleForTesting
         const val errorMsgPrefix = "Unqualified function encountered: "

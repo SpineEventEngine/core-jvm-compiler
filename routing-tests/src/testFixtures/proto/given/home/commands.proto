@@ -56,7 +56,7 @@ message MoveDevice {
 message SetState {
     // Normally the first field of a command is the ID of the target entity.
     // We deliberately put another field so that a route function would be "useful"
-    // for obtaining the device ID from the `device` field which comes second.
+    // for obtaining the device ID from the `device` field that comes second.
     State state = 2 [(required) = true];
     DeviceId device = 1;
 }

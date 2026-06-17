@@ -32,7 +32,7 @@ import "spine/options.proto";
 option java_multiple_files = true;
 option (beta_all) = true;
 
-// A message which must get the `beta` annotation from the file-wide option.
+// A message that must get the `beta` annotation from the file-wide option.
 message BetaThing {
     string value = 1;
 }

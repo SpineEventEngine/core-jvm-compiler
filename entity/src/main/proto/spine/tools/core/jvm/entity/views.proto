@@ -44,7 +44,7 @@ message DiscoveredEntities {
     option (is).java_type = "io.spine.tools.compiler.render.TypeListActions";
     option (.entity).kind = PROJECTION;
 
-    // The file which declares entity state types.
+    // The file that declares entity state types.
     compiler.File file = 1;
 
     // Message types that qualify as entity states.
