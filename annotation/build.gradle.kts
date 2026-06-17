@@ -78,7 +78,7 @@ tasks.withType<ProcessResources>().configureEach {
 /*
  * Disable the generation of rejections because:
  *  1. We don't have rejections in this code.
- *  2. We want to avoid errors that may be caused by the code which has not yet
+ *  2. We want to avoid errors that may be caused by the code that has not yet
  *     fully migrated to the latest Compiler API.
  */
 spine {

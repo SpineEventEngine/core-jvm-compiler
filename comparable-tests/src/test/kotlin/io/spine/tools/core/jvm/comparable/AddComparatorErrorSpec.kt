@@ -53,7 +53,7 @@ import org.junit.jupiter.api.io.TempDir
 internal class AddComparatorErrorSpec {
 
     /**
-     * The piece of the error message which lists the supported types.
+     * The piece of the error message that lists the supported types.
      */
     private val supportedTypes =
         "Supported field types are: primitives, enums, and comparable messages."

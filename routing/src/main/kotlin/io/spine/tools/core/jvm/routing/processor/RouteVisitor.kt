@@ -252,7 +252,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
     companion object {
 
         /**
-         * The string which KotlinPoet puts into an import for annotations
+         * The string that KotlinPoet puts into an import for annotations
          * belonging to the `io.spine.annotation` package.
          *
          * This is the intended behaviour of KotlinPoet.
@@ -265,21 +265,21 @@ internal sealed class RouteVisitor<F : RouteFun>(
         private const val ANNOTATION_BACKTICKED = "`annotation`"
 
         /**
-         * The string which replaces [ANNOTATION_BACKTICKED] in the imports handled
+         * The string that replaces [ANNOTATION_BACKTICKED] in the imports handled
          * by the [removeBackticksInImports] function.
          */
         private const val ANNOTATION_UNTICKED = "annotation"
 
         /**
          * The name of the inline extension functions for classes extending
-         * [MessageRouting][io.spine.server.route.MessageRouting] which are used in
+         * [MessageRouting][io.spine.server.route.MessageRouting] that are used in
          * the generated code of [RoutingSetup][io.spine.server.route.setup.RoutingSetup] classes.
          */
         const val ROUTE_FUN_NAME: String = "route"
 
         /**
          * The name of the inline extension function for classing extending
-         * [MessageRouting][io.spine.server.route.MessageRouting] which are used in
+         * [MessageRouting][io.spine.server.route.MessageRouting] that are used in
          * the generated code of [RoutingSetup][io.spine.server.route.setup.RoutingSetup] classes
          * for returning only [one entity identifier][io.spine.server.route.Unicast].
          */

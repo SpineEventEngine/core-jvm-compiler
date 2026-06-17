@@ -135,7 +135,7 @@ public abstract class SettingsWithActions<S : Message>(
      * a [StringValue][com.google.protobuf.StringValue] parameter.
      *
      * @param className The binary name of the action class.
-     * @param parameter The string which would wrapped into
+     * @param parameter The string that would wrapped into
      *   [StringValue][com.google.protobuf.StringValue] and passed
      *   as a parameter to the constructor of the action.
      */

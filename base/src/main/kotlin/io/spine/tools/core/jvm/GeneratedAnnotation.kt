@@ -41,7 +41,7 @@ import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
  *
  * ## Implementation note
  * We do not cache the created instance of [PsiAnnotation] because PSI elements are mutable.
- * We would like to avoid unwanted propagation of a modification which could be made by
+ * We would like to avoid unwanted propagation of a modification that could be made by
  * one renderer to others.
  *
  * @see Generated

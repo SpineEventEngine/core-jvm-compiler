@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.marker
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * The ProtoData plugin which performs code generation in response to discovering
+ * The ProtoData plugin that performs code generation in response to discovering
  * [every_is][io.spine.option.IsOption] file option and [is][io.spine.option.IsOption]
  * message type option.
  */

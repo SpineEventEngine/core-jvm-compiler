@@ -41,7 +41,7 @@ class PatternWiseAnnotatorTest {
     /**
      * Tests that top level classes are annotated by regex on the class or interface names.
      *
-     * <p>These are the settings from the build file which tune it:
+     * <p>These are the settings from the build file that tune it:
      * <pre>
      * internalClassPatterns.addAll(listOf(
      *     ".*OrBuilder", // Classes ending with `OrBuilder`.

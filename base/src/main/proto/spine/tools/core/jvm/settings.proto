@@ -78,7 +78,7 @@ message Combined {
 // Code generation settings for a group of signal messages.
 message Signals {
 
-    // The patterns which define the group.
+    // The patterns that define the group.
     //
     // It is recommended that users define signal message types according
     // to the following conventions:
@@ -121,7 +121,7 @@ message Entities {
     reserved 1;
     reserved "pattern";
 
-    // Protobuf options which may mark an entity state definition.
+    // Protobuf options that may mark an entity state definition.
     //
     // By default, we recommend marking entity states with the `(entity)` option.
     // Users may override this behaviour by submitting their custom options.
@@ -165,7 +165,7 @@ message MessageGroup {
     compiler.Actions actions = 6;
 }
 
-// A pattern which matches one or multiple messages.
+// A pattern that matches one or multiple messages.
 message Pattern {
 
     oneof kind {
@@ -200,7 +200,7 @@ message GroupSettings {
 
 // Code generation settings for the messages holding a UUID value.
 //
-// Messages which only have one `string` field called `uuid` are known as UUID messages.
+// Messages that only have one `string` field called `uuid` are known as UUID messages.
 //
 message Uuids {
 

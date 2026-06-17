@@ -45,7 +45,7 @@ option (every_is).java_type = "io.spine.tools.compiler.render.TypeListActions";
 message CommandActions {
     option (entity).kind = PROJECTION;
 
-    // The file which declares commands.
+    // The file that declares commands.
     compiler.File file = 1;
 
     // Declared command types.
@@ -59,7 +59,7 @@ message CommandActions {
 message EventActions {
     option (entity).kind = PROJECTION;
 
-    // The file which declares events.
+    // The file that declares events.
     compiler.File file = 1;
 
     // Declared event types.
@@ -73,7 +73,7 @@ message EventActions {
 message RejectionActions {
     option (entity).kind = PROJECTION;
 
-    // The file which declares rejections.
+    // The file that declares rejections.
     compiler.File file = 1;
 
     // Declared rejection types.

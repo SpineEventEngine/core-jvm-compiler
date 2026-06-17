@@ -34,7 +34,7 @@ import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 
 /**
- * Updates the code of the message which qualifies as [Comparable] by
+ * Updates the code of the message that qualifies as [Comparable] by
  * making the type implement the [Comparable] interface.
  *
  * @param type The type of the message.

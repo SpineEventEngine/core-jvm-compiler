@@ -21,7 +21,7 @@
 package io.spine.query.given;
 
 /**
- * A marker interface for entities which may be archived or deleted.
+ * A marker interface for entities that may be archived or deleted.
  *
  * <p>For tests only.
  */

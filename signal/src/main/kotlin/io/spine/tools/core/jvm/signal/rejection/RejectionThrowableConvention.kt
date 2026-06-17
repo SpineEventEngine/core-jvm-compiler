@@ -36,7 +36,7 @@ import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.code.Java
 
 /**
- * A convention which governs Java Rejection-Throwable class declarations.
+ * A convention that governs Java Rejection-Throwable class declarations.
  *
  * The convention only defines a declaration for rejection message types. Any other types are
  * undefined and thus result in the [declarationFor] method returning `null`.

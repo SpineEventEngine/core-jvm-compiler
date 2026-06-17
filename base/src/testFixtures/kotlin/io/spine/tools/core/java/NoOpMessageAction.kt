@@ -34,7 +34,7 @@ import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 
 /**
- * A test fixture action which does nothing.
+ * A test fixture action that does nothing.
  */
 class NoOpMessageAction(
     type: MessageType,

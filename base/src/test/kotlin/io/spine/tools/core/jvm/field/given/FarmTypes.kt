@@ -32,7 +32,7 @@ import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.core.jvm.given.base.Farm
 
 /**
- * Creates a [TypeSystem] which knows only the types declared in `farm.proto`.
+ * Creates a [TypeSystem] that knows only the types declared in `farm.proto`.
  */
 internal fun farmTypeSystem(): TypeSystem =
     TypeSystem(

@@ -39,7 +39,7 @@ import io.spine.tools.meta.Module
 internal object Meta : LazyMeta(Module(SPINE_TOOLS_GROUP, "core-jvm-grpc"))
 
 /**
- * Dependencies of gRPC Kotlin which [GrpcCoreJvmPlugin] passed to the project
+ * Dependencies of gRPC Kotlin that [GrpcCoreJvmPlugin] passed to the project
  * to which it is applied.
  */
 internal object GrpcKotlin {

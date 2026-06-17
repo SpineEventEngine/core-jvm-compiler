@@ -37,7 +37,7 @@ import io.spine.tools.psi.java.Environment.elementFactory
 import org.intellij.lang.annotations.Language
 
 /**
- * The Javadoc of a method which returns a strongly typed proto field.
+ * The Javadoc of a method that returns a strongly typed proto field.
  *
  * @see FieldAccessor
  */

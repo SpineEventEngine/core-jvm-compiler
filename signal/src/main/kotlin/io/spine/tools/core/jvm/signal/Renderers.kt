@@ -42,7 +42,7 @@ import io.spine.tools.psi.java.execute
 /**
  * An abstract base for renderers of signal messages.
  *
- * @param V the type of the view state which gathers signals of the type served by this renderer.
+ * @param V the type of the view state that gathers signals of the type served by this renderer.
  */
 internal abstract class SignalRenderer<V> :
     TypeListRenderer<V, SignalSettings>(),

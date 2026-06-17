@@ -33,7 +33,7 @@ import io.spine.tools.compiler.render.SourceFileSet
  * An abstract base for annotation renderers that annotate Protobuf generated code
  * in accordance to API level options found in the source proto files.
  *
- * @param T the type of the view state which contains information about annotated types.
+ * @param T the type of the view state that contains information about annotated types.
  */
 internal abstract class ProtoAnnotator<T>(
     private val viewClass: Class<T>

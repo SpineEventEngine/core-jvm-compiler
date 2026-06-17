@@ -51,7 +51,7 @@ public class EntitySettings @VisibleForTesting public constructor(project: Proje
     SettingsWithFields<Entities>(project, DEFAULT_ACTIONS) {
 
     /**
-     * The Protobuf options which mark entity states.
+     * The Protobuf options that mark entity states.
      *
      * By default, the `(entity)` option is used.
      */

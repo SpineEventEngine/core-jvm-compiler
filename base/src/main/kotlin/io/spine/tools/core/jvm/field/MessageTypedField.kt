@@ -44,14 +44,14 @@ import io.spine.tools.psi.java.setSuperclass
 import org.intellij.lang.annotations.Language
 
 /**
- * Generates a class which represents a field which has
+ * Generates a class that represents a field that has
  * a [Message][com.google.protobuf.Message] type.
  *
  * The generated class extends [SubscribableField][io.spine.base.SubscribableField] or
  * one of its subclasses. As such, it can be passed to message filters and be used to obtain
  * its fields when composing a query filter.
  *
- * More formally, for a given [fieldType], this class will generate a Java class which:
+ * More formally, for a given [fieldType], this class will generate a Java class that:
  *   1. Is named by combining simple Java class name of the field type and
  *   the ["Field"][MessageTypedField.CLASS_NAME_SUFFIX] suffix.
  *   For example, `UserIdField`.
@@ -59,12 +59,12 @@ import org.intellij.lang.annotations.Language
  *   2. Inherits from [SubscribableField][io.spine.base.SubscribableField] or one of
  *   its descendants such as [EntityStateField][io.spine.query.EntityStateField].
  *
- *   3. Has a `private` constructor which accepts a single parameter of
+ *   3. Has a `private` constructor that accepts a single parameter of
  *   the [Field][io.spine.base.Field] class. The constructor is `private` because
  *   the generated class is intended to be used only from within the scope of
  *   the outer `Field` class.
  *
- *   4. Exposes nested message fields through the instance methods which append the name of the
+ *   4. Exposes nested message fields through the instance methods that append the name of the
  *   requested field to the enclosed field path.
  *
  * The created class is then placed under the [Field][AddFieldClass.NAME] class, which,

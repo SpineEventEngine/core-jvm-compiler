@@ -40,8 +40,8 @@ import io.spine.tools.core.annotation.ApiOption.Companion.findMatching
 import io.spine.tools.core.annotation.isTrue
 
 /**
- * A process manager which discovers the API annotation options set on the outer
- * class of a Protobuf file which has `java_multiple_files` set to `false`.
+ * A process manager that discovers the API annotation options set on the outer
+ * class of a Protobuf file that has `java_multiple_files` set to `false`.
  *
  * @see OuterClassAnnotator
  */

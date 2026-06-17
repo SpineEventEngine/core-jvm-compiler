@@ -70,7 +70,7 @@ internal class QueryClass(
         """.trimIndent()
 
     /**
-     * Creates the constructor for the query class which accepts
+     * Creates the constructor for the query class that accepts
      * an instance of `QueryBuilder` as the parameter.
      */
     override fun createConstructor(cls: PsiClass): PsiMethod {

@@ -43,7 +43,7 @@ spine {
             internalClassPatterns.addAll(listOf(
                 ".*OrBuilder", // Classes ending with `OrBuilder`.
                 ".*Proto",     // Classes ending with `Proto`.
-                ".*\\.complex\\..*" // Classes which have `.complex.` in their qualified name.
+                ".*\\.complex\\..*" // Classes that have `.complex.` in their qualified name.
             ))
             internalMethodNames.addAll(listOf(
                 "newBuilderForType",

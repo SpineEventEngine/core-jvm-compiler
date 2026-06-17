@@ -43,12 +43,12 @@ import io.spine.tools.psi.java.addLast
 import org.intellij.lang.annotations.Language
 
 /**
- * The reference to the class which provides column information.
+ * The reference to the class that provides column information.
  */
 internal val container = EntityColumn::class.java.reference
 
 /**
- * Generates a method which returns a [strongly typed][EntityColumn] entity column.
+ * Generates a method that returns a [strongly typed][EntityColumn] entity column.
  *
  * The name of the method matches the name of the [entity state][io.spine.base.EntityState]
  * converted to [javaCase].

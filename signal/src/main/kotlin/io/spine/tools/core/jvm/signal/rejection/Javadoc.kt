@@ -136,7 +136,7 @@ private fun classSummaryFor(messageType: MessageType): String {
 }
 
 /**
- * Obtains a Javadoc note about the rejection message type which is used together
+ * Obtains a Javadoc note about the rejection message type that is used together
  * with a `RejectionThrowable` class.
  */
 private fun protoMessageNote(messageType: MessageType): String {
