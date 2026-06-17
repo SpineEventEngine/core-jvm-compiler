@@ -24,9 +24,24 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-rootProject.name = "rejection-gen-test"
+import com.google.protobuf.gradle.ProtobufExtension
+import io.spine.dependency.lib.Protobuf
 
-include(
-    "proto-dependency",
-    "sub-module"
-)
+// A shared, proto-only module. It only declares Protobuf types and is consumed by `sub-module`
+// through the `protobuf()` configuration scope. The `java` and `com.google.protobuf` plugins are
+// applied by the root `subprojects` block. Unlike the other modules, it does not apply the
+// `io.spine.core-jvm` plugin, so that it stays a plain Protobuf producer and does not export the
+// well-known or Spine option types to its consumers (which would clash with the consumer's own).
+
+// Configure the `protoc` executable, which the `io.spine.core-jvm` plugin would otherwise set up.
+configure<ProtobufExtension> {
+    protoc {
+        artifact = Protobuf.compiler
+    }
+}
+
+dependencies {
+    // The Protobuf runtime is needed to compile the Java code generated from this module's
+    // own `.proto` file. Spine Base is intentionally not used here (see the note above).
+    implementation(Protobuf.javaLib)
+}

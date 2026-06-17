@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,13 +66,21 @@ subprojects {
     val enclosingRootDir: String by extra
     apply {
         plugin("com.google.protobuf")
-        plugin("io.spine.core-jvm")
         from("${enclosingRootDir}/version.gradle.kts")
     }
 
     repositories.standardToSpineSdk()
 
-    dependencies {
-        implementation(Base.lib)
+    // The `proto-dependency` module emulates a shared, proto-only module. It only exposes its
+    // Protobuf sources (via the Protobuf Gradle plugin) so that they can be consumed through the
+    // `protobuf()` configuration scope. It deliberately does not apply the CoreJvm Compiler, so
+    // that it neither runs code generation itself nor exports the well-known and Spine option
+    // types to its consumers (which would clash with the consumer's own copies).
+    if (name != "proto-dependency") {
+        apply(plugin = "io.spine.core-jvm")
+
+        dependencies {
+            implementation(Base.lib)
+        }
     }
 }
