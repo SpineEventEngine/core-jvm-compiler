@@ -30,7 +30,7 @@ import io.spine.annotation.VisibleForTesting
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * A ProtoData plugin responsible for handling code generation aspects related to
+ * A Spine Compiler plugin responsible for handling code generation aspects related to
  * entity state declarations.
  *
  * @see EntityPluginComponent

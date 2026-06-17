@@ -38,7 +38,7 @@ import io.spine.tools.core.jvm.annotation.OuterClassAnnotator
 import io.spine.tools.core.jvm.annotation.ServiceAnnotationRenderer
 
 /**
- * A ProtoData plugin that annotates Java code with API level annotations that match
+ * A Spine Compiler plugin that annotates Java code with API level annotations that match
  * the API level options defined in Protobuf files.
  *
  * Spine SDK defines two ways for defining API level stability for the Java code:
