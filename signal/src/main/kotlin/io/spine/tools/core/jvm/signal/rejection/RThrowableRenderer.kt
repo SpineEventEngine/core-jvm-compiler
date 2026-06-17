@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,15 +26,12 @@
 
 package io.spine.tools.core.jvm.signal.rejection
 
-import com.google.protobuf.BoolValue
 import com.squareup.javapoet.JavaFile
 import io.spine.logging.WithLogging
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.ProtobufSourceFile
-import io.spine.tools.compiler.ast.find
 import io.spine.tools.compiler.ast.isTopLevel
 import io.spine.tools.compiler.jvm.file.hasJavaRoot
-import io.spine.tools.compiler.jvm.javaOuterClassName
 import io.spine.tools.compiler.jvm.javaPackage
 import io.spine.tools.compiler.jvm.render.JavaRenderer
 import io.spine.tools.compiler.render.SourceFileSet
@@ -68,7 +65,7 @@ internal class RThrowableRenderer: JavaRenderer(), WithLogging {
         val result = select(ProtobufSourceFile::class.java).all()
             .filter { it.isRejections() }
 
-        result.forEach { it.checkConventions() }
+        result.forEach { it.checkRejectionConventions() }
 
         if (result.isNotEmpty()) {
             logger.atDebug().log {
@@ -93,7 +90,7 @@ internal class RThrowableRenderer: JavaRenderer(), WithLogging {
             Generating rejection classes for `${protoFile.file.path}`.
                   Java package: `${protoFile.javaPackage()}`.
                   Outer class name: `${protoFile.outerClassName()}`.
-                  Output directory: `${sources.outputRoot}`.            
+                  Output directory: `${sources.outputRoot}`.
             """.ti()
         }
         protoFile.typeMap.values
@@ -144,50 +141,8 @@ internal class RThrowableRenderer: JavaRenderer(), WithLogging {
 private fun ProtobufSourceFile.isRejections(): Boolean =
     file.path.endsWith("rejections.proto")
 
-internal typealias RejectionFile = ProtobufSourceFile
-
-/**
- * Ensures that this rejection file is configured according to the conventions.
- *
- * `java_multiple_files` option must be set to `false` or not specified, and
- * `java_outer_classname` must end with `Rejections` or absent.
- */
-private fun RejectionFile.checkConventions() {
-    checkNotMultipleFiles()
-    checkOuterClassName()
-}
-
-private const val JAVA_MULTIPLE_FILES: String = "java_multiple_files"
-
-private fun RejectionFile.checkNotMultipleFiles() {
-    val javaMultipleFiles = header.optionList.find(JAVA_MULTIPLE_FILES, BoolValue::class.java)
-    javaMultipleFiles?.let {
-        check(!it.value) {
-            "A rejection file (`${file.path}`) should generate" +
-                    " Java classes into a single source code file." +
-                    " Please set `$JAVA_MULTIPLE_FILES` option to `false`."
-        }
-    }
-}
-
-private const val OUTER_CLASS_NAME: String = "java_outer_classname"
-private const val REJECTIONS_CLASS_SUFFIX: String = "Rejections"
-
-internal fun RejectionFile.outerClassName(): String = header.javaOuterClassName()
-
-private fun RejectionFile.checkOuterClassName() {
-    val outerClassName = outerClassName()
-    check(outerClassName.endsWith(REJECTIONS_CLASS_SUFFIX)) {
-        "A rejection file (`${file.path}`) should have" +
-                " the outer class named ending with `$REJECTIONS_CLASS_SUFFIX` or" +
-                " do not have the option `$OUTER_CLASS_NAME` at all." +
-                " Encountered outer class name: `$outerClassName`." +
-                " Please rename the outer class or remove the option."
-    }
-}
-
 /**
  * Obtains the Java package name for the given rejection file, taking into account
  * the `java_package` option.
  */
-private fun RejectionFile.javaPackage(): String = header.javaPackage()
+private fun ProtobufSourceFile.javaPackage(): String = header.javaPackage()
