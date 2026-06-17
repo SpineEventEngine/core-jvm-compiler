@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,10 @@
 
 package io.spine.tools.core.jvm.entity
 
+import com.google.protobuf.Descriptors.GenericDescriptor
 import com.intellij.psi.PsiClass
 import io.spine.tools.core.jvm.PluginTestSetup
+import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
@@ -64,6 +66,15 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
         val entityConfig = EntitySettings(project)
         return entityConfig.toProto()
     }
+
+    /**
+     * Excludes the compile-fail fixture [BrokenIdEntity] from regular pipeline runs.
+     *
+     * Its implicitly-required `Empty` ID field is rejected at compile time, so it is
+     * tested separately in `IdFieldErrorSpec`.
+     */
+    override fun defaultExclusions(): List<GenericDescriptor> =
+        listOf(BrokenIdEntity.getDescriptor())
 }
 
 /**

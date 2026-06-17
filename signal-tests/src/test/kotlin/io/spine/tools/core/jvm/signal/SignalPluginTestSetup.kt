@@ -26,11 +26,13 @@
 
 package io.spine.tools.core.jvm.signal
 
+import com.google.protobuf.Descriptors.GenericDescriptor
 import io.spine.base.MessageFile
 import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.FilePatternFactory.suffix
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.SignalSettings
+import io.spine.tools.core.signal.given.command.BrokenIdCommand
 import java.nio.file.Path
 
 /**
@@ -57,6 +59,15 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
         val codegenConfig = createCompilerSettings(projectDir)
         return codegenConfig.toProto().signalSettings
     }
+
+    /**
+     * Excludes the compile-fail fixture [BrokenIdCommand] from regular pipeline runs.
+     *
+     * Its implicitly-required `Empty` target-entity ID field is rejected at compile
+     * time, so it is tested separately in `CommandIdErrorSpec`.
+     */
+    override fun defaultExclusions(): List<GenericDescriptor> =
+        listOf(BrokenIdCommand.getDescriptor())
 }
 
 /**

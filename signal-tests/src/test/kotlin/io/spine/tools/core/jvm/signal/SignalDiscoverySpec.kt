@@ -35,6 +35,7 @@ import io.spine.base.MessageFile.EVENTS
 import io.spine.base.MessageFile.REJECTIONS
 import io.spine.code.proto.FileSet
 import io.spine.testing.compiler.PipelineSetup
+import io.spine.testing.compiler.excluding
 import io.spine.testing.server.blackbox.BlackBox
 import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.matches
@@ -61,7 +62,9 @@ internal class SignalDiscoverySpec {
         @JvmStatic
         fun run(@TempDir projectDir: Path) {
             val signalSettings = createSettings(projectDir)
-            setup = setup(projectDir, signalSettings)
+            // Keep compile-fail fixtures (see `defaultExclusions`) out of discovery,
+            // as they intentionally fail compilation when processed.
+            setup = setup(projectDir, signalSettings, excluding(defaultExclusions()))
             val (p, b) = setup.createPipelineWithBlackBox()
             pipeline = p
             blackbox = b
@@ -71,6 +74,10 @@ internal class SignalDiscoverySpec {
 
     @Test
     fun `discover all signals`() {
+        // Compile-fail fixtures are excluded from the pipeline (see `defaultExclusions`),
+        // so they must not be expected among the discovered signals either.
+        val excludedNames = defaultExclusions().map { it.fullName }.toSet()
+
         /**
          * Asserts that the view state specified by [viewStateClass] contains all
          * the message types declared in this proto file.
@@ -87,9 +94,9 @@ internal class SignalDiscoverySpec {
             if (!fileType.pattern().matches(file)) {
                 return
             }
-            val allMessages = messageTypes.map {
-                it.toMessageType()
-            }
+            val allMessages = messageTypes
+                .filterNot { it.fullName in excludedNames }
+                .map { it.toMessageType() }
             val assertEntity = blackbox.assertEntityWithState(file, viewStateClass)
             assertEntity.exists()
 
