@@ -135,7 +135,7 @@ message Entities {
     // Whether or not query type-safe query API should be generated for all the entity states.
     //
     // The default value is set to `true` via Gradle project extension applied by
-    // McJava Gradle Plugin.
+    // the CoreJvm Compiler Gradle Plugin.
     //
     bool generate_queries = 5;
 

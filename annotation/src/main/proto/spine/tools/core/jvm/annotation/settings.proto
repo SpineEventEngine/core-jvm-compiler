@@ -35,10 +35,10 @@ option java_package = "io.spine.tools.core.jvm.annotation";
 option java_outer_classname = "SettingsProto";
 option java_multiple_files = true;
 
-// Settings passed to components of `ApiAnnotationsPlugin` ProtoData plugin.
+// Settings passed to components of `ApiAnnotationsPlugin` plugin.
 //
-// This message is composed by `WriteProtoDataSettings` task from properties exposed
-// by McJava project extension.
+// This message is composed by `WriteCompilerPluginsSettings` task from properties exposed
+// by the CoreJvm Compiler project extension.
 //
 message Settings {
 
