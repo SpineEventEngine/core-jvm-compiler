@@ -139,7 +139,7 @@ internal class SupportedIdTypeSpec {
 
         /** All declared primitive types, excluding the `UNRECOGNIZED` sentinel. */
         val allPrimitives: Set<PrimitiveType> =
-            PrimitiveType.values().toSet() - UNRECOGNIZED
+            PrimitiveType.entries.toSet() - UNRECOGNIZED
 
         /** A type name used to synthesize message- and enum-typed fields. */
         val someTypeName: TypeName = typeName {
