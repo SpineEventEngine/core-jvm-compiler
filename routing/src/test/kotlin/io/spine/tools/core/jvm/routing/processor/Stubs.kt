@@ -52,14 +52,14 @@ import java.io.File
 import java.io.OutputStream
 
 /**
- * A stub instance of [Environment] which can be used only as a parameter for no-op visitors.
+ * A stub instance of [Environment] that can be used only as a parameter for no-op visitors.
  */
 internal val stubEnvironment = Environment(NotResolver(), NotLogger(), NotCodeGenerator())
 
 private fun notImplemented(): Nothing = TODO("Not implemented.")
 
 /**
- * The stub implementation of [Resolver] which throws [NotImplementedError] from all functions.
+ * The stub implementation of [Resolver] that throws [NotImplementedError] from all functions.
  */
 @Suppress("TooManyFunctions")
 private class NotResolver : Resolver {
@@ -167,7 +167,7 @@ private class NotResolver : Resolver {
 }
 
 /**
- * The stub implementation of [KSPLogger] which throws [NotImplementedError] from all functions.
+ * The stub implementation of [KSPLogger] that throws [NotImplementedError] from all functions.
  */
 private class NotLogger : KSPLogger {
     override fun error(message: String, symbol: KSNode?): Unit = notImplemented()
@@ -178,7 +178,7 @@ private class NotLogger : KSPLogger {
 }
 
 /**
- * The stub implementation of [CodeGenerator] which throws [NotImplementedError] from all functions.
+ * The stub implementation of [CodeGenerator] that throws [NotImplementedError] from all functions.
  */
 private class NotCodeGenerator : CodeGenerator {
 

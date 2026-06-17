@@ -66,7 +66,7 @@ public abstract class GroupedByFilePatterns<S : Message> internal constructor(
     }
 
     /**
-     * Obtains the Gradle set property with the file pattern which matches messages in this group.
+     * Obtains the Gradle set property with the file pattern that matches messages in this group.
      */
     public fun patterns(): Set<FilePattern> {
         return file.get()
@@ -76,7 +76,7 @@ public abstract class GroupedByFilePatterns<S : Message> internal constructor(
      * Specifies a file pattern for this group of messages.
      *
      * Calling this method many times will extend the group to include more types. If a type is
-     * declared in a file which matches at least one of the patterns, the type is included in
+     * declared in a file that matches at least one of the patterns, the type is included in
      * the group.
      *
      * In the example below, all messages declared in files, which either end with `"ids.proto"` or

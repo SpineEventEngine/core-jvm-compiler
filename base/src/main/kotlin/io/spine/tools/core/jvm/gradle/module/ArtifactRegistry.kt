@@ -53,7 +53,7 @@ public object ArtifactRegistry {
     public const val snapshots: String = "$baseUrl/snapshots"
 
     /**
-     * Adds the releases repository which handles Spine-only artifacts.
+     * Adds the releases repository that handles Spine-only artifacts.
      */
     context(handler: RepositoryHandler)
     internal fun releases() {
@@ -61,7 +61,7 @@ public object ArtifactRegistry {
     }
 
     /**
-     * Adds the snapshots repository which handles Spine-only artifacts.
+     * Adds the snapshots repository that handles Spine-only artifacts.
      */
     context(handler: RepositoryHandler)
     internal fun snapshots() {

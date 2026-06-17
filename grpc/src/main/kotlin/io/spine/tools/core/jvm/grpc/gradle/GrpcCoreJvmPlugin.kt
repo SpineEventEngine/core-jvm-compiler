@@ -32,7 +32,7 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.ExtensionAware
 
 /**
- * A Gradle plugin which controls enabling gRPC in a project.
+ * A Gradle plugin that controls enabling gRPC in a project.
  *
  *
  * The DSL syntax looks like this:

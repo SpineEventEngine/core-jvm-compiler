@@ -52,7 +52,7 @@ import io.spine.tools.java.reference
 import kotlin.reflect.KClass
 
 /**
- * Updates the Java code of a message type which qualifies as [EntityState] by
+ * Updates the Java code of a message type that qualifies as [EntityState] by
  * making it implement this interface, or an interface derived from [EntityState].
  *
  * The type of the selected interface is defined by the value of

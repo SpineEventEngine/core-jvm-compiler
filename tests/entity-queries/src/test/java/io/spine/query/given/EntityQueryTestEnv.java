@@ -41,7 +41,7 @@ public final class EntityQueryTestEnv {
     }
 
     /**
-     * Produces an entity query which has all its fields set.
+     * Produces an entity query that has all its fields set.
      */
     @SuppressWarnings("RedundantExplicitVariableType") // Avoid extra casts for lambda variables.
     public static ProjectView.Query givenQuery() {

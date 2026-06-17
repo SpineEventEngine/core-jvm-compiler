@@ -109,7 +109,7 @@ internal class QueryBuilderClass(
         """.trimIndent()
 
     /**
-     * Creates the private constructor which calls `super()` with two parameters:
+     * Creates the private constructor that calls `super()` with two parameters:
      *  1. The class of the entity state identifiers.
      *  2. The entity state class.
      */

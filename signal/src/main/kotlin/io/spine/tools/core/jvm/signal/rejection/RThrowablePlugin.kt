@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.signal.rejection
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * A ProtoData plugin for generating [RejectionThrowable][io.spine.base.RejectionThrowable]
+ * A Spine Compiler plugin for generating [RejectionThrowable][io.spine.base.RejectionThrowable]
  * Java classes.
  *
  * @see [io.spine.tools.core.jvm.signal.SignalPlugin]

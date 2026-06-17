@@ -39,7 +39,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 
 /**
- * Plugin which performs additional cleanup of the Spine-generated folders.
+ * Plugin that performs additional cleanup of the Spine-generated folders.
  *
  * Adds a custom `preClean` task, which is executed before the `clean` task.
  */

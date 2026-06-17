@@ -32,7 +32,7 @@ import "spine/options.proto";
 option java_multiple_files = true;
 option (internal_all) = true;
 
-// A message which must get the `internal` annotation from the file-wide option.
+// A message that must get the `internal` annotation from the file-wide option.
 message Probe {
     string value = 1;
 }
@@ -42,7 +42,7 @@ message Sonde {
     string value = 1;
 }
 
-// An enum which must get the `internal` annotation from the file-wide option.
+// An enum that must get the `internal` annotation from the file-wide option.
 enum Level {
     LEVEL_UNDEFINED = 0;
     HIGH = 1;

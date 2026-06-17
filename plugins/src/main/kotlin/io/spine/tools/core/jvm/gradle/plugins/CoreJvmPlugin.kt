@@ -44,9 +44,9 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 
 /**
- * Spine Model Compiler for Java Gradle plugin.
+ * The CoreJvm Compiler plugin for Gradle.
  *
- * Applies all McJava sub-plugins to the given project.
+ * Applies all CoreJvm Compiler sub-plugins to the given project.
  */
 public class CoreJvmPlugin : LibraryPlugin<CoreJvmOptions>(
     DslSpec(name(), CoreJvmOptions::class)

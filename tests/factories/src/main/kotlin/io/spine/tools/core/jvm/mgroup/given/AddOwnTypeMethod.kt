@@ -44,8 +44,8 @@ import io.spine.tools.java.reference
 import io.spine.type.MessageType as MType
 
 /**
- * A stub rendering action which adds a static method called `ownClass` which
- * obtains [io.spine.type.MessageType] instance which represents the generated message class.
+ * A stub rendering action that adds a static method called `ownClass` that
+ * obtains [io.spine.type.MessageType] instance that represents the generated message class.
  */
 class AddOwnTypeMethod(
     type: MessageType,

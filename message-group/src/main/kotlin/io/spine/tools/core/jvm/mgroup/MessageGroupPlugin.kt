@@ -29,7 +29,7 @@ package io.spine.tools.core.jvm.mgroup
 import io.spine.tools.compiler.plugin.Plugin
 
 /**
- * The ProtoData plugin responsible for code generation for groups of messages
+ * The Spine Compiler plugin responsible for code generation for groups of messages
  * specified by a file or type name patterns.
  *
  * @see io.spine.tools.core.jvm.settings.GroupSettings

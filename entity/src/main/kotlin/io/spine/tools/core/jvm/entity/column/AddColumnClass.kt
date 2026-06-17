@@ -105,7 +105,7 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
      */
     private inner class DefinitionsMethod {
 
-        /** The generic type which matches all the columns of this entity state. */
+        /** The generic type that matches all the columns of this entity state. */
         private val columnWildcard = columnType(messageClass)
 
         /**
@@ -118,10 +118,10 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
             append("columns")
         }
 
-        /** The type which is returned by the method. */
+        /** The type that is returned by the method. */
         private val resultSet: String = ImmutableSet::class.java.reference
 
-        /** The piece of method body which adds columns to [accumulator]. */
+        /** The piece of method body that adds columns to [accumulator]. */
         private val addingColumns: String by lazy {
             columns
                 .map { column -> columnMethodName(column) }

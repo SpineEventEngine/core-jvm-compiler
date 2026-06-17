@@ -32,7 +32,7 @@ import "spine/options.proto";
 option java_multiple_files = true;
 option (experimental_all) = true;
 
-// A message which must get the `experimental` annotation from the file-wide option.
+// A message that must get the `experimental` annotation from the file-wide option.
 message ExperimentalThing {
     string value = 1;
 }

@@ -104,7 +104,7 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
     public val messageGroups: MutableSet<MessageGroup> = mutableSetOf()
 
     /**
-     * Obtains an instance of [FilePatternFactory] which creates file patterns.
+     * Obtains an instance of [FilePatternFactory] that creates file patterns.
      *
      * @see forMessages
      */

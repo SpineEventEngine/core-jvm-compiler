@@ -34,7 +34,7 @@ import io.spine.tools.core.annotation.event.FileOptionMatched.TargetCase.MESSAGE
 import io.spine.tools.core.annotation.event.FileOptionMatched.TargetCase.SERVICE
 
 /**
- * A routing function which obtains a single-item set for the target entity,
+ * A routing function that obtains a single-item set for the target entity,
  * IFF the target is a `messageType`. Otherwise, returns an empty set.
  */
 internal fun FileOptionMatched.toMessageTypeName(): Set<TypeName> =
@@ -45,7 +45,7 @@ internal fun FileOptionMatched.toMessageTypeName(): Set<TypeName> =
     }
 
 /**
- * A routing function which obtains a single-item set for the target entity,
+ * A routing function that obtains a single-item set for the target entity,
  * IFF the target is a `enumType`. Otherwise, returns an empty set.
  */
 internal fun FileOptionMatched.toEnumTypeName(): Set<TypeName> =
@@ -56,7 +56,7 @@ internal fun FileOptionMatched.toEnumTypeName(): Set<TypeName> =
     }
 
 /**
- * A routing function which obtains a single-item set for the target entity,
+ * A routing function that obtains a single-item set for the target entity,
  * IFF the target is a `service`. Otherwise, returns an empty set.
  */
 internal fun FileOptionMatched.toServiceName(): Set<ServiceName> =

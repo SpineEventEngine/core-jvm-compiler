@@ -82,7 +82,7 @@ message FileOptions {
     repeated compiler.Option option = 2;
 }
 
-// A message type which has been annotated with one or more API level options.
+// A message type that has been annotated with one or more API level options.
 //
 // It can be annotated directly inside the type, or indirectly, via a file-wide option.
 //

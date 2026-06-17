@@ -98,7 +98,7 @@ internal class EntityClass(
     }
 
     /**
-     * The class which this entity class extends.
+     * The class that this entity class extends.
      */
     fun superClass(): KSType {
         val found = decl.superTypes.find {

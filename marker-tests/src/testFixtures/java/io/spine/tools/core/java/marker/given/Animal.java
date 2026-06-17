@@ -38,7 +38,7 @@ import io.spine.protobuf.Messages;
 public interface Animal extends Message {
 
     /**
-     * A stub method which simply obtains a default instance of the same class as this.
+     * A stub method that simply obtains a default instance of the same class as this.
      */
     @SuppressWarnings({"unused", "TypeParameterUnusedInFormals"})
     default <A extends Animal> A empty() {
