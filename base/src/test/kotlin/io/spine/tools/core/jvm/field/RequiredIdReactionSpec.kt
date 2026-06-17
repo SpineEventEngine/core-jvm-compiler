@@ -31,6 +31,7 @@ import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
 import io.spine.core.External
+import io.spine.logging.testing.tapConsole
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf2
@@ -78,7 +79,10 @@ internal class RequiredIdReactionSpec {
     @Test
     fun `reject an implicitly required ID field of type 'Empty'`() {
         val error = assertThrows<Compilation.Error> {
-            reaction.test(farmField("empty"), MESSAGE)
+            // Mute the expected compilation error so it does not surface in the build log.
+            tapConsole {
+                reaction.test(farmField("empty"), MESSAGE)
+            }
         }
         error.message.assertErrorContains(
             "empty",
@@ -102,7 +106,10 @@ internal class RequiredIdReactionSpec {
         // A `repeated` field of any element type is not a supported ID type.
         listOf("tags", "counts", "barns").forEach { name ->
             val error = assertThrows<Compilation.Error> {
-                reaction.test(farmField(name), MESSAGE)
+                // Mute the expected compilation error so it does not surface in the build log.
+                tapConsole {
+                    reaction.test(farmField(name), MESSAGE)
+                }
             }
             error.message.assertUnsupportedIdType(name)
         }
@@ -112,7 +119,10 @@ internal class RequiredIdReactionSpec {
     fun `reject a 'map' ID field`() {
         listOf("barns_by_name", "names_by_id").forEach { name ->
             val error = assertThrows<Compilation.Error> {
-                reaction.test(farmField(name), MESSAGE)
+                // Mute the expected compilation error so it does not surface in the build log.
+                tapConsole {
+                    reaction.test(farmField(name), MESSAGE)
+                }
             }
             error.message.assertUnsupportedIdType(name)
         }
@@ -123,7 +133,10 @@ internal class RequiredIdReactionSpec {
         // `bool`, `bytes`, `double`, and `enum` are not among the supported ID types.
         listOf("active", "data", "rating", "color").forEach { name ->
             val error = assertThrows<Compilation.Error> {
-                reaction.test(farmField(name), MESSAGE)
+                // Mute the expected compilation error so it does not surface in the build log.
+                tapConsole {
+                    reaction.test(farmField(name), MESSAGE)
+                }
             }
             error.message.assertUnsupportedIdType(name)
         }

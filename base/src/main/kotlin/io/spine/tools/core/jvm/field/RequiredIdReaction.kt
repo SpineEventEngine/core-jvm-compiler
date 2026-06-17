@@ -39,8 +39,6 @@ import io.spine.tools.compiler.ast.PrimitiveType
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.findOption
-import io.spine.tools.compiler.ast.isList
-import io.spine.tools.compiler.ast.isMap
 import io.spine.tools.compiler.ast.name
 import io.spine.tools.compiler.ast.qualifiedName
 import io.spine.tools.compiler.ast.ref
@@ -179,14 +177,14 @@ private val supportedIdPrimitives: Set<PrimitiveType> = setOf(
 )
 
 /**
- * Reports a compilation error if the type of the given [field] refers to
+ * Reports a compilation error if the type of the given [field] is
  * `google.protobuf.Empty`.
  *
- * An implicitly required ID field of type `Empty`, a `repeated` of `Empty`, or
- * a `map` with `Empty` values cannot be satisfied at runtime: every `Empty`
- * instance equals the default value, so the generated required-check is always
- * violated. Such a field is therefore rejected at compile time, mirroring the
- * check performed by the Validation Compiler for the explicit `(required)` option.
+ * An implicitly required ID field of type `Empty` cannot be satisfied at runtime:
+ * every `Empty` instance equals the default value, so the generated required-check
+ * is always violated. Such a field is therefore rejected at compile time, mirroring
+ * the check performed by the Validation Compiler for the explicit `(required)` option.
+ * A `repeated` or `map` of `Empty` is already rejected earlier as an unsupported ID type.
  */
 private fun checkFieldIsNotEmpty(field: Field, file: File) =
     Compilation.check(!field.type.refersToEmpty(), file, field.span) {
@@ -197,15 +195,9 @@ private fun checkFieldIsNotEmpty(field: Field, file: File) =
     }
 
 /**
- * Tells if this [FieldType] is `google.protobuf.Empty`, a `repeated` of `Empty`,
- * or a `map` with `Empty` values.
+ * Tells if this [FieldType] is `google.protobuf.Empty`.
  */
-private fun FieldType.refersToEmpty(): Boolean = when {
-    isMessage -> message.isProtobufEmpty
-    isList -> list.isMessage && list.message.isProtobufEmpty
-    isMap -> map.valueType.isMessage && map.valueType.message.isProtobufEmpty
-    else -> false
-}
+private fun FieldType.refersToEmpty(): Boolean = isMessage && message.isProtobufEmpty
 
 private val TypeName.isProtobufEmpty: Boolean
     get() = packageName == "google.protobuf" && simpleName == "Empty"
