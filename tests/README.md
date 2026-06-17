@@ -32,7 +32,7 @@ If your current directory is `tests`, just run the Gradle build as usualy:
 
 ## Symlinks
 
-The `test` directory contains _soft_ symlinks to directories and files from the root project that
+The `tests` directory contains _soft_ symlinks to directories and files from the root project that
 this Gradle project needs for execution:
 
 | Symlink       | Target           |
