@@ -53,10 +53,28 @@ message MoveDevice {
     RoomId to = 3 [(required) = true];
 }
 
+// A command which participates in demonstrating the routing function
+// which relies on a field other than the first one.
+//
+// Normally the first field of a command is the ID of the target entity.
+// Here we simulate the case when the "real" ID field is not the first one,
+// but the one which is used by the routing function.
+// See `HomeAUtomationContext.kt` file and the companion object of
+// `DeviceAggregate` class for the routing function that relies on the `device` field.
+//
 message SetState {
-    // Normally the first field of a command is the ID of the target entity.
-    // We deliberately put another field so that a route function would be "useful"
-    // for obtaining the device ID from the `device` field that comes second.
-    State state = 2 [(required) = true];
-    DeviceId device = 1;
+    // The legacy ID for a target. Still have to support.
+    RoomId room = 1 [deprecated = true];
+
+    // Previously, we referenced a device via its room and a name.
+    //
+    // Now we have a dedicated field for the device ID, but we keep the old one
+    // for compatibility reasons.
+    //
+    string device_name = 2 [deprecated = true];
+
+    State state = 3 [(required) = true];
+
+    // The new way of routing.
+    DeviceId device = 4 [(required) = true];
 }

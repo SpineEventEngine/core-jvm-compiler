@@ -30,6 +30,7 @@ import io.kotest.matchers.shouldBe
 import io.spine.given.home.Device
 import io.spine.given.home.DeviceAggregate
 import io.spine.given.home.DeviceId
+import io.spine.given.home.RoomId
 import io.spine.given.home.State
 import io.spine.given.home.commands.addDevice
 import io.spine.given.home.commands.setState
@@ -42,6 +43,7 @@ import org.junit.jupiter.api.Test
 @DisplayName("Generated `CommandRoutingSetup` should")
 internal class CommandRoutingSetupITest {
 
+    @Suppress("DEPRECATION") // Simulate legacy proto API to support.
     @Test
     fun `apply generated routes`() {
         BlackBox.from(homeAutomation()).use { context ->
@@ -61,6 +63,7 @@ internal class CommandRoutingSetupITest {
 
             context.receivesCommand(
                 setState {
+                    room = RoomId.generate()
                     device = l1
                     state = State.ON
                 }
