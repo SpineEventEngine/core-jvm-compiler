@@ -26,6 +26,7 @@
 
 package io.spine.tools.core.jvm.field
 
+import io.spine.annotation.VisibleForTesting
 import io.spine.option.OptionsProto
 import io.spine.server.event.NoReaction
 import io.spine.server.event.asA
@@ -34,6 +35,7 @@ import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.FieldType
 import io.spine.tools.compiler.ast.File
+import io.spine.tools.compiler.ast.PrimitiveType
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.findOption
@@ -67,7 +69,14 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
      * Controls whether the given ID [field] should be implicitly validated
      * as required.
      *
-     * The method emits [RequiredFieldDiscovered] event if the following
+     * The method first checks that the [field] has a type supported for an ID:
+     * a `string`, a 32-bit or 64-bit integer, or a `Message`. A `repeated` field,
+     * a `map`, or a field of any other type (such as `bool`, `float`, `double`,
+     * `bytes`, or an `enum`) is rejected with a compilation error before the
+     * conditions below are evaluated.
+     * See `io.spine.base.Identifier` for the supported identifier types.
+     *
+     * Then the method emits [RequiredFieldDiscovered] event if the following
      * conditions are met:
      *
      * 1. The field does not have the `(required)` option specified explicitly.
@@ -93,6 +102,8 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
         file: File,
         message: String
     ): EitherOf2<RequiredFieldDiscovered, NoReaction> {
+        checkIdTypeSupported(field, file)
+
         val requiredOption = field.findOption(OptionsProto.required)
         if (requiredOption != null) {
             return ignore()
@@ -114,6 +125,60 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
 }
 
 /**
+ * Reports a compilation error if the type of the given ID [field] is not supported.
+ *
+ * By convention, an ID field must be a `string`, a 32-bit or 64-bit integer, or
+ * a `Message`. A `repeated` field, a `map`, or a field of any other type (such as
+ * `bool`, `float`, `double`, `bytes`, or an `enum`) is rejected at compile time.
+ *
+ * See [io.spine.base.Identifier] for the supported identifier types.
+ *
+ * @see io.spine.base.Identifier
+ */
+private fun checkIdTypeSupported(field: Field, file: File) =
+    Compilation.check(field.type.isSupportedIdType(), file, field.span) {
+        "The ID field `${field.qualifiedName}` of type `${field.type.name}`" +
+                " is not supported. An ID field must be a `string`," +
+                " a 32-bit or 64-bit integer, or a `Message`." +
+                " It cannot be a `bool`, `float`, `double`, `bytes`, `enum`," +
+                " `repeated`, or `map` field." +
+                " Please change the type of the field."
+    }
+
+/**
+ * Tells if this [FieldType] is one of the types supported for an ID field:
+ * a `string`, a 32-bit or 64-bit integer, or a `Message`.
+ *
+ * See `io.spine.base.Identifier` for the supported identifier types.
+ */
+@VisibleForTesting
+internal fun FieldType.isSupportedIdType(): Boolean = when {
+    isMessage -> true
+    isPrimitive -> primitive in supportedIdPrimitives
+    else -> false
+}
+
+/**
+ * The primitive types that can be used for an ID field.
+ *
+ * These are `string` and all 32-bit and 64-bit integer types, which are
+ * represented in Java by `Integer` and `Long`, respectively.
+ */
+private val supportedIdPrimitives: Set<PrimitiveType> = setOf(
+    PrimitiveType.TYPE_STRING,
+    PrimitiveType.TYPE_INT32,
+    PrimitiveType.TYPE_UINT32,
+    PrimitiveType.TYPE_SINT32,
+    PrimitiveType.TYPE_FIXED32,
+    PrimitiveType.TYPE_SFIXED32,
+    PrimitiveType.TYPE_INT64,
+    PrimitiveType.TYPE_UINT64,
+    PrimitiveType.TYPE_SINT64,
+    PrimitiveType.TYPE_FIXED64,
+    PrimitiveType.TYPE_SFIXED64,
+)
+
+/**
  * Reports a compilation error if the type of the given [field] refers to
  * `google.protobuf.Empty`.
  *
@@ -127,9 +192,7 @@ private fun checkFieldIsNotEmpty(field: Field, file: File) =
     Compilation.check(!field.type.refersToEmpty(), file, field.span) {
         "The field `${field.qualifiedName}` of type `${field.type.name}` is assumed to be" +
                 " `(required)` by convention, but `google.protobuf.Empty` has no fields and" +
-                " its instances are always equal to the default value." +
-                " Please change the type of the field or explicitly mark" +
-                " it as not required using the `(required)` option."
+                " its instances are always equal to the default value."
     }
 
 /**

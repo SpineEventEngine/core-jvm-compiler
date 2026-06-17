@@ -81,3 +81,15 @@ output to a log file).
   `bump-version`; corrected 4 doc cross-refs to the new spec classes; KDoc "such
   as"/short-circuit clarity; message "of the type" -> "of type". Re-verified.
   Version bump left uncommitted pending user go-ahead.
+- 2026-06-17 — review follow-ups: clarified the error message to list the
+  unsupported scalar/enum types; renamed `BrokenIdCommand` -> `EmptyIdCommand`;
+  made `FieldType.isSupportedIdType()` `internal @VisibleForTesting` and added
+  `SupportedIdTypeSpec` — an enumeration-driven matrix over `PrimitiveType` (with
+  a completeness guard that forces classification of any future primitive) plus
+  message/enum/repeated/map. Closes the prior gaps (long + all integer variants
+  positive; float negative). `:base:test` 8+7 green, `:base:detekt` clean.
+- 2026-06-17 — `spine-code-review` loop (2 rounds, broke early on a clean
+  round 2). Round 1: fixed one nit (the `Unsupported*ErrorSpec` KDocs now cite
+  `SupportedIdTypeSpec` for the matrix); rejected one false-positive (a
+  pre-existing "McJava" KDoc line, not in this branch's diff). Final
+  `:base/:entity-tests/:signal-tests :test`+`:detekt` all green.

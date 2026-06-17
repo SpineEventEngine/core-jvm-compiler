@@ -30,23 +30,32 @@ import io.kotest.matchers.string.shouldContain
 import io.spine.logging.testing.tapConsole
 import io.spine.testing.compiler.acceptingOnly
 import io.spine.tools.compiler.Compilation
-import io.spine.tools.core.signal.given.command.EmptyIdCommand
+import io.spine.tools.core.signal.given.command.RepeatedIdCommand
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.io.TempDir
 
+/**
+ * Tests that a command with a target-entity ID field of an unsupported type fails
+ * compilation.
+ *
+ * The exhaustive matrix of supported and unsupported ID types is covered by
+ * `SupportedIdTypeSpec` in the `base` module. This suite checks that such a
+ * rejection surfaces end-to-end through the signal code generation pipeline.
+ *
+ * It lives in its own class because each suite runs the pipeline only once
+ * (see the `Empty`-ID case in `CommandIdErrorSpec`).
+ */
 @DisplayName("`CommandTargetReaction` should")
-internal class CommandIdErrorSpec {
+internal class UnsupportedCommandIdTypeErrorSpec {
 
     companion object : SignalPluginTestSetup()
 
     @Test
-    fun `reject the target-entity ID field of type 'google_protobuf_Empty'`(
-        @TempDir projectDir: Path
-    ) {
-        val descriptor = EmptyIdCommand.getDescriptor()
+    fun `reject the target-entity ID field of a 'repeated' type`(@TempDir projectDir: Path) {
+        val descriptor = RepeatedIdCommand.getDescriptor()
         val error = assertThrows<Compilation.Error> {
             // Mute the expected compilation error so it does not surface in the build log.
             tapConsole {
@@ -55,9 +64,8 @@ internal class CommandIdErrorSpec {
         }
         error.message.let {
             it shouldContain "${descriptor.fullName}.telescope"
-            it shouldContain "of type `google.protobuf.Empty`"
-            it shouldContain "is assumed to be `(required)` by convention"
-            it shouldContain "always equal to the default value"
+            it shouldContain "repeated string"
+            it shouldContain "is not supported"
         }
     }
 }

@@ -32,7 +32,7 @@ import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.FilePatternFactory.suffix
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.SignalSettings
-import io.spine.tools.core.signal.given.command.BrokenIdCommand
+import io.spine.tools.core.signal.given.command.EmptyIdCommand
 import io.spine.tools.core.signal.given.command.RepeatedIdCommand
 import java.nio.file.Path
 
@@ -53,8 +53,8 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
     }
 
     /**
-     * Creates an instance of [SignalSettings] as if it was created by McJava added to
-     * a Gradle project.
+     * Creates an instance of [SignalSettings] as if it was created by CoreJvm Compiler
+     * added to a Gradle project.
      */
     override fun createSettings(projectDir: Path): SignalSettings {
         val codegenConfig = createCompilerSettings(projectDir)
@@ -64,7 +64,7 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
     /**
      * Excludes the compile-fail fixtures from regular pipeline runs.
      *
-     * [BrokenIdCommand] has an implicitly-required `Empty` target-entity ID field,
+     * [EmptyIdCommand] has an implicitly-required `Empty` target-entity ID field,
      * rejected at compile time and tested in `CommandIdErrorSpec`.
      *
      * [RepeatedIdCommand] has a `repeated` target-entity ID field, rejected at
@@ -72,7 +72,7 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
-            BrokenIdCommand.getDescriptor(),
+            EmptyIdCommand.getDescriptor(),
             RepeatedIdCommand.getDescriptor(),
         )
 }

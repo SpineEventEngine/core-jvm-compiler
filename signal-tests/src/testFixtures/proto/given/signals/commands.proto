@@ -58,6 +58,17 @@ message StopScanning {
 // compile time. The type is excluded from regular pipeline runs (see
 // `SignalPluginTestSetup.defaultExclusions`) and exercised by `CommandIdErrorSpec`.
 //
-message BrokenIdCommand {
+message EmptyIdCommand {
     google.protobuf.Empty telescope = 1;
+}
+
+// A command whose target-entity ID field (the first field) is `repeated`,
+// which is not a supported ID type.
+//
+// An ID must be a `string`, an integer, or a `Message` — never a `repeated` field
+// or a `map`. The type is excluded from regular pipeline runs (see
+// `SignalPluginTestSetup.defaultExclusions`) and exercised by `UnsupportedCommandIdTypeErrorSpec`.
+//
+message RepeatedIdCommand {
+    repeated string telescope = 1;
 }

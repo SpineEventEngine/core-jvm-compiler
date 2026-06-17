@@ -91,3 +91,14 @@ message BrokenIdEntity {
     option (entity).kind = ENTITY;
     google.protobuf.Empty id = 1;
 }
+
+// An entity state whose ID field is `repeated`, which is not a supported ID type.
+//
+// An ID must be a `string`, an integer, or a `Message` — never a `repeated` field
+// or a `map`. The type is excluded from regular pipeline runs (see
+// `EntityPluginTestSetup.defaultExclusions`) and exercised by `UnsupportedIdTypeErrorSpec`.
+//
+message RepeatedIdEntity {
+    option (entity).kind = ENTITY;
+    repeated string id = 1;
+}

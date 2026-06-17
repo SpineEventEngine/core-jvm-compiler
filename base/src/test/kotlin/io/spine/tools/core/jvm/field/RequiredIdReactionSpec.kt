@@ -56,8 +56,11 @@ internal class RequiredIdReactionSpec {
     }
 
     @Test
-    fun `ignore a field of an unsupported type`() {
-        val outcome = reaction.test(farmField("rating"), MESSAGE)
+    fun `ignore an integer ID field, which the '(required)' option does not support`() {
+        // `int32` is a valid ID type, so it passes the ID-type check. The `(required)`
+        // option does not support numeric types, so the field is left as-is rather
+        // than being made implicitly required.
+        val outcome = reaction.test(farmField("size"), MESSAGE)
         outcome.hasB().shouldBeTrue()
     }
 
@@ -84,14 +87,45 @@ internal class RequiredIdReactionSpec {
     }
 
     @Test
-    fun `not reject a field that does not refer to 'Empty', whatever its type or cardinality`() {
-        // None of these refer to `google.protobuf.Empty`, so the field stays implicitly
-        // required rather than being rejected:
-        //  - `barn`, `barns`, `barns_by_name`: singular, repeated, and mapped messages;
-        //  - `tags`, `names_by_id`: repeated and mapped primitives;
+    fun `discover an implicitly required ID field of a singular message type`() {
+        // Singular message ID fields are supported and become implicitly required:
+        //  - `barn`: a singular message;
+        //  - `stall`: a nested message;
         //  - `built`: a non-`Empty` well-known type (`google.protobuf.Timestamp`).
-        listOf("barn", "barns", "barns_by_name", "tags", "names_by_id", "built").forEach {
+        listOf("barn", "stall", "built").forEach {
             reaction.test(farmField(it), MESSAGE).hasA().shouldBeTrue()
+        }
+    }
+
+    @Test
+    fun `reject a 'repeated' ID field`() {
+        // A `repeated` field of any element type is not a supported ID type.
+        listOf("tags", "counts", "barns").forEach { name ->
+            val error = assertThrows<Compilation.Error> {
+                reaction.test(farmField(name), MESSAGE)
+            }
+            error.message.assertUnsupportedIdType(name)
+        }
+    }
+
+    @Test
+    fun `reject a 'map' ID field`() {
+        listOf("barns_by_name", "names_by_id").forEach { name ->
+            val error = assertThrows<Compilation.Error> {
+                reaction.test(farmField(name), MESSAGE)
+            }
+            error.message.assertUnsupportedIdType(name)
+        }
+    }
+
+    @Test
+    fun `reject an ID field of an unsupported scalar or enum type`() {
+        // `bool`, `bytes`, `double`, and `enum` are not among the supported ID types.
+        listOf("active", "data", "rating", "color").forEach { name ->
+            val error = assertThrows<Compilation.Error> {
+                reaction.test(farmField(name), MESSAGE)
+            }
+            error.message.assertUnsupportedIdType(name)
         }
     }
 
@@ -109,6 +143,16 @@ private fun String?.assertErrorContains(fieldName: String, typeDescription: Stri
     this shouldContain typeDescription
     this shouldContain "is assumed to be `(required)` by convention"
     this shouldContain "always equal to the default value"
+}
+
+/**
+ * Asserts that this nullable String reports an unsupported ID field type
+ * for the field with the given name.
+ */
+private fun String?.assertUnsupportedIdType(fieldName: String) {
+    this shouldContain fieldName
+    this shouldContain "is not supported"
+    this shouldContain "32-bit or 64-bit integer"
 }
 
 /**
