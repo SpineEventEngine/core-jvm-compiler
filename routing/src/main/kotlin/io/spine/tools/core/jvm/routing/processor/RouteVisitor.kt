@@ -279,7 +279,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
 
         /**
          * The name of the inline extension function for classes extending
-         * [MessageRouting][io.spine.server.route.MessageRouting] that are used in
+         * [MessageRouting][io.spine.server.route.MessageRouting] that is used in
          * the generated code of [RoutingSetup][io.spine.server.route.setup.RoutingSetup] classes
          * for returning only [one entity identifier][io.spine.server.route.Unicast].
          */
