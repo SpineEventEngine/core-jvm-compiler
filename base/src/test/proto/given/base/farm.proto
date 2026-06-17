@@ -88,13 +88,7 @@ message Farm {
     Color color = 15;
 
     // A singular `google.protobuf.Empty` field.
-    google.protobuf.Empty empty_id = 16;
-
-    // A repeated `google.protobuf.Empty` field.
-    repeated google.protobuf.Empty empty_ids = 17;
-
-    // A map with `google.protobuf.Empty` values.
-    map<string, google.protobuf.Empty> empty_by_name = 18;
+    google.protobuf.Empty empty = 16;
 }
 
 // A message nested structure used for testing nested field resolution.

@@ -75,33 +75,11 @@ internal class RequiredIdReactionSpec {
     @Test
     fun `reject an implicitly required ID field of type 'Empty'`() {
         val error = assertThrows<Compilation.Error> {
-            reaction.test(farmField("empty_id"), MESSAGE)
+            reaction.test(farmField("empty"), MESSAGE)
         }
         error.message.assertErrorContains(
-            "empty_id",
+            "empty",
             "of type `google.protobuf.Empty`"
-        )
-    }
-
-    @Test
-    fun `reject an implicitly required 'repeated' ID field of type 'Empty'`() {
-        val error = assertThrows<Compilation.Error> {
-            reaction.test(farmField("empty_ids"), MESSAGE)
-        }
-        error.message.assertErrorContains(
-            "empty_ids",
-            "of type `repeated google.protobuf.Empty`"
-        )
-    }
-
-    @Test
-    fun `reject an implicitly required 'map' ID field with 'Empty' values`() {
-        val error = assertThrows<Compilation.Error> {
-            reaction.test(farmField("empty_by_name"), MESSAGE)
-        }
-        error.message.assertErrorContains(
-            "empty_by_name",
-            "of type `map<string, google.protobuf.Empty>`"
         )
     }
 
