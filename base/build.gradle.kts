@@ -107,7 +107,7 @@ dependencies {
     )
     testImplementation(ToolBase.pluginTestlib)
     testFixturesImplementation(Logging.testLib)?.because(
-        "The `assertCompilationError` test fixture delegates to `tapConsole`."
+        "Because we need `tapConsole`."
     )
 }
 
