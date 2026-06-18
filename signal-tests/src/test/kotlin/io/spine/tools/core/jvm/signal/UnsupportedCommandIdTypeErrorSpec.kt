@@ -28,7 +28,7 @@ package io.spine.tools.core.jvm.signal
 
 import io.kotest.matchers.string.shouldContain
 import io.spine.testing.compiler.acceptingOnly
-import io.spine.tools.core.jvm.assertCompilationError
+import io.spine.testing.compiler.assertCompilationError
 import io.spine.tools.core.signal.given.command.RepeatedIdCommand
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName

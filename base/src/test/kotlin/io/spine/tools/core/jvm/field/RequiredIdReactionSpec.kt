@@ -34,10 +34,10 @@ import io.spine.core.External
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.tuple.EitherOf2
+import io.spine.testing.compiler.assertCompilationError
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toField
-import io.spine.tools.core.jvm.assertCompilationError
 import io.spine.tools.core.jvm.field.given.farmField
 import io.spine.tools.validation.event.RequiredFieldDiscovered
 import org.junit.jupiter.api.DisplayName
