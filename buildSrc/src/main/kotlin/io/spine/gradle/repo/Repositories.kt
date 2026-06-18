@@ -208,7 +208,7 @@ private fun MavenArtifactRepository.includeSpineOnly() {
  * Gradle from querying it — and depending on its health — for coordinates it
  * never hosts.
  */
-private fun ArtifactRepository.excludeSpine() {
+private fun MavenArtifactRepository.excludeSpine() {
     content {
         excludeGroupByRegex("io\\.spine.*")
     }
