@@ -82,9 +82,11 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
      *   `io.spine.tools.validation.option.required.RequiredReaction` of
      *   the Validation Compiler.
      *
-     * 2. The field type is not `google.protobuf.Empty`, nor a `repeated` of `Empty`,
-     *   nor a `map` with `Empty` values. Otherwise, the method reports a compilation
-     *   error because such an implicitly required field can never be satisfied.
+     * 2. The field type is not the singular `google.protobuf.Empty` message.
+     *   Otherwise, the method reports a compilation error because an implicitly
+     *   required `Empty` field can never be satisfied. A `repeated` or `map` field —
+     *   including one of `Empty` — is already rejected by the ID-type check above,
+     *   so only a singular `Empty` message reaches this point.
      *
      * 3. The field type is supported by the option.
      *
