@@ -25,7 +25,6 @@
  */
 
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.Logging
 
 plugins {
     module
@@ -42,7 +41,6 @@ dependencies {
     ).forEach {
         testImplementation(it)
     }
-    testImplementation(Logging.testLib)?.because("We need `tapConsole`.")
 }
 
 protobuf {

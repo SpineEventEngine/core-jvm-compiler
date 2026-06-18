@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,11 @@
 
 package io.spine.tools.core.jvm
 
+import io.spine.logging.testing.tapConsole
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.java.reference
 import kotlin.text.RegexOption.DOT_MATCHES_ALL
+import org.junit.jupiter.api.assertThrows
 
 /**
  * Tells if [javaCode] contains a class that implements the given [superInterface].
@@ -35,4 +38,26 @@ import kotlin.text.RegexOption.DOT_MATCHES_ALL
 fun implementsInterface(javaCode: String, superInterface: Class<*>): Boolean {
     val regex = Regex("implements[^{}]*${superInterface.reference}[^{}]*\\{", DOT_MATCHES_ALL)
     return regex.containsMatchIn(javaCode)
+}
+
+/**
+ * Asserts that the given [action] fails compilation, returning the thrown error
+ * together with the console output it produced.
+ *
+ * The console output is captured via [tapConsole] — so the deliberately provoked
+ * compilation error does not pollute the build log — and returned as the second
+ * component of the pair, letting callers inspect the diagnostics if they need to.
+ *
+ * @param action The code expected to fail with a [Compilation.Error].
+ * @return A pair of the thrown [Compilation.Error] and the captured console output.
+ * @see tapConsole
+ */
+fun assertCompilationError(action: () -> Unit): Pair<Compilation.Error, String> {
+    lateinit var error: Compilation.Error
+    val output = tapConsole {
+        error = assertThrows<Compilation.Error> {
+            action()
+        }
+    }
+    return error to output
 }

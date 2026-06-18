@@ -27,14 +27,12 @@
 package io.spine.tools.core.jvm.entity
 
 import io.kotest.matchers.string.shouldContain
-import io.spine.logging.testing.tapConsole
 import io.spine.testing.compiler.acceptingOnly
-import io.spine.tools.compiler.Compilation
+import io.spine.tools.core.jvm.assertCompilationError
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.io.TempDir
 
 @DisplayName("`EntityStateIdReaction` should")
@@ -45,11 +43,8 @@ internal class IdFieldErrorSpec {
     @Test
     fun `reject an ID field of type 'google_protobuf_Empty'`(@TempDir projectDir: Path) {
         val descriptor = BrokenIdEntity.getDescriptor()
-        val error = assertThrows<Compilation.Error> {
-            // Mute the expected compilation error so it does not surface in the build log.
-            tapConsole {
-                runPipeline(projectDir, acceptingOnly(descriptor))
-            }
+        val (error, _) = assertCompilationError {
+            runPipeline(projectDir, acceptingOnly(descriptor))
         }
         error.message.let {
             it shouldContain "${descriptor.fullName}.id"

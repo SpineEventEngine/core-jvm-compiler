@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ val links = mapOf(
 )
 
 /*
- * Include the `mc-java` build into the `tests` project build.
+ * Include the `core-jvm-compiler` build into the `tests` project build.
  *
  * Integration tests are built separately in order to be able to test the current
  * version of the Gradle plugins.

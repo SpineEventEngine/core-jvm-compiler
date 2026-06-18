@@ -1,8 +1,8 @@
-# McJava Integration tests
+# CoreJvm Compiler Integration tests
 
-This directory (`tests`) contains integration tests for the Spine Model Compiler for Java.
+This directory (`tests`) contains integration tests for the CoreJvm Compiler.
 
-This is a separate Gradle project and depends on `mc-java` via Gradle 
+This is a separate Gradle project and depends on `core-jvm-compiler` via Gradle 
 [composite build][composite-build]. Please see [`settings.gradle.kts`](settings.gradle.kts)
 for details.
 

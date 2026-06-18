@@ -32,7 +32,8 @@ import io.spine.tools.compiler.ast.FilePattern
 import io.spine.tools.compiler.ast.FilePatternFactory.suffix
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.SignalSettings
-import io.spine.tools.core.signal.given.command.BrokenIdCommand
+import io.spine.tools.core.signal.given.command.EmptyIdCommand
+import io.spine.tools.core.signal.given.command.RepeatedIdCommand
 import java.nio.file.Path
 
 /**
@@ -61,13 +62,19 @@ internal abstract class SignalPluginTestSetup : PluginTestSetup<SignalSettings>(
     }
 
     /**
-     * Excludes the compile-fail fixture [BrokenIdCommand] from regular pipeline runs.
+     * Excludes the compile-fail fixtures from regular pipeline runs.
      *
-     * Its implicitly-required `Empty` target-entity ID field is rejected at compile
-     * time, so it is tested separately in `CommandIdErrorSpec`.
+     * [EmptyIdCommand] has an implicitly-required `Empty` target-entity ID field,
+     * rejected at compile time and tested in `CommandIdErrorSpec`.
+     *
+     * [RepeatedIdCommand] has a `repeated` target-entity ID field, rejected at
+     * compile time and tested in `UnsupportedCommandIdTypeErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
-        listOf(BrokenIdCommand.getDescriptor())
+        listOf(
+            EmptyIdCommand.getDescriptor(),
+            RepeatedIdCommand.getDescriptor(),
+        )
 }
 
 /**

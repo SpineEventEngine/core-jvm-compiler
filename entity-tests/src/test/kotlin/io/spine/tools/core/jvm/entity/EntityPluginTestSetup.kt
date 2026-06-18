@@ -30,6 +30,7 @@ import com.google.protobuf.Descriptors.GenericDescriptor
 import com.intellij.psi.PsiClass
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
+import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
@@ -68,13 +69,19 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
     }
 
     /**
-     * Excludes the compile-fail fixture [BrokenIdEntity] from regular pipeline runs.
+     * Excludes the compile-fail fixtures from regular pipeline runs.
      *
-     * Its implicitly-required `Empty` ID field is rejected at compile time, so it is
-     * tested separately in `IdFieldErrorSpec`.
+     * [BrokenIdEntity] has an implicitly-required `Empty` ID field, rejected at
+     * compile time and tested in `IdFieldErrorSpec`.
+     *
+     * [RepeatedIdEntity] has a `repeated` ID field, rejected at compile time and tested in
+     * `UnsupportedIdTypeErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
-        listOf(BrokenIdEntity.getDescriptor())
+        listOf(
+            BrokenIdEntity.getDescriptor(),
+            RepeatedIdEntity.getDescriptor(),
+        )
 }
 
 /**

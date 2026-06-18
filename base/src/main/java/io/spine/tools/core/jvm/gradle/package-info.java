@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@
 /**
  * This package provides
  * the {@linkplain io.spine.tools.core.jvm.gradle.CoreJvmOptions Gradle project extension}
- * of Spine Model Compiler for Java ({@code mc-java}) and associated types.
+ * of the CoreJvm Compiler and associated types.
  *
- * <p>The extension is the central place of the configuration of {@code mc-java}.
- * Therefore, this package is used by modules that comprise {@code mc-java} for obtaining
+ * <p>The extension is the central place of the CoreJvm Compiler configuration.
+ * Therefore, this package is used by modules that comprise the CoreJvm Compiler for obtaining
  * corresponding configuration settings.
  */
 

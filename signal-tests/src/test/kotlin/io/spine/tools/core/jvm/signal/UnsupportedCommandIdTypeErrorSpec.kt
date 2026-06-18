@@ -24,42 +24,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package io.spine.tools.core.jvm.gradle.settings
+package io.spine.tools.core.jvm.signal
 
-import io.kotest.matchers.shouldBe
-import io.spine.tools.core.jvm.comparable.action.AddComparator
-import io.spine.tools.core.jvm.comparable.action.AddCompareTo
-import io.spine.tools.core.jvm.comparable.action.ImplementComparable
-import io.spine.tools.core.jvm.settings.noParameter
-import io.spine.tools.kotlin.reference
-import java.io.File
-import org.gradle.testfixtures.ProjectBuilder
+import io.kotest.matchers.string.shouldContain
+import io.spine.testing.compiler.acceptingOnly
+import io.spine.tools.core.jvm.assertCompilationError
+import io.spine.tools.core.signal.given.command.RepeatedIdCommand
+import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * This is a test suite for [ComparableSettings] class, which belongs
- * to the `base` module.
+ * Tests that a command with a target-entity ID field of an unsupported type fails
+ * compilation.
  *
- * We test it here to check the correctness of default settings specified
- * as strings against classes of this module.
+ * The exhaustive matrix of supported and unsupported ID types is covered by
+ * `SupportedIdTypeSpec` in the `base` module. This suite checks that such a
+ * rejection surfaces end-to-end through the signal code generation pipeline.
+ *
+ * It lives in its own class because each suite runs the pipeline only once
+ * (see the `Empty`-ID case in `CommandIdErrorSpec`).
  */
-@DisplayName("`ComparableSettings` should")
-internal class ComparableSettingsSpec {
+@DisplayName("`CommandTargetReaction` should")
+internal class UnsupportedCommandIdTypeErrorSpec {
+
+    companion object : SignalPluginTestSetup()
 
     @Test
-    fun `provide default action class names`(@TempDir projectDir: File) {
-        val project = ProjectBuilder.builder().withProjectDir(projectDir).build()
-        val settings = ComparableSettings(project)
-
-        val expected = mapOf(
-            ImplementComparable::class.reference to noParameter,
-            AddComparator::class.reference to noParameter,
-            AddCompareTo::class.reference to noParameter,
-        )
-
-        settings.actions().actionMap shouldBe expected
-        settings.toProto().actions.actionMap shouldBe expected
+    fun `reject the target-entity ID field of a 'repeated' type`(@TempDir projectDir: Path) {
+        val descriptor = RepeatedIdCommand.getDescriptor()
+        val (error, _) = assertCompilationError {
+            runPipeline(projectDir, acceptingOnly(descriptor))
+        }
+        error.message.let {
+            it shouldContain "${descriptor.fullName}.telescope"
+            it shouldContain "repeated string"
+            it shouldContain "is not supported"
+        }
     }
 }

@@ -106,6 +106,9 @@ dependencies {
                 " which are `compileOnly` and thus needed on the test runtime classpath."
     )
     testImplementation(ToolBase.pluginTestlib)
+    testFixturesImplementation(Logging.testLib)?.because(
+        "Because we need `tapConsole`."
+    )
 }
 
 forceSpineBase()
