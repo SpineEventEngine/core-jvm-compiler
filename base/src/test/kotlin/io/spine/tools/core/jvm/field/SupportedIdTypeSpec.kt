@@ -44,9 +44,10 @@ import org.junit.jupiter.api.Test
  * Verifies which field types may serve as an ID field.
  *
  * The supported/unsupported decision is owned by [io.spine.base.Identifier] in the
- * `base-libraries` repository — this suite asserts that [FieldType.isSupportedIdType]
- * agrees with that single source of truth for every primitive type, and that the
- * structural kinds (`Message`, `enum`, `repeated`, `map`) are dispatched correctly.
+ * `base-libraries` repository — this suite asserts that the `FieldType.isSupportedIdType()`
+ * extension ([isSupportedIdType]) agrees with that single source of truth for every
+ * primitive type, and that the structural kinds (`Message`, `enum`, `repeated`, `map`)
+ * are dispatched correctly.
  * Iterating over every [PrimitiveType] forces a future primitive into a decision via
  * [Identifier].
  *
