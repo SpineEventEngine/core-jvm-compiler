@@ -6,6 +6,10 @@ jobs:
   build:
     name: Build on Ubuntu
     runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: ubuntu-ci-${{ github.ref }}
+      cancel-in-progress: false
 
     steps:
       - uses: actions/checkout@v6
@@ -18,6 +22,14 @@ jobs:
           distribution: zulu
 
       - uses: gradle/actions/setup-gradle@v6
+
+      # Mirrors the pagefile step in build-on-windows.yml. The Linux runner
+      # ships with effectively no swap, so a memory peak becomes an instant
+      # OOM kill; this gives the kernel somewhere to fall back to.
+      - name: Add swap space
+        uses: pierotofy/set-swap-space@v1.0
+        with:
+          swap-size-gb: 8
 
       - name: Build project, run tests
         shell: bash
