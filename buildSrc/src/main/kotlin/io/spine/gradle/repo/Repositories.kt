@@ -125,7 +125,11 @@ fun RepositoryHandler.standardToSpineSdk() {
     // Spine resolution depend on the health of repositories that never host it.
     //
     mavenCentral { excludeSpine() }
-    gradlePluginPortal { excludeSpine() }
+    gradlePluginPortal {
+        content {
+            excludeGroupByRegex("io\\.spine.*")
+        }
+    }
 
     spineArtifacts()
 
