@@ -120,14 +120,23 @@ internal class RequiredIdReactionSpec {
     }
 
     @Test
-    fun `reject an ID field of an unsupported scalar or enum type`() {
-        // `bool`, `bytes`, `double`, and `enum` are not among the supported ID types.
-        listOf("active", "data", "rating", "color").forEach { name ->
+    fun `reject an ID field of an unsupported scalar type`() {
+        // `bool`, `bytes`, and `double` are not among the supported ID types.
+        listOf("active", "data", "rating").forEach { name ->
             val (error, _) = assertCompilationError {
                 reaction.test(farmField(name), MESSAGE)
             }
             error.message.assertUnsupportedIdType(name)
         }
+    }
+
+    @Test
+    fun `accept an 'enum' ID field`() {
+        // An `enum` is a supported ID type, so the ID-type check must pass and the
+        // reaction must complete without a compilation error. Whether the field becomes
+        // implicitly required depends on `(required)` support for enums.
+        val outcome = reaction.test(farmField("color"), MESSAGE)
+        (outcome.hasA() || outcome.hasB()).shouldBeTrue()
     }
 
     private companion object {

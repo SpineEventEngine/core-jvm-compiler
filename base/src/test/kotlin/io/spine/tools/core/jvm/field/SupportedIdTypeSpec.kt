@@ -27,25 +27,10 @@
 package io.spine.tools.core.jvm.field
 
 import io.kotest.assertions.withClue
-import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.shouldBe
+import io.spine.base.Identifier
 import io.spine.tools.compiler.ast.PrimitiveType
-import io.spine.tools.compiler.ast.PrimitiveType.PT_UNKNOWN
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_BOOL
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_BYTES
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_DOUBLE
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_FIXED32
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_FIXED64
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_FLOAT
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_INT32
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_INT64
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_SFIXED32
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_SFIXED64
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_SINT32
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_SINT64
 import io.spine.tools.compiler.ast.PrimitiveType.TYPE_STRING
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_UINT32
-import io.spine.tools.compiler.ast.PrimitiveType.TYPE_UINT64
 import io.spine.tools.compiler.ast.PrimitiveType.UNRECOGNIZED
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.fieldType
@@ -56,10 +41,14 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 /**
- * Exhaustively verifies which field types may serve as an ID field.
+ * Verifies which field types may serve as an ID field.
  *
- * The matrix is driven by [PrimitiveType] itself, so a primitive type added to
- * the Compiler AST in the future is forced into a classification decision.
+ * The supported/unsupported decision is owned by [io.spine.base.Identifier] in the
+ * `base-libraries` repository — this suite asserts that [FieldType.isSupportedIdType]
+ * agrees with that single source of truth for every primitive type, and that the
+ * structural kinds (`Message`, `enum`, `repeated`, `map`) are dispatched correctly.
+ * Iterating over every [PrimitiveType] forces a future primitive into a decision via
+ * [Identifier].
  *
  * The end-to-end consequences of these classifications — a compilation failure
  * for an unsupported ID field — are covered by `RequiredIdReactionSpec` and the
@@ -69,28 +58,11 @@ import org.junit.jupiter.api.Test
 internal class SupportedIdTypeSpec {
 
     @Test
-    fun `classify every declared primitive type`() {
-        // If a new `PrimitiveType` is added, this assertion fails until the type
-        // is listed in `supported` or `unsupported` below.
-        (supported + unsupported) shouldBe allPrimitives
-        // No type may be classified as both supported and unsupported.
-        (supported intersect unsupported).shouldBeEmpty()
-    }
-
-    @Test
-    fun `accept 'string' and every 32-bit and 64-bit integer primitive`() {
-        supported.forEach { pt ->
+    fun `classify every primitive type as 'Identifier' does`() {
+        (PrimitiveType.entries - UNRECOGNIZED).forEach { pt ->
+            val expected = pt.toProtoType()?.let { Identifier.isSupportedIdType(it) } ?: false
             withClue(pt.name) {
-                fieldType { primitive = pt }.isSupportedIdType() shouldBe true
-            }
-        }
-    }
-
-    @Test
-    fun `reject every other primitive type`() {
-        unsupported.forEach { pt ->
-            withClue(pt.name) {
-                fieldType { primitive = pt }.isSupportedIdType() shouldBe false
+                fieldType { primitive = pt }.isSupportedIdType() shouldBe expected
             }
         }
     }
@@ -101,8 +73,8 @@ internal class SupportedIdTypeSpec {
     }
 
     @Test
-    fun `reject an 'enum' field`() {
-        fieldType { enumeration = someTypeName }.isSupportedIdType() shouldBe false
+    fun `accept an 'enum' field`() {
+        fieldType { enumeration = someTypeName }.isSupportedIdType() shouldBe true
     }
 
     @Test
@@ -121,25 +93,6 @@ internal class SupportedIdTypeSpec {
     }
 
     private companion object {
-
-        /**
-         * Primitive types accepted for an ID field: `string` and every 32-bit and
-         * 64-bit integer encoding (which map to Java `Integer` and `Long`).
-         */
-        val supported: Set<PrimitiveType> = setOf(
-            TYPE_STRING,
-            TYPE_INT32, TYPE_UINT32, TYPE_SINT32, TYPE_FIXED32, TYPE_SFIXED32,
-            TYPE_INT64, TYPE_UINT64, TYPE_SINT64, TYPE_FIXED64, TYPE_SFIXED64,
-        )
-
-        /** Primitive types that cannot be used for an ID field. */
-        val unsupported: Set<PrimitiveType> = setOf(
-            PT_UNKNOWN, TYPE_BOOL, TYPE_FLOAT, TYPE_DOUBLE, TYPE_BYTES,
-        )
-
-        /** All declared primitive types, excluding the `UNRECOGNIZED` sentinel. */
-        val allPrimitives: Set<PrimitiveType> =
-            PrimitiveType.entries.toSet() - UNRECOGNIZED
 
         /** A type name used to synthesize message- and enum-typed fields. */
         val someTypeName: TypeName = typeName {
