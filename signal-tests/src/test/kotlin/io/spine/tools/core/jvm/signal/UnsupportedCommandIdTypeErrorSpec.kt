@@ -54,7 +54,7 @@ internal class UnsupportedCommandIdTypeErrorSpec {
     @Test
     fun `reject the target-entity ID field of a 'repeated' type`(@TempDir projectDir: Path) {
         val descriptor = RepeatedIdCommand.getDescriptor()
-        val error = assertCompilationError {
+        val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(descriptor))
         }
         error.message.let {

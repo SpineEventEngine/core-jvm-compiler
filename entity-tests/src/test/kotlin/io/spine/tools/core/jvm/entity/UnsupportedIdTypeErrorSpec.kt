@@ -53,7 +53,7 @@ internal class UnsupportedIdTypeErrorSpec {
     @Test
     fun `reject a 'repeated' ID field`(@TempDir projectDir: Path) {
         val descriptor = RepeatedIdEntity.getDescriptor()
-        val error = assertCompilationError {
+        val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(descriptor))
         }
         error.message.let {

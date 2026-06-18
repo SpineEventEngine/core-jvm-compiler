@@ -76,13 +76,15 @@ internal class RequiredIdReactionSpec {
 
     @Test
     fun `reject an implicitly required ID field of type 'Empty'`() {
-        val error = assertCompilationError {
+        val (error, output) = assertCompilationError {
             reaction.test(farmField("empty"), MESSAGE)
         }
         error.message.assertErrorContains(
             "empty",
             "of type `google.protobuf.Empty`"
         )
+        // The second component carries the captured console output.
+        output shouldContain "google.protobuf.Empty"
     }
 
     @Test
@@ -100,7 +102,7 @@ internal class RequiredIdReactionSpec {
     fun `reject a 'repeated' ID field`() {
         // A `repeated` field of any element type is not a supported ID type.
         listOf("tags", "counts", "barns").forEach { name ->
-            val error = assertCompilationError {
+            val (error, _) = assertCompilationError {
                 reaction.test(farmField(name), MESSAGE)
             }
             error.message.assertUnsupportedIdType(name)
@@ -110,7 +112,7 @@ internal class RequiredIdReactionSpec {
     @Test
     fun `reject a 'map' ID field`() {
         listOf("barns_by_name", "names_by_id").forEach { name ->
-            val error = assertCompilationError {
+            val (error, _) = assertCompilationError {
                 reaction.test(farmField(name), MESSAGE)
             }
             error.message.assertUnsupportedIdType(name)
@@ -121,7 +123,7 @@ internal class RequiredIdReactionSpec {
     fun `reject an ID field of an unsupported scalar or enum type`() {
         // `bool`, `bytes`, `double`, and `enum` are not among the supported ID types.
         listOf("active", "data", "rating", "color").forEach { name ->
-            val error = assertCompilationError {
+            val (error, _) = assertCompilationError {
                 reaction.test(farmField(name), MESSAGE)
             }
             error.message.assertUnsupportedIdType(name)

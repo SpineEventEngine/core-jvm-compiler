@@ -70,7 +70,8 @@ internal fun PsiClass.findComparatorField(): PsiField? =
 inline fun <reified M: Message> assertCompilationFails(projectDir: Path): Compilation.Error {
     val message = M::class.java.defaultInstance.descriptorForType
     val setup = ComparablePluginTestSetup(AddComparator::class)
-    return assertCompilationError {
+    val (error, _) = assertCompilationError {
         setup.runPipeline(projectDir, acceptingOnly(message))
     }
+    return error
 }

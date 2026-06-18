@@ -45,7 +45,7 @@ internal class CommandIdErrorSpec {
         @TempDir projectDir: Path
     ) {
         val descriptor = EmptyIdCommand.getDescriptor()
-        val error = assertCompilationError {
+        val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(descriptor))
         }
         error.message.let {

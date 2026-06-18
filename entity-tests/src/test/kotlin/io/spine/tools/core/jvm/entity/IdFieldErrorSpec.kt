@@ -43,7 +43,7 @@ internal class IdFieldErrorSpec {
     @Test
     fun `reject an ID field of type 'google_protobuf_Empty'`(@TempDir projectDir: Path) {
         val descriptor = BrokenIdEntity.getDescriptor()
-        val error = assertCompilationError {
+        val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(descriptor))
         }
         error.message.let {
