@@ -31,6 +31,7 @@ package io.spine.gradle.repo
 import io.spine.gradle.publish.PublishingRepos
 import java.net.URI
 import org.gradle.api.artifacts.dsl.RepositoryHandler
+import org.gradle.api.artifacts.repositories.ArtifactRepository
 import org.gradle.api.artifacts.repositories.MavenArtifactRepository
 import org.gradle.kotlin.dsl.maven
 
@@ -125,11 +126,7 @@ fun RepositoryHandler.standardToSpineSdk() {
     // Spine resolution depend on the health of repositories that never host it.
     //
     mavenCentral { excludeSpine() }
-    gradlePluginPortal {
-        content {
-            excludeGroupByRegex("io\\.spine.*")
-        }
-    }
+    gradlePluginPortal { excludeSpine() }
 
     spineArtifacts()
 
@@ -212,7 +209,7 @@ private fun MavenArtifactRepository.includeSpineOnly() {
  * Gradle from querying it — and depending on its health — for coordinates it
  * never hosts.
  */
-private fun MavenArtifactRepository.excludeSpine() {
+private fun ArtifactRepository.excludeSpine() {
     content {
         excludeGroupByRegex("io\\.spine.*")
     }
