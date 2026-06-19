@@ -26,7 +26,11 @@
 
 package io.spine.tools.core.jvm.field
 
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_ENUM
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_MESSAGE
 import io.spine.annotation.VisibleForTesting
+import io.spine.base.Identifier
 import io.spine.option.OptionsProto
 import io.spine.server.event.NoReaction
 import io.spine.server.event.asA
@@ -36,6 +40,8 @@ import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.FieldType
 import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.PrimitiveType
+import io.spine.tools.compiler.ast.PrimitiveType.PT_UNKNOWN
+import io.spine.tools.compiler.ast.PrimitiveType.UNRECOGNIZED
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.findOption
@@ -68,9 +74,9 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
      * as required.
      *
      * The method first checks that the [field] has a type supported for an ID:
-     * a `string`, a 32-bit or 64-bit integer, or a `Message`. A `repeated` field,
-     * a `map`, or a field of any other type (such as `bool`, `float`, `double`,
-     * `bytes`, or an `enum`) is rejected with a compilation error before the
+     * a `string`, a 32-bit or 64-bit integer, an `enum`, or a `Message`. A `repeated`
+     * field, a `map`, or a field of any other type (such as `bool`, `float`, `double`,
+     * or `bytes`) is rejected with a compilation error before the
      * conditions below are evaluated.
      * See `io.spine.base.Identifier` for the supported identifier types.
      *
@@ -127,9 +133,9 @@ public abstract class RequiredIdReaction : Reaction<TypeDiscovered>() {
 /**
  * Reports a compilation error if the type of the given ID [field] is not supported.
  *
- * By convention, an ID field must be a `string`, a 32-bit or 64-bit integer, or
- * a `Message`. A `repeated` field, a `map`, or a field of any other type (such as
- * `bool`, `float`, `double`, `bytes`, or an `enum`) is rejected at compile time.
+ * By convention, an ID field must be a `string`, a 32-bit or 64-bit integer, an `enum`,
+ * or a `Message`. A `repeated` field, a `map`, or a field of any other type (such as
+ * `bool`, `float`, `double`, or `bytes`) is rejected at compile time.
  *
  * See [io.spine.base.Identifier] for the supported identifier types.
  *
@@ -139,44 +145,46 @@ private fun checkIdTypeSupported(field: Field, file: File) =
     Compilation.check(field.type.isSupportedIdType(), file, field.span) {
         "The ID field `${field.qualifiedName}` of type `${field.type.name}`" +
                 " is not supported. An ID field must be a `string`," +
-                " a 32-bit or 64-bit integer, or a `Message`." +
-                " It cannot be a `bool`, `float`, `double`, `bytes`, `enum`," +
+                " a 32-bit or 64-bit integer, an `enum`, or a `Message`." +
+                " It cannot be a `bool`, `float`, `double`, `bytes`," +
                 " `repeated`, or `map` field." +
                 " Please change the type of the field."
     }
 
 /**
- * Tells if this [FieldType] is one of the types supported for an ID field:
- * a `string`, a 32-bit or 64-bit integer, or a `Message`.
+ * Tells if this [FieldType] is one of the types supported for an ID field.
  *
- * See `io.spine.base.Identifier` for the supported identifier types.
+ * This is a thin adapter over [io.spine.base.Identifier], which is the single source of
+ * truth for the supported identifier types. The Compiler-AST [PrimitiveType] is bridged to
+ * the protobuf [FieldDescriptorProto.Type] it mirrors, and the singular message and enum
+ * kinds are mapped to [TYPE_MESSAGE] and [TYPE_ENUM]. A `repeated` or a `map` field is never
+ * an identifier regardless of its element type, so those kinds are rejected here.
+ *
+ * @see io.spine.base.Identifier.isSupportedIdType
  */
 @VisibleForTesting
 internal fun FieldType.isSupportedIdType(): Boolean = when {
-    isMessage -> true
-    isPrimitive -> primitive in supportedIdPrimitives
+    isMessage -> Identifier.isSupportedIdType(TYPE_MESSAGE)
+    isEnum -> Identifier.isSupportedIdType(TYPE_ENUM)
+    isPrimitive -> primitive.toProtoType()?.let { Identifier.isSupportedIdType(it) } ?: false
     else -> false
 }
 
 /**
- * The primitive types that can be used for an ID field.
+ * Converts this Compiler-AST [PrimitiveType] to the protobuf [FieldDescriptorProto.Type]
+ * with the same name, or `null` if there is no protobuf counterpart.
  *
- * These are `string` and all 32-bit and 64-bit integer types, which are
- * represented in Java by `Integer` and `Long`, respectively.
+ * The constant names of [PrimitiveType] match those of [FieldDescriptorProto.Type] for every
+ * scalar type, so the conversion is by name. The synthetic [PT_UNKNOWN] and [UNRECOGNIZED]
+ * values have no protobuf counterpart and map to `null`.
  */
-private val supportedIdPrimitives: Set<PrimitiveType> = setOf(
-    PrimitiveType.TYPE_STRING,
-    PrimitiveType.TYPE_INT32,
-    PrimitiveType.TYPE_UINT32,
-    PrimitiveType.TYPE_SINT32,
-    PrimitiveType.TYPE_FIXED32,
-    PrimitiveType.TYPE_SFIXED32,
-    PrimitiveType.TYPE_INT64,
-    PrimitiveType.TYPE_UINT64,
-    PrimitiveType.TYPE_SINT64,
-    PrimitiveType.TYPE_FIXED64,
-    PrimitiveType.TYPE_SFIXED64,
-)
+@VisibleForTesting
+internal fun PrimitiveType.toProtoType(): FieldDescriptorProto.Type? =
+    if (this == PT_UNKNOWN || this == UNRECOGNIZED) {
+        null
+    } else {
+        FieldDescriptorProto.Type.valueOf(name)
+    }
 
 /**
  * Reports a compilation error if the type of the given [field] is
