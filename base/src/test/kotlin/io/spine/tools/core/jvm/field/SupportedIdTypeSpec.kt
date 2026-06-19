@@ -26,6 +26,8 @@
 
 package io.spine.tools.core.jvm.field
 
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_ENUM
+import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type.TYPE_MESSAGE
 import io.kotest.assertions.withClue
 import io.kotest.matchers.shouldBe
 import io.spine.base.Identifier
@@ -69,13 +71,15 @@ internal class SupportedIdTypeSpec {
     }
 
     @Test
-    fun `accept a singular 'Message' field`() {
-        fieldType { message = someTypeName }.isSupportedIdType() shouldBe true
+    fun `classify a singular 'Message' field as 'Identifier' does`() {
+        fieldType { message = someTypeName }.isSupportedIdType() shouldBe
+            Identifier.isSupportedIdType(TYPE_MESSAGE)
     }
 
     @Test
-    fun `accept an 'enum' field`() {
-        fieldType { enumeration = someTypeName }.isSupportedIdType() shouldBe true
+    fun `classify an 'enum' field as 'Identifier' does`() {
+        fieldType { enumeration = someTypeName }.isSupportedIdType() shouldBe
+            Identifier.isSupportedIdType(TYPE_ENUM)
     }
 
     @Test
