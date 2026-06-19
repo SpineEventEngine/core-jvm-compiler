@@ -32,9 +32,9 @@ import com.intellij.psi.PsiField
 import io.kotest.matchers.nulls.shouldBeNull
 import io.spine.protobuf.defaultInstance
 import io.spine.testing.compiler.acceptingOnly
+import io.spine.testing.compiler.assertCompilationError
 import io.spine.testing.logging.mute.withLoggingMutedIn
 import io.spine.tools.compiler.Compilation
-import io.spine.tools.core.jvm.assertCompilationError
 import io.spine.tools.core.jvm.comparable.AddComparatorSpec.Companion.generatedCodeOf
 import io.spine.tools.core.jvm.comparable.action.AddComparator
 import java.nio.file.Path
