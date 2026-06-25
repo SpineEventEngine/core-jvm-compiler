@@ -10,7 +10,7 @@ all modules and does not describe the project structure per-subproject.
  -->
 <groupId>io.spine.tools</groupId>
 <artifactId>core-jvm-compiler</artifactId>
-<version>2.0.0-SNAPSHOT.079</version>
+<version>2.0.0-SNAPSHOT.080</version>
 
 <inceptionYear>2015</inceptionYear>
 
@@ -98,7 +98,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine</groupId>
     <artifactId>spine-server</artifactId>
-    <version>2.0.0-SNAPSHOT.376</version>
+    <version>2.0.0-SNAPSHOT.380</version>
     <scope>compile</scope>
   </dependency>
   <dependency>
@@ -296,7 +296,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>server-testlib</artifactId>
-    <version>2.0.0-SNAPSHOT.376</version>
+    <version>2.0.0-SNAPSHOT.380</version>
     <scope>test</scope>
   </dependency>
   <dependency>
@@ -391,7 +391,7 @@ all modules and does not describe the project structure per-subproject.
   <dependency>
     <groupId>io.spine.tools</groupId>
     <artifactId>core-jvm-plugins</artifactId>
-    <version>2.0.0-SNAPSHOT.077</version>
+    <version>2.0.0-SNAPSHOT.079</version>
   </dependency>
   <dependency>
     <groupId>io.spine.tools</groupId>
