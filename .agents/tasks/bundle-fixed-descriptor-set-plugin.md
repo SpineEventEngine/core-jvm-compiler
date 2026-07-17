@@ -80,9 +80,9 @@ which is forced to `Compiler.dogfoodingVersion`. The explicit `force(...)` list
 in `build.gradle.kts` pins `toolBase.lib` but **not** `protobuf-setup-plugins`,
 and `doForceVersions(...)` forces only third-party libs. So today's pins:
 
-| pin (on `master`, `2.0.0-SNAPSHOT.080`) | value | consequence |
-|---|---|---|
-| `ToolBase.version` / `dogfoodingVersion` (`buildSrc/.../local/ToolBase.kt:37-38`) | `.401` | direct `ToolBase.*` deps are pre-fix |
+| pin (on `master`, `2.0.0-SNAPSHOT.080`)                                             | value  | consequence                                                 |
+|-------------------------------------------------------------------------------------|--------|-------------------------------------------------------------|
+| `ToolBase.version` / `dogfoodingVersion` (`buildSrc/.../local/ToolBase.kt:37-38`)   | `.401` | direct `ToolBase.*` deps are pre-fix                        |
 | `Compiler.fallbackVersion` / `fallbackDfVersion` (`buildSrc/.../local/Compiler.kt`) | `.054` | **transitively bundles a pre-fix `protobuf-setup-plugins`** |
 
 `.054` and `.401` both predate the `tool-base .402` fix, so the fat JAR carries
