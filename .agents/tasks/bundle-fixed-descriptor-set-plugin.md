@@ -75,21 +75,32 @@ In this repo, `:plugins` builds the `core-jvm-plugins` shadow JAR and **bundles
 - there is **no `relocate` call** — the classes ship under their original
   `io.spine.tools.protobuf.gradle.plugin.*` package.
 
-The bundled version is selected **transitively through `Compiler.pluginLib`**,
-which is forced to `Compiler.dogfoodingVersion`. The explicit `force(...)` list
-in `build.gradle.kts` pins `toolBase.lib` but **not** `protobuf-setup-plugins`,
-and `doForceVersions(...)` forces only third-party libs. So today's pins:
+The bundled version is **forced to `ToolBase.version`**. The `:plugins` module —
+which produces the fat JAR — applies the `module` convention plugin, whose
+`forceConfigurations()` resolution strategy forces `protobuf-setup-plugins` to
+`ToolBase.version` for every subproject configuration, including the
+`shadowRuntimeElements` classpath that `shadowJar` bundles:
 
-| pin (on `master`, `2.0.0-SNAPSHOT.080`)                                             | value  | consequence                                                 |
-|-------------------------------------------------------------------------------------|--------|-------------------------------------------------------------|
-| `ToolBase.version` / `dogfoodingVersion` (`buildSrc/.../local/ToolBase.kt:37-38`)   | `.401` | direct `ToolBase.*` deps are pre-fix                        |
-| `Compiler.fallbackVersion` / `fallbackDfVersion` (`buildSrc/.../local/Compiler.kt`) | `.054` | **transitively bundles a pre-fix `protobuf-setup-plugins`** |
+- `buildSrc/src/main/kotlin/module.gradle.kts:184` — `ToolBase.protobufSetupPlugins`
+  in the `force(...)` list (i.e. `protobuf-setup-plugins:${ToolBase.version}`),
+  present since `6cc97740f` (2025-10-21) **and already on `master`**.
 
-`.054` and `.401` both predate the `tool-base .402` fix, so the fat JAR carries
-the buggy plugin. Bumping `Compiler` to a release built against `tool-base .403`
-is what actually swaps the bundled plugin to the fixed one; bumping `ToolBase`
-keeps the directly-referenced surface coherent and lets us pin the bundled
-plugin explicitly.
+So the bundled plugin is **not** selected transitively through
+`Compiler.pluginLib`; it is pinned to `ToolBase.version`. On `master` that value
+is `.401`, which is why the fat JAR carries the pre-fix plugin:
+
+| pin (on `master`, `2.0.0-SNAPSHOT.080`)                                             | value  | consequence                                                                |
+|-------------------------------------------------------------------------------------|--------|----------------------------------------------------------------------------|
+| `ToolBase.version` / `dogfoodingVersion` (`buildSrc/.../local/ToolBase.kt:37-38`)   | `.401` | **forces the bundled `protobuf-setup-plugins` to the pre-fix `.401`**       |
+| `Compiler.fallbackVersion` / `fallbackDfVersion` (`buildSrc/.../local/Compiler.kt`) | `.054` | pulls `protobuf-setup-plugins .400` transitively — overridden by the force  |
+
+Because the bundle tracks `ToolBase.version`, **bumping `ToolBase` → `.403`
+(step 1) is the decisive lever** that swaps the bundled plugin to the fixed one.
+Bumping `Compiler` → `.062` (step 2) keeps the directly-referenced `tool-base`
+surface coherent at `.403` and prevents intra-JAR skew, but does not by itself
+control the bundled `protobuf-setup-plugins`. The root `build.gradle.kts`
+`buildscript {}` `force(...)` block does not pin `protobuf-setup-plugins`, but
+that block governs the build's own plugin classpath — not the published fat JAR.
 
 Note the `.054` value is itself a deliberate `.055 → .054` rollback
 (`d8ddbc406`, empty commit body — reason not recorded). Re-raising the Compiler
@@ -115,13 +126,17 @@ pin is the main risk in this task; see **Risks**.
   bundled `tool-base` surface (`plugin-base`, `jvm-tools`, …) coherent at one
   version — avoiding intra-JAR binary skew.
 
-- [ ] **3. Pin the bundled plugin explicitly (hardening).** Add
-  `toolBase.protobufSetupPlugins` to the explicit `force(...)` block in the root
-  `build.gradle.kts` (the list that already forces `toolBase.lib`,
-  `compiler.pluginLib`, …). This makes the fat JAR's descriptor-plugin version
-  track `ToolBase.version` deterministically, so a future Compiler rollback can
-  never silently reintroduce a stale plugin. Keep it consistent with step 1/2
-  (all `.403`) so it does not *create* skew.
+- [x] **3. Pin the bundled plugin explicitly (hardening) — already in place.**
+  The fat JAR's descriptor-plugin version already tracks `ToolBase.version`
+  deterministically: `buildSrc/src/main/kotlin/module.gradle.kts:184` forces
+  `toolBase.protobufSetupPlugins` for every `:plugins` configuration, so a future
+  Compiler rollback can never silently reintroduce a stale plugin. No edit is
+  needed. (The earlier draft targeted the root `build.gradle.kts`
+  `buildscript {}` force block, which governs the build's own plugin classpath,
+  not the published fat JAR — that would have been a no-op.) Verified with
+  `./gradlew :plugins:dependencyInsight --configuration runtimeClasspath
+  --dependency io.spine.tools:protobuf-setup-plugins`, which reports
+  `protobuf-setup-plugins:2.0.0-SNAPSHOT.403 (forced)`.
 
 - [ ] **4. Bump this repo's own version.** Run the `bump-version` skill so
   `coreJvmCompilerVersion` in `version.gradle.kts` moves above `.080` (expected
@@ -151,7 +166,8 @@ pin is the main risk in this task; see **Risks**.
 
    - **Fixed** (`.403`): prints `descriptorSetName`.
    - **Stale** (`.401`): prints neither. If you see neither, the bundle is still
-     stale — recheck steps 2/3.
+     stale — recheck step 1 (`ToolBase.version`), which the bundle is forced to
+     via `module.gradle.kts:184`.
 
 2. **End-to-end (authoritative, downstream session — see Follow-up).** With
    delivery-server on the new `.081` fat JAR and the manual workaround removed,
@@ -193,3 +209,18 @@ Once `core-jvm-plugins .081` is published:
   `DescriptorSetFilePlugin` on `master` is already correct and the defect is a
   stale plugin bundled in this repo's `core-jvm-plugins` fat JAR. Awaiting
   approval in a `core-jvm-compiler` session.
+- 2026-07-17 — validated in a `core-jvm-compiler` session. **Claim confirmed:**
+  `master`'s published `core-jvm-plugins 2.0.0-SNAPSHOT.080` fat JAR bundles the
+  `DescriptorSetFilePlugin` *unrelocated* and *byte-identical* to the pre-fix
+  `protobuf-setup-plugins .401` (SHA `2294713b…`; no `descriptorSetName` input).
+  The fix is present in the published `.402` **and** `.403` artifacts and absent
+  in `.401` — so the "landed in `.402`" note holds: the `.402` snapshot was
+  re-published after PR #184 merged, even though the `.402` *bump commit*
+  (`66c4fab2`) topologically predates the fix commits (`c914abec`, `502e3dfe`).
+  **Mechanism corrected** (see the section above): the bundled version is
+  *forced* to `ToolBase.version` via `module.gradle.kts:184` — on `master` since
+  2025-10-21 — not selected transitively through `Compiler`. So step 3's guard
+  already exists, and the `ToolBase → .403` bump (step 1) is the decisive lever.
+  Branch `bump-tool-base-and-all` already carries steps 1 (`ToolBase .403`),
+  2 (`Compiler .062`), and 4 (`version .081`); `:plugins:dependencyInsight`
+  reports the bundle as `protobuf-setup-plugins:2.0.0-SNAPSHOT.403 (forced)`.
