@@ -34,7 +34,6 @@ import io.spine.tools.compiler.ast.Option
 import io.spine.tools.compiler.ast.ProtobufSourceFile
 import io.spine.tools.compiler.ast.event.FileExited
 import io.spine.tools.compiler.ast.event.FileOptionDiscovered
-import io.spine.server.entity.alter
 import io.spine.server.entity.state
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React

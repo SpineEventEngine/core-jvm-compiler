@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,7 +43,6 @@ import io.spine.server.BoundedContext
 import io.spine.server.aggregate.Aggregate
 import io.spine.server.aggregate.Apply
 import io.spine.server.command.Assign
-import io.spine.server.entity.alter
 import io.spine.server.projection.Projection
 import io.spine.server.route.Route
 

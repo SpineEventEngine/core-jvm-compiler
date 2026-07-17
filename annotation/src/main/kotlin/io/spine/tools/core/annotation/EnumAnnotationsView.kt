@@ -31,7 +31,6 @@ import io.spine.core.Subscribe
 import io.spine.tools.compiler.ast.TypeName
 import io.spine.tools.compiler.ast.event.EnumOptionDiscovered
 import io.spine.tools.compiler.plugin.View
-import io.spine.server.entity.alter
 import io.spine.server.route.Route
 import io.spine.tools.core.annotation.event.FileOptionMatched
 
