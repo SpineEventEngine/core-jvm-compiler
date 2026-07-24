@@ -41,7 +41,6 @@ import io.spine.given.home.events.stateChanged
 import io.spine.protobuf.isDefault
 import io.spine.server.BoundedContext
 import io.spine.server.aggregate.Aggregate
-import io.spine.server.aggregate.Apply
 import io.spine.server.command.Assign
 import io.spine.server.projection.Projection
 import io.spine.server.route.Route
@@ -99,22 +98,20 @@ class RoomProjection : Projection<RoomId, Room, Room.Builder>() {
 class DeviceAggregate : Aggregate<DeviceId, Device, Device.Builder>() {
 
     @Assign
-    internal fun handle(c: AddDevice): DeviceAdded =
-        deviceAdded { device = c.device; name = c.name }
-
-    @Assign
-    internal fun handle(c: SetState): StateChanged =
-        stateChanged { device = id(); current = c.state }
-
-    @Apply
-    private fun event(e: DeviceAdded) = alter {
-        name = e.name
-        state = State.OFF
+    internal fun handle(c: AddDevice): DeviceAdded {
+        alter {
+            name = c.name
+            state = State.OFF
+        }
+        return deviceAdded { device = c.device; name = c.name }
     }
 
-    @Apply
-    private fun event(e: StateChanged) = alter {
-        state = e.current
+    @Assign
+    internal fun handle(c: SetState): StateChanged {
+        alter {
+            state = c.state
+        }
+        return stateChanged { device = id(); current = c.state }
     }
 
     companion object {

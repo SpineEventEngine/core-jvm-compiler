@@ -34,7 +34,6 @@ import io.spine.tools.compiler.ast.Option
 import io.spine.tools.compiler.ast.ProtobufSourceFile
 import io.spine.tools.compiler.ast.event.FileExited
 import io.spine.tools.compiler.ast.event.FileOptionDiscovered
-import io.spine.server.entity.state
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.procman.ProcessManager
@@ -67,7 +66,7 @@ internal class FileOptionsProcess : ProcessManager<File, FileOptions, FileOption
 
     @React
     fun on(@External e: FileExited): Iterable<FileOptionMatched> {
-        if (state.optionList.isEmpty()) {
+        if (state().optionList.isEmpty()) {
             // There are no API-related options in this file.
             return emptyList()
         }
@@ -82,7 +81,7 @@ internal class FileOptionsProcess : ProcessManager<File, FileOptions, FileOption
         }
         val events = mutableListOf<FileOptionMatched>()
 
-        state.optionList.forEach { fileOption ->
+        state().optionList.forEach { fileOption ->
             val apiOption = findMatching(fileOption)
             apiOption?.let {
                 protoSrc.addEvents(events, fileOption, it)
