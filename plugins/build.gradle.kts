@@ -461,7 +461,7 @@ fun excludeGroup(exclusions: Node, groupId: String) {
 // As defined in `version.gradle.kts`.
 // Do not publish to Gradle Plugin Portal snapshot versions.
 // It is prohibited by their policy: https://plugins.gradle.org/docs/publish-plugin
-val versionToPublish: String by extra
+val versionToPublish: String = extra["versionToPublish"] as String
 
 val publishPlugins: Task by tasks.getting {
     enabled = !versionToPublish.isSnapshot()
