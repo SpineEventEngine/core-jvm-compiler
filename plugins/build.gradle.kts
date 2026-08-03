@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,13 +79,13 @@ artifactMeta {
 
 // Resolvable configurations to obtain IntelliJ Platform artifacts
 // without bringing them as runtime deps.
-val intellijPlatform: Configuration by configurations.creating {
+val intellijPlatform = configurations.create("intellijPlatform") {
     isCanBeConsumed = false
     isCanBeResolved = true
     isTransitive = false
 }
 
-val intellijPlatformJava: Configuration by configurations.creating {
+val intellijPlatformJava = configurations.create("intellijPlatformJava") {
     isCanBeConsumed = false
     isCanBeResolved = true
     isTransitive = false
@@ -463,7 +463,7 @@ fun excludeGroup(exclusions: Node, groupId: String) {
 // It is prohibited by their policy: https://plugins.gradle.org/docs/publish-plugin
 val versionToPublish: String = extra["versionToPublish"] as String
 
-val publishPlugins: Task by tasks.getting {
+val publishPlugins = tasks.named("publishPlugins") {
     enabled = !versionToPublish.isSnapshot()
 }
 
