@@ -75,20 +75,6 @@ tasks.withType<ProcessResources>().configureEach {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
-/*
- * Disable the generation of rejections because:
- *  1. We don't have rejections in this code.
- *  2. We want to avoid errors that may be caused by the code that has not yet
- *     fully migrated to the latest Compiler API.
- */
-spine {
-    coreJvm {
-        compiler {
-            rejections.enabled.set(false)
-        }
-    }
-}
-
 afterEvaluate {
     spineCompilerRemoteDebug(enabled = false)
 }
