@@ -66,7 +66,7 @@ internal class FileOptionsProcess : ProcessManager<File, FileOptions, FileOption
 
     @React
     fun on(@External e: FileExited): Iterable<FileOptionMatched> {
-        if (state().optionList.isEmpty()) {
+        if (state.optionList.isEmpty()) {
             // There are no API-related options in this file.
             return emptyList()
         }
@@ -74,14 +74,14 @@ internal class FileOptionsProcess : ProcessManager<File, FileOptions, FileOption
     }
 
     private fun emitEvents(): Iterable<FileOptionMatched> {
-        val currentFile = state().file
+        val currentFile = state.file
         val protoSrc = select<ProtobufSourceFile>().findById(currentFile)
         check(protoSrc != null) {
             "Unable to load type data of the Protobuf source file with path `$currentFile`."
         }
         val events = mutableListOf<FileOptionMatched>()
 
-        state().optionList.forEach { fileOption ->
+        state.optionList.forEach { fileOption ->
             val apiOption = findMatching(fileOption)
             apiOption?.let {
                 protoSrc.addEvents(events, fileOption, it)
