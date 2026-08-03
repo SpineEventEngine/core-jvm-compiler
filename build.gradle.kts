@@ -162,7 +162,7 @@ LicenseReporter.mergeAllReports(project)
  */
 val publishedModules: Set<Project> = extensions.getByType<SpinePublishing>().projectsToPublish()
 
-val localPublish by tasks.registering {
+val localPublish = tasks.register("localPublish") {
     val pubTasks = publishedModules.map { p ->
         p.tasks["publishToMavenLocal"]
     }
@@ -176,7 +176,7 @@ val localPublish by tasks.registering {
  * It is similar to the dependency on such artifacts that `:plugins` module declares for
  * its tests. So, we depend on the `test` task of this module for simplicity.
  */
-val integrationTests by tasks.registering(RunBuild::class) {
+val integrationTests = tasks.register<RunBuild>("integrationTests") {
     directory = "$rootDir/tests"
 
     /** A timeout for the case of stalled child processes under Windows. */
@@ -185,7 +185,7 @@ val integrationTests by tasks.registering(RunBuild::class) {
     /** Run integration tests only after all regular tests pass in all modules. */
     subprojects.forEach {
         it.tasks.findByName("test")?.let { testTask ->
-            this@registering.dependsOn(testTask)
+            this@register.dependsOn(testTask)
         }
     }
     dependsOn(localPublish)
@@ -199,14 +199,14 @@ tasks.register("buildAll") {
     dependsOn(integrationTests)
 }
 
-val check by tasks.existing {
+val check = tasks.named("check") {
     dependsOn(integrationTests)
 }
 
 apply(from = "version.gradle.kts")
-val coreJvmCompilerVersion: String by extra
+val coreJvmCompilerVersion = extra["coreJvmCompilerVersion"] as String
 
-val prepareBuildPerformanceSettings by tasks.registering(Exec::class) {
+val prepareBuildPerformanceSettings = tasks.register<Exec>("prepareBuildPerformanceSettings") {
     environment(
         "COMPILER_VERSION" to Compiler.version,
         "VALIDATION_VERSION" to Validation.version,
