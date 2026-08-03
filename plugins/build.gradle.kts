@@ -91,25 +91,6 @@ val intellijPlatformJava = configurations.create("intellijPlatformJava") {
     isTransitive = false
 }
 
-/**
- * Excludes `org.jetbrains:annotations` from a published dependency of this plugin.
- *
- * Build script classpaths pin the module to the version used by the Kotlin
- * runtime embedded into Gradle (`strictly 13.0`, "Pinned to the embedded
- * Kotlin"), while `kotlinx-coroutines` and other transitive dependencies of
- * this plugin require `23.0.0`. Gradle 9.6 may fail to reconcile the two
- * declarations — the outcome depends on the shape of the consumer's dependency
- * graph — making the plugin unresolvable without a consumer-side workaround,
- * such as forcing the module version on the build script classpath.
- *
- * The annotations are compile-time metadata, not needed at runtime.
- * Consumers still receive version `13.0` through the `kotlin-stdlib`
- * dependency, which satisfies the pin.
- */
-fun ModuleDependency.excludeJetBrainsAnnotations() {
-    exclude(group = JetBrainsAnnotations.groupId, module = JetBrainsAnnotations.artifactId)
-}
-
 dependencies {
     compileOnly(gradleKotlinDsl())
     implementation(Compiler.pluginLib)
