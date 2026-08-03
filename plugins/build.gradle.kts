@@ -27,22 +27,19 @@
 import groovy.util.Node
 import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
-import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvmCompiler
+import io.spine.dependency.local.Spine
 import io.spine.dependency.local.TestLib
+import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
-import io.spine.dependency.local.Spine
-import io.spine.dependency.local.Time
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
 import java.util.jar.JarFile
-import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
-import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 
 plugins {
     module
