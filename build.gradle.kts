@@ -29,7 +29,6 @@
 import io.spine.dependency.build.Dokka
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
-import io.spine.dependency.local.ProtoTap
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
