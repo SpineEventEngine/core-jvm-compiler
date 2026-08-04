@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@ package io.spine.tools.core.jvm.mgroup
 import io.spine.core.Subscribe
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.plugin.View
-import io.spine.server.entity.alter
 import io.spine.tools.core.jvm.mgroup.event.GroupedMessageDiscovered
 
 /**

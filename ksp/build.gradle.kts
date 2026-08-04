@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@ artifactMeta {
     )
 }
 
-@Suppress("unused")
-val compileClasspath by configurations.getting {
+configurations.getByName("compileClasspath") {
     resolutionStrategy.force(
         Kotlin.Compiler.embeddable,
         Kotlin.scriptRuntime

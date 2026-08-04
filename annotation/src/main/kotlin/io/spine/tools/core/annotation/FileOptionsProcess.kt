@@ -34,8 +34,6 @@ import io.spine.tools.compiler.ast.Option
 import io.spine.tools.compiler.ast.ProtobufSourceFile
 import io.spine.tools.compiler.ast.event.FileExited
 import io.spine.tools.compiler.ast.event.FileOptionDiscovered
-import io.spine.server.entity.alter
-import io.spine.server.entity.state
 import io.spine.server.event.NoReaction
 import io.spine.server.event.React
 import io.spine.server.procman.ProcessManager
@@ -76,7 +74,7 @@ internal class FileOptionsProcess : ProcessManager<File, FileOptions, FileOption
     }
 
     private fun emitEvents(): Iterable<FileOptionMatched> {
-        val currentFile = state().file
+        val currentFile = state.file
         val protoSrc = select<ProtobufSourceFile>().findById(currentFile)
         check(protoSrc != null) {
             "Unable to load type data of the Protobuf source file with path `$currentFile`."

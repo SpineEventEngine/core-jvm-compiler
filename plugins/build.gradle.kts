@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,17 +31,15 @@ import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvmCompiler
+import io.spine.dependency.local.Spine
 import io.spine.dependency.local.TestLib
+import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
-import io.spine.dependency.local.Spine
-import io.spine.dependency.local.Time
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
 import java.util.jar.JarFile
-import org.gradle.api.publish.maven.tasks.PublishToMavenLocal
-import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 
 plugins {
     module
@@ -78,13 +76,13 @@ artifactMeta {
 
 // Resolvable configurations to obtain IntelliJ Platform artifacts
 // without bringing them as runtime deps.
-val intellijPlatform: Configuration by configurations.creating {
+val intellijPlatform = configurations.create("intellijPlatform") {
     isCanBeConsumed = false
     isCanBeResolved = true
     isTransitive = false
 }
 
-val intellijPlatformJava: Configuration by configurations.creating {
+val intellijPlatformJava = configurations.create("intellijPlatformJava") {
     isCanBeConsumed = false
     isCanBeResolved = true
     isTransitive = false
@@ -114,7 +112,9 @@ dependencies {
         ":comparable",
         ":routing"
     ).forEach {
-        implementation(project(it))
+        implementation(project(it)) {
+            excludeJetBrainsAnnotations()
+        }
     }
 
     arrayOf(
@@ -439,9 +439,9 @@ fun excludeGroup(exclusions: Node, groupId: String) {
 // As defined in `version.gradle.kts`.
 // Do not publish to Gradle Plugin Portal snapshot versions.
 // It is prohibited by their policy: https://plugins.gradle.org/docs/publish-plugin
-val versionToPublish: String by extra
+val versionToPublish: String = extra["versionToPublish"] as String
 
-val publishPlugins: Task by tasks.getting {
+val publishPlugins = tasks.named("publishPlugins") {
     enabled = !versionToPublish.isSnapshot()
 }
 

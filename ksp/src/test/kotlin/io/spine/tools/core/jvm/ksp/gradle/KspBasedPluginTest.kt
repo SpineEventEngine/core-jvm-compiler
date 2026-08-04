@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,12 +43,12 @@ import org.gradle.api.problems.Problem
 import org.gradle.api.problems.ProblemId
 import org.gradle.api.problems.ProblemReporter
 import org.gradle.api.problems.ProblemSpec
-import org.gradle.api.problems.internal.InternalProblem
-import org.gradle.api.problems.internal.InternalProblemBuilder
-import org.gradle.api.problems.internal.InternalProblemReporter
-import org.gradle.api.problems.internal.InternalProblemSpec
-import org.gradle.api.problems.internal.InternalProblems
+import org.gradle.api.problems.internal.ProblemBuilderInternal
+import org.gradle.api.problems.internal.ProblemInternal
+import org.gradle.api.problems.internal.ProblemReporterInternal
+import org.gradle.api.problems.internal.ProblemSpecInternal
 import org.gradle.api.problems.internal.ProblemsInfrastructure
+import org.gradle.api.problems.internal.ProblemsInternal
 import org.gradle.api.problems.internal.ProblemsProgressEventEmitterHolder
 import org.gradle.internal.operations.OperationIdentifier
 import org.gradle.kotlin.dsl.withType
@@ -86,7 +86,7 @@ internal class KspBasedPluginTest {
         @JvmStatic
         fun setupProject(@TempDir(cleanup = CleanupMode.NEVER) projectDir: File) {
             this.projectDir = projectDir
-            
+
             // See: https://github.com/gradle/gradle/issues/31862#issuecomment-2687633265
             // and stub classes below.
             ProblemsProgressEventEmitterHolder.init(InternalProblemsStub())
@@ -172,11 +172,11 @@ private class StubPlugin : KspBasedPlugin() {
  * @see <a href="https://github.com/gradle/gradle/issues/31862#issuecomment-2687633265">
  *     Workaround</a>
  */
-private class InternalProblemsStub : InternalProblems {
+private class InternalProblemsStub : ProblemsInternal {
     override fun getReporter(): ProblemReporter = notImplemented()
-    override fun getInternalReporter(): InternalProblemReporter = InternalProblemReporterStub()
+    override fun getInternalReporter(): ProblemReporterInternal = InternalProblemReporterStub()
     override fun getInfrastructure(): ProblemsInfrastructure = notImplemented()
-    override fun getProblemBuilder(): InternalProblemBuilder = notImplemented()
+    override fun getProblemBuilder(): ProblemBuilderInternal = notImplemented()
 }
 
 private fun notImplemented(): Nothing = TODO("Not yet implemented")
@@ -188,13 +188,15 @@ private fun notImplemented(): Nothing = TODO("Not yet implemented")
  * @see <a href="https://github.com/gradle/gradle/issues/31862#issuecomment-2687633265">
  *     Workaround</a>
  */
-private class InternalProblemReporterStub : InternalProblemReporter {
+private class InternalProblemReporterStub : ProblemReporterInternal {
     override fun create(problemId: ProblemId, action: Action<in ProblemSpec>): Problem =
         notImplemented()
     override fun report(problem: Problem, id: OperationIdentifier) = notImplemented()
     override fun report(problemId: ProblemId, spec: Action<in ProblemSpec>) = notImplemented()
     override fun report(problem: Problem) = notImplemented()
     override fun report(problems: MutableCollection<out Problem>) = notImplemented()
+    override fun reportError(problem: Problem) = notImplemented()
+    override fun reportError(problems: MutableCollection<out Problem>) = notImplemented()
 
     override fun throwing(
         exception: Throwable,
@@ -210,6 +212,6 @@ private class InternalProblemReporterStub : InternalProblemReporter {
         problems: MutableCollection<out Problem>
     ): RuntimeException = notImplemented()
 
-    override fun internalCreate(action: Action<in InternalProblemSpec>): InternalProblem =
+    override fun internalCreate(action: Action<in ProblemSpecInternal>): ProblemInternal =
         notImplemented()
 }
