@@ -36,6 +36,7 @@ import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Jackson
+import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -140,13 +141,22 @@ fun Module.forceConfigurations() {
                 val cfg = this@all
                 Grpc.forceArtifacts(project, cfg, rs)
                 Ksp.forceArtifacts(project, cfg, rs)
-                Jackson.forceArtifacts(project, cfg, rs)
-                Jackson.DataFormat.forceArtifacts(project, cfg, rs)
-                Jackson.DataType.forceArtifacts(project, cfg, rs)
+
+                JacksonV2.Core.forceArtifacts(project, cfg, rs)
+                JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
+                JacksonV2.DataType.forceArtifacts(project, cfg, rs)
+                JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                JacksonV2.Junior.forceArtifacts(project, cfg, rs)
+
                 force(
                     Grpc.bom,
                     Jackson.bom,
                     Jackson.annotations,
+                    "commons-collections:commons-collections:3.2.2",
+                    "commons-io:commons-io:2.22.0",
+                    "org.objenesis:objenesis:3.6",
+                    "org.bouncycastle:bcprov-jdk15on:1.70",
+                    "io.github.classgraph:classgraph:4.8.184",
                     JUnit.bom,
                     Kotlin.bom,
                     Kotlin.Compiler.embeddable,

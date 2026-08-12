@@ -63,8 +63,10 @@ buildscript {
                 kotlin.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
                 jackson.forceArtifacts(project, cfg, rs)
-                io.spine.dependency.lib.Jackson.DataFormat.forceArtifacts(project, cfg, rs)
-                io.spine.dependency.lib.Jackson.DataType.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.Core.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
 
                 force(
                     kotlin.bom,
