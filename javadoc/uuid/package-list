@@ -9,7 +9,6 @@ $dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.Spa
 $dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.TypeNameField.html
 $dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field.UuidsField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.UuidsField.html
 $dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscovered.Field///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscovered.Field.html
-$dokka.location:io.spine.tools.core.jvm.uuid.event/UuidValueDiscoveredKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/uuid/event/UuidValueDiscoveredKt.Dsl.html
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Builder///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Builder.html
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Column///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Column.html
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.ActionsField///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.ActionsField.html
@@ -21,7 +20,6 @@ $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field.TypeNameField///P
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Field///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Field.html
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.Query///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.Query.html
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidActions.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActions.QueryBuilder.html
-$dokka.location:io.spine.tools.core.jvm.uuid/UuidActionsKt.Dsl///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidActionsKt.Dsl.html
 $dokka.location:io.spine.tools.core.jvm.uuid/UuidPlugin.Companion///PointingToDeclaration/io/spine/tools/core/jvm/uuid/UuidPlugin.Companion.html
 io.spine.tools.core.jvm.uuid
 io.spine.tools.core.jvm.uuid.event
