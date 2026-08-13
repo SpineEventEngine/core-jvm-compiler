@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,7 @@
 import io.spine.dependency.build.ErrorProne
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Jackson
+import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.boms.BomsPlugin
@@ -79,8 +80,11 @@ buildscript {
                 val cfg = this@all
                 val rs = this@resolutionStrategy
                 io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
-                io.spine.dependency.lib.Jackson.forceArtifacts(project, cfg, rs)
-                io.spine.dependency.lib.Jackson.DataType.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.Core.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
                 force(
                     io.spine.dependency.lib.Jackson.annotations,
                     io.spine.dependency.lib.Jackson.bom,
@@ -212,9 +216,11 @@ subprojects {
         doForceVersions(this)
         all {
             resolutionStrategy {
-                Jackson.forceArtifacts(project, this@all, this@resolutionStrategy)
-                Jackson.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
-                Jackson.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
+                JacksonV2.Core.forceArtifacts(project, this@all, this@resolutionStrategy)
+                JacksonV2.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
+                JacksonV2.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
+                JacksonV2.Module.forceArtifacts(project, this@all, this@resolutionStrategy)
+                JacksonV2.Junior.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
                     Jackson.annotations,
                     ToolBase.gradlePluginApi,
