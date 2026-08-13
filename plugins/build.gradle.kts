@@ -27,6 +27,8 @@
 import groovy.util.Node
 import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
+import io.spine.dependency.kotlinx.Coroutines
+import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
@@ -36,6 +38,7 @@ import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
+import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.isSnapshot
 import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
@@ -72,20 +75,6 @@ artifactMeta {
     excludeConfigurations {
         containing(*buildToolConfigurations)
     }
-}
-
-// Resolvable configurations to obtain IntelliJ Platform artifacts
-// without bringing them as runtime deps.
-val intellijPlatform = configurations.create("intellijPlatform") {
-    isCanBeConsumed = false
-    isCanBeResolved = true
-    isTransitive = false
-}
-
-val intellijPlatformJava = configurations.create("intellijPlatformJava") {
-    isCanBeConsumed = false
-    isCanBeResolved = true
-    isTransitive = false
 }
 
 dependencies {
@@ -129,10 +118,6 @@ dependencies {
     ).forEach {
         testImplementation(it)
     }
-
-    // Add IntelliJ Platform artifacts to dedicated resolvable configurations.
-    add(intellijPlatform.name, ToolBase.intellijPlatform)
-    add(intellijPlatformJava.name, ToolBase.intellijPlatformJava)
 }
 
 publishing {
@@ -450,35 +435,103 @@ tasks.publish {
     dependsOn(publishPlugins)
 }
 
-fun JarFile.entriesAsSet(): Set<String> = entries().asSequence().map { it.name }.toSet()
+/**
+ * The `group:name` coordinates of the IntelliJ Platform artifacts coming from ToolBase.
+ */
+val intellijPlatformArtifacts: Set<String> = setOf(
+    ToolBase.intellijPlatform,
+    ToolBase.intellijPlatformJava,
+).mapTo(mutableSetOf()) { it.substringBeforeLast(':') }
+
+/**
+ * Modules whose content must never be bundled, even though they are present
+ * on the runtime classpath outside the IntelliJ Platform dependency graph.
+ *
+ * Their classes are already excluded by the path patterns in `tasks.shadowJar`.
+ * Excluding the whole modules also keeps their resource entries — Kotlin module
+ * metadata, `ServiceLoader` registrations, embedded IntelliJ Platform
+ * descriptors — out of the fat JAR.
+ *
+ * The Kotlin runtime libraries come with the Gradle runtime. The KSP artifacts
+ * come with the KSP Gradle plugin declared in `pom.xml`. The JetBrains
+ * annotations are compile-time only.
+ */
+val runtimeProvidedModules: Set<String> = buildSet {
+    addAll(Kotlin.StdLib.modules)
+    add(Kotlin.reflect)
+    addAll(Coroutines.modules)
+    add("${JetBrainsAnnotations.groupId}:${JetBrainsAnnotations.artifactId}")
+    add(Ksp.symbolProcessingAaEmb)
+}
+
+/**
+ * Obtains the `group:name` coordinates of a module component,
+ * or `null` if this component is a project.
+ */
+fun ResolvedComponentResult.moduleKey(): String? =
+    (id as? ModuleComponentIdentifier)?.run { "$group:$module" }
+
+/**
+ * Calculates the modules which are present on the runtime classpath only because
+ * the IntelliJ Platform artifacts depend on them.
+ *
+ * The function traverses the resolved runtime classpath graph without following
+ * the dependency edges of the IntelliJ Platform artifacts, and returns the modules
+ * of the full graph which were not visited, plus the artifacts themselves.
+ *
+ * A module which our own code needs as well — e.g. Guava, which is also among
+ * the IntelliJ Platform dependencies — stays reachable via other graph edges,
+ * and so does not get into the result.
+ */
+fun intellijPlatformOnlyModules(): Set<String> {
+    val resolution = configurations.runtimeClasspath.get().incoming.resolutionResult
+    val visited = mutableSetOf<ComponentIdentifier>()
+    val reachable = mutableSetOf<String>()
+    val queue = ArrayDeque(listOf(resolution.root))
+    while (queue.isNotEmpty()) {
+        val component = queue.removeFirst()
+        if (!visited.add(component.id)) {
+            continue
+        }
+        val module = component.moduleKey()
+        if (module in intellijPlatformArtifacts) {
+            continue
+        }
+        module?.let(reachable::add)
+        component.dependencies.asSequence()
+            .filterIsInstance<ResolvedDependencyResult>()
+            .filterNot { it.isConstraint }
+            .forEach { queue.add(it.selected) }
+    }
+    val allModules = resolution.allComponents.mapNotNull { it.moduleKey() }
+    return allModules.toSet() - reachable
+}
 
 tasks.shadowJar {
-    // Exclude files that are already provided by the IntelliJ Platform artifacts
-    // from ToolBase so that we don't duplicate them in the fat JAR.
-
-    var pathsToExclude = setOf<String>()
-
-    // Resolve lazily at task execution time to avoid unnecessary resolution during configuration.
-    doFirst {
-        val ijPlatformJar = JarFile(intellijPlatform.files.single())
-        val ijPlatformJavaJar = JarFile(intellijPlatformJava.files.single())
-
-        val filesCombined =
-            ijPlatformJar.use { pJar ->
-                ijPlatformJavaJar.use { pjJar ->
-                    pJar.entriesAsSet() + pjJar.entriesAsSet()
-                }
-            }
-
-        // We still need Google Guava's types.
-        pathsToExclude = filesCombined.filter {
-            !(it.contains("com/google/common")
-                    || it.contains("com/google/thirdparty"))
-        }.toSet()
-    }
-
-    exclude {
-        it.path in pathsToExclude
+    /*
+     * Exclude the IntelliJ Platform artifacts and their dependencies from the fat JAR.
+     * They are present on the runtime classpath transitively, via `psi-java` of ToolBase,
+     * and are of no use for the Gradle plugins shipped in this JAR.
+     *
+     * The exclusion is keyed off the declared module coordinates rather than off
+     * the entry names found inside the IntelliJ Platform JARs. A content-derived
+     * exclusion silently inverts when upstream changes what it bundles: once
+     * the IntelliJ Platform artifacts stopped fat-jarring their third-party code
+     * and declared it as ordinary POM dependencies, the entry-based rule excluded
+     * nothing, and the whole dependency set leaked into this JAR unrelocated,
+     * shadowing genuine artifacts on consumers' build classpaths.
+     *
+     * The `verifyBundledPackages` task below guards this invariant.
+     *
+     * The classpath graph is queried lazily, when the task runs, to avoid
+     * resolution during the configuration phase.
+     */
+    val intellijPlatformModules by lazy { intellijPlatformOnlyModules() }
+    dependencies {
+        exclude { dependency ->
+            val module = "${dependency.moduleGroup}:${dependency.moduleName}"
+            module in runtimeProvidedModules || module in intellijPlatformModules
+        }
     }
 
     exclude(
@@ -486,11 +539,29 @@ tasks.shadowJar {
          * Exclude Kotlin runtime because it will be provided by the Gradle runtime.
          */
         "kotlin/**",
+        "META-INF/versions/*/kotlin/**", // Multi-release copies of the above.
 
         /*
          * Exclude Coroutines. They also will be present. The rest of `kotlinx` should stay.
          */
         "kotlinx/coroutines/**",
+
+        // Debug metadata of the Coroutines library, which lives outside `kotlinx/`.
+        "_COROUTINE/**",
+
+        /*
+         * Kotlin runtime metadata and service files, embedded in some of
+         * the artifacts we do bundle, e.g. `protobuf-setup-plugins` of ToolBase.
+         * The libraries these files describe are not bundled; see above.
+         */
+        "META-INF/kotlin-*.kotlin_module",
+        "META-INF/annotations.kotlin_module",
+        "META-INF/compiler.common*.kotlin_module",
+        "META-INF/descriptors*.kotlin_module",
+        "META-INF/deserialization*.kotlin_module",
+        "META-INF/metadata*.kotlin_module",
+        "META-INF/util.runtime.kotlin_module",
+        "META-INF/services/kotlin.reflect.*",
 
         /*
          * Protobuf runtime and Gradle plugin will be available in the classpath because
@@ -499,6 +570,22 @@ tasks.shadowJar {
          */
         "com/google/protobuf/**",
         "META-INF/gradle-plugins/com.google.protobuf.properties",
+
+        /*
+         * Gson comes to consumers with `protobuf-java-util` via the `runtime`
+         * dependency in `pom.xml`, similarly to the Protobuf entries above.
+         */
+        "com/google/gson/**",
+
+        /*
+         * Strip annotation-only libraries pulled in transitively, e.g. by Guava.
+         * The plugins do not need them at runtime.
+         */
+        "com/google/errorprone/**",
+        "com/google/j2objc/**",
+        "org/intellij/**",
+        "org/jetbrains/annotations/**",
+        "org/jspecify/**",
 
         /*
          * Excluding these types to avoid clashes at user's build classpath.
@@ -532,6 +619,13 @@ tasks.shadowJar {
         "fj/**",
         "javax/annotation/**",
 
+        /*
+         * JNA classes come embedded, unrelocated, in `roaster-jdt`, which we bundle.
+         * The plugins do not use JNA, and a partial copy of it could shadow
+         * the genuine JNA artifact on a consumer's build classpath.
+         */
+        "com/sun/jna/**",
+
         // Strip the Validation library code generation code.
         // It is going to be available as runtime dependencies via `pom.xml`.
         "io/spine/tools/validation/**",
@@ -549,6 +643,7 @@ tasks.shadowJar {
 
         // These types should be available at runtime via the Kotlin compiler.
         "ksp/**",
+        "META-INF/versions/*/ksp/**", // Multi-release copies of the above.
         "com/google/devtools/ksp/**",
 
         // Do not declare third-party Gradle plugins,
@@ -559,12 +654,28 @@ tasks.shadowJar {
         // We analyze these files when building artifacts we depend on.
         "about_files/**",
         "license/**",
+        "META-INF/LICENSE*",
+        "META-INF/NOTICE*",
+        "META-INF/AL2.0",
+        "META-INF/LGPL2.1",
+
+        // Maven metadata and Android tooling rules of the merged libraries.
+        "META-INF/maven/**",
+        "META-INF/proguard/**",
+        "META-INF/com.android.tools/**",
 
         "ant_tasks/**", // `resource-ant.jar` is of no use here.
 
         /* Exclude `https://github.com/JetBrains/pty4j`.
           We don't need the terminal. */
         "resources/com/pty4j/**",
+
+        /*
+         * IntelliJ Platform registry defaults embedded in `psi-java` of ToolBase.
+         * The genuine IntelliJ Platform artifacts provide this file
+         * on the Spine Compiler classpath.
+         */
+        "misc/registry.properties",
 
         // Protobuf files.
         "google/**",
@@ -573,6 +684,10 @@ tasks.shadowJar {
 
         // Java source code files of the package `org.osgi`.
         "OSGI-OPT/**",
+
+        // OSGi manifest fragments, including copies in multi-release JARs.
+        "OSGI-INF/**",
+        "META-INF/versions/*/OSGI-INF/**",
     )
 
     /* The archive has way too many items. So use the Zip64 mode. */
@@ -582,6 +697,99 @@ tasks.shadowJar {
     archiveClassifier.set("")
 
     setup()
+}
+
+/**
+ * The package prefixes of the class files expected in the fat JAR.
+ *
+ * The list feeds the `verifyBundledPackages` task below. When a new runtime
+ * dependency must be bundled, extend the list consciously: every bundled class
+ * is served unrelocated, so it shadows a class with the same name coming from
+ * a genuine artifact on a consumer's build classpath.
+ */
+val expectedPackages = listOf(
+    "io/spine/",
+
+    // Guava is bundled deliberately: the plugins need its types at runtime.
+    "com/google/common/",
+    "com/google/thirdparty/", // The public suffix data of Guava.
+
+    // Annotations referenced by the bundled code.
+    "com/google/auto/",
+    "org/codehaus/mojo/animal_sniffer/",
+
+    // `osdetector-gradle-plugin` used by the Protobuf Gradle Plugin.
+    "com/google/gradle/",
+    "kr/motd/maven/",
+
+    // Jackson, v2 and v3, with the YAML support.
+    "com/fasterxml/jackson/",
+    "tools/jackson/",
+    "org/snakeyaml/",
+    "org/yaml/snakeyaml/",
+
+    // Java and Kotlin code generation.
+    "com/squareup/javapoet/",
+    "com/squareup/kotlinpoet/",
+
+    // Roaster, for parsing and formatting Java sources.
+    "org/jboss/forge/",
+
+    // Aedile, a Kotlin wrapper over Caffeine caches.
+    "com/sksamuel/aedile/",
+
+    // Kotlin extension libraries. Coroutines are excluded in `tasks.shadowJar`.
+    "kotlinx/atomicfu/",
+    "kotlinx/datetime/",
+)
+
+/**
+ * Verifies that the fat JAR contains only class files of [expectedPackages].
+ *
+ * The task guards against silent re-appearance of third-party code in the fat JAR,
+ * like the one which happened when the IntelliJ Platform artifacts stopped bundling
+ * their dependencies and declared them as ordinary POM dependencies instead.
+ * See the dependency filter in `tasks.shadowJar` above for details.
+ */
+val verifyBundledPackages = tasks.register("verifyBundledPackages") {
+    description = "Verifies that the fat JAR bundles only classes of expected packages"
+    group = SpineTaskGroup.name
+    val archive = tasks.shadowJar.flatMap { it.archiveFile }
+    inputs.file(archive).withPathSensitivity(PathSensitivity.NONE)
+    val marker = layout.buildDirectory.file("verifyBundledPackages/verified.txt")
+    outputs.file(marker)
+    doLast {
+        val multiRelease = Regex("^META-INF/versions/\\d+/")
+        val offenders = JarFile(archive.get().asFile).use { jar ->
+            jar.entries().asSequence()
+                .map { it.name }
+                .filter { it.endsWith(".class") }
+                .map { it.replaceFirst(multiRelease, "") }
+                .filterNot { name -> expectedPackages.any { name.startsWith(it) } }
+                .sorted()
+                .toList()
+        }
+        if (offenders.isNotEmpty()) {
+            val preview = offenders.take(30).joinToString(System.lineSeparator())
+            throw GradleException(
+                "The fat JAR contains ${offenders.size} class file(s)" +
+                        " outside the expected packages, e.g.:" +
+                        System.lineSeparator() + preview
+            )
+        }
+        marker.get().asFile.run {
+            parentFile.mkdirs()
+            writeText("ok")
+        }
+    }
+}
+
+tasks.shadowJar {
+    finalizedBy(verifyBundledPackages)
+}
+
+tasks.check {
+    dependsOn(verifyBundledPackages)
 }
 
 /**
