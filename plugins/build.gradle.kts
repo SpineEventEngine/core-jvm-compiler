@@ -27,13 +27,19 @@
 import groovy.util.Node
 import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
+import io.spine.dependency.kotlinx.AtomicFu
 import io.spine.dependency.kotlinx.Coroutines
+import io.spine.dependency.kotlinx.DateTime
+import io.spine.dependency.lib.Aedile
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.local.BaseTypes
+import io.spine.dependency.local.Change
 import io.spine.dependency.local.Compiler
+import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.TestLib
@@ -476,12 +482,19 @@ tasks.publish {
 }
 
 /**
+ * Obtains the `group:name` part of a Maven coordinate,
+ * which may or may not carry the version part.
+ */
+fun moduleOf(coordinate: String): String =
+    coordinate.split(':').let { "${it[0]}:${it[1]}" }
+
+/**
  * The `group:name` coordinates of the IntelliJ Platform artifacts coming from ToolBase.
  */
 val intellijPlatformArtifacts: Set<String> = setOf(
     ToolBase.intellijPlatform,
     ToolBase.intellijPlatformJava,
-).mapTo(mutableSetOf()) { it.substringBeforeLast(':') }
+).mapTo(mutableSetOf(), ::moduleOf)
 
 /**
  * Modules whose content must never be bundled, even though they are present
@@ -543,6 +556,64 @@ val pomProvidedModules: Set<String> = buildSet {
      */
     add("org.yaml:snakeyaml")
     add("org.snakeyaml:snakeyaml-engine")
+
+    /*
+     * These come to consumers transitively, with `protobuf-gradle-plugin`
+     * declared in `pom.xml`. There are no dependency objects for them
+     * because no Spine module declares them directly.
+     */
+    add("com.google.gradle:osdetector-gradle-plugin")
+    add("kr.motd.maven:os-maven-plugin")
+}
+
+/**
+ * Modules provided by the `io.spine.tools:compiler-cli` fat JAR — the platform
+ * in whose classpath the CoreJvm Compiler plugins run.
+ *
+ * Each module listed here is fully contained in the CLI fat JAR, and
+ * the Gradle-plugin side of this artifact — running on consumers' build
+ * classpath, where the platform is absent — does not use it.
+ *
+ * When the Compiler starts publishing the platform contract — a BOM
+ * enumerating what the CLI fat JAR embeds — this list should be derived
+ * from that contract instead of being maintained by hand.
+ */
+val cliProvidedModules: Set<String> = buildSet {
+    // The CoreJvm framework, referenced by the generated code
+    // and by the code-generation plugins.
+    add(moduleOf(CoreJvm.core))
+    add(moduleOf(CoreJvm.client))
+    add(moduleOf(CoreJvm.server))
+    add(moduleOf(Change.lib))
+    add(moduleOf(BaseTypes.lib))
+    add(moduleOf(Time.lib))
+    add(moduleOf(Time.javaExtensions))
+
+    // The PSI infrastructure of ToolBase, used at code generation time only.
+    add(moduleOf(ToolBase.psi))
+    add(moduleOf(ToolBase.psiJava))
+
+    // The Spine Compiler modules; consumers' build classpath receives them
+    // via the `runtime` dependencies declared in `pom.xml`.
+    add(moduleOf(Compiler.api))
+    add(moduleOf(Compiler.jvm))
+    add(moduleOf(Compiler.backend))
+    add(moduleOf(Compiler.params))
+
+    /*
+     * Caching and date-time libraries of the code-generation stack.
+     * Kotlin Multiplatform artifacts resolve to their `-jvm` counterparts,
+     * so both module names are listed.
+     */
+    add(moduleOf(Aedile.lib))
+    add(moduleOf(DateTime.lib))
+    add("${moduleOf(DateTime.lib)}-jvm")
+    addAll(AtomicFu.modules)
+    add("${AtomicFu.group}:${AtomicFu.module}-jvm")
+
+    // Annotation-only libraries referenced by the modules above.
+    add("com.google.auto.service:auto-service-annotations")
+    add("org.codehaus.mojo:animal-sniffer-annotations")
 }
 
 /**
@@ -613,6 +684,7 @@ tasks.shadowJar {
             val module = "${dependency.moduleGroup}:${dependency.moduleName}"
             module in runtimeProvidedModules
                     || module in pomProvidedModules
+                    || module in cliProvidedModules
                     || module in intellijPlatformModules
         }
     }
@@ -709,6 +781,15 @@ tasks.shadowJar {
          */
         "com/sun/jna/**",
 
+        /*
+         * OS detection classes come embedded, unrelocated, in
+         * `protobuf-setup-plugins` of ToolBase, which we bundle. Consumers
+         * receive the genuine artifacts transitively, with
+         * `protobuf-gradle-plugin` declared in `pom.xml`.
+         */
+        "com/google/gradle/**",
+        "kr/motd/**",
+
         // Strip the Validation library code generation code.
         // It is going to be available as runtime dependencies via `pom.xml`.
         "io/spine/tools/validation/**",
@@ -791,19 +872,41 @@ tasks.shadowJar {
  * a genuine artifact on a consumer's build classpath.
  */
 val expectedPackages = listOf(
-    "io/spine/",
+    // The code of this repository and the ToolBase infrastructure
+    // used by the Gradle-plugin side.
+    "io/spine/tools/",
+
+    /*
+     * The Spine base libraries used by the Gradle-plugin side.
+     *
+     * The heavier framework — `spine-core`, `spine-client`, `spine-server`,
+     * and friends — must not appear here: the code-generation plugins meet it
+     * inside the Compiler CLI classpath; see `cliProvidedModules`.
+     */
+    "io/spine/annotation/",
+    "io/spine/base/",
+    "io/spine/code/",
+    "io/spine/collect/",
+    "io/spine/compare/",
+    "io/spine/environment/",
+    "io/spine/format/",
+    "io/spine/io/",
+    "io/spine/logging/",
+    "io/spine/option/",
+    "io/spine/protobuf/",
+    "io/spine/query/",
+    "io/spine/reflect/",
+    "io/spine/security/",
+    "io/spine/string/",
+    "io/spine/type/",
+    "io/spine/util/",
+    "io/spine/validate/",
+    "io/spine/validation/",
+    "io/spine/value/",
 
     // Guava is bundled deliberately: the plugins need its types at runtime.
     "com/google/common/",
     "com/google/thirdparty/", // The public suffix data of Guava.
-
-    // Annotations referenced by the bundled code.
-    "com/google/auto/",
-    "org/codehaus/mojo/animal_sniffer/",
-
-    // `osdetector-gradle-plugin` used by the Protobuf Gradle Plugin.
-    "com/google/gradle/",
-    "kr/motd/maven/",
 
     // Java and Kotlin code generation.
     "com/squareup/javapoet/",
@@ -811,13 +914,6 @@ val expectedPackages = listOf(
 
     // Roaster, for parsing and formatting Java sources.
     "org/jboss/forge/",
-
-    // Aedile, a Kotlin wrapper over Caffeine caches.
-    "com/sksamuel/aedile/",
-
-    // Kotlin extension libraries. Coroutines are excluded in `tasks.shadowJar`.
-    "kotlinx/atomicfu/",
-    "kotlinx/datetime/",
 )
 
 /**

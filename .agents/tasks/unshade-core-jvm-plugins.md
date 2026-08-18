@@ -245,6 +245,28 @@ Jib. `jibBuildTar` is the cheap check (no Docker needed, fails in ~20s).
   roots: `io/spine`, Guava (+`auto`, `gradle`), Aedile, JavaPoet/KotlinPoet,
   `kotlinx` datetime/atomicfu, `kr/motd`, animal-sniffer, Roaster.
   `:plugins:test --rerun` green against the republished artifacts.
+- 2026-08-13 — Phase A of the platform work: modules fully contained in the
+  `compiler-cli-all` fat JAR — the platform in whose classpath the Compiler
+  plugins run — and unused by the Gradle-plugin side are no longer bundled.
+  New `cliProvidedModules` set: CoreJvm `core`/`client`/`server`,
+  `spine-change`, `spine-base-types`, `spine-time` (+ Java extensions),
+  ToolBase `psi`/`psi-java`, Compiler `api`/`jvm`/`backend`/`params`, Aedile,
+  `kotlinx-datetime`, `atomicfu` (with `-jvm` variants), and the
+  auto-service/animal-sniffer annotation stubs. The osdetector pair moved to
+  `pomProvidedModules` (transitive of `protobuf-gradle-plugin`); its copies
+  embedded in `protobuf-setup-plugins` are path-excluded — one more ToolBase
+  embed, cf. the resource note above. The guard allowlist replaces the broad
+  `io/spine/` prefix with the explicit gradle-side package list, so a platform
+  module reappearing now fails the build. Census: 11,271 → 7,572 classes;
+  63% of the remainder is Roaster + JavaPoet/KotlinPoet — candidates for
+  the platform in Phase B. Verified: guard green, `:plugins:test --rerun`
+  green, root `integrationTests` (the `tests/` E2E through the real Compiler)
+  green. Committed locally; push freeze in effect.
+- [ ] Phase B — `compiler` repo: publish the platform contract (a BOM of what
+      `compiler-cli` embeds; possibly adopt Roaster and the poets); then derive
+      `cliProvidedModules` here from that contract
+- [ ] Phase C (optional) — split the Gradle plugin and the Compiler-plugins
+      bundle into separate artifacts, removing the dual-use tension
 - 2026-08-13 — remaining: publish a snapshot (CI on merge) and re-run
   `./gradlew :delivery-server-cloud-run:jibBuildTar` in `delivery-server`, then
   unpin. Not attempted from this session: `delivery-server` is being worked on
