@@ -425,7 +425,7 @@ private fun MavenPublication.tuneDependencies() {
          *
          * Their classes are excluded from the fat JAR — see `pomProvidedModules`
          * near `tasks.shadowJar` — so that consumers receive genuine artifacts
-         * which they can upgrade without waiting for a new release of
+         * that they can upgrade without waiting for a new release of
          * CoreJvm Compiler. SnakeYAML and SnakeYAML Engine are not listed here:
          * they come transitively, with the `jackson-dataformat-yaml` artifacts.
          */
@@ -525,7 +525,7 @@ val runtimeProvidedModules: Set<String> = buildSet {
  * families are excluded here, while `pom.xml` declares only the artifacts
  * whose classes used to be bundled. For a family member absent from
  * the runtime classpath — e.g. `jackson-dataformat-xml` — the exclusion
- * is a no-op. A member which only the IntelliJ Platform artifacts bring —
+ * is a no-op. A member that only the IntelliJ Platform artifacts bring —
  * e.g. `jackson-jr-objects` — is excluded by the dependency filter anyway.
  *
  * Consumers receive these libraries as ordinary Maven artifacts, so they can
@@ -624,14 +624,14 @@ fun ResolvedComponentResult.moduleKey(): String? =
     (id as? ModuleComponentIdentifier)?.run { "$group:$module" }
 
 /**
- * Calculates the modules which are present on the runtime classpath only because
+ * Calculates the modules that are present on the runtime classpath only because
  * the IntelliJ Platform artifacts depend on them.
  *
  * The function traverses the resolved runtime classpath graph without following
  * the dependency edges of the IntelliJ Platform artifacts, and returns the modules
- * of the full graph which were not visited, plus the artifacts themselves.
+ * of the full graph that were not visited, plus the artifacts themselves.
  *
- * A module which our own code needs as well — e.g. Guava, which is also among
+ * A module that our own code needs as well — e.g. Guava, which is also among
  * the IntelliJ Platform dependencies — stays reachable via other graph edges,
  * and so does not get into the result.
  */
@@ -920,7 +920,7 @@ val expectedPackages = listOf(
  * Verifies that the fat JAR contains only class files of [expectedPackages].
  *
  * The task guards against silent re-appearance of third-party code in the fat JAR,
- * like the one which happened when the IntelliJ Platform artifacts stopped bundling
+ * like the one that happened when the IntelliJ Platform artifacts stopped bundling
  * their dependencies and declared them as ordinary POM dependencies instead.
  * See the dependency filter in `tasks.shadowJar` above for details.
  */
