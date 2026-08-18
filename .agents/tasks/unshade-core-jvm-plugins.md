@@ -224,6 +224,15 @@ Jib. `jibBuildTar` is the cheap check (no Docker needed, fails in ~20s).
   exclude added next to its multi-release variant. Verified by two consecutive
   builds; the guard still re-runs today only because the module `jar` tasks
   are never up-to-date in this repo, which is pre-existing behaviour.
+- 2026-08-13 — per review on PR #109: Jackson 3 (`tools.jackson`) and
+  snakeyaml-engine moved out of the fat JAR too, so consumers can upgrade them
+  independently. The five `tools.jackson` artifacts are now `runtime`
+  dependencies in `pom.xml` (`pomProvidedModules` excludes them from the
+  merge); snakeyaml-engine arrives transitively with `jackson-dataformat-yaml`.
+  Census after the change: `tools/jackson` = 0, `org/snakeyaml` = 0, total
+  classes 14,302 → 12,730; publication POM verified; `:plugins:check` green.
+  Jackson 2 (`com/fasterxml`) and SnakeYAML (`org/yaml`) remain bundled as in
+  `.081` — same treatment pending a separate decision.
 - 2026-08-13 — remaining: publish a snapshot (CI on merge) and re-run
   `./gradlew :delivery-server-cloud-run:jibBuildTar` in `delivery-server`, then
   unpin. Not attempted from this session: `delivery-server` is being worked on

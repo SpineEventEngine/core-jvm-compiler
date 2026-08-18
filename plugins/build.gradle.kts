@@ -28,6 +28,7 @@ import groovy.util.Node
 import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.kotlinx.Coroutines
+import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
@@ -411,6 +412,32 @@ private fun MavenPublication.tuneDependencies() {
             version(it, Ksp.version)
             runtimeScope(it)
         }
+
+        /*
+         * Add the Jackson 3.x libraries used by Spine code at runtime.
+         *
+         * Their classes are excluded from the fat JAR — see `pomProvidedModules`
+         * near `tasks.shadowJar` — so that consumers receive genuine artifacts
+         * which they can upgrade without waiting for a new release of
+         * CoreJvm Compiler. SnakeYAML Engine is not listed here: it comes
+         * transitively, with `jackson-dataformat-yaml`.
+         */
+        listOf(
+            Jackson.core,
+            Jackson.databind,
+            Jackson.moduleKotlin,
+            Jackson.DataFormat.yaml,
+            Jackson.DataType.guava,
+        ).forEach { module ->
+            val (group, name) = module.split(':')
+            dependencyNode().let {
+                Node(it, "groupId", group)
+                artifactId(it, name)
+                version(it, Jackson.version)
+                runtimeScope(it)
+                addExclusions(it)
+            }
+        }
     }
 }
 
@@ -462,6 +489,27 @@ val runtimeProvidedModules: Set<String> = buildSet {
     addAll(Coroutines.modules)
     add("${JetBrainsAnnotations.groupId}:${JetBrainsAnnotations.artifactId}")
     add(Ksp.symbolProcessingAaEmb)
+}
+
+/**
+ * Modules excluded from the fat JAR in favor of the `runtime` dependencies
+ * declared in `pom.xml`; see `tuneDependencies()` above.
+ *
+ * Consumers receive these libraries as ordinary Maven artifacts, so they can
+ * upgrade them via the standard dependency resolution without waiting for
+ * a new version of CoreJvm Compiler.
+ */
+val pomProvidedModules: Set<String> = buildSet {
+    add(Jackson.core)
+    add(Jackson.databind)
+    add(Jackson.moduleKotlin)
+    add(Jackson.DataFormat.yaml)
+    add(Jackson.DataType.guava)
+
+    // Not declared in `pom.xml` explicitly: it comes to consumers transitively,
+    // with `jackson-dataformat-yaml`. There is no dependency object for it
+    // because no Spine module declares it directly.
+    add("org.snakeyaml:snakeyaml-engine")
 }
 
 /**
@@ -530,7 +578,9 @@ tasks.shadowJar {
     dependencies {
         exclude { dependency ->
             val module = "${dependency.moduleGroup}:${dependency.moduleName}"
-            module in runtimeProvidedModules || module in intellijPlatformModules
+            module in runtimeProvidedModules
+                    || module in pomProvidedModules
+                    || module in intellijPlatformModules
         }
     }
 
@@ -722,10 +772,9 @@ val expectedPackages = listOf(
     "com/google/gradle/",
     "kr/motd/maven/",
 
-    // Jackson, v2 and v3, with the YAML support.
+    // Jackson 2.x with the YAML support. Jackson 3.x is not bundled;
+    // it comes to consumers via `pom.xml`, see `pomProvidedModules`.
     "com/fasterxml/jackson/",
-    "tools/jackson/",
-    "org/snakeyaml/",
     "org/yaml/snakeyaml/",
 
     // Java and Kotlin code generation.
