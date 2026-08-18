@@ -7,6 +7,7 @@ See [README.md](README.md) for the format and routing rules.
 
 - [copilot-review-request](feedback/copilot-review-request.md) — GraphQL `requestReviews` with `botIds: ["BOT_kgDOCnlnWA"]`; REST endpoint silently no-ops on re-requests.
 - [no-issue-references-in-code](feedback/no-issue-references-in-code.md) — Don't put issue/PR refs in code (comments, KDoc, fixtures); cross-link the issue and PR instead.
+- [no-gradle-kotlin-dsl-task-delegates](feedback/no-gradle-kotlin-dsl-task-delegates.md) — `by tasks.registering`/`by creating` are deprecated in Gradle 9; use `tasks.register("name")` and check build-logic diffs with `--warning-mode all`.
 
 ## Project (durable context & rationale)
 
