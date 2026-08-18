@@ -262,9 +262,15 @@ Jib. `jibBuildTar` is the cheap check (no Docker needed, fails in ~20s).
   the platform in Phase B. Verified: guard green, `:plugins:test --rerun`
   green, root `integrationTests` (the `tests/` E2E through the real Compiler)
   green. Committed locally; push freeze in effect.
+- [ ] Phase A1 — `tool-base` repo: `intellij-platform-java` (with its sibling
+      `intellij-platform`) becomes a Gradle platform with a BOM
+      (`intellij-platform-bom`), integrated into the uber modules' POMs via
+      a `dependencyManagement` import with version-less entries. Plan drafted:
+      `tool-base/.agents/tasks/intellij-platform-bom.md`
 - [ ] Phase B — `compiler` repo: publish the platform contract (a BOM of what
-      `compiler-cli` embeds; possibly adopt Roaster and the poets); then derive
-      `cliProvidedModules` here from that contract
+      `compiler-cli` embeds, importing the Phase A1 IJ BOM; possibly adopt
+      Roaster and the poets); then derive `cliProvidedModules` here from that
+      contract
 - [ ] Phase C (optional) — split the Gradle plugin and the Compiler-plugins
       bundle into separate artifacts, removing the dual-use tension
 - 2026-08-13 — remaining: publish a snapshot (CI on merge) and re-run
