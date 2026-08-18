@@ -508,6 +508,13 @@ val runtimeProvidedModules: Set<String> = buildSet {
  * Modules excluded from the fat JAR in favor of the `runtime` dependencies
  * declared in `pom.xml`; see `tuneDependencies()` above.
  *
+ * The set is intentionally wider than the list in `pom.xml`. Whole module
+ * families are excluded here, while `pom.xml` declares only the artifacts
+ * whose classes used to be bundled. For a family member absent from
+ * the runtime classpath — e.g. `jackson-dataformat-xml` — the exclusion
+ * is a no-op. A member which only the IntelliJ Platform artifacts bring —
+ * e.g. `jackson-jr-objects` — is excluded by the dependency filter anyway.
+ *
  * Consumers receive these libraries as ordinary Maven artifacts, so they can
  * upgrade them via the standard dependency resolution without waiting for
  * a new version of CoreJvm Compiler.
