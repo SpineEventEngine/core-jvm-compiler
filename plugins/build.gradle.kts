@@ -29,6 +29,7 @@ import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.lib.Jackson
+import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
@@ -414,26 +415,38 @@ private fun MavenPublication.tuneDependencies() {
         }
 
         /*
-         * Add the Jackson 3.x libraries used by Spine code at runtime.
+         * Add the Jackson libraries used at runtime by the code we bundle.
          *
          * Their classes are excluded from the fat JAR — see `pomProvidedModules`
          * near `tasks.shadowJar` — so that consumers receive genuine artifacts
          * which they can upgrade without waiting for a new release of
-         * CoreJvm Compiler. SnakeYAML Engine is not listed here: it comes
-         * transitively, with `jackson-dataformat-yaml`.
+         * CoreJvm Compiler. SnakeYAML and SnakeYAML Engine are not listed here:
+         * they come transitively, with the `jackson-dataformat-yaml` artifacts.
          */
         listOf(
-            Jackson.core,
-            Jackson.databind,
-            Jackson.moduleKotlin,
-            Jackson.DataFormat.yaml,
-            Jackson.DataType.guava,
-        ).forEach { module ->
+            // Jackson 3.x, used by our own code.
+            Jackson.core to Jackson.version,
+            Jackson.databind to Jackson.version,
+            Jackson.moduleKotlin to Jackson.version,
+            Jackson.DataFormat.yaml to Jackson.version,
+            Jackson.DataType.guava to Jackson.version,
+
+            // The annotations artifact of the 2.x line, consumed by both lines.
+            Jackson.annotations.substringBeforeLast(':') to Jackson.annotationsVersion,
+
+            // Jackson 2.x, pulled by the third-party code we bundle.
+            JacksonV2.Core.core to JacksonV2.version,
+            JacksonV2.Core.databind to JacksonV2.version,
+            JacksonV2.DataFormat.yaml to JacksonV2.version,
+            JacksonV2.DataType.guava to JacksonV2.version,
+            JacksonV2.DataType.jdk8 to JacksonV2.version,
+            JacksonV2.Module.parameterNames to JacksonV2.version,
+        ).forEach { (module, moduleVersion) ->
             val (group, name) = module.split(':')
             dependencyNode().let {
                 Node(it, "groupId", group)
                 artifactId(it, name)
-                version(it, Jackson.version)
+                version(it, moduleVersion)
                 runtimeScope(it)
                 addExclusions(it)
             }
@@ -500,15 +513,28 @@ val runtimeProvidedModules: Set<String> = buildSet {
  * a new version of CoreJvm Compiler.
  */
 val pomProvidedModules: Set<String> = buildSet {
+    // Jackson 3.x.
     add(Jackson.core)
     add(Jackson.databind)
     add(Jackson.moduleKotlin)
     add(Jackson.DataFormat.yaml)
     add(Jackson.DataType.guava)
 
-    // Not declared in `pom.xml` explicitly: it comes to consumers transitively,
-    // with `jackson-dataformat-yaml`. There is no dependency object for it
-    // because no Spine module declares it directly.
+    // Jackson 2.x, with the `jackson-annotations` artifact shared by both lines.
+    add(Jackson.annotations.substringBeforeLast(':'))
+    addAll(JacksonV2.Core.modules)
+    addAll(JacksonV2.DataFormat.modules)
+    addAll(JacksonV2.DataType.modules)
+    addAll(JacksonV2.Module.modules)
+    addAll(JacksonV2.Junior.modules)
+
+    /*
+     * Not declared in `pom.xml` explicitly: these come to consumers
+     * transitively, with the `jackson-dataformat-yaml` artifacts declared
+     * there. There are no dependency objects for them because no Spine
+     * module declares them directly.
+     */
+    add("org.yaml:snakeyaml")
     add("org.snakeyaml:snakeyaml-engine")
 }
 
@@ -771,11 +797,6 @@ val expectedPackages = listOf(
     // `osdetector-gradle-plugin` used by the Protobuf Gradle Plugin.
     "com/google/gradle/",
     "kr/motd/maven/",
-
-    // Jackson 2.x with the YAML support. Jackson 3.x is not bundled;
-    // it comes to consumers via `pom.xml`, see `pomProvidedModules`.
-    "com/fasterxml/jackson/",
-    "org/yaml/snakeyaml/",
 
     // Java and Kotlin code generation.
     "com/squareup/javapoet/",

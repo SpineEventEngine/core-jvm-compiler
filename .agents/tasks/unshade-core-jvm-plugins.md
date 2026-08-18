@@ -233,6 +233,18 @@ Jib. `jibBuildTar` is the cheap check (no Docker needed, fails in ~20s).
   classes 14,302 → 12,730; publication POM verified; `:plugins:check` green.
   Jackson 2 (`com/fasterxml`) and SnakeYAML (`org/yaml`) remain bundled as in
   `.081` — same treatment pending a separate decision.
+- 2026-08-13 — decision made on PR #109: Jackson 2 and SnakeYAML unbundled the
+  same way. `pom.xml` now declares the seven artifacts whose classes were
+  bundled (`jackson-annotations` 2.22 shared by both lines; `jackson-core`,
+  `jackson-databind`, `jackson-dataformat-yaml`, `jackson-datatype-guava`,
+  `jackson-datatype-jdk8`, `jackson-module-parameter-names` 2.22.1);
+  `org.yaml:snakeyaml` comes transitively with `jackson-dataformat-yaml`, like
+  snakeyaml-engine. `jackson-jr-objects` and `jackson-module-kotlin` 2.x are
+  IntelliJ-Platform-only on this classpath, so they get no POM entries. Census:
+  `com/fasterxml` = 0, `org/yaml` = 0, total classes 12,730 → 11,271; remaining
+  roots: `io/spine`, Guava (+`auto`, `gradle`), Aedile, JavaPoet/KotlinPoet,
+  `kotlinx` datetime/atomicfu, `kr/motd`, animal-sniffer, Roaster.
+  `:plugins:test --rerun` green against the republished artifacts.
 - 2026-08-13 — remaining: publish a snapshot (CI on merge) and re-run
   `./gradlew :delivery-server-cloud-run:jibBuildTar` in `delivery-server`, then
   unpin. Not attempted from this session: `delivery-server` is being worked on
