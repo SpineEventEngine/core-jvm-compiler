@@ -31,6 +31,9 @@ import io.spine.dependency.kotlinx.AtomicFu
 import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.kotlinx.DateTime
 import io.spine.dependency.lib.Aedile
+import io.spine.dependency.lib.AutoService
+import io.spine.dependency.lib.Gson
+import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.JetBrainsAnnotations
@@ -581,6 +584,29 @@ val pomProvidedModules: Set<String> = buildSet {
  * from that contract instead of being maintained by hand.
  */
 val cliProvidedModules: Set<String> = buildSet {
+    add(moduleOf(AutoService.annotations))
+    add(moduleOf(Guava.lib))
+    add(moduleOf(Gson.lib))
+    add(moduleOf(Protobuf.libs[0]))
+    add(moduleOf(Protobuf.libs[1]))
+
+    add(moduleOf(Jackson.annotations))
+    JacksonV2.modules.forEach {
+        add(it)
+    }
+    JacksonV2.DataType.modules.forEach {
+        add(it)
+    }
+    JacksonV2.DataFormat.modules.forEach {
+        add(it)
+    }
+    JacksonV2.Module.modules.forEach {
+        add(it)
+    }
+    JacksonV2.Junior.modules.forEach {
+        add(it)
+    }
+
     // The CoreJvm framework, referenced by the generated code
     // and by the code-generation plugins.
     add(moduleOf(CoreJvm.core))
