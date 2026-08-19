@@ -725,9 +725,13 @@ tasks.shadowJar {
         "META-INF/versions/*/kotlin/**", // Multi-release copies of the above.
 
         /*
-         * Exclude Coroutines. They also will be present. The rest of `kotlinx` should stay.
+         * Exclude these kotlinx packages provided by Compiler CLI.
+         *
+         * The rest of `kotlinx` should stay.
          */
         "kotlinx/coroutines/**",
+        "kotlinx/atomicfu/**",
+        "kotlinx/datetime/**",
 
         // Debug metadata of the Coroutines library, which lives outside `kotlinx/`.
         "_COROUTINE/**",
