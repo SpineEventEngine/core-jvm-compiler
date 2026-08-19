@@ -44,7 +44,8 @@ buildscript {
             exclude(group = "com.google.guava")
         }
         classpath(io.spine.dependency.local.Compiler.pluginLib)
-        classpath(io.spine.dependency.local.CoreJvmCompiler.gradlePluginLib(coreJvmCompilerVersion))
+        // The `CoreJvmCompiler` object of `config` does not know this artifact yet.
+        classpath("io.spine.tools:core-jvm-gradle-plugin:$coreJvmCompilerVersion")
     }
 }
 

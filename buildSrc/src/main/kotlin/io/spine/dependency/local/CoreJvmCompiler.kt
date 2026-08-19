@@ -59,45 +59,22 @@ object CoreJvmCompiler {
     const val pluginId = "io.spine.core-jvm"
 
     /**
-     * The library carrying the CoreJvm Gradle Plugin with the [dogfoodingVersion].
-     *
-     * The [dogfoodingVersion] predates the split of the `plugins` module, so
-     * the plugin classes still come with the fat JAR artifact. Once the
-     * [dogfoodingVersion] is bumped to a version published after the split,
-     * switch this property to [gradlePluginLib].
+     * The library with the [dogfoodingVersion].
      */
-    val pluginLib = fatJarLib(dogfoodingVersion)
+    val pluginLib = pluginLib(dogfoodingVersion)
 
     /**
-     * The name of the published fat JAR artifact with the Spine Compiler plugins.
-     *
-     * The artifact is produced by the `compiler-plugins` module.
+     * The name of the published fat JAR artifact.
      */
     const val fatJarArtifact = "core-jvm-plugins"
 
     /**
-     * The name of the published artifact with the CoreJvm Gradle Plugin.
-     *
-     * The artifact is produced by the `gradle-plugin` module.
-     * Its POM declares a runtime dependency on [the fat JAR][fatJarArtifact].
+     * The library with the given [version].
      */
-    const val gradlePluginArtifact = "core-jvm-gradle-plugin"
-
-    /**
-     * The fat JAR library with the given [version].
-     */
-    fun fatJarLib(version: String): String = "$group:$fatJarArtifact:$version"
-
-    /**
-     * The CoreJvm Gradle Plugin library with the given [version].
-     *
-     * Only versions published after the split of the `plugins` module
-     * provide this artifact.
-     */
-    fun gradlePluginLib(version: String): String = "$group:$gradlePluginArtifact:$version"
+    fun pluginLib(version: String): String = "$group:core-jvm-plugins:$version"
 
     /**
      * The artifact reference for forcing in configurations.
      */
-    val pluginsArtifact: String = fatJarLib(version)
+    val pluginsArtifact: String = pluginLib(version)
 }

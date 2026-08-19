@@ -78,11 +78,18 @@ Split the `plugins` module into two modules:
 - [x] `gradle-plugin` sources: `Meta` targets the thin module;
       `CompilerConfigPlugin` injects `CoreJvmCompiler.fatJar(version)`;
       `CoreJvmPluginIgTest` classpath uses `Meta.artifact.coordinates`.
-- [x] buildSrc `CoreJvmCompiler.kt`: add `gradlePluginArtifact`,
-      `gradlePluginLib()`, `fatJarLib()`; `pluginLib(version)` removed
-      outright (all callers migrated in-repo, so a missed caller fails
-      at compile time instead of silently resolving the wrong artifact);
-      the dogfooding switch-over is documented on `pluginLib`.
+- [x] ~~buildSrc `CoreJvmCompiler.kt`: add `gradlePluginArtifact`,
+      `gradlePluginLib()`, `fatJarLib()`~~ — **reverted**: that file is
+      distributed by the `config` submodule, so `./config/pull` deletes
+      the additions and breaks build-script compilation on every machine.
+      The artifact ID is now declared locally in
+      `gradle-plugin/build.gradle.kts` (the convention `grpc` and `base`
+      follow), and the consumer build scripts use literal coordinates.
+      See [[config-owned-buildsrc-reverts]].
+- [ ] Follow-up in the `config` repo: add the `core-jvm-gradle-plugin`
+      artifact to the shared `CoreJvmCompiler` object, so that other
+      Spine repositories can consume the new plugin artifact by name.
+      Only then switch `dogfoodingVersion`-based `pluginLib` over to it.
 - [x] Migrate consumers: `tests/build.gradle.kts`,
       `annotation/src/test/resources/annotator-plugin-test`,
       `signal/src/test/resources/rejection-codegen-test`,

@@ -54,8 +54,13 @@ LicenseReporter.generateReportIn(project)
 
 /**
  * The ID used for publishing this module.
+ *
+ * The ID is declared here, and not in the `CoreJvmCompiler` dependency object,
+ * because that object belongs to the `config` submodule, which does not know
+ * about this artifact yet. Consumer projects of the CoreJvm Compiler will be
+ * able to refer to it via `CoreJvmCompiler` once `config` catches up.
  */
-val moduleArtifactId: String = CoreJvmCompiler.gradlePluginArtifact
+val moduleArtifactId: String = "core-jvm-gradle-plugin"
 
 artifactMeta {
     artifactId.set(moduleArtifactId)
@@ -356,7 +361,7 @@ afterEvaluate {
                     val dependency = Node(dependencies, "dependency")
                     dependency.let {
                         Node(it, "groupId", Spine.toolsGroup)
-                        Node(it, "artifactId", CoreJvmCompiler.gradlePluginArtifact)
+                        Node(it, "artifactId", moduleArtifactId)
                         Node(it, "version", pluginVersion)
                         Node(it, "scope", "runtime")
                     }

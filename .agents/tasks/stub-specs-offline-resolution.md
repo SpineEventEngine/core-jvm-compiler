@@ -48,12 +48,12 @@ machine blocked with HTTP 429.
 - [x] Verify: all previously failing unit specs (17) pass fully offline
       while the Maven Central 429 block is still active — the strongest
       hermeticity proof available.
-- [ ] Re-run the full suite once the 429 block lifts: the one remaining
-      red test (`CoreJvmPluginIgTest > be available via its ID and
-      version`) fails only because its nested TestKit build consults
-      Maven Central during marker lookup, and a repository *error*
-      (unlike a miss) aborts Gradle resolution even though `mavenLocal`
-      has the artifacts.
+- [x] Re-run the full suite once the 429 block lifts: confirmed on
+      2026-08-20 — Maven Central answers 200 again and
+      `:gradle-plugin:test` is fully green (27 tests, 0 failures),
+      including `CoreJvmPluginIgTest > be available via its ID and
+      version`, whose nested TestKit build had been aborted by
+      the repository error during marker lookup.
 
 ## Log
 
