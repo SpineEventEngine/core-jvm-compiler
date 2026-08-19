@@ -27,6 +27,7 @@
 @file:Suppress("RemoveRedundantQualifierName") // To prevent IDEA replacing FQN imports.
 
 import io.spine.dependency.build.ErrorProne
+import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
@@ -84,8 +85,14 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
-                io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
                 force(
+                    /*
+                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
+                     * `JacksonV2` declares no objects for them because no Spine module
+                     * depends on them directly, yet their transitive versions still clash.
+                     */
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${io.spine.dependency.lib.JacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${io.spine.dependency.lib.JacksonV2.version}",
                     io.spine.dependency.lib.Jackson.annotations,
                     io.spine.dependency.lib.Jackson.bom,
                     io.spine.dependency.lib.Kotlin.bom,
@@ -96,7 +103,12 @@ buildscript {
                     io.spine.dependency.local.Base.format,
                     io.spine.dependency.local.Time.lib,
                     io.spine.dependency.local.Time.javaExtensions,
-                    toolBase.lib,
+                    toolBase.fs,
+                    toolBase.code,
+                    toolBase.javaCode,
+                    toolBase.kotlinCode,
+                    toolBase.protoCode,
+                    toolBase.classicCodegen,
                     toolBase.pluginBase,
                     toolBase.jvmTools,
                     logging.lib,
@@ -143,10 +155,18 @@ allprojects {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Kotlin.StdLib.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    /*
+                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
+                     * `JacksonV2` declares no objects for them because no Spine module
+                     * depends on them directly, yet their transitive versions still clash.
+                     */
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Base.annotations,
                     Base.lib,
                     Base.environment,
                     Base.format,
+                    Caffeine.lib,
                     Compiler.api,
                     CoreJvm.server,
                     Grpc.bom,
@@ -161,7 +181,12 @@ allprojects {
                     Time.lib,
                     ToolBase.intellijPlatform,
                     ToolBase.intellijPlatformJava,
-                    ToolBase.lib,
+                    ToolBase.fs,
+                    ToolBase.code,
+                    ToolBase.javaCode,
+                    ToolBase.kotlinCode,
+                    ToolBase.protoCode,
+                    ToolBase.classicCodegen,
                     ToolBase.pluginBase,
                     ToolBase.psiJava,
                     Validation.javaBundle,
@@ -220,8 +245,14 @@ subprojects {
                 JacksonV2.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.Module.forceArtifacts(project, this@all, this@resolutionStrategy)
-                JacksonV2.Junior.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    /*
+                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
+                     * `JacksonV2` declares no objects for them because no Spine module
+                     * depends on them directly, yet their transitive versions still clash.
+                     */
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Jackson.annotations,
                     ToolBase.gradlePluginApi,
                     ToolBase.jvmTools,

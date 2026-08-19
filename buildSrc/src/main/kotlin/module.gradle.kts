@@ -130,9 +130,7 @@ fun Module.forceConfigurations() {
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
                 dependencySubstitution {
-                    // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
-                    substitute(module("io.spine.tools:spine-tool-base"))
-                        .using(module(ToolBase.lib))
+                    // Substitute the legacy artifact coordinates with the new alias.
                     substitute(module("io.spine.tools:spine-plugin-base"))
                         .using(module(ToolBase.pluginBase))
                 }
@@ -146,9 +144,15 @@ fun Module.forceConfigurations() {
                 JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 JacksonV2.Module.forceArtifacts(project, cfg, rs)
-                JacksonV2.Junior.forceArtifacts(project, cfg, rs)
 
                 force(
+                    /*
+                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
+                     * `JacksonV2` declares no objects for them because no Spine module
+                     * depends on them directly, yet their transitive versions still clash.
+                     */
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Grpc.bom,
                     Jackson.bom,
                     Jackson.annotations,
@@ -184,7 +188,11 @@ fun Module.forceConfigurations() {
                     CoreJvm.client,
                     CoreJvm.server,
                     TestLib.lib,
-                    ToolBase.lib,
+                    ToolBase.fs,
+                    ToolBase.code,
+                    ToolBase.javaCode,
+                    ToolBase.kotlinCode,
+                    ToolBase.protoCode,
                     ToolBase.classicCodegen,
                     ToolBase.pluginBase,
                     ToolBase.jvmTools,

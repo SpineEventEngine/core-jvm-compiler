@@ -48,6 +48,8 @@ dependencies {
     arrayOf(
         gradleTestKit(),
         TestLib.lib,
+        ToolBase.fs,
+        ToolBase.classicCodegen,
         ToolBase.pluginTestlib,
         Compiler.testlib
     ).forEach {

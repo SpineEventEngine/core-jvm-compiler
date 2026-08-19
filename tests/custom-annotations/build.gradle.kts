@@ -25,7 +25,6 @@
  */
 
 import io.spine.dependency.lib.JavaPoet
-import io.spine.dependency.local.ToolBase
 
 plugins {
     // To allow `modelCompiler` syntax below.
@@ -39,5 +38,4 @@ plugins {
 
 dependencies {
     implementation(JavaPoet.lib)
-    implementation(ToolBase.lib)
 }

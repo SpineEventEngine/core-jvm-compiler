@@ -35,7 +35,7 @@ import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.fs.DirectoryName.java
 import io.spine.tools.gradle.task.JavaTaskName.Companion.compileTestJava
 import io.spine.tools.gradle.testing.GradleProject
-import io.spine.tools.resolve
+import io.spine.tools.fs.resolve
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path

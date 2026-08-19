@@ -36,7 +36,8 @@ import io.spine.dependency.local.ToolBase
 
 dependencies {
     implementation(JavaPoet.lib)
-    implementation(ToolBase.lib)
+    implementation(ToolBase.code)
+    implementation(ToolBase.javaCode)
     implementation(Compiler.api)!!.because("Custom codegen actions use the Compiler API.")
     implementation(Compiler.jvm)
     val coreJvmBundle = CoreJvmCompiler.pluginLib(version.toString())

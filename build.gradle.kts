@@ -69,6 +69,13 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
 
                 force(
+                    /*
+                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
+                     * `JacksonV2` declares no objects for them because no Spine module
+                     * depends on them directly, yet their transitive versions still clash.
+                     */
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${io.spine.dependency.lib.JacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${io.spine.dependency.lib.JacksonV2.version}",
                     kotlin.bom,
                     jackson.annotations,
                     jackson.bom,
@@ -77,7 +84,12 @@ buildscript {
                     base.environment,
                     base.format,
                     io.spine.dependency.local.Reflect.lib,
-                    toolBase.lib,
+                    toolBase.fs,
+                    toolBase.code,
+                    toolBase.javaCode,
+                    toolBase.kotlinCode,
+                    toolBase.protoCode,
+                    toolBase.classicCodegen,
                     coreJava.server,
                     time.lib,
                     time.javaExtensions,

@@ -546,7 +546,6 @@ val pomProvidedModules: Set<String> = buildSet {
     addAll(JacksonV2.DataFormat.modules)
     addAll(JacksonV2.DataType.modules)
     addAll(JacksonV2.Module.modules)
-    addAll(JacksonV2.Junior.modules)
 
     /*
      * Not declared in `pom.xml` explicitly: these come to consumers
