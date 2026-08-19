@@ -130,7 +130,7 @@ fun Module.forceConfigurations() {
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
                 dependencySubstitution {
-                    // Substitute the legacy artifact coordinates with the new alias.
+                    // Substitute the legacy coordinates with the current ones.
                     substitute(module("io.spine.tools:spine-plugin-base"))
                         .using(module(ToolBase.pluginBase))
                 }
