@@ -121,3 +121,13 @@ Split the `plugins` module into two modules:
   closures (configuration-cache hazard) and added drift-guard comments to
   the mirrored dependency lists. Reviews: `spine-code-review` APPROVE,
   `gradle-review` APPROVE WITH CHANGES (all applied).
+- 2026-08-20 — replaced the hand-maintained `cliProvidedModules` set with
+  a content-derived `providedByCli` predicate inspecting the actual
+  `compiler-cli-all` JAR (package-level containment, tool-base style),
+  plus a 14-module `bundledDespiteCli` keep-list for what the Gradle-plugin
+  side needs on consumers' build classpath. The analysis found the old
+  hand list had a silently ineffective entry: Guava was "excluded" there,
+  but its classes ride embedded in `protobuf-setup-plugins` regardless.
+  Verified: rebuilt fat JAR classes byte-identical; 7 dangling resource
+  entries (grpc/palantir service files, native-image configs) dropped;
+  `verifyBundledPackages` and `CoreJvmPluginIgTest` green.

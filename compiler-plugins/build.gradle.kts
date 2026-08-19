@@ -26,23 +26,17 @@
 
 import groovy.util.Node
 import io.spine.dependency.build.Ksp
-import io.spine.dependency.kotlinx.AtomicFu
 import io.spine.dependency.kotlinx.Coroutines
-import io.spine.dependency.kotlinx.DateTime
-import io.spine.dependency.lib.Aedile
-import io.spine.dependency.lib.AutoService
-import io.spine.dependency.lib.Gson
-import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.BaseTypes
-import io.spine.dependency.local.Change
+import io.spine.dependency.local.Base
 import io.spine.dependency.local.Compiler
-import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.CoreJvmCompiler
+import io.spine.dependency.local.Logging
+import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
@@ -547,76 +541,116 @@ val pomProvidedModules: Set<String> = buildSet {
 }
 
 /**
- * Modules provided by the `io.spine.tools:compiler-cli` fat JAR — the platform
- * in whose classpath the CoreJvm Compiler plugins run.
+ * The fat JAR of the Spine Compiler CLI — the platform in whose classpath
+ * the CoreJvm Compiler plugins run.
  *
- * Each module listed here is fully contained in the CLI fat JAR, and
- * the Gradle-plugin side of this artifact — running on consumers' build
- * classpath, where the platform is absent — does not use it.
- *
- * When the Compiler starts publishing the platform contract — a BOM
- * enumerating what the CLI fat JAR embeds — this list should be derived
- * from that contract instead of being maintained by hand.
+ * The [providedByCli] predicate below inspects this JAR to find out which
+ * modules of the runtime classpath the platform already contains.
  */
-val cliProvidedModules: Set<String> = buildSet {
-    add(moduleOf(AutoService.annotations))
-    add(moduleOf(Guava.lib))
-    add(moduleOf(Gson.lib))
-    add(moduleOf(Protobuf.libs[0]))
-    add(moduleOf(Protobuf.libs[1]))
+val compilerCli: Configuration by configurations.creating {
+    isTransitive = false
+}
 
-    add(moduleOf(Jackson.annotations))
-    JacksonV2.modules.forEach {
-        add(it)
+dependencies {
+    compilerCli(Compiler.fatCli)
+}
+
+/**
+ * Modules bundled into the fat JAR even though the Compiler CLI contains them.
+ *
+ * The Gradle-plugin side of the CoreJvm Compiler — running on consumers'
+ * build classpath, where the CLI platform is absent — uses these modules
+ * at build time, so [providedByCli] must not exclude them.
+ */
+val bundledDespiteCli: Set<String> = buildSet {
+    // The Spine base libraries.
+    add(moduleOf(Base.annotations))
+    add(moduleOf(Base.lib))
+    add(moduleOf(Base.environment))
+    add(moduleOf(Base.format))
+    add(moduleOf(Reflect.lib))
+
+    // Logging and its backends.
+    add(moduleOf(Logging.libJvm))
+    add(moduleOf(Logging.grpcContext))
+    add("${Spine.group}:spine-logging-jul-backend")
+    add("${Spine.group}:spine-logging-jvm-default-platform")
+
+    // The Validation runtime, referenced by the generated code.
+    add(Validation.runtimeModule)
+
+    // The ToolBase infrastructure used by the Gradle-plugin side.
+    add(moduleOf(ToolBase.lib))
+    add(moduleOf(ToolBase.code))
+    add(moduleOf(ToolBase.fs))
+    add(moduleOf(ToolBase.jvmTools))
+}
+
+/**
+ * Obtains the packages of the class files stored in the given JAR.
+ *
+ * Entries of multi-release copies are normalized to their top-level form.
+ */
+fun packagesOf(jar: File): Set<String> {
+    val multiRelease = Regex("^META-INF/versions/\\d+/")
+    JarFile(jar).use { jarFile ->
+        return jarFile.entries().asSequence()
+            .map { it.name }
+            .filter { it.endsWith(".class") }
+            .map { it.replaceFirst(multiRelease, "") }
+            .filterNot { it.startsWith("META-INF/") }
+            .map { it.substringBeforeLast('/', "") }
+            .filter { it.isNotEmpty() }
+            .toSet()
     }
-    JacksonV2.DataType.modules.forEach {
-        add(it)
+}
+
+/**
+ * The packages of the class files bundled into the Compiler CLI fat JAR.
+ *
+ * The JAR is resolved lazily, when `tasks.shadowJar` runs, to avoid
+ * resolution during the configuration phase.
+ */
+val cliPackages: Set<String> by lazy {
+    packagesOf(compilerCli.singleFile)
+}
+
+/**
+ * The cache of the per-module verdicts of [providedByCli].
+ */
+val cliCoverage = mutableMapOf<String, Boolean>()
+
+/**
+ * Tells whether the Compiler CLI fat JAR fully contains the given dependency,
+ * making its bundling into the fat JAR of this module unnecessary.
+ *
+ * A dependency qualifies when every package of its class files is present in
+ * the CLI JAR, and the module is not listed in [bundledDespiteCli]. Comparing
+ * packages rather than individual class files tolerates version differences
+ * between the runtime classpath of this module and the content of the CLI.
+ *
+ * The predicate is self-correcting in both directions. When a new CLI version
+ * starts bundling a module, the module is dropped from the fat JAR of this
+ * artifact — safely, because the code-generation plugins meet it inside
+ * the CLI classpath. When the CLI stops bundling a module, the module gets
+ * into the fat JAR again, and the `verifyBundledPackages` task fails
+ * the build, asking for an explicit decision. This addresses the silent
+ * inversion once caused by the entry-based exclusion of the IntelliJ
+ * Platform content; see the comment at `tasks.shadowJar` below.
+ */
+fun providedByCli(dependency: ResolvedDependency): Boolean {
+    val module = "${dependency.moduleGroup}:${dependency.moduleName}"
+    if (module in bundledDespiteCli) {
+        return false
     }
-    JacksonV2.DataFormat.modules.forEach {
-        add(it)
+    return cliCoverage.getOrPut(module) {
+        val packages = dependency.moduleArtifacts.asSequence()
+            .map { it.file }
+            .filter { it.name.endsWith(".jar") }
+            .flatMap { packagesOf(it) }
+            .toSet()
+        packages.isNotEmpty() && cliPackages.containsAll(packages)
     }
-    JacksonV2.Module.modules.forEach {
-        add(it)
-    }
-    JacksonV2.Junior.modules.forEach {
-        add(it)
-    }
-
-    // The CoreJvm framework, referenced by the generated code
-    // and by the code-generation plugins.
-    add(moduleOf(CoreJvm.core))
-    add(moduleOf(CoreJvm.client))
-    add(moduleOf(CoreJvm.server))
-    add(moduleOf(Change.lib))
-    add(moduleOf(BaseTypes.lib))
-    add(moduleOf(Time.lib))
-    add(moduleOf(Time.javaExtensions))
-
-    // The PSI infrastructure of ToolBase, used at code generation time only.
-    add(moduleOf(ToolBase.psi))
-    add(moduleOf(ToolBase.psiJava))
-
-    // The Spine Compiler modules; consumers' build classpath receives them
-    // via the `runtime` dependencies declared in `pom.xml`.
-    add(moduleOf(Compiler.api))
-    add(moduleOf(Compiler.jvm))
-    add(moduleOf(Compiler.backend))
-    add(moduleOf(Compiler.params))
-
-    /*
-     * Caching and date-time libraries of the code-generation stack.
-     * Kotlin Multiplatform artifacts resolve to their `-jvm` counterparts,
-     * so both module names are listed.
-     */
-    add(moduleOf(Aedile.lib))
-    add(moduleOf(DateTime.lib))
-    add("${moduleOf(DateTime.lib)}-jvm")
-    addAll(AtomicFu.modules)
-    add("${AtomicFu.group}:${AtomicFu.module}-jvm")
-
-    // Annotation-only libraries referenced by the modules above.
-    add("com.google.auto.service:auto-service-annotations")
-    add("org.codehaus.mojo:animal-sniffer-annotations")
 }
 
 /**
@@ -682,13 +716,20 @@ tasks.shadowJar {
      * resolution during the configuration phase.
      */
     val intellijPlatformModules by lazy { intellijPlatformOnlyModules() }
+
+    // Track the CLI JAR as an input, so that a change in its content re-runs
+    // this task with re-evaluated `providedByCli` verdicts.
+    inputs.files(compilerCli)
+        .withPropertyName("compilerCliJar")
+        .withPathSensitivity(PathSensitivity.NONE)
+
     dependencies {
         exclude { dependency ->
             val module = "${dependency.moduleGroup}:${dependency.moduleName}"
             module in runtimeProvidedModules
                     || module in pomProvidedModules
-                    || module in cliProvidedModules
                     || module in intellijPlatformModules
+                    || providedByCli(dependency)
         }
     }
 
@@ -887,7 +928,7 @@ val expectedPackages = listOf(
      *
      * The heavier framework — `spine-core`, `spine-client`, `spine-server`,
      * and friends — must not appear here: the code-generation plugins meet it
-     * inside the Compiler CLI classpath; see `cliProvidedModules`.
+     * inside the Compiler CLI classpath; see `providedByCli`.
      */
     "io/spine/annotation/",
     "io/spine/base/",
