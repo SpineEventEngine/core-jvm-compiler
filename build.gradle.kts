@@ -129,7 +129,8 @@ private object BuildSettings {
 
 spinePublishing {
     modulesWithCustomPublishing = setOf(
-        "plugins"
+        "compiler-plugins",
+        "gradle-plugin",
     )
     destinations = PublishingRepos.run {
         setOf(
@@ -183,8 +184,8 @@ val localPublish = tasks.register("localPublish") {
  * The build task executed under `tests` subdirectory.
  *
  * These tests depend on locally published artifacts.
- * It is similar to the dependency on such artifacts that `:plugins` module declares for
- * its tests. So, we depend on the `test` task of this module for simplicity.
+ * It is similar to the dependency on such artifacts that `:gradle-plugin` module declares
+ * for its tests. So, we depend on the `test` task of this module for simplicity.
  */
 val integrationTests = tasks.register<RunBuild>("integrationTests") {
     directory = "$rootDir/tests"
