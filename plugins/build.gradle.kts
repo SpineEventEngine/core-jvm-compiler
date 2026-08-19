@@ -831,9 +831,8 @@ tasks.shadowJar {
         "io/spine/tools/time/**",
 
         /*
-         * Exclude Gradle types to reduce the size of the resulting JAR.
-         *
-         * Those required for the plugins are available at runtime anyway.
+         * Exclude Gradle types that are present on the runtime classpath anyway,
+         * via the Gradle runtime.
          */
         "org/gradle/**",
 
