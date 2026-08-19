@@ -39,6 +39,8 @@ dependencies {
     arrayOf(
         Logging.lib,
         CoreJvm.server,
+        ToolBase.code,
+        ToolBase.javaCode,
         ToolBase.psiJava,
         project(":base")
     ).forEach {

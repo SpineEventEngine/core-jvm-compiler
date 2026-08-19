@@ -37,6 +37,13 @@ package io.spine.dependency.local
 @Suppress("ConstPropertyName", "unused")
 object ToolBase {
     const val group = Spine.toolsGroup
+
+    /**
+     * A local override of the version `config` distributes.
+     *
+     * `config` still pins `2.0.0-SNAPSHOT.420`, so the next `./config/pull` will
+     * revert this constant. Re-apply it until `config` catches up.
+     */
     const val version = "2.0.0-SNAPSHOT.421"
     const val dogfoodingVersion = "2.0.0-SNAPSHOT.410"
 

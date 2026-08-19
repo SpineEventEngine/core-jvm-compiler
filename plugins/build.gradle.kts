@@ -526,7 +526,9 @@ val runtimeProvidedModules: Set<String> = buildSet {
  * whose classes used to be bundled. For a family member absent from
  * the runtime classpath — e.g. `jackson-dataformat-xml` — the exclusion
  * is a no-op. A member that only the IntelliJ Platform artifacts bring —
- * e.g. `jackson-jr-objects` — is excluded by the dependency filter anyway.
+ * `jackson-jr-objects` and the 2.x `jackson-module-kotlin` — is excluded by
+ * the dependency filter anyway, which is why `JacksonV2` no longer declares
+ * either of them.
  *
  * Consumers receive these libraries as ordinary Maven artifacts, so they can
  * upgrade them via the standard dependency resolution without waiting for

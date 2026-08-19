@@ -146,11 +146,8 @@ fun Module.forceConfigurations() {
                 JacksonV2.Module.forceArtifacts(project, cfg, rs)
 
                 force(
-                    /*
-                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
-                     * `JacksonV2` declares no objects for them because no Spine module
-                     * depends on them directly, yet their transitive versions still clash.
-                     */
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
+                    // `JacksonV2` declares no objects for them, yet they still clash.
                     "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
                     "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Grpc.bom,

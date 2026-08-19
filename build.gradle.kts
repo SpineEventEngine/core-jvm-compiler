@@ -48,6 +48,7 @@ buildscript {
     val compiler = io.spine.dependency.local.Compiler
     val coreJava = io.spine.dependency.local.CoreJvm
     val jackson = io.spine.dependency.lib.Jackson
+    val jacksonV2 = io.spine.dependency.lib.JacksonV2
     val kotlin = io.spine.dependency.lib.Kotlin
     val logging = io.spine.dependency.local.Logging
     val time = io.spine.dependency.local.Time
@@ -69,13 +70,10 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
 
                 force(
-                    /*
-                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
-                     * `JacksonV2` declares no objects for them because no Spine module
-                     * depends on them directly, yet their transitive versions still clash.
-                     */
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${io.spine.dependency.lib.JacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${io.spine.dependency.lib.JacksonV2.version}",
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
+                    // `JacksonV2` declares no objects for them, yet they still clash.
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${jacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonV2.version}",
                     kotlin.bom,
                     jackson.annotations,
                     jackson.bom,

@@ -40,10 +40,12 @@ dependencies {
     implementation(project(":base"))
     implementation(Logging.lib)
 
-    testFixturesImplementation(Base.lib)?.because(
-        "Test fixtures use `io.spine.annotation.Internal` and `io.spine.code.proto`," +
-                " which used to arrive transitively with the retired `tool-base` artifact."
-    )
+    arrayOf(Base.annotations, Base.lib).forEach {
+        testFixturesImplementation(it)?.because(
+            "Test fixtures use `io.spine.annotation.Internal` and `io.spine.code.proto`," +
+                    " which used to arrive transitively with the retired `tool-base` artifact."
+        )
+    }
     testFixturesImplementation(TestLib.lib)
 
     val guavaGroup = "com.google.guava"

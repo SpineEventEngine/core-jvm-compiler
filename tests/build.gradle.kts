@@ -74,6 +74,7 @@ buildscript {
 
     with(configurations) {
         doForceVersions(this)
+        val jacksonV2 = io.spine.dependency.lib.JacksonV2
         val toolBase = io.spine.dependency.local.ToolBase
         val logging = io.spine.dependency.local.Logging
         all {
@@ -86,13 +87,10 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
                 force(
-                    /*
-                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
-                     * `JacksonV2` declares no objects for them because no Spine module
-                     * depends on them directly, yet their transitive versions still clash.
-                     */
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${io.spine.dependency.lib.JacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${io.spine.dependency.lib.JacksonV2.version}",
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
+                    // `JacksonV2` declares no objects for them, yet they still clash.
+                    "com.fasterxml.jackson.jr:jackson-jr-objects:${jacksonV2.version}",
+                    "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonV2.version}",
                     io.spine.dependency.lib.Jackson.annotations,
                     io.spine.dependency.lib.Jackson.bom,
                     io.spine.dependency.lib.Kotlin.bom,
@@ -155,11 +153,8 @@ allprojects {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Kotlin.StdLib.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
-                    /*
-                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
-                     * `JacksonV2` declares no objects for them because no Spine module
-                     * depends on them directly, yet their transitive versions still clash.
-                     */
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
+                    // `JacksonV2` declares no objects for them, yet they still clash.
                     "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
                     "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Base.annotations,
@@ -179,15 +174,15 @@ allprojects {
                     TestLib.lib,
                     Time.javaExtensions,
                     Time.lib,
+                    ToolBase.classicCodegen,
+                    ToolBase.code,
+                    ToolBase.fs,
                     ToolBase.intellijPlatform,
                     ToolBase.intellijPlatformJava,
-                    ToolBase.fs,
-                    ToolBase.code,
                     ToolBase.javaCode,
                     ToolBase.kotlinCode,
-                    ToolBase.protoCode,
-                    ToolBase.classicCodegen,
                     ToolBase.pluginBase,
+                    ToolBase.protoCode,
                     ToolBase.psiJava,
                     Validation.javaBundle,
                     Validation.runtime,
@@ -246,11 +241,8 @@ subprojects {
                 JacksonV2.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.Module.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
-                    /*
-                     * Jackson 2.x artifacts brought only by the IntelliJ Platform modules.
-                     * `JacksonV2` declares no objects for them because no Spine module
-                     * depends on them directly, yet their transitive versions still clash.
-                     */
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
+                    // `JacksonV2` declares no objects for them, yet they still clash.
                     "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
                     "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Jackson.annotations,
