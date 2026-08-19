@@ -86,11 +86,10 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
+                io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
                 force(
-                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
-                    // `JacksonV2` declares no objects for them, yet they still clash.
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${jacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonV2.version}",
                     io.spine.dependency.lib.Jackson.annotations,
                     io.spine.dependency.lib.Jackson.bom,
                     io.spine.dependency.lib.Kotlin.bom,
@@ -153,10 +152,10 @@ allprojects {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Kotlin.StdLib.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
-                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
-                    // `JacksonV2` declares no objects for them, yet they still clash.
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                    // yet which still clash with the versions we resolve.
+                    JacksonV2.Junior.artifact(JacksonV2.Junior.objects),
+                    JacksonV2.Module.artifact(JacksonV2.Module.kotlin),
                     Base.annotations,
                     Base.lib,
                     Base.environment,
@@ -240,11 +239,10 @@ subprojects {
                 JacksonV2.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.Module.forceArtifacts(project, this@all, this@resolutionStrategy)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
+                JacksonV2.Junior.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
-                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
-                    // `JacksonV2` declares no objects for them, yet they still clash.
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Jackson.annotations,
                     ToolBase.gradlePluginApi,
                     ToolBase.jvmTools,

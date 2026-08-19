@@ -144,12 +144,11 @@ fun Module.forceConfigurations() {
                 JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
+                JacksonV2.Junior.forceArtifacts(project, cfg, rs)
 
                 force(
-                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
-                    // `JacksonV2` declares no objects for them, yet they still clash.
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${JacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${JacksonV2.version}",
                     Grpc.bom,
                     Jackson.bom,
                     Jackson.annotations,

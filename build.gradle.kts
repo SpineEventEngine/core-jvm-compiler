@@ -68,12 +68,11 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
+                io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
 
                 force(
-                    // Jackson 2.x artifacts that only the IntelliJ Platform brings.
-                    // `JacksonV2` declares no objects for them, yet they still clash.
-                    "com.fasterxml.jackson.jr:jackson-jr-objects:${jacksonV2.version}",
-                    "com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonV2.version}",
                     kotlin.bom,
                     jackson.annotations,
                     jackson.bom,
