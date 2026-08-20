@@ -4,6 +4,7 @@ branch: split-plugins-module
 owner: claude
 status: in-review
 started: 2026-08-19
+pr: https://github.com/SpineEventEngine/core-jvm-compiler/pull/111
 related-memories:
   - projectbuilder-in-memory-caches
 ---

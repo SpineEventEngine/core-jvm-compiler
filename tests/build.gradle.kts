@@ -75,7 +75,6 @@ buildscript {
 
     with(configurations) {
         doForceVersions(this)
-        val jacksonV2 = io.spine.dependency.lib.JacksonV2
         val toolBase = io.spine.dependency.local.ToolBase
         val logging = io.spine.dependency.local.Logging
         all {
