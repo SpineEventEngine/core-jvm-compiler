@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,11 +41,11 @@ import io.spine.tools.core.jvm.gradle.SPINE_TOOLS_GROUP
 public class RoutingPlugin : KspBasedPlugin() {
 
     /**
-     * The Maven coordinates of the CoreJvm Compiler fat JAR
-     * to be passed to the KSP Gradle plugin.
+     * The Maven coordinates of the CoreJvm Gradle Plugin JAR — which carries
+     * the routing KSP processor — to be passed to the KSP Gradle plugin.
      */
     override val mavenCoordinates: String
-        get() = CoreJvmCompiler.fatJar(meta.version).coordinates
+        get() = CoreJvmCompiler.gradlePlugin(meta.version).coordinates
 
     private companion object {
 

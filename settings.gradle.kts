@@ -27,7 +27,8 @@
 rootProject.name = "core-jvm-compiler"
 
 include(
-    "plugins",
+    "compiler-plugins",
+    "gradle-plugin",
     "annotation",
     "annotation-tests",
     "base",

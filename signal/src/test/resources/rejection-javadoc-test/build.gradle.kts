@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,7 +46,8 @@ buildscript {
             exclude(group = "com.google.guava")
         }
         classpath(io.spine.dependency.local.Compiler.pluginLib)
-        classpath(io.spine.dependency.local.CoreJvmCompiler.pluginLib(coreJvmCompilerVersion))
+        // The `CoreJvmCompiler` object of `config` does not know this artifact yet.
+        classpath("io.spine.tools:core-jvm-gradle-plugin:$coreJvmCompilerVersion")
     }
 }
 

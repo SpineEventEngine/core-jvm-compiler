@@ -12,15 +12,19 @@ and command/event routing.
 ## Architecture
 
 **Role**: A collection of Gradle plugins and Spine Compiler plugins,
-published under `io.spine.tools` and bundled into a single fat JAR.
+published under `io.spine.tools` as a thin Gradle-plugin JAR
+(`core-jvm-gradle-plugin`) plus a single fat JAR (`core-jvm-plugins`)
+bundling the Compiler plugins.
 
 The repo is a multi-module Gradle build
 (`rootProject.name = "core-jvm-compiler"`) with these modules:
 
-- `plugins` — the entry point: `CoreJvmPlugin` (Gradle plugin
+- `gradle-plugin` — the entry point: `CoreJvmPlugin` (Gradle plugin
   `io.spine.core-jvm`) applies the Protobuf plugin and wires all feature
-  plugins into the Spine Compiler via `CompilerConfigPlugin`; assembles
-  the fat JAR.
+  plugins into the Spine Compiler via `CompilerConfigPlugin`.
+- `compiler-plugins` — assembles the fat JAR bundling the Spine Compiler
+  plugins from the feature modules; `CompilerConfigPlugin` adds it to
+  the Compiler classpath. The POM of `gradle-plugin` depends on it.
 - `base` — shared infrastructure: compiler settings DSL
   (`CoreJvmCompilerSettings`), Gradle extensions, and `testFixtures`
   used by feature-module tests.

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -79,13 +79,24 @@ public object Compiler {
 public object CoreJvmCompiler {
 
     /**
-     * The module of the published fat JAR.
+     * The module of the published fat JAR with the Spine Compiler plugins.
      */
     public val fatJar: Module = Module(SPINE_TOOLS_GROUP, "core-jvm-plugins")
+
+    /**
+     * The module of the published CoreJvm Gradle Plugin.
+     */
+    public val gradlePlugin: Module = Module(SPINE_TOOLS_GROUP, "core-jvm-gradle-plugin")
 
     /**
      * The artifact of the published fat JAR.
      */
     public fun fatJar(version: String): MavenArtifact =
        MavenArtifact(fatJar.group, fatJar.name, version)
+
+    /**
+     * The artifact of the published CoreJvm Gradle Plugin.
+     */
+    public fun gradlePlugin(version: String): MavenArtifact =
+        MavenArtifact(gradlePlugin.group, gradlePlugin.name, version)
 }

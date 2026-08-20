@@ -8,13 +8,16 @@ metadata:
 
 The IgTest's nested TestKit build does not necessarily run the plugin code
 from the working tree. The CoreJvm Compiler Gradle plugin resolves its
-companion `core-jvm-plugins` fat jar at the version recorded in the jar's
-own `META-INF/io.spine/io.spine.tools_core-jvm-plugins.meta` resource, and
-three independent layers can pin that to a previously published version:
+companion `core-jvm-plugins` fat jar at the version recorded in the plugin
+jar's own `META-INF/io.spine/io.spine.tools_core-jvm-gradle-plugin.meta`
+resource (before the `plugins` module split: the fat jar's
+`…core-jvm-plugins.meta`), and three independent layers can pin that to
+a previously published version:
 
 1. `writeArtifactMeta` (tool-base plugin) declares no task inputs, so it
    stays `UP-TO-DATE` across version bumps and keeps the old version in
-   the meta resource. Remedy: `./gradlew :plugins:writeArtifactMeta --rerun`.
+   the meta resource. Remedy:
+   `./gradlew :gradle-plugin:writeArtifactMeta --rerun`.
 2. The Gradle build cache can restore `launchSpineCompiler` output that was
    generated with older plugins. Remedy: `--no-build-cache`.
 3. Warm daemons memoize the lazily loaded meta (`LazyMeta` is a singleton
