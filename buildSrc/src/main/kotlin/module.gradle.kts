@@ -130,9 +130,7 @@ fun Module.forceConfigurations() {
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
                 dependencySubstitution {
-                    // Substitute the legacy artifact coordinates with the new `ToolBase.lib` alias.
-                    substitute(module("io.spine.tools:spine-tool-base"))
-                        .using(module(ToolBase.lib))
+                    // Substitute the legacy coordinates with the current ones.
                     substitute(module("io.spine.tools:spine-plugin-base"))
                         .using(module(ToolBase.pluginBase))
                 }
@@ -146,6 +144,8 @@ fun Module.forceConfigurations() {
                 JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
                 JacksonV2.Junior.forceArtifacts(project, cfg, rs)
 
                 force(
@@ -184,7 +184,11 @@ fun Module.forceConfigurations() {
                     CoreJvm.client,
                     CoreJvm.server,
                     TestLib.lib,
-                    ToolBase.lib,
+                    ToolBase.fs,
+                    ToolBase.code,
+                    ToolBase.javaCode,
+                    ToolBase.kotlinCode,
+                    ToolBase.protoCode,
                     ToolBase.classicCodegen,
                     ToolBase.pluginBase,
                     ToolBase.jvmTools,

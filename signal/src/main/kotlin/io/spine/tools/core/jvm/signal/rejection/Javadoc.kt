@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import io.spine.annotation.VisibleForTesting
 import com.squareup.javapoet.CodeBlock
 import com.squareup.javapoet.ParameterSpec
 import io.spine.tools.compiler.ast.MessageType
-import io.spine.tools.java.code.codeBlock
+import io.spine.tools.java.code.poet.codeBlock
 import io.spine.tools.java.javadoc.JavadocText.fromEscaped
 import io.spine.tools.java.javadoc.JavadocText.fromUnescaped
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.PROTO_MESSAGE_NOTE_TEMPLATE

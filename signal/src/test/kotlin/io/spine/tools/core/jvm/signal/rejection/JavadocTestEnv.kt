@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import io.spine.code.java.PackageName
 import io.spine.string.ti
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.BUILDER_ABSTRACT_TEMPLATE
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.PROTO_MESSAGE_NOTE_TEMPLATE
-import io.spine.tools.div
+import io.spine.tools.fs.div
 import io.spine.tools.fs.DirectoryName.generated
 import io.spine.tools.fs.DirectoryName.java
 import io.spine.tools.fs.DirectoryName.main

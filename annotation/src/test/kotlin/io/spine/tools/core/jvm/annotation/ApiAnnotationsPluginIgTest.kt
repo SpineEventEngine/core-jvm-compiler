@@ -42,7 +42,7 @@ import io.spine.tools.core.jvm.annotation.check.SourceCheck
 import io.spine.tools.core.jvm.annotation.check.TypeAnnotationCheck
 import io.spine.tools.core.jvm.annotation.given.GivenProtoFile
 import io.spine.tools.core.jvm.gradle.CoreJvmCompilerTaskName.Companion.launchSpineCompiler
-import io.spine.tools.div
+import io.spine.tools.fs.div
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.gradle.task.BaseTaskName
 import io.spine.tools.gradle.testing.GradleProject

@@ -48,6 +48,7 @@ buildscript {
     val compiler = io.spine.dependency.local.Compiler
     val coreJava = io.spine.dependency.local.CoreJvm
     val jackson = io.spine.dependency.lib.Jackson
+    val jacksonV2 = io.spine.dependency.lib.JacksonV2
     val kotlin = io.spine.dependency.lib.Kotlin
     val logging = io.spine.dependency.local.Logging
     val time = io.spine.dependency.local.Time
@@ -67,6 +68,9 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
+                io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
 
                 force(
                     kotlin.bom,
@@ -77,7 +81,12 @@ buildscript {
                     base.environment,
                     base.format,
                     io.spine.dependency.local.Reflect.lib,
-                    toolBase.lib,
+                    toolBase.fs,
+                    toolBase.code,
+                    toolBase.javaCode,
+                    toolBase.kotlinCode,
+                    toolBase.protoCode,
+                    toolBase.classicCodegen,
                     coreJava.server,
                     time.lib,
                     time.javaExtensions,

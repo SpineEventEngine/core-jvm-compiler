@@ -25,6 +25,7 @@
  */
 
 import io.spine.dependency.lib.Roaster
+import io.spine.dependency.local.Base
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.TestLib
 import io.spine.dependency.local.ToolBase
@@ -39,7 +40,12 @@ dependencies {
     implementation(project(":base"))
     implementation(Logging.lib)
 
-    testFixturesImplementation(ToolBase.lib)
+    arrayOf(Base.annotations, Base.lib).forEach {
+        testFixturesImplementation(it)?.because(
+            "Test fixtures use `io.spine.annotation.Internal` and `io.spine.code.proto`," +
+                    " which used to arrive transitively with the retired `tool-base` artifact."
+        )
+    }
     testFixturesImplementation(TestLib.lib)
 
     val guavaGroup = "com.google.guava"
@@ -50,6 +56,7 @@ dependencies {
         exclude(group = guavaGroup)
     }
 
+    testImplementation(ToolBase.fs)
     testImplementation(ToolBase.pluginTestlib)
     testImplementation(gradleTestKit())
 }

@@ -27,6 +27,7 @@
 @file:Suppress("RemoveRedundantQualifierName") // To prevent IDEA replacing FQN imports.
 
 import io.spine.dependency.build.ErrorProne
+import io.spine.dependency.lib.Caffeine
 import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
@@ -73,6 +74,7 @@ buildscript {
 
     with(configurations) {
         doForceVersions(this)
+        val jacksonV2 = io.spine.dependency.lib.JacksonV2
         val toolBase = io.spine.dependency.local.ToolBase
         val logging = io.spine.dependency.local.Logging
         all {
@@ -84,6 +86,8 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
                 io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
                 force(
                     io.spine.dependency.lib.Jackson.annotations,
@@ -96,7 +100,12 @@ buildscript {
                     io.spine.dependency.local.Base.format,
                     io.spine.dependency.local.Time.lib,
                     io.spine.dependency.local.Time.javaExtensions,
-                    toolBase.lib,
+                    toolBase.fs,
+                    toolBase.code,
+                    toolBase.javaCode,
+                    toolBase.kotlinCode,
+                    toolBase.protoCode,
+                    toolBase.classicCodegen,
                     toolBase.pluginBase,
                     toolBase.jvmTools,
                     logging.lib,
@@ -143,10 +152,15 @@ allprojects {
                 Grpc.forceArtifacts(project, this@all, this@resolutionStrategy)
                 Kotlin.StdLib.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
+                    // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                    // yet which still clash with the versions we resolve.
+                    JacksonV2.Junior.artifact(JacksonV2.Junior.objects),
+                    JacksonV2.Module.artifact(JacksonV2.Module.kotlin),
                     Base.annotations,
                     Base.lib,
                     Base.environment,
                     Base.format,
+                    Caffeine.lib,
                     Compiler.api,
                     CoreJvm.server,
                     Grpc.bom,
@@ -159,10 +173,15 @@ allprojects {
                     TestLib.lib,
                     Time.javaExtensions,
                     Time.lib,
+                    ToolBase.classicCodegen,
+                    ToolBase.code,
+                    ToolBase.fs,
                     ToolBase.intellijPlatform,
                     ToolBase.intellijPlatformJava,
-                    ToolBase.lib,
+                    ToolBase.javaCode,
+                    ToolBase.kotlinCode,
                     ToolBase.pluginBase,
+                    ToolBase.protoCode,
                     ToolBase.psiJava,
                     Validation.javaBundle,
                     Validation.runtime,
@@ -220,6 +239,8 @@ subprojects {
                 JacksonV2.DataFormat.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.DataType.forceArtifacts(project, this@all, this@resolutionStrategy)
                 JacksonV2.Module.forceArtifacts(project, this@all, this@resolutionStrategy)
+                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
+                // yet which still clash with the versions we resolve.
                 JacksonV2.Junior.forceArtifacts(project, this@all, this@resolutionStrategy)
                 force(
                     Jackson.annotations,

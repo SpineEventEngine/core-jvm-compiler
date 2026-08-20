@@ -525,8 +525,11 @@ val runtimeProvidedModules: Set<String> = buildSet {
  * families are excluded here, while `pom.xml` declares only the artifacts
  * whose classes used to be bundled. For a family member absent from
  * the runtime classpath — e.g. `jackson-dataformat-xml` — the exclusion
- * is a no-op. A member that only the IntelliJ Platform artifacts bring —
- * e.g. `jackson-jr-objects` — is excluded by the dependency filter anyway.
+ * is a no-op. The same holds for a member that only the IntelliJ Platform
+ * artifacts bring — `jackson-jr-objects` and the 2.x `jackson-module-kotlin`
+ * — which the dependency filter excludes anyway. `JacksonV2` declares both,
+ * so the version forcing can name them instead of repeating their
+ * coordinates as string literals.
  *
  * Consumers receive these libraries as ordinary Maven artifacts, so they can
  * upgrade them via the standard dependency resolution without waiting for
@@ -546,7 +549,6 @@ val pomProvidedModules: Set<String> = buildSet {
     addAll(JacksonV2.DataFormat.modules)
     addAll(JacksonV2.DataType.modules)
     addAll(JacksonV2.Module.modules)
-    addAll(JacksonV2.Junior.modules)
 
     /*
      * Not declared in `pom.xml` explicitly: these come to consumers
