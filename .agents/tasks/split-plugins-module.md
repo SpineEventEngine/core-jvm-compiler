@@ -2,8 +2,9 @@
 slug: split-plugins-module
 branch: split-plugins-module
 owner: claude
-status: in-progress
+status: in-review
 started: 2026-08-19
+pr: https://github.com/SpineEventEngine/core-jvm-compiler/pull/111
 related-memories:
   - igtest-stale-plugins
 ---
@@ -98,9 +99,10 @@ Split the `plugins` module into two modules:
       bundled `base` classes, not the plugin).
 - [x] Docs: `docs/project.md` module list;
       `.agents/memory/project/igtest-stale-plugins.md` task path.
-- [ ] Full build (`JAVA_HOME` = JDK 17, `LC_ALL=C.UTF-8`, output to a log
-      file), including integration tests.
-- [ ] Self-review (gradle-review / spine-code-review agents on the diff).
+- [x] Full build (`JAVA_HOME` = JDK 17, `LC_ALL=C.UTF-8`, output to a log
+      file), including integration tests — run repeatedly as the gate for
+      every follow-up step; final `clean build` green on 2026-08-20.
+- [x] Self-review (gradle-review / spine-code-review agents on the diff).
 
 ## Log
 
