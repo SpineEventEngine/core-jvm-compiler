@@ -1,0 +1,12 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.gradle.settings/EntitySettings.Companion///PointingToDeclaration/io/spine/tools/core/jvm/gradle/settings/EntitySettings.Companion.html
+$dokka.location:io.spine.tools.core.jvm.gradle.settings/SignalSettings.Companion///PointingToDeclaration/io/spine/tools/core/jvm/gradle/settings/SignalSettings.Companion.html
+$dokka.location:io.spine.tools.core.jvm.gradle.settings/UuidSettings.Companion///PointingToDeclaration/io/spine/tools/core/jvm/gradle/settings/UuidSettings.Companion.html
+io.spine.tools.core.jvm
+io.spine.tools.core.jvm.base
+io.spine.tools.core.jvm.field
+io.spine.tools.core.jvm.gradle
+io.spine.tools.core.jvm.gradle.module
+io.spine.tools.core.jvm.gradle.settings
+io.spine.tools.core.jvm.settings
