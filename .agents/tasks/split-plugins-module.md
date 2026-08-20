@@ -139,3 +139,15 @@ Split the `plugins` module into two modules:
   with no Compiler plugin — out of the fat JAR and into the JAR of
   `gradle-plugin`. Each step gated on the full root build including
   `integrationTests`; all green.
+- 2026-08-20 — relocated `:routing` (with `:ksp`) the same way: no Compiler
+  plugins there; `RoutingPlugin` now points KSP at the plugin artifact,
+  and the plugin POM declares `kotlinpoet-ksp` as a `runtime` dependency
+  (committed as `7443c9167` together with the two items above).
+- 2026-08-20 — the strings migration: `CompilerConfigPlugin` and
+  `WriteCompilerPluginsSettings` refer to the code-generation plugins via
+  the `CoreJvmCompilerPlugins` name constants, dropping the compile-time
+  dependencies on `:entity`, `:signal`, `:marker`, `:message-group`,
+  `:uuid`, and `:comparable` (now test-only, serving the drift-guard
+  `CoreJvmCompilerPluginsSpec`). `:annotation` remains for its settings
+  proto DSL — the only settings proto living outside `base`; moving it
+  to `base` is the remaining step. Full gate green.

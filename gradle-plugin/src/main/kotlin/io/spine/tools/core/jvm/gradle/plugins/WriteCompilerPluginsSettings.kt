@@ -1,5 +1,5 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026, TeamDev. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,18 +32,18 @@ import com.google.protobuf.Message
 import io.spine.format.Format
 import io.spine.tools.compiler.jvm.style.JavaCodeStyle
 import io.spine.tools.compiler.settings.SettingsDirectory
-import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.annotation.SettingsKt.annotationTypes
 import io.spine.tools.core.jvm.annotation.settings
-import io.spine.tools.core.jvm.comparable.ComparablePlugin
-import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmOptions
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.API_ANNOTATIONS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.COMPARABLE
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.ENTITY
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.MESSAGE_GROUP
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.SIGNAL
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.UUID
 import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.JAVA_CODE_STYLE_ID
-import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
 import io.spine.tools.core.jvm.settings.signalSettings
-import io.spine.tools.core.jvm.signal.SignalPlugin
-import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.type.toJson
 import java.io.IOException
 import org.gradle.api.DefaultTask
@@ -131,12 +131,12 @@ private fun WriteCompilerPluginsSettings.forAnnotationPlugin(dir: SettingsDirect
         internalClassPattern.addAll(annotation.internalClassPatterns.get())
         internalMethodName.addAll(annotation.internalMethodNames.get())
     }
-    dir.write(ApiAnnotationsPlugin.SETTINGS_ID, proto)
+    dir.write(API_ANNOTATIONS, proto)
 }
 
 private fun WriteCompilerPluginsSettings.forEntityPlugin(dir: SettingsDirectory) {
     val entitySettings = compilerSettings.entities
-    dir.write(EntityPlugin.SETTINGS_ID, entitySettings)
+    dir.write(ENTITY, entitySettings)
 }
 
 private fun WriteCompilerPluginsSettings.forSignalPlugin(dir: SettingsDirectory) {
@@ -146,22 +146,22 @@ private fun WriteCompilerPluginsSettings.forSignalPlugin(dir: SettingsDirectory)
         events = codegen.events
         rejections = codegen.rejections
     }
-    dir.write(SignalPlugin.SETTINGS_ID, signalSettings)
+    dir.write(SIGNAL, signalSettings)
 }
 
 private fun WriteCompilerPluginsSettings.forMessageGroupPlugin(dir: SettingsDirectory) {
     val groupSettings = compilerSettings.groupSettings
-    dir.write(MessageGroupPlugin.SETTINGS_ID, groupSettings)
+    dir.write(MESSAGE_GROUP, groupSettings)
 }
 
 private fun WriteCompilerPluginsSettings.forUuidPlugin(dir: SettingsDirectory) {
     val uuidSettings = compilerSettings.uuids
-    dir.write(UuidPlugin.SETTINGS_ID, uuidSettings)
+    dir.write(UUID, uuidSettings)
 }
 
 private fun WriteCompilerPluginsSettings.forComparablePlugin(dir: SettingsDirectory) {
     val settings = compilerSettings.comparables
-    dir.write(ComparablePlugin.SETTINGS_ID, settings)
+    dir.write(COMPARABLE, settings)
 }
 
 private fun WriteCompilerPluginsSettings.forStyleFormattingPlugin(dir: SettingsDirectory) {

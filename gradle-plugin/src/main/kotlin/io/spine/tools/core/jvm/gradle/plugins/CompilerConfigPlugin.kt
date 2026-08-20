@@ -35,20 +35,20 @@ import io.spine.tools.compiler.gradle.api.compilerWorkingDir
 import io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler
 import io.spine.tools.compiler.jvm.style.JavaCodeStyleFormatterPlugin
 import io.spine.tools.compiler.params.WorkingDirectory
-import io.spine.tools.core.annotation.ApiAnnotationsPlugin
-import io.spine.tools.core.jvm.comparable.ComparablePlugin
-import io.spine.tools.core.jvm.entity.EntityPlugin
 import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
 import io.spine.tools.core.jvm.gradle.coreJvmOptions
 import io.spine.tools.core.jvm.gradle.generatedGrpcDirName
 import io.spine.tools.core.jvm.gradle.generatedJavaDirName
 import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_PLUGINS_SETTINGS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.API_ANNOTATIONS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.COMPARABLE
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.ENTITY
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.MARKER
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.MESSAGE_GROUP
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.REJECTION_THROWABLE
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.SIGNAL
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.UUID
 import io.spine.tools.core.jvm.gradle.settings.CoreJvmCompilerSettings
-import io.spine.tools.core.jvm.marker.MarkerPlugin
-import io.spine.tools.core.jvm.mgroup.MessageGroupPlugin
-import io.spine.tools.core.jvm.signal.SignalPlugin
-import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
-import io.spine.tools.core.jvm.uuid.UuidPlugin
 import io.spine.tools.fs.DirectoryName
 import io.spine.tools.gradle.task.JavaTaskName.Companion.processResources
 import io.spine.tools.gradle.task.JavaTaskName.Companion.sourcesJar
@@ -157,15 +157,15 @@ private fun Project.configureCompilerPlugins() {
     configureSignals(compiler)
 
     compiler.run {
-        addPlugin<MarkerPlugin>()
-        addPlugin<MessageGroupPlugin>()
-        addPlugin<UuidPlugin>()
-        addPlugin<ComparablePlugin>()
-        addPlugin<EntityPlugin>()
+        addPlugin(MARKER)
+        addPlugin(MESSAGE_GROUP)
+        addPlugin(UUID)
+        addPlugin(COMPARABLE)
+        addPlugin(ENTITY)
 
-        // Annotations should follow `SignalPlugin` and `EntityPlugin`
+        // Annotations should follow the signal and entity plugins
         // so that their output is annotated too.
-        addPlugin<ApiAnnotationsPlugin>()
+        addPlugin(API_ANNOTATIONS)
 
         // The Java style formatting comes last to conclude all the rendering.
         addPlugin<JavaCodeStyleFormatterPlugin>()
@@ -184,14 +184,18 @@ private fun CompilerSettings.setSubdirectories() {
 }
 
 private fun Project.configureSignals(compiler: CompilerSettings) {
-    compiler.addPlugin<SignalPlugin>()
+    compiler.addPlugin(SIGNAL)
 
     val rejectionCodegen = messageOptions.rejections
     if (rejectionCodegen.enabled.get()) {
-        compiler.addPlugin<RThrowablePlugin>()
+        compiler.addPlugin(REJECTION_THROWABLE)
     }
 }
 
+private fun CompilerSettings.addPlugin(className: String) {
+    plugins(className)
+}
+
 private inline fun <reified T : CompilerPlugin> CompilerSettings.addPlugin() {
-    plugins(T::class.java.name)
+    addPlugin(T::class.java.name)
 }

@@ -94,23 +94,17 @@ dependencies {
 
     // Module dependencies.
     //
-    // The code of these modules reaches consumers inside the fat JAR published
-    // by the `compiler-plugins` module; see `tuneDependencies()` below.
-    // The exceptions are `:grpc`, `:ksp`, and `:routing`, which provide no
-    // Compiler plugins and so ship inside the JAR of this module;
-    // see the `tasks.jar` configuration below.
-    // When changing the dependencies of this module, mirror the change in
-    // `compiler-plugins/build.gradle.kts` so that the fat JAR content stays intact.
+    // `:base` provides the `coreJvm` DSL and the settings protos of
+    // the Compiler plugins. Its code reaches consumers inside the fat JAR
+    // published by the `compiler-plugins` module; see `tuneDependencies()`
+    // below.
+    // `:grpc`, `:ksp`, and `:routing` provide no Compiler plugins and ship
+    // inside the JAR of this module; see the `tasks.jar` configuration below.
+    // The code-generation modules are referenced by name only;
+    // see `CoreJvmCompilerPlugins`.
     listOf(
         ":base",
-        ":annotation",
-        ":entity",
         ":grpc",
-        ":signal",
-        ":marker",
-        ":message-group",
-        ":uuid",
-        ":comparable",
         ":routing"
     ).forEach {
         implementation(project(it)) {
@@ -129,6 +123,20 @@ dependencies {
         testFixtures(project(":base")),
     ).forEach {
         testImplementation(it)
+    }
+
+    // The code-generation modules, for `CoreJvmCompilerPluginsSpec` verifying
+    // the class names declared by `CoreJvmCompilerPlugins`.
+    listOf(
+        ":annotation",
+        ":entity",
+        ":signal",
+        ":marker",
+        ":message-group",
+        ":uuid",
+        ":comparable"
+    ).forEach {
+        testImplementation(project(it))
     }
 }
 

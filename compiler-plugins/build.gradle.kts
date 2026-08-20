@@ -59,11 +59,11 @@ val moduleArtifactId: String = CoreJvmCompiler.fatJarArtifact
 
 dependencies {
     // The dependencies below shape the runtime classpath from which `shadowJar`
-    // assembles the fat JAR. They mirror those of the `gradle-plugin` module,
-    // except `:grpc` and `:routing` (with its `:ksp` dependency): those modules
-    // provide no Compiler plugins, so their content ships inside the JAR of
-    // `gradle-plugin` instead. When changing them, mirror the change in
-    // `gradle-plugin/build.gradle.kts`. The classes of the Compiler,
+    // assembles the fat JAR. The library dependencies match those of
+    // the `gradle-plugin` module — when changing them, mirror the change in
+    // `gradle-plugin/build.gradle.kts`. The modules providing no Compiler
+    // plugins — `:grpc`, `:ksp`, and `:routing` — ship inside the JAR of
+    // `gradle-plugin` instead of this fat JAR. The classes of the Compiler,
     // Validation, and Time Gradle plugins are excluded from the fat JAR;
     // see `tasks.shadowJar` below.
     implementation(Compiler.pluginLib)
