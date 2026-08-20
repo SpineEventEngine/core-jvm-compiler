@@ -1,0 +1,5 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+
+io.spine.tools.core.jvm.ksp.gradle
+io.spine.tools.core.jvm.ksp.processor
