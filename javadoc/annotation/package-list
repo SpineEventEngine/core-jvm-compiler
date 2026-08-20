@@ -55,10 +55,6 @@ $dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Field.T
 $dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Field///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Field.html
 $dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Query///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Query.html
 $dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.QueryBuilder.html
-$dokka.location:io.spine.tools.core.jvm.annotation/Settings.AnnotationTypes.Builder///PointingToDeclaration/io/spine/tools/core/jvm/annotation/Settings.AnnotationTypes.Builder.html
-$dokka.location:io.spine.tools.core.jvm.annotation/Settings.AnnotationTypes///PointingToDeclaration/io/spine/tools/core/jvm/annotation/Settings.AnnotationTypes.html
-$dokka.location:io.spine.tools.core.jvm.annotation/Settings.AnnotationTypesOrBuilder///PointingToDeclaration/io/spine/tools/core/jvm/annotation/Settings.AnnotationTypesOrBuilder.html
-$dokka.location:io.spine.tools.core.jvm.annotation/Settings.Builder///PointingToDeclaration/io/spine/tools/core/jvm/annotation/Settings.Builder.html
 io.spine.tools.core.annotation
 io.spine.tools.core.annotation.event
 io.spine.tools.core.jvm.annotation
