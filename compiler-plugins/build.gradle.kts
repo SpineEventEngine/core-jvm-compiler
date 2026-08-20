@@ -32,11 +32,8 @@ import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.local.Base
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvmCompiler
-import io.spine.dependency.local.Logging
-import io.spine.dependency.local.Reflect
 import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
@@ -44,6 +41,7 @@ import io.spine.dependency.local.Validation
 import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
+import java.util.concurrent.ConcurrentHashMap
 import java.util.jar.JarFile
 
 plugins {
@@ -61,29 +59,29 @@ val moduleArtifactId: String = CoreJvmCompiler.fatJarArtifact
 
 dependencies {
     // The dependencies below shape the runtime classpath from which `shadowJar`
-    // assembles the fat JAR. They are kept identical to those of the Gradle-plugin
-    // code — now residing in the `gradle-plugin` module — so that the fat JAR
-    // content stays intact. When changing them, mirror the change in
-    // `gradle-plugin/build.gradle.kts`. The classes of the Compiler, Validation,
-    // and Time Gradle plugins are excluded from the fat JAR; see `tasks.shadowJar` below.
+    // assembles the fat JAR. They mirror those of the `gradle-plugin` module,
+    // except `:grpc` and `:routing` (with its `:ksp` dependency): those modules
+    // provide no Compiler plugins, so their content ships inside the JAR of
+    // `gradle-plugin` instead. When changing them, mirror the change in
+    // `gradle-plugin/build.gradle.kts`. The classes of the Compiler,
+    // Validation, and Time Gradle plugins are excluded from the fat JAR;
+    // see `tasks.shadowJar` below.
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
     implementation(Validation.gradlePluginLib)
     implementation(Time.gradlePlugin)
 
-    // Module dependencies
+    // Modules providing the Compiler plugins.
     listOf(
         ":base",
         ":annotation",
         ":entity",
-        ":grpc",
         ":signal",
         ":marker",
         ":message-group",
         ":uuid",
-        ":comparable",
-        ":routing"
+        ":comparable"
     ).forEach {
         implementation(project(it)) {
             excludeJetBrainsAnnotations()
@@ -547,8 +545,10 @@ val pomProvidedModules: Set<String> = buildSet {
  * The [providedByCli] predicate below inspects this JAR to find out which
  * modules of the runtime classpath the platform already contains.
  */
-val compilerCli: Configuration by configurations.creating {
+val compilerCli: Configuration = configurations.create("compilerCli") {
     isTransitive = false
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
 }
 
 dependencies {
@@ -558,58 +558,64 @@ dependencies {
 /**
  * Modules bundled into the fat JAR even though the Compiler CLI contains them.
  *
- * The Gradle-plugin side of the CoreJvm Compiler — running on consumers'
- * build classpath, where the CLI platform is absent — uses these modules
- * at build time, so [providedByCli] must not exclude them.
+ * Although the classes of the `io.spine.core-jvm` plugin live in
+ * the `gradle-plugin` module, most of the code running on consumers' build
+ * classpath — where the CLI platform is absent — still comes with this fat
+ * JAR: the `coreJvm` DSL of `base`, and the Gradle-facing plugins of `grpc`,
+ * `ksp`, and `routing`. That code, and the `gradle-plugin` classes
+ * themselves, is built on the ToolBase infrastructure listed below.
+ * The `io.spine.tools` group is excluded from the `runtime` dependencies
+ * declared in `pom.xml`, so bundling is the only way these modules reach
+ * consumers; [providedByCli] must not exclude them.
+ *
+ * The `io.spine` libraries that code uses — Base, Logging, the Validation
+ * runtime — need no such treatment: that group is not excluded in `pom.xml`,
+ * so consumers receive them transitively, as genuine Maven artifacts
+ * declared by the POMs of the Spine Compiler modules.
  */
 val bundledDespiteCli: Set<String> = buildSet {
-    // The Spine base libraries.
-    add(moduleOf(Base.annotations))
-    add(moduleOf(Base.lib))
-    add(moduleOf(Base.environment))
-    add(moduleOf(Base.format))
-    add(moduleOf(Reflect.lib))
-
-    // Logging and its backends.
-    add(moduleOf(Logging.libJvm))
-    add(moduleOf(Logging.grpcContext))
-    add("${Spine.group}:spine-logging-jul-backend")
-    add("${Spine.group}:spine-logging-jvm-default-platform")
-
-    // The Validation runtime, referenced by the generated code.
-    add(Validation.runtimeModule)
-
-    // The ToolBase infrastructure used by the Gradle-plugin side.
-    add(moduleOf(ToolBase.lib))
     add(moduleOf(ToolBase.code))
     add(moduleOf(ToolBase.fs))
     add(moduleOf(ToolBase.jvmTools))
+
+    // The legacy artifact, arriving transitively. Its dependency object is
+    // deprecated, so the plain coordinates are used here.
+    add("${Spine.toolsGroup}:tool-base")
 }
 
 /**
- * Obtains the packages of the class files stored in the given JAR.
+ * Obtains the names of the class file entries stored in the given JAR.
  *
  * Entries of multi-release copies are normalized to their top-level form.
  */
-fun packagesOf(jar: File): Set<String> {
+fun classFileNamesOf(jar: File): List<String> {
     val multiRelease = Regex("^META-INF/versions/\\d+/")
     JarFile(jar).use { jarFile ->
         return jarFile.entries().asSequence()
             .map { it.name }
             .filter { it.endsWith(".class") }
             .map { it.replaceFirst(multiRelease, "") }
-            .filterNot { it.startsWith("META-INF/") }
-            .map { it.substringBeforeLast('/', "") }
-            .filter { it.isNotEmpty() }
-            .toSet()
+            .toList()
     }
 }
 
 /**
+ * Obtains the packages of the class files stored in the given JAR.
+ */
+fun packagesOf(jar: File): Set<String> =
+    classFileNamesOf(jar)
+        .asSequence()
+        .filterNot { it.startsWith("META-INF/") }
+        .map { it.substringBeforeLast('/', "") }
+        .filter { it.isNotEmpty() }
+        .toSet()
+
+/**
  * The packages of the class files bundled into the Compiler CLI fat JAR.
  *
- * The JAR is resolved lazily, when `tasks.shadowJar` runs, to avoid
- * resolution during the configuration phase.
+ * The JAR is resolved the first time [providedByCli] needs it — during
+ * the execution of `tasks.shadowJar` — to avoid resolution during
+ * the configuration phase.
  */
 val cliPackages: Set<String> by lazy {
     packagesOf(compilerCli.singleFile)
@@ -617,8 +623,11 @@ val cliPackages: Set<String> by lazy {
 
 /**
  * The cache of the per-module verdicts of [providedByCli].
+ *
+ * The map is concurrent because the Shadow plugin does not document
+ * the threading of its dependency-filter predicate.
  */
-val cliCoverage = mutableMapOf<String, Boolean>()
+val cliCoverage = ConcurrentHashMap<String, Boolean>()
 
 /**
  * Tells whether the Compiler CLI fat JAR fully contains the given dependency,
@@ -633,17 +642,18 @@ val cliCoverage = mutableMapOf<String, Boolean>()
  * starts bundling a module, the module is dropped from the fat JAR of this
  * artifact — safely, because the code-generation plugins meet it inside
  * the CLI classpath. When the CLI stops bundling a module, the module gets
- * into the fat JAR again, and the `verifyBundledPackages` task fails
- * the build, asking for an explicit decision. This addresses the silent
- * inversion once caused by the entry-based exclusion of the IntelliJ
- * Platform content; see the comment at `tasks.shadowJar` below.
+ * into the fat JAR again, where the `verifyBundledPackages` task flags it,
+ * unless its packages already belong to the `expectedPackages` allowlist.
+ * This addresses the silent inversion once caused by the entry-based
+ * exclusion of the IntelliJ Platform content; see the comment at
+ * `tasks.shadowJar` below.
  */
 fun providedByCli(dependency: ResolvedDependency): Boolean {
     val module = "${dependency.moduleGroup}:${dependency.moduleName}"
     if (module in bundledDespiteCli) {
         return false
     }
-    return cliCoverage.getOrPut(module) {
+    return cliCoverage.computeIfAbsent(module) { _: String ->
         val packages = dependency.moduleArtifacts.asSequence()
             .map { it.file }
             .filter { it.name.endsWith(".jar") }
@@ -919,12 +929,12 @@ tasks.shadowJar {
  * a genuine artifact on a consumer's build classpath.
  */
 val expectedPackages = listOf(
-    // The code of this repository and the ToolBase infrastructure
-    // used by the Gradle-plugin side.
+    // The code of this repository and the ToolBase infrastructure used by
+    // the Gradle-facing code this JAR carries; see `bundledDespiteCli`.
     "io/spine/tools/",
 
     /*
-     * The Spine base libraries used by the Gradle-plugin side.
+     * The Spine base libraries used by the Gradle-facing code.
      *
      * The heavier framework — `spine-core`, `spine-client`, `spine-server`,
      * and friends — must not appear here: the code-generation plugins meet it
@@ -979,16 +989,9 @@ val verifyBundledPackages = tasks.register("verifyBundledPackages") {
     val marker = layout.buildDirectory.file("verifyBundledPackages/verified.txt")
     outputs.file(marker)
     doLast {
-        val multiRelease = Regex("^META-INF/versions/\\d+/")
-        val offenders = JarFile(archive.get().asFile).use { jar ->
-            jar.entries().asSequence()
-                .map { it.name }
-                .filter { it.endsWith(".class") }
-                .map { it.replaceFirst(multiRelease, "") }
-                .filterNot { name -> expectedPackages.any { name.startsWith(it) } }
-                .sorted()
-                .toList()
-        }
+        val offenders = classFileNamesOf(archive.get().asFile)
+            .filterNot { name -> expectedPackages.any { name.startsWith(it) } }
+            .sorted()
         if (offenders.isNotEmpty()) {
             val preview = offenders.take(30).joinToString(System.lineSeparator())
             throw GradleException(

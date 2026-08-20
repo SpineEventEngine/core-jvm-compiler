@@ -93,4 +93,10 @@ public object CoreJvmCompiler {
      */
     public fun fatJar(version: String): MavenArtifact =
        MavenArtifact(fatJar.group, fatJar.name, version)
+
+    /**
+     * The artifact of the published CoreJvm Gradle Plugin.
+     */
+    public fun gradlePlugin(version: String): MavenArtifact =
+        MavenArtifact(gradlePlugin.group, gradlePlugin.name, version)
 }

@@ -29,6 +29,7 @@ import groovy.util.NodeList
 import io.spine.dependency.build.Ksp
 import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.Kotlin
+import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
@@ -95,6 +96,9 @@ dependencies {
     //
     // The code of these modules reaches consumers inside the fat JAR published
     // by the `compiler-plugins` module; see `tuneDependencies()` below.
+    // The exceptions are `:grpc`, `:ksp`, and `:routing`, which provide no
+    // Compiler plugins and so ship inside the JAR of this module;
+    // see the `tasks.jar` configuration below.
     // When changing the dependencies of this module, mirror the change in
     // `compiler-plugins/build.gradle.kts` so that the fat JAR content stays intact.
     listOf(
@@ -125,6 +129,27 @@ dependencies {
         testFixtures(project(":base")),
     ).forEach {
         testImplementation(it)
+    }
+}
+
+/**
+ * Packs the classes and resources of the Gradle-runtime modules into
+ * the JAR of this module.
+ *
+ * The `grpc`, `ksp`, and `routing` modules provide no Compiler plugins.
+ * Their code — the Gradle-facing plugins and the routing KSP processor —
+ * runs inside the Gradle runtime, so it belongs to this JAR and not to
+ * the fat JAR assembled by the `compiler-plugins` module. `RoutingPlugin`
+ * points KSP at this artifact; see its `mavenCoordinates` property.
+ */
+tasks.jar {
+    listOf(":grpc", ":ksp", ":routing").forEach { module ->
+        val moduleJar = project(module).tasks.named<Jar>("jar")
+        from(zipTree(moduleJar.flatMap { it.archiveFile })) {
+            exclude("META-INF/MANIFEST.MF")
+            // Every module generates its own copy; this JAR carries its own.
+            exclude("versions.properties")
+        }
     }
 }
 
@@ -174,6 +199,26 @@ private fun MavenPublication.tuneDependencies() {
             Node(it, "version", fatJarVersion)
             Node(it, "scope", "runtime")
         }
+
+        /*
+         * The routing KSP processor shipped in this JAR uses KotlinPoet
+         * when generating code. The library comes to the KSP classpath as
+         * a genuine artifact rather than being bundled. The Kotlin runtime
+         * is excluded because the Gradle and KSP runtimes provide it.
+         */
+        Node(dependencies, "dependency").let {
+            val (group, name, version) = KotlinPoet.ksp.split(':')
+            Node(it, "groupId", group)
+            Node(it, "artifactId", name)
+            Node(it, "version", version)
+            Node(it, "scope", "runtime")
+            Node(it, "exclusions").let { exclusions ->
+                Node(exclusions, "exclusion").let { exclusion ->
+                    Node(exclusion, "groupId", "org.jetbrains.kotlin")
+                    Node(exclusion, "artifactId", "*")
+                }
+            }
+        }
     }
 }
 
@@ -202,7 +247,10 @@ tasks.publish {
  * "No cached version available for offline mode", add the missing artifact
  * here.
  */
-val stubRepoDeps: Configuration by configurations.creating
+val stubRepoDeps: Configuration = configurations.create("stubRepoDeps") {
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
+}
 
 dependencies {
     // Added to consumer projects by `CommonKspSettingsPlugin` of the `ksp` module.

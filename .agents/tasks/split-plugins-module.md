@@ -131,3 +131,11 @@ Split the `plugins` module into two modules:
   Verified: rebuilt fat JAR classes byte-identical; 7 dangling resource
   entries (grpc/palantir service files, native-image configs) dropped;
   `verifyBundledPackages` and `CoreJvmPluginIgTest` green.
+- 2026-08-20 — reduced `bundledDespiteCli` to the four ToolBase modules
+  (the ten `io.spine`-group entries reach consumers as Maven transitives
+  of the POM-declared Compiler artifacts); applied the `gradle-review`
+  findings (`configurations.create`, `ConcurrentHashMap.computeIfAbsent`,
+  shared `classFileNamesOf()`, KDoc precision); moved `:grpc` — a module
+  with no Compiler plugin — out of the fat JAR and into the JAR of
+  `gradle-plugin`. Each step gated on the full root build including
+  `integrationTests`; all green.
