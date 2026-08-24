@@ -65,6 +65,7 @@ dependencies {
         Compiler.api,
         Compiler.jvm,
         Validation.context,
+        ToolBase.protoCode,
         ToolBase.classicCodegen,
         ToolBase.pluginBase,
         ToolBase.protobufSetupPlugins,

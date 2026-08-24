@@ -48,11 +48,14 @@ import com.squareup.kotlinpoet.asClassName
 import com.squareup.kotlinpoet.ksp.toClassName
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.writeTo
+import io.spine.annotation.Generated
 import io.spine.server.entity.Entity
 import io.spine.string.Indent
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.ksp.processor.isInterface
 import io.spine.tools.core.jvm.routing.processor.Environment.SetupType
+import io.spine.tools.core.jvm.routing.processor.RouteVisitor.Companion.ANNOTATION_BACKTICKED
+import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
 
 /**
  * The base class for code generators implementing routing setup classes.
@@ -144,7 +147,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
     }
 
     private fun createClass(className: String) {
-        val generated = GeneratedAnnotation.forKotlinPoet()
+        val generated = generatedAnnotation()
         val autoService = AnnotationSpec.builder(AutoService::class)
             .addMember("%T::class", setup.cls)
             .build()
@@ -398,3 +401,14 @@ private class RouteFunComparator : Comparator<RouteFun> {
         }
     }
 }
+
+/**
+ * Creates a new [KAnnotationSpec] with the [Generated] annotation.
+ *
+ * @param value The string to be put into the annotation `value` parameter.
+ *  The default value refers to the current version of Spine Model Compiler.
+ */
+private fun generatedAnnotation(value: String = GeneratedAnnotation.defaultValue): KAnnotationSpec =
+    KAnnotationSpec.builder(Generated::class)
+        .addMember("%S", value)
+        .build()

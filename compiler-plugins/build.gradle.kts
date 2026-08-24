@@ -55,7 +55,7 @@ LicenseReporter.generateReportIn(project)
 /**
  * The ID used for publishing this module.
  */
-val moduleArtifactId: String = CoreJvmCompiler.fatJarArtifact
+val moduleArtifactId: String = CoreJvmCompiler.compilerPluginsArtifact
 
 dependencies {
     // The dependencies below shape the runtime classpath from which `shadowJar`

@@ -29,6 +29,7 @@ package io.spine.tools.core.jvm.signal.rejection
 import com.squareup.javapoet.FieldSpec
 import com.squareup.javapoet.MethodSpec
 import com.squareup.javapoet.TypeSpec
+import io.spine.annotation.Generated
 import io.spine.base.RejectionThrowable
 import io.spine.logging.WithLogging
 import io.spine.tools.compiler.ast.MessageType
@@ -44,6 +45,7 @@ import javax.lang.model.element.Modifier.FINAL
 import javax.lang.model.element.Modifier.PRIVATE
 import javax.lang.model.element.Modifier.PUBLIC
 import javax.lang.model.element.Modifier.STATIC
+import com.squareup.javapoet.AnnotationSpec as JAnnotationSpec
 import com.squareup.javapoet.ClassName as PoClassName
 
 /**
@@ -80,7 +82,7 @@ internal class RThrowableCode(
 
     fun toPoet(): TypeSpec = classSpec(simpleClassName) {
         addJavadoc(forThrowableOf(rejection))
-        addAnnotation(GeneratedAnnotation.forJavaPoet())
+        addAnnotation(generatedAnnotation())
         addModifiers(PUBLIC)
         superclass(RejectionThrowable::class.java)
         addField(serialVersionUID())
@@ -129,3 +131,16 @@ private fun serialVersionUID(): FieldSpec {
         .initializer("0L")
         .build()
 }
+
+/**
+ * Creates a new [JAnnotationSpec] with the [Generated] annotation.
+ *
+ * @param value The string to be put into the annotation `value` parameter.
+ *  The default value refers to the current version of Spine Model Compiler.
+ */
+private fun generatedAnnotation(
+    value: String = GeneratedAnnotation.defaultValue
+): JAnnotationSpec =
+    JAnnotationSpec.builder(Generated::class.java)
+        .addMember("value", "\$S", value)
+        .build()
