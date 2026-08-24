@@ -46,7 +46,6 @@ buildscript {
     standardSpineSdkRepositories()
     val base = io.spine.dependency.local.Base
     val compiler = io.spine.dependency.local.Compiler
-    val coreJava = io.spine.dependency.local.CoreJvm
     val jackson = io.spine.dependency.lib.Jackson
     val kotlin = io.spine.dependency.lib.Kotlin
     val logging = io.spine.dependency.local.Logging
@@ -67,33 +66,18 @@ buildscript {
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Module.forceArtifacts(project, cfg, rs)
-                // Jackson 2.x artifacts that only the IntelliJ Platform brings,
-                // yet which still clash with the versions we resolve.
                 io.spine.dependency.lib.JacksonV2.Junior.forceArtifacts(project, cfg, rs)
 
                 force(
                     io.spine.dependency.lib.Caffeine.lib,
-                    validation.runtime,
                     kotlin.bom,
+                    validation.runtime,
                     jackson.annotations,
-//                    jackson.bom,
                     base.annotations,
                     base.libForBuildScript,
                     base.environment,
                     base.format,
-//                    io.spine.dependency.local.Reflect.lib,
-//                    toolBase.fs,
-//                    toolBase.code,
-//                    toolBase.javaCode,
-//                    toolBase.kotlinCode,
-//                    toolBase.protoCode,
-//                    toolBase.classicCodegen,
-//                    coreJava.server,
                     time.lib,
-//                    time.javaExtensions,
-//                    logging.lib,
-//                    logging.libJvm,
-//                    "${compiler.module}:${compiler.dogfoodingVersion}",
                     compiler.api,
                     compiler.params,
                     compiler.gradleApi,
