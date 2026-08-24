@@ -136,7 +136,7 @@ private fun serialVersionUID(): FieldSpec {
  * Creates a new [JAnnotationSpec] with the [Generated] annotation.
  *
  * @param value The string to be put into the annotation `value` parameter.
- *  The default value refers to the current version of Spine Model Compiler.
+ *  The default value refers to the current version of Spine CoreJvm Compiler.
  */
 private fun generatedAnnotation(
     value: String = GeneratedAnnotation.defaultValue
