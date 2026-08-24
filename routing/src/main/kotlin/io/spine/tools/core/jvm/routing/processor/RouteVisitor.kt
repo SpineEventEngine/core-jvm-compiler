@@ -54,7 +54,6 @@ import io.spine.string.Indent
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.ksp.processor.isInterface
 import io.spine.tools.core.jvm.routing.processor.Environment.SetupType
-import io.spine.tools.core.jvm.routing.processor.RouteVisitor.Companion.ANNOTATION_BACKTICKED
 import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
 
 /**
