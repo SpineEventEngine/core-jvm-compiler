@@ -1,0 +1,1 @@
+var packageSearchIndex = [{"l":"io.spine.tools.core.jvm.routing.gradle","url":"io/spine/tools/core/jvm/routing/gradle/package-summary.html"}, {"l":"io.spine.tools.core.jvm.routing.processor","url":"io/spine/tools/core/jvm/routing/processor/package-summary.html"}, {"l":"All packages","url":"index.html"}]
