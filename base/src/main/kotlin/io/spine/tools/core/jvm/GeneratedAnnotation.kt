@@ -28,13 +28,10 @@ package io.spine.tools.core.jvm
 
 import com.intellij.psi.PsiAnnotation
 import io.spine.annotation.Generated
-import io.spine.tools.core.jvm.GeneratedAnnotation.forPsi
 import io.spine.tools.core.jvm.VersionHolder.version
 import io.spine.tools.java.reference
 import io.spine.tools.psi.java.Environment.elementFactory
 import org.intellij.lang.annotations.Language
-import com.squareup.javapoet.AnnotationSpec as JAnnotationSpec
-import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
 
 /**
  * Creates [PsiAnnotation] for marking code elements created by the CoreJvm Compiler.
@@ -50,7 +47,7 @@ import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
  */
 public object GeneratedAnnotation {
 
-    private val defaultValue = "by Spine CoreJvm Compiler (version: ${version.value})"
+    public val defaultValue: String = "by Spine CoreJvm Compiler (version: ${version.value})"
 
     /**
      * Creates a new [PsiAnnotation] with the [Generated] annotation.
@@ -68,26 +65,4 @@ public object GeneratedAnnotation {
         )
         return annotation
     }
-
-    /**
-     * Creates a new [PsiAnnotation] with the [Generated] annotation.
-     *
-     * @param value The string to be put into the annotation `value` parameter.
-     *  The default value refers to the current version of Spine Model Compiler.
-     */
-    public fun forJavaPoet(value: String = defaultValue): JAnnotationSpec =
-        JAnnotationSpec.builder(Generated::class.java)
-            .addMember("value", "\$S", value)
-            .build()
-
-    /**
-     * Creates a new [PsiAnnotation] with the [Generated] annotation.
-     *
-     * @param value The string to be put into the annotation `value` parameter.
-     *  The default value refers to the current version of Spine Model Compiler.
-     */
-    public fun forKotlinPoet(value: String = defaultValue): KAnnotationSpec =
-        KAnnotationSpec.builder(Generated::class)
-            .addMember("%S", value)
-            .build()
 }

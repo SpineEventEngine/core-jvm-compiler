@@ -47,18 +47,4 @@ internal class GeneratedAnnotationSpec {
         val annotation = GeneratedAnnotation.forPsi()
         annotation.text shouldContain "by Spine CoreJvm Compiler"
     }
-
-    @Test
-    fun `create a JavaPoet annotation spec`() {
-        val spec = GeneratedAnnotation.forJavaPoet("javapoet value")
-        spec.toString() shouldContain annotationType
-        spec.toString() shouldContain "\"javapoet value\""
-    }
-
-    @Test
-    fun `create a KotlinPoet annotation spec`() {
-        val spec = GeneratedAnnotation.forKotlinPoet("kotlinpoet value")
-        spec.toString() shouldContain "Generated"
-        spec.toString() shouldContain "kotlinpoet value"
-    }
 }

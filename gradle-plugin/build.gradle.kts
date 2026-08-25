@@ -203,7 +203,7 @@ private fun MavenPublication.tuneDependencies() {
         val dependencies = Node(projectNode, "dependencies")
         Node(dependencies, "dependency").let {
             Node(it, "groupId", Spine.toolsGroup)
-            Node(it, "artifactId", CoreJvmCompiler.fatJarArtifact)
+            Node(it, "artifactId", CoreJvmCompiler.compilerPluginsArtifact)
             Node(it, "version", fatJarVersion)
             Node(it, "scope", "runtime")
         }
