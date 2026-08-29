@@ -62,6 +62,8 @@ buildscript {
                 kotlin.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.Kotlin.StdLib.forceArtifacts(project, cfg, rs)
                 jackson.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.Jackson.DataFormat.forceArtifacts(project, cfg, rs)
+                io.spine.dependency.lib.Jackson.DataType.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.Core.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 io.spine.dependency.lib.JacksonV2.DataType.forceArtifacts(project, cfg, rs)
@@ -71,6 +73,10 @@ buildscript {
                 force(
                     io.spine.dependency.lib.Caffeine.lib,
                     kotlin.bom,
+                    jackson.bom,
+                    logging.lib,
+                    logging.libJvm,
+                    logging.grpcContext,
                     validation.runtime,
                     jackson.annotations,
                     base.annotations,
@@ -129,6 +135,19 @@ allprojects {
     group = Spine.toolsGroup
     version = extra["versionToPublish"]!!
     repositories.standardToSpineSdk()
+    configurations.all {
+        resolutionStrategy {
+            // Applies to every module — both `module`- and `test-module`-based
+            // ones. Floor artifacts request the pre-refresh versions of these,
+            // tripping `failOnVersionConflict()`; the Protobuf runtime must
+            // additionally never be older than the refreshed gencode.
+            force(
+                io.spine.dependency.lib.Protobuf.javaLib,
+                io.spine.dependency.kotlinx.Coroutines.bom,
+                io.spine.dependency.kotlinx.AtomicFu.lib,
+            )
+        }
+    }
 }
 
 subprojects {

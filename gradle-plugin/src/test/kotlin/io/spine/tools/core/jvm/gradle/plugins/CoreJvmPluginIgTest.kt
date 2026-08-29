@@ -56,6 +56,9 @@ class CoreJvmPluginIgTest {
         private val buildscriptWithFullClasspath = """
             |buildscript {
             |    $repos
+            |    configurations.all {
+            |        resolutionStrategy.force("com.google.protobuf:protobuf-java:${System.getProperty("protobuf.version")}")
+            |    }
             |    dependencies {
             |        classpath("${Meta.artifact.coordinates}")
             |        classpath("${Compiler.pluginLib.artifact.coordinates}")
@@ -67,6 +70,9 @@ class CoreJvmPluginIgTest {
         private val buildscriptWithShortClasspath = """
             |buildscript {
             |    $repos
+            |    configurations.all {
+            |        resolutionStrategy.force("com.google.protobuf:protobuf-java:${System.getProperty("protobuf.version")}")
+            |    }
             |    dependencies {
             |        classpath("${Compiler.pluginLib.artifact.coordinates}")
             |    }

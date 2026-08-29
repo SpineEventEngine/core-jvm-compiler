@@ -37,6 +37,8 @@ import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
+import io.spine.dependency.kotlinx.AtomicFu
+import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -140,6 +142,9 @@ fun Module.forceConfigurations() {
                 Grpc.forceArtifacts(project, cfg, rs)
                 Ksp.forceArtifacts(project, cfg, rs)
 
+                Jackson.forceArtifacts(project, cfg, rs)
+                Jackson.DataFormat.forceArtifacts(project, cfg, rs)
+                Jackson.DataType.forceArtifacts(project, cfg, rs)
                 JacksonV2.Core.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataType.forceArtifacts(project, cfg, rs)

@@ -313,6 +313,8 @@ tasks.test {
     dependsOn(prepareStubRepo)
     // The property name is defined by `STUB_REPOSITORY_PROPERTY` in `StubResolution.kt`.
     systemProperty("stub.repository", layout.buildDirectory.dir("stub-repo").get().asFile.path)
+    // Lets TestKit fixtures pin the Protobuf runtime at the refreshed version.
+    systemProperty("protobuf.version", io.spine.dependency.lib.Protobuf.version)
 }
 
 /**

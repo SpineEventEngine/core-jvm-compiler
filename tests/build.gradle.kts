@@ -141,6 +141,19 @@ allprojects {
         mavenLocal()
     }
 
+    configurations.all {
+        resolutionStrategy {
+            // Floor artifacts request the pre-refresh versions of these,
+            // tripping `failOnVersionConflict()`; the Protobuf runtime must
+            // additionally never be older than the refreshed gencode.
+            force(
+                io.spine.dependency.lib.Protobuf.javaLib,
+                io.spine.dependency.kotlinx.Coroutines.bom,
+                io.spine.dependency.kotlinx.AtomicFu.lib,
+            )
+        }
+    }
+
     group = "io.spine.tools.tests"
     version = extra["versionToPublish"]!!
 
