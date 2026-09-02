@@ -126,7 +126,7 @@ fun Module.forceConfigurations() {
             // Exclude outdated module.
             exclude(group = "io.spine", module = "spine-logging-backend")
 
-            // Exclude in favor of `spine-validation-java-runtime`.
+            // Exclude in favor of `spine-validation-jvm-runtime`.
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
                 dependencySubstitution {
@@ -140,6 +140,9 @@ fun Module.forceConfigurations() {
                 Grpc.forceArtifacts(project, cfg, rs)
                 Ksp.forceArtifacts(project, cfg, rs)
 
+                Jackson.forceArtifacts(project, cfg, rs)
+                Jackson.DataFormat.forceArtifacts(project, cfg, rs)
+                Jackson.DataType.forceArtifacts(project, cfg, rs)
                 JacksonV2.Core.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataFormat.forceArtifacts(project, cfg, rs)
                 JacksonV2.DataType.forceArtifacts(project, cfg, rs)

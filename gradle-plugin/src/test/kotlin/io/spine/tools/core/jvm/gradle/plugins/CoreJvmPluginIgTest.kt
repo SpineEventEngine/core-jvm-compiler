@@ -41,9 +41,25 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 @DisplayName("`CoreJvmPlugin` published as a Maven artifact should")
-class CoreJvmPluginIgTest {
+internal class CoreJvmPluginIgTest {
 
     companion object {
+
+        private const val PROTOBUF_VERSION_PROPERTY = "protobuf.version"
+
+        /**
+         * The Protobuf runtime coordinate pinned by the fixtures.
+         *
+         * The version arrives through a system property set by the `test` task
+         * in `gradle-plugin/build.gradle.kts`. Reading it unchecked would put
+         * the literal `null` into the generated script, and the TestKit build
+         * would fail on a coordinate that says nothing about the cause.
+         */
+        private val protobufJava: String =
+            checkNotNull(System.getProperty(PROTOBUF_VERSION_PROPERTY)) {
+                "System property `$PROTOBUF_VERSION_PROPERTY` is not set."
+            }.let { "com.google.protobuf:protobuf-java:$it" }
+
         val repos = """
             |repositories {
             |    mavenLocal()
@@ -56,6 +72,12 @@ class CoreJvmPluginIgTest {
         private val buildscriptWithFullClasspath = """
             |buildscript {
             |    $repos
+            |    configurations.all {
+            |        // Pinned by the test, not by a consumer: this fixture
+            |        // stands in for a published artifact, and the pin keeps
+            |        // the plugin classpath off the pre-refresh runtime.
+            |        resolutionStrategy.force("$protobufJava")
+            |    }
             |    dependencies {
             |        classpath("${Meta.artifact.coordinates}")
             |        classpath("${Compiler.pluginLib.artifact.coordinates}")
@@ -67,6 +89,12 @@ class CoreJvmPluginIgTest {
         private val buildscriptWithShortClasspath = """
             |buildscript {
             |    $repos
+            |    configurations.all {
+            |        // Pinned by the test, not by a consumer: this fixture
+            |        // stands in for a published artifact, and the pin keeps
+            |        // the plugin classpath off the pre-refresh runtime.
+            |        resolutionStrategy.force("$protobufJava")
+            |    }
             |    dependencies {
             |        classpath("${Compiler.pluginLib.artifact.coordinates}")
             |    }

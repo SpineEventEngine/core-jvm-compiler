@@ -313,6 +313,8 @@ tasks.test {
     dependsOn(prepareStubRepo)
     // The property name is defined by `STUB_REPOSITORY_PROPERTY` in `StubResolution.kt`.
     systemProperty("stub.repository", layout.buildDirectory.dir("stub-repo").get().asFile.path)
+    // Lets TestKit fixtures pin `protobuf-java` on their buildscript classpath.
+    systemProperty("protobuf.version", Protobuf.version)
 }
 
 /**

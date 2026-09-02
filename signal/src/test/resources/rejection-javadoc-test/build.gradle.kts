@@ -73,6 +73,14 @@ subprojects {
     }
 
     repositories.standardToSpineSdk()
+    configurations.all {
+        resolutionStrategy {
+            // Floor artifacts (e.g. `Base.lib`) drag the pre-refresh Protobuf
+            // runtime transitively, while codegen runs at the refreshed
+            // version; the runtime must not be older than the gencode.
+            force(io.spine.dependency.lib.Protobuf.javaLib)
+        }
+    }
 
     dependencies {
         implementation(Base.lib)
