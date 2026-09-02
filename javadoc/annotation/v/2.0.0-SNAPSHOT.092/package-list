@@ -1,0 +1,60 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Builder///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Builder.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.AnyField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.AnyField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.DocField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.DocField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.FileField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.FileField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.OptionField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.OptionField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.ServiceNameField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.ServiceNameField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.SpanField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.SpanField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.TypeField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.TypeField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.Field///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.Field.html
+$dokka.location:io.spine.tools.core.annotation.event/FileOptionMatched.TargetCase///PointingToDeclaration/io/spine/tools/core/annotation/event/FileOptionMatched.TargetCase.html
+$dokka.location:io.spine.tools.core.annotation/ApiAnnotationsPlugin.Companion///PointingToDeclaration/io/spine/tools/core/annotation/ApiAnnotationsPlugin.Companion.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.Builder///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.Builder.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.Column///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.Column.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.Field.FileField///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.Field.FileField.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.Field///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.Field.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.Query///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.Query.html
+$dokka.location:io.spine.tools.core.annotation/EnumAnnotations.QueryBuilder///PointingToDeclaration/io/spine/tools/core/annotation/EnumAnnotations.QueryBuilder.html
+$dokka.location:io.spine.tools.core.annotation/FieldOptions.Builder///PointingToDeclaration/io/spine/tools/core/annotation/FieldOptions.Builder.html
+$dokka.location:io.spine.tools.core.annotation/FileOptions.Builder///PointingToDeclaration/io/spine/tools/core/annotation/FileOptions.Builder.html
+$dokka.location:io.spine.tools.core.annotation/FileOptions.Column///PointingToDeclaration/io/spine/tools/core/annotation/FileOptions.Column.html
+$dokka.location:io.spine.tools.core.annotation/FileOptions.Field.FileField///PointingToDeclaration/io/spine/tools/core/annotation/FileOptions.Field.FileField.html
+$dokka.location:io.spine.tools.core.annotation/FileOptions.Field///PointingToDeclaration/io/spine/tools/core/annotation/FileOptions.Field.html
+$dokka.location:io.spine.tools.core.annotation/FileOptions.Query///PointingToDeclaration/io/spine/tools/core/annotation/FileOptions.Query.html
+$dokka.location:io.spine.tools.core.annotation/FileOptions.QueryBuilder///PointingToDeclaration/io/spine/tools/core/annotation/FileOptions.QueryBuilder.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.Builder///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.Builder.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.Column///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.Column.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.Field.FileField///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.Field.FileField.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.Field///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.Field.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.Query///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.Query.html
+$dokka.location:io.spine.tools.core.annotation/MessageAnnotations.QueryBuilder///PointingToDeclaration/io/spine/tools/core/annotation/MessageAnnotations.QueryBuilder.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.Builder///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.Builder.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.Column///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.Column.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.Field.FileField///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.Field.FileField.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.Field///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.Field.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.Query///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.Query.html
+$dokka.location:io.spine.tools.core.annotation/MessageFieldAnnotations.QueryBuilder///PointingToDeclaration/io/spine/tools/core/annotation/MessageFieldAnnotations.QueryBuilder.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.Builder///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.Builder.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.Column///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.Column.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.Field.FileField///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.Field.FileField.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.Field.ServiceNameField///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.Field.ServiceNameField.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.Field///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.Field.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.Query///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.Query.html
+$dokka.location:io.spine.tools.core.annotation/ServiceAnnotations.QueryBuilder///PointingToDeclaration/io/spine/tools/core/annotation/ServiceAnnotations.QueryBuilder.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Builder///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Builder.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Column///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Column.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Field.FileField///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Field.FileField.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Field.ProtoFileHeaderField///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Field.ProtoFileHeaderField.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Field.TypeNameField///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Field.TypeNameField.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Field///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Field.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.Query///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.Query.html
+$dokka.location:io.spine.tools.core.jvm.annotation/OuterClassAnnotations.QueryBuilder///PointingToDeclaration/io/spine/tools/core/jvm/annotation/OuterClassAnnotations.QueryBuilder.html
+io.spine.tools.core.annotation
+io.spine.tools.core.annotation.event
+io.spine.tools.core.jvm.annotation
