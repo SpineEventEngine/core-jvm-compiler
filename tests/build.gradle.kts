@@ -34,6 +34,7 @@ import io.spine.dependency.lib.JacksonV2
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.boms.BomsPlugin
+import io.spine.dependency.isDokka
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
@@ -142,6 +143,9 @@ allprojects {
     }
 
     configurations.all {
+        if (isDokka) {
+            return@all
+        }
         resolutionStrategy {
             // Floor artifacts request the pre-refresh versions of these,
             // tripping `failOnVersionConflict()`; the Protobuf runtime must

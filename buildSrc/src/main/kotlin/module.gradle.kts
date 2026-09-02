@@ -37,8 +37,6 @@ import io.spine.dependency.lib.Grpc
 import io.spine.dependency.lib.Guava
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
-import io.spine.dependency.kotlinx.AtomicFu
-import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.KotlinPoet
 import io.spine.dependency.lib.Protobuf
@@ -128,7 +126,7 @@ fun Module.forceConfigurations() {
             // Exclude outdated module.
             exclude(group = "io.spine", module = "spine-logging-backend")
 
-            // Exclude in favor of `spine-validation-java-runtime`.
+            // Exclude in favor of `spine-validation-jvm-runtime`.
             exclude("io.spine", "spine-validate")
             resolutionStrategy {
                 dependencySubstitution {

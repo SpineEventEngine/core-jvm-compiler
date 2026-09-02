@@ -27,6 +27,7 @@
 @file:Suppress("RemoveRedundantQualifierName") // To prevent IDEA replacing FQN imports.
 
 import io.spine.dependency.build.Dokka
+import io.spine.dependency.isDokka
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Spine
@@ -136,6 +137,9 @@ allprojects {
     version = extra["versionToPublish"]!!
     repositories.standardToSpineSdk()
     configurations.all {
+        if (isDokka) {
+            return@all
+        }
         resolutionStrategy {
             // Applies to every module — both `module`- and `test-module`-based
             // ones. Floor artifacts request the pre-refresh versions of these,
