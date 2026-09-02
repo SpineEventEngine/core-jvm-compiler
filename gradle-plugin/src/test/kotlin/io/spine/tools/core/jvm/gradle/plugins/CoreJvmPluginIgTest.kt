@@ -48,7 +48,7 @@ internal class CoreJvmPluginIgTest {
         private const val PROTOBUF_VERSION_PROPERTY = "protobuf.version"
 
         /**
-         * The Protobuf runtime coordinate the fixtures pin.
+         * The Protobuf runtime coordinate pinned by the fixtures.
          *
          * The version arrives through a system property set by the `test` task
          * in `gradle-plugin/build.gradle.kts`. Reading it unchecked would put
