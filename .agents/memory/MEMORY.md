@@ -18,6 +18,7 @@ See [README.md](README.md) for the format and routing rules.
 - [gradle-needs-utf8-locale](project/gradle-needs-utf8-locale.md) — Run Gradle with `LC_ALL=C.UTF-8`; the default POSIX locale makes `sun.jnu.encoding` ASCII and breaks expansion of dependency jars with non-ASCII entries (e.g. KSP).
 - [projectbuilder-in-memory-caches](project/projectbuilder-in-memory-caches.md) — ProjectBuilder never reuses the Gradle dependency cache (TestInMemoryCacheFactory); keep stub projects offline and feed them via `stubRepoDeps`/`prepareStubRepo`, else Maven Central 429-blocks the machine.
 - [config-owned-buildsrc-reverts](project/config-owned-buildsrc-reverts.md) — `./config/pull` re-copies `buildSrc/` and reverts local edits; never depend on members added to a config-owned dependency object, and re-check `buildSrc/` diffs after every pull.
+- [copyright-header-migration](project/copyright-header-migration.md) — Headers migrating `TeamDev` -> `CodeMatters, Lda.`; `config` first, other repos via `summit` waves — intentional, don't flag or revert.
 - [one-pipeline-run-per-spec-class](project/one-pipeline-run-per-spec-class.md) — A `PluginTestSetup` spec can call `runPipeline` only once per class; the backend broker closes after a run, so a second call throws "FilterChain is already closed".
 - [which-fixer applied](which-fixer-applied.md) — bulk sweep done; skill now runs in incremental mode.
 

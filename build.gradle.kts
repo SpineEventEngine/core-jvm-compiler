@@ -85,6 +85,7 @@ buildscript {
                     base.environment,
                     base.format,
                     time.lib,
+                    time.javaExtensions,
                     compiler.api,
                     compiler.params,
                     compiler.gradleApi,
