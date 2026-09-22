@@ -1,0 +1,12 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.routing.gradle////PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.gradle/index.html
+$dokka.location:io.spine.tools.core.jvm.routing.gradle/RoutingPlugin///PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.gradle/-routing-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.routing.gradle/RoutingPlugin/RoutingPlugin/#/PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.gradle/-routing-plugin/-routing-plugin.html
+$dokka.location:io.spine.tools.core.jvm.routing.gradle/RoutingPlugin/mavenCoordinates/#/PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.gradle/-routing-plugin/maven-coordinates.html
+$dokka.location:io.spine.tools.core.jvm.routing.processor////PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.processor/index.html
+$dokka.location:io.spine.tools.core.jvm.routing.processor/RouteProcessorProvider///PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.processor/-route-processor-provider/index.html
+$dokka.location:io.spine.tools.core.jvm.routing.processor/RouteProcessorProvider/RouteProcessorProvider/#/PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.processor/-route-processor-provider/-route-processor-provider.html
+$dokka.location:io.spine.tools.core.jvm.routing.processor/RouteProcessorProvider/create/#com.google.devtools.ksp.processing.SymbolProcessorEnvironment/PointingToDeclaration/routing/io.spine.tools.core.jvm.routing.processor/-route-processor-provider/create.html
+io.spine.tools.core.jvm.routing.gradle
+io.spine.tools.core.jvm.routing.processor
