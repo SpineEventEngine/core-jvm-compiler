@@ -315,6 +315,19 @@ tasks.test {
     systemProperty("stub.repository", layout.buildDirectory.dir("stub-repo").get().asFile.path)
     // Lets TestKit fixtures pin `protobuf-java` on their buildscript classpath.
     systemProperty("protobuf.version", Protobuf.version)
+
+    // The POM of the plugin marker, checked by `PluginMarkerPomSpec`. `java-gradle-plugin`
+    // names the marker publication after the plugin declared in `gradlePlugin` below.
+    // Being an input of the tests, the POM makes them rerun whenever the patch in
+    // the `afterEvaluate` block at the end of this file changes it.
+    val markerPom = layout.buildDirectory
+        .file("publications/coreJvmCompilerPluginsPluginMarkerMaven/pom-default.xml")
+    dependsOn("generatePomFileForCoreJvmCompilerPluginsPluginMarkerMavenPublication")
+    inputs.file(markerPom)
+        .withPropertyName("pluginMarkerPom")
+        .withPathSensitivity(PathSensitivity.NONE)
+    // The property name is defined by `PLUGIN_MARKER_POM_PROPERTY` in `PluginMarkerPomSpec`.
+    systemProperty("plugin.marker.pom", markerPom.get().asFile.path)
 }
 
 /**
@@ -379,9 +392,11 @@ gradlePlugin {
  * the `removeIf` call below.
  *
  * The same `afterEvaluate` also injects into the marker POM a dependency whose coordinates
- * are copied from `pluginMaven` when the POM is generated. By then, `spinePublishing` may
- * have changed the `artifactId` of `pluginMaven`, so the dependencies of the marker are all
- * replaced with the one on `core-jvm-gradle-plugin`, rather than matched by `artifactId`.
+ * are copied from `pluginMaven` when the POM is generated. By then, `spinePublishing` has
+ * changed the `artifactId` of `pluginMaven`. So, instead of looking for that dependency by
+ * its `artifactId`, the patch below replaces all the dependencies of the marker with
+ * a single `runtime` dependency on `core-jvm-gradle-plugin`. `PluginMarkerPomSpec` checks
+ * the resulting POM.
  */
 afterEvaluate {
     val pluginPublication = "pluginMaven"
