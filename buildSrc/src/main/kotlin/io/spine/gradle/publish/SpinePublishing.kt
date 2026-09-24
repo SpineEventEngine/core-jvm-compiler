@@ -182,7 +182,7 @@ open class SpinePublishing(private val project: Project) {
         /**
          * The name of the extension registered in a Gradle project.
          */
-        public val extensionName: String = SpinePublishing::class.java.simpleName
+        val extensionName: String = SpinePublishing::class.java.simpleName
             .replaceFirstChar { it.lowercase(Locale.ROOT) }
     }
 
@@ -324,6 +324,8 @@ open class SpinePublishing(private val project: Project) {
             val jarFlags = JarFlags.create(project.name, testJar)
             project.setUpPublishing(jarFlags)
         }
+        PublicationChecksums.registerTasks(project, projectsToPublish)
+        PublicationSbom.registerTasks(project, projectsToPublish)
     }
 
     /**
@@ -397,7 +399,7 @@ open class SpinePublishing(private val project: Project) {
     private fun Project.publishTo(): Set<Repository> {
         val ext = localSpinePublishing
         if (ext != null && ext::destinations.isInitialized) {
-            return destinations
+            return ext.destinations
         }
         return parent?.publishTo() ?: emptySet()
     }
