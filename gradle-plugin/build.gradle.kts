@@ -373,13 +373,14 @@ gradlePlugin {
  *
  * Root cause: `java-gradle-plugin` registers its own `afterEvaluate` callback that
  * creates a `pluginMaven` publication using `project.name` as the `artifactId`.
- * Calling `publications.clear()` during the configuration phase cannot prevent a publication
+ * Left alone, both `pluginJar` and `pluginMaven` would be published. Calling
+ * `publications.clear()` during the configuration phase cannot prevent a publication
  * added by a later `afterEvaluate`, which is why that approach was abandoned in favour of
  * the `removeIf` call below.
- * As a result, both `pluginJar` and `pluginMaven` end up being published. The same
- * `afterEvaluate` also injects into the marker POM a dependency whose coordinates are
- * copied from `pluginMaven` when the POM is generated. By then, `spinePublishing` may have
- * changed the `artifactId` of `pluginMaven`, so the dependencies of the marker are all
+ *
+ * The same `afterEvaluate` also injects into the marker POM a dependency whose coordinates
+ * are copied from `pluginMaven` when the POM is generated. By then, `spinePublishing` may
+ * have changed the `artifactId` of `pluginMaven`, so the dependencies of the marker are all
  * replaced with the one on `core-jvm-gradle-plugin`, rather than matched by `artifactId`.
  */
 afterEvaluate {
