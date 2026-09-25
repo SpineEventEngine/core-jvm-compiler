@@ -189,6 +189,18 @@ tasks.jar {
     }
 }
 
+/**
+ * The dependency on KotlinPoet, which the POM of this module declares.
+ *
+ * The routing KSP processor shipped in this JAR uses KotlinPoet when generating code.
+ * The library comes to the KSP classpath as a genuine artifact rather than being bundled.
+ * The Kotlin runtime is excluded because the Gradle and KSP runtimes provide it.
+ */
+val kotlinPoetKsp: ExternalModuleDependency =
+    (dependencies.create(KotlinPoet.ksp) as ExternalModuleDependency).apply {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+
 publishing {
     publications {
         create("pluginJar", MavenPublication::class) {
@@ -223,9 +235,11 @@ publishing {
  * ```
  */
 private fun MavenPublication.tuneDependencies() {
-    // Capture the value during the configuration phase: the `withXml` action
+    // Capture the values during the configuration phase: the `withXml` action
     // runs when the POM is generated, and must not reach out to `project`.
     val fatJarVersion = project.version.toString()
+    val kotlinPoet = listOf(kotlinPoetKsp.group, kotlinPoetKsp.name, kotlinPoetKsp.version)
+    val kotlinPoetExclusions = kotlinPoetKsp.excludeRules.map { it.group to (it.module ?: "*") }
     pom.withXml {
         val projectNode = asNode()
         val dependencies = Node(projectNode, "dependencies")
@@ -236,22 +250,19 @@ private fun MavenPublication.tuneDependencies() {
             Node(it, "scope", "runtime")
         }
 
-        /*
-         * The routing KSP processor shipped in this JAR uses KotlinPoet
-         * when generating code. The library comes to the KSP classpath as
-         * a genuine artifact rather than being bundled. The Kotlin runtime
-         * is excluded because the Gradle and KSP runtimes provide it.
-         */
+        // KotlinPoet, as declared by `kotlinPoetKsp`.
         Node(dependencies, "dependency").let {
-            val (group, name, version) = KotlinPoet.ksp.split(':')
+            val (group, name, version) = kotlinPoet
             Node(it, "groupId", group)
             Node(it, "artifactId", name)
             Node(it, "version", version)
             Node(it, "scope", "runtime")
             Node(it, "exclusions").let { exclusions ->
-                Node(exclusions, "exclusion").let { exclusion ->
-                    Node(exclusion, "groupId", "org.jetbrains.kotlin")
-                    Node(exclusion, "artifactId", "*")
+                kotlinPoetExclusions.forEach { (excludedGroup, excludedModule) ->
+                    Node(exclusions, "exclusion").let { exclusion ->
+                        Node(exclusion, "groupId", excludedGroup)
+                        Node(exclusion, "artifactId", excludedModule)
+                    }
                 }
             }
         }

@@ -89,6 +89,126 @@ dependencies {
     }
 }
 
+/**
+ * The groups excluded from the dependencies which the POM of the fat JAR declares
+ * on the Spine tools and on the Jackson libraries.
+ */
+val pomExcludedGroups: List<String> = listOf(
+    "org.jetbrains.kotlin",
+    "com.google.protobuf",
+    "io.spine.tools",
+)
+
+/**
+ * The `runtime` dependencies which the POM of the fat JAR declares, in their order in `pom.xml`.
+ *
+ * Declared once, as Gradle dependencies, they are the single source of what the fat JAR
+ * depends on. `tuneDependencies()` writes `pom.xml` from them.
+ */
+val pomDependencies: List<ExternalModuleDependency> = listOf(
+    /*
+     * The Spine Compiler API, as there is no good way to remove all the dependencies
+     * from the fat JAR artifact but leave just this one.
+     *
+     * It places the Spine Compiler API onto the build classpath, so that `core-jvm`
+     * routines could apply it programmatically.
+     */
+    pomDependency(Compiler.api, excluding = pomExcludedGroups),
+
+    /*
+     * The Spine Compiler JVM module, due to the same reasons as stated above.
+     *
+     * It is required, in particular, to access the Proto definitions used by
+     * CoreJvm Gradle plugin extension via `CoreJvmOptions`.
+     */
+    pomDependency(Compiler.jvm, excluding = pomExcludedGroups),
+
+    // The Compiler Gradle plugin and its API, so that CoreJvm Gradle Plugin can add
+    // them to a project.
+    pomDependency(Compiler.pluginLib, excluding = pomExcludedGroups),
+    pomDependency(Compiler.gradleApi, excluding = pomExcludedGroups),
+
+    // The Compiler parameters, so that they are available in the classpath.
+    pomDependency(Compiler.params, excluding = pomExcludedGroups),
+
+    // The Validation bundle. We filter out the content of the `io/spine/tools/validation/`
+    // directory from the fat JAR artifact, so we need to add the dependency on the bundle.
+    pomDependency(Validation.javaBundle, excluding = pomExcludedGroups),
+
+    // Similarly to the above, the Validation Gradle plugin artifact as well.
+    pomDependency(Validation.gradlePluginLib, excluding = pomExcludedGroups),
+
+    // The Time Gradle plugin, because we exclude its code from the fat JAR artifact.
+    pomDependency(Time.gradlePlugin, excluding = pomExcludedGroups),
+
+    // The Protobuf Gradle Plugin, so that we can add it from our code.
+    pomDependency(Protobuf.GradlePlugin.lib),
+
+    // The Protobuf Java library, so that we can add it from our code.
+    pomDependency(Protobuf.javaLib),
+
+    // The Protobuf Java Util library, used from the `compiler-params` module.
+    // Since we exclude the dependencies on Protobuf, we need to add it manually.
+    pomDependency("${Protobuf.group}:protobuf-java-util:${Protobuf.version}"),
+
+    // The Protobuf Kotlin library, so that we can add it from our code.
+    pomDependency("${Protobuf.group}:protobuf-kotlin:${Protobuf.version}"),
+
+    // The KSP Gradle Plugin, through its plugin marker.
+    pomDependency("${Ksp.group}:${Ksp.gradlePluginArtifactName}:${Ksp.version}"),
+
+    /*
+     * The Jackson libraries used at runtime by the code we bundle.
+     *
+     * Their classes are excluded from the fat JAR — see `pomProvidedModules`
+     * near `tasks.shadowJar` — so that consumers receive genuine artifacts
+     * that they can upgrade without waiting for a new release of
+     * CoreJvm Compiler. SnakeYAML and SnakeYAML Engine are not listed here:
+     * they come transitively, with the `jackson-dataformat-yaml` artifacts.
+     */
+    // Jackson 3.x, used by our own code.
+    pomDependency("${Jackson.core}:${Jackson.version}", excluding = pomExcludedGroups),
+    pomDependency("${Jackson.databind}:${Jackson.version}", excluding = pomExcludedGroups),
+    pomDependency("${Jackson.moduleKotlin}:${Jackson.version}", excluding = pomExcludedGroups),
+    pomDependency(
+        "${Jackson.DataFormat.yaml}:${Jackson.version}",
+        excluding = pomExcludedGroups
+    ),
+    pomDependency(
+        "${Jackson.DataType.guava}:${Jackson.version}",
+        excluding = pomExcludedGroups
+    ),
+
+    // The annotations artifact of the 2.x line, consumed by both lines.
+    pomDependency(
+        "${Jackson.annotations.substringBeforeLast(':')}:${Jackson.annotationsVersion}",
+        excluding = pomExcludedGroups
+    ),
+
+    // Jackson 2.x, pulled by the third-party code we bundle.
+    pomDependency("${JacksonV2.Core.core}:${JacksonV2.version}", excluding = pomExcludedGroups),
+    pomDependency(
+        "${JacksonV2.Core.databind}:${JacksonV2.version}",
+        excluding = pomExcludedGroups
+    ),
+    pomDependency(
+        "${JacksonV2.DataFormat.yaml}:${JacksonV2.version}",
+        excluding = pomExcludedGroups
+    ),
+    pomDependency(
+        "${JacksonV2.DataType.guava}:${JacksonV2.version}",
+        excluding = pomExcludedGroups
+    ),
+    pomDependency(
+        "${JacksonV2.DataType.jdk8}:${JacksonV2.version}",
+        excluding = pomExcludedGroups
+    ),
+    pomDependency(
+        "${JacksonV2.Module.parameterNames}:${JacksonV2.version}",
+        excluding = pomExcludedGroups
+    ),
+)
+
 publishing {
     publications {
         create("fatJar", MavenPublication::class) {
@@ -97,337 +217,75 @@ publishing {
             // name predates the rename of this module to `compiler-plugins`.
             artifactId = moduleArtifactId
             artifact(tasks.shadowJar)
-            tuneDependencies()
+            tuneDependencies(pomDependencies)
         }
     }
 }
 
-private fun MavenPublication.tuneDependencies() {
+/**
+ * Creates the dependency on the module of the given [notation],
+ * excluding the given groups from its own dependencies.
+ */
+fun pomDependency(
+    notation: String,
+    excluding: List<String> = emptyList()
+): ExternalModuleDependency =
+    (dependencies.create(notation) as ExternalModuleDependency).apply {
+        excluding.forEach { exclude(group = it) }
+    }
+
+/**
+ * Declares the given [dependencies] in the POM of this publication, with
+ * the `runtime` scope and their exclusions.
+ *
+ * A dependency on `group:name:version` excluding the `org.jetbrains.kotlin` group
+ * appears in `pom.xml` as:
+ * ```
+ * <dependency>
+ *     <groupId>group</groupId>
+ *     <artifactId>name</artifactId>
+ *     <version>version</version>
+ *     <scope>runtime</scope>
+ *     <exclusions>
+ *          <exclusion>
+ *              <groupId>org.jetbrains.kotlin</groupId>
+ *              <artifactId>*</artifactId>
+ *          </exclusion>
+ *     </exclusions>
+ * </dependency>
+ * ```
+ */
+private fun MavenPublication.tuneDependencies(dependencies: List<ExternalModuleDependency>) {
+    // The `withXml` action runs when the POM is generated,
+    // so it takes plain values rather than Gradle objects.
+    // Gradle holds the exclude rules of a dependency in a set, so they are written
+    // in the order in which `pomExcludedGroups` lists their groups.
+    val entries = dependencies.map { dependency ->
+        listOf(dependency.group, dependency.name, dependency.version) to
+                dependency.excludeRules
+                    .sortedBy { pomExcludedGroups.indexOf(it.group) }
+                    .map { it.group to (it.module ?: "*") }
+    }
     pom.withXml {
-        val projectNode = asNode()
-        val dependencies = Node(projectNode, "dependencies")
-        fun dependencyNode() = Node(dependencies, "dependency")
-
-        fun spineToolsGroup(parent: Node) = Node(parent, "groupId", Spine.toolsGroup)
-        fun artifactId(parent: Node, value: String) = Node(parent, "artifactId", value)
-        fun version(parent: Node, value: String) = Node(parent, "version", value)
-        fun runtimeScope(parent: Node) = Node(parent, "scope", "runtime")
-        fun addExclusions(parent: Node) {
-            Node(parent, "exclusions").let {
-                excludeGroup(it, "org.jetbrains.kotlin")
-                excludeGroup(it, "com.google.protobuf")
-                excludeGroup(it, "io.spine.tools")
+        val dependenciesNode = Node(asNode(), "dependencies")
+        entries.forEach { (coordinates, exclusions) ->
+            val (group, name, version) = coordinates
+            Node(dependenciesNode, "dependency").let { dependency ->
+                Node(dependency, "groupId", group)
+                Node(dependency, "artifactId", name)
+                Node(dependency, "version", version)
+                Node(dependency, "scope", "runtime")
+                if (exclusions.isNotEmpty()) {
+                    val exclusionsNode = Node(dependency, "exclusions")
+                    exclusions.forEach { (excludedGroup, excludedModule) ->
+                        Node(exclusionsNode, "exclusion").let {
+                            Node(it, "groupId", excludedGroup)
+                            Node(it, "artifactId", excludedModule)
+                        }
+                    }
+                }
             }
         }
-
-        /*
-         * Add the dependency onto `io.spine.tools:compiler-api`,
-         * as there is no good way to remove all the dependencies
-         * from the fat JAR artifact but leave just this one.
-         *
-         * This dependency is required in order to place the Spine Compiler API
-         * onto the build classpath, so that `core-jvm` routines
-         * could apply it programmatically.
-         *
-         * The appended code in `pom.xml` would look like this:
-         * ```
-         * <dependency>
-         *     <groupId>io.spine.tools</groupId>
-         *     <artifactId>compiler-api</artifactId>
-         *     <version>${Compiler.version}</version>
-         *     <scope>runtime</scope>
-         *     <exclusions>
-         *          <exclusion>
-         *              <groupId>org.jetbrains.kotlin</groupId>
-         *              <artifactId>*</artifactId>
-         *          </exclusion>
-         *          <exclusion>
-         *              <groupId>com.google.protobuf</groupId>
-         *              <artifactId>*</artifactId>
-         *          </exclusion>
-         *          <exclusion>
-         *              <groupId>io.spine.tools</groupId>
-         *              <artifactId>*</artifactId>
-         *          </exclusion>
-         *     </exclusions>
-         * </dependency>
-         * ```
-         */
-        val compilerApi = dependencyNode()
-        compilerApi.let {
-            spineToolsGroup(it)
-            artifactId(it, "compiler-api")
-            version(it, Compiler.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add the dependency onto `io.spine.tools:compiler-jvm`,
-         * due to the same reasons as stated above.
-         *
-         * This dependency is required, in particular, to access
-         * the Proto definitions used by CoreJvm Gradle plugin extension
-         * via `CoreJvmOptions`.
-         *
-         * The appended code in `pom.xml` would look like this:
-         * ```
-         * <dependency>
-         *     <groupId>io.spine.tools</groupId>
-         *     <artifactId>compiler-jvm</artifactId>
-         *     <version>${Compiler.version}</version>
-         *     <scope>runtime</scope>
-         *     <exclusions>
-         *          <exclusion>
-         *              <groupId>org.jetbrains.kotlin</groupId>
-         *              <artifactId>*</artifactId>
-         *          </exclusion>
-         *          <exclusion>
-         *              <groupId>com.google.protobuf</groupId>
-         *              <artifactId>*</artifactId>
-         *          </exclusion>
-         *          <exclusion>
-         *              <groupId>io.spine.tools</groupId>
-         *              <artifactId>*</artifactId>
-         *          </exclusion>
-         *     </exclusions>
-         * </dependency>
-         * ```
-         */
-        val compilerJvm = dependencyNode()
-        compilerJvm.let {
-            spineToolsGroup(it)
-            artifactId(it, "compiler-jvm")
-            version(it, Compiler.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add the dependency onto `io.spine.tools:compiler-gradle-plugin`,
-         * so that CoreJvm Gradle Plugin can add it to a project.
-         */
-        val compilerGradlePlugin = dependencyNode()
-        compilerGradlePlugin.let {
-            spineToolsGroup(it)
-            artifactId(it, "compiler-gradle-plugin")
-            version(it, Compiler.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add the dependency onto `io.spine.tools:compiler-gradle-api`,
-         * so that CoreJvm Gradle Plugin can add it to a project.
-         */
-        val compilerGradleApi = dependencyNode()
-        compilerGradleApi.let {
-            spineToolsGroup(it)
-            artifactId(it, "compiler-gradle-api")
-            version(it, Compiler.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add the dependency onto `io.spine.tools:compiler-params`,
-         * so that it is available in the classpath.
-         */
-        val compilerParams = dependencyNode()
-        compilerParams.let {
-            spineToolsGroup(it)
-            artifactId(it, "compiler-params")
-            version(it, Compiler.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add the dependency onto `io.spine.tools:validation-java-bundle`.
-         *
-         * We filter out the content of the `io/spine/tools/validation/` directory
-         * from the fat JAR artifact, so we need to add the dependency on the bundle.
-         */
-        val validationJavaBundle = dependencyNode()
-        validationJavaBundle.let {
-            spineToolsGroup(it)
-            artifactId(it, "validation-java-bundle")
-            version(it, Validation.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add the dependency onto `io.spine.tools:validation-gradle-plugin`.
-         *
-         * Similarly to the above, we need to add the dependency on
-         * the Gradle plugin artifact as well.
-         */
-        val validationGradlePlugin = dependencyNode()
-        validationGradlePlugin.let {
-            spineToolsGroup(it)
-            artifactId(it, "validation-gradle-plugin")
-            version(it, Validation.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        /*
-         * Add dependency onto `io.spine.tools:time-gradle-plugin`
-         * because we exclude the code of Time Gradle plugin from the fat JAR artifact.
-         */
-        val timeGradlePlugin = dependencyNode()
-        timeGradlePlugin.let {
-            spineToolsGroup(it)
-            artifactId(it, "time-gradle-plugin")
-            version(it, Time.version)
-            runtimeScope(it)
-            addExclusions(it)
-        }
-
-        fun protobufGroup(parent: Node) = Node(parent, "groupId", Protobuf.group)
-
-        /*
-         * Add the dependency on Protobuf Gradle Plugin so that we can add it
-         * from our code. The code in `pom.xml` would look like this:
-         * ```
-         * <dependency>
-         *     <groupId>com.google.protobuf</groupId>
-         *     <artifactId>protobuf-gradle-plugin</artifactId>
-         *     <version>${Protobuf.GradlePlugin.version}</version>
-         *     <scope>runtime</scope>
-         * </dependency>
-         * ```
-         */
-        dependencyNode().let {
-            protobufGroup(it)
-            artifactId(it, "protobuf-gradle-plugin")
-            version(it, Protobuf.GradlePlugin.version)
-            runtimeScope(it)
-        }
-
-        /*
-         * Add the dependency on the Protobuf Java library so that we can add it
-         * from our code. The code in `pom.xml` would look like this:
-         * ```
-         * <dependency>
-         *     <groupId>com.google.protobuf</groupId>
-         *     <artifactId>protobuf-java</artifactId>
-         *     <version>${Protobuf.version}</version>
-         *     <scope>runtime</scope>
-         * </dependency>
-         * ```
-         */
-        dependencyNode().let {
-            protobufGroup(it)
-            artifactId(it, "protobuf-java")
-            version(it, Protobuf.version)
-            runtimeScope(it)
-        }
-
-        /*
-         * Add the dependency on the Protobuf Java Util library because it is
-         * used from the `compiler-params` module. Since we exclude the dependencies
-         * on Protobuf, we need to add the Util library manually.
-         *  The code in `pom.xml` would look like this:
-         * ```
-         * <dependency>
-         *     <groupId>com.google.protobuf</groupId>
-         *     <artifactId>protobuf-java-util</artifactId>
-         *     <version>${Protobuf.version}</version>
-         *     <scope>runtime</scope>
-         * </dependency>
-         * ```
-         */
-        dependencyNode().let {
-            protobufGroup(it)
-            artifactId(it, "protobuf-java-util")
-            version(it, Protobuf.version)
-            runtimeScope(it)
-        }
-
-        /*
-         * Add the dependency on Protobuf Kotlin library so that we can add it
-         * from our code. The code in `pom.xml` would look like this:
-         * ```
-         * <dependency>
-         *     <groupId>com.google.protobuf</groupId>
-         *     <artifactId>protobuf-kotlin</artifactId>
-         *     <version>${Protobuf.version}</version>
-         *     <scope>runtime</scope>
-         * </dependency>
-         * ```
-         */
-        dependencyNode().let {
-            protobufGroup(it)
-            artifactId(it, "protobuf-kotlin")
-            version(it, Protobuf.version)
-            runtimeScope(it)
-        }
-
-        /*
-         * Add the dependency on KSP Gradle Plugin as well.
-         * The expected XML output:
-         * ```
-         * <dependency>
-         *     <groupId>${Ksp.group}</groupId>
-         *     <artifactId>${Ksp.gradlePluginArtifactName}</artifactId>
-         *     <version>${Ksp.version}</version>
-         *     <scope>runtime</scope>
-         * </dependency>
-         * ```
-         */
-        dependencyNode().let {
-            Node(it, "groupId", Ksp.group)
-            artifactId(it, Ksp.gradlePluginArtifactName)
-            version(it, Ksp.version)
-            runtimeScope(it)
-        }
-
-        /*
-         * Add the Jackson libraries used at runtime by the code we bundle.
-         *
-         * Their classes are excluded from the fat JAR — see `pomProvidedModules`
-         * near `tasks.shadowJar` — so that consumers receive genuine artifacts
-         * that they can upgrade without waiting for a new release of
-         * CoreJvm Compiler. SnakeYAML and SnakeYAML Engine are not listed here:
-         * they come transitively, with the `jackson-dataformat-yaml` artifacts.
-         */
-        listOf(
-            // Jackson 3.x, used by our own code.
-            Jackson.core to Jackson.version,
-            Jackson.databind to Jackson.version,
-            Jackson.moduleKotlin to Jackson.version,
-            Jackson.DataFormat.yaml to Jackson.version,
-            Jackson.DataType.guava to Jackson.version,
-
-            // The annotations artifact of the 2.x line, consumed by both lines.
-            Jackson.annotations.substringBeforeLast(':') to Jackson.annotationsVersion,
-
-            // Jackson 2.x, pulled by the third-party code we bundle.
-            JacksonV2.Core.core to JacksonV2.version,
-            JacksonV2.Core.databind to JacksonV2.version,
-            JacksonV2.DataFormat.yaml to JacksonV2.version,
-            JacksonV2.DataType.guava to JacksonV2.version,
-            JacksonV2.DataType.jdk8 to JacksonV2.version,
-            JacksonV2.Module.parameterNames to JacksonV2.version,
-        ).forEach { (module, moduleVersion) ->
-            val (group, name) = module.split(':')
-            dependencyNode().let {
-                Node(it, "groupId", group)
-                artifactId(it, name)
-                version(it, moduleVersion)
-                runtimeScope(it)
-                addExclusions(it)
-            }
-        }
-    }
-}
-
-fun excludeGroup(exclusions: Node, groupId: String) {
-    Node(exclusions, "exclusion").let {
-        Node(it, "groupId", groupId)
-        Node(it, "artifactId", "*")
     }
 }
 
