@@ -150,10 +150,10 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
 
     // The Protobuf Java Util library, used from the `compiler-params` module.
     // Since we exclude the dependencies on Protobuf, we need to add it manually.
-    pomDependency("${Protobuf.group}:protobuf-java-util:${Protobuf.version}"),
+    pomDependency(Protobuf.javaUtil),
 
     // The Protobuf Kotlin library, so that we can add it from our code.
-    pomDependency("${Protobuf.group}:protobuf-kotlin:${Protobuf.version}"),
+    pomDependency(Protobuf.kotlin),
 
     // The KSP Gradle Plugin, through its plugin marker.
     pomDependency(Ksp.gradlePluginMarker()),
