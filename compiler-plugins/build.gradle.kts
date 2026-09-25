@@ -208,6 +208,9 @@ publishing {
             // name predates the rename of this module to `compiler-plugins`.
             artifactId = moduleArtifactId
             artifact(tasks.shadowJar)
+            // The SBOM published next to the JAR has no classifier either. With two such
+            // artifacts, Gradle would declare the `pom` packaging instead of `jar`.
+            pom.packaging = "jar"
             tuneDependencies(pomDependencies)
             sbom {
                 dependencies(fatJarPom)
