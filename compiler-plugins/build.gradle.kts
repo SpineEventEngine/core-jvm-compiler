@@ -168,44 +168,42 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
      * they come transitively, with the `jackson-dataformat-yaml` artifacts.
      */
     // Jackson 3.x, used by our own code.
-    pomDependency("${Jackson.core}:${Jackson.version}", excluding = pomExcludedGroups),
-    pomDependency("${Jackson.databind}:${Jackson.version}", excluding = pomExcludedGroups),
-    pomDependency("${Jackson.moduleKotlin}:${Jackson.version}", excluding = pomExcludedGroups),
+    pomDependency(Jackson.artifact(Jackson.core), excluding = pomExcludedGroups),
+    pomDependency(Jackson.artifact(Jackson.databind), excluding = pomExcludedGroups),
+    pomDependency(Jackson.artifact(Jackson.moduleKotlin), excluding = pomExcludedGroups),
     pomDependency(
-        "${Jackson.DataFormat.yaml}:${Jackson.version}",
+        Jackson.DataFormat.artifact(Jackson.DataFormat.yaml),
         excluding = pomExcludedGroups
     ),
     pomDependency(
-        "${Jackson.DataType.guava}:${Jackson.version}",
+        Jackson.DataType.artifact(Jackson.DataType.guava),
         excluding = pomExcludedGroups
     ),
 
     // The annotations artifact of the 2.x line, consumed by both lines.
-    pomDependency(
-        "${Jackson.annotations.substringBeforeLast(':')}:${Jackson.annotationsVersion}",
-        excluding = pomExcludedGroups
-    ),
+    pomDependency(Jackson.annotations, excluding = pomExcludedGroups),
 
     // Jackson 2.x, pulled by the third-party code we bundle.
-    pomDependency("${JacksonV2.Core.core}:${JacksonV2.version}", excluding = pomExcludedGroups),
+    // `JacksonV2` itself declares no modules; its nested objects do.
+    pomDependency(JacksonV2.Core.artifact(JacksonV2.Core.core), excluding = pomExcludedGroups),
     pomDependency(
-        "${JacksonV2.Core.databind}:${JacksonV2.version}",
+        JacksonV2.Core.artifact(JacksonV2.Core.databind),
         excluding = pomExcludedGroups
     ),
     pomDependency(
-        "${JacksonV2.DataFormat.yaml}:${JacksonV2.version}",
+        JacksonV2.DataFormat.artifact(JacksonV2.DataFormat.yaml),
         excluding = pomExcludedGroups
     ),
     pomDependency(
-        "${JacksonV2.DataType.guava}:${JacksonV2.version}",
+        JacksonV2.DataType.artifact(JacksonV2.DataType.guava),
         excluding = pomExcludedGroups
     ),
     pomDependency(
-        "${JacksonV2.DataType.jdk8}:${JacksonV2.version}",
+        JacksonV2.DataType.artifact(JacksonV2.DataType.jdk8),
         excluding = pomExcludedGroups
     ),
     pomDependency(
-        "${JacksonV2.Module.parameterNames}:${JacksonV2.version}",
+        JacksonV2.Module.artifact(JacksonV2.Module.parameterNames),
         excluding = pomExcludedGroups
     ),
 )
