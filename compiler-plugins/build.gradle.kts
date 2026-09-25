@@ -156,7 +156,7 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
     pomDependency("${Protobuf.group}:protobuf-kotlin:${Protobuf.version}"),
 
     // The KSP Gradle Plugin, through its plugin marker.
-    pomDependency("${Ksp.group}:${Ksp.gradlePluginArtifactName}:${Ksp.version}"),
+    pomDependency(Ksp.gradlePluginMarker()),
 
     /*
      * The Jackson libraries used at runtime by the code we bundle.
@@ -168,44 +168,22 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
      * they come transitively, with the `jackson-dataformat-yaml` artifacts.
      */
     // Jackson 3.x, used by our own code.
-    pomDependency(Jackson.artifact(Jackson.core), excluding = pomExcludedGroups),
-    pomDependency(Jackson.artifact(Jackson.databind), excluding = pomExcludedGroups),
-    pomDependency(Jackson.artifact(Jackson.moduleKotlin), excluding = pomExcludedGroups),
-    pomDependency(
-        Jackson.DataFormat.artifact(Jackson.DataFormat.yaml),
-        excluding = pomExcludedGroups
-    ),
-    pomDependency(
-        Jackson.DataType.artifact(Jackson.DataType.guava),
-        excluding = pomExcludedGroups
-    ),
+    pomDependency(Jackson.core(), excluding = pomExcludedGroups),
+    pomDependency(Jackson.databind(), excluding = pomExcludedGroups),
+    pomDependency(Jackson.moduleKotlin(), excluding = pomExcludedGroups),
+    pomDependency(Jackson.DataFormat.yaml(), excluding = pomExcludedGroups),
+    pomDependency(Jackson.DataType.guava(), excluding = pomExcludedGroups),
 
     // The annotations artifact of the 2.x line, consumed by both lines.
     pomDependency(Jackson.annotations, excluding = pomExcludedGroups),
 
     // Jackson 2.x, pulled by the third-party code we bundle.
-    // `JacksonV2` itself declares no modules; its nested objects do.
-    pomDependency(JacksonV2.Core.artifact(JacksonV2.Core.core), excluding = pomExcludedGroups),
-    pomDependency(
-        JacksonV2.Core.artifact(JacksonV2.Core.databind),
-        excluding = pomExcludedGroups
-    ),
-    pomDependency(
-        JacksonV2.DataFormat.artifact(JacksonV2.DataFormat.yaml),
-        excluding = pomExcludedGroups
-    ),
-    pomDependency(
-        JacksonV2.DataType.artifact(JacksonV2.DataType.guava),
-        excluding = pomExcludedGroups
-    ),
-    pomDependency(
-        JacksonV2.DataType.artifact(JacksonV2.DataType.jdk8),
-        excluding = pomExcludedGroups
-    ),
-    pomDependency(
-        JacksonV2.Module.artifact(JacksonV2.Module.parameterNames),
-        excluding = pomExcludedGroups
-    ),
+    pomDependency(JacksonV2.Core.core(), excluding = pomExcludedGroups),
+    pomDependency(JacksonV2.Core.databind(), excluding = pomExcludedGroups),
+    pomDependency(JacksonV2.DataFormat.yaml(), excluding = pomExcludedGroups),
+    pomDependency(JacksonV2.DataType.guava(), excluding = pomExcludedGroups),
+    pomDependency(JacksonV2.DataType.jdk8(), excluding = pomExcludedGroups),
+    pomDependency(JacksonV2.Module.parameterNames(), excluding = pomExcludedGroups),
 )
 
 /**
