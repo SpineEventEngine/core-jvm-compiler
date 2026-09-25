@@ -70,6 +70,27 @@ val moduleArtifactId: String = "core-jvm-gradle-plugin"
  */
 val pluginDeclaration: String = "coreJvmCompilerPlugins"
 
+/**
+ * The modules whose classes and resources the JAR of this module packs into itself:
+ * `grpc`, `ksp`, and `routing`.
+ *
+ * The configuration drives both `tasks.jar` below and the SBOM published with the JAR,
+ * which describes these modules as bundled. It is not transitive: the JAR packs
+ * the modules alone, and not their dependencies.
+ */
+val bundledModules: Configuration = configurations.create("bundledModules") {
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
+    isTransitive = false
+    requestRuntimeJars()
+}
+
+dependencies {
+    listOf(":grpc", ":ksp", ":routing").forEach {
+        bundledModules(project(it))
+    }
+}
+
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
@@ -84,7 +105,8 @@ artifactMeta {
         Ksp.artifact(Ksp.gradlePlugin),
     )
     excludeConfigurations {
-        containing(*buildToolConfigurations)
+        // The modules packed into the JAR are its content, not its dependencies.
+        containing(*buildToolConfigurations, bundledModules.name)
     }
 }
 
@@ -156,15 +178,15 @@ dependencies {
  * runs inside the Gradle runtime, so it belongs to this JAR and not to
  * the fat JAR assembled by the `compiler-plugins` module. `RoutingPlugin`
  * points KSP at this artifact; see its `mavenCoordinates` property.
+ *
+ * The modules come from [bundledModules], whose resolved JARs carry
+ * the dependencies on the tasks building them.
  */
 tasks.jar {
-    listOf(":grpc", ":ksp", ":routing").forEach { module ->
-        val moduleJar = project(module).tasks.named<Jar>("jar")
-        from(zipTree(moduleJar.flatMap { it.archiveFile })) {
-            exclude("META-INF/MANIFEST.MF")
-            // Every module generates its own copy; this JAR carries its own.
-            exclude("versions.properties")
-        }
+    from(bundledModules.elements.map { jars -> jars.map { zipTree(it) } }) {
+        exclude("META-INF/MANIFEST.MF")
+        // Every module generates its own copy; this JAR carries its own.
+        exclude("versions.properties")
     }
 }
 
@@ -443,6 +465,19 @@ afterEvaluate {
                 }
             }
         }
+    }
+}
+
+/**
+ * Makes this configuration resolve the runtime JARs of the modules it holds,
+ * as `runtimeClasspath` does.
+ */
+fun Configuration.requestRuntimeJars() {
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
     }
 }
 
