@@ -85,12 +85,6 @@ val bundledModules: Configuration = configurations.create("bundledModules") {
     requestRuntimeJars()
 }
 
-dependencies {
-    listOf(":grpc", ":ksp", ":routing").forEach {
-        bundledModules(project(it))
-    }
-}
-
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
@@ -139,6 +133,11 @@ dependencies {
         implementation(project(it)) {
             excludeJetBrainsAnnotations()
         }
+    }
+
+    // The modules whose classes the JAR of this module packs; see `bundledModules`.
+    listOf(":grpc", ":ksp", ":routing").forEach {
+        bundledModules(project(it))
     }
 
     arrayOf(
