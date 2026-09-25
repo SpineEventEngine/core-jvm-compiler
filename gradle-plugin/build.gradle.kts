@@ -63,6 +63,13 @@ LicenseReporter.generateReportIn(project)
  */
 val moduleArtifactId: String = "core-jvm-gradle-plugin"
 
+/**
+ * The name under which the `gradlePlugin` block below declares the CoreJvm Gradle Plugin.
+ *
+ * `java-gradle-plugin` names the plugin marker publication, and its tasks, after it.
+ */
+val pluginDeclaration: String = "coreJvmCompilerPlugins"
+
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
@@ -316,13 +323,13 @@ tasks.test {
     // Lets TestKit fixtures pin `protobuf-java` on their buildscript classpath.
     systemProperty("protobuf.version", Protobuf.version)
 
-    // The POM of the plugin marker, checked by `PluginMarkerPomSpec`. `java-gradle-plugin`
-    // names the marker publication after the plugin declared in `gradlePlugin` below.
-    // Being an input of the tests, the POM makes them rerun whenever the patch in
-    // the `afterEvaluate` block at the end of this file changes it.
-    val markerPom = layout.buildDirectory
-        .file("publications/coreJvmCompilerPluginsPluginMarkerMaven/pom-default.xml")
-    dependsOn("generatePomFileForCoreJvmCompilerPluginsPluginMarkerMavenPublication")
+    // `PluginMarkerPomSpec` checks the POM of the plugin marker. Being an input of the tests,
+    // the POM makes them rerun whenever the patch in the `afterEvaluate` block at the end of
+    // this file changes it.
+    val markerPublication = "${pluginDeclaration}PluginMarkerMaven"
+    val markerPom = layout.buildDirectory.file("publications/$markerPublication/pom-default.xml")
+    val publicationTaskSuffix = markerPublication.replaceFirstChar { it.uppercase() }
+    dependsOn("generatePomFileFor${publicationTaskSuffix}Publication")
     inputs.file(markerPom)
         .withPropertyName("pluginMarkerPom")
         .withPathSensitivity(PathSensitivity.NONE)
@@ -369,7 +376,7 @@ gradlePlugin {
             "jvm"
         )
 
-        create("coreJvmCompilerPlugins") {
+        create(pluginDeclaration) {
             id = "io.spine.core-jvm"
             implementationClass = "io.spine.tools.core.jvm.gradle.plugins.CoreJvmPlugin"
             displayName = "Spine CoreJvm Compiler Plugins"

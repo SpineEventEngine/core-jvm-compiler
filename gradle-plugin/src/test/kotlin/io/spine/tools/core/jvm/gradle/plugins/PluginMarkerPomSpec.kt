@@ -27,6 +27,7 @@
 package io.spine.tools.core.jvm.gradle.plugins
 
 import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.spine.tools.core.jvm.gradle.CoreJvmCompiler
 import java.io.File
@@ -63,6 +64,7 @@ internal class PluginMarkerPomSpec {
                 "System property `$PLUGIN_MARKER_POM_PROPERTY` is not set."
             }
             DocumentBuilderFactory.newInstance()
+                // Without namespace awareness, `localName` is `null`, and nothing matches.
                 .apply { isNamespaceAware = true }
                 .newDocumentBuilder()
                 .parse(File(path))
@@ -79,7 +81,8 @@ internal class PluginMarkerPomSpec {
     @Test
     fun `depend only on the plugin artifact, at runtime`() {
         val plugin = CoreJvmCompiler.gradlePlugin
-        val expected = "${plugin.group}:${plugin.name}:${pom.childText("version")}:runtime"
+        val version = pom.childText("version").shouldNotBeNull()
+        val expected = "${plugin.group}:${plugin.name}:$version:runtime"
         pom.dependencies().map { it.coordinates() } shouldContainExactly listOf(expected)
     }
 }
@@ -92,11 +95,11 @@ private fun Element.dependencies(): List<Element> =
 
 /**
  * Returns the coordinates of this `<dependency>` as `groupId:artifactId:version:scope`,
- * with `null` in place of an element the dependency lacks.
+ * with `null` in place of an element the dependency lacks or repeats.
  */
 private fun Element.coordinates(): String =
     listOf("groupId", "artifactId", "version", "scope")
-        .joinToString(":") { childText(it).toString() }
+        .joinToString(":") { childText(it) ?: "null" }
 
 /**
  * Returns the text of the only child element with the given [name],
