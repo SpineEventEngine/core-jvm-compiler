@@ -41,6 +41,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.isSnapshot
+import io.spine.gradle.publish.sbom
 import io.spine.gradle.report.license.LicenseReporter
 import org.gradle.api.artifacts.component.ModuleComponentIdentifier
 
@@ -85,6 +86,31 @@ val bundledModules: Configuration = configurations.create("bundledModules") {
     requestRuntimeJars()
 }
 
+/**
+ * The dependency on KotlinPoet, which the POM of this module declares.
+ *
+ * The routing KSP processor shipped in this JAR uses KotlinPoet when generating code.
+ * The library comes to the KSP classpath as a genuine artifact rather than being bundled.
+ * The Kotlin runtime is excluded because the Gradle and KSP runtimes provide it.
+ */
+val kotlinPoetKsp: ExternalModuleDependency =
+    (dependencies.create(KotlinPoet.ksp) as ExternalModuleDependency).apply {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+
+/**
+ * The dependencies of the JAR of this module, as its POM declares them:
+ * the fat JAR of the `compiler-plugins` module, and KotlinPoet.
+ *
+ * The SBOM published with the JAR describes the dependency graph of
+ * this configuration, rather than the runtime classpath of this module.
+ */
+val pluginJarPom: Configuration = configurations.create("pluginJarPom") {
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
+    requestRuntimeJars()
+}
+
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
@@ -99,8 +125,9 @@ artifactMeta {
         Ksp.artifact(Ksp.gradlePlugin),
     )
     excludeConfigurations {
-        // The modules packed into the JAR are its content, not its dependencies.
-        containing(*buildToolConfigurations, bundledModules.name)
+        // These describe the published JAR — what it packs, and what its POM
+        // declares — and not what the plugin looks up at runtime.
+        containing(*buildToolConfigurations, bundledModules.name, pluginJarPom.name)
     }
 }
 
@@ -139,6 +166,18 @@ dependencies {
     listOf(":grpc", ":ksp", ":routing").forEach {
         bundledModules(project(it))
     }
+
+    // The dependencies declared by the POM of this module; see `pluginJarPom`.
+    // The fat JAR goes in non-transitively: its own SBOM describes what it bundles
+    // and depends on. Its shadowed variant carries the fat JAR, while the plain
+    // `runtimeElements` of `:compiler-plugins` point at the JAR of its disabled `jar` task.
+    pluginJarPom(project(":compiler-plugins")) {
+        isTransitive = false
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.SHADOWED))
+        }
+    }
+    pluginJarPom(kotlinPoetKsp)
 
     arrayOf(
         gradleApi(),
@@ -189,18 +228,6 @@ tasks.jar {
     }
 }
 
-/**
- * The dependency on KotlinPoet, which the POM of this module declares.
- *
- * The routing KSP processor shipped in this JAR uses KotlinPoet when generating code.
- * The library comes to the KSP classpath as a genuine artifact rather than being bundled.
- * The Kotlin runtime is excluded because the Gradle and KSP runtimes provide it.
- */
-val kotlinPoetKsp: ExternalModuleDependency =
-    (dependencies.create(KotlinPoet.ksp) as ExternalModuleDependency).apply {
-        exclude(group = "org.jetbrains.kotlin")
-    }
-
 publishing {
     publications {
         create("pluginJar", MavenPublication::class) {
@@ -208,6 +235,10 @@ publishing {
             artifactId = moduleArtifactId
             artifact(tasks.jar)
             tuneDependencies()
+            sbom {
+                dependencies(pluginJarPom)
+                bundled(bundledModules)
+            }
         }
     }
 }

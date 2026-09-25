@@ -39,6 +39,7 @@ import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.SpineTaskGroup
+import io.spine.gradle.publish.sbom
 import io.spine.gradle.publish.setup
 import io.spine.gradle.report.license.LicenseReporter
 import java.util.concurrent.ConcurrentHashMap
@@ -209,6 +210,20 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
     ),
 )
 
+/**
+ * The dependencies of the fat JAR, as its POM declares them.
+ *
+ * The SBOM published with the fat JAR describes the dependency graph of
+ * this configuration, rather than the runtime classpath from which `shadowJar`
+ * assembles the JAR.
+ */
+val fatJarPom: Configuration = configurations.create("fatJarPom") {
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
+    requestRuntimeJars()
+}
+fatJarPom.dependencies.addAll(pomDependencies)
+
 publishing {
     publications {
         create("fatJar", MavenPublication::class) {
@@ -218,7 +233,24 @@ publishing {
             artifactId = moduleArtifactId
             artifact(tasks.shadowJar)
             tuneDependencies(pomDependencies)
+            sbom {
+                dependencies(fatJarPom)
+                bundled(tasks.shadowJar)
+            }
         }
+    }
+}
+
+/**
+ * Makes this configuration resolve the runtime JARs of the modules it holds,
+ * as `runtimeClasspath` does.
+ */
+fun Configuration.requestRuntimeJars() {
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
     }
 }
 
@@ -347,7 +379,12 @@ val runtimeProvidedModules: Set<String> = buildSet {
 
 /**
  * Modules excluded from the fat JAR in favor of the `runtime` dependencies
- * declared in `pom.xml`; see `tuneDependencies()` above.
+ * declared in `pom.xml`; see `pomDependencies` above.
+ *
+ * Every module that `pom.xml` declares is excluded by the dependency filter
+ * of `tasks.shadowJar`, and not only by the paths of its entries. The SBOM
+ * published with the fat JAR learns what the JAR bundles from that filter,
+ * so a module which the filter leaves in would be described as bundled.
  *
  * The set is intentionally wider than the list in `pom.xml`. Whole module
  * families are excluded here, while `pom.xml` declares only the artifacts
@@ -364,15 +401,10 @@ val runtimeProvidedModules: Set<String> = buildSet {
  * a new version of CoreJvm Compiler.
  */
 val pomProvidedModules: Set<String> = buildSet {
-    // Jackson 3.x.
-    add(Jackson.core)
-    add(Jackson.databind)
-    add(Jackson.moduleKotlin)
-    add(Jackson.DataFormat.yaml)
-    add(Jackson.DataType.guava)
+    // Every module declared in `pom.xml`.
+    pomDependencies.forEach { add("${it.group}:${it.name}") }
 
-    // Jackson 2.x, with the `jackson-annotations` artifact shared by both lines.
-    add(Jackson.annotations.substringBeforeLast(':'))
+    // Whole Jackson 2.x families.
     addAll(JacksonV2.Core.modules)
     addAll(JacksonV2.DataFormat.modules)
     addAll(JacksonV2.DataType.modules)
