@@ -16,7 +16,7 @@
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import io.spine.gradle.publish.IncrementGuard
-import io.spine.gradle.publish.SpinePublishing
+import io.spine.gradle.publish.sbom
 import io.spine.gradle.publish.setup
 import io.spine.gradle.publish.spinePublishing
 import io.spine.gradle.report.license.LicenseReporter
@@ -37,7 +37,6 @@ spinePublishing {
     // to the `io.spine.tools` group, and therefore `toolArtifactPrefix` applies instead.
     artifactPrefix = ""
     toolArtifactPrefix = "NONE"
-    destinations = rootProject.the<SpinePublishing>().destinations
     customPublishing = true
 }
 
@@ -54,6 +53,7 @@ publishing {
             artifactId = projectArtifact
             version = versionName
             artifact(tasks.shadowJar)
+            sbom { bundled(tasks.shadowJar) }
         }
     }
 }

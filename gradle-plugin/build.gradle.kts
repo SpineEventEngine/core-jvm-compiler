@@ -41,6 +41,7 @@ import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
 import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.isSnapshot
+import io.spine.gradle.publish.sbom
 import io.spine.gradle.report.license.LicenseReporter
 import org.gradle.api.artifacts.component.ModuleComponentIdentifier
 
@@ -63,6 +64,53 @@ LicenseReporter.generateReportIn(project)
  */
 val moduleArtifactId: String = "core-jvm-gradle-plugin"
 
+/**
+ * The name under which the `gradlePlugin` block below declares the CoreJvm Gradle Plugin.
+ *
+ * `java-gradle-plugin` names the plugin marker publication, and its tasks, after it.
+ */
+val pluginDeclaration: String = "coreJvmCompilerPlugins"
+
+/**
+ * The modules whose classes and resources the JAR of this module packs into itself:
+ * `grpc`, `ksp`, and `routing`.
+ *
+ * The configuration drives both `tasks.jar` below and the SBOM published with the JAR,
+ * which describes these modules as bundled. It is not transitive: the JAR packs
+ * the modules alone, and not their dependencies.
+ */
+val bundledModules: Configuration = configurations.create("bundledModules") {
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
+    isTransitive = false
+    requestRuntimeJars()
+}
+
+/**
+ * The dependency on KotlinPoet, which the POM of this module declares.
+ *
+ * The routing KSP processor shipped in this JAR uses KotlinPoet when generating code.
+ * The library comes to the KSP classpath as a genuine artifact rather than being bundled.
+ * The Kotlin runtime is excluded because the Gradle and KSP runtimes provide it.
+ */
+val kotlinPoetKsp: ExternalModuleDependency =
+    (dependencies.create(KotlinPoet.ksp) as ExternalModuleDependency).apply {
+        exclude(group = "org.jetbrains.kotlin")
+    }
+
+/**
+ * The dependencies of the JAR of this module, as its POM declares them:
+ * the fat JAR of the `compiler-plugins` module, and KotlinPoet.
+ *
+ * The SBOM published with the JAR describes the dependency graph of
+ * this configuration, rather than the runtime classpath of this module.
+ */
+val pluginJarPom: Configuration = configurations.create("pluginJarPom") {
+    // The configuration is resolve-only; the legacy `create` defaults to consumable.
+    isCanBeConsumed = false
+    requestRuntimeJars()
+}
+
 artifactMeta {
     artifactId.set(moduleArtifactId)
     addDependencies(
@@ -77,7 +125,9 @@ artifactMeta {
         Ksp.artifact(Ksp.gradlePlugin),
     )
     excludeConfigurations {
-        containing(*buildToolConfigurations)
+        // These describe the published JAR — what it packs, and what its POM
+        // declares — and not what the plugin looks up at runtime.
+        containing(*buildToolConfigurations, bundledModules.name, pluginJarPom.name)
     }
 }
 
@@ -111,6 +161,23 @@ dependencies {
             excludeJetBrainsAnnotations()
         }
     }
+
+    // The modules whose classes the JAR of this module packs; see `bundledModules`.
+    listOf(":grpc", ":ksp", ":routing").forEach {
+        bundledModules(project(it))
+    }
+
+    // The dependencies declared by the POM of this module; see `pluginJarPom`.
+    // The fat JAR goes in non-transitively: its own SBOM describes what it bundles
+    // and depends on. Its shadowed variant carries the fat JAR, while the plain
+    // `runtimeElements` of `:compiler-plugins` point at the JAR of its disabled `jar` task.
+    pluginJarPom(project(":compiler-plugins")) {
+        isTransitive = false
+        attributes {
+            attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.SHADOWED))
+        }
+    }
+    pluginJarPom(kotlinPoetKsp)
 
     arrayOf(
         gradleApi(),
@@ -149,15 +216,15 @@ dependencies {
  * runs inside the Gradle runtime, so it belongs to this JAR and not to
  * the fat JAR assembled by the `compiler-plugins` module. `RoutingPlugin`
  * points KSP at this artifact; see its `mavenCoordinates` property.
+ *
+ * The modules come from [bundledModules], whose resolved JARs carry
+ * the dependencies on the tasks building them.
  */
 tasks.jar {
-    listOf(":grpc", ":ksp", ":routing").forEach { module ->
-        val moduleJar = project(module).tasks.named<Jar>("jar")
-        from(zipTree(moduleJar.flatMap { it.archiveFile })) {
-            exclude("META-INF/MANIFEST.MF")
-            // Every module generates its own copy; this JAR carries its own.
-            exclude("versions.properties")
-        }
+    from(bundledModules.elements.map { jars -> jars.map { zipTree(it) } }) {
+        exclude("META-INF/MANIFEST.MF")
+        // Every module generates its own copy; this JAR carries its own.
+        exclude("versions.properties")
     }
 }
 
@@ -167,7 +234,14 @@ publishing {
             // `groupId` and `version` are filled in by `CustomPublicationHandler`.
             artifactId = moduleArtifactId
             artifact(tasks.jar)
+            // The SBOM published next to the JAR has no classifier either. With two such
+            // artifacts, Gradle would declare the `pom` packaging instead of `jar`.
+            pom.packaging = "jar"
             tuneDependencies()
+            sbom {
+                dependencies(pluginJarPom)
+                bundled(bundledModules)
+            }
         }
     }
 }
@@ -195,9 +269,11 @@ publishing {
  * ```
  */
 private fun MavenPublication.tuneDependencies() {
-    // Capture the value during the configuration phase: the `withXml` action
+    // Capture the values during the configuration phase: the `withXml` action
     // runs when the POM is generated, and must not reach out to `project`.
     val fatJarVersion = project.version.toString()
+    val kotlinPoet = listOf(kotlinPoetKsp.group, kotlinPoetKsp.name, kotlinPoetKsp.version)
+    val kotlinPoetExclusions = kotlinPoetKsp.excludeRules.map { it.group to (it.module ?: "*") }
     pom.withXml {
         val projectNode = asNode()
         val dependencies = Node(projectNode, "dependencies")
@@ -208,22 +284,19 @@ private fun MavenPublication.tuneDependencies() {
             Node(it, "scope", "runtime")
         }
 
-        /*
-         * The routing KSP processor shipped in this JAR uses KotlinPoet
-         * when generating code. The library comes to the KSP classpath as
-         * a genuine artifact rather than being bundled. The Kotlin runtime
-         * is excluded because the Gradle and KSP runtimes provide it.
-         */
+        // KotlinPoet, as declared by `kotlinPoetKsp`.
         Node(dependencies, "dependency").let {
-            val (group, name, version) = KotlinPoet.ksp.split(':')
+            val (group, name, version) = kotlinPoet
             Node(it, "groupId", group)
             Node(it, "artifactId", name)
             Node(it, "version", version)
             Node(it, "scope", "runtime")
             Node(it, "exclusions").let { exclusions ->
-                Node(exclusions, "exclusion").let { exclusion ->
-                    Node(exclusion, "groupId", "org.jetbrains.kotlin")
-                    Node(exclusion, "artifactId", "*")
+                kotlinPoetExclusions.forEach { (excludedGroup, excludedModule) ->
+                    Node(exclusions, "exclusion").let { exclusion ->
+                        Node(exclusion, "groupId", excludedGroup)
+                        Node(exclusion, "artifactId", excludedModule)
+                    }
                 }
             }
         }
@@ -315,6 +388,19 @@ tasks.test {
     systemProperty("stub.repository", layout.buildDirectory.dir("stub-repo").get().asFile.path)
     // Lets TestKit fixtures pin `protobuf-java` on their buildscript classpath.
     systemProperty("protobuf.version", Protobuf.version)
+
+    // `PluginMarkerPomSpec` checks the POM of the plugin marker. Being an input of the tests,
+    // the POM makes them rerun whenever the patch in the `afterEvaluate` block at the end of
+    // this file changes it.
+    val markerPublication = "${pluginDeclaration}PluginMarkerMaven"
+    val markerPom = layout.buildDirectory.file("publications/$markerPublication/pom-default.xml")
+    val publicationTaskSuffix = markerPublication.replaceFirstChar { it.uppercase() }
+    dependsOn("generatePomFileFor${publicationTaskSuffix}Publication")
+    inputs.file(markerPom)
+        .withPropertyName("pluginMarkerPom")
+        .withPathSensitivity(PathSensitivity.NONE)
+    // The property name is defined by `PLUGIN_MARKER_POM_PROPERTY` in `PluginMarkerPomSpec`.
+    systemProperty("plugin.marker.pom", markerPom.get().asFile.path)
 }
 
 /**
@@ -356,7 +442,7 @@ gradlePlugin {
             "jvm"
         )
 
-        create("coreJvmCompilerPlugins") {
+        create(pluginDeclaration) {
             id = "io.spine.core-jvm"
             implementationClass = "io.spine.tools.core.jvm.gradle.plugins.CoreJvmPlugin"
             displayName = "Spine CoreJvm Compiler Plugins"
@@ -368,19 +454,22 @@ gradlePlugin {
 
 /**
  * Removes the `pluginMaven` publication auto-created by `java-gradle-plugin` (applied
- * transitively via `plugin-publish`) with the wrong `artifactId` equal to the project
- * name `"gradle-plugin"`, and fixes the `PluginMarkerMaven` POM so that it refers only
- * to the `core-jvm-gradle-plugin` artifact.
+ * transitively via `plugin-publish`), and fixes the `PluginMarkerMaven` POM so that it
+ * refers only to the `core-jvm-gradle-plugin` artifact.
  *
  * Root cause: `java-gradle-plugin` registers its own `afterEvaluate` callback that
  * creates a `pluginMaven` publication using `project.name` as the `artifactId`.
- * Calling `publications.clear()` during the configuration phase cannot prevent a publication
+ * Left alone, both `pluginJar` and `pluginMaven` would be published. Calling
+ * `publications.clear()` during the configuration phase cannot prevent a publication
  * added by a later `afterEvaluate`, which is why that approach was abandoned in favour of
  * the `removeIf` call below.
- * As a result, both `pluginJar` (`core-jvm-gradle-plugin`) and `pluginMaven`
- * (`gradle-plugin`) end up being published.  The same `afterEvaluate` also injects
- * a dependency on `gradle-plugin` into the marker POM, which must be replaced with
- * `core-jvm-gradle-plugin`.
+ *
+ * The same `afterEvaluate` also injects into the marker POM a dependency whose coordinates
+ * are copied from `pluginMaven` when the POM is generated. By then, `spinePublishing` has
+ * changed the `artifactId` of `pluginMaven`. So, instead of looking for that dependency by
+ * its `artifactId`, the patch below replaces all the dependencies of the marker with
+ * a single `runtime` dependency on `core-jvm-gradle-plugin`. `PluginMarkerPomSpec` checks
+ * the resulting POM.
  */
 afterEvaluate {
     val pluginPublication = "pluginMaven"
@@ -404,16 +493,10 @@ afterEvaluate {
             if (name.endsWith("PluginMarkerMaven")) {
                 pom.withXml {
                     val dependencies = dependenciesNode()
-                    // Remove the dependency on `gradle-plugin` auto-generated
-                    // by `java-gradle-plugin`.
-                    val thisModuleName = "gradle-plugin"
-                    (dependencies.children() as NodeList)
+                    // Remove all dependencies, including the one auto-generated by
+                    // `java-gradle-plugin`, whatever its `artifactId`.
+                    dependencies.children()
                         .filterIsInstance<Node>()
-                        .filter { node ->
-                            (node.get("artifactId") as? NodeList)
-                                ?.filterIsInstance<Node>()
-                                ?.any { it.text() == thisModuleName } == true
-                        }
                         .forEach { dependencies.remove(it) }
                     // Add the correct dependency on the plugin artifact.
                     val dependency = Node(dependencies, "dependency")
@@ -426,6 +509,19 @@ afterEvaluate {
                 }
             }
         }
+    }
+}
+
+/**
+ * Makes this configuration resolve the runtime JARs of the modules it holds,
+ * as `runtimeClasspath` does.
+ */
+fun Configuration.requestRuntimeJars() {
+    attributes {
+        attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage.JAVA_RUNTIME))
+        attribute(Category.CATEGORY_ATTRIBUTE, objects.named(Category.LIBRARY))
+        attribute(Bundling.BUNDLING_ATTRIBUTE, objects.named(Bundling.EXTERNAL))
+        attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named(LibraryElements.JAR))
     }
 }
 

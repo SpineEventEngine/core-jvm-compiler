@@ -50,6 +50,26 @@ internal val Project.publications: PublicationContainer
     get() = publishingExtension.publications
 
 /**
+ * Returns the Maven publications of this project, or an empty collection if
+ * the project does not publish.
+ */
+internal fun Project.mavenPublications(): Collection<MavenPublication> {
+    val publishing = extensions.findByType(PublishingExtension::class.java)
+        ?: return emptyList()
+    return publishing.publications.withType(MavenPublication::class.java)
+}
+
+/**
+ * Tells whether this publication is the marker of a Gradle plugin, which consists
+ * of a POM pointing at the publication of the plugin.
+ *
+ * Gradle's `java-gradle-plugin` creates a marker for each declared plugin, naming
+ * the publication after the plugin with the `PluginMarkerMaven` suffix.
+ */
+internal val MavenPublication.isPluginMarker: Boolean
+    get() = name.endsWith("PluginMarkerMaven")
+
+/**
  * Obtains an instance, if available, of [SpinePublishing] extension
  * applied to this project.
  */
