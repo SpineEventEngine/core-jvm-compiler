@@ -1,34 +1,21 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 @file:Suppress("TooManyFunctions")
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import com.google.common.collect.ImmutableList
 import io.spine.annotation.Internal
 import io.spine.base.MessageFile
 import io.spine.tools.compiler.ast.FilePattern
@@ -43,11 +30,9 @@ import io.spine.tools.core.jvm.settings.groupSettings
 import io.spine.tools.core.jvm.settings.pattern
 import io.spine.tools.core.jvm.settings.signalSettings
 import io.spine.tools.core.jvm.settings.typePattern
-import io.spine.tools.java.code.Classpath
 import io.spine.tools.proto.code.protoTypeName
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.tasks.compile.JavaCompile
 
 /**
  * A part of [CoreJvmOptions][io.spine.tools.core.jvm.gradle.CoreJvmOptions] responsible
@@ -198,27 +183,12 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
         val gs = groupSettings {
             group.addAll(messageGroups)
         }
-        val cp = buildClasspath()
-
         return combined {
             signalSettings = ss
             groupSettings = gs
             entities = self.entities.toProto()
             uuids = self.uuids.toProto()
             comparables = self.comparables.toProto()
-            classpath = cp
         }
-    }
-
-    private fun buildClasspath(): Classpath {
-        val classpath = Classpath.newBuilder()
-        val javaCompileViews = project.tasks.withType(JavaCompile::class.java)
-        ImmutableList.copyOf(javaCompileViews)
-            .map { it.classpath }
-            .map { it.files }
-            .flatten()
-            .map { it.absolutePath }
-            .forEach { classpath.addItem(it) }
-        return classpath.build()
     }
 }
