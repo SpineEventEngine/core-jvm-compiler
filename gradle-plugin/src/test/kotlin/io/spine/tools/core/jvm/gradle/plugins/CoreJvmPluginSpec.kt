@@ -14,6 +14,7 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
@@ -26,6 +27,7 @@ import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.gradle.GradleProjects.evaluate
 import io.spine.tools.core.jvm.gradle.given.StubProject
 import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_PLUGINS_SETTINGS
 import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.API_ANNOTATIONS
 import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.COMPARABLE
 import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.ENTITY
@@ -40,9 +42,14 @@ import io.spine.tools.core.jvm.settings.SignalSettings
 import io.spine.tools.core.jvm.settings.Uuids
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.gradle.lib.spineExtension
+import io.spine.tools.gradle.task.JavaTaskName.Companion.processResources
+import io.spine.tools.gradle.task.JavaTaskName.Companion.sourcesJar
 import io.spine.tools.gradle.testing.GradleProject
 import java.io.File
 import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
@@ -71,6 +78,10 @@ internal class CoreJvmPluginSpec {
             plugins.apply(CoreJvmPlugin::class.java)
 
             evaluate(project)
+
+            // Register `sourcesJar` only after the evaluation, when the plugin has
+            // already configured the Compiler, as a plugin applied later would do.
+            project.extensions.getByType<JavaPluginExtension>().withSourcesJar()
 
             compilerSettings = project.spineExtension<CompilerSettings>() as Extension
         }
@@ -119,4 +130,29 @@ internal class CoreJvmPluginSpec {
         task shouldNotBe null
         task.shouldNotBeEmpty()
     }
+
+    @Test
+    fun `make the Compiler launch tasks depend on writing the settings`() {
+        val tasks = project.tasks.withType<LaunchSpineCompiler>()
+        tasks.shouldNotBeEmpty()
+        tasks.forEach { task ->
+            val dependencies = task.taskDependencies.getDependencies(task).map { it.name }
+            dependencies shouldContain WRITE_COMPILER_PLUGINS_SETTINGS
+        }
+    }
+
+    @Test
+    fun `make processResources run after writing the settings`() {
+        val task = project.tasks.getByName(processResources.value())
+        task.mustRunAfterNames() shouldContain WRITE_COMPILER_PLUGINS_SETTINGS
+    }
+
+    @Test
+    fun `make sourcesJar run after writing the settings, even if registered later`() {
+        val task = project.tasks.getByName(sourcesJar.value())
+        task.mustRunAfterNames() shouldContain WRITE_COMPILER_PLUGINS_SETTINGS
+    }
 }
+
+private fun Task.mustRunAfterNames(): List<String> =
+    mustRunAfter.getDependencies(this).map { it.name }

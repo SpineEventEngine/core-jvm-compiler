@@ -99,18 +99,21 @@ internal class CompilerConfigPlugin : Plugin<Project> {
 private fun Project.configureCompiler() {
     configureCompilerPlugins()
     val writeSettingsTask = createWriteSettingsTask()
-    tasks.withType<LaunchSpineCompiler>().all { task ->
+    tasks.withType<LaunchSpineCompiler>().configureEach { task ->
         task.apply {
             dependsOn(writeSettingsTask)
             standardOutput = System.out
             errorOutput = System.err
         }
     }
-    // Make `processResources` and `sourceJar` depend on `writeSpineCompilerPluginsSettings`
+    // Make `processResources` and `sourcesJar` run after `writeSpineCompilerPluginsSettings`
     // as demanded by Gradle 9.x. The settings task does not produce resources or sources,
     // but we want to avoid forcing users set the dependencies manually in their projects.
-    tasks.findByName(processResources.value())?.mustRunAfter(writeSettingsTask)
-    tasks.findByName(sourcesJar.value())?.mustRunAfter(writeSettingsTask)
+    // Filtering by name does not realize the tasks, and skips those absent in the project.
+    val runAfterSettings = setOf(processResources.value(), sourcesJar.value())
+    tasks.named { it in runAfterSettings }.configureEach {
+        it.mustRunAfter(writeSettingsTask)
+    }
 }
 
 private fun Project.createWriteSettingsTask(): Provider<WriteCompilerPluginsSettings> {
@@ -165,7 +168,10 @@ private fun Project.configureCompilerPlugins() {
 }
 
 private val Project.messageOptions: CoreJvmCompilerSettings
-    get() = coreJvmOptions.compiler!!
+    get() = checkNotNull(coreJvmOptions.compiler) {
+        "The `compiler` options are not set." +
+                " `CoreJvmPlugin` must call `CoreJvmOptions.injectProject()` first."
+    }
 
 private fun CompilerSettings.setSubdirectories() {
     subDirs = listOf(
