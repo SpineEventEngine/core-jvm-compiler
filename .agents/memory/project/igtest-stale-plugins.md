@@ -32,7 +32,15 @@ jar `.070` while the tree was at `.072`. Diagnose by reading
 `typedefs/build/spine/compiler/parameters/main.pb.json` in the nested
 project — `userClasspath` names the fat jar actually used.
 
+A fourth layer: parallel branches (e.g. sibling worktrees) off the same base
+bump to the *same* version, and each `build` re-publishes it to Maven Local
+(`test` depends on `localPublish`), so one branch's IgTests can run the
+other's plugin. Seen on 2026-10-08 with two `.096` branches.
+
 **How to apply:** when an IgTest contradicts the in-JVM suites, check the
 `userClasspath` version first; clear the three layers above before
-trusting the result. Root fix tracked for tool-base (`WriteArtifactMeta`
-inputs). Related: [[prototap-build-cache]].
+trusting the result. With a sibling branch at the same version, compare
+`shasum` of `gradle-plugin/build/libs/gradle-plugin-<ver>.jar` with the
+`~/.m2/.../core-jvm-gradle-plugin-<ver>.jar` copy after the run. Root fix
+tracked for tool-base (`WriteArtifactMeta` inputs).
+Related: [[prototap-build-cache]].
