@@ -1,0 +1,10 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle////PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/index.html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle/GrpcCoreJvmPlugin///PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/-grpc-core-jvm-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle/GrpcCoreJvmPlugin/GrpcCoreJvmPlugin/#/PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/-grpc-core-jvm-plugin/-grpc-core-jvm-plugin.html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle/GrpcCoreJvmPlugin/apply/#org.gradle.api.Project/PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/-grpc-core-jvm-plugin/apply.html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle/GrpcSettings///PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/-grpc-settings/index.html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle/GrpcSettings/GrpcSettings/#org.gradle.api.Project/PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/-grpc-settings/-grpc-settings.html
+$dokka.location:io.spine.tools.core.jvm.grpc.gradle/GrpcSettings/enabled/#/PointingToDeclaration/grpc/io.spine.tools.core.jvm.grpc.gradle/-grpc-settings/enabled.html
+io.spine.tools.core.jvm.grpc.gradle
