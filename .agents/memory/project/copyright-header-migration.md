@@ -32,5 +32,10 @@ otherwise flag it or try to restore the old header. It is intentional and staged
   repos; that stays correct — those headers are owned by `config`.
 - A repo mid-rollout can legitimately show both styles: config-distributed files
   on the new header, repo-owned sources still on the old one.
+- `core-jvm-compiler` switched its default profile
+  (`.idea/copyright/profiles_settings.xml`) to `CodeMatters Open-Source` on
+  2026-10-08, at the maintainer's request. Files changed since then carry the new
+  header; untouched files keep the old one until a sweep. `migrate` preserves
+  this file, so `./config/pull` does not revert it.
 
 Related: [[config-owned-buildsrc-reverts]].
