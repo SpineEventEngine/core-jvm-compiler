@@ -70,10 +70,14 @@ public abstract class WriteCompilerPluginsSettings : DefaultTask() {
     @get:OutputDirectory
     public abstract val settingsDir: DirectoryProperty
 
+    /**
+     * The options of the CoreJvm Compiler obtained when the task is created.
+     *
+     * The task action must not access `Task.project`, which Gradle deprecates
+     * at execution time.
+     */
     @get:Internal
-    internal val options: CoreJvmOptions by lazy {
-        project.coreJvmOptions
-    }
+    internal val options: CoreJvmOptions = project.coreJvmOptions
 
     @get:Internal
     internal val compilerSettings by lazy {
@@ -112,7 +116,7 @@ public abstract class WriteCompilerPluginsSettings : DefaultTask() {
  * points to the directory specified by the [WriteCompilerPluginsSettings.settingsDir] property.
  */
 private fun WriteCompilerPluginsSettings.settingsDirectory(): SettingsDirectory {
-    val dir = project.file(settingsDir)
+    val dir = settingsDir.get().asFile
     dir.mkdirs()
     val settings = SettingsDirectory(dir.toPath())
     return settings
