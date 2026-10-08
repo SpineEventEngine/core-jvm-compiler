@@ -1,0 +1,28 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle////PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/index.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle//kspTasks/org.gradle.api.Project#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/ksp-tasks.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/CommonKspSettingsPlugin///PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-common-ksp-settings-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/CommonKspSettingsPlugin/CommonKspSettingsPlugin/#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-common-ksp-settings-plugin/-common-ksp-settings-plugin.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/CommonKspSettingsPlugin/apply/#org.gradle.api.Project/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-common-ksp-settings-plugin/apply.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspBasedPlugin.Companion///PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-based-plugin/-companion/index.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspBasedPlugin///PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-based-plugin/index.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspBasedPlugin/KspBasedPlugin/#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-based-plugin/-ksp-based-plugin.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspBasedPlugin/apply/#org.gradle.api.Project/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-based-plugin/apply.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspBasedPlugin/mavenCoordinates/#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-based-plugin/maven-coordinates.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspTaskName///PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-task-name/index.html
+$dokka.location:io.spine.tools.core.jvm.ksp.gradle/KspTaskName/KspTaskName/#io.spine.tools.code.SourceSetName/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.gradle/-ksp-task-name/-ksp-task-name.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor////PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/index.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//diagRef/com.google.devtools.ksp.symbol.KSClassDeclaration#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/diag-ref.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//diagRef/com.google.devtools.ksp.symbol.KSFunctionDeclaration#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/diag-ref.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//isInterface/com.google.devtools.ksp.symbol.KSType#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/is-interface.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//isSame/com.google.devtools.ksp.symbol.KSType#com.google.devtools.ksp.symbol.KSType/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/is-same.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//msg/com.google.devtools.ksp.symbol.KSFunctionDeclaration#kotlin.String#kotlin.String/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/msg.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//qualifiedRef/com.google.devtools.ksp.symbol.KSType#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/qualified-ref.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//ref/com.google.devtools.ksp.symbol.KSType#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/ref.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//shortName/com.google.devtools.ksp.symbol.KSFunctionDeclaration#/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/short-name.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//toType/java.lang.Class[*]#com.google.devtools.ksp.processing.Resolver/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/to-type.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//toType/kotlin.reflect.KClass[*]#com.google.devtools.ksp.processing.Resolver/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/to-type.html
+$dokka.location:io.spine.tools.core.jvm.ksp.processor//toTypeArgument/com.google.devtools.ksp.symbol.KSType#com.google.devtools.ksp.processing.Resolver#com.google.devtools.ksp.symbol.Variance/PointingToDeclaration/ksp/io.spine.tools.core.jvm.ksp.processor/to-type-argument.html
+io.spine.tools.core.jvm.ksp.gradle
+io.spine.tools.core.jvm.ksp.processor
