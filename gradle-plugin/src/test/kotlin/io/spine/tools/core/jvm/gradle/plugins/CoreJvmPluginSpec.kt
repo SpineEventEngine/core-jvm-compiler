@@ -28,14 +28,28 @@ package io.spine.tools.core.jvm.gradle.plugins
 
 import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.collections.shouldNotBeEmpty
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
 import io.spine.tools.compiler.gradle.api.CompilerSettings
 import io.spine.tools.compiler.gradle.plugin.Extension
 import io.spine.tools.compiler.gradle.plugin.LaunchSpineCompiler
+import io.spine.tools.compiler.jvm.style.JavaCodeStyle
 import io.spine.tools.core.annotation.ApiAnnotationsPlugin
 import io.spine.tools.core.jvm.gradle.GradleProjects.evaluate
 import io.spine.tools.core.jvm.gradle.given.StubProject
 import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.VALIDATION_PLUGIN_CLASS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.API_ANNOTATIONS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.COMPARABLE
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.ENTITY
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.MESSAGE_GROUP
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.SIGNAL
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.UUID
+import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.JAVA_CODE_STYLE_ID
+import io.spine.tools.core.jvm.settings.Comparables
+import io.spine.tools.core.jvm.settings.Entities
+import io.spine.tools.core.jvm.settings.GroupSettings
+import io.spine.tools.core.jvm.settings.SignalSettings
+import io.spine.tools.core.jvm.settings.Uuids
 import io.spine.tools.core.jvm.signal.rejection.RThrowablePlugin
 import io.spine.tools.gradle.lib.spineExtension
 import io.spine.tools.gradle.testing.GradleProject
@@ -46,6 +60,7 @@ import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
+import io.spine.tools.core.jvm.annotation.Settings as AnnotationPluginSettings
 
 @DisplayName("`CoreJvmPlugin` should")
 internal class CoreJvmPluginSpec {
@@ -93,6 +108,21 @@ internal class CoreJvmPluginSpec {
         val task = project.tasks.withType<WriteCompilerPluginsSettings>()
         task shouldNotBe null
         task.shouldNotBeEmpty()
+    }
+
+    @Test
+    fun `pass the settings of each Compiler plugin to the task as its input`() {
+        val task = project.tasks.withType<WriteCompilerPluginsSettings>().single()
+        val settingsTypes = task.settings.get().mapValues { (_, settings) -> settings::class }
+        settingsTypes shouldBe mapOf(
+            API_ANNOTATIONS to AnnotationPluginSettings::class,
+            ENTITY to Entities::class,
+            SIGNAL to SignalSettings::class,
+            MESSAGE_GROUP to GroupSettings::class,
+            UUID to Uuids::class,
+            COMPARABLE to Comparables::class,
+            JAVA_CODE_STYLE_ID to JavaCodeStyle::class
+        )
     }
 
     @Test

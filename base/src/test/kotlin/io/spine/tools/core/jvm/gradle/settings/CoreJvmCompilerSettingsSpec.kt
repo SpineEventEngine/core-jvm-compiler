@@ -34,6 +34,8 @@ import io.kotest.matchers.shouldBe
 import io.spine.tools.compiler.ast.FilePatternFactory
 import io.spine.tools.core.jvm.gradle.given.newProject
 import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.plugins.JavaPlugin.COMPILE_CLASSPATH_CONFIGURATION_NAME
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -152,6 +154,14 @@ internal class CoreJvmCompilerSettingsSpec {
         proto.groupSettings.groupList shouldHaveSize 1
         proto.entities.actions.actionMap shouldContainKey
                 "io.spine.tools.core.jvm.entity.ImplementEntityState"
+    }
+
+    @Test
+    fun `convert itself to Protobuf without resolving the compilation classpath`() {
+        settings.toProto()
+
+        val classpath = project.configurations.getByName(COMPILE_CLASSPATH_CONFIGURATION_NAME)
+        classpath.state shouldBe Configuration.State.UNRESOLVED
     }
 
     private companion object {

@@ -68,8 +68,8 @@ message Combined {
     // The configuration related to UUID messages.
     Uuids uuids = 7;
 
-    // The classpath used to lookup types by their fully-qualified names.
-    tools.java.Classpath classpath = 8;
+    // Deprecated: the field is no longer populated, as no CoreJvm Compiler plugin reads it.
+    tools.java.Classpath classpath = 8 [deprecated = true];
 
     // The code generation settings for comparable messages.
     Comparables comparables = 11;

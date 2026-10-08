@@ -126,14 +126,18 @@ private fun Project.configureCompiler() {
 }
 
 private fun Project.createWriteSettingsTask(): Provider<WriteCompilerPluginsSettings> {
+    // Gradle evaluates the provider lazily, when it needs the task inputs.
+    // The configuration cache stores the resulting value rather than the lambda,
+    // which captures the `options`.
+    val options = coreJvmOptions
+    val pluginSettings = provider { options.compilerPluginSettings() }
     val result = tasks.register<WriteCompilerPluginsSettings>(WRITE_COMPILER_PLUGINS_SETTINGS) {
         group = SpineTaskGroup.name
         description = "Writes settings for Spine Compiler plugins of this project"
 
         val workingDir = WorkingDirectory(compilerWorkingDir.asFile.toPath())
-        val settingsDir = workingDir.settingsDirectory.path.toFile()
-        val settingsDirProvider = project.layout.dir(provider { settingsDir })
-        this.settingsDir.set(settingsDirProvider)
+        settingsDir.set(workingDir.settingsDirectory.path.toFile())
+        settings.set(pluginSettings)
     }
     return result
 }

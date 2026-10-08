@@ -26,9 +26,19 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
+import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.string.shouldContain
 import io.spine.tools.core.jvm.gradle.Compiler
 import io.spine.tools.core.jvm.gradle.module.ArtifactRegistry
+import io.spine.tools.core.jvm.gradle.plugins.CompilerConfigPlugin.Companion.WRITE_COMPILER_PLUGINS_SETTINGS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.API_ANNOTATIONS
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.COMPARABLE
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.ENTITY
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.MESSAGE_GROUP
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.SIGNAL
+import io.spine.tools.core.jvm.gradle.plugins.CoreJvmCompilerPlugins.UUID
+import io.spine.tools.core.jvm.gradle.plugins.WriteCompilerPluginsSettings.Companion.JAVA_CODE_STYLE_ID
 import io.spine.tools.gradle.task.BaseTaskName
 import io.spine.tools.gradle.task.TaskName
 import io.spine.tools.gradle.testing.GradleProject
@@ -99,6 +109,59 @@ internal class CoreJvmPluginIgTest {
             |        classpath("${Compiler.pluginLib.artifact.coordinates}")
             |    }
             |}
+            |""".trimMargin()
+
+        /**
+         * The extension of the settings files in the Protobuf JSON format.
+         */
+        private const val JSON = "pb.json"
+
+        /**
+         * The names of the settings files written for the Compiler plugins.
+         */
+        private val settingsFiles = listOf(
+            API_ANNOTATIONS,
+            ENTITY,
+            SIGNAL,
+            MESSAGE_GROUP,
+            UUID,
+            COMPARABLE,
+            JAVA_CODE_STYLE_ID
+        ).map { "$it.$JSON" }
+
+        private const val INTERNAL_METHOD_NAME = "internalForIgTest"
+
+        /**
+         * The build script code which adds [INTERNAL_METHOD_NAME] to the options of
+         * the CoreJvm Gradle Plugin.
+         *
+         * The options are nested under the `spine` extension, so the code obtains them by type.
+         */
+        @Language("kotlin")
+        private val addingInternalMethodName = """
+            |
+            |val spine = extensions.getByName("spine") as ExtensionAware
+            |spine.extensions.getByType<io.spine.tools.core.jvm.gradle.CoreJvmOptions>()
+            |    .annotation.internalMethodNames.add("$INTERNAL_METHOD_NAME")
+            |""".trimMargin()
+
+        /**
+         * The build file of a project that applies the CoreJvm Gradle Plugin by its ID.
+         */
+        @Language("kotlin")
+        private val buildFileApplyingPluginById = buildscriptWithShortClasspath + """
+            |plugins {
+            |    java
+            |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
+            |    id("${ProtobufGradlePlugin.id}") version "${ProtobufGradlePlugin.version}"
+            |    id("${KspGradlePlugin.id}") version "${KspGradlePlugin.version}"
+            |    id("io.spine.core-jvm") version "${Meta.artifact.version}"
+            |}
+            |
+            |group = "io.spine.tools.tests"
+            |version = "1.0.0-SNAPSHOT"
+            |
+            |$repos
             |""".trimMargin()
 
         @Language("kotlin")
@@ -186,34 +249,61 @@ internal class CoreJvmPluginIgTest {
 
     @Test
     fun `be available via its ID and version`(@TempDir projectDir: File) {
-        @Language("kotlin")
-        val buildFile = buildscriptWithShortClasspath + """
-            |plugins {
-            |    java
-            |    kotlin("jvm").version("${KotlinGradlePlugin.version}")
-            |    id("${ProtobufGradlePlugin.id}") version "${ProtobufGradlePlugin.version}"
-            |    id("${KspGradlePlugin.id}") version "${KspGradlePlugin.version}"
-            |    id("io.spine.core-jvm") version "${Meta.artifact.version}"
-            |}
-            |
-            |group = "io.spine.tools.tests"
-            |version = "1.0.0-SNAPSHOT"
-            |
-            |repositories {
-            |    mavenLocal()
-            |    maven { url = uri("${ArtifactRegistry.releases}") }
-            |    maven { url = uri("${ArtifactRegistry.snapshots}") }
-            |    mavenCentral()
-            |}
-            |""".trimMargin()
-
         val project = GradleProject.setupAt(projectDir)
             .withSharedTestKitDirectory()
             .addFile("settings.gradle.kts", settingsWithRepositories.lines())
-            .addFile("build.gradle.kts", buildFile.lines())
+            .addFile("build.gradle.kts", buildFileApplyingPluginById.lines())
             .create()
         val task = BaseTaskName.build
         val result = project.executeTask(task)
         result[task] shouldBe TaskOutcome.SUCCESS
     }
+
+    @Test
+    fun `write settings of the Compiler plugins with the configuration cache`(
+        @TempDir projectDir: File
+    ) {
+        val project = GradleProject.setupAt(projectDir)
+            .withSharedTestKitDirectory()
+            .withOptions("--configuration-cache")
+            .addFile("settings.gradle.kts", settingsWithRepositories.lines())
+            .addFile("build.gradle.kts", buildFileApplyingPluginById.lines())
+            .create()
+        val task = TaskName.of(WRITE_COMPILER_PLUGINS_SETTINGS)
+
+        val first = project.executeTask(task)
+        first[task] shouldBe TaskOutcome.SUCCESS
+        first.output shouldContain "Configuration cache entry stored."
+        projectDir.settingsDir().list().orEmpty().toList() shouldContainExactlyInAnyOrder
+                settingsFiles
+
+        val second = project.executeTask(task)
+        second[task] shouldBe TaskOutcome.UP_TO_DATE
+        second.output shouldContain "Configuration cache entry reused."
+    }
+
+    @Test
+    fun `rewrite the settings when the options of the project change`(
+        @TempDir projectDir: File
+    ) {
+        val project = GradleProject.setupAt(projectDir)
+            .withSharedTestKitDirectory()
+            .addFile("settings.gradle.kts", settingsWithRepositories.lines())
+            .addFile("build.gradle.kts", buildFileApplyingPluginById.lines())
+            .create()
+        val task = TaskName.of(WRITE_COMPILER_PLUGINS_SETTINGS)
+        project.executeTask(task)[task] shouldBe TaskOutcome.SUCCESS
+
+        projectDir.resolve("build.gradle.kts").appendText(addingInternalMethodName)
+        project.executeTask(task)[task] shouldBe TaskOutcome.SUCCESS
+
+        val annotationSettings = projectDir.settingsDir().resolve("$API_ANNOTATIONS.$JSON")
+        annotationSettings.readText() shouldContain INTERNAL_METHOD_NAME
+    }
 }
+
+/**
+ * Obtains the directory to which the CoreJvm Gradle Plugin writes the settings
+ * of the Compiler plugins in the project located in this directory.
+ */
+private fun File.settingsDir(): File = resolve("build/spine/compiler/settings")

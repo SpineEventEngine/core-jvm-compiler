@@ -28,7 +28,6 @@
 
 package io.spine.tools.core.jvm.gradle.settings
 
-import com.google.common.collect.ImmutableList
 import io.spine.annotation.Internal
 import io.spine.base.MessageFile
 import io.spine.tools.compiler.ast.FilePattern
@@ -43,11 +42,9 @@ import io.spine.tools.core.jvm.settings.groupSettings
 import io.spine.tools.core.jvm.settings.pattern
 import io.spine.tools.core.jvm.settings.signalSettings
 import io.spine.tools.core.jvm.settings.typePattern
-import io.spine.tools.java.code.Classpath
 import io.spine.tools.proto.code.protoTypeName
 import org.gradle.api.Action
 import org.gradle.api.Project
-import org.gradle.api.tasks.compile.JavaCompile
 
 /**
  * A part of [CoreJvmOptions][io.spine.tools.core.jvm.gradle.CoreJvmOptions] responsible
@@ -198,27 +195,12 @@ public class CoreJvmCompilerSettings @Internal public constructor(private val pr
         val gs = groupSettings {
             group.addAll(messageGroups)
         }
-        val cp = buildClasspath()
-
         return combined {
             signalSettings = ss
             groupSettings = gs
             entities = self.entities.toProto()
             uuids = self.uuids.toProto()
             comparables = self.comparables.toProto()
-            classpath = cp
         }
-    }
-
-    private fun buildClasspath(): Classpath {
-        val classpath = Classpath.newBuilder()
-        val javaCompileViews = project.tasks.withType(JavaCompile::class.java)
-        ImmutableList.copyOf(javaCompileViews)
-            .map { it.classpath }
-            .map { it.files }
-            .flatten()
-            .map { it.absolutePath }
-            .forEach { classpath.addItem(it) }
-        return classpath.build()
     }
 }
