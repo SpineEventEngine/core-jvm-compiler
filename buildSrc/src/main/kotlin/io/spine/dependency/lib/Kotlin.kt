@@ -26,7 +26,7 @@ object Kotlin : DependencyWithBom() {
      * This is the version of Kotlin we use for writing code that does not depend on Gradle.
      */
     @Suppress("MemberVisibilityCanBePrivate") // used directly from the outside.
-    const val runtimeVersion = "2.4.10"
+    const val runtimeVersion = "2.4.21"
 
     override val version = runtimeVersion
     override val group = "org.jetbrains.kotlin"
@@ -43,7 +43,7 @@ object Kotlin : DependencyWithBom() {
      * [embedded into Gradle](https://docs.gradle.org/current/userguide/compatibility.html#kotlin),
      * which the Gradle version determines on its own.
      */
-    const val embeddedVersion = "2.4.10"
+    const val embeddedVersion = "2.4.21"
 
     /**
      * The version of the JetBrains annotations library, which is a transitive
@@ -109,6 +109,10 @@ object Kotlin : DependencyWithBom() {
         val lib = "$group:kotlin-gradle-plugin:$version"
         val model = "$group:kotlin-gradle-model:$version"
 
-        override val modules = listOf(api, lib, model)
+        /**
+         * The coordinates of [api], [lib], and [model] without the version,
+         * which [artifacts] appends to each of them.
+         */
+        override val modules = listOf(api, lib, model).map { it.substringBeforeLast(':') }
     }
 }
