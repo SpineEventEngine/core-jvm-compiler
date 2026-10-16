@@ -98,6 +98,9 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
+        // Not the `*Dogfooding` JAR: it is a fat JAR embedding unrelocated Protobuf classes
+        // of the previous tool-base build. They shadow the runtime resolved for this build
+        // and fail with `ProtobufRuntimeVersionException` when the gencode is newer.
         classpath(toolBase.jvmToolPlugins)
         classpath(compiler.pluginLib)
         classpath(coreJvmCompiler.gradlePlugin)
