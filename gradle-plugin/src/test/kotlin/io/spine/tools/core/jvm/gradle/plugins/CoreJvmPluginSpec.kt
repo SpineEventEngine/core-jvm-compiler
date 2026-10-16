@@ -158,16 +158,18 @@ private fun Task.mustRunAfterNames(): List<String> =
     mustRunAfter.getDependencies(this).map { it.name }
 
 /**
- * Names the tasks declared via `dependsOn`, unlike `taskDependencies`, which also
- * resolves the task inputs — here, the Compiler user classpath, which a stub project
- * cannot resolve offline.
+ * Returns the names of the tasks declared via `dependsOn`.
+ *
+ * Unlike `taskDependencies`, this does not resolve the task inputs, such as the Compiler
+ * user classpath, which a stub project cannot resolve offline. Dependencies that are
+ * neither tasks, nor task providers, nor task names are skipped.
  */
 private fun Task.dependsOnNames(): List<String> =
-    dependsOn.mapNotNull {
-        when (it) {
-            is Task -> it.name
-            is TaskProvider<*> -> it.name
-            is String -> it
+    dependsOn.mapNotNull { dependency ->
+        when (dependency) {
+            is Task -> dependency.name
+            is TaskProvider<*> -> dependency.name
+            is String -> dependency
             else -> null
         }
     }
