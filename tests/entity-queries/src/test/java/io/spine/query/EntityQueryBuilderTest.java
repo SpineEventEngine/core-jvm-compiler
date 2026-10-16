@@ -21,10 +21,8 @@
 package io.spine.query;
 
 import com.google.common.collect.ImmutableList;
-import com.google.protobuf.FieldMask;
 import io.spine.tools.query.ProjectId;
 import io.spine.tools.query.ProjectView;
-import io.spine.tools.query.ProjectView.Field;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -39,7 +37,6 @@ import static io.spine.query.LogicalOperator.AND;
 import static io.spine.query.LogicalOperator.OR;
 import static io.spine.query.given.EntityQueryBuilderTestEnv.assertHasParamValue;
 import static io.spine.query.given.EntityQueryBuilderTestEnv.assertNoSortingMaskLimit;
-import static io.spine.query.given.EntityQueryBuilderTestEnv.fieldMaskWith;
 import static io.spine.query.given.EntityQueryBuilderTestEnv.generateIds;
 import static io.spine.query.given.EntityQueryBuilderTestEnv.projectId;
 import static io.spine.query.given.EntityQueryBuilderTestEnv.subjectWithNoParameters;
@@ -152,60 +149,6 @@ class EntityQueryBuilderTest {
         }
 
         @Test
-        @DisplayName("with the specified field mask")
-        void withFieldMask() {
-            var mask = fieldMaskWith(status());
-            var query = ProjectView.query()
-                                   .withMask(mask)
-                                   .build();
-            assertThat(query.mask()).isEqualTo(mask);
-        }
-
-        @Test
-        @DisplayName("with the field mask defined by the paths")
-        @SuppressWarnings("DuplicateStringLiteralInspection")   /* Field names just for tests. */
-        void withMaskPaths() {
-            var status = "status";
-            var assignee = "assignee";
-            var query = ProjectView.query()
-                                   .withMask(status, assignee)
-                                   .build();
-            var expected = FieldMask.newBuilder()
-                    .addPaths(status)
-                    .addPaths(assignee)
-                    .build();
-            assertThat(query.mask()).isEqualTo(expected);
-        }
-
-        @Test
-        @DisplayName("with the field mask defined by the generated `SubscribableField`s")
-        @SuppressWarnings("DuplicateStringLiteralInspection")   /* Field names just for tests. */
-        void withMaskDefinedBySubscribableFields() {
-            var query = ProjectView.query()
-                                   .withMask(Field.status(), Field.assignee())
-                                   .build();
-            var expected = FieldMask.newBuilder()
-                    .addPaths("status")
-                    .addPaths("assignee")
-                    .build();
-            assertThat(query.mask()).isEqualTo(expected);
-        }
-
-        @Test
-        @DisplayName("with the field mask defined by the `Field`s declared in Proto message")
-        @SuppressWarnings("DuplicateStringLiteralInspection")   /* Field names just for tests. */
-        void withMaskDefinedByFields() {
-            var query = ProjectView.query()
-                                   .withMask(Field.projectName().getField(), Field.assignee().getField())
-                                   .build();
-            var expected = FieldMask.newBuilder()
-                    .addPaths("project_name")
-                    .addPaths("assignee")
-                    .build();
-            assertThat(query.mask()).isEqualTo(expected);
-        }
-
-        @Test
         @DisplayName("sorted by several entity columns")
         void withSorting() {
             var query = ProjectView.query()
@@ -297,18 +240,6 @@ class EntityQueryBuilderTest {
 
             assertHasParamValue(rootPredicate, status(), EQUALS, statusValue);
             assertHasParamValue(rootPredicate, daysSinceStarted(), GREATER_THAN, daysSinceStarted);
-        }
-
-        @Test
-        @DisplayName("of the field mask")
-        void ofFieldMask() {
-            var mask = fieldMaskWith(daysSinceStarted());
-            var maybeMask = ProjectView.query()
-                                       .withMask(mask)
-                                       .whichMask();
-            assertThat(maybeMask)
-                  .isPresent();
-            assertThat(maybeMask.get()).isEqualTo(mask);
         }
 
         @Test
