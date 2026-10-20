@@ -25,6 +25,7 @@ import io.spine.dependency.boms.BomsPlugin
 import io.spine.dependency.isDokka
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.Reflect
@@ -45,15 +46,24 @@ buildscript {
     apply(from = versionGradle)
 
     /*
-     * Maven Local comes first, restricted to the artifacts of the root build, so that
-     * this build tests what `localPublish` has just installed. `standardToSpineSdk()`,
-     * which `standardSpineSdkRepositories()` applies, places `mavenLocal()` last —
-     * once the version under development is published, a remote repository would serve
-     * it first and this build would silently test the earlier artifacts.
+     * Maven Local comes first, restricted to the two artifacts of the root build that
+     * this build consumes, so that the tests run against what `localPublish` has just
+     * installed. `standardToSpineSdk()`, which `standardSpineSdkRepositories()` applies,
+     * places `mavenLocal()` last — so once these coordinates have been published to a
+     * remote repository, that repository would serve them and this build would silently
+     * test the artifacts published earlier.
+     *
+     * The filter deliberately fails open: a coordinate missing from Maven Local still
+     * resolves from the remote repositories, rather than failing the build of someone
+     * who has not run `localPublish` yet.
      */
-    repositories.mavenLocal {
-        content {
-            includeModuleByRegex("io\\.spine\\.tools", "core-jvm-.*")
+    repositories {
+        val coreJvmCompiler = io.spine.dependency.local.CoreJvmCompiler
+        mavenLocal {
+            content {
+                includeModule(coreJvmCompiler.group, coreJvmCompiler.gradlePluginArtifact)
+                includeModule(coreJvmCompiler.group, coreJvmCompiler.compilerPluginsArtifact)
+            }
         }
     }
     standardSpineSdkRepositories()
@@ -138,7 +148,8 @@ allprojects {
         // See the comment in the `buildscript` block above.
         mavenLocal {
             content {
-                includeModuleByRegex("io\\.spine\\.tools", "core-jvm-.*")
+                includeModule(CoreJvmCompiler.group, CoreJvmCompiler.gradlePluginArtifact)
+                includeModule(CoreJvmCompiler.group, CoreJvmCompiler.compilerPluginsArtifact)
             }
         }
         standardToSpineSdk()

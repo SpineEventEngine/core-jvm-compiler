@@ -11,7 +11,7 @@ build — after its tests and before its coverage report — so the report would
 other than those the tests ran against. Please see
 [`settings.gradle.kts`](settings.gradle.kts) for details.
 
-Tests in this module are run in a separate Gradle process and currently cannot be included in the 
+Tests in this project are run in a separate Gradle process and currently cannot be included in the 
 repository code coverage because of Jacoco limitations.
 
 ## Execution
@@ -38,8 +38,8 @@ the Gradle build as usual:
 ```
 
 Publish again after every change to the CoreJvm Compiler sources. Otherwise, the build tests
-the artifacts published earlier. The `integrationTests` task of the root project does this
-for you.
+the artifacts published earlier. The root `integrationTests` task runs `localPublish` before
+the tests, so there is no need to publish by hand when you run the tests from the root project.
 
 ## Symlinks
 
@@ -83,9 +83,9 @@ The recommended configuration under Windows is:
 
 ## Configuring IntelliJ IDEA
 
-IntelliJ IDEA treats `tests` as a separate Gradle project. Link it through
-*Gradle* → *+* (Add Gradle Project) and pick `tests/build.gradle.kts`, so that the IDE
-indexes the integration tests as source code.
+IntelliJ IDEA treats `tests` as a separate Gradle project. In the *Gradle* tool window,
+click *+* and select `tests/build.gradle.kts`, so that the IDE indexes the integration
+tests as source code.
 
 [git-symlinks-option]: https://git-scm.com/docs/git-config#Documentation/git-config.txt-coresymlinks
 [developer-mode]: https://learn.microsoft.com/en-us/windows/apps/get-started/developer-mode-features-and-debugging

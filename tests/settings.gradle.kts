@@ -32,19 +32,11 @@ include(
  * See `build.gradle.kts` for the repository declarations that make Maven Local win
  * for those artifacts.
  *
- * Do not add `includeBuild("$rootDir/../")` back. Gradle would then substitute
- * the `core-jvm-*` artifacts with the projects of the root build and run their code
+ * Do not add `includeBuild("$rootDir/../")` here. Gradle would then substitute the
+ * `core-jvm-*` artifacts with the projects of the root build and run their code
  * generation, compilation, and packaging tasks from here, overwriting the outputs in
  * the root project directories. Since `integrationTests` runs after the `test` tasks
- * of the root build and before its coverage report, the report would analyze class
- * files other than those the tests ran against, and drop the coverage of every
- * mismatched class at random. The `SpineEventEngine/compiler` repository had exactly
- * this defect, and removed its own `includeBuild(..)` to cure it.
- *
- * Until this change, the `includeBuild(..)` was present here but inert: its
- * `dependencySubstitution` block declared the single mapping
- * `io.spine.tools:spine-core-jvm` -> `:`, and no Spine repository publishes such an
- * artifact. Nothing was substituted, and the included build never executed a task.
- * That made the arrangement a trap — correcting the dead coordinate, or dropping the
- * block so that automatic substitution resumes, would have imported the defect above.
+ * of the root build and before its coverage report, the report would then analyze
+ * class files other than those the tests ran against, and randomly drop the coverage
+ * of the mismatched classes.
  */

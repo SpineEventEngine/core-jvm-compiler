@@ -22,6 +22,7 @@ import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Validation
 import io.spine.gradle.RunBuild
 import io.spine.gradle.RunGradle
+import io.spine.gradle.SpineTaskGroup
 import io.spine.gradle.publish.PublishingRepos
 import io.spine.gradle.publish.SpinePublishing
 import io.spine.gradle.publish.spinePublishing
@@ -182,22 +183,26 @@ val localPublish = tasks.register("localPublish") {
  * for its tests. So, we depend on the `test` task of this module for simplicity.
  */
 val integrationTests = tasks.register<RunBuild>("integrationTests") {
+    group = SpineTaskGroup.name
+    description = "Runs the integration tests of the `tests` build" +
+            " against the locally published artifacts"
     directory = "$rootDir/tests"
 
     /** A timeout for the case of stalled child processes under Windows. */
     timeout.set(Duration.ofMinutes(BuildSettings.TIMEOUT_MINUTES))
 
-    /** Run integration tests only after all regular tests pass in all modules. */
-    // The dependency is declared on live task collections rather than on task
-    // instances. `register` defers this block until the task is realized, which
-    // today happens when Gradle builds the task graph — after every subproject has
-    // been evaluated. That timing is incidental: realizing `integrationTests`
-    // during configuration, e.g. via an eager `tasks.getByName(..)`, would run this
-    // block while the subprojects still have no `test` task, and a lookup by name
-    // would return `null`, dropping the ordering with no error. A `TaskCollection`
-    // is resolved when the graph is built no matter when this block runs.
+    /*
+     * Run integration tests only after all regular tests pass in all modules.
+     *
+     * The dependency is on live task collections rather than on task instances, so
+     * that Gradle resolves it when it builds the task graph — whenever this block
+     * happens to run. Looking the tasks up by name here would work only as long as
+     * nothing realizes `integrationTests` during configuration; once something did,
+     * the lookup would find no `test` task yet and the ordering would vanish with
+     * no error.
+     */
     dependsOn(subprojects.map { subproject ->
-        subproject.tasks.matching { task -> task.name == "test" }
+        subproject.tasks.named { it == "test" }
     })
     dependsOn(localPublish)
     doLast {
