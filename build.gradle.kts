@@ -196,10 +196,15 @@ val integrationTests = tasks.register<RunBuild>("integrationTests") {
      *
      * The dependency is on live task collections rather than on task instances, so
      * that Gradle resolves it when it builds the task graph — whenever this block
-     * happens to run. Looking the tasks up by name here would work only as long as
-     * nothing realizes `integrationTests` during configuration; once something did,
-     * the lookup would find no `test` task yet and the ordering would vanish with
-     * no error.
+     * happens to run. Looking the tasks up here, by name or otherwise, would work
+     * only as long as nothing realizes `integrationTests` during configuration;
+     * once something did, the lookup would find no test task yet and the ordering
+     * would vanish with no error.
+     *
+     * The collections select the task named `test`, and not every `Test` task:
+     * `registerTestTasks()` of the shared build configuration adds `fastTest` and
+     * `slowTest`, which partition the same suite by the `slow` tag, so depending on
+     * all of them would run every test twice.
      */
     dependsOn(subprojects.map { subproject ->
         subproject.tasks.named { it == "test" }
