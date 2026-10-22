@@ -1,0 +1,1 @@
+var packageSearchIndex = [{"l":"io.spine.tools.core.jvm.ksp.gradle","url":"io/spine/tools/core/jvm/ksp/gradle/package-summary.html"}, {"l":"io.spine.tools.core.jvm.ksp.processor","url":"io/spine/tools/core/jvm/ksp/processor/package-summary.html"}, {"l":"All packages","url":"index.html"}]
