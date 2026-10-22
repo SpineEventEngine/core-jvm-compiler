@@ -73,6 +73,7 @@ buildscript {
                     base.libForBuildScript,
                     base.environment,
                     base.format,
+                    io.spine.dependency.local.Reflect.lib,
                     time.lib,
                     time.javaExtensions,
                     compiler.api,
@@ -86,7 +87,10 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
-        classpath(toolBase.jvmToolPluginDogfooding)
+        // Not the `*Dogfooding` JAR: it is a fat JAR embedding unrelocated Protobuf classes
+        // of the previous tool-base build. They shadow the runtime resolved for this build
+        // and fail with `ProtobufRuntimeVersionException` when the gencode is newer.
+        classpath(toolBase.jvmToolPlugins)
         classpath(compiler.pluginLib)
         classpath(coreJvmCompiler.gradlePlugin)
     }

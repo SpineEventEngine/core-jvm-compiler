@@ -25,7 +25,6 @@ import com.google.protobuf.FieldMask;
 import io.spine.query.Column;
 import io.spine.query.ComparisonOperator;
 import io.spine.query.QueryPredicate;
-import io.spine.query.RecordColumn;
 import io.spine.query.Subject;
 import io.spine.tools.query.ProjectId;
 import io.spine.tools.query.ProjectView;
@@ -79,16 +78,6 @@ public final class EntityQueryBuilderTestEnv {
         assertThat(query.sorting()).isEmpty();
         assertThat(query.mask()).isEqualTo(FieldMask.getDefaultInstance());
         assertThat(query.limit()).isEqualTo(nullRef());
-    }
-
-    /**
-     * Creates a new {@code FieldMask} with the name of the given column as a path.
-     */
-    public static FieldMask fieldMaskWith(RecordColumn<ProjectView, ?> column) {
-        return FieldMask.newBuilder()
-                .addPaths(column.name()
-                                .value())
-                .build();
     }
 
     /**

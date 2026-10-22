@@ -49,6 +49,7 @@ import java.io.File
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.plugins.JavaPluginExtension
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.junit.jupiter.api.BeforeAll
@@ -136,8 +137,7 @@ internal class CoreJvmPluginSpec {
         val tasks = project.tasks.withType<LaunchSpineCompiler>()
         tasks.shouldNotBeEmpty()
         tasks.forEach { task ->
-            val dependencies = task.taskDependencies.getDependencies(task).map { it.name }
-            dependencies shouldContain WRITE_COMPILER_PLUGINS_SETTINGS
+            task.dependsOnNames() shouldContain WRITE_COMPILER_PLUGINS_SETTINGS
         }
     }
 
@@ -156,3 +156,20 @@ internal class CoreJvmPluginSpec {
 
 private fun Task.mustRunAfterNames(): List<String> =
     mustRunAfter.getDependencies(this).map { it.name }
+
+/**
+ * Returns the names of the tasks declared via `dependsOn`.
+ *
+ * Unlike `taskDependencies`, this does not resolve the task inputs, such as the Compiler
+ * user classpath, which a stub project cannot resolve offline. Dependencies that are
+ * neither tasks, nor task providers, nor task names are skipped.
+ */
+private fun Task.dependsOnNames(): List<String> =
+    dependsOn.mapNotNull { dependency ->
+        when (dependency) {
+            is Task -> dependency.name
+            is TaskProvider<*> -> dependency.name
+            is String -> dependency
+            else -> null
+        }
+    }
