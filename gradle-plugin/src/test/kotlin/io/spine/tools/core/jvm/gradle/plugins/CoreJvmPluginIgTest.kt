@@ -135,7 +135,7 @@ internal class CoreJvmPluginIgTest {
             |""".trimMargin()
 
         /**
-         * The build script code which enables gRPC in the options of
+         * The build script code that enables gRPC in the options of
          * the CoreJvm Gradle Plugin.
          */
         @Language("kotlin")
@@ -164,7 +164,7 @@ internal class CoreJvmPluginIgTest {
         private const val OUTER_CLASS_NAME = "PingProto"
 
         /**
-         * A proto file which declares a gRPC service.
+         * A proto file that declares a gRPC service.
          */
         private val serviceProto = """
             |syntax = "proto3";

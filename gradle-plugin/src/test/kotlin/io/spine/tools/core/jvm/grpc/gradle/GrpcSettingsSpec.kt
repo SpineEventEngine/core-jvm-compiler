@@ -36,8 +36,8 @@ internal class GrpcSettingsSpec {
 
     companion object {
 
-        lateinit var enabled: StubGrpcProject
-        lateinit var disabled: StubGrpcProject
+        private lateinit var enabled: StubGrpcProject
+        private lateinit var disabled: StubGrpcProject
 
         @BeforeAll
         @JvmStatic
@@ -92,12 +92,12 @@ private const val JAVA_PLUGIN = "grpc"
 private const val KOTLIN_PLUGIN = "grpckt"
 
 /**
- * An evaluated stub project with Protobuf Gradle Plugin and [GrpcSettings].
+ * An evaluated stub project with the Protobuf Gradle Plugin and [GrpcSettings].
  *
  * The project does not have the CoreJvm Gradle Plugin applied, because the Compiler
  * Gradle Plugin it brings creates all the `GenerateProtoTask`s while the project is configured.
  */
-internal class StubGrpcProject(projectDir: File, grpcEnabled: Boolean) {
+private class StubGrpcProject(projectDir: File, grpcEnabled: Boolean) {
 
     private val project: Project = StubProject.createIn(projectDir)
         .withMavenRepositories()

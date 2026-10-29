@@ -39,12 +39,12 @@ internal class CleaningPluginSpec {
 
     companion object {
 
-        lateinit var project: Project
+        private lateinit var project: Project
 
         /**
          * The names of the tasks Gradle created while the project was configured.
          */
-        lateinit var createdOnConfiguration: List<String>
+        private lateinit var createdOnConfiguration: List<String>
 
         @BeforeAll
         @JvmStatic
@@ -99,6 +99,6 @@ internal class CleaningPluginSpec {
 
         tempArtifacts.shouldNotExist()
     }
-}
 
-private fun task(name: String): Task = CleaningPluginSpec.project.tasks.getByName(name)
+    private fun task(name: String): Task = project.tasks.getByName(name)
+}

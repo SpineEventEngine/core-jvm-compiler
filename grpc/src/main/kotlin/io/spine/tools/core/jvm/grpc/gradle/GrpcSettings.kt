@@ -54,8 +54,8 @@ public abstract class GrpcSettings @Inject public constructor(
                 }
             }
             // Configure the tasks as Gradle creates them, instead of creating them here.
-            // Protobuf Gradle Plugin registers its own action finishing the configuration
-            // of the tasks after running this block, so this action precedes it.
+            // The Protobuf Gradle Plugin adds its own action that finishes configuring the tasks
+            // once this block has run, so the action below runs before it.
             protobuf.generateProtoTasks.all().configureEach { t ->
                 t.plugins.create(PROTOC_PLUGIN_JAVA_ID)
                 t.plugins.create(PROTOC_PLUGIN_KOTLIN_ID)
