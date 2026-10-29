@@ -1,27 +1,15 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 import groovy.util.Node
@@ -29,12 +17,13 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
+import io.spine.dependency.lib.JavaPoet
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
+import io.spine.dependency.lib.Roaster
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvmCompiler
-import io.spine.dependency.local.Spine
 import io.spine.dependency.local.Time
 import io.spine.dependency.local.ToolBase
 import io.spine.dependency.local.Validation
@@ -64,9 +53,9 @@ dependencies {
     // the `gradle-plugin` module — when changing them, mirror the change in
     // `gradle-plugin/build.gradle.kts`. The modules providing no Compiler
     // plugins — `:grpc`, `:ksp`, and `:routing` — ship inside the JAR of
-    // `gradle-plugin` instead of this fat JAR. The classes of the Compiler,
-    // Validation, and Time Gradle plugins are excluded from the fat JAR;
-    // see `tasks.shadowJar` below.
+    // `gradle-plugin` instead of this fat JAR. The classes of ToolBase and of
+    // the Compiler, Validation, and Time Gradle plugins are excluded from
+    // the fat JAR; see `pomDependencies` and `tasks.shadowJar` below.
     implementation(Compiler.pluginLib)
     implementation(Compiler.params)
     implementation(ToolBase.jvmTools)
@@ -141,6 +130,48 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
 
     // The Time Gradle plugin, because we exclude its code from the fat JAR artifact.
     pomDependency(Time.gradlePlugin, excluding = pomExcludedGroups),
+
+    /*
+     * The ToolBase artifacts on which the code bundled into the fat JAR builds.
+     *
+     * Their classes are excluded from the fat JAR, so that Gradle resolves one version
+     * of each artifact for the whole build classpath of a consumer project. A bundled
+     * copy would shadow the version which the Spine Compiler Gradle plugin declares.
+     * Relocating the bundled copies is not an option: the CoreJvm and Compiler plugins
+     * share ToolBase types, e.g., `LibraryPlugin` and the `spine` extension.
+     *
+     * The `io.spine.tools` group is excluded from the dependencies of each artifact,
+     * so the list names every ToolBase artifact which the bundled code needs.
+     * Other ToolBase artifacts, such as PSI, are not listed: the code-generation
+     * plugins meet them inside the Compiler CLI classpath, and the Gradle-facing code
+     * does not use them.
+     */
+    pomDependency(ToolBase.pluginBase, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.gradlePluginApi, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.rootGradlePlugins, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.jvmTools, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.code, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.fs, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.archive, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.javaCode, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.protoCode, excluding = pomExcludedGroups),
+
+    /*
+     * JavaPoet and Roaster, which `classic-codegen` depends on, stay bundled into
+     * the fat JAR; see `expectedPackages`. They are excluded here, so that `pom.xml`
+     * does not bring another copy of their classes.
+     */
+    pomDependency(
+        ToolBase.classicCodegen,
+        excluding = pomExcludedGroups + listOf(JavaPoet.group, Roaster.group)
+    ),
+
+    /*
+     * ToolBase publishes `protobuf-setup-plugins` as an uber JAR, which embeds copies
+     * of the ToolBase artifacts listed above, among other libraries. It goes after
+     * them, so that their genuine JARs precede it on the classpath of a consumer.
+     */
+    pomDependency(ToolBase.protobufSetupPlugins, excluding = pomExcludedGroups),
 
     // The Protobuf Gradle Plugin, so that we can add it from our code.
     pomDependency(Protobuf.GradlePlugin.lib),
@@ -270,11 +301,18 @@ private fun MavenPublication.tuneDependencies(dependencies: List<ExternalModuleD
     // The `withXml` action runs when the POM is generated,
     // so it takes plain values rather than Gradle objects.
     // Gradle holds the exclude rules of a dependency in a set, so they are written
-    // in the order in which `pomExcludedGroups` lists their groups.
+    // in the order in which `pomExcludedGroups` lists their groups, followed by
+    // other groups in alphabetical order.
+    val exclusionOrder = compareBy<ExcludeRule>(
+        { it.group !in pomExcludedGroups },
+        { pomExcludedGroups.indexOf(it.group) },
+        { it.group },
+        { it.module }
+    )
     val entries = dependencies.map { dependency ->
         listOf(dependency.group, dependency.name, dependency.version) to
                 dependency.excludeRules
-                    .sortedBy { pomExcludedGroups.indexOf(it.group) }
+                    .sortedWith(exclusionOrder)
                     .map { it.group to (it.module ?: "*") }
     }
     pom.withXml {
@@ -425,34 +463,6 @@ dependencies {
 }
 
 /**
- * Modules bundled into the fat JAR even though the Compiler CLI contains them.
- *
- * Although the classes of the `io.spine.core-jvm` plugin live in
- * the `gradle-plugin` module, most of the code running on consumers' build
- * classpath — where the CLI platform is absent — still comes with this fat
- * JAR: the `coreJvm` DSL of `base`, and the Gradle-facing plugins of `grpc`,
- * `ksp`, and `routing`. That code, and the `gradle-plugin` classes
- * themselves, is built on the ToolBase infrastructure listed below.
- * The `io.spine.tools` group is excluded from the `runtime` dependencies
- * declared in `pom.xml`, so bundling is the only way these modules reach
- * consumers; [providedByCli] must not exclude them.
- *
- * The `io.spine` libraries that code uses — Base, Logging, the Validation
- * runtime — need no such treatment: that group is not excluded in `pom.xml`,
- * so consumers receive them transitively, as genuine Maven artifacts
- * declared by the POMs of the Spine Compiler modules.
- */
-val bundledDespiteCli: Set<String> = buildSet {
-    add(moduleOf(ToolBase.code))
-    add(moduleOf(ToolBase.fs))
-    add(moduleOf(ToolBase.jvmTools))
-
-    // The legacy artifact, arriving transitively. Its dependency object is
-    // deprecated, so the plain coordinates are used here.
-    add("${Spine.toolsGroup}:tool-base")
-}
-
-/**
  * Obtains the names of the class file entries stored in the given JAR.
  *
  * Entries of multi-release copies are normalized to their top-level form.
@@ -503,9 +513,16 @@ val cliCoverage = ConcurrentHashMap<String, Boolean>()
  * making its bundling into the fat JAR of this module unnecessary.
  *
  * A dependency qualifies when every package of its class files is present in
- * the CLI JAR, and the module is not listed in [bundledDespiteCli]. Comparing
- * packages rather than individual class files tolerates version differences
- * between the runtime classpath of this module and the content of the CLI.
+ * the CLI JAR. Comparing packages rather than individual class files tolerates
+ * version differences between the runtime classpath of this module and
+ * the content of the CLI.
+ *
+ * The modules which the Gradle-facing code uses still reach a consumer's build
+ * classpath, where the CLI is absent. The ToolBase artifacts are declared in
+ * `pom.xml`; see `pomDependencies`. The `io.spine` libraries — Base, Logging,
+ * the Validation runtime — come transitively, as genuine Maven artifacts declared
+ * by the POMs of the ToolBase and Spine Compiler modules: unlike `io.spine.tools`,
+ * their group is not excluded in `pom.xml`.
  *
  * The predicate is self-correcting in both directions. When a new CLI version
  * starts bundling a module, the module is dropped from the fat JAR of this
@@ -519,9 +536,6 @@ val cliCoverage = ConcurrentHashMap<String, Boolean>()
  */
 fun providedByCli(dependency: ResolvedDependency): Boolean {
     val module = "${dependency.moduleGroup}:${dependency.moduleName}"
-    if (module in bundledDespiteCli) {
-        return false
-    }
     return cliCoverage.computeIfAbsent(module) { _: String ->
         val packages = dependency.moduleArtifacts.asSequence()
             .map { it.file }
@@ -632,20 +646,6 @@ tasks.shadowJar {
         "_COROUTINE/**",
 
         /*
-         * Kotlin runtime metadata and service files, embedded in some of
-         * the artifacts we do bundle, e.g. `protobuf-setup-plugins` of ToolBase.
-         * The libraries these files describe are not bundled; see above.
-         */
-        "META-INF/kotlin-*.kotlin_module",
-        "META-INF/annotations.kotlin_module",
-        "META-INF/compiler.common*.kotlin_module",
-        "META-INF/descriptors*.kotlin_module",
-        "META-INF/deserialization*.kotlin_module",
-        "META-INF/metadata*.kotlin_module",
-        "META-INF/util.runtime.kotlin_module",
-        "META-INF/services/kotlin.reflect.*",
-
-        /*
          * Protobuf runtime and Gradle plugin will be available in the classpath because
          * fat JAR has the Maven `runtime` dependency on it.
          * Please see manipulations with `pom.xml` in the `publishing` block above.
@@ -681,7 +681,6 @@ tasks.shadowJar {
 
         // Strip `ArtifactMeta` for:
         "META-INF/io.spine/io.spine.tools_compiler-gradle-plugin.meta", // Compiler Gradle Plugin
-        "META-INF/io.spine/io.spine.tools_protobuf-setup-plugins.meta", // Protobuf Setup Plugins
 
         // Strip code provided by the Spine Compiler CLI fat JAR.
         "android/**",
@@ -707,15 +706,6 @@ tasks.shadowJar {
          * the genuine JNA artifact on a consumer's build classpath.
          */
         "com/sun/jna/**",
-
-        /*
-         * OS detection classes come embedded, unrelocated, in
-         * `protobuf-setup-plugins` of ToolBase, which we bundle. Consumers
-         * receive the genuine artifacts transitively, with
-         * `protobuf-gradle-plugin` declared in `pom.xml`.
-         */
-        "com/google/gradle/**",
-        "kr/motd/**",
 
         // Strip the Validation library code generation code.
         // It is going to be available as runtime dependencies via `pom.xml`.
@@ -798,41 +788,15 @@ tasks.shadowJar {
  * a genuine artifact on a consumer's build classpath.
  */
 val expectedPackages = listOf(
-    // The code of this repository and the ToolBase infrastructure used by
-    // the Gradle-facing code this JAR carries; see `bundledDespiteCli`.
-    "io/spine/tools/",
-
     /*
-     * The Spine base libraries used by the Gradle-facing code.
+     * The code of this repository.
      *
-     * The heavier framework — `spine-core`, `spine-client`, `spine-server`,
-     * and friends — must not appear here: the code-generation plugins meet it
-     * inside the Compiler CLI classpath; see `providedByCli`.
+     * ToolBase must not appear here: consumers receive its artifacts via `pom.xml`;
+     * see `pomDependencies`. Neither must the Spine libraries and Guava. Consumers
+     * receive them transitively, and the code-generation plugins meet them inside
+     * the Compiler CLI classpath; see `providedByCli`.
      */
-    "io/spine/annotation/",
-    "io/spine/base/",
-    "io/spine/code/",
-    "io/spine/collect/",
-    "io/spine/compare/",
-    "io/spine/environment/",
-    "io/spine/format/",
-    "io/spine/io/",
-    "io/spine/logging/",
-    "io/spine/option/",
-    "io/spine/protobuf/",
-    "io/spine/query/",
-    "io/spine/reflect/",
-    "io/spine/security/",
-    "io/spine/string/",
-    "io/spine/type/",
-    "io/spine/util/",
-    "io/spine/validate/",
-    "io/spine/validation/",
-    "io/spine/value/",
-
-    // Guava is bundled deliberately: the plugins need its types at runtime.
-    "com/google/common/",
-    "com/google/thirdparty/", // The public suffix data of Guava.
+    "io/spine/tools/core/",
 
     // Java and Kotlin code generation.
     "com/squareup/javapoet/",
