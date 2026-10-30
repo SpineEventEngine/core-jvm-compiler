@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -110,6 +110,10 @@
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -126,6 +130,10 @@
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -373,6 +381,10 @@
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -1880,14 +1892,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-annotation-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -2137,6 +2149,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -2595,6 +2611,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -3231,14 +3251,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -3348,6 +3368,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -3364,6 +3388,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -3611,6 +3639,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -5126,14 +5158,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -5243,6 +5275,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -5259,6 +5295,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -5506,6 +5546,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -7013,14 +7057,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -7270,6 +7314,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -7728,6 +7776,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -8364,14 +8416,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-compiler-plugins:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-compiler-plugins:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -10250,14 +10302,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -10367,6 +10419,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -10383,6 +10439,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -10630,6 +10690,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -12137,14 +12201,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -12394,6 +12458,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -12852,6 +12920,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -13488,14 +13560,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-gradle-plugin:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-gradle-plugin:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -15427,14 +15499,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -15544,6 +15616,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -15560,6 +15636,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -15807,6 +15887,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -17274,14 +17358,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -19197,14 +19281,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -19314,6 +19398,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -19330,6 +19418,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -19577,6 +19669,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -21092,14 +21188,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -21349,6 +21445,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -21807,6 +21907,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -22443,14 +22547,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -22560,6 +22664,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -22576,6 +22684,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -22823,6 +22935,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -24338,14 +24454,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -24595,6 +24711,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -25053,6 +25173,10 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -25689,14 +25813,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -27652,14 +27776,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:14 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:17 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -28728,14 +28852,14 @@ This report was generated on **Thu Oct 29 20:41:14 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:15 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:18 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -28845,6 +28969,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -28861,6 +28989,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -29108,6 +29240,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -30623,14 +30759,14 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:15 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:18 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -30880,6 +31016,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -31338,6 +31478,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -31974,14 +32118,14 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:15 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:18 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -32091,6 +32235,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
      * **Project URL:** [https://errorprone.info/error_prone_annotations](https://errorprone.info/error_prone_annotations)
      * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
+
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -32107,6 +32255,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 1.  **Group** : com.google.j2objc. **Name** : j2objc-annotations. **Version** : 3.1.
      * **Project URL:** [https://github.com/google/j2objc/](https://github.com/google/j2objc/)
      * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.protobuf. **Name** : protobuf-gradle-plugin. **Version** : 0.10.0.
+     * **Project URL:** [https://github.com/google/protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
+     * **License:** [BSD 3-Clause](http://opensource.org/licenses/BSD-3-Clause)
 
 1.  **Group** : com.google.protobuf. **Name** : protobuf-java. **Version** : 4.36.2.
      * **Project URL:** [https://developers.google.com/protocol-buffers/](https://developers.google.com/protocol-buffers/)
@@ -32354,6 +32506,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
      * **Project URL:** [http://www.cafeconleche.org/jaxen](http://www.cafeconleche.org/jaxen)
      * **License:** [https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
      * **License:** [BSD License 2.0](https://raw.githubusercontent.com/jaxen-xpath/jaxen/master/LICENSE.txt)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -33869,14 +34025,14 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:15 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:18 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.100`
+# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.101`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -34126,6 +34282,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 
 1.  **Group** : com.google.googlejavaformat. **Name** : google-java-format. **Version** : 1.27.0.
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+1.  **Group** : com.google.gradle. **Name** : osdetector-gradle-plugin. **Version** : 1.7.3.
+     * **Project URL:** [https://github.com/google/osdetector-gradle-plugin](https://github.com/google/osdetector-gradle-plugin)
+     * **License:** [Apache License 2.0](http://opensource.org/licenses/Apache-2.0)
 
 1.  **Group** : com.google.guava. **Name** : failureaccess. **Version** : 1.0.3.
      * **Project URL:** [https://github.com/google/guava/](https://github.com/google/guava/)
@@ -34584,6 +34744,10 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 1.  **Group** : junit. **Name** : junit. **Version** : 4.13.2.
      * **Project URL:** [http://junit.org](http://junit.org)
      * **License:** [Eclipse Public License 1.0](http://www.eclipse.org/legal/epl-v10.html)
+
+1.  **Group** : kr.motd.maven. **Name** : os-maven-plugin. **Version** : 1.7.1.
+     * **Project URL:** [https://github.com/trustin/os-maven-plugin/](https://github.com/trustin/os-maven-plugin/)
+     * **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 1.  **Group** : net.bytebuddy. **Name** : byte-buddy-agent. **Version** : 1.10.1.
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -35220,6 +35384,6 @@ This report was generated on **Thu Oct 29 20:41:15 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Thu Oct 29 20:41:15 WET 2026** using 
+This report was generated on **Fri Oct 30 15:56:18 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
