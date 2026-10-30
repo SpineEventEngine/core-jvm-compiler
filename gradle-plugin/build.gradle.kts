@@ -243,8 +243,7 @@ publishing {
  * e.g., the settings DSL of `base`. The fat JAR POM, in turn, declares
  * the curated `runtime` dependencies on the ToolBase, Spine Compiler, Validation,
  * Time, Protobuf, KSP, and Jackson artifacts, so consumers receive them
- * transitively, exactly as they did when the fat JAR itself served as
- * the plugin artifact.
+ * transitively.
  *
  * The appended code in `pom.xml` would look like this:
  * ```

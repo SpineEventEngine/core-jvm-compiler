@@ -132,16 +132,16 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
     pomDependency(Time.gradlePlugin, excluding = pomExcludedGroups),
 
     /*
-     * The ToolBase artifacts on which the code bundled into the fat JAR builds.
+     * The ToolBase artifacts that the code bundled into the fat JAR depends on.
      *
      * Their classes are excluded from the fat JAR, so that Gradle resolves one version
      * of each artifact for the whole build classpath of a consumer project. A bundled
-     * copy would shadow the version which the Spine Compiler Gradle plugin declares.
-     * Relocating the bundled copies is not an option: the CoreJvm and Compiler plugins
-     * share ToolBase types, e.g., `LibraryPlugin` and the `spine` extension.
+     * copy would shadow the version that the Spine Compiler Gradle plugin declares.
+     * Relocating the bundled copies is not an option: the CoreJvm and Compiler Gradle
+     * plugins share ToolBase types, e.g., `LibraryPlugin` and the `spine` extension.
      *
      * The `io.spine.tools` group is excluded from the dependencies of each artifact,
-     * so the list names every ToolBase artifact which the bundled code needs.
+     * so the entries below name every ToolBase artifact that the bundled code needs.
      * Other ToolBase artifacts, such as PSI, are not listed: the code-generation
      * plugins meet them inside the Compiler CLI classpath, and the Gradle-facing code
      * does not use them.
@@ -159,8 +159,9 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
 
     /*
      * JavaPoet and Roaster, which `classic-codegen` depends on, stay bundled into
-     * the fat JAR; see `expectedPackages`. They are excluded here, so that `pom.xml`
-     * does not bring another copy of their classes.
+     * the fat JAR; see `expectedPackages`. This dependency excludes their groups —
+     * `com.squareup` as a whole, and Roaster's — so that consumers do not receive
+     * another copy of the bundled classes.
      */
     pomDependency(
         ToolBase.classicCodegen,
@@ -511,12 +512,12 @@ val cliCoverage = ConcurrentHashMap<String, Boolean>()
  * version differences between the runtime classpath of this module and
  * the content of the CLI.
  *
- * The modules which the Gradle-facing code uses still reach a consumer's build
- * classpath, where the CLI is absent. The ToolBase artifacts are declared in
- * `pom.xml`; see `pomDependencies`. The `io.spine` libraries — Base, Logging,
- * the Validation runtime — come transitively, as genuine Maven artifacts declared
- * by the POMs of the ToolBase and Spine Compiler modules: unlike `io.spine.tools`,
- * their group is not excluded in `pom.xml`.
+ * The CLI is absent from a consumer's build classpath, so the modules that
+ * the Gradle-facing code uses reach it another way. The ToolBase artifacts
+ * are declared in `pom.xml`; see `pomDependencies`. The `io.spine` libraries —
+ * Base, Logging, the Validation runtime — come transitively, as genuine Maven
+ * artifacts declared by the POMs of the ToolBase and Spine Compiler modules:
+ * unlike `io.spine.tools`, their group is not excluded in `pom.xml`.
  *
  * The predicate is self-correcting in both directions. When a new CLI version
  * starts bundling a module, the module is dropped from the fat JAR of this
@@ -786,7 +787,7 @@ val expectedPackages = listOf(
      * The code of this repository.
      *
      * ToolBase must not appear here: consumers receive its artifacts via `pom.xml`;
-     * see `pomDependencies`. Neither must the Spine libraries and Guava. Consumers
+     * see `pomDependencies`. Nor must the Spine libraries or Guava. Consumers
      * receive them transitively, and the code-generation plugins meet them inside
      * the Compiler CLI classpath; see `providedByCli`.
      */
