@@ -14,6 +14,7 @@
 
 package io.spine.tools.core.jvm.gradle.plugins
 
+import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.shouldContain
@@ -131,6 +132,56 @@ internal class CoreJvmPluginIgTest {
             |val spine = extensions.getByName("spine") as ExtensionAware
             |spine.extensions.getByType<io.spine.tools.core.jvm.gradle.CoreJvmOptions>()
             |    .annotation.internalMethodNames.add("$INTERNAL_METHOD_NAME")
+            |""".trimMargin()
+
+        /**
+         * The build script code that enables gRPC in the options of
+         * the CoreJvm Gradle Plugin.
+         */
+        @Language("kotlin")
+        private val enablingGrpc = """
+            |
+            |val spine = extensions.getByName("spine") as ExtensionAware
+            |val coreJvm = spine.extensions
+            |    .getByType<io.spine.tools.core.jvm.gradle.CoreJvmOptions>()
+            |(coreJvm as ExtensionAware).extensions
+            |    .getByType<io.spine.tools.core.jvm.grpc.gradle.GrpcSettings>()
+            |    .enabled.set(true)
+            |""".trimMargin()
+
+        /**
+         * The name of the gRPC service declared in [serviceProto].
+         *
+         * gRPC Java names the generated class after the service.
+         */
+        private const val SERVICE_NAME = "PingService"
+
+        /**
+         * The name of the outer Java class of [serviceProto].
+         *
+         * gRPC Kotlin names the generated file after the outer class rather than the service.
+         */
+        private const val OUTER_CLASS_NAME = "PingProto"
+
+        /**
+         * A proto file that declares a gRPC service.
+         */
+        private val serviceProto = """
+            |syntax = "proto3";
+            |
+            |package given.grpc;
+            |
+            |option java_package = "io.spine.tools.core.jvm.given.grpc";
+            |option java_outer_classname = "$OUTER_CLASS_NAME";
+            |option java_multiple_files = true;
+            |
+            |message Ping {
+            |    string text = 1;
+            |}
+            |
+            |service $SERVICE_NAME {
+            |    rpc Send(Ping) returns (Ping);
+            |}
             |""".trimMargin()
 
         /**
@@ -287,6 +338,22 @@ internal class CoreJvmPluginIgTest {
 
         val annotationSettings = projectDir.settingsDir().resolve("$API_ANNOTATIONS.$JSON")
         annotationSettings.readText() shouldContain INTERNAL_METHOD_NAME
+    }
+
+    @Test
+    fun `generate gRPC code, if gRPC is enabled`(@TempDir projectDir: File) {
+        val project = GradleProject.setupAt(projectDir)
+            .withSharedTestKitDirectory()
+            .addFile("settings.gradle.kts", settingsWithRepositories.lines())
+            .addFile("build.gradle.kts", (buildFileApplyingPluginById + enablingGrpc).lines())
+            .addFile("src/main/proto/given/grpc/ping.proto", serviceProto.lines())
+            .create()
+        val task = TaskName.of("generateProto")
+        project.executeTask(task)[task] shouldBe TaskOutcome.SUCCESS
+
+        val generatedFiles = projectDir.resolve("build").walk().map { it.name }.toList()
+        generatedFiles shouldContainAll
+                listOf("${SERVICE_NAME}Grpc.java", "${OUTER_CLASS_NAME}GrpcKt.kt")
     }
 }
 
