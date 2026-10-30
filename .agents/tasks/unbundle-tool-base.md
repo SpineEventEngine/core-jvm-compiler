@@ -20,10 +20,11 @@ the ToolBase it declares.
   `jvm-tools`, `code`, `fs`, `archive`, `java-code`, `proto-code`,
   `classic-codegen`. Relocation is not an option: the plugins share
   ToolBase types such as `LibraryPlugin` and the `spine { }` extension.
-- `protobuf-setup-plugins` is published by ToolBase as an uber JAR. It embeds
+- Up to ToolBase `.430`, `protobuf-setup-plugins` was an uber JAR embedding
   Guava, Gson, the Protobuf Gradle plugin, Spine Base and Logging, and other
-  ToolBase modules. The fat JAR currently gets its Guava and `io/spine/*` copies
-  from it. Every user of `compiler-gradle-plugin` already receives this JAR.
+  ToolBase modules. The fat JAR got its Guava and `io/spine/*` copies from it.
+  ToolBase `.440` publishes it as a plain JAR
+  (SpineEventEngine/tool-base#200, SpineEventEngine/tool-base#201).
 - `classic-codegen` brings JavaPoet and Roaster, which the fat JAR keeps
   bundling. Its POM entry excludes them, so `pom.xml` does not duplicate them.
 
@@ -49,3 +50,7 @@ the ToolBase it declares.
   `integrationTests` (101 tests). The fat JAR shrank from 18.2 MB to 13.4 MB.
   It now bundles only `io/spine/tools/core`, JavaPoet, KotlinPoet, and Roaster.
   The consumer-resolved POM graph gained exactly the eleven ToolBase modules.
+- 2026-10-29 — PR opened: SpineEventEngine/core-jvm-compiler#125.
+- 2026-10-30 — moved to ToolBase `.440` (plain `protobuf-setup-plugins` and
+  `jvm-tool-plugins`); dropped the uber-JAR ordering workaround, and restored
+  `jvmToolPluginDogfooding` in the root build script.

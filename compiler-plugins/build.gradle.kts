@@ -149,6 +149,7 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
     pomDependency(ToolBase.pluginBase, excluding = pomExcludedGroups),
     pomDependency(ToolBase.gradlePluginApi, excluding = pomExcludedGroups),
     pomDependency(ToolBase.rootGradlePlugins, excluding = pomExcludedGroups),
+    pomDependency(ToolBase.protobufSetupPlugins, excluding = pomExcludedGroups),
     pomDependency(ToolBase.jvmTools, excluding = pomExcludedGroups),
     pomDependency(ToolBase.code, excluding = pomExcludedGroups),
     pomDependency(ToolBase.fs, excluding = pomExcludedGroups),
@@ -165,13 +166,6 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
         ToolBase.classicCodegen,
         excluding = pomExcludedGroups + listOf(JavaPoet.group, Roaster.group)
     ),
-
-    /*
-     * ToolBase publishes `protobuf-setup-plugins` as an uber JAR, which embeds copies
-     * of the ToolBase artifacts listed above, among other libraries. It goes after
-     * them, so that their genuine JARs precede it on the classpath of a consumer.
-     */
-    pomDependency(ToolBase.protobufSetupPlugins, excluding = pomExcludedGroups),
 
     // The Protobuf Gradle Plugin, so that we can add it from our code.
     pomDependency(Protobuf.GradlePlugin.lib),

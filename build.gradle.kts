@@ -80,6 +80,21 @@ buildscript {
                     compiler.params,
                     compiler.gradleApi,
                     compiler.pluginLib,
+                    // `jvm-tool-plugins` and the Compiler Gradle plugin may depend on
+                    // different ToolBase versions, which `failOnVersionConflict()` rejects.
+                    toolBase.fs,
+                    toolBase.code,
+                    toolBase.javaCode,
+                    toolBase.kotlinCode,
+                    toolBase.protoCode,
+                    toolBase.classicCodegen,
+                    toolBase.pluginBase,
+                    toolBase.jvmTools,
+                    toolBase.gradlePluginApi,
+                    toolBase.intellijPlatform,
+                    toolBase.intellijPlatformJava,
+                    toolBase.protobufSetupPlugins,
+                    toolBase.psiJava,
                 )
             }
         }
@@ -87,10 +102,7 @@ buildscript {
     dependencies {
         classpath(enforcedPlatform(io.spine.dependency.kotlinx.Coroutines.bom))
         classpath(enforcedPlatform(io.spine.dependency.lib.Grpc.bom))
-        // Not the `*Dogfooding` JAR: it is a fat JAR embedding unrelocated Protobuf classes
-        // of the previous tool-base build. They shadow the runtime resolved for this build
-        // and fail with `ProtobufRuntimeVersionException` when the gencode is newer.
-        classpath(toolBase.jvmToolPlugins)
+        classpath(toolBase.jvmToolPluginDogfooding)
         classpath(compiler.pluginLib)
         classpath(coreJvmCompiler.gradlePlugin)
     }
