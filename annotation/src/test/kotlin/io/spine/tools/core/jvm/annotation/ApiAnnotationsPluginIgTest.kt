@@ -37,7 +37,6 @@ import io.spine.tools.gradle.task.BaseTaskName
 import io.spine.tools.gradle.testing.GradleProject
 import io.spine.tools.gradle.testing.get
 import io.spine.tools.java.fs.SourceFile
-import io.spine.tools.psi.convertLineSeparators
 import io.spine.tools.psi.java.Environment
 import io.spine.tools.psi.java.Parser
 import io.spine.tools.psi.java.topLevelClass
@@ -382,8 +381,7 @@ private fun checkOuterClassAnnotations(
 }
 
 private fun parse(file: Path): PsiClass {
-    val code = file.readText().convertLineSeparators()
-    val javaFile = Parser(Environment.project).parse(code, file.toFile())
+    val javaFile = Parser(Environment.project).parse(file.readText(), file.toFile())
     return javaFile.topLevelClass
 }
 
