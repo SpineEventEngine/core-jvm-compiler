@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -185,10 +185,6 @@
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -883,10 +879,6 @@
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -1880,14 +1872,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-annotation-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -2241,10 +2233,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -3233,14 +3221,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -3425,10 +3413,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -4123,10 +4107,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -5128,14 +5108,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -5320,10 +5300,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -6018,10 +5994,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -7015,14 +6987,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -7376,10 +7348,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -8368,14 +8336,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-compiler-plugins:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-compiler-plugins:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -8560,10 +8528,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -9253,10 +9217,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -10242,14 +10202,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -10434,10 +10394,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -11132,10 +11088,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -12129,14 +12081,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -12490,10 +12442,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -13482,14 +13430,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-gradle-plugin:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-gradle-plugin:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -13690,10 +13638,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -14381,10 +14325,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -15409,14 +15349,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -15601,10 +15541,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -16272,10 +16208,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -17256,14 +17188,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -17464,10 +17396,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -18151,10 +18079,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -19167,14 +19091,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -19359,10 +19283,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -20057,10 +19977,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -21062,14 +20978,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -21423,10 +21339,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -22415,14 +22327,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -22607,10 +22519,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -23305,10 +23213,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -24310,14 +24214,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -24671,10 +24575,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -25663,14 +25563,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -25871,10 +25771,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -26581,10 +26477,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -27614,14 +27506,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:12 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -27982,10 +27874,6 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -28684,14 +28572,14 @@ This report was generated on **Mon Nov 02 21:41:59 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:13 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -28876,10 +28764,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -29574,10 +29458,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -30579,14 +30459,14 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:13 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -30940,10 +30820,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -31932,14 +31808,14 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:13 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -32124,10 +32000,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 1.  **Group** : com.sksamuel.aedile. **Name** : aedile-core. **Version** : 3.0.4.
      * **Project URL:** [https://www.github.com/sksamuel/aedile](https://www.github.com/sksamuel/aedile)
      * **License:** [The Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -32822,10 +32694,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -33827,14 +33695,14 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:13 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.103`
+# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.104`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -34188,10 +34056,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 1.  **Group** : com.soywiz.korlibs.korte. **Name** : korte-jvm. **Version** : 4.0.10.
      * **Project URL:** [https://github.com/korlibs/korge-next](https://github.com/korlibs/korge-next)
      * **License:** [MIT](https://raw.githubusercontent.com/korlibs/korge-next/master/korge/LICENSE.txt)
-
-1.  **Group** : com.squareup. **Name** : javapoet. **Version** : 1.13.0.
-     * **Project URL:** [http://github.com/square/javapoet/](http://github.com/square/javapoet/)
-     * **License:** [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 1.  **Group** : com.squareup. **Name** : kotlinpoet. **Version** : 2.3.0.
      * **Project URL:** [https://github.com/square/kotlinpoet](https://github.com/square/kotlinpoet)
@@ -35180,6 +35044,6 @@ This report was generated on **Mon Nov 02 21:42:00 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
+This report was generated on **Mon Nov 02 22:04:13 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
