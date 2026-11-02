@@ -89,7 +89,11 @@ internal class RejectionJavadocIgTest {
 
     @Test
     fun `'newBuilder' method`() {
-        assertMethodDoc(NEW_BUILDER_METHOD_ABSTRACT, generatedClass, NEW_BUILDER)
+        assertMethodDoc(
+            expectedComment = NEW_BUILDER_METHOD_ABSTRACT,
+            cls = generatedClass,
+            methodName = NEW_BUILDER
+        )
     }
 
     @Test
@@ -99,13 +103,25 @@ internal class RejectionJavadocIgTest {
 
     @Test
     fun `'build()' method of the 'Builder' class`() {
-        assertMethodDoc(BUILD_METHOD_ABSTRACT, builderClass, BUILD)
+        assertMethodDoc(
+            expectedComment = BUILD_METHOD_ABSTRACT,
+            cls = builderClass,
+            methodName = BUILD
+        )
     }
 
     @Test
     fun `property setters of the builder`() {
-        assertMethodDoc(expectedFirstFieldComment(), builderClass, "setId")
-        assertMethodDoc(expectedSecondFieldComment(), builderClass, "setRejectionMessage")
+        assertMethodDoc(
+            expectedComment = expectedFirstFieldComment(),
+            cls = builderClass,
+            methodName = "setId"
+        )
+        assertMethodDoc(
+            expectedComment = expectedSecondFieldComment(),
+            cls = builderClass,
+            methodName = "setRejectionMessage"
+        )
     }
 }
 
@@ -128,6 +144,8 @@ private fun PsiClass.findMethod(methodName: String): PsiMethod =
     findMethodsByName(methodName, false).firstOrNull()
         ?: error("Cannot find the method `$methodName`.")
 
+private val whitespace = Regex("""\s+""")
+
 /**
  * Obtains the text of this Javadoc comment as a single line.
  *
@@ -142,5 +160,3 @@ private fun PsiDocComment.fullText(): String =
         .joinToString(" ") { it.trim().removePrefix("*") }
         .replace(whitespace, " ")
         .trim()
-
-private val whitespace = Regex("\\s+")
