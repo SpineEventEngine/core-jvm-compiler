@@ -1,6 +1,6 @@
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-annotation:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -450,12 +450,6 @@
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -1400,12 +1394,6 @@
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -1892,14 +1880,14 @@
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-annotation-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-annotation-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -2764,12 +2752,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -3251,14 +3233,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-base:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -3708,12 +3690,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -4666,12 +4642,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -5158,14 +5128,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-comparable:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -5615,12 +5585,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -6565,12 +6529,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -7057,14 +7015,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-comparable-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -7929,12 +7887,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -8416,14 +8368,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-compiler-plugins:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-compiler-plugins:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -8873,12 +8825,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -9810,12 +9756,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -10302,14 +10242,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-entity:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -10759,12 +10699,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -11709,12 +11643,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -12201,14 +12129,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-entity-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -13073,12 +13001,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -13560,14 +13482,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-gradle-plugin:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-gradle-plugin:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -14037,12 +13959,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -14979,12 +14895,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
@@ -15499,14 +15409,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-grpc:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -15956,12 +15866,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -16870,12 +16774,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
@@ -17358,14 +17256,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-ksp:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -17831,12 +17729,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -18761,12 +18653,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [Apache License 2.0](http://www.apache.org/licenses/)
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
@@ -19281,14 +19167,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-marker:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -19738,12 +19624,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -20696,12 +20576,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -21188,14 +21062,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-marker-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -22060,12 +21934,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -22547,14 +22415,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-message-group:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -23004,12 +22872,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -23962,12 +23824,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -24454,14 +24310,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-message-group-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -25326,12 +25182,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -25813,14 +25663,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-routing:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -26290,12 +26140,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -27272,12 +27116,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -27776,14 +27614,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:41:59 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-routing-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -28505,12 +28343,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 13.0.
      * **Project URL:** [http://www.jetbrains.org](http://www.jetbrains.org)
      * **License:** [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -28852,14 +28684,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-signal:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -29309,12 +29141,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -30267,12 +30093,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -30759,14 +30579,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-signal-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -31631,12 +31451,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -32118,14 +31932,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-uuid:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : be.cyberelf.nanoxml. **Name** : nanoxml. **Version** : 2.2.3.
@@ -32575,12 +32389,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 1.  **Group** : org.imgscalr. **Name** : imgscalr-lib. **Version** : 4.2.
      * **Project URL:** [http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/](http://www.thebuzzmedia.com/software/imgscalr-java-image-scaling-library/)
      * **License:** [ASF 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
 
 1.  **Group** : org.jetbrains. **Name** : annotations. **Version** : 26.1.0.
      * **Project URL:** [https://github.com/JetBrains/java-annotations](https://github.com/JetBrains/java-annotations)
@@ -33533,12 +33341,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -34025,14 +33827,14 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).
 
 
 
 
-# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.102`
+# Dependencies of `io.spine.tools:core-jvm-uuid-tests:2.0.0-SNAPSHOT.103`
 
 ## Runtime
 1.  **Group** : com.google.code.findbugs. **Name** : jsr305. **Version** : 3.0.2.
@@ -34897,12 +34699,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
      * **License:** [LGPL 2.1](http://www.gnu.org/licenses/lgpl-2.1.html)
      * **License:** [MPL 1.1](http://www.mozilla.org/MPL/MPL-1.1.html)
 
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-api. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
-1.  **Group** : org.jboss.forge.roaster. **Name** : roaster-jdt. **Version** : 2.31.1.Final.
-     * **License:** [Eclipse Public License version 1.0](https://www.eclipse.org/legal/epl-v10.html)
-
 1.  **Group** : org.jcommander. **Name** : jcommander. **Version** : 1.85.
      * **Project URL:** [https://jcommander.org](https://jcommander.org)
      * **License:** [http://www.apache.org/licenses/LICENSE-2.0.txt](http://www.apache.org/licenses/LICENSE-2.0.txt)
@@ -35384,6 +35180,6 @@ This report was generated on **Fri Oct 30 17:30:03 WET 2026** using
 
 The dependencies distributed under several licenses, are used according their commercial-use-friendly license.
 
-This report was generated on **Fri Oct 30 17:30:03 WET 2026** using 
+This report was generated on **Mon Nov 02 21:42:00 WET 2026** using 
 [Gradle-License-Report plugin](https://github.com/jk1/Gradle-License-Report) by Evgeny Naumenko, licensed under 
 [Apache 2.0 License](https://github.com/jk1/Gradle-License-Report/blob/master/LICENSE).

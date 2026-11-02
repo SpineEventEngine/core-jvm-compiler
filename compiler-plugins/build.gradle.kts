@@ -158,10 +158,10 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
     pomDependency(ToolBase.protoCode, excluding = pomExcludedGroups),
 
     /*
-     * JavaPoet and Roaster, which `classic-codegen` depends on, stay bundled into
-     * the fat JAR; see `expectedPackages`. This dependency excludes their groups —
-     * `com.squareup` as a whole, and Roaster's — so that consumers do not receive
-     * another copy of the bundled classes.
+     * JavaPoet, which `classic-codegen` depends on, stays bundled into the fat JAR;
+     * see `expectedPackages`. This dependency excludes `com.squareup` as a whole,
+     * so that consumers do not receive another copy of the bundled classes.
+     * It also excludes Roaster, which the bundled code does not use.
      */
     pomDependency(
         ToolBase.classicCodegen,
@@ -695,13 +695,6 @@ tasks.shadowJar {
         "fj/**",
         "javax/annotation/**",
 
-        /*
-         * JNA classes come embedded, unrelocated, in `roaster-jdt`, which we bundle.
-         * The plugins do not use JNA, and a partial copy of it could shadow
-         * the genuine JNA artifact on a consumer's build classpath.
-         */
-        "com/sun/jna/**",
-
         // Strip the Validation library code generation code.
         // It is going to be available as runtime dependencies via `pom.xml`.
         "io/spine/tools/validation/**",
@@ -796,9 +789,6 @@ val expectedPackages = listOf(
     // Java and Kotlin code generation.
     "com/squareup/javapoet/",
     "com/squareup/kotlinpoet/",
-
-    // Roaster, for parsing and formatting Java sources.
-    "org/jboss/forge/",
 )
 
 /**
