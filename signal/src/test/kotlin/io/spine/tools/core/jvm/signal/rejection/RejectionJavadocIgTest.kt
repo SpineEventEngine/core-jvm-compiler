@@ -34,7 +34,6 @@ import io.spine.tools.core.jvm.signal.rejection.Method.BUILD
 import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
 import io.spine.tools.gradle.task.JavaTaskName.Companion.compileJava
 import io.spine.tools.gradle.testing.GradleProject.Companion.setupAt
-import io.spine.tools.psi.convertLineSeparators
 import io.spine.tools.psi.java.Environment
 import io.spine.tools.psi.java.Parser
 import io.spine.tools.psi.java.topLevelClass
@@ -74,8 +73,8 @@ internal class RejectionJavadocIgTest {
             )
             project.executeTask(compileJava /* launchSpineCompiler */)
             val generatedFile = rejectionJavaFile(projectDir.resolve("sub-module"))
-            val code = generatedFile.readText().convertLineSeparators()
-            val javaFile = Parser(Environment.project).parse(code, generatedFile)
+            val javaFile = Parser(Environment.project)
+                .parse(generatedFile.readText(), generatedFile)
             generatedClass = javaFile.topLevelClass
             val builderClassName = SimpleClassName.ofBuilder().value
             builderClass = generatedClass.findInnerClassByName(builderClassName, false)

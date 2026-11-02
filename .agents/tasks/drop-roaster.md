@@ -36,9 +36,11 @@ or JNA classes.
 - [x] `compiler-plugins`: drop `org/jboss/forge/` from the expected packages and
       the `com/sun/jna/**` exclusion
 - [x] Verify: `./gradlew build`, the IgTests, the shadow JAR listing
-- [ ] After upgrading to a ToolBase release without Roaster: drop the
+- [x] After upgrading to a ToolBase release without Roaster: drop the
       `Roaster.group` exclusions in `base`, `routing`, and `signal`. The one in
       `compiler-plugins` goes with the `classic-codegen` POM entry, once JavaPoet is gone.
+- [x] Upgrade to ToolBase `.442`, whose `Parser.parse()` normalizes line separators,
+      and drop the `convertLineSeparators()` calls in the two IgTests
 
 ## Log
 
