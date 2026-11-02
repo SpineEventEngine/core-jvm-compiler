@@ -59,15 +59,15 @@ enum PrimitiveType {
     }
 
     /**
-     * Returns the {@link JavaTypeName} of the Java primitive for the Protobuf scalar
-     * primitive name.
+     * Returns the {@link JavaTypeName} of the Java primitive with the given name.
      *
      * @param primitiveType
      *         the primitive type name
-     * @return the primitive type name or {@link Optional#empty() Optional.empty()}
+     * @return the type name of the Java primitive or {@link Optional#empty() Optional.empty()}
      *         if the specified primitive name does not belong to {@link ScalarType}.
      */
     static Optional<JavaTypeName> typeNameFor(String primitiveType) {
+        // Only the primitives representing Protobuf scalar types are looked up.
         if (wrapperFor(primitiveType).isEmpty()) {
             return Optional.empty();
         }

@@ -86,6 +86,14 @@ public final class SingularFieldType implements FieldType {
         return set();
     }
 
+    /**
+     * Obtains the name of the given Java type.
+     *
+     * @param name
+     *         the name of a Java primitive type, such as {@code int}, or the canonical name
+     *         of a class; the binary name of a nested class is also accepted
+     * @return the name of the primitive type, or the name of the class
+     */
     public static JavaTypeName constructTypeNameFor(String name) {
         var scalarPrimitive = PrimitiveType.typeNameFor(name);
 

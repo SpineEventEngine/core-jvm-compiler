@@ -50,7 +50,7 @@ import io.spine.validation.Validated
  * @param throwableClass The class of the rejection type enclosing the builder.
  * @param typeSystem The type system for resolving the types of the rejection fields.
  */
-internal class RThrowableBuilderCode internal constructor(
+internal class RThrowableBuilderCode(
     private val rejection: MessageType,
     private val messageClass: ClassName,
     private val throwableClass: ClassName,
@@ -84,7 +84,7 @@ internal class RThrowableBuilderCode internal constructor(
         header = "public static class $simpleClassName",
         members = buildList {
             add(builderField())
-            add(constructor())
+            add(builderConstructor())
             rejection.fieldList.forEach { add(setter(it)) }
             add(rejectionMessageMethod())
             add(buildMethod())
@@ -92,7 +92,7 @@ internal class RThrowableBuilderCode internal constructor(
     )
 
     /**
-     * Produces the code, which builds and validates the rejection message.
+     * Produces the code that builds and validates the rejection message.
      *
      * The code is not a statement (there is no semicolon) since
      * it is intended to be passed to a constructor.
@@ -107,10 +107,10 @@ internal class RThrowableBuilderCode internal constructor(
                 "${name(messageClass)}.$NEW_BUILDER();"
     }
 
-    private fun constructor(): String = methodDeclaration(
+    private fun builderConstructor(): String = methodDeclaration(
         javadoc = ofBuilderConstructor,
         signature = "private $simpleClassName()",
-        statements = listOf()
+        statements = emptyList()
     )
 
     private fun ClassReferences.setter(field: Field): String {
@@ -131,7 +131,7 @@ internal class RThrowableBuilderCode internal constructor(
     /**
      * Obtains the code referring to the type of the setter parameter for the given field.
      *
-     * Types of primitive values are boxed.
+     * Primitive types are replaced with their wrapper classes.
      */
     private fun ClassReferences.parameterType(field: Field): String = when {
         field.isMap -> {
@@ -148,13 +148,13 @@ internal class RThrowableBuilderCode internal constructor(
     /**
      * Obtains the name of the Java class representing this type.
      *
-     * For a primitive type, the boxed class is returned.
+     * For a primitive type, its wrapper class is returned.
      */
     private fun TypeBase.className(): ClassName =
         if (isPrimitive) primitive.toJavaClass() else typeName.javaClassName(typeSystem)
 
     /**
-     * Produces the code of the method which creates the rejection message by calling
+     * Produces the code of the method that creates the rejection message by calling
      * the `build()` method of the message builder.
      *
      * The method returns the message annotated as [Validated], which makes Validation

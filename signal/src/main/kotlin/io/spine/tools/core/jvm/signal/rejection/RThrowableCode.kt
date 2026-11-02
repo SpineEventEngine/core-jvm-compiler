@@ -34,6 +34,7 @@ import io.spine.tools.core.jvm.signal.rejection.Javadoc.forThrowableOf
  *
  * @param javaPackage The name of the Java package where the rejection type should be generated.
  * @param rejection The declaration of the rejection.
+ * @param typeSystem The type system for resolving the types of the rejection fields.
  */
 internal class RThrowableCode(
     javaPackage: String,
@@ -45,10 +46,10 @@ internal class RThrowableCode(
     private val messageClass: ClassName =
         MessageOrEnumConvention(typeSystem).declarationFor(rejection.name).name
     private val builder = RThrowableBuilderCode(
-        rejection,
-        messageClass,
-        throwableClass,
-        typeSystem
+        rejection = rejection,
+        messageClass = messageClass,
+        throwableClass = throwableClass,
+        typeSystem = typeSystem
     )
 
     /**
@@ -59,32 +60,32 @@ internal class RThrowableCode(
             throwableClassCode()
         }
 
-    private fun ClassReferences.throwableClassCode(): String = with(builder) {
+    private fun ClassReferences.throwableClassCode(): String {
         val generated = name(ClassName(Generated::class))
         val generatedValue = StringLiteral(GeneratedAnnotation.defaultValue)
         val superclass = name(ClassName(RejectionThrowable::class))
-        classDeclaration(
+        return classDeclaration(
             javadoc = forThrowableOf(rejection),
             header = "@$generated($generatedValue)\n" +
                     "public class ${throwableClass.simpleName} extends $superclass",
             members = listOf(
-                SERIAL_VERSION_UID,
-                constructor(),
-                messageThrown(),
-                newBuilderMethod(),
-                builderClassCode()
+                SERIAL_VERSION_UID_FIELD,
+                throwableConstructor(),
+                messageThrownMethod(),
+                with(builder) { newBuilderMethod() },
+                with(builder) { builderClassCode() }
             )
         )
     }
 
-    private fun ClassReferences.constructor(): String = methodDeclaration(
+    private fun ClassReferences.throwableConstructor(): String = methodDeclaration(
         javadoc = forConstructorOfThrowable(BUILDER_PARAMETER),
         signature = "private ${throwableClass.simpleName}" +
                 "(${name(builder.builderClass)} $BUILDER_PARAMETER)",
         statements = listOf("super(${builder.buildRejectionMessage(BUILDER_PARAMETER)});")
     )
 
-    private fun ClassReferences.messageThrown(): String {
+    private fun ClassReferences.messageThrownMethod(): String {
         val override = name(ClassName(Override::class))
         val messageType = name(messageClass)
         return methodDeclaration(
@@ -96,7 +97,7 @@ internal class RThrowableCode(
 
 private val messageThrown = NoArgMethod("messageThrown")
 
-private const val SERIAL_VERSION_UID = "private static final long serialVersionUID = 0L;"
+private const val SERIAL_VERSION_UID_FIELD = "private static final long serialVersionUID = 0L;"
 
 /**
  * The name of the constructor parameter accepting the builder of the rejection type.

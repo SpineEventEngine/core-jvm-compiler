@@ -63,7 +63,9 @@ message RejectionWithMapField {
     map<int32, int32> map = 1;
 }
 
-// The builder of the generated rejection type must import `ByteString` for the code to compile.
+// The builder of the rejection type below compiles only if it imports `ByteString`.
+
+// A rejection with `bytes` fields, which are `ByteString` values in Java.
 message RejectionWithBytesFields {
     bytes payload = 1;
     repeated bytes chunks = 2;

@@ -78,7 +78,7 @@ internal object Javadoc {
             .withNewLine()
         val paramsPart = fromEscaped("@param $builder the builder for the rejection")
             .withNewLine()
-        return generalPart.value() + paramsPart.value()
+        return generalPart.value + paramsPart.value
     }
 
     /**

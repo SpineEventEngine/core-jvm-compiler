@@ -17,8 +17,8 @@ import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.ToolBase
 
 /*
-    This Smoke Tests module holds a `TestMethodFactory` that is used in
-    the `model-compiler` module.
+    This module holds custom code generation actions for message groups,
+    which the `compiler` module passes to the Spine Compiler.
 */
 
 dependencies {

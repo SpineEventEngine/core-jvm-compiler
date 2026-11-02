@@ -79,6 +79,15 @@ public final class RepeatedFieldType implements FieldType {
         return addAll();
     }
 
+    /**
+     * Obtains the name of the {@code List} type with the given element type.
+     *
+     * <p>A primitive element type is replaced with its wrapper class.
+     *
+     * @param componentTypeName
+     *         the name of a Java primitive type, such as {@code int}, or the canonical name
+     *         of a class; the binary name of a nested class is also accepted
+     */
     public static JavaTypeName typeNameFor(String componentTypeName) {
         var wrapper = PrimitiveType.wrapperFor(componentTypeName);
         var componentType = wrapper.isPresent()

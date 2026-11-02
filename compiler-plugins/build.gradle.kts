@@ -773,7 +773,7 @@ val expectedPackages = listOf(
      */
     "io/spine/tools/core/",
 
-    // Kotlin code generation.
+    // KotlinPoet, for Kotlin code generation.
     "com/squareup/kotlinpoet/",
 )
 

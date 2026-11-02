@@ -22,10 +22,11 @@ import io.spine.string.Indent.Companion.defaultJavaIndent
  * @param javadoc The text of the Javadoc comment, or an empty string for no comment.
  * @param header The code preceding the class body, such as annotations, modifiers,
  *   and the class name.
- * @param members The code of the class members, which are separated with blank lines.
+ * @param members The code of the class members, which the declaration separates
+ *   with blank lines.
  */
 internal fun classDeclaration(javadoc: String, header: String, members: List<String>): String =
-    declaration(javadoc, header, members.joinToString("\n\n"))
+    declaration(javadoc = javadoc, header = header, body = members.joinToString("\n\n"))
 
 /**
  * Composes the code of a method or a constructor.
@@ -39,7 +40,11 @@ internal fun methodDeclaration(
     javadoc: String = "",
     signature: String,
     statements: List<String>
-): String = declaration(javadoc, signature, statements.joinToString("\n"))
+): String = declaration(
+    javadoc = javadoc,
+    header = signature,
+    body = statements.joinToString("\n")
+)
 
 private fun declaration(javadoc: String, header: String, body: String): String = buildString {
     if (javadoc.isNotEmpty()) {
@@ -66,7 +71,8 @@ private fun javadocComment(text: String): String {
 }
 
 /**
- * Matches any line break, as JavaPoet did when it generated the Javadoc of rejections.
+ * A pattern matching any line break, as JavaPoet did when it generated the Javadoc
+ * of rejections.
  */
 private val lineBreak = Regex("\\R")
 

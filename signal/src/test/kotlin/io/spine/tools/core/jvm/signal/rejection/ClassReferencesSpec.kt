@@ -74,6 +74,21 @@ internal class ClassReferencesSpec {
         )
     }
 
+    @Test
+    fun `not import a class from the default package`() {
+        file {
+            name(ClassName("", "Default"))
+        } shouldBe code("Default")
+    }
+
+    @Test
+    fun `omit the package statement for a class in the default package`() {
+        val inDefaultPackage = ClassName("", "Thrown")
+        javaFile(inDefaultPackage, nested = emptySet()) {
+            name(ClassName("io.spine.other", "Item"))
+        } shouldBe "import io.spine.other.Item;\n\nItem\n"
+    }
+
     @Nested inner class
     `refer to a class by its canonical name if its simple name is taken by` {
 
@@ -135,6 +150,16 @@ internal class ClassReferencesSpec {
         }
 
         @Test
+        fun `placing the annotation before the simple name of a class with a canonical name`() {
+            file {
+                annotated(ClassName("io.spine.other", "Thrown"), validated)
+            } shouldBe code(
+                "io.spine.other.@Validated Thrown",
+                imports = listOf("io.spine.validation.Validated")
+            )
+        }
+
+        @Test
         fun `placing the annotation before a top-level class`() {
             file {
                 annotated(ClassName("io.spine.other", "Item"), validated)
@@ -151,7 +176,7 @@ private const val PACKAGE = "io.spine.given"
 /**
  * Composes the expected code of a file of the [PACKAGE] with the given imports.
  */
-private fun code(classCode: String, imports: List<String> = listOf()): String = buildString {
+private fun code(classCode: String, imports: List<String> = emptyList()): String = buildString {
     append("package $PACKAGE;\n\n")
     imports.forEach { append("import $it;\n") }
     if (imports.isNotEmpty()) {
