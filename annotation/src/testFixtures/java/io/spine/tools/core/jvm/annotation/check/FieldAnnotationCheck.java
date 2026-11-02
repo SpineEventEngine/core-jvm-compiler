@@ -1,40 +1,25 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.annotation.check;
 
 import com.google.protobuf.Descriptors.FieldDescriptor;
+import com.intellij.psi.PsiClass;
+import com.intellij.psi.PsiMethod;
+import com.intellij.psi.PsiModifier;
 import io.spine.annotation.Internal;
 import io.spine.code.proto.FieldName;
-import org.jboss.forge.roaster.model.TypeHolder;
-import org.jboss.forge.roaster.model.VisibilityScoped;
-import org.jboss.forge.roaster.model.impl.AbstractJavaSource;
-import org.jboss.forge.roaster.model.source.JavaClassSource;
-import org.jboss.forge.roaster.model.source.JavaSource;
-import org.jboss.forge.roaster.model.source.MethodSource;
 
 import java.lang.annotation.Annotation;
 import java.util.Optional;
@@ -43,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import static io.spine.code.java.SimpleClassName.ofBuilder;
 import static io.spine.tools.core.jvm.annotation.check.Annotations.findAnnotation;
 import static java.lang.String.format;
+import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -61,31 +47,32 @@ public final class FieldAnnotationCheck extends SourceCheck {
         this.field = checkNotNull(field);
     }
 
-    private static JavaClassSource builderOf(JavaSource<?> messageSource) {
-        var messageType = (TypeHolder<?>) messageSource;
-        var builderType = messageType.getNestedType(ofBuilder().value());
-        return (JavaClassSource) builderType;
+    private static PsiClass builderOf(PsiClass messageClass) {
+        var builderName = ofBuilder().value();
+        return checkNotNull(
+                messageClass.findInnerClassByName(builderName, false),
+                "The class `%s` has no nested class `%s`.",
+                messageClass.getQualifiedName(), builderName
+        );
     }
 
     @Override
-    public void accept(AbstractJavaSource<JavaClassSource> input) {
-        checkNotNull(input);
-        var message = (JavaClassSource) input;
+    public void accept(PsiClass message) {
+        checkNotNull(message);
         var messageBuilder = builderOf(message);
         checkAccessorsAnnotation(message);
         checkAccessorsAnnotation(messageBuilder);
     }
 
-    private void checkAccessorsAnnotation(JavaClassSource message) {
+    private void checkAccessorsAnnotation(PsiClass cls) {
         var fieldNameCamelCase = FieldName.of(field.toProto()).toCamelCase();
-        message.getMethods()
-               .stream()
-               .filter(VisibilityScoped::isPublic)
-               .filter(method -> method.getName().contains(fieldNameCamelCase))
-               .forEach(this::assertMethodAnnotation);
+        stream(cls.getMethods())
+                .filter(method -> method.hasModifierProperty(PsiModifier.PUBLIC))
+                .filter(method -> method.getName().contains(fieldNameCamelCase))
+                .forEach(this::assertMethodAnnotation);
     }
 
-    private void assertMethodAnnotation(MethodSource<JavaClassSource> method) {
+    private void assertMethodAnnotation(PsiMethod method) {
         Optional<?> annotation = findAnnotation(method, annotationClass());
         var methodName = method.getName();
         if (shouldBeAnnotated()) {
