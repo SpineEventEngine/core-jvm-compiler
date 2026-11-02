@@ -92,7 +92,7 @@ public final class RepeatedFieldType implements FieldType {
         var wrapper = PrimitiveType.wrapperFor(componentTypeName);
         var componentType = wrapper.isPresent()
                             ? new ClassName(wrapper.get())
-                            : ClassName.Companion.guess(componentTypeName.replace('$', '.'));
+                            : ClassName.guess(componentTypeName.replace('$', '.'));
         var listClass = new ClassName(List.class);
         var result = new ParameterizedTypeName(listClass, componentType);
         return result;

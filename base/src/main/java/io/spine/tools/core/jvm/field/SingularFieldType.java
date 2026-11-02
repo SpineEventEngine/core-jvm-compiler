@@ -103,7 +103,7 @@ public final class SingularFieldType implements FieldType {
 
         // Make a possibly nested class name use the dot notation.
         var dottedName = name.replace('$', '.');
-        var result = ClassName.Companion.guess(dottedName);
+        var result = ClassName.guess(dottedName);
         return result;
     }
 }

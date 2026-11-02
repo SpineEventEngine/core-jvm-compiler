@@ -71,10 +71,10 @@ enum PrimitiveType {
         if (wrapperFor(primitiveType).isEmpty()) {
             return Optional.empty();
         }
-        return JavaTypeName.Companion.getKnownPrimitives()
-                                     .stream()
-                                     .filter(type -> type.getCanonical().equals(primitiveType))
-                                     .findFirst();
+        return JavaTypeName.getKnownPrimitives()
+                           .stream()
+                           .filter(type -> type.getCanonical().equals(primitiveType))
+                           .findFirst();
     }
 
     private boolean matchesName(String typeName) {
