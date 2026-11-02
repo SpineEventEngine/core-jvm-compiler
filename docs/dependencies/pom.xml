@@ -10,7 +10,7 @@ all modules and does not describe the project structure per-subproject.
  -->
 <groupId>io.spine.tools</groupId>
 <artifactId>core-jvm-compiler</artifactId>
-<version>2.0.0-SNAPSHOT.102</version>
+<version>2.0.0-SNAPSHOT.103</version>
 
 <inceptionYear>2015</inceptionYear>
 
@@ -327,18 +327,6 @@ all modules and does not describe the project structure per-subproject.
     <groupId>io.spine.tools</groupId>
     <artifactId>validation-java</artifactId>
     <version>2.0.0-SNAPSHOT.469</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>org.jboss.forge.roaster</groupId>
-    <artifactId>roaster-api</artifactId>
-    <version>2.31.1.Final</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>org.jboss.forge.roaster</groupId>
-    <artifactId>roaster-jdt</artifactId>
-    <version>2.31.1.Final</version>
     <scope>test</scope>
   </dependency>
   <dependency>
