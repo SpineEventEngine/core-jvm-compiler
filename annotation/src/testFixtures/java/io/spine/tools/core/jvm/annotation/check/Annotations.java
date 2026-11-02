@@ -41,13 +41,9 @@ final class Annotations {
      */
     static Optional<PsiAnnotation>
     findAnnotation(PsiModifierListOwner element, Class<? extends Annotation> annotationType) {
-        var modifiers = element.getModifierList();
-        if (modifiers == null) {
-            return Optional.empty();
-        }
         var qualifiedName = annotationType.getCanonicalName();
         var simpleName = annotationType.getSimpleName();
-        return stream(modifiers.getAnnotations())
+        return stream(element.getAnnotations())
                 .filter(annotation -> {
                     var name = annotation.getQualifiedName();
                     return qualifiedName.equals(name) || simpleName.equals(name);
