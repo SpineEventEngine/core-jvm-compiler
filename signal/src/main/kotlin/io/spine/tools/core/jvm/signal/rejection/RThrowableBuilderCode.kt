@@ -1,57 +1,34 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 @file:Suppress("TooManyFunctions")
 
 package io.spine.tools.core.jvm.signal.rejection
 
-import com.squareup.javapoet.AnnotationSpec
-import com.squareup.javapoet.ClassName
-import com.squareup.javapoet.CodeBlock
-import com.squareup.javapoet.FieldSpec
-import com.squareup.javapoet.MethodSpec
-import com.squareup.javapoet.ParameterSpec
-import com.squareup.javapoet.ParameterizedTypeName
-import com.squareup.javapoet.TypeSpec
-import io.spine.code.java.PackageName
 import io.spine.code.java.SimpleClassName
 import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.MessageType
-import io.spine.tools.compiler.ast.PrimitiveType
-import io.spine.tools.compiler.ast.Type
+import io.spine.tools.compiler.ast.TypeBase
 import io.spine.tools.compiler.ast.isList
 import io.spine.tools.compiler.ast.isMap
-import io.spine.tools.compiler.ast.toType
+import io.spine.tools.compiler.ast.typeName
+import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.javaCase
-import io.spine.tools.compiler.jvm.javaType
+import io.spine.tools.compiler.jvm.javaClassName
 import io.spine.tools.compiler.jvm.primarySetterName
-import io.spine.tools.compiler.jvm.toPrimitiveName
+import io.spine.tools.compiler.jvm.toJavaClass
 import io.spine.tools.compiler.type.TypeSystem
-import io.spine.tools.core.jvm.field.RepeatedFieldType
-import io.spine.tools.core.jvm.field.SingularFieldType.constructTypeNameFor
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forBuilderOf
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofBuildMethod
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofBuilderConstructor
@@ -60,187 +37,165 @@ import io.spine.tools.core.jvm.signal.rejection.Javadoc.ofRejectionMessageMethod
 import io.spine.tools.core.jvm.signal.rejection.Method.BUILD
 import io.spine.tools.core.jvm.signal.rejection.Method.NEW_BUILDER
 import io.spine.tools.core.jvm.signal.rejection.Method.REJECTION_MESSAGE
-import io.spine.tools.java.code.poet.classSpec
-import io.spine.tools.java.code.poet.codeBlock
-import io.spine.tools.java.code.poet.constructorSpec
-import io.spine.tools.java.code.poet.methodSpec
 import io.spine.tools.java.javadoc.JavadocText
 import io.spine.validation.Validated
-import javax.lang.model.element.Modifier.FINAL
-import javax.lang.model.element.Modifier.PRIVATE
-import javax.lang.model.element.Modifier.PUBLIC
-import javax.lang.model.element.Modifier.STATIC
-import com.squareup.javapoet.ClassName as PoClassName
-import com.squareup.javapoet.TypeName as PoTypeName
 
 /**
  * Generates code for a rejection builder.
  *
  * A generated builder validates rejection messages using [io.spine.validation.Validate.check].
+ *
+ * @param rejection The declaration of the rejection.
+ * @param messageClass The class of the rejection message.
+ * @param throwableClass The class of the rejection type enclosing the builder.
+ * @param typeSystem The type system for resolving the types of the rejection fields.
  */
 internal class RThrowableBuilderCode internal constructor(
     private val rejection: MessageType,
-    private val messageClass: PoClassName,
-    private val throwableClass: PoClassName,
+    private val messageClass: ClassName,
+    private val throwableClass: ClassName,
     private val typeSystem: TypeSystem
 ) {
 
-    private val rejectionConvention = RejectionThrowableConvention(typeSystem)
-
-    private val simpleClassName: String = SimpleClassName.ofBuilder().value
-
-    fun packageName(): PackageName = rejection.javaPackage()
-
-    fun toPoet(): TypeSpec = classSpec(simpleClassName) {
-        addModifiers(PUBLIC, STATIC)
-        addJavadoc(forBuilderOf(rejection))
-        addField(messageClass.builderField())
-        addMethod(constructor())
-        addMethods(setters())
-        addMethod(messageClass.rejectionMessageMethod())
-        addMethod(throwableClass.buildMethod())
-    }
-
-    private fun MessageType.javaPackage(): PackageName {
-        val binaryName = rejectionConvention.declarationFor(this@javaPackage.name)!!.name.binary
-        return PackageName.of(binaryName.substringBeforeLast("."))
-    }
-
     /**
-     * Obtains the method to create the builder.
+     * The simple name of the builder class.
      */
-    fun newBuilder(): MethodSpec = methodSpec(newBuilder.name()) {
-        addModifiers(PUBLIC, STATIC)
-        addJavadoc(ofNewBuilderMethod)
-        returns(builderClass())
-        addStatement("return new \$L()", simpleClassName)
-    }
+    val simpleClassName: String = SimpleClassName.ofBuilder().value
 
     /**
-     * Obtains the builder class as a parameter.
+     * The name of the builder class.
      */
-    fun asParameter(): ParameterSpec =
-        ParameterSpec.builder(builderClass(), BUILDER_FIELD).build()
+    val builderClass: ClassName = throwableClass.nested(simpleClassName)
 
     /**
-     * A code block, which builds and validates the rejection message.
+     * Produces the code of the method creating the builder.
+     */
+    fun ClassReferences.newBuilderMethod(): String = methodDeclaration(
+        javadoc = ofNewBuilderMethod,
+        signature = "public static ${name(builderClass)} $NEW_BUILDER()",
+        statements = listOf("return new $simpleClassName();")
+    )
+
+    /**
+     * Produces the code of the builder class.
+     */
+    fun ClassReferences.builderClassCode(): String = classDeclaration(
+        javadoc = forBuilderOf(rejection),
+        header = "public static class $simpleClassName",
+        members = buildList {
+            add(builderField())
+            add(constructor())
+            rejection.fieldList.forEach { add(setter(it)) }
+            add(rejectionMessageMethod())
+            add(buildMethod())
+        }
+    )
+
+    /**
+     * Produces the code, which builds and validates the rejection message.
      *
-     * The code block is not a statement (there is no semicolon) since
-     * it is intended to be passes to a constructor.
+     * The code is not a statement (there is no semicolon) since
+     * it is intended to be passed to a constructor.
      *
-     * @return the code block to obtain a rejection message
+     * @param builder The name of the variable referring to the builder.
      */
-    fun buildRejectionMessage(): CodeBlock = codeBlock {
-        add("\$N.\$N()", asParameter(), messageClass.rejectionMessageMethod())
+    fun buildRejectionMessage(builder: String): String = "$builder.$REJECTION_MESSAGE()"
+
+    private fun ClassReferences.builderField(): String {
+        val messageBuilder = name(messageClass.nested(simpleClassName))
+        return "private final $messageBuilder $BUILDER_FIELD = " +
+                "${name(messageClass)}.$NEW_BUILDER();"
     }
 
-    private fun setters(): List<MethodSpec> = buildList {
-        for (field in rejection.fieldList) {
-            add(field.setterMethod())
-        }
-    }
+    private fun constructor(): String = methodDeclaration(
+        javadoc = ofBuilderConstructor,
+        signature = "private $simpleClassName()",
+        statements = listOf()
+    )
 
-    private fun Field.setterMethod(): MethodSpec = methodSpec(primarySetterName) {
-        val parameterName = name.javaCase()
-        addModifiers(PUBLIC)
-        returns(builderClass())
-        addParameter(poetTypeName(), parameterName)
-        addStatement("\$L.\$L(\$L)", BUILDER_FIELD, primarySetterName, parameterName)
-        addStatement("return this")
-
-        if (doc.leadingComment.isNotEmpty()) {
-            // Add line separator to simulate the behavior of native Protobuf API.
-            val leadingComment = doc.leadingComment + System.lineSeparator()
-            addJavadoc(wrapInPre(leadingComment))
-        }
-    }
-
-    private fun Field.poetTypeName(): PoTypeName {
-        return when {
-            isMap -> mapTypeOf(type.map.keyType, type.map.valueType)
-            isList -> repeatedTypeOf(type.list)
-            else -> type.toType().toPoet()
-        }
-    }
-
-    private fun Type.toPoet(): PoTypeName {
-        val javaType = javaType(typeSystem)
-        return typeNameOf(javaType)
-    }
-
-    private fun repeatedTypeOf(type: Type): PoTypeName {
-        val elementType = type.javaType(typeSystem)
-        return RepeatedFieldType.typeNameFor(elementType)
-    }
-
-    @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN") // Used in the generated Java code.
-    private fun mapTypeOf(keyType: PrimitiveType, valueType: Type): PoTypeName {
-        val keyTypeName = keyType.toPoet()
-        val valueTypeName = valueType.toPoet()
-        val result = ParameterizedTypeName.get(
-            ClassName.get(java.util.Map::class.java), keyTypeName, valueTypeName
+    private fun ClassReferences.setter(field: Field): String {
+        val setterName = field.primarySetterName
+        val parameterName = field.name.javaCase()
+        val returnType = name(builderClass)
+        val parameterType = parameterType(field)
+        return methodDeclaration(
+            javadoc = field.setterJavadoc(),
+            signature = "public $returnType $setterName($parameterType $parameterName)",
+            statements = listOf(
+                "$BUILDER_FIELD.$setterName($parameterName);",
+                "return this;"
+            )
         )
-        return result
     }
 
     /**
-     * Obtains the class name of the builder to generate.
+     * Obtains the code referring to the type of the setter parameter for the given field.
+     *
+     * Types of primitive values are boxed.
      */
-    private fun builderClass(): ClassName =
-        throwableClass.nestedClass(simpleClassName)
+    private fun ClassReferences.parameterType(field: Field): String = when {
+        field.isMap -> {
+            val map = field.type.map
+            generic(ClassName(Map::class), map.keyType.toJavaClass(), map.valueType.className())
+        }
+        field.isList -> generic(ClassName(List::class), field.type.list.className())
+        else -> name(field.type.className())
+    }
+
+    private fun ClassReferences.generic(cls: ClassName, vararg arguments: ClassName): String =
+        name(cls) + arguments.joinToString(prefix = "<", postfix = ">") { name(it) }
+
+    /**
+     * Obtains the name of the Java class representing this type.
+     *
+     * For a primitive type, the boxed class is returned.
+     */
+    private fun TypeBase.className(): ClassName =
+        if (isPrimitive) primitive.toJavaClass() else typeName.javaClassName(typeSystem)
+
+    /**
+     * Produces the code of the method which creates the rejection message by calling
+     * the `build()` method of the message builder.
+     *
+     * The method returns the message annotated as [Validated], which makes Validation
+     * generate the code checking the message.
+     */
+    private fun ClassReferences.rejectionMessageMethod(): String {
+        val returnType = annotated(messageClass, ClassName(Validated::class))
+        return methodDeclaration(
+            javadoc = ofRejectionMessageMethod,
+            signature = "private $returnType $REJECTION_MESSAGE()",
+            statements = listOf("return $BUILDER_FIELD.$BUILD();")
+        )
+    }
+
+    private fun ClassReferences.buildMethod(): String {
+        val throwableType = name(throwableClass)
+        return methodDeclaration(
+            javadoc = ofBuildMethod,
+            signature = "public $throwableType $BUILD()",
+            statements = listOf("return new $throwableType(this);")
+        )
+    }
 }
 
-private val newBuilder = NoArgMethod(NEW_BUILDER)
 private const val BUILDER_FIELD = "builder"
 
-private fun constructor(): MethodSpec = constructorSpec {
-    addJavadoc(ofBuilderConstructor)
-    addModifiers(PRIVATE)
+/**
+ * Obtains the Javadoc of the setter for this field.
+ *
+ * Returns an empty string if the field has no leading comment.
+ */
+private fun Field.setterJavadoc(): String {
+    if (doc.leadingComment.isEmpty()) {
+        return ""
+    }
+    // Add line separator to simulate the behavior of native Protobuf API.
+    val leadingComment = doc.leadingComment + System.lineSeparator()
+    return wrapInPre(leadingComment)
 }
 
 private fun wrapInPre(text: String): String =
     JavadocText.fromUnescaped(text)
         .inPreTags()
         .value()
-
-private fun PrimitiveType.toPoet(): PoTypeName =
-    typeNameOf(toPrimitiveName())
-
-private fun typeNameOf(javaType: String): PoTypeName =
-    constructTypeNameFor(javaType).boxIfPrimitive()
-
-private fun PoTypeName.boxIfPrimitive(): PoTypeName = if (isPrimitive) box() else this
-
-private fun PoClassName.builderField(): FieldSpec {
-    val builder = SimpleClassName.ofBuilder().value()
-    val builderClass = nestedClass(builder)
-    return FieldSpec
-        .builder(builderClass, BUILDER_FIELD, PRIVATE, FINAL)
-        .initializer("\$T.newBuilder()", this)
-        .build()
-}
-
-private fun PoClassName.buildMethod(): MethodSpec = methodSpec(BUILD) {
-    val messageClass = this@buildMethod
-    addModifiers(PUBLIC)
-    addJavadoc(ofBuildMethod)
-    returns(messageClass)
-    addStatement("return new \$T(this)", messageClass)
-}
-
-/**
- * Generates the code for the method named as defined by the [REJECTION_MESSAGE] constant.
- *
- * The method creates a new instance by calling the builder's `build()` method.
- * Then it validates the new instance via [io.spine.validation.Validate.check] and returns it.
- */
-private fun PoClassName.rejectionMessageMethod(): MethodSpec = methodSpec(REJECTION_MESSAGE) {
-    val messageType = this@rejectionMessageMethod
-    val annotatedType = messageType.annotated(
-        AnnotationSpec.builder(Validated::class.java).build()
-    )
-    addModifiers(PRIVATE)
-    addJavadoc(ofRejectionMessageMethod)
-    returns(annotatedType)
-    addStatement("return \$L.build()", BUILDER_FIELD)
-}
