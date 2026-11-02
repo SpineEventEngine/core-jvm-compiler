@@ -34,7 +34,9 @@ Java type model, and the generated code stays the same.
 - [x] Remove `ToolBase.classicCodegen` from `base`, `signal`, `routing`, the version-forcing
       lists, and the `compiler-plugins` POM; remove `JavaPoet.lib` from the `tests` modules
 - [x] Verify: `./gradlew build`, the IgTests, the fat JAR listing, `verifyBundledPackages`
-- [ ] Merge the newer commits of #126 and verify again
+- [x] Merge the newer commits of #126 and verify again
+- [ ] Use `ClassName.guess()` and `JavaTypeName.getKnownPrimitives()` without `.Companion`
+      once the Compiler exposes them statically
 
 ## Log
 
@@ -46,3 +48,6 @@ Java type model, and the generated code stays the same.
 - 2026-11-02 — `./gradlew clean build` green at `.104`, incl. `integrationTests`.
   Fat JAR: 904 entries, 2.28 MB (was 2.38 MB); no `com/squareup/javapoet/` or
   `org/jboss/forge/`; `verifyBundledPackages` passes.
+- 2026-11-02 — merged #126 (ToolBase `.442`); `./gradlew clean build` green again,
+  regenerated rejections unchanged. A Compiler session adds `@JvmStatic` to the companion
+  members that the `base` field types call from Java.
