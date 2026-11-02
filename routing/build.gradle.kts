@@ -13,7 +13,6 @@
  */
 
 import io.spine.dependency.lib.KotlinPoet
-import io.spine.dependency.lib.Roaster
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
@@ -44,11 +43,6 @@ dependencies {
 
     implementation(Base.annotations)
     implementation(ToolBase.jvmTools)
-    implementation(ToolBase.classicCodegen) {
-        // `classic-codegen` still brings Roaster, which nothing here uses.
-        // Drop the exclusion when ToolBase removes Roaster from `classic-codegen`.
-        exclude(group = Roaster.group)
-    }
     implementation(KotlinPoet.ksp)
     implementation(CoreJvm.server)
     implementation(project(":base"))

@@ -12,7 +12,6 @@
  * and limitations under the License.
  */
 
-import io.spine.dependency.lib.Roaster
 import io.spine.dependency.local.CoreJvm
 import io.spine.dependency.local.Logging
 import io.spine.dependency.local.Compiler
@@ -34,11 +33,6 @@ dependencies {
         project(":base")
     ).forEach {
         implementation(it)
-    }
-    implementation(ToolBase.classicCodegen) {
-        // `classic-codegen` still brings Roaster, which nothing here uses.
-        // Drop the exclusion when ToolBase removes Roaster from `classic-codegen`.
-        exclude(group = Roaster.group)
     }
 
     arrayOf(

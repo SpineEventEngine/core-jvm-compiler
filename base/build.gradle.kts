@@ -13,7 +13,6 @@
  */
 
 import io.spine.dependency.lib.KotlinPoet
-import io.spine.dependency.lib.Roaster
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvm
@@ -63,12 +62,6 @@ dependencies {
         api(it) {
             excludeSpineBase()
         }
-    }
-    api(ToolBase.classicCodegen) {
-        excludeSpineBase()
-        // `classic-codegen` still brings Roaster, which nothing here uses.
-        // Drop the exclusion when ToolBase removes Roaster from `classic-codegen`.
-        exclude(group = Roaster.group)
     }
     api(Base.lib)
 
