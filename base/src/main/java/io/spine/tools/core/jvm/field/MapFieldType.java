@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.field;
@@ -29,10 +17,10 @@ package io.spine.tools.core.jvm.field;
 import com.google.common.collect.ImmutableSet;
 import com.google.errorprone.annotations.Immutable;
 import com.google.protobuf.Descriptors.FieldDescriptor;
-import com.squareup.javapoet.ClassName;
-import com.squareup.javapoet.ParameterizedTypeName;
-import com.squareup.javapoet.TypeName;
 import io.spine.code.proto.FieldDeclaration;
+import io.spine.tools.compiler.jvm.ClassName;
+import io.spine.tools.compiler.jvm.JavaTypeName;
+import io.spine.tools.compiler.jvm.ParameterizedTypeName;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -70,7 +58,7 @@ final class MapFieldType implements FieldType {
     );
 
     @SuppressWarnings("Immutable") // effectively
-    private final TypeName typeName;
+    private final JavaTypeName typeName;
 
     /**
      * Constructs the new instance based on the key and the value type names.
@@ -79,11 +67,11 @@ final class MapFieldType implements FieldType {
         var entryTypeNames = entryTypeNames(field);
         var keyType = boxIfPrimitive(entryTypeNames.getKey());
         var valueType = boxIfPrimitive(entryTypeNames.getValue());
-        this.typeName = ParameterizedTypeName.get(ClassName.get(Map.class), keyType, valueType);
+        this.typeName = new ParameterizedTypeName(new ClassName(Map.class), keyType, valueType);
     }
 
     @Override
-    public TypeName name() {
+    public JavaTypeName name() {
         return typeName;
     }
 
@@ -105,9 +93,10 @@ final class MapFieldType implements FieldType {
         return ACCESSORS;
     }
 
-    private static TypeName boxIfPrimitive(TypeName typeName) {
-        if (typeName.isPrimitive()) {
-            return typeName.box();
+    private static JavaTypeName boxIfPrimitive(JavaTypeName typeName) {
+        var wrapper = PrimitiveType.wrapperFor(typeName.getCanonical());
+        if (wrapper.isPresent()) {
+            return new ClassName(wrapper.get());
         }
         return typeName;
     }
@@ -121,7 +110,7 @@ final class MapFieldType implements FieldType {
      * Returns the key and the value type names for the map field
      * based on the passed nested types.
      */
-    private static Map.Entry<TypeName, TypeName> entryTypeNames(FieldDeclaration mapField) {
+    private static Map.Entry<JavaTypeName, JavaTypeName> entryTypeNames(FieldDeclaration mapField) {
         checkArgument(mapField.isMap());
         var keyFieldIndex = 0;
         var valueFieldIndex = 1;
@@ -134,7 +123,7 @@ final class MapFieldType implements FieldType {
         return new AbstractMap.SimpleEntry<>(keyTypeName, valueTypeName);
     }
 
-    private static TypeName typeNameOf(FieldDescriptor descr) {
+    private static JavaTypeName typeNameOf(FieldDescriptor descr) {
         var decl = new FieldDeclaration(descr);
         return FieldType.of(decl).name();
     }
