@@ -2,7 +2,7 @@
 slug: drop-javapoet
 branch: claude/drop-javapoet-e82a0e
 owner: claude
-status: in-progress
+status: in-review
 started: 2026-11-02
 ---
 
@@ -35,7 +35,7 @@ Java type model, and the generated code stays the same.
       lists, and the `compiler-plugins` POM; remove `JavaPoet.lib` from the `tests` modules
 - [x] Verify: `./gradlew build`, the IgTests, the fat JAR listing, `verifyBundledPackages`
 - [x] Merge the newer commits of #126 and verify again
-- [ ] Use `ClassName.guess()` and `JavaTypeName.getKnownPrimitives()` without `.Companion`
+- [x] Use `ClassName.guess()` and `JavaTypeName.getKnownPrimitives()` without `.Companion`
       once the Compiler exposes them statically
 
 ## Log
@@ -51,3 +51,6 @@ Java type model, and the generated code stays the same.
 - 2026-11-02 — merged #126 (ToolBase `.442`); `./gradlew clean build` green again,
   regenerated rejections unchanged. A Compiler session adds `@JvmStatic` to the companion
   members that the `base` field types call from Java.
+- 2026-11-03 — PR #127 opened. Moved to Compiler `.083` (`@JvmStatic` companion members, lazy
+  `KnownPrimitives`); added `RThrowableRendererSpec`, which runs the generator in the test JVM
+  for coverage and pins the code of one throwable to the JavaPoet output of `.103`.
