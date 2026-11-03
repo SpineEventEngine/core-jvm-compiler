@@ -66,7 +66,6 @@ dependencies {
         Compiler.jvm,
         Validation.context,
         ToolBase.protoCode,
-        ToolBase.classicCodegen,
         ToolBase.pluginBase,
         ToolBase.protobufSetupPlugins,
         KotlinPoet.lib,

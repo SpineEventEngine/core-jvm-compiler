@@ -55,7 +55,6 @@ dependencies {
 
     implementation(Base.annotations)
     implementation(ToolBase.jvmTools)
-    implementation(ToolBase.classicCodegen)
     implementation(KotlinPoet.ksp)
     implementation(CoreJvm.server)
     implementation(project(":base"))

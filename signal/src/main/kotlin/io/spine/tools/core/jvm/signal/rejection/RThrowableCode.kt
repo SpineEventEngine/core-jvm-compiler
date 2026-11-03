@@ -1,146 +1,105 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.signal.rejection
 
-import com.squareup.javapoet.FieldSpec
-import com.squareup.javapoet.MethodSpec
-import com.squareup.javapoet.TypeSpec
 import io.spine.annotation.Generated
 import io.spine.base.RejectionThrowable
-import io.spine.logging.WithLogging
 import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.MessageOrEnumConvention
+import io.spine.tools.compiler.jvm.StringLiteral
 import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.signal.rejection.ClassReferences.Companion.javaFile
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forConstructorOfThrowable
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.forThrowableOf
-import io.spine.tools.java.code.poet.classSpec
-import io.spine.tools.java.code.poet.constructorSpec
-import io.spine.tools.java.code.poet.methodSpec
-import javax.lang.model.element.Modifier.FINAL
-import javax.lang.model.element.Modifier.PRIVATE
-import javax.lang.model.element.Modifier.PUBLIC
-import javax.lang.model.element.Modifier.STATIC
-import com.squareup.javapoet.AnnotationSpec as JAnnotationSpec
-import com.squareup.javapoet.ClassName as PoClassName
 
 /**
- * A spec for a generated rejection type.
+ * The code of a generated rejection type.
  *
  * The generated type extends [RejectionThrowable] and encloses an instance of the
  * corresponding [rejection message][io.spine.base.RejectionMessage].
  *
  * @param javaPackage The name of the Java package where the rejection type should be generated.
  * @param rejection The declaration of the rejection.
+ * @param typeSystem The type system for resolving the types of the rejection fields.
  */
 internal class RThrowableCode(
-    val javaPackage: String,
-    val rejection: MessageType,
+    javaPackage: String,
+    private val rejection: MessageType,
     typeSystem: TypeSystem
-) : WithLogging {
+) {
 
-    private val messageOrEnumConvention = MessageOrEnumConvention(typeSystem)
-    private val simpleClassName: String = rejection.name.simpleName
-    private val messageClass: PoClassName
-    private val builder: RThrowableBuilderCode
+    private val throwableClass = ClassName(javaPackage, rejection.name.simpleName)
+    private val messageClass: ClassName =
+        MessageOrEnumConvention(typeSystem).declarationFor(rejection.name).name
+    private val builder = RThrowableBuilderCode(
+        rejection = rejection,
+        messageClass = messageClass,
+        throwableClass = throwableClass,
+        typeSystem = typeSystem
+    )
 
-    init {
-        val clsName = messageOrEnumConvention.declarationFor(rejection.name).name.canonical
-        messageClass = PoClassName.bestGuess(clsName)
-        val throwableClass = PoClassName.get(javaPackage, simpleClassName)
-        builder = RThrowableBuilderCode(
-            rejection,
-            messageClass,
-            throwableClass,
-            typeSystem
+    /**
+     * Produces the code of the Java file declaring the rejection type.
+     */
+    fun javaFileCode(): String =
+        javaFile(throwableClass, nested = setOf(builder.simpleClassName)) {
+            throwableClassCode()
+        }
+
+    private fun ClassReferences.throwableClassCode(): String {
+        val generated = name(ClassName(Generated::class))
+        val generatedValue = StringLiteral(GeneratedAnnotation.defaultValue)
+        val superclass = name(ClassName(RejectionThrowable::class))
+        return classDeclaration(
+            javadoc = forThrowableOf(rejection),
+            header = "@$generated($generatedValue)\n" +
+                    "public class ${throwableClass.simpleName} extends $superclass",
+            members = listOf(
+                SERIAL_VERSION_UID_FIELD,
+                throwableConstructor(),
+                messageThrownMethod(),
+                with(builder) { newBuilderMethod() },
+                with(builder) { builderClassCode() }
+            )
         )
     }
 
-    fun toPoet(): TypeSpec = classSpec(simpleClassName) {
-        addJavadoc(forThrowableOf(rejection))
-        addAnnotation(generatedAnnotation())
-        addModifiers(PUBLIC)
-        superclass(RejectionThrowable::class.java)
-        addField(serialVersionUID())
-        addMethod(constructor())
-        addMethod(messageThrown())
-        addMethod(builder.newBuilder())
-        addType(builder.toPoet())
-    }
+    private fun ClassReferences.throwableConstructor(): String = methodDeclaration(
+        javadoc = forConstructorOfThrowable(BUILDER_PARAMETER),
+        signature = "private ${throwableClass.simpleName}" +
+                "(${name(builder.builderClass)} $BUILDER_PARAMETER)",
+        statements = listOf("super(${builder.buildRejectionMessage(BUILDER_PARAMETER)});")
+    )
 
-    private fun constructor(): MethodSpec {
-        logger.atDebug().log {
-            "Creating the constructor for the type `${rejection}`."
-        }
-        return constructorSpec {
-            val builderParameter = builder.asParameter()
-            val buildRejectionMessage = builder.buildRejectionMessage()
-
-            addJavadoc(forConstructorOfThrowable(builderParameter))
-            addModifiers(PRIVATE)
-            addParameter(builderParameter)
-            addStatement("super(\$L)", buildRejectionMessage.toString())
-        }
-    }
-
-    private fun messageThrown(): MethodSpec {
-        val methodSignature = messageThrown.signature()
-        logger.atDebug().log {
-            "Adding method `$methodSignature`."
-        }
-        return methodSpec(messageThrown.name()) {
-            val returnType = messageClass
-            addAnnotation(Override::class.java)
-            addModifiers(PUBLIC)
-            returns(returnType)
-            addStatement("return (\$T) super.\$L", returnType, methodSignature)
-        }
+    private fun ClassReferences.messageThrownMethod(): String {
+        val override = name(ClassName(Override::class))
+        val messageType = name(messageClass)
+        return methodDeclaration(
+            signature = "@$override\npublic $messageType ${messageThrown.name()}()",
+            statements = listOf("return ($messageType) super.${messageThrown.signature()};")
+        )
     }
 }
 
 private val messageThrown = NoArgMethod("messageThrown")
 
-private fun serialVersionUID(): FieldSpec {
-    return FieldSpec.builder(
-        Long::class.javaPrimitiveType,
-        "serialVersionUID", PRIVATE, STATIC, FINAL)
-        .initializer("0L")
-        .build()
-}
+private const val SERIAL_VERSION_UID_FIELD = "private static final long serialVersionUID = 0L;"
 
 /**
- * Creates a new [JAnnotationSpec] with the [Generated] annotation.
- *
- * @param value The string to be put into the annotation `value` parameter.
- *  The default value refers to the current version of Spine CoreJvm Compiler.
+ * The name of the constructor parameter accepting the builder of the rejection type.
  */
-private fun generatedAnnotation(
-    value: String = GeneratedAnnotation.defaultValue
-): JAnnotationSpec =
-    JAnnotationSpec.builder(Generated::class.java)
-        .addMember("value", "\$S", value)
-        .build()
+private const val BUILDER_PARAMETER = "builder"

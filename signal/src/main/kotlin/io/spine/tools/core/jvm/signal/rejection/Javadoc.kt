@@ -1,42 +1,29 @@
 /*
- * Copyright 2026, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.signal.rejection
 
 import io.spine.annotation.VisibleForTesting
-import com.squareup.javapoet.CodeBlock
-import com.squareup.javapoet.ParameterSpec
 import io.spine.tools.compiler.ast.MessageType
-import io.spine.tools.java.code.poet.codeBlock
 import io.spine.tools.java.javadoc.JavadocText.fromEscaped
 import io.spine.tools.java.javadoc.JavadocText.fromUnescaped
 import io.spine.tools.core.jvm.signal.rejection.Javadoc.PROTO_MESSAGE_NOTE_TEMPLATE
 
 /**
  * Pieces of Javadoc code used in the generated code of rejections.
+ *
+ * The templates contain the `$L` placeholders, which are replaced with values in order.
  */
 internal object Javadoc {
 
@@ -77,26 +64,21 @@ internal object Javadoc {
      * Generated Javadoc for the `RejectionThrowable` class corresponding
      * the given rejection type.
      */
-    fun forThrowableOf(rejection: MessageType): CodeBlock = codeBlock {
-        add(classSummaryFor(rejection))
-        add(protoMessageNote(rejection))
-    }
+    fun forThrowableOf(rejection: MessageType): String =
+        classSummaryFor(rejection) + protoMessageNote(rejection)
 
     /**
      * A Javadoc content for the rejection constructor.
      *
-     * @param builder
-     *          the name of a rejection builder parameter.
+     * @param builder The name of a rejection builder parameter.
      */
-    fun forConstructorOfThrowable(builder: ParameterSpec): CodeBlock = codeBlock {
+    fun forConstructorOfThrowable(builder: String): String {
         val generalPart = fromEscaped("Creates a new instance.")
             .withNewLine()
             .withNewLine()
-        val paramsPart = fromEscaped(codeBlock(
-            "@param \$N the builder for the rejection", builder
-        )).withNewLine()
-        add(generalPart.value())
-        add(paramsPart.value())
+        val paramsPart = fromEscaped("@param $builder the builder for the rejection")
+            .withNewLine()
+        return generalPart.value + paramsPart.value
     }
 
     /**
@@ -104,10 +86,8 @@ internal object Javadoc {
      * class corresponding the given rejection type.
      */
     fun forBuilderOf(rejection: MessageType): String {
-        val javadocText = codeBlock {
-            add(BUILDER_ABSTRACT_TEMPLATE, rejection.name.simpleName)
-        }
-        return fromEscaped(javadocText.toString())
+        val javadocText = BUILDER_ABSTRACT_TEMPLATE.withValues(rejection.name.simpleName)
+        return fromEscaped(javadocText)
             .withNewLine()
             .value
     }
@@ -141,10 +121,17 @@ private fun classSummaryFor(messageType: MessageType): String {
  */
 private fun protoMessageNote(messageType: MessageType): String {
     val protoType = messageType.name
-    val protoMessageNote = codeBlock {
-        add(PROTO_MESSAGE_NOTE_TEMPLATE, protoType.packageName, protoType.simpleName)
-    }
-    return fromEscaped(protoMessageNote.toString())
+    val protoMessageNote =
+        PROTO_MESSAGE_NOTE_TEMPLATE.withValues(protoType.packageName, protoType.simpleName)
+    return fromEscaped(protoMessageNote)
         .withNewLine()
         .value
 }
+
+/**
+ * Replaces the `$L` placeholders of this template with the given values in order.
+ */
+private fun String.withValues(vararg values: String): String =
+    values.fold(this) { text, value -> text.replaceFirst(PLACEHOLDER, value) }
+
+private const val PLACEHOLDER = "\$L"

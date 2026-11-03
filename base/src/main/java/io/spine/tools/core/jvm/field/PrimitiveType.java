@@ -1,32 +1,21 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.field;
 
 import io.spine.code.proto.ScalarType;
+import io.spine.tools.compiler.jvm.JavaTypeName;
 
 import java.util.Optional;
 
@@ -67,6 +56,25 @@ enum PrimitiveType {
         }
 
         return Optional.empty();
+    }
+
+    /**
+     * Returns the {@link JavaTypeName} of the Java primitive with the given name.
+     *
+     * @param primitiveType
+     *         the primitive type name
+     * @return the type name of the Java primitive or {@link Optional#empty() Optional.empty()}
+     *         if the specified primitive name does not belong to {@link ScalarType}.
+     */
+    static Optional<JavaTypeName> typeNameFor(String primitiveType) {
+        // Only the primitives representing Protobuf scalar types are looked up.
+        if (wrapperFor(primitiveType).isEmpty()) {
+            return Optional.empty();
+        }
+        return JavaTypeName.getKnownPrimitives()
+                           .stream()
+                           .filter(type -> type.getCanonical().equals(primitiveType))
+                           .findFirst();
     }
 
     private boolean matchesName(String typeName) {

@@ -87,7 +87,6 @@ buildscript {
                     toolBase.javaCode,
                     toolBase.kotlinCode,
                     toolBase.protoCode,
-                    toolBase.classicCodegen,
                     toolBase.pluginBase,
                     toolBase.jvmTools,
                     toolBase.gradlePluginApi,

@@ -17,11 +17,9 @@ import io.spine.dependency.build.Ksp
 import io.spine.dependency.kotlinx.Coroutines
 import io.spine.dependency.lib.Jackson
 import io.spine.dependency.lib.JacksonV2
-import io.spine.dependency.lib.JavaPoet
 import io.spine.dependency.lib.JetBrainsAnnotations
 import io.spine.dependency.lib.Kotlin
 import io.spine.dependency.lib.Protobuf
-import io.spine.dependency.lib.Roaster
 import io.spine.dependency.local.Compiler
 import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Time
@@ -156,17 +154,6 @@ val pomDependencies: List<ExternalModuleDependency> = listOf(
     pomDependency(ToolBase.archive, excluding = pomExcludedGroups),
     pomDependency(ToolBase.javaCode, excluding = pomExcludedGroups),
     pomDependency(ToolBase.protoCode, excluding = pomExcludedGroups),
-
-    /*
-     * JavaPoet, which `classic-codegen` depends on, stays bundled into the fat JAR;
-     * see `expectedPackages`. This dependency excludes `com.squareup` as a whole,
-     * so that consumers do not receive another copy of the bundled classes.
-     * It also excludes Roaster, which the bundled code does not use.
-     */
-    pomDependency(
-        ToolBase.classicCodegen,
-        excluding = pomExcludedGroups + listOf(JavaPoet.group, Roaster.group)
-    ),
 
     // The Protobuf Gradle Plugin, so that we can add it from our code.
     pomDependency(Protobuf.GradlePlugin.lib),
@@ -786,8 +773,7 @@ val expectedPackages = listOf(
      */
     "io/spine/tools/core/",
 
-    // Java and Kotlin code generation.
-    "com/squareup/javapoet/",
+    // KotlinPoet, for Kotlin code generation.
     "com/squareup/kotlinpoet/",
 )
 

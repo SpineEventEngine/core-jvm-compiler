@@ -30,7 +30,6 @@ dependencies {
         ToolBase.code,
         ToolBase.javaCode,
         ToolBase.psiJava,
-        ToolBase.classicCodegen,
         project(":base")
     ).forEach {
         implementation(it)
