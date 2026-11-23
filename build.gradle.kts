@@ -80,8 +80,10 @@ buildscript {
                     compiler.params,
                     compiler.gradleApi,
                     compiler.pluginLib,
-                    // `jvm-tool-plugins` and the Compiler Gradle plugin may depend on
-                    // different ToolBase versions, which `failOnVersionConflict()` rejects.
+                    // `jvm-tool-plugins`, the Compiler Gradle plugin, and the dogfooded
+                    // CoreJvm Gradle plugin may depend on different ToolBase versions,
+                    // which `failOnVersionConflict()` rejects.
+                    toolBase.archive,
                     toolBase.fs,
                     toolBase.code,
                     toolBase.javaCode,
@@ -89,6 +91,7 @@ buildscript {
                     toolBase.protoCode,
                     toolBase.pluginBase,
                     toolBase.jvmTools,
+                    toolBase.rootGradlePlugins,
                     toolBase.gradlePluginApi,
                     toolBase.intellijPlatform,
                     toolBase.intellijPlatformJava,
