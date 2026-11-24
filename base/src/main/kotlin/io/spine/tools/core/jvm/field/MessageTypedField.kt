@@ -40,9 +40,10 @@ import org.intellij.lang.annotations.Language
  * its fields when composing a query filter.
  *
  * More formally, for a given [fieldType], this class will generate a Java class that:
- *   1. Is named by combining simple Java class name of the field type and
+ *   1. Is named by combining the names of the types enclosing the field type, if any,
+ *   from the outermost inwards, the simple name of the field type, and
  *   the ["Field"][MessageTypedField.CLASS_NAME_SUFFIX] suffix.
- *   For example, `UserIdField`.
+ *   For example, `UserIdField` for `UserId`, and `BarnStallField` for `Barn.Stall`.
  *
  *   2. Inherits from [SubscribableField][io.spine.base.SubscribableField] or one of
  *   its descendants such as [EntityStateField][io.spine.query.EntityStateField].
