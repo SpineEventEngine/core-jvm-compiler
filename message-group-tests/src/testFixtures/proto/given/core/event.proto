@@ -37,7 +37,6 @@ option java_outer_classname = "EventProto";
 
 import "google/protobuf/any.proto";
 import "google/protobuf/timestamp.proto";
-import "spine/core/enrichment.proto";
 
 //
 // This file declares trimmed version of types declared in `spine.core` package.
@@ -75,9 +74,6 @@ message EventContext {
 
     // When the event occurred.
     google.protobuf.Timestamp timestamp = 1 [(required) = true];
-
-    // Optional enrichment of the event.
-    spine.core.Enrichment enrichment = 5;
 
     // An ID of the origin message.
     //

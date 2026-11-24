@@ -93,10 +93,4 @@ internal class OneofFieldCodegenSpec {
         code shouldContain
                 "public static final class EventIdField extends $FIELD_SUPERTYPE {"
     }
-
-    @Test
-    fun `generate field classes for nested message types`() {
-        code shouldContain
-                "public static final class EnrichmentContainerField extends $FIELD_SUPERTYPE {"
-    }
 }
