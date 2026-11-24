@@ -15,6 +15,7 @@
 package io.spine.tools.core.jvm.mgroup
 
 import io.kotest.matchers.string.shouldContain
+import io.spine.base.EventMessageField
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.settings.GroupSettings
 import java.nio.file.Path
@@ -26,7 +27,8 @@ import org.junit.jupiter.api.io.TempDir
 
 /**
  * Tests the names of field classes generated for the message types that are used as
- * the types of fields, including the types nested in other message types.
+ * the types of fields, including the types nested in other message types, and
+ * the accessors that return these classes.
  *
  * Please see the `given/groups/nested_types.proto` file for the types used in the tests.
  */
@@ -37,7 +39,7 @@ internal class NestedTypeFieldSpec {
         MessageGroupPlugin(),
         MessageGroupPlugin.SETTINGS_ID
     ) {
-        const val FIELD_SUPERTYPE = "io.spine.core.EventContextField"
+        val fieldSupertype: String = EventMessageField::class.java.canonicalName
 
         lateinit var code: String
 
@@ -52,7 +54,7 @@ internal class NestedTypeFieldSpec {
         override fun createSettings(projectDir: Path): GroupSettings {
             val codegenConfig = createCompilerSettings(projectDir)
             codegenConfig.forMessage("given.groups.Enrollment") {
-                it.markFieldsAs(FIELD_SUPERTYPE)
+                it.markFieldsAs(fieldSupertype)
             }
             return codegenConfig.toProto().groupSettings
         }
@@ -61,12 +63,22 @@ internal class NestedTypeFieldSpec {
     @Test
     fun `be named after a message type`() {
         code shouldContain
-                "public static final class CourseField extends $FIELD_SUPERTYPE {"
+                "public static final class CourseField extends $fieldSupertype {"
     }
 
     @Test
     fun `be named after the outer type and a message type nested in it`() {
         code shouldContain
-                "public static final class CourseScheduleField extends $FIELD_SUPERTYPE {"
+                "public static final class CourseScheduleField extends $fieldSupertype {"
+    }
+
+    @Test
+    fun `be returned by the accessor of a top-level field`() {
+        code shouldContain "public static CourseField course() {"
+    }
+
+    @Test
+    fun `be returned by the accessor of a nested field`() {
+        code shouldContain "public CourseScheduleField schedule() {"
     }
 }
