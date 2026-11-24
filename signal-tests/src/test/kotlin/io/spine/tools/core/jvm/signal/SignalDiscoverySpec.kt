@@ -38,13 +38,10 @@ import io.spine.code.proto.FileSet
 import io.spine.testing.compiler.excluding
 import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.matches
-import io.spine.tools.compiler.backend.Pipeline
-import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toMessageType
 import io.spine.tools.compiler.render.TypeListActions
 import java.nio.file.Path
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
@@ -52,62 +49,54 @@ import org.junit.jupiter.api.io.TempDir
 @DisplayName("`SignalDiscovery` should")
 internal class SignalDiscoverySpec {
 
-    companion object : SignalPluginTestSetup() {
-
-        lateinit var pipeline: Pipeline
-
-        @BeforeAll
-        @JvmStatic
-        fun createPipeline(@TempDir projectDir: Path) {
-            val signalSettings = createSettings(projectDir)
-            // Keep compile-fail fixtures (see `defaultExclusions`) out of discovery,
-            // as they intentionally fail compilation when processed.
-            val setup = setup(projectDir, signalSettings, excluding(defaultExclusions()))
-            pipeline = setup.createPipeline()
-        }
-    }
+    companion object : SignalPluginTestSetup()
 
     @Test
-    fun `discover all signals`() {
+    fun `discover all signals`(@TempDir projectDir: Path) {
+        val signalSettings = createSettings(projectDir)
+        // Keep compile-fail fixtures (see `defaultExclusions`) out of discovery,
+        // as they intentionally fail compilation when processed.
+        val setup = setup(projectDir, signalSettings, excluding(defaultExclusions()))
+        val pipeline = setup.createPipeline()
+
         // Compile-fail fixtures are excluded from the pipeline (see `defaultExclusions`),
         // so they must not be expected among the discovered signals either.
         val excludedNames = defaultExclusions().map { it.fullName }.toSet()
-
-        /**
-         * Asserts that the view state specified by [viewStateClass] contains all
-         * the message types declared in this proto file.
-         *
-         * @param context The context to query for the view state.
-         * @param fileType The type of the file such as `COMMANDS`, `EVENTS`, or `REJECTIONS`.
-         * @param viewStateClass The class of an entity state such as [CommandActions],
-         *   [EventActions], or [RejectionActions].
-         */
-        fun FileDescriptor.assertIfMatches(
-            context: CodegenContext,
-            fileType: MessageFile,
-            viewStateClass: Class<out EntityState<File>>,
-        ) {
-            val file = file()
-            if (!fileType.pattern().matches(file)) {
-                return
-            }
-            val allMessages = messageTypes
-                .filterNot { it.fullName in excludedNames }
-                .map { it.toMessageType() }
-            val state = context.select(viewStateClass).findById(file)
-            state.shouldNotBeNull()
-            (state as TypeListActions).getTypeList() shouldContainExactlyInAnyOrder allMessages
-        }
 
         // Create a file set with the descriptors for the proto files.
         val fileSet = FileSet.of(pipeline.request.sourceFileDescriptorsList)
 
         // Query the states while the pipeline runs because it closes the context at the end.
         pipeline { context ->
+
+            /**
+             * Asserts that the view state specified by [viewStateClass] contains all
+             * the message types declared in this proto file.
+             *
+             * @param fileType The type of the file such as `COMMANDS`, `EVENTS`, or `REJECTIONS`.
+             * @param viewStateClass The class of an entity state such as [CommandActions],
+             *   [EventActions], or [RejectionActions].
+             */
+            fun FileDescriptor.assertIfMatches(
+                fileType: MessageFile,
+                viewStateClass: Class<out EntityState<File>>,
+            ) {
+                val file = file()
+                if (!fileType.pattern().matches(file)) {
+                    return
+                }
+                val allMessages = messageTypes
+                    .filterNot { it.fullName in excludedNames }
+                    .map { it.toMessageType() }
+                val state = context.select(viewStateClass).findById(file)
+                state.shouldNotBeNull()
+                (state as TypeListActions).getTypeList() shouldContainExactlyInAnyOrder allMessages
+            }
+
             fileSet.files().forEach {
-                it.assertIfMatches(context, COMMANDS, CommandActions::class.java)
-                it.assertIfMatches(context, EVENTS, EventActions::class.java)
-                it.assertIfMatches(context, REJECTIONS, RejectionActions::class.java)
+                it.assertIfMatches(COMMANDS, CommandActions::class.java)
+                it.assertIfMatches(EVENTS, EventActions::class.java)
+                it.assertIfMatches(REJECTIONS, RejectionActions::class.java)
             }
         }
     }
