@@ -28,18 +28,18 @@ package io.spine.tools.core.jvm.signal
 
 import com.google.protobuf.Descriptors.FileDescriptor
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
+import io.kotest.matchers.nulls.shouldNotBeNull
 import io.spine.base.EntityState
 import io.spine.base.MessageFile
 import io.spine.base.MessageFile.COMMANDS
 import io.spine.base.MessageFile.EVENTS
 import io.spine.base.MessageFile.REJECTIONS
 import io.spine.code.proto.FileSet
-import io.spine.testing.compiler.PipelineSetup
 import io.spine.testing.compiler.excluding
-import io.spine.testing.server.blackbox.BlackBox
 import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.matches
 import io.spine.tools.compiler.backend.Pipeline
+import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.protobuf.file
 import io.spine.tools.compiler.protobuf.toMessageType
 import io.spine.tools.compiler.render.TypeListActions
@@ -54,21 +54,16 @@ internal class SignalDiscoverySpec {
 
     companion object : SignalPluginTestSetup() {
 
-        lateinit var setup: PipelineSetup
         lateinit var pipeline: Pipeline
-        lateinit var blackbox: BlackBox
 
         @BeforeAll
         @JvmStatic
-        fun run(@TempDir projectDir: Path) {
+        fun createPipeline(@TempDir projectDir: Path) {
             val signalSettings = createSettings(projectDir)
             // Keep compile-fail fixtures (see `defaultExclusions`) out of discovery,
             // as they intentionally fail compilation when processed.
-            setup = setup(projectDir, signalSettings, excluding(defaultExclusions()))
-            val (p, b) = setup.createPipelineWithBlackBox()
-            pipeline = p
-            blackbox = b
-            pipeline()
+            val setup = setup(projectDir, signalSettings, excluding(defaultExclusions()))
+            pipeline = setup.createPipeline()
         }
     }
 
@@ -82,11 +77,13 @@ internal class SignalDiscoverySpec {
          * Asserts that the view state specified by [viewStateClass] contains all
          * the message types declared in this proto file.
          *
+         * @param context The context to query for the view state.
          * @param fileType The type of the file such as `COMMANDS`, `EVENTS`, or `REJECTIONS`.
          * @param viewStateClass The class of an entity state such as [CommandActions],
          *   [EventActions], or [RejectionActions].
          */
         fun FileDescriptor.assertIfMatches(
+            context: CodegenContext,
             fileType: MessageFile,
             viewStateClass: Class<out EntityState<File>>,
         ) {
@@ -97,20 +94,21 @@ internal class SignalDiscoverySpec {
             val allMessages = messageTypes
                 .filterNot { it.fullName in excludedNames }
                 .map { it.toMessageType() }
-            val assertEntity = blackbox.assertEntityWithState(file, viewStateClass)
-            assertEntity.exists()
-
-            val state = assertEntity.actual()!!.state() as TypeListActions
-            state.getTypeList() shouldContainExactlyInAnyOrder allMessages
+            val state = context.select(viewStateClass).findById(file)
+            state.shouldNotBeNull()
+            (state as TypeListActions).getTypeList() shouldContainExactlyInAnyOrder allMessages
         }
 
         // Create a file set with the descriptors for the proto files.
         val fileSet = FileSet.of(pipeline.request.sourceFileDescriptorsList)
 
-        fileSet.files().forEach {
-            it.assertIfMatches(COMMANDS, CommandActions::class.java)
-            it.assertIfMatches(EVENTS, EventActions::class.java)
-            it.assertIfMatches(REJECTIONS, RejectionActions::class.java)
+        // Query the states while the pipeline runs because it closes the context at the end.
+        pipeline { context ->
+            fileSet.files().forEach {
+                it.assertIfMatches(context, COMMANDS, CommandActions::class.java)
+                it.assertIfMatches(context, EVENTS, EventActions::class.java)
+                it.assertIfMatches(context, REJECTIONS, RejectionActions::class.java)
+            }
         }
     }
 }
