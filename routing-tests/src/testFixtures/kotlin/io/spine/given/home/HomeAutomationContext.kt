@@ -40,16 +40,16 @@ import io.spine.given.home.events.deviceAdded
 import io.spine.given.home.events.stateChanged
 import io.spine.protobuf.isDefault
 import io.spine.server.BoundedContext
+import io.spine.server.BoundedContextBuilder
 import io.spine.server.aggregate.Aggregate
 import io.spine.server.command.Assign
 import io.spine.server.projection.Projection
 import io.spine.server.route.Route
 
-fun homeAutomation(): BoundedContext = BoundedContext.singleTenant("HomeAutomation")
+fun homeAutomation(): BoundedContextBuilder = BoundedContext.singleTenant("HomeAutomation")
     .add(RoomProjection::class.java)
     .add(DeviceAggregate::class.java)
     .add(HomeProjection::class.java)
-    .build()
 
 @VisibleForTesting
 class RoomProjection : Projection<RoomId, Room, Room.Builder>() {
