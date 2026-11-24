@@ -17,6 +17,6 @@
  *
  * Do not rename this property, as it is also used in the integration tests via its name.
  */
-val coreJvmCompilerVersion = "2.0.0-SNAPSHOT.107"
+val coreJvmCompilerVersion = "2.0.0-SNAPSHOT.108"
 extra.set("coreJvmCompilerVersion", coreJvmCompilerVersion)
 extra.set("versionToPublish", coreJvmCompilerVersion)
