@@ -79,4 +79,10 @@ internal class MessageTypedFieldSpec {
         val nested = Barn.Stall.getDescriptor().toMessageType()
         MessageTypedField.classNameFor(nested) shouldBe "BarnStallField"
     }
+
+    @Test
+    fun `compose a name for a message type nested two levels deep`() {
+        val nested = Barn.Stall.Trough.getDescriptor().toMessageType()
+        MessageTypedField.classNameFor(nested) shouldBe "BarnStallTroughField"
+    }
 }

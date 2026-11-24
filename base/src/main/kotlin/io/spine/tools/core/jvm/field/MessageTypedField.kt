@@ -146,7 +146,7 @@ internal class MessageTypedField(
 
         fun classNameFor(type: MessageType): String {
             val typeName = type.name
-            val nestingPath = typeName.nestingTypeNameList.joinToString()
+            val nestingPath = typeName.nestingTypeNameList.joinToString(separator = "")
             return nestingPath + typeName.simpleName + CLASS_NAME_SUFFIX
         }
     }

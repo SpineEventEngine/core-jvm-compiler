@@ -104,6 +104,13 @@ message Barn {
 
         // A singular `string` field.
         string id = 1;
+
+        // A message type nested two levels deep.
+        message Trough {
+
+            // A singular `string` field.
+            string id = 1;
+        }
     }
 }
 
