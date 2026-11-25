@@ -22,7 +22,8 @@ import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.compiler.render.SourceFile
 
 /**
- * Abstract base for actions which nest a class with a reserved name in the Java class of a message.
+ * The base class for actions which nest a class with a reserved name in the Java class of
+ * a message.
  *
  * A compilation error is reported if the name belongs to the message itself, to a type around it,
  * or to a type nested directly in it.
@@ -42,7 +43,7 @@ public abstract class CreateReservedClass(
 ) : CreateNestedClass(type, file, simpleName, context) {
 
     /**
-     * What a message for which the class is created is called in the compilation error.
+     * What the message is called in the compilation error, e.g., "entity state".
      */
     protected open val ownerKind: String
         get() = "message"

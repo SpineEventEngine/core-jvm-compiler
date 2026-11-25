@@ -31,8 +31,9 @@ Field classes. Names that do not clash stay as they are.
    `ShelfBoxField` for `ShelfBox`. The others use underscores: `Shelf_BoxField` for `Shelf.Box`.
    Equally nested types all use underscores.
 3. A class named like a class around it gets an underscore before `Field`: `Crate_Field`.
-4. A message that is named `Field`, is nested in a type named `Field`, or has its own nested type
-   named `Field`: the compiler reports an error. See `reserved-entity-names`.
+4. A message that is named `Field`, is nested in a type or in an outer Java class named `Field`, or
+   has its own nested type named `Field`: the compiler reports an error.
+   See `reserved-entity-names`.
 5. If there are no more words for a name that still clashes, the names of types related to it are
    chosen one by one, so that they differ. An error is reported only if there is no way to give
    different names.

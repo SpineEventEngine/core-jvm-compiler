@@ -19,8 +19,8 @@ classes of messages, never clash with the developer's types without a clear erro
 An entity state with the name `Column`, `Query`, or `QueryBuilder`, or with its own nested message
 or enum with such a name, does not compile. `kotlinc` reports `Unresolved reference 'newBuilder'` in
 the generated Kotlin code, and `javac` reports a duplicate class among many other errors. For
-`Field`, `generated-name-clashes` generates `Field_` instead, and prints a warning. So, the same
-mistake gives different results.
+`Field`, the version `.112` generates `Field_` instead, and prints a warning. So, the same mistake
+gives different results.
 
 A top-level type of the same package does not compile if it is the type of a column or of the ID,
 because the generated code refers to it by its simple name, and Java takes it for the generated
@@ -42,7 +42,8 @@ when the example moves to Spine 2.
    of the state has a nested class with the same simple name. Other references stay as they are.
 
 Giving other names to the generated classes, e.g., `Column_`, was considered, too. For `Column`, it
-needs a change of `SpecScanner` in `core-jvm`, which finds the class by its name.
+needs a change of `SpecScanner` in `core-jvm`, which finds the class by its name. `Field_` is
+removed, so that all the classes follow one rule.
 
 ## Plan
 

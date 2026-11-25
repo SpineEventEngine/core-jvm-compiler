@@ -26,6 +26,7 @@ import io.spine.tools.core.jvm.given.base.reserved.Field
 import io.spine.tools.core.jvm.given.base.reserved.Form
 import io.spine.tools.core.jvm.given.base.reserved.Garden
 import io.spine.tools.core.jvm.given.base.reserved.Survey
+import io.spine.tools.core.jvm.given.base.reserved.derived.Field.Meadow
 import io.spine.tools.core.jvm.given.base.reserved.outer.Field.Plot
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -34,8 +35,8 @@ import org.junit.jupiter.api.Test
 /**
  * Tests the rule on the names reserved for the classes nested in the Java classes of messages.
  *
- * Please see `given/base/reserved_names.proto` and `given/base/reserved_outer_class.proto` for
- * the types used in the tests.
+ * Please see `reserved_names.proto`, `reserved_outer_class.proto`, and `outer/field.proto` in
+ * the directory `given/base` for the types used in the tests.
  */
 @DisplayName("`ReservedName` should")
 internal class ReservedNameSpec {
@@ -105,7 +106,14 @@ internal class ReservedNameSpec {
             val error = errorOf(Plot.getDescriptor())
             error shouldContain "The outer Java class of the file cannot have the name `Field`."
             error shouldContain "for the message `given.base.reserved.outer.Plot`."
-            error shouldContain "Please change the value of the `java_outer_classname` option."
+            error shouldContain "Please set the `java_outer_classname` option to another name."
+        }
+
+        @Test
+        fun `the outer class named after the file`() {
+            val error = errorOf(Meadow.getDescriptor())
+            error shouldContain "The outer Java class of the file cannot have the name `Field`."
+            error shouldContain "for the message `given.base.reserved.derived.Meadow`."
         }
 
         @Test

@@ -30,7 +30,7 @@ import io.spine.tools.compiler.type.message
  * The name of a class which the compiler nests in the Java class of a message.
  *
  * The Java code does not compile if a class around the nested one, or a class declared next to it,
- * has the same name. Therefore, the name is reserved for the following types:
+ * has the same name. Therefore, the following cannot have the reserved name:
  *
  *  1. The message itself, and the messages in which it is nested.
  *  2. The messages and enums nested directly in the message.
@@ -75,7 +75,7 @@ internal class ReservedName(
     }
 
     private fun checkType(type: TypeName, kind: String, span: Span) =
-        Compilation.check(type.simpleName != value, owner.file, span) {
+        Compilation.check(condition = type.simpleName != value, file = owner.file, span = span) {
             "The $kind `${type.qualifiedName}` cannot have the name `$value`." +
                     " $reason" +
                     " Please rename the $kind."
@@ -85,10 +85,14 @@ internal class ReservedName(
         val classes = owner.javaClassName(typeSystem).simpleNames
         val outerClass = classes.first()
         val nestedInIt = classes.size > messages.size
-        Compilation.check(!nestedInIt || outerClass != value, owner.file, owner.span) {
+        Compilation.check(
+            condition = !nestedInIt || outerClass != value,
+            file = owner.file,
+            span = owner.span
+        ) {
             "The outer Java class of the file cannot have the name `$value`." +
                     " $reason" +
-                    " Please change the value of the `java_outer_classname` option."
+                    " Please set the `java_outer_classname` option to another name."
         }
     }
 

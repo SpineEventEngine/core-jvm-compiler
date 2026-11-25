@@ -58,7 +58,7 @@ internal class ReservedOuterClassErrorSpec {
             it shouldContain message.placeOf("message Plot {")
             it shouldContain "The outer Java class of the file cannot have the name `Field`."
             it shouldContain "for the message `${message.fullName}`."
-            it shouldContain "Please change the value of the `java_outer_classname` option."
+            it shouldContain "Please set the `java_outer_classname` option to another name."
         }
     }
 }
