@@ -133,6 +133,31 @@ internal class FieldClassNamesSpec {
         }
 
         @Test
+        fun `not lengthen names that still differ only in case`() {
+            namesOf("acme.webapi:Address", "acme.web_api:Address") shouldBe
+                    listOf("WebapiAddressField", "WebApiAddressField")
+        }
+
+        @Test
+        fun `allow names that differ only in case separately for each type`() {
+            namesOf(
+                "acme.home:Address",
+                "acme.web:Address",
+                "acme.home:Webaddress",
+                "acme.home:AcmeWebAddress",
+                "acme.webapi:City",
+                "geo.web_api:City"
+            ) shouldBe listOf(
+                "AddressField",
+                "WebAddressField",
+                "WebaddressField",
+                "AcmeWebAddressField",
+                "AcmeWebapiCityField",
+                "GeoWebApiCityField"
+            )
+        }
+
+        @Test
         fun `keep the short name for a type without a package if it is the only one`() {
             namesOf(":Address", "acme.web:Address") shouldBe
                     listOf("AddressField", "WebAddressField")
@@ -226,6 +251,22 @@ internal class FieldClassNamesSpec {
                 "acme.home:Crate", "acme.web:Crate",
                 around = listOf("WebCrateField")
             ) shouldBe listOf("CrateField", "WebCrate_Field")
+        }
+
+        @Test
+        fun `add a package word if the name with an underscore is taken`() {
+            namesOf(
+                "acme.home:Crate", "acme.web:Crate", "acme.home:WebCrate_",
+                around = listOf("WebCrateField")
+            ) shouldBe listOf("CrateField", "AcmeWebCrateField", "WebCrate_Field")
+        }
+
+        @Test
+        fun `add a package word if the name with an underscore differs only in case`() {
+            namesOf(
+                "acme.home:Crate", "acme.web:Crate", "acme.home:Webcrate_",
+                around = listOf("WebCrateField")
+            ) shouldBe listOf("CrateField", "AcmeWebCrateField", "Webcrate_Field")
         }
 
         @Test

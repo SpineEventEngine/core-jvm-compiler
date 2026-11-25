@@ -69,10 +69,7 @@ internal class FieldClassNames(
             .groupBy { it.shortName }
             .values
             .flatMap { candidatesFor(it) }
-        val different = candidates.lengthenClashing { it.name.lowercase() }
-            .takeIf { it.haveDifferentNames() }
-            ?: candidates.lengthenClashing { it.name }
-        names = different.associate { it.type to nameOf(it) }
+        names = candidates.resolve().associate { it.type to it.name }
         checkNoClashes()
     }
 
@@ -101,19 +98,13 @@ internal class FieldClassNames(
                 val candidate = Candidate(
                     type = type,
                     base = if (keepsShortName) type.shortName else type.underscoredName,
-                    isFixed = keepsShortName && keepsPackage
+                    isFixed = keepsShortName && keepsPackage,
+                    around = fieldClass.simpleNames
                 )
                 if (keepsPackage) candidate else candidate.lengthen()
             }
         }
     }
-
-    private fun nameOf(candidate: Candidate): String =
-        if (candidate.name in fieldClass.simpleNames) {
-            candidate.name.removeSuffix(SUFFIX) + UNDERSCORE + SUFFIX
-        } else {
-            candidate.name
-        }
 
     private fun checkNoClashes() {
         val clashes = names.entries
@@ -159,20 +150,28 @@ private const val UNDERSCORE = "_"
  * @property type The type for which the class is generated.
  * @property base The part of the name between the package words and the suffix.
  * @property isFixed If `true`, package words must not be added to the name.
+ * @property around The simple names of the classes around the generated class.
  * @property wordCount The number of package words at the beginning of the name.
  */
 private data class Candidate(
     val type: TypeName,
     val base: String,
     val isFixed: Boolean,
+    val around: List<String>,
     val wordCount: Int = 0
 ) {
     private val packageWords: List<String> =
         type.packageName.split(".").filter { it.isNotEmpty() }.map { it.camelCase() }
 
-    val name: String =
-        packageWords.takeLast(wordCount).joinToString(separator = "") + base +
-                FieldClassNames.SUFFIX
+    /**
+     * The name of the class, which has an underscore before the suffix if the name without it is
+     * the name of a class around.
+     */
+    val name: String = run {
+        val stem = packageWords.takeLast(wordCount).joinToString(separator = "") + base
+        val usual = stem + FieldClassNames.SUFFIX
+        if (usual in around) stem + UNDERSCORE + FieldClassNames.SUFFIX else usual
+    }
 
     /**
      * Adds one more package word to the name, if it is possible.
@@ -182,27 +181,54 @@ private data class Candidate(
 }
 
 /**
+ * Adds package words to the names that clash until they differ ignoring case.
+ *
+ * If there are not enough words for a type, the case of its name is taken into account. Names of
+ * other types are still compared ignoring case.
+ *
+ * @param caseSensitive The types for which the case of their names is taken into account.
+ */
+private tailrec fun List<Candidate>.resolve(
+    caseSensitive: Set<TypeName> = emptySet()
+): List<Candidate> {
+    val lengthened = lengthenClashing(caseSensitive)
+    val unresolved = lengthened.clashing(caseSensitive)
+        .filter { !it.isFixed && it.type !in caseSensitive }
+        .map { it.type }
+    return if (unresolved.isEmpty()) {
+        lengthened
+    } else {
+        resolve(caseSensitive + unresolved)
+    }
+}
+
+/**
  * Adds package words to the names that clash until they differ, or until there are no words
  * to add.
- *
- * @param key The function that gives equal values for candidates with clashing names.
  */
-private tailrec fun List<Candidate>.lengthenClashing(key: (Candidate) -> String): List<Candidate> {
-    val clashing = groupBy(key)
-        .values
-        .filter { it.size > 1 }
-        .flatten()
-        .toSet()
+private tailrec fun List<Candidate>.lengthenClashing(
+    caseSensitive: Set<TypeName>
+): List<Candidate> {
+    val clashing = clashing(caseSensitive)
     val lengthened = map { if (it in clashing) it.lengthen() else it }
     return if (lengthened == this) {
         this
     } else {
-        lengthened.lengthenClashing(key)
+        lengthened.lengthenClashing(caseSensitive)
     }
 }
 
-private fun List<Candidate>.haveDifferentNames(): Boolean =
-    distinctBy { it.name }.size == size
+/**
+ * Obtains the candidates with the names that clash with the names of other candidates.
+ */
+private fun List<Candidate>.clashing(caseSensitive: Set<TypeName>): Set<Candidate> {
+    val sameIgnoringCase = groupBy { it.name.lowercase() }.values.filter { it.size > 1 }
+    return sameIgnoringCase.flatMap { group ->
+        group.filter { candidate ->
+            candidate.type !in caseSensitive || group.count { it.name == candidate.name } > 1
+        }
+    }.toSet()
+}
 
 private val TypeName.path: List<String>
     get() = nestingTypeNameList + simpleName
