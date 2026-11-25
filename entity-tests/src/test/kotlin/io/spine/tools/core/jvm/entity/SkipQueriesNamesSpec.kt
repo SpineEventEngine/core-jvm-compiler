@@ -14,6 +14,7 @@
 
 package io.spine.tools.core.jvm.entity
 
+import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.string.shouldContain
 import io.kotest.matchers.string.shouldNotContain
 import io.spine.testing.compiler.acceptingOnly
@@ -38,21 +39,28 @@ internal class SkipQueriesNamesSpec {
 
     companion object : EntityPluginTestSetup() {
 
-        override fun createSettings(projectDir: Path): Entities {
-            val settings = EntitySettings(createProject(projectDir))
-            settings.skipQueries()
-            return settings.toProto()
-        }
+        /**
+         * Creates the settings with the generation of queries turned off.
+         */
+        override fun createSettings(projectDir: Path): Entities =
+            EntitySettings(createProject(projectDir))
+                .apply { skipQueries() }
+                .toProto()
     }
 
     @Test
-    fun `accept a nested message with a reserved name if queries are not generated`(
+    fun `accept a nested message with a reserved name if 'skipQueries()' is set`(
         @TempDir projectDir: Path
     ) {
-        runPipeline(projectDir, acceptingOnly(Board.getDescriptor()))
+        // With the default settings, this type is rejected. See `ReservedMessageNameErrorSpec`.
+        shouldNotThrowAny {
+            runPipeline(projectDir, acceptingOnly(Board.getDescriptor()))
+        }
 
         file("reserved/Board".java).code().let {
+            // The class of the nested message.
             it shouldContain "class $COLUMN_CLASS_NAME "
+            // The class is not generated because queries are turned off in `createSettings()`.
             it shouldNotContain "class $QUERY_BUILDER_CLASS_NAME"
         }
     }

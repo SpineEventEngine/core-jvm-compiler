@@ -31,7 +31,7 @@ option java_multiple_files = true;
 
 // An entity state with a nested message which has a reserved name.
 //
-// See `ReservedMessageNameErrorSpec` for the test.
+// See `ReservedMessageNameErrorSpec` and `SkipQueriesNamesSpec` for the tests.
 //
 message Board {
     option (entity).kind = PROJECTION;
