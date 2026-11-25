@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.routing.processor
@@ -63,8 +51,8 @@ import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
  * The type of the generated route functions is specified by the generic parameter [F].
  *
  * The visitor generates a class named after the class declaring routing function(s)
- * using the pattern: [entityClass] + [classNameSuffix]. The class is generated
- * in the same package with the [entityClass].
+ * using the pattern: [routingName][EntityClass.routingName] of the [entityClass] +
+ * [classNameSuffix]. The class is generated in the same package with the [entityClass].
  *
  * The generated class will be annotated with the [AutoService] annotation which
  * would accept the interface implemented by the generated class as the argument for
@@ -140,7 +128,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
         originalFile = classDeclaration.containingFile!!
         packageName = originalFile.packageName.asString()
-        val className = classDeclaration.simpleName.asString() + classNameSuffix
+        val className = entityClass.routingName + classNameSuffix
         createClass(className)
         handleRouteFunctions()
     }
@@ -316,6 +304,8 @@ internal sealed class RouteVisitor<F : RouteFun>(
          * [duplicated route functions][EntityClass.hasDuplicatedRoutes] per declaring class.
          * If such duplicates are found, errors will be logged and <em>all</em> the functions of
          * the declaring class will not be processed by the visitor.
+         * The same applies to the declaring classes that
+         * [share the name][findWithSameRoutingName] of their routing classes.
          *
          * @param V The type of the [RouteVisitor] used during the traversal.
          * @param F The type of the [RouteFun] processed by the visitor.
@@ -331,9 +321,10 @@ internal sealed class RouteVisitor<F : RouteFun>(
         ) {
             val routing = allFunctions.filterIsInstance<F>()
             val grouped = routing.groupByClasses()
-            grouped.forEach { (declaringClass, functions) ->
+            val clashing = grouped.keys.findWithSameRoutingName(environment)
+            (grouped - clashing).forEach { (declaringClass, functions) ->
                 if (!declaringClass.hasDuplicatedRoutes(functions, environment)) {
-                val v = createVisitor(functions)
+                    val v = createVisitor(functions)
                     declaringClass.accept(v, Unit)
                     v.writeFile()
                 }

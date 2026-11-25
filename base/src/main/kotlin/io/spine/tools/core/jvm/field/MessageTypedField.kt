@@ -40,9 +40,7 @@ import org.intellij.lang.annotations.Language
  * its fields when composing a query filter.
  *
  * More formally, for a given [fieldType], this class will generate a Java class that:
- *   1. Is named by combining the names of the types enclosing the field type, if any,
- *   from the outermost inwards, the simple name of the field type, and
- *   the ["Field"][MessageTypedField.CLASS_NAME_SUFFIX] suffix.
+ *   1. Is named after the field type, as described by [FieldClassNames].
  *   For example, `UserIdField` for `UserId`, and `BarnStallField` for `Barn.Stall`.
  *
  *   2. Inherits from [SubscribableField][io.spine.base.SubscribableField] or one of
@@ -63,6 +61,8 @@ import org.intellij.lang.annotations.Language
  *         the type of the field for which we generate the code.
  * @param fieldSupertype
  *         the supertype for the generated class.
+ * @param names
+ *         the names of the field classes.
  * @param typeSystem
  *         the type system to resolve message types into Java classes.
  *
@@ -71,10 +71,11 @@ import org.intellij.lang.annotations.Language
 internal class MessageTypedField(
     private val fieldType: MessageType,
     private val fieldSupertype: ClassName,
+    private val names: FieldClassNames,
     private val typeSystem: TypeSystem
 ) {
     private val className: String by lazy {
-        classNameFor(fieldType)
+        names.of(fieldType.name)
     }
 
     private val superClassReference: PsiJavaCodeReferenceElement by lazy {
@@ -125,18 +126,13 @@ internal class MessageTypedField(
 
     private fun PsiClass.addFieldMethods() {
         fieldType.fieldList.forEach {
-            val accessor = NestedFieldAccessor(it, fieldSupertype, typeSystem)
+            val accessor = NestedFieldAccessor(
+                field = it,
+                fieldSupertype = fieldSupertype,
+                names = names,
+                typeSystem = typeSystem
+            )
             addLast(accessor.method())
-        }
-    }
-
-    companion object {
-        const val CLASS_NAME_SUFFIX = "Field"
-
-        fun classNameFor(type: MessageType): String {
-            val typeName = type.name
-            val nestingPath = typeName.nestingTypeNameList.joinToString(separator = "")
-            return nestingPath + typeName.simpleName + CLASS_NAME_SUFFIX
         }
     }
 }
