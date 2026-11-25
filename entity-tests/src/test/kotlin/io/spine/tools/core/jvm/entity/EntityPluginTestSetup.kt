@@ -22,8 +22,10 @@ import io.spine.tools.compiler.Compilation
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
 import io.spine.tools.core.jvm.entity.given.Campus
+import io.spine.tools.core.jvm.entity.given.DefaultSingleFileProto.Garage
 import io.spine.tools.core.jvm.entity.given.Office
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
+import io.spine.tools.core.jvm.entity.given.SingleFileProto.Depot
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
@@ -73,6 +75,10 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      * [Office] and [Campus] have nested entity states, rejected at compile time and tested in
      * `NestedEntityStateErrorSpec` and `DeeplyNestedEntityStateErrorSpec`.
      * The outer messages are listed because the descriptor filter matches only top-level types.
+     *
+     * [Depot] and [Garage] are in files with `java_multiple_files` being `false`, rejected at
+     * compile time and tested in `SingleFileEntityStateErrorSpec` and
+     * `DefaultSingleFileEntityStateErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
@@ -80,6 +86,8 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
             RepeatedIdEntity.getDescriptor(),
             Office.getDescriptor(),
             Campus.getDescriptor(),
+            Depot.getDescriptor(),
+            Garage.getDescriptor(),
         )
 }
 
@@ -118,17 +126,38 @@ internal fun PsiClass.innerClass(name: String): PsiClass {
 }
 
 /**
- * Asserts that this error tells that the given entity [state] is nested in another message, and
- * that it refers to the place in the proto file at which the [state] is declared.
+ * Asserts that this error tells that the given entity [state] is nested in another message.
  */
 internal fun Compilation.Error.shouldReportNested(state: Descriptor) {
+    shouldReject(state)
+    message.let {
+        it shouldContain "nested in `${state.containingType.fullName}`"
+        it shouldContain "must be a top-level message"
+        it shouldContain "move `${state.name}` to the top level"
+    }
+}
+
+/**
+ * Asserts that this error tells that the given entity [state] is declared in a file for which
+ * the `java_multiple_files` option is `false`.
+ */
+internal fun Compilation.Error.shouldReportSingleFile(state: Descriptor) {
+    shouldReject(state)
+    message.let {
+        it shouldContain "does not set the `java_multiple_files` option to `true`"
+        it shouldContain "Please set `java_multiple_files` to `true`"
+    }
+}
+
+/**
+ * Asserts that this error is about the `(entity)` option of the given [state], and that it refers
+ * to the place in the proto file at which the [state] is declared.
+ */
+private fun Compilation.Error.shouldReject(state: Descriptor) {
     message.let {
         it shouldContain "${state.file.name}:${state.findDeclaration()}: "
         it shouldContain "The `(entity)` option cannot be applied"
         it shouldContain "the message `${state.fullName}`"
-        it shouldContain "nested in `${state.containingType.fullName}`"
-        it shouldContain "must be a top-level message"
-        it shouldContain "move `${state.name}` to the top level"
     }
 }
 

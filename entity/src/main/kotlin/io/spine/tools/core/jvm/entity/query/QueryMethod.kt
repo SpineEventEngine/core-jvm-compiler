@@ -31,6 +31,10 @@ import org.intellij.lang.annotations.Language
 /**
  * Renders the `query()` method at the top level Java class of the given file.
  *
+ * The top level class is the class of the entity state because
+ * [EntityDiscovery][io.spine.tools.core.jvm.entity.EntityDiscovery] does not accept
+ * entity states with nested Java classes.
+ *
  * The method is added after the constructors.
  * This makes it more visible to the people who dare to look at the generated code.
  */
