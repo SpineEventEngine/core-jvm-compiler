@@ -158,6 +158,42 @@ internal class FieldClassNamesSpec {
         }
 
         @Test
+        fun `lengthen only one name if the longer name for another type is taken`() {
+            namesOf("mail.v1:Address", "web.v1:Address", "acme.home:MailV1Address") shouldBe
+                    listOf("V1AddressField", "WebV1AddressField", "MailV1AddressField")
+        }
+
+        @Test
+        fun `not change other names if the longer name for a type is taken`() {
+            namesOf(
+                "mail.v1:Address",
+                "web.v1:Address",
+                "acme.home:MailV1Address",
+                "mail.v1:City",
+                "web.v1:City"
+            ) shouldBe listOf(
+                "V1AddressField",
+                "WebV1AddressField",
+                "MailV1AddressField",
+                "MailV1CityField",
+                "WebV1CityField"
+            )
+        }
+
+        @Test
+        fun `report types if all their names are taken`() {
+            val (error, _) = assertCompilationError {
+                namesOf(
+                    "mail.v1:Address",
+                    "web.v1:Address",
+                    "acme.home:MailV1Address",
+                    "acme.home:WebV1Address"
+                )
+            }
+            error.message shouldContain "`MailV1AddressField`"
+        }
+
+        @Test
         fun `keep the short name for a type without a package if it is the only one`() {
             namesOf(":Address", "acme.web:Address") shouldBe
                     listOf("AddressField", "WebAddressField")
