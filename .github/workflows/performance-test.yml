@@ -19,9 +19,9 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v6
 
-      # This step is a copy of the one in build-on-ubuntu.yml, which comes
-      # from `config`. This workflow belongs to this repository, so the copy
-      # is kept in sync by hand.
+      # This step copies the one in `build-on-ubuntu.yml`, a file distributed
+      # by `config`. This workflow belongs to this repository, so the copy is
+      # kept in sync by hand.
       #
       # Mirrors the pagefile step in build-on-windows.yml. Without enough swap,
       # a memory peak becomes an instant OOM kill; this gives the kernel
