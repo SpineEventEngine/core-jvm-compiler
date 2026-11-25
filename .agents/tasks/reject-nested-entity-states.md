@@ -2,7 +2,7 @@
 slug: reject-nested-entity-states
 branch: claude/focused-solomon-1f4a72
 owner: claude
-status: in-progress
+status: in-review
 started: 2026-11-25
 related-memories:
   - one-pipeline-run-per-spec-class
@@ -45,7 +45,7 @@ Facts checked before the plan:
 
 - [x] Bump the version -> `2.0.0-SNAPSHOT.109`.
 - [x] Add the fixtures `entity-tests/src/testFixtures/proto/given/entities/nesting.proto`:
-  - a message with two nested states;
+  - a message with a nested state;
   - a message with a state nested two levels deep;
   - a top-level state with a nested message and a nested enum that are not states.
 - [x] Exclude the first two in `EntityPluginTestSetup.defaultExclusions`.
@@ -58,7 +58,7 @@ Facts checked before the plan:
 - [x] `EntityDiscovery.kt`: call `Compilation.check(type.isTopLevel, ...)` before emitting
   `EntityStateDiscovered`. Point at the declaration of the message.
 - [x] Apply the CodeMatters copyright notice to the changed files in a commit of its own.
-- [ ] Build, update the dependency reports, run `pre-pr`, open a draft pull request.
+- [x] Build, update the dependency reports, run `pre-pr`, open a draft pull request.
 
 ## Log
 
@@ -73,3 +73,7 @@ Facts checked before the plan:
   goes to the class of the state. This is the same `javac` error, and it is out of scope here.
 - 2026-11-25 — both error specs failed without the check, and pass with it. With `option.span`
   instead of `type.span` the error says `nesting.proto:0:0`, and both specs fail.
+- 2026-11-25 — applied the findings of the pre-PR review, as approved by the user. The second
+  nested state is removed from the fixture: the compiler stops at the first error.
+- 2026-11-25 — `./gradlew clean build dokkaGenerate` passes. A nested state added to
+  `tests/entity-queries` for a moment is reported by `launchTestSpineCompiler` with the right place.
