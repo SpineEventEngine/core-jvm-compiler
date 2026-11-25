@@ -1,0 +1,95 @@
+/*
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+syntax = "proto3";
+
+package spine.tools.references;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.references";
+option java_outer_classname = "ReferencesProto";
+option java_multiple_files = true;
+
+// Entity states with the columns and IDs of the types, the names of which are the same as the names
+// of the classes nested in the Java classes of the states.
+//
+// Please see the `TypeReferencesIgTest` test suite for details.
+
+// The types with the names of the classes generated for an entity state.
+
+message Column {
+    string title = 1;
+}
+
+enum Query {
+    QUERY_UNDEFINED = 0;
+    DAILY = 1;
+}
+
+message QueryBuilder {
+    string title = 1;
+}
+
+message Field {
+    string title = 1;
+}
+
+// A message with the name of a message nested in the entity state which uses this type.
+message Status {
+    string title = 1;
+}
+
+// An entity state with the columns of the types from this file.
+message Plot {
+    option (entity).kind = PROJECTION;
+
+    string id = 1;
+    Column column = 2 [(column) = true];
+    Query frequency = 3 [(column) = true];
+    QueryBuilder builder = 4 [(column) = true];
+    Field field = 5 [(column) = true];
+    .spine.tools.references.Status status = 6 [(column) = true];
+
+    // The type of this column is the nested message.
+    Status own_status = 7 [(column) = true];
+
+    message Status {
+        string text = 1;
+    }
+}
+
+// Entity states with the IDs of the types from this file.
+
+message ColumnHolder {
+    option (entity).kind = ENTITY;
+
+    Column id = 1;
+    string name = 2 [(column) = true];
+}
+
+message QueryBuilderHolder {
+    option (entity).kind = ENTITY;
+
+    QueryBuilder id = 1;
+    string name = 2 [(column) = true];
+}
+
+message FieldHolder {
+    option (entity).kind = ENTITY;
+
+    Field id = 1;
+    string name = 2 [(column) = true];
+}
