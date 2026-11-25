@@ -181,7 +181,8 @@ private data class Candidate(
 }
 
 /**
- * Adds package words to the names that clash until they differ ignoring case.
+ * Adds package words to the names that clash until they differ ignoring case, and
+ * are not the names of the classes around.
  *
  * If there are not enough words for a type, the case of its name is taken into account. Names of
  * other types are still compared ignoring case.
@@ -219,15 +220,18 @@ private tailrec fun List<Candidate>.lengthenClashing(
 }
 
 /**
- * Obtains the candidates with the names that clash with the names of other candidates.
+ * Obtains the candidates with the names that clash with the names of other candidates, or of
+ * the classes around.
  */
 private fun List<Candidate>.clashing(caseSensitive: Set<TypeName>): Set<Candidate> {
     val sameIgnoringCase = groupBy { it.name.lowercase() }.values.filter { it.size > 1 }
-    return sameIgnoringCase.flatMap { group ->
+    val withOthers = sameIgnoringCase.flatMap { group ->
         group.filter { candidate ->
             candidate.type !in caseSensitive || group.count { it.name == candidate.name } > 1
         }
-    }.toSet()
+    }
+    val withClassesAround = filter { it.name in it.around }
+    return (withOthers + withClassesAround).toSet()
 }
 
 private val TypeName.path: List<String>

@@ -270,6 +270,14 @@ internal class FieldClassNamesSpec {
         }
 
         @Test
+        fun `add a package word if the name with an underscore is taken by a class around`() {
+            namesOf(
+                "acme.home:Crate", "acme.web:Crate",
+                around = listOf("WebCrateField", "WebCrate_Field")
+            ) shouldBe listOf("CrateField", "AcmeWebCrateField")
+        }
+
+        @Test
         fun `report a name with an underscore that is taken by another type`() {
             val (error, _) = assertCompilationError {
                 namesOf("acme.home:Crate", "acme.home:Crate_", around = listOf("CrateField"))
