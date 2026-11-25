@@ -43,7 +43,7 @@ Facts checked before the plan:
 
 ## Plan
 
-- [x] Bump the version -> `2.0.0-SNAPSHOT.109`.
+- [x] Bump the version -> `2.0.0-SNAPSHOT.112`.
 - [x] Add the fixtures `entity-tests/src/testFixtures/proto/given/entities/nesting.proto`:
   - a message with a nested state;
   - a message with a state nested two levels deep;
@@ -59,6 +59,10 @@ Facts checked before the plan:
   `EntityStateDiscovered`. Point at the declaration of the message.
 - [x] Apply the CodeMatters copyright notice to the changed files in a commit of its own.
 - [x] Build, update the dependency reports, run `pre-pr`, open a draft pull request.
+- [x] Report an error for a state in a file which does not set `java_multiple_files` to `true`:
+  `EntityDiscovery.checkMultipleFiles()`, two fixtures, `SingleFileEntityStateErrorSpec`, and
+  `DefaultSingleFileEntityStateErrorSpec`. Tell in the KDoc of `QueryMethod` why the top-level
+  class is the class of the state.
 
 ## Log
 
@@ -77,3 +81,8 @@ Facts checked before the plan:
   nested state is removed from the fixture: the compiler stops at the first error.
 - 2026-11-25 — `./gradlew clean build dokkaGenerate` passes. A nested state added to
   `tests/entity-queries` for a moment is reported by `launchTestSpineCompiler` with the right place.
+- 2026-11-25 — `master` with `.109` from PR 133 is merged, and the version is bumped to `.112`:
+  `.110` and `.111` are used by other branches.
+- 2026-11-25 — opened the draft PR 134. The user decided to report an error for states in files
+  with `java_multiple_files` being `false`, in the same PR. No JVM project among the sibling
+  repositories has such states.
