@@ -20,7 +20,7 @@ A state with such a name, or with its own nested message or enum with such a nam
 compile. `kotlinc` reports `Unresolved reference 'newBuilder'` in the generated Kotlin code, `javac`
 reports a duplicate class among many other errors. A top-level type of the same package does not
 compile if it is the type of a column or of the ID, because the generated code refers to it by
-its simple name, and Java takes it for the generated class. The last case was found for `Field`, too.
+its simple name, and Java takes it for the generated class. This is true for `Field`, too.
 
 In use: the state `Column` of the Kanban example, which is on Spine 1.x. It has to rename the state
 when it moves to Spine 2.
@@ -39,9 +39,9 @@ needs a change of `SpecScanner` in `core-jvm`, which finds the class by its name
 ## Plan
 
 - [x] Version, copyright notices
-- [ ] Reserved names: tests, then code
-- [ ] References: tests, then code
-- [ ] Integration test in `tests/entity-queries`
+- [x] Reserved names: tests, then code
+- [x] References: tests, then code
+- [x] Integration test in `tests/entity-queries`
 - [ ] Full build, dependency reports
 - [ ] `pre-pr`, draft pull request
 
