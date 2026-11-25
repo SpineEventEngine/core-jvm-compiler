@@ -50,8 +50,8 @@ classes. An error is reported if two entities still need the same class.
 
 ## Not included
 
-- `Column`, `Query`, and `QueryBuilder` are added to entity states in the same way as `Field`, so
-  a state with its own nested type of that name should fail the same way. Not tested.
+- `Column`, `Query`, and `QueryBuilder`, which are added to entity states in the same way as `Field`.
+  See `reserved-entity-names`.
 - A routing class is generated twice if route functions of one entity become valid in different
   KSP rounds. Not reproduced.
 - Hand-written classes with the name of a generated class.
