@@ -40,10 +40,10 @@ classes. An error is reported if two entities still need the same class.
 
 ## Plan
 
-- [ ] Field classes: tests, then code
-- [ ] Routing classes: tests, then code
-- [ ] Integration test in `tests/entity-queries`
-- [ ] Full build, copyright notices, dependency reports
+- [x] Field classes: tests, then code
+- [x] Routing classes: tests, then code
+- [x] Integration test in `tests/entity-queries`
+- [x] Full build, copyright notices, dependency reports
 - [ ] `pre-pr`, draft pull request
 
 ## Not included
@@ -57,3 +57,6 @@ classes. An error is reported if two entities still need the same class.
 ## Log
 
 - 2026-11-25 — the rules are agreed with the user, the plan is approved
+- 2026-11-25 — implemented; each rule was switched off in turn, and every time a test failed;
+  the types that did not compile before now compile, and the routing class from the main code is
+  loaded along with the one from the test code
