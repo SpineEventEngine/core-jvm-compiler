@@ -18,6 +18,8 @@ import com.google.protobuf.Descriptors.GenericDescriptor
 import com.intellij.psi.PsiClass
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
+import io.spine.tools.core.jvm.entity.given.Campus
+import io.spine.tools.core.jvm.entity.given.Office
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.settings.Entities
@@ -64,11 +66,17 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      *
      * [RepeatedIdEntity] has a `repeated` ID field, rejected at compile time and tested in
      * `UnsupportedIdTypeErrorSpec`.
+     *
+     * [Office] and [Campus] have nested entity states, rejected at compile time and tested in
+     * `NestedEntityStateErrorSpec` and `DeeplyNestedEntityStateErrorSpec`.
+     * We list the outer messages because the pipeline filters only top-level types.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
             BrokenIdEntity.getDescriptor(),
             RepeatedIdEntity.getDescriptor(),
+            Office.getDescriptor(),
+            Campus.getDescriptor(),
         )
 }
 

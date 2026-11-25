@@ -16,16 +16,23 @@ package io.spine.tools.core.jvm.entity
 
 import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.MessageType
+import io.spine.tools.compiler.ast.Option
 import io.spine.tools.core.jvm.settings.Entities
 
 /**
  * Tells if this message type is an entity state, according to the given settings.
  */
-internal fun MessageType.isEntityState(settings: Entities): Boolean {
-    val typeOptions = optionList.map { it.name }
-    val options = settings.optionList.map { it.name }
-    val result = typeOptions.any { it in options }
-    return result
+internal fun MessageType.isEntityState(settings: Entities): Boolean =
+    findEntityOption(settings) != null
+
+/**
+ * Finds the option which makes this message type an entity state, according to the given settings.
+ *
+ * @return the first of such options, or `null` if this type is not an entity state.
+ */
+internal fun MessageType.findEntityOption(settings: Entities): Option? {
+    val entityOptions = settings.optionList.map { it.name }
+    return optionList.firstOrNull { it.name in entityOptions }
 }
 
 /**
