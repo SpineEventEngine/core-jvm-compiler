@@ -23,9 +23,9 @@ option java_package = "io.spine.tools.core.jvm.entity.given";
 option java_outer_classname = "NestingProto";
 option java_multiple_files = true;
 
-// A message with entity states nested in it.
+// A message with an entity state nested in it.
 //
-// An entity state must be a top-level message, so such states must be rejected at
+// An entity state must be a top-level message, so such a state must be rejected at
 // compile time. The type is excluded from regular pipeline runs (see
 // `EntityPluginTestSetup.defaultExclusions`) and exercised by `NestedEntityStateErrorSpec`.
 //
@@ -35,11 +35,6 @@ message Office {
         option (entity).kind = PROJECTION;
         string id = 1;
         string name = 2 [(column) = true];
-    }
-
-    message Desk {
-        option (entity).kind = AGGREGATE;
-        string id = 1;
     }
 }
 

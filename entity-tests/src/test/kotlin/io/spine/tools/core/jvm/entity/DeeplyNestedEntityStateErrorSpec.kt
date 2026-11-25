@@ -23,10 +23,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Tests that an entity state nested several levels deep fails compilation.
+ * Tests that nesting an entity state several levels deep fails compilation.
  *
- * It lives in its own class because each suite runs the pipeline only once
- * (see the case of one level in `NestedEntityStateErrorSpec`).
+ * The suite is separate from [NestedEntityStateErrorSpec], which covers one level of nesting,
+ * because the pipeline can run only once per test class.
  */
 @DisplayName("`EntityDiscovery` should")
 internal class DeeplyNestedEntityStateErrorSpec {
@@ -38,6 +38,6 @@ internal class DeeplyNestedEntityStateErrorSpec {
         val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(Campus.getDescriptor()))
         }
-        error.shouldReject(Campus.Building.Floor.getDescriptor())
+        error.shouldReportNested(Campus.Building.Floor.getDescriptor())
     }
 }

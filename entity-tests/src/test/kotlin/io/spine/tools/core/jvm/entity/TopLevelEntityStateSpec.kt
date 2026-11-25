@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Tests that only entity states are not allowed to be nested.
+ * Tests that the ban on nesting applies only to entity states.
  *
  * A top-level entity state can have other types nested in it.
  */
@@ -57,8 +57,6 @@ internal class TopLevelEntityStateSpec {
             val psiFile = file("Warehouse".java).psi() as PsiJavaFile
             stateClass = psiFile.topLevelClass
         }
-
-        private fun PsiClass.innerClassNames(): List<String?> = innerClasses.map { it.name }
     }
 
     @Test
@@ -82,3 +80,5 @@ internal class TopLevelEntityStateSpec {
         nested.innerClassNames() shouldNotContainAnyOf generatedClasses
     }
 }
+
+private fun PsiClass.innerClassNames(): List<String> = innerClasses.mapNotNull { it.name }

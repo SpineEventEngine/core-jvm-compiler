@@ -17,7 +17,6 @@ package io.spine.tools.core.jvm.entity
 import io.spine.core.External
 import io.spine.server.event.React
 import io.spine.tools.compiler.Compilation
-import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.Option
 import io.spine.tools.compiler.ast.event.TypeDiscovered
@@ -34,12 +33,12 @@ import io.spine.tools.core.jvm.settings.Entities
  * Reacts to the [TypeDiscovered] and emits [EntityStateDiscovered], if the discovered
  * type is an [EntityState][io.spine.base.EntityState].
  *
- * This policy checks if the discovered type has one of the options specified in
+ * The reaction checks if the discovered type has one of the options specified in
  * the [Entities.getOptionList] settings passed to the [EntityPlugin].
- * If so, [EntityStateDiscovered] is emitted. Otherwise, no events are produced.
+ * If not, no events are produced. If so, and the type is a top-level message,
+ * [EntityStateDiscovered] is emitted.
  *
- * An entity state must be a top-level message. If it is nested in another message,
- * the reaction reports a compilation error.
+ * An entity state nested in another message is reported as a compilation error.
  *
  * @see Entities
  * @see EntityStateDiscovered
@@ -57,7 +56,7 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
     override fun whenever(@External event: TypeDiscovered): Iterable<EntityStateDiscovered> {
         val option = event.type.findEntityOption(settings)
             ?: return listOf()
-        checkTopLevel(event.type, option, event.file)
+        checkTopLevel(event.type, option)
         return listOf(entityStateDiscovered {
             name = event.type.name
             file = event.file
@@ -70,14 +69,13 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
  * Reports a compilation error if the given entity state [type] is nested in another message.
  *
  * The error refers to the declaration of the [type] because the [option] has no
- * coordinates when its value is set via a field, as in `option (entity).kind = AGGREGATE`.
+ * source location when its value is set via a field, as in `option (entity).kind = AGGREGATE`.
  *
  * @param type The type of the entity state.
  * @param option The option which makes the [type] an entity state.
- * @param file The file declaring the [type].
  */
-private fun checkTopLevel(type: MessageType, option: Option, file: File) =
-    Compilation.check(type.isTopLevel, file, type.span) {
+private fun checkTopLevel(type: MessageType, option: Option) =
+    Compilation.check(condition = type.isTopLevel, file = type.file, span = type.span) {
         "The `(${option.name})` option cannot be applied to the message `${type.qualifiedName}`" +
                 " because it is nested in `${type.declaredIn.qualifiedName}`." +
                 " An entity state must be a top-level message." +

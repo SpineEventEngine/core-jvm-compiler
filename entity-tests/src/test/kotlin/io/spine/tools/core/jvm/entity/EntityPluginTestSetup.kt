@@ -14,8 +14,11 @@
 
 package io.spine.tools.core.jvm.entity
 
+import com.google.protobuf.Descriptors.Descriptor
 import com.google.protobuf.Descriptors.GenericDescriptor
 import com.intellij.psi.PsiClass
+import io.kotest.matchers.string.shouldContain
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
 import io.spine.tools.core.jvm.entity.given.Campus
@@ -69,7 +72,7 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      *
      * [Office] and [Campus] have nested entity states, rejected at compile time and tested in
      * `NestedEntityStateErrorSpec` and `DeeplyNestedEntityStateErrorSpec`.
-     * We list the outer messages because the pipeline filters only top-level types.
+     * The outer messages are listed because the descriptor filter matches only top-level types.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
@@ -112,4 +115,40 @@ internal fun PsiClass.innerClass(name: String): PsiClass {
     return innerClass ?: error(
         "The class `$qualifiedName` does not have an inner class `$name`."
     )
+}
+
+/**
+ * Asserts that this error tells that the given entity [state] is nested in another message, and
+ * that it refers to the place in the proto file at which the [state] is declared.
+ */
+internal fun Compilation.Error.shouldReportNested(state: Descriptor) {
+    message.let {
+        it shouldContain "${state.file.name}:${state.findDeclaration()}: "
+        it shouldContain "The `(entity)` option cannot be applied"
+        it shouldContain "the message `${state.fullName}`"
+        it shouldContain "nested in `${state.containingType.fullName}`"
+        it shouldContain "must be a top-level message"
+        it shouldContain "move `${state.name}` to the top level"
+    }
+}
+
+/**
+ * Finds the place at which this message is declared in its proto file.
+ *
+ * We search in the text of the file because the descriptors available from
+ * the generated code do not have information about the source code.
+ * The simple name of the message must be unique in the file.
+ *
+ * @return the one-based line and column in the form of `line:column`.
+ */
+private fun Descriptor.findDeclaration(): String {
+    val classLoader = EntityPluginTestSetup::class.java.classLoader
+    val protoFile = checkNotNull(classLoader.getResource(file.name)) {
+        "Unable to find the resource `${file.name}`."
+    }
+    val declaration = "message $name {"
+    val (index, line) = protoFile.readText().lines()
+        .withIndex()
+        .single { (_, line) -> declaration in line }
+    return "${index + 1}:${line.indexOf(declaration) + 1}"
 }

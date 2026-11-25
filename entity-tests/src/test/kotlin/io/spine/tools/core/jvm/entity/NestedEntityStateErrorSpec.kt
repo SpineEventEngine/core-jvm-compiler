@@ -14,11 +14,8 @@
 
 package io.spine.tools.core.jvm.entity
 
-import com.google.protobuf.Descriptors.Descriptor
-import io.kotest.matchers.string.shouldContain
 import io.spine.testing.compiler.acceptingOnly
 import io.spine.testing.compiler.assertCompilationError
-import io.spine.tools.compiler.Compilation
 import io.spine.tools.core.jvm.entity.given.Office
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
@@ -26,7 +23,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Tests that an entity state nested in another message fails compilation.
+ * Tests that nesting an entity state in another message fails compilation.
  *
  * @see DeeplyNestedEntityStateErrorSpec
  */
@@ -40,40 +37,6 @@ internal class NestedEntityStateErrorSpec {
         val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(Office.getDescriptor()))
         }
-        error.shouldReject(Office.Room.getDescriptor())
+        error.shouldReportNested(Office.Room.getDescriptor())
     }
-}
-
-/**
- * Asserts that this error is about the given nested entity [state], and that it refers to
- * the place in the proto file at which the [state] is declared.
- */
-internal fun Compilation.Error.shouldReject(state: Descriptor) {
-    val (line, column) = state.findDeclaration()
-    message.let {
-        it shouldContain "${state.file.name}:$line:$column: "
-        it shouldContain "The `(entity)` option cannot be applied"
-        it shouldContain "the message `${state.fullName}`"
-        it shouldContain "nested in `${state.containingType.fullName}`"
-        it shouldContain "must be a top-level message"
-        it shouldContain "move `${state.name}` to the top level"
-    }
-}
-
-/**
- * Finds the line and the column, both one-based, at which this message is declared.
- *
- * We search in the text of the proto file because the descriptors available from
- * the generated code do not have the information on the source code.
- */
-private fun Descriptor.findDeclaration(): Pair<Int, Int> {
-    val classLoader = NestedEntityStateErrorSpec::class.java.classLoader
-    val protoFile = checkNotNull(classLoader.getResource(file.name)) {
-        "Unable to find the resource `${file.name}`."
-    }
-    val declaration = "message $name {"
-    val (index, line) = protoFile.readText().lines()
-        .withIndex()
-        .first { (_, line) -> declaration in line }
-    return Pair(index + 1, line.indexOf(declaration) + 1)
 }
