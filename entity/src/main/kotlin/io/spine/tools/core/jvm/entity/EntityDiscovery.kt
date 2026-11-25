@@ -31,6 +31,10 @@ import io.spine.tools.core.jvm.settings.Entities
  * the [Entities.getOptionList] settings passed to the [EntityPlugin].
  * If so, [EntityStateDiscovered] is emitted. Otherwise, no events are produced.
  *
+ * If the query support is generated for entity states, the policy also reports
+ * a compilation error for an entity state which breaks the rule on the reserved names.
+ *
+ * @see ReservedNamesCheck
  * @see Entities
  * @see EntityStateDiscovered
  */
@@ -47,6 +51,7 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
     override fun whenever(@External event: TypeDiscovered): Iterable<EntityStateDiscovered> {
         val isEntityState = event.type.isEntityState(settings)
         if (isEntityState) {
+            checkNames(event)
             return listOf(entityStateDiscovered {
                 name = event.type.name
                 file = event.file
@@ -54,5 +59,15 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
             })
         }
         return listOf()
+    }
+
+    private fun checkNames(event: TypeDiscovered) {
+        if (settings.generateQueries) {
+            ReservedNamesCheck(
+                state = event.type,
+                file = event.file,
+                typeSystem = typeSystem
+            ).perform()
+        }
     }
 }

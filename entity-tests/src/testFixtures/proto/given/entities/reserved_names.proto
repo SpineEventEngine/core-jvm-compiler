@@ -1,0 +1,121 @@
+/*
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+syntax = "proto3";
+
+package given.entities.reserved;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.core.jvm.entity.given.reserved";
+option java_outer_classname = "ReservedNamesProto";
+option java_multiple_files = true;
+
+// Entity states which break the rule on the reserved names, and the types which do not.
+//
+// The states which break the rule are excluded from regular pipeline runs.
+// Please see `EntityPluginTestSetup.defaultExclusions`.
+
+// An entity state with a nested message which has a reserved name.
+//
+// See `ReservedMessageNameErrorSpec` for the test.
+//
+message Board {
+    option (entity).kind = PROJECTION;
+
+    string id = 1;
+    repeated Column column = 2;
+
+    message Column {
+        string title = 1;
+    }
+}
+
+// An entity state with a nested enum which has a reserved name.
+//
+// See `ReservedEnumNameErrorSpec` for the test.
+//
+message Report {
+    option (entity).kind = AGGREGATE;
+
+    string id = 1;
+    Query query = 2;
+
+    enum Query {
+        QUERY_UNKNOWN = 0;
+        DAILY = 1;
+    }
+}
+
+// An entity state which has a reserved name.
+//
+// See `ReservedStateNameErrorSpec` for the test.
+//
+message QueryBuilder {
+    option (entity).kind = PROCESS_MANAGER;
+
+    string id = 1;
+}
+
+// An entity state which follows the rule on the reserved names.
+//
+// The types with the reserved names are nested deeper than one level.
+// The names of other nested types only resemble the reserved ones.
+//
+message Cabinet {
+    option (entity).kind = ENTITY;
+
+    string id = 1;
+    Shelf shelf = 2;
+    ColumnKind kind = 3;
+    Field field = 4;
+
+    message Shelf {
+        Column column = 1;
+
+        message Column {
+            Query query = 1;
+
+            enum Query {
+                QUERY_UNKNOWN = 0;
+                ANY = 1;
+            }
+        }
+    }
+
+    enum ColumnKind {
+        COLUMN_KIND_UNKNOWN = 0;
+        WIDE = 1;
+    }
+
+    // The name of the class generated for the fields of a state is not reserved.
+    message Field {
+        string label = 1;
+    }
+}
+
+// A message which is not an entity state, and may have types with any names.
+message ReadBoard {
+    Query query = 1;
+    repeated Column column = 2;
+
+    message Query {
+        string board = 1;
+    }
+
+    message Column {
+        string title = 1;
+    }
+}

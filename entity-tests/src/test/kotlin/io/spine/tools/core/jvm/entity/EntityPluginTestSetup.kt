@@ -19,6 +19,9 @@ import com.intellij.psi.PsiClass
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
+import io.spine.tools.core.jvm.entity.given.reserved.Board
+import io.spine.tools.core.jvm.entity.given.reserved.QueryBuilder
+import io.spine.tools.core.jvm.entity.given.reserved.Report
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
@@ -64,11 +67,18 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      *
      * [RepeatedIdEntity] has a `repeated` ID field, rejected at compile time and tested in
      * `UnsupportedIdTypeErrorSpec`.
+     *
+     * [Board], [Report], and [QueryBuilder] break the rule on the reserved names, and are
+     * tested in `ReservedMessageNameErrorSpec`, `ReservedEnumNameErrorSpec`, and
+     * `ReservedStateNameErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
             BrokenIdEntity.getDescriptor(),
             RepeatedIdEntity.getDescriptor(),
+            Board.getDescriptor(),
+            Report.getDescriptor(),
+            QueryBuilder.getDescriptor(),
         )
 }
 
