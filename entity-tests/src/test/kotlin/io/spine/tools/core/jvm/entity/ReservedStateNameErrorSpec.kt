@@ -42,8 +42,9 @@ internal class ReservedStateNameErrorSpec {
         }
         error.message.let {
             it shouldContain state.placeOf("message QueryBuilder {")
-            it shouldContain "The name of the message `${state.fullName}` is reserved."
-            it shouldContain "generates the class `$QUERY_BUILDER_CLASS_NAME`"
+            it shouldContain "The message `${state.fullName}`" +
+                    " cannot have the name `$QUERY_BUILDER_CLASS_NAME`."
+            it shouldContain "reserved for the class which the compiler generates"
             it shouldContain "for the entity state `${state.fullName}`"
             it shouldContain "Please rename the message."
         }

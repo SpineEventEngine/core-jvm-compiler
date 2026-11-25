@@ -43,8 +43,9 @@ internal class ReservedMessageNameErrorSpec {
         }
         error.message.let {
             it shouldContain nested.placeOf("message Column {")
-            it shouldContain "The name of the message `${nested.fullName}` is reserved."
-            it shouldContain "generates the class `$COLUMN_CLASS_NAME`"
+            it shouldContain "The message `${nested.fullName}`" +
+                    " cannot have the name `$COLUMN_CLASS_NAME`."
+            it shouldContain "reserved for the class which the compiler generates"
             it shouldContain "for the entity state `${state.fullName}`"
             it shouldContain "Please rename the message."
         }

@@ -43,8 +43,9 @@ internal class ReservedEnumNameErrorSpec {
         }
         error.message.let {
             it shouldContain nested.placeOf("enum Query {")
-            it shouldContain "The name of the enum `${nested.fullName}` is reserved."
-            it shouldContain "generates the class `$QUERY_CLASS_NAME`"
+            it shouldContain "The enum `${nested.fullName}`" +
+                    " cannot have the name `$QUERY_CLASS_NAME`."
+            it shouldContain "reserved for the class which the compiler generates"
             it shouldContain "for the entity state `${state.fullName}`"
             it shouldContain "Please rename the enum."
         }

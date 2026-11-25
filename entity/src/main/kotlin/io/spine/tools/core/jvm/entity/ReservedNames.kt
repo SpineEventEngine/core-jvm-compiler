@@ -69,8 +69,8 @@ internal class ReservedNamesCheck(
     private fun checkName(type: TypeName, kind: String, span: Span) {
         val name = type.simpleName
         Compilation.check(name !in reservedNames, state.file, span) {
-            "The name of the $kind `${type.qualifiedName}` is reserved." +
-                    " The compiler generates the class `$name`" +
+            "The $kind `${type.qualifiedName}` cannot have the name `$name`." +
+                    " This name is reserved for the class which the compiler generates" +
                     " for the entity state `${state.qualifiedName}`." +
                     " Please rename the $kind."
         }
