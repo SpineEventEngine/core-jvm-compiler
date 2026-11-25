@@ -20,6 +20,19 @@ import com.google.protobuf.Descriptors.GenericDescriptor
  * Obtains the place of the given [declaration] in the proto file of this type in the form used
  * in compilation errors.
  *
+ * For example, assume that lines 12 and 13 of the file `given/forms.proto` are:
+ *
+ * ```proto
+ * message Form {
+ *     message Field {
+ * ```
+ *
+ * Then `Field` is declared on line 13, starting at column 5:
+ *
+ * ```kotlin
+ * Form.Field.getDescriptor().placeOf("message Field {") // "given/forms.proto:13:5: "
+ * ```
+ *
  * We search in the text of the proto file because the descriptors available from
  * the generated code do not have the information on the source code.
  *
