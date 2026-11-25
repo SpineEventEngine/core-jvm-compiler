@@ -165,29 +165,8 @@ internal fun Compilation.Error.shouldReportSingleFile(state: Descriptor) {
  */
 private fun Compilation.Error.shouldReport(state: Descriptor) {
     message.let {
-        it shouldContain "${state.file.name}:${state.findDeclaration()}: "
+        it shouldContain state.placeOf("message ${state.name} {")
         it shouldContain "The `(entity)` option cannot be applied"
         it shouldContain "the message `${state.fullName}`"
     }
-}
-
-/**
- * Finds the place at which this message is declared in its proto file.
- *
- * We search in the text of the file because the descriptors available from
- * the generated code do not have information about the source code.
- * The simple name of the message must be unique in the file.
- *
- * @return the one-based line and column in the form of `line:column`.
- */
-private fun Descriptor.findDeclaration(): String {
-    val classLoader = EntityPluginTestSetup::class.java.classLoader
-    val protoFile = checkNotNull(classLoader.getResource(file.name)) {
-        "Unable to find the resource `${file.name}`."
-    }
-    val declaration = "message $name {"
-    val (index, line) = protoFile.readText().lines()
-        .withIndex()
-        .single { (_, line) -> declaration in line }
-    return "${index + 1}:${line.indexOf(declaration) + 1}"
 }
