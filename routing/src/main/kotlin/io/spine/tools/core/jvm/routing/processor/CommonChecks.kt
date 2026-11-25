@@ -33,6 +33,7 @@ import com.google.devtools.ksp.symbol.Modifier.JAVA_STATIC
 import com.google.devtools.ksp.symbol.Origin.JAVA
 import com.google.devtools.ksp.symbol.Origin.KOTLIN
 import io.spine.server.entity.Entity
+import io.spine.string.joinBackticked
 import io.spine.tools.core.jvm.ksp.processor.diagRef
 import io.spine.tools.core.jvm.ksp.processor.msg
 import io.spine.tools.core.jvm.routing.processor.RouteSignature.Companion.routeRef
@@ -177,4 +178,30 @@ internal fun <F : RouteFun> EntityClass.hasDuplicatedRoutes(
         )
     }
     return found
+}
+
+/**
+ * Finds entity classes of the same package that have the same [name][EntityClass.routingName] for
+ * their routing classes.
+ *
+ * Each group of such classes is [reported][KSPLogger.error].
+ *
+ * @return All the classes that share the name with another class.
+ */
+internal fun Iterable<EntityClass>.findWithSameRoutingName(
+    environment: Environment
+): Set<EntityClass> {
+    val clashes = groupBy { it.packageName to it.routingName }
+        .values
+        .filter { it.size > 1 }
+    clashes.forEach { classes ->
+        val sorted = classes.sortedBy { it.toString() }
+        environment.logger.error(
+            "The routing classes of the entity classes" +
+                    " ${sorted.map { it.toString() }.joinBackticked()} would have the same name." +
+                    " Please rename one of the entity classes.",
+            sorted.last().decl
+        )
+    }
+    return clashes.flatten().toSet()
 }

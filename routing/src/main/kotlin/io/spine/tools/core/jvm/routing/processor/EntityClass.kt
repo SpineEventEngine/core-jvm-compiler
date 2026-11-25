@@ -31,6 +31,7 @@ import com.google.devtools.ksp.symbol.KSClassDeclaration
 import com.google.devtools.ksp.symbol.KSType
 import com.google.devtools.ksp.symbol.KSTypeArgument
 import com.google.devtools.ksp.symbol.KSTypeReference
+import com.squareup.kotlinpoet.ksp.toClassName
 import io.spine.tools.core.jvm.ksp.processor.diagRef
 import io.spine.tools.core.jvm.ksp.processor.toTypeArgument
 import io.spine.tools.core.jvm.routing.processor.EntityClass.Companion.ID_METHOD_NAME
@@ -57,6 +58,21 @@ internal class EntityClass(
      * The type of the entity class resolved without generic parameters.
      */
     val type: KSType by lazy { decl.asStarProjectedType() }
+
+    /**
+     * The name of the package in which the entity class is declared.
+     */
+    val packageName: String by lazy { decl.packageName.asString() }
+
+    /**
+     * The name that the entity class gives to its routing classes, without a suffix.
+     *
+     * For a nested class, the name starts with the names of the enclosing classes.
+     * The names are separated with underscores. For example, `Outer_Nested`.
+     */
+    val routingName: String by lazy {
+        decl.toClassName().simpleNames.joinToString(separator = "_")
+    }
 
     /**
      * The type of the entity identifiers as [KSTypeArgument].

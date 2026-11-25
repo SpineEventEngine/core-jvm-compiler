@@ -63,8 +63,8 @@ import com.squareup.kotlinpoet.AnnotationSpec as KAnnotationSpec
  * The type of the generated route functions is specified by the generic parameter [F].
  *
  * The visitor generates a class named after the class declaring routing function(s)
- * using the pattern: [entityClass] + [classNameSuffix]. The class is generated
- * in the same package with the [entityClass].
+ * using the pattern: [routingName][EntityClass.routingName] of the [entityClass] +
+ * [classNameSuffix]. The class is generated in the same package with the [entityClass].
  *
  * The generated class will be annotated with the [AutoService] annotation which
  * would accept the interface implemented by the generated class as the argument for
@@ -140,7 +140,7 @@ internal sealed class RouteVisitor<F : RouteFun>(
     override fun visitClassDeclaration(classDeclaration: KSClassDeclaration, data: Unit) {
         originalFile = classDeclaration.containingFile!!
         packageName = originalFile.packageName.asString()
-        val className = classDeclaration.simpleName.asString() + classNameSuffix
+        val className = entityClass.routingName + classNameSuffix
         createClass(className)
         handleRouteFunctions()
     }
@@ -316,6 +316,8 @@ internal sealed class RouteVisitor<F : RouteFun>(
          * [duplicated route functions][EntityClass.hasDuplicatedRoutes] per declaring class.
          * If such duplicates are found, errors will be logged and <em>all</em> the functions of
          * the declaring class will not be processed by the visitor.
+         * The same applies to the declaring classes that
+         * [share the name][findWithSameRoutingName] of their routing classes.
          *
          * @param V The type of the [RouteVisitor] used during the traversal.
          * @param F The type of the [RouteFun] processed by the visitor.
@@ -331,9 +333,10 @@ internal sealed class RouteVisitor<F : RouteFun>(
         ) {
             val routing = allFunctions.filterIsInstance<F>()
             val grouped = routing.groupByClasses()
-            grouped.forEach { (declaringClass, functions) ->
+            val clashing = grouped.keys.findWithSameRoutingName(environment)
+            (grouped - clashing).forEach { (declaringClass, functions) ->
                 if (!declaringClass.hasDuplicatedRoutes(functions, environment)) {
-                val v = createVisitor(functions)
+                    val v = createVisitor(functions)
                     declaringClass.accept(v, Unit)
                     v.writeFile()
                 }

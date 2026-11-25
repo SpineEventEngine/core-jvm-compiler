@@ -31,7 +31,8 @@ package io.spine.tools.core.jvm.routing.processor
  * [EventRouting][io.spine.server.route.EventRouting] of a repository.
  *
  * The generated setup class will have the name after the pattern
- * [&lt;EntityClass&gt;EventRouting][classNameSuffix].
+ * [&lt;EntityClass&gt;EventRouting][classNameSuffix]. Please see [EntityClass.routingName] for
+ * the entity classes that are nested in other classes.
  *
  * @see MulticastRouteVisitor
  */

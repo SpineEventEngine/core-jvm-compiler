@@ -48,3 +48,10 @@ message DeviceStatus {
     DeviceId id = 1;
     repeated string status = 2 [(required) = true];
 }
+
+// The state of a process manager.
+message Inspection {
+    option (entity).kind = PROCESS_MANAGER;
+    DeviceId id = 1;
+    string notes = 2;
+}
