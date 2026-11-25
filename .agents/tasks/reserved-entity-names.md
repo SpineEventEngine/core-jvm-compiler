@@ -42,7 +42,7 @@ needs a change of `SpecScanner` in `core-jvm`, which finds the class by its name
 - [x] Reserved names: tests, then code
 - [x] References: tests, then code
 - [x] Integration test in `tests/entity-queries`
-- [ ] Full build, dependency reports
+- [x] Full build, dependency reports
 - [ ] `pre-pr`, draft pull request
 
 ## Not included
@@ -56,3 +56,5 @@ needs a change of `SpecScanner` in `core-jvm`, which finds the class by its name
 ## Log
 
 - 2026-11-25 — the rules are agreed with the user, the plan is approved
+- 2026-11-25 — implemented; each rule was switched off in turn, and every time a test failed;
+  the code generated for the states without a clash is the same as before
