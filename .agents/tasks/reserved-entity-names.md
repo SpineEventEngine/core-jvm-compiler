@@ -52,7 +52,7 @@ removed, so that all the classes follow one rule.
 - [x] References: tests, then code
 - [x] Integration test in `tests/entity-queries`
 - [x] `Field` is reserved, too; `Field_` is removed
-- [ ] Full build, dependency reports, `pre-pr`, pull request
+- [x] Full build, dependency reports, `pre-pr`, pull request
 
 ## Not included
 
@@ -68,3 +68,5 @@ removed, so that all the classes follow one rule.
   code generated for the states without a clash is the same as before
 - 2026-11-25 — the user decided to reserve `Field`, too, so that there is one rule for all the
   classes
+- 2026-11-25 — `Field` is reserved, and `Field_` with its warning is removed; checked in a Gradle
+  build for events, rejections, and entity states
