@@ -153,7 +153,7 @@ internal class QueryBuilderClass(
     private fun PsiClass.addColumnsMethod() {
         val columns = type.columns
         columns.forEach {
-            val column = QueryColumn(entityStateClass, it, queryBuilder = this, typeSystem)
+            val column = QueryColumn(entityStateClass, it, queryBuilder = this, typeReferences)
             column.render()
         }
     }

@@ -27,6 +27,7 @@ import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.DEFINITIONS_METHOD_NAME
+import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.java.reference
 import io.spine.tools.psi.java.Environment.elementFactory
 import io.spine.tools.psi.java.addLast
@@ -76,8 +77,13 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
     }
 
     private fun addColumnMethods() {
+        val typeReferences = TypeReferences(
+            file = psiFile,
+            stateClass = messageClass,
+            typeSystem = typeSystem
+        )
         columns.forEach { column ->
-            ColumnAccessor(messageClass, column, cls, typeSystem).run {
+            ColumnAccessor(messageClass, column, cls, typeReferences).run {
                 render()
             }
         }

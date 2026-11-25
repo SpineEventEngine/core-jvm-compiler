@@ -20,10 +20,10 @@ import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.render.CreateNestedClass
-import io.spine.tools.compiler.jvm.typeReference
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.core.jvm.entity.idField
 import io.spine.tools.core.jvm.settings.Entities
 
@@ -60,9 +60,20 @@ internal abstract class QuerySupportClass(
     }
 
     /**
+     * The references to the types of fields of the entity state.
+     */
+    protected val typeReferences: TypeReferences by lazy {
+        TypeReferences(
+            file = psiFile,
+            stateClass = entityStateClass,
+            typeSystem = typeSystem
+        )
+    }
+
+    /**
      * The type of the [first][idField] entity state type field.
      */
     val idType: String by lazy {
-        idField.typeReference(entityStateClass, typeSystem)
+        typeReferences.to(idField)
     }
 }

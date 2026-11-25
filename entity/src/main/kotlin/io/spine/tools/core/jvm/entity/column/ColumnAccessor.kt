@@ -21,9 +21,8 @@ import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.getterName
 import io.spine.tools.compiler.jvm.javaCase
-import io.spine.tools.compiler.jvm.typeReference
-import io.spine.tools.compiler.type.TypeSystem
 import io.spine.query.EntityColumn
+import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.java.reference
 import io.spine.tools.psi.addFirst
 import io.spine.tools.psi.java.Environment.elementFactory
@@ -45,12 +44,12 @@ internal class ColumnAccessor(
     private val entityState: ClassName,
     private val field: Field,
     private val columnClass: PsiClass,
-    private val typeSystem: TypeSystem
+    private val typeReferences: TypeReferences
 ) {
 
     private val fieldName = field.name.value
     private val fieldType by lazy {
-        field.typeReference(entityState, typeSystem)
+        typeReferences.to(field)
     }
 
     /**
@@ -65,7 +64,7 @@ internal class ColumnAccessor(
      * The return type of the generated method.
      */
     private val columnType: String by lazy {
-        columnType(entityState, typeSystem, field)
+        columnType(entityState, fieldType)
     }
 
     /**
@@ -120,27 +119,16 @@ internal fun columnMethodName(field: Field): String =
 
 /**
  * Obtains a string with the name of an entity column parameterized by
- * the type of the field, if specified.
+ * the type of the field.
  *
  * @param entityState The name of the entity state class.
- * @param typeSystem The instance of the [TypeSystem] to resolve the type of the given [field].
- *   Can be `null`, if [field] is `null`.
- * @param field The field of the column for composing the type.
- *   It is `null`, if the method is called for obtaining wildcard generic type name.
+ * @param fieldType The reference to the type of the field of the column.
+ *   It is the wildcard by default.
  */
-internal fun columnType(
-    entityState: ClassName,
-    typeSystem: TypeSystem? = null,
-    field: Field? = null
-): String {
-    require(!(typeSystem == null && field != null)) {
-        "Unable to obtain a field type without type system."
-    }
+internal fun columnType(entityState: ClassName, fieldType: String = "?"): String {
     // We can use a simple class name because the generated code is
     // nested inside the entity state class.
     val state = entityState.simpleName
-
-    val fieldType = field?.typeReference(entityState, typeSystem!!) ?: "?"
     @Language("JAVA") @Suppress("EmptyClass")
     val result = "$container<$state, $fieldType>"
     return result
