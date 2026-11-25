@@ -51,9 +51,9 @@ internal class TypeReferencesIgTest {
         @Test
         fun `the class 'Column'`() {
             val value = column { title = "main" }
-            val query = Plot.query().column().`is`(value).build()
+            val query = Plot.query().layout().`is`(value).build()
             query shouldSelectBy value
-            Plot.Column.column() shouldHaveType Column::class.java
+            Plot.Column.layout() shouldHaveType Column::class.java
         }
 
         @Test

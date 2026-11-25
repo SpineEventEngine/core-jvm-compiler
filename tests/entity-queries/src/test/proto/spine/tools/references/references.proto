@@ -58,7 +58,7 @@ message Plot {
     option (entity).kind = PROJECTION;
 
     string id = 1;
-    Column column = 2 [(column) = true];
+    Column layout = 2 [(column) = true];
     Query frequency = 3 [(column) = true];
     QueryBuilder builder = 4 [(column) = true];
     Field field = 5 [(column) = true];
