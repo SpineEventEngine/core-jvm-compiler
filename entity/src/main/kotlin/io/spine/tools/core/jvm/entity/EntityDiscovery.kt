@@ -38,16 +38,12 @@ import io.spine.tools.core.jvm.settings.Entities
  * the [Entities.getOptionList] settings passed to the [EntityPlugin].
  * If so, [EntityStateDiscovered] is emitted. Otherwise, no events are produced.
  *
- * The Java class of an entity state must be a top-level class, and the names of the classes
- * nested in it for the query support must be free.
+ * The Java class of an entity state must be a top-level class.
  * The reaction reports a compilation error when:
  *
  *  1. The type is nested in another message.
  *  2. The file declaring the type does not set the `java_multiple_files` option to `true`.
- *  3. The type, or a type nested in it, has one of the [reserved names][reservedNames], and
- *   the query support is generated for entity states.
  *
- * @see ReservedNamesCheck
  * @see Entities
  * @see EntityStateDiscovered
  */
@@ -66,7 +62,6 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
             ?: return listOf()
         checkTopLevel(event.type, option)
         checkMultipleFiles(event.type, option)
-        checkNames(event.type)
         return listOf(entityStateDiscovered {
             name = event.type.name
             file = event.file
@@ -102,18 +97,6 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
                     " The Java class of an entity state must be a top-level class." +
                     " Please set `java_multiple_files` to `true` in the file."
         }
-
-    /**
-     * Reports a compilation error if the given entity state [type], or a type nested in it,
-     * has a name reserved for one of the classes generated for the query support.
-     *
-     * The names are not reserved if the query support is turned off.
-     */
-    private fun checkNames(type: MessageType) {
-        if (settings.generateQueries) {
-            ReservedNamesCheck(type, typeSystem).perform()
-        }
-    }
 }
 
 /**

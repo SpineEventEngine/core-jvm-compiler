@@ -14,15 +14,14 @@
 
 package io.spine.tools.core.jvm.entity.query
 
-import com.intellij.psi.PsiAnnotation
 import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.jvm.ClassName
-import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
-import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.CreateReservedClass
+import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.ENTITY_STATE
 import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.core.jvm.entity.idField
 import io.spine.tools.core.jvm.settings.Entities
@@ -37,9 +36,10 @@ internal abstract class QuerySupportClass(
     className: String,
     protected val settings: Entities,
     context: CodegenContext
-) : CreateNestedClass(type, file, className, context) {
+) : CreateReservedClass(type, file, className, context) {
 
-    override fun createAnnotation(): PsiAnnotation = GeneratedAnnotation.forPsi()
+    override val ownerKind: String
+        get() = ENTITY_STATE
 
     /**
      * The class of the entity state, same as [messageClass].
@@ -64,8 +64,8 @@ internal abstract class QuerySupportClass(
      */
     protected val typeReferences: TypeReferences by lazy {
         TypeReferences(
-            state = type,
             file = psiFile,
+            stateClass = entityStateClass,
             typeSystem = typeSystem
         )
     }

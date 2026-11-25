@@ -80,14 +80,4 @@ internal class TypeReferencesOrderSpec {
     fun `have the package if the class with the same name is generated later`() {
         code("Plot") shouldContain "EntityColumn<Plot,$PACKAGE.Field>fourth(){"
     }
-
-    @Test
-    fun `have the package if the class generated later has an underscore`() {
-        code("Garden") shouldContain "EntityColumn<Garden,$PACKAGE.Field_>bed(){"
-    }
-
-    @Test
-    fun `be short if the class generated later has no underscore`() {
-        code("Plot") shouldContain "EntityColumn<Plot,Field_>tenth(){"
-    }
 }

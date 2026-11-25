@@ -16,42 +16,39 @@ package io.spine.tools.core.jvm.entity
 
 import com.intellij.psi.PsiJavaFile
 import io.spine.tools.compiler.ast.Field
-import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.jvm.ClassName
-import io.spine.tools.compiler.jvm.javaClassName
 import io.spine.tools.compiler.jvm.javaType
 import io.spine.tools.compiler.jvm.render.findClass
 import io.spine.tools.compiler.jvm.typeReference
 import io.spine.tools.compiler.type.TypeSystem
+import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
+import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_BUILDER_CLASS_NAME
+import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_CLASS_NAME
 import io.spine.tools.core.jvm.field.AddFieldClass
 
 /**
  * Obtains references to the types of fields of an entity state for the code which is nested in
  * the Java class of the state.
  *
- * @param state The type of the entity state.
  * @param file The file with the Java class of the entity state.
+ * @param stateClass The name of the entity state class.
  * @param typeSystem The type system to resolve the types of the fields.
  */
 internal class TypeReferences(
-    private val state: MessageType,
     private val file: PsiJavaFile,
+    private val stateClass: ClassName,
     private val typeSystem: TypeSystem
 ) {
-
-    private val stateClass: ClassName by lazy {
-        state.javaClassName(typeSystem)
-    }
 
     /**
      * The simple names of the classes nested in the class of the entity state.
      *
-     * The classes with the [reserved names][reservedNames], and the class for
-     * the [fields][AddFieldClass] may be generated later. So, their names are added explicitly.
+     * Some classes may be generated later. So, the names of [generatedClasses] are added
+     * explicitly.
      */
     private val nestedClasses: Set<String> by lazy {
         val present = file.findClass(stateClass).innerClasses.mapNotNull { it.name }
-        present.toSet() + reservedNames + AddFieldClass.nameFor(state, typeSystem)
+        present.toSet() + generatedClasses
     }
 
     /**
@@ -68,3 +65,13 @@ internal class TypeReferences(
         return if (topLevel && reference in nestedClasses) qualifiedName else reference
     }
 }
+
+/**
+ * The names of the classes generated for an entity state.
+ */
+private val generatedClasses = setOf(
+    AddFieldClass.NAME,
+    COLUMN_CLASS_NAME,
+    QUERY_CLASS_NAME,
+    QUERY_BUILDER_CLASS_NAME
+)

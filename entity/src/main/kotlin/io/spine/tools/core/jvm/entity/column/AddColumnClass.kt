@@ -15,18 +15,17 @@
 package io.spine.tools.core.jvm.entity.column
 
 import com.google.common.collect.ImmutableSet
-import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiMethod
 import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.columns
 import io.spine.tools.compiler.context.CodegenContext
-import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
-import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.CreateReservedClass
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.DEFINITIONS_METHOD_NAME
+import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.ENTITY_STATE
 import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.java.reference
 import io.spine.tools.psi.java.Environment.elementFactory
@@ -55,11 +54,12 @@ import org.intellij.lang.annotations.Language
  * @see render
  */
 public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: CodegenContext) :
-    CreateNestedClass(type, file, COLUMN_CLASS_NAME, context) {
+    CreateReservedClass(type, file, COLUMN_CLASS_NAME, context) {
 
     private val columns: List<Field> = type.columns
 
-    override fun createAnnotation(): PsiAnnotation = GeneratedAnnotation.forPsi()
+    override val ownerKind: String
+        get() = ENTITY_STATE
 
     @Language("JAVA") @Suppress("EmptyClass")
     override fun classJavadoc(): String = """
@@ -78,8 +78,8 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
 
     private fun addColumnMethods() {
         val typeReferences = TypeReferences(
-            state = type,
             file = psiFile,
+            stateClass = messageClass,
             typeSystem = typeSystem
         )
         columns.forEach { column ->

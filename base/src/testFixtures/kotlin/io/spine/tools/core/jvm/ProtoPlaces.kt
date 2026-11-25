@@ -12,7 +12,7 @@
  * and limitations under the License.
  */
 
-package io.spine.tools.core.jvm.entity
+package io.spine.tools.core.jvm
 
 import com.google.protobuf.Descriptors.GenericDescriptor
 
@@ -26,8 +26,8 @@ import com.google.protobuf.Descriptors.GenericDescriptor
  * @param declaration The text with which the declaration starts. If there are several such
  *   declarations in the file, the first one is taken.
  */
-internal fun GenericDescriptor.placeOf(declaration: String): String {
-    val classLoader = EntityPluginTestSetup::class.java.classLoader
+fun GenericDescriptor.placeOf(declaration: String): String {
+    val classLoader = PluginTestSetup::class.java.classLoader
     val protoFile = checkNotNull(classLoader.getResource(file.name)) {
         "Unable to find the resource `${file.name}`."
     }

@@ -33,7 +33,7 @@ import org.junit.jupiter.api.io.TempDir
  *
  * @see ReservedNamesSpec
  */
-@DisplayName("`EntityDiscovery` should")
+@DisplayName("`EntityPlugin` should")
 internal class SkipQueriesNamesSpec {
 
     companion object : EntityPluginTestSetup() {

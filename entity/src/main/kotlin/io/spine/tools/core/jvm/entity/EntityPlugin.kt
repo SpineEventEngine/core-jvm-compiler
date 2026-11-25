@@ -39,6 +39,11 @@ public class EntityPlugin : Plugin(
         public val SETTINGS_ID: String = EntityPlugin::class.java.canonicalName
 
         /**
+         * What a message with an entity option is called in compilation errors.
+         */
+        internal const val ENTITY_STATE: String = "entity state"
+
+        /**
          * The name of the `Column` class generated under an entity state.
          *
          * The name is reserved: an entity state, and a message or an enum nested directly in it,

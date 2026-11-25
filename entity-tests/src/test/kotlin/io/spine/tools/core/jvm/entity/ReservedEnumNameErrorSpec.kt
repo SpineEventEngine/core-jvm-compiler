@@ -19,6 +19,7 @@ import io.spine.testing.compiler.acceptingOnly
 import io.spine.testing.compiler.assertCompilationError
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_CLASS_NAME
 import io.spine.tools.core.jvm.entity.given.reserved.Report
+import io.spine.tools.core.jvm.placeOf
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -29,13 +30,13 @@ import org.junit.jupiter.api.io.TempDir
  *
  * @see ReservedNamesSpec
  */
-@DisplayName("`EntityDiscovery` should")
+@DisplayName("`QueryClass` should")
 internal class ReservedEnumNameErrorSpec {
 
     companion object : EntityPluginTestSetup()
 
     @Test
-    fun `reject a nested enum with a reserved name`(@TempDir projectDir: Path) {
+    fun `reject a nested enum with the same name`(@TempDir projectDir: Path) {
         val state = Report.getDescriptor()
         val nested = Report.Query.getDescriptor()
         val (error, _) = assertCompilationError {

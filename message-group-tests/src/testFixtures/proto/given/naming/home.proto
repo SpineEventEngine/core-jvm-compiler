@@ -27,8 +27,7 @@ import "given/naming/web.proto";
 
 // Types for testing the names of the classes generated for the fields of messages.
 //
-// Please see the `FieldClassNamingSpec`, `OwnFieldTypeSpec`, and `FieldClassClashErrorSpec`
-// test suites for details.
+// Please see the `FieldClassNamingSpec` and `ReservedFieldNameErrorSpec` test suites for details.
 
 // A message using types with the same name from different packages.
 message Contact {
@@ -74,33 +73,6 @@ message Form {
     Field first = 2;
 
     message Field {
-        string label = 1;
-    }
-}
-
-// A message with a nested enum named like the class generated for the fields.
-message Survey {
-    string title = 1;
-
-    enum Field {
-        FIELD_UNDEFINED = 0;
-    }
-}
-
-// A message named like the class generated for the fields.
-message Field {
-    string crop = 1;
-}
-
-// A message for which a class for the fields cannot be generated.
-message Poll {
-    string title = 1;
-
-    message Field {
-        string label = 1;
-    }
-
-    message Field_ {
         string label = 1;
     }
 }

@@ -19,6 +19,7 @@ import io.spine.testing.compiler.acceptingOnly
 import io.spine.testing.compiler.assertCompilationError
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
 import io.spine.tools.core.jvm.entity.given.reserved.Board
+import io.spine.tools.core.jvm.placeOf
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -29,13 +30,13 @@ import org.junit.jupiter.api.io.TempDir
  *
  * @see ReservedNamesSpec
  */
-@DisplayName("`EntityDiscovery` should")
+@DisplayName("`AddColumnClass` should")
 internal class ReservedMessageNameErrorSpec {
 
     companion object : EntityPluginTestSetup()
 
     @Test
-    fun `reject a nested message with a reserved name`(@TempDir projectDir: Path) {
+    fun `reject a nested message with the same name`(@TempDir projectDir: Path) {
         val state = Board.getDescriptor()
         val nested = Board.Column.getDescriptor()
         val (error, _) = assertCompilationError {

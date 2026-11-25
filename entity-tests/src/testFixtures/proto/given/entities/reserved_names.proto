@@ -70,6 +70,21 @@ message QueryBuilder {
     string id = 1;
 }
 
+// An entity state with a nested message which has the name of the class generated for the fields.
+//
+// See `ReservedFieldNameErrorSpec` for the test.
+//
+message Form {
+    option (entity).kind = ENTITY;
+
+    string id = 1;
+    Field first = 2;
+
+    message Field {
+        string label = 1;
+    }
+}
+
 // An entity state which follows the rule on the reserved names.
 //
 // The types with the reserved names are nested deeper than one level.
@@ -81,20 +96,24 @@ message Cabinet {
     string id = 1;
     Shelf shelf = 2;
     ColumnKind kind = 3;
-    Field field = 4;
 
     // Protobuf declares a nested message for the entries of a map.
-    map<string, Shelf> spare = 5;
+    map<string, Shelf> spare = 4;
 
     message Shelf {
         Column column = 1;
 
         message Column {
             Query query = 1;
+            Field field = 2;
 
             enum Query {
                 QUERY_UNKNOWN = 0;
                 ANY = 1;
+            }
+
+            message Field {
+                string label = 1;
             }
         }
     }
@@ -102,11 +121,6 @@ message Cabinet {
     enum ColumnKind {
         COLUMN_KIND_UNKNOWN = 0;
         WIDE = 1;
-    }
-
-    // The name of the class generated for the fields of a state is not reserved.
-    message Field {
-        string label = 1;
     }
 }
 

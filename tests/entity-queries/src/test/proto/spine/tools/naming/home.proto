@@ -75,23 +75,3 @@ message CrateField {
 message Crate {
     string weight = 1;
 }
-
-// An entity state with a nested message named like the class generated for the fields.
-message Form {
-    option (entity).kind = AGGREGATE;
-
-    string id = 1;
-    Field first = 2;
-
-    message Field {
-        string label = 1;
-    }
-}
-
-// An entity state named like the class generated for the fields.
-message Field {
-    option (entity).kind = PROJECTION;
-
-    string id = 1;
-    Crate crop = 2;
-}

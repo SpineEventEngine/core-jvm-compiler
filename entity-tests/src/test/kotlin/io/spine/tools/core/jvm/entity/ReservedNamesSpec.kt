@@ -21,6 +21,7 @@ import io.kotest.matchers.shouldNotBe
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_BUILDER_CLASS_NAME
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_CLASS_NAME
+import io.spine.tools.core.jvm.field.AddFieldClass
 import io.spine.tools.psi.java.topLevelClass
 import java.nio.file.Path
 import org.junit.jupiter.api.BeforeAll
@@ -36,9 +37,10 @@ import org.junit.jupiter.api.io.TempDir
  * @see ReservedMessageNameErrorSpec
  * @see ReservedEnumNameErrorSpec
  * @see ReservedStateNameErrorSpec
+ * @see ReservedFieldNameErrorSpec
  * @see SkipQueriesNamesSpec
  */
-@DisplayName("`EntityDiscovery` should")
+@DisplayName("`EntityPlugin` should")
 internal class ReservedNamesSpec {
 
     companion object : EntityPluginTestSetup() {
@@ -58,7 +60,12 @@ internal class ReservedNamesSpec {
     @Test
     fun `accept an entity state with the reserved names nested deeper than one level`() {
         val state = classOf("Cabinet")
-        listOf(COLUMN_CLASS_NAME, QUERY_CLASS_NAME, QUERY_BUILDER_CLASS_NAME).forEach {
+        listOf(
+            COLUMN_CLASS_NAME,
+            QUERY_CLASS_NAME,
+            QUERY_BUILDER_CLASS_NAME,
+            AddFieldClass.NAME
+        ).forEach {
             state.findInnerClassByName(it, false) shouldNotBe null
         }
     }

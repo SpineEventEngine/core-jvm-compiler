@@ -27,9 +27,11 @@ import io.spine.tools.core.jvm.entity.given.Office
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
 import io.spine.tools.core.jvm.entity.given.SingleFileProto.Depot
 import io.spine.tools.core.jvm.entity.given.reserved.Board
+import io.spine.tools.core.jvm.entity.given.reserved.Form
 import io.spine.tools.core.jvm.entity.given.reserved.QueryBuilder
 import io.spine.tools.core.jvm.entity.given.reserved.Report
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
+import io.spine.tools.core.jvm.placeOf
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
 import java.nio.file.Path
@@ -83,9 +85,9 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      * the option is `false` and absent, respectively. They are rejected at compile time and
      * tested in `SingleFileEntityStateErrorSpec` and `DefaultSingleFileEntityStateErrorSpec`.
      *
-     * [Board], [Report], and [QueryBuilder] break the rule on the reserved names, and are
-     * tested in `ReservedMessageNameErrorSpec`, `ReservedEnumNameErrorSpec`, and
-     * `ReservedStateNameErrorSpec`.
+     * [Board], [Report], [QueryBuilder], and [Form] break the rule on the reserved names, and are
+     * tested in `ReservedMessageNameErrorSpec`, `ReservedEnumNameErrorSpec`,
+     * `ReservedStateNameErrorSpec`, and `ReservedFieldNameErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
@@ -98,6 +100,7 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
             Board.getDescriptor(),
             Report.getDescriptor(),
             QueryBuilder.getDescriptor(),
+            Form.getDescriptor(),
         )
 }
 

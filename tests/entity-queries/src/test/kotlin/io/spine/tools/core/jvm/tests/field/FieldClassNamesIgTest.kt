@@ -18,8 +18,6 @@ import io.kotest.matchers.shouldBe
 import io.spine.base.SubscribableField
 import io.spine.tools.naming.home.Contact
 import io.spine.tools.naming.home.CrateField
-import io.spine.tools.naming.home.Field
-import io.spine.tools.naming.home.Form
 import io.spine.tools.naming.home.Room
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -48,16 +46,6 @@ internal class FieldClassNamesIgTest {
     @Test
     fun `differ from the class of the message`() {
         CrateField.Field.crate().weight() shouldHavePath "crate.weight"
-    }
-
-    @Test
-    fun `be available if the message has its own type named 'Field'`() {
-        Form.Field_.first().label() shouldHavePath "first.label"
-    }
-
-    @Test
-    fun `be available if the message is named 'Field'`() {
-        Field.Field_.crop().weight() shouldHavePath "crop.weight"
     }
 }
 

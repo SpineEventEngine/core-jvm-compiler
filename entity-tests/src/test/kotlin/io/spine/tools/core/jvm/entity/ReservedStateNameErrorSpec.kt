@@ -19,6 +19,7 @@ import io.spine.testing.compiler.acceptingOnly
 import io.spine.testing.compiler.assertCompilationError
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_BUILDER_CLASS_NAME
 import io.spine.tools.core.jvm.entity.given.reserved.QueryBuilder
+import io.spine.tools.core.jvm.placeOf
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -29,13 +30,13 @@ import org.junit.jupiter.api.io.TempDir
  *
  * @see ReservedNamesSpec
  */
-@DisplayName("`EntityDiscovery` should")
+@DisplayName("`QueryBuilderClass` should")
 internal class ReservedStateNameErrorSpec {
 
     companion object : EntityPluginTestSetup()
 
     @Test
-    fun `reject an entity state with a reserved name`(@TempDir projectDir: Path) {
+    fun `reject an entity state with the same name`(@TempDir projectDir: Path) {
         val state = QueryBuilder.getDescriptor()
         val (error, _) = assertCompilationError {
             runPipeline(projectDir, acceptingOnly(state))
