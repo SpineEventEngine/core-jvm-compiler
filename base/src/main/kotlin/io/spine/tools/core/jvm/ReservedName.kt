@@ -81,15 +81,15 @@ internal class ReservedName(
                     " Please rename the $kind."
         }
 
+    /**
+     * Checks the outermost Java class.
+     *
+     * If it is the class of a message, the name of this message is already checked.
+     * Otherwise, it is the outer class of the file.
+     */
     private fun checkOuterClass() {
-        val classes = owner.javaClassName(typeSystem).simpleNames
-        val outerClass = classes.first()
-        val nestedInIt = classes.size > messages.size
-        Compilation.check(
-            condition = !nestedInIt || outerClass != value,
-            file = owner.file,
-            span = owner.span
-        ) {
+        val outermost = owner.javaClassName(typeSystem).simpleNames.first()
+        Compilation.check(condition = outermost != value, file = owner.file, span = owner.span) {
             "The outer Java class of the file cannot have the name `$value`." +
                     " $reason" +
                     " Please set the `java_outer_classname` option to another name."
