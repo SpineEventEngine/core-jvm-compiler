@@ -50,6 +50,32 @@ internal class RoutingClassClashSpec : RouteCompilationTest() {
     }
 
     @Test
+    fun `ignoring case if an entity class is nested`() {
+        compilation.sources = listOf(
+            kotlinSource("First", "class A { class B { $SCREEN } }"),
+            kotlinSource("Second", "class a_b { $SCREEN }")
+        )
+        val result = compilation.compileSilently()
+
+        result.exitCode shouldBe COMPILATION_ERROR
+        result.messages.let {
+            it shouldContain "`$PACKAGE.A.B.Screen`, `$PACKAGE.a_b.Screen`"
+            it shouldContain "differ only in case, and start with `A_B_Screen`, `a_b_Screen`"
+            it shouldNotContain "FileAlreadyExistsException"
+        }
+    }
+
+    @Test
+    fun `ignoring case only if an entity class is nested`() {
+        compilation.sources = listOf(
+            kotlinSource("First", screen("Office", ROUTES_EVENTS)),
+            kotlinSource("Second", screen("OFFICE", ROUTES_EVENTS))
+        )
+        // The result of the compilation depends on the file system, so only the message is checked.
+        compilation.compileSilently().messages shouldNotContain "Please rename"
+    }
+
+    @Test
     fun `only if the entity classes belong to the same package`() {
         val anotherPackage = "$PACKAGE.another"
         compilation.sources = listOf(
@@ -65,11 +91,9 @@ internal class RoutingClassClashSpec : RouteCompilationTest() {
 
     @Test
     fun `only if the entity classes have routes of the same kind`() {
-        val routesCommands = "fun route(c: ReportStatus): DeviceId = c.device"
-        val routesEvents = "fun route(e: StatusReported): DeviceId = e.device"
         compilation.sources = listOf(
-            kotlinSource("Office", "class Office { ${screen("Screen", routesCommands)} }"),
-            kotlinSource("Office_Screen", screen("Office_Screen", routesEvents))
+            kotlinSource("Office", "class Office { ${screen("Screen", ROUTES_COMMANDS)} }"),
+            kotlinSource("Office_Screen", screen("Office_Screen", ROUTES_EVENTS))
         )
         compilation.compileSilently().exitCode shouldBe OK
     }

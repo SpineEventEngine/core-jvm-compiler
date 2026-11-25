@@ -53,6 +53,11 @@ internal class EntityClass(
     val packageName: String by lazy { decl.packageName.asString() }
 
     /**
+     * Tells if the entity class is nested in another class.
+     */
+    val isNested: Boolean by lazy { decl.parentDeclaration is KSClassDeclaration }
+
+    /**
      * The name that the entity class gives to its routing classes, without a suffix.
      *
      * For a nested class, the name starts with the names of the enclosing classes.

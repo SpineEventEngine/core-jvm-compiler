@@ -21,14 +21,18 @@ import com.tschuchort.compiletesting.SourceFile
  */
 internal const val PACKAGE = "io.spine.given.devices"
 
+internal const val ROUTES_COMMANDS = "fun route(c: ReportStatus): DeviceId = c.device"
+internal const val ROUTES_EVENTS = "fun route(e: StatusReported): DeviceId = e.device"
+internal const val ROUTES_STATES = "fun route(s: Device): DeviceId = s.id"
+
 /**
  * The code of the entity class `Screen` that declares routes of all kinds.
  */
 internal val SCREEN: String = screen(
     "Screen",
-    "fun route(c: ReportStatus): DeviceId = c.device",
-    "fun route(e: StatusReported): DeviceId = e.device",
-    "fun route(s: Device): DeviceId = s.id"
+    ROUTES_COMMANDS,
+    ROUTES_EVENTS,
+    ROUTES_STATES
 )
 
 /**
