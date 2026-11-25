@@ -14,11 +14,18 @@
 
 package io.spine.tools.core.jvm.entity
 
+import com.google.protobuf.Descriptors.Descriptor
 import com.google.protobuf.Descriptors.GenericDescriptor
 import com.intellij.psi.PsiClass
+import io.kotest.matchers.string.shouldContain
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.core.jvm.PluginTestSetup
 import io.spine.tools.core.jvm.entity.given.BrokenIdEntity
+import io.spine.tools.core.jvm.entity.given.Campus
+import io.spine.tools.core.jvm.entity.given.DefaultSingleFileProto.Garage
+import io.spine.tools.core.jvm.entity.given.Office
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
+import io.spine.tools.core.jvm.entity.given.SingleFileProto.Depot
 import io.spine.tools.core.jvm.entity.given.reserved.Board
 import io.spine.tools.core.jvm.entity.given.reserved.QueryBuilder
 import io.spine.tools.core.jvm.entity.given.reserved.Report
@@ -68,6 +75,14 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      * [RepeatedIdEntity] has a `repeated` ID field, rejected at compile time and tested in
      * `UnsupportedIdTypeErrorSpec`.
      *
+     * [Office] and [Campus] have nested entity states, rejected at compile time and tested in
+     * `NestedEntityStateErrorSpec` and `DeeplyNestedEntityStateErrorSpec`.
+     * The outer messages are listed because the descriptor filter matches only top-level types.
+     *
+     * [Depot] and [Garage] are declared in files which do not set `java_multiple_files` to `true`:
+     * the option is `false` and absent, respectively. They are rejected at compile time and
+     * tested in `SingleFileEntityStateErrorSpec` and `DefaultSingleFileEntityStateErrorSpec`.
+     *
      * [Board], [Report], and [QueryBuilder] break the rule on the reserved names, and are
      * tested in `ReservedMessageNameErrorSpec`, `ReservedEnumNameErrorSpec`, and
      * `ReservedStateNameErrorSpec`.
@@ -76,6 +91,10 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
         listOf(
             BrokenIdEntity.getDescriptor(),
             RepeatedIdEntity.getDescriptor(),
+            Office.getDescriptor(),
+            Campus.getDescriptor(),
+            Depot.getDescriptor(),
+            Garage.getDescriptor(),
             Board.getDescriptor(),
             Report.getDescriptor(),
             QueryBuilder.getDescriptor(),
@@ -114,4 +133,61 @@ internal fun PsiClass.innerClass(name: String): PsiClass {
     return innerClass ?: error(
         "The class `$qualifiedName` does not have an inner class `$name`."
     )
+}
+
+/**
+ * Asserts that this error tells that the given entity [state] is nested in another message.
+ */
+internal fun Compilation.Error.shouldReportNested(state: Descriptor) {
+    shouldReport(state)
+    message.let {
+        it shouldContain "nested in `${state.containingType.fullName}`"
+        it shouldContain "must be a top-level message"
+        it shouldContain "move `${state.name}` to the top level"
+    }
+}
+
+/**
+ * Asserts that this error tells that the given entity [state] is declared in a file which does not
+ * set the `java_multiple_files` option to `true`.
+ */
+internal fun Compilation.Error.shouldReportSingleFile(state: Descriptor) {
+    shouldReport(state)
+    message.let {
+        it shouldContain "does not set the `java_multiple_files` option to `true`"
+        it shouldContain "Please set `java_multiple_files` to `true`"
+    }
+}
+
+/**
+ * Asserts that this error is about the `(entity)` option of the given [state], and that it refers
+ * to the place in the proto file at which the [state] is declared.
+ */
+private fun Compilation.Error.shouldReport(state: Descriptor) {
+    message.let {
+        it shouldContain "${state.file.name}:${state.findDeclaration()}: "
+        it shouldContain "The `(entity)` option cannot be applied"
+        it shouldContain "the message `${state.fullName}`"
+    }
+}
+
+/**
+ * Finds the place at which this message is declared in its proto file.
+ *
+ * We search in the text of the file because the descriptors available from
+ * the generated code do not have information about the source code.
+ * The simple name of the message must be unique in the file.
+ *
+ * @return the one-based line and column in the form of `line:column`.
+ */
+private fun Descriptor.findDeclaration(): String {
+    val classLoader = EntityPluginTestSetup::class.java.classLoader
+    val protoFile = checkNotNull(classLoader.getResource(file.name)) {
+        "Unable to find the resource `${file.name}`."
+    }
+    val declaration = "message $name {"
+    val (index, line) = protoFile.readText().lines()
+        .withIndex()
+        .single { (_, line) -> declaration in line }
+    return "${index + 1}:${line.indexOf(declaration) + 1}"
 }
