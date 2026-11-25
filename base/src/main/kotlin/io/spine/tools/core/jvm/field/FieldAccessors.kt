@@ -63,6 +63,11 @@ internal abstract class FieldAccessor(
     private val fieldSupertype: ClassName,
 
     /**
+     * The names of the classes that give access to nested fields.
+     */
+    private val names: FieldClassNames,
+
+    /**
      * The type system to obtain Java class names by message types.
      */
     private val typeSystem: TypeSystem
@@ -127,7 +132,7 @@ internal abstract class FieldAccessor(
     private fun nestedFieldsContainerType(): String {
         check(field.isMessage)
         val type = field.toType().toMessageType(typeSystem)
-        return MessageTypedField.classNameFor(type)
+        return names.of(type.name)
     }
 }
 
@@ -137,8 +142,9 @@ internal abstract class FieldAccessor(
 internal class TopLevelFieldAccessor(
     field: Field,
     fieldSupertype: ClassName,
+    names: FieldClassNames,
     typeSystem: TypeSystem
-) : FieldAccessor(field, fieldSupertype, typeSystem) {
+) : FieldAccessor(field, fieldSupertype, names, typeSystem) {
 
     override val modifiers: String = "public static"
 
@@ -159,8 +165,9 @@ internal class TopLevelFieldAccessor(
 internal class NestedFieldAccessor(
     field: Field,
     fieldSupertype: ClassName,
+    names: FieldClassNames,
     typeSystem: TypeSystem
-) : FieldAccessor(field, fieldSupertype, typeSystem) {
+) : FieldAccessor(field, fieldSupertype, names, typeSystem) {
 
     override val modifiers: String = "public"
 

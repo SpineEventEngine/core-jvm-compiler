@@ -26,9 +26,14 @@
 
 package io.spine.tools.core.jvm.field.given
 
+import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.protobuf.ProtoFileList
+import io.spine.tools.compiler.protobuf.toMessageType
 import io.spine.tools.compiler.protobuf.toPbSourceFile
 import io.spine.tools.compiler.type.TypeSystem
+import io.spine.tools.core.jvm.field.AddFieldClass
+import io.spine.tools.core.jvm.field.FieldClassNames
+import io.spine.tools.core.jvm.given.base.Barn
 import io.spine.tools.core.jvm.given.base.Farm
 
 /**
@@ -39,3 +44,16 @@ internal fun farmTypeSystem(): TypeSystem =
         ProtoFileList(emptyList()),
         setOf(Farm.getDescriptor().file.toPbSourceFile())
     )
+
+/**
+ * Creates the names of the classes generated for the types of the fields of [Farm] that
+ * are declared in `farm.proto`.
+ */
+internal fun farmFieldClassNames(): FieldClassNames {
+    val fieldTypes = listOf(Barn.getDescriptor(), Barn.Stall.getDescriptor())
+    return FieldClassNames(
+        messageType = Farm.getDescriptor().toMessageType(),
+        fieldClass = ClassName(Farm::class.java).nested(AddFieldClass.NAME),
+        fieldTypes = fieldTypes.map { it.toMessageType().name }.toSet()
+    )
+}

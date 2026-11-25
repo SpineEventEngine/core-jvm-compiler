@@ -31,6 +31,7 @@ import io.spine.base.EventMessageField
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.protobuf.toField
 import io.spine.tools.core.jvm.field.given.farmField
+import io.spine.tools.core.jvm.field.given.farmFieldClassNames
 import io.spine.tools.core.jvm.field.given.farmTypeSystem
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -45,12 +46,14 @@ internal class FieldAccessorSpec {
     private fun topLevel(fieldName: String) = TopLevelFieldAccessor(
         field = farmField(fieldName).toField(),
         fieldSupertype = supertype,
+        names = farmFieldClassNames(),
         typeSystem = typeSystem
     )
 
     private fun nested(fieldName: String) = NestedFieldAccessor(
         field = farmField(fieldName).toField(),
         fieldSupertype = supertype,
+        names = farmFieldClassNames(),
         typeSystem = typeSystem
     )
 

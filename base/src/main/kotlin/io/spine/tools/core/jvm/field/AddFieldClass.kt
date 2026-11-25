@@ -29,15 +29,19 @@ package io.spine.tools.core.jvm.field
 import com.google.protobuf.StringValue
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiClass
+import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.Cardinality.CARDINALITY_SINGLE
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.MessageTypeDependencies
+import io.spine.tools.compiler.ast.qualifiedName
 import io.spine.tools.compiler.context.CodegenContext
 import io.spine.tools.compiler.jvm.ClassName
+import io.spine.tools.compiler.jvm.javaClassName
 import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.field.AddFieldClass.Companion.ALTERNATIVE_NAME
 import io.spine.tools.core.jvm.field.AddFieldClass.Companion.NAME
 import io.spine.tools.psi.java.addLast
 import org.intellij.lang.annotations.Language
@@ -45,6 +49,12 @@ import org.intellij.lang.annotations.Language
 /**
  * Creates a nested class called [`Field`][NAME] under a Java class generated for
  * the given message [type].
+ *
+ * If the name `Field` is already taken by the message, by a type enclosing it, or by a type
+ * nested in it, the class is called [`Field_`][ALTERNATIVE_NAME]. A warning is printed then.
+ *
+ * The class contains classes for the types of message fields.
+ * Please see [FieldClassNames] for the rules of naming them.
  *
  * @param type The message type for the Java code of which to generate the nested class.
  * @param file The file with Java code generated for the [type].
@@ -57,9 +67,21 @@ public open class AddFieldClass(
     file: SourceFile<Java>,
     fieldSuperClassName: StringValue,
     context: CodegenContext
-) : CreateNestedClass(type, file, NAME, context) {
+) : CreateNestedClass(type, file, nameFor(type, context), context) {
 
     private val fieldSupertype: ClassName = fieldSuperClassName.value.toClassName()
+
+    private val fieldTypes: Set<MessageType> by lazy {
+        MessageTypeDependencies(type, CARDINALITY_SINGLE, typeSystem).asSet()
+    }
+
+    private val names: FieldClassNames by lazy {
+        FieldClassNames(
+            messageType = type,
+            fieldClass = messageClass.nested(simpleName),
+            fieldTypes = fieldTypes.map { it.name }.toSet()
+        )
+    }
 
     public companion object {
 
@@ -67,6 +89,24 @@ public open class AddFieldClass(
          * The name of the generated Java class.
          */
         public const val NAME: String = "Field"
+
+        /**
+         * The name of the generated Java class used when [NAME] is already taken.
+         */
+        public const val ALTERNATIVE_NAME: String = "Field_"
+
+        private fun nameFor(type: MessageType, context: CodegenContext): String =
+            if (NAME in takenNames(type, context)) ALTERNATIVE_NAME else NAME
+
+        /**
+         * Obtains simple names of the Java classes that enclose the generated class,
+         * or are declared next to it.
+         */
+        private fun takenNames(type: MessageType, context: CodegenContext): Set<String> {
+            val enclosing = type.javaClassName(context.typeSystem).simpleNames
+            val neighbours = type.nestedMessagesList + type.nestedEnumsList
+            return enclosing.toSet() + neighbours.map { it.simpleName }
+        }
     }
 
     override fun createAnnotation(): PsiAnnotation = GeneratedAnnotation.forPsi()
@@ -85,21 +125,46 @@ public open class AddFieldClass(
         """.trimIndent()
 
     override fun tuneClass() {
+        reportTakenName()
         cls.addTopLevelFieldMethods()
         cls.addFieldClasses()
     }
 
+    /**
+     * Prints a warning if the class does not have the usual [NAME].
+     *
+     * If the [ALTERNATIVE_NAME] is taken too, the compilation fails.
+     */
+    private fun reportTakenName() {
+        if (simpleName == NAME) {
+            return
+        }
+        val messageName = type.name.qualifiedName
+        if (simpleName in takenNames(type, context)) {
+            Compilation.error(type.file, type.span) {
+                "Unable to generate the class for the fields of the message type `$messageName`," +
+                        " because both `$NAME` and `$ALTERNATIVE_NAME` are the names of" +
+                        " the types that enclose it or are nested in it." +
+                        " Please rename one of these types."
+            }
+        }
+        Compilation.warning(type.file, type.span) {
+            "The class for the fields of the message type `$messageName` is generated as" +
+                    " `$simpleName`, because `$NAME` is the name of the message type," +
+                    " or of a type that encloses it or is nested in it."
+        }
+    }
+
     private fun PsiClass.addTopLevelFieldMethods() {
         type.fieldList.forEach {
-            val accessor = TopLevelFieldAccessor(it, fieldSupertype, typeSystem)
+            val accessor = TopLevelFieldAccessor(it, fieldSupertype, names, typeSystem)
             addLast(accessor.method())
         }
     }
 
     private fun PsiClass.addFieldClasses() {
-        val deps = MessageTypeDependencies(type, CARDINALITY_SINGLE, typeSystem).asSet()
-        deps.forEach {
-            val fld = MessageTypedField(it, fieldSupertype, typeSystem)
+        fieldTypes.forEach {
+            val fld = MessageTypedField(it, fieldSupertype, names, typeSystem)
             val messageTypeField = fld.createClass()
             addLast(messageTypeField)
         }

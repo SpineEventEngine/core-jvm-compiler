@@ -21,6 +21,7 @@ import io.kotest.matchers.string.shouldContain
 import io.spine.base.EventMessageField
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.protobuf.toMessageType
+import io.spine.tools.core.jvm.field.given.farmFieldClassNames
 import io.spine.tools.core.jvm.field.given.farmTypeSystem
 import io.spine.tools.core.jvm.given.base.Barn
 import io.spine.tools.psi.java.execute
@@ -41,6 +42,7 @@ internal class MessageTypedFieldSpec {
             cls = MessageTypedField(
                 fieldType = type,
                 fieldSupertype = supertype,
+                names = farmFieldClassNames(),
                 typeSystem = typeSystem
             ).createClass()
         }
@@ -60,17 +62,5 @@ internal class MessageTypedFieldSpec {
         // The Javadoc mentioning the message type.
         text shouldContain "Provides fields of the {@link " +
                 "io.spine.tools.core.jvm.given.base.Barn} message type."
-    }
-
-    @Test
-    fun `compose a name for a nested message type`() {
-        val nested = Barn.Stall.getDescriptor().toMessageType()
-        MessageTypedField.classNameFor(nested) shouldBe "BarnStallField"
-    }
-
-    @Test
-    fun `compose a name for a message type nested two levels deep`() {
-        val nested = Barn.Stall.Trough.getDescriptor().toMessageType()
-        MessageTypedField.classNameFor(nested) shouldBe "BarnStallTroughField"
     }
 }
