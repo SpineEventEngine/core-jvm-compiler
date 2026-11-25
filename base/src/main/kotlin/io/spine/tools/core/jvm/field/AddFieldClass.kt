@@ -27,6 +27,7 @@ import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.javaClassName
 import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.compiler.render.SourceFile
+import io.spine.tools.compiler.type.TypeSystem
 import io.spine.tools.code.Java
 import io.spine.tools.core.jvm.GeneratedAnnotation
 import io.spine.tools.core.jvm.field.AddFieldClass.Companion.ALTERNATIVE_NAME
@@ -55,12 +56,16 @@ public open class AddFieldClass(
     file: SourceFile<Java>,
     fieldSuperClassName: StringValue,
     context: CodegenContext
-) : CreateNestedClass(type, file, nameFor(type, context), context) {
+) : CreateNestedClass(type, file, nameFor(type, context.typeSystem), context) {
 
     private val fieldSupertype: ClassName = fieldSuperClassName.value.toClassName()
 
     private val fieldTypes: Set<MessageType> by lazy {
-        MessageTypeDependencies(type, CARDINALITY_SINGLE, typeSystem).asSet()
+        MessageTypeDependencies(
+            messageType = type,
+            cardinality = CARDINALITY_SINGLE,
+            typeSystem = typeSystem
+        ).asSet()
     }
 
     private val names: FieldClassNames by lazy {
@@ -83,15 +88,15 @@ public open class AddFieldClass(
          */
         public const val ALTERNATIVE_NAME: String = "Field_"
 
-        private fun nameFor(type: MessageType, context: CodegenContext): String =
-            if (NAME in takenNames(type, context)) ALTERNATIVE_NAME else NAME
+        private fun nameFor(type: MessageType, typeSystem: TypeSystem): String =
+            if (NAME in takenNames(type, typeSystem)) ALTERNATIVE_NAME else NAME
 
         /**
          * Obtains simple names of the Java classes that enclose the generated class,
          * or are declared next to it.
          */
-        private fun takenNames(type: MessageType, context: CodegenContext): Set<String> {
-            val enclosing = type.javaClassName(context.typeSystem).simpleNames
+        private fun takenNames(type: MessageType, typeSystem: TypeSystem): Set<String> {
+            val enclosing = type.javaClassName(typeSystem).simpleNames
             val neighbours = type.nestedMessagesList + type.nestedEnumsList
             return enclosing.toSet() + neighbours.map { it.simpleName }
         }
@@ -128,11 +133,11 @@ public open class AddFieldClass(
             return
         }
         val messageName = type.name.qualifiedName
-        if (simpleName in takenNames(type, context)) {
+        if (simpleName in takenNames(type, typeSystem)) {
             Compilation.error(type.file, type.span) {
                 "Unable to generate the class for the fields of the message type `$messageName`," +
                         " because both `$NAME` and `$ALTERNATIVE_NAME` are the names of" +
-                        " the types that enclose it or are nested in it." +
+                        " the message type, or of types that enclose it or are nested in it." +
                         " Please rename one of these types."
             }
         }
@@ -145,14 +150,24 @@ public open class AddFieldClass(
 
     private fun PsiClass.addTopLevelFieldMethods() {
         type.fieldList.forEach {
-            val accessor = TopLevelFieldAccessor(it, fieldSupertype, names, typeSystem)
+            val accessor = TopLevelFieldAccessor(
+                field = it,
+                fieldSupertype = fieldSupertype,
+                names = names,
+                typeSystem = typeSystem
+            )
             addLast(accessor.method())
         }
     }
 
     private fun PsiClass.addFieldClasses() {
         fieldTypes.forEach {
-            val fld = MessageTypedField(it, fieldSupertype, names, typeSystem)
+            val fld = MessageTypedField(
+                fieldType = it,
+                fieldSupertype = fieldSupertype,
+                names = names,
+                typeSystem = typeSystem
+            )
             val messageTypeField = fld.createClass()
             addLast(messageTypeField)
         }

@@ -24,6 +24,12 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
+/**
+ * Tests that the compilation fails if there is no name for the class generated for
+ * the fields of a message.
+ *
+ * Please see the `given/naming/home.proto` file for the type used in the test.
+ */
 @DisplayName("`AddFieldClass` should")
 internal class FieldClassClashErrorSpec {
 

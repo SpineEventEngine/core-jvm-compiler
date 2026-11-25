@@ -31,7 +31,7 @@ import org.junit.jupiter.api.io.TempDir
  * Tests the name of the class generated for the fields of a message if the name `Field`
  * is already taken.
  *
- * Please see the `given/naming/home.proto` file for the types used in the tests.
+ * Please see the `given/naming` directory for the types used in the tests.
  */
 @DisplayName("The class for the fields of a message should")
 internal class OwnFieldTypeSpec {
@@ -40,7 +40,13 @@ internal class OwnFieldTypeSpec {
         MessageGroupPlugin(),
         MessageGroupPlugin.SETTINGS_ID
     ) {
-        private val messages = listOf("Contact", "Form", "Survey", "Field")
+        private val messages = listOf(
+            "home.Contact",
+            "home.Form",
+            "home.Survey",
+            "home.Field",
+            "field.Plot"
+        )
 
         lateinit var output: String
 
@@ -55,25 +61,25 @@ internal class OwnFieldTypeSpec {
         override fun createSettings(projectDir: Path): GroupSettings {
             val codegenConfig = createCompilerSettings(projectDir)
             messages.forEach { name ->
-                codegenConfig.forMessage("given.naming.home.$name") {
+                codegenConfig.forMessage("given.naming.$name") {
                     it.markFieldsAs(EventMessageField::class.java.canonicalName)
                 }
             }
             return codegenConfig.toProto().groupSettings
         }
 
-        fun code(message: String): String =
-            file(Path("io/spine/given/naming/home/$message.java")).code()
+        fun code(fileName: String): String =
+            file(Path("io/spine/given/naming/$fileName.java")).code()
     }
 
     @Test
     fun `have the usual name if it is not taken`() {
-        code("Contact") shouldContain "public static final class Field {"
+        code("home/Contact") shouldContain "public static final class Field {"
     }
 
     @Test
     fun `have an underscore if there is a nested message 'Field'`() {
-        code("Form").run {
+        code("home/Form").run {
             this shouldContain "public static final class Field_ {"
             this shouldNotContain "public static final class Field {"
             this shouldContain "public static FormFieldField first() {"
@@ -82,18 +88,23 @@ internal class OwnFieldTypeSpec {
 
     @Test
     fun `have an underscore if there is a nested enum 'Field'`() {
-        code("Survey") shouldContain "public static final class Field_ {"
+        code("home/Survey") shouldContain "public static final class Field_ {"
     }
 
     @Test
     fun `have an underscore if the message is named 'Field'`() {
-        code("Field") shouldContain "public static final class Field_ {"
+        code("home/Field") shouldContain "public static final class Field_ {"
+    }
+
+    @Test
+    fun `have an underscore if the outer class is named 'Field'`() {
+        code("field/Field") shouldContain "public static final class Field_ {"
     }
 
     @Test
     fun `be mentioned in a warning only if it has an underscore`() {
-        listOf("Form", "Survey", "Field").forEach {
-            output shouldContain "the message type `given.naming.home.$it` is generated as `Field_`"
+        (messages - "home.Contact").forEach {
+            output shouldContain "the message type `given.naming.$it` is generated as `Field_`"
         }
         output shouldNotContain "the message type `given.naming.home.Contact`"
     }

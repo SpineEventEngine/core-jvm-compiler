@@ -174,6 +174,10 @@ internal fun <F : RouteFun> EntityClass.hasDuplicatedRoutes(
  *
  * Each group of such classes is [reported][KSPLogger.error].
  *
+ * The function does not see entity classes compiled separately, such as those from the test code
+ * when the main code is compiled, or processed in another round.
+ *
+ * @param environment The environment for reporting errors.
  * @return All the classes that share the name with another class.
  */
 internal fun Iterable<EntityClass>.findWithSameRoutingName(
@@ -185,8 +189,8 @@ internal fun Iterable<EntityClass>.findWithSameRoutingName(
     clashes.forEach { classes ->
         val sorted = classes.sortedBy { it.toString() }
         environment.logger.error(
-            "The routing classes of the entity classes" +
-                    " ${sorted.map { it.toString() }.joinBackticked()} would have the same name." +
+            "The entity classes ${sorted.joinBackticked()} would have routing classes with" +
+                    " the same name that starts with `${sorted.first().routingName}`." +
                     " Please rename one of the entity classes.",
             sorted.last().decl
         )

@@ -42,8 +42,8 @@ message Address {
     string street = 1;
 }
 
-// An entity state using types from the same package that have the same name when nesting types
-// are put in front.
+// An entity state using types from the same package, the names of which are the same after joining
+// them with the names of their enclosing types.
 message Room {
     option (entity).kind = PROJECTION;
 

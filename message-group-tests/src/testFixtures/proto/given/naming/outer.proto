@@ -24,8 +24,8 @@ option java_package = "io.spine.given.naming.outer";
 option java_outer_classname = "CrateField";
 option java_multiple_files = false;
 
-// A message nested in the outer class that is named like the class generated for
-// the type of the field of the message.
+// A message for which the Java class is nested in the outer class. The outer class is named like
+// the class generated for the type of the message field.
 message Cargo {
     Crate crate = 1;
 }

@@ -43,6 +43,7 @@ internal class RoutingClassClashSpec : RouteCompilationTest() {
         result.exitCode shouldBe COMPILATION_ERROR
         result.messages.let {
             it shouldContain "`$PACKAGE.Office.Screen`, `$PACKAGE.Office_Screen`"
+            it shouldContain "`Office_Screen`"
             it shouldContain "rename"
             it shouldNotContain "FileAlreadyExistsException"
         }
@@ -54,10 +55,21 @@ internal class RoutingClassClashSpec : RouteCompilationTest() {
         compilation.sources = listOf(
             kotlinSource("Office", "class Office { $SCREEN }"),
             kotlinSource(
-                "Office_Screen",
-                SCREEN.replace("class Screen", "class Office_Screen"),
-                anotherPackage
+                fileName = "Office_Screen",
+                declarations = SCREEN.replace("class Screen", "class Office_Screen"),
+                packageName = anotherPackage
             )
+        )
+        compilation.compileSilently().exitCode shouldBe OK
+    }
+
+    @Test
+    fun `only if the entity classes have routes of the same kind`() {
+        val routesCommands = "fun route(c: ReportStatus): DeviceId = c.device"
+        val routesEvents = "fun route(e: StatusReported): DeviceId = e.device"
+        compilation.sources = listOf(
+            kotlinSource("Office", "class Office { ${screen("Screen", routesCommands)} }"),
+            kotlinSource("Office_Screen", screen("Office_Screen", routesEvents))
         )
         compilation.compileSilently().exitCode shouldBe OK
     }

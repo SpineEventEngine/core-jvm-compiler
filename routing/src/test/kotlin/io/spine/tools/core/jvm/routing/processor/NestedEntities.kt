@@ -22,19 +22,22 @@ import com.tschuchort.compiletesting.SourceFile
 internal const val PACKAGE = "io.spine.given.devices"
 
 /**
- * The code of the entity class that declares routes of all kinds.
+ * The code of the entity class `Screen` that declares routes of all kinds.
  */
-internal const val SCREEN = """
-    class Screen : ProcessManager<DeviceId, Inspection, Inspection.Builder>() {
+internal val SCREEN: String = screen(
+    "Screen",
+    "fun route(c: ReportStatus): DeviceId = c.device",
+    "fun route(e: StatusReported): DeviceId = e.device",
+    "fun route(s: Device): DeviceId = s.id"
+)
+
+/**
+ * Creates the code of the entity class with the given name and route functions.
+ */
+internal fun screen(className: String, vararg routes: String): String = """
+    class $className : ProcessManager<DeviceId, Inspection, Inspection.Builder>() {
         companion object {
-            @Route
-            fun route(c: ReportStatus): DeviceId = c.device
-
-            @Route
-            fun route(e: StatusReported): DeviceId = e.device
-
-            @Route
-            fun route(s: Device): DeviceId = s.id
+            ${routes.joinToString(separator = " ") { "@Route $it;" }}
         }
     }
 """

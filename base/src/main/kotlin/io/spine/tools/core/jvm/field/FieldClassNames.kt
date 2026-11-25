@@ -43,8 +43,10 @@ import io.spine.tools.compiler.jvm.ClassName
  *   keep their names. The names of other types start with the last word of their package.
  *   For example, `AddressField` for `acme.home.Address`, and `WebAddressField` for
  *   `acme.web.Address`, if the message is declared in the `acme.home` package.
- *   More words are added to the names that still clash. Such names are compared ignoring case,
- *   because class files with such names would overwrite each other in some file systems.
+ *   If no type is from the package of the message, the names of all the types start with
+ *   package words. More words are added to the names that still clash.
+ *   The names with package words differ from other names ignoring case, if it is possible.
+ *   Otherwise, class files with such names would overwrite each other in some file systems.
  *
  *  3. A name that is the same as the name of a class around it has an underscore before
  *   the [SUFFIX]. For example, `Crate_Field` for `Crate` in the message `CrateField`.
@@ -67,7 +69,10 @@ internal class FieldClassNames(
             .groupBy { it.shortName }
             .values
             .flatMap { candidatesFor(it) }
-        names = lengthenClashing(candidates).associate { it.type to nameOf(it) }
+        val different = candidates.lengthenClashing { it.name.lowercase() }
+            .takeIf { it.haveDifferentNames() }
+            ?: candidates.lengthenClashing { it.name }
+        names = different.associate { it.type to nameOf(it) }
         checkNoClashes()
     }
 
@@ -100,25 +105,6 @@ internal class FieldClassNames(
                 )
                 if (keepsPackage) candidate else candidate.lengthen()
             }
-        }
-    }
-
-    /**
-     * Adds package words to the names that clash until they differ, or until there are no words
-     * to add.
-     */
-    private tailrec fun lengthenClashing(candidates: List<Candidate>): List<Candidate> {
-        val clashing = candidates
-            .groupBy { it.name.lowercase() }
-            .values
-            .filter { it.size > 1 }
-            .flatten()
-            .toSet()
-        val lengthened = candidates.map { if (it in clashing) it.lengthen() else it }
-        return if (lengthened == candidates) {
-            candidates
-        } else {
-            lengthenClashing(lengthened)
         }
     }
 
@@ -194,6 +180,29 @@ private data class Candidate(
     fun lengthen(): Candidate =
         if (isFixed || wordCount == packageWords.size) this else copy(wordCount = wordCount + 1)
 }
+
+/**
+ * Adds package words to the names that clash until they differ, or until there are no words
+ * to add.
+ *
+ * @param key The function that gives equal values for candidates with clashing names.
+ */
+private tailrec fun List<Candidate>.lengthenClashing(key: (Candidate) -> String): List<Candidate> {
+    val clashing = groupBy(key)
+        .values
+        .filter { it.size > 1 }
+        .flatten()
+        .toSet()
+    val lengthened = map { if (it in clashing) it.lengthen() else it }
+    return if (lengthened == this) {
+        this
+    } else {
+        lengthened.lengthenClashing(key)
+    }
+}
+
+private fun List<Candidate>.haveDifferentNames(): Boolean =
+    distinctBy { it.name }.size == size
 
 private val TypeName.path: List<String>
     get() = nestingTypeNameList + simpleName

@@ -40,8 +40,8 @@ message Address {
     string street = 1;
 }
 
-// A message using types from the same package that have the same name when nesting types
-// are put in front.
+// A message using types from the same package, the names of which are the same after joining
+// them with the names of their enclosing types.
 message Room {
     ShelfBox spare = 1;
     Shelf shelf = 2;

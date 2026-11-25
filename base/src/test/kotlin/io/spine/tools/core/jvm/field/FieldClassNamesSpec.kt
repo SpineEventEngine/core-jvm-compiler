@@ -113,8 +113,23 @@ internal class FieldClassNamesSpec {
 
         @Test
         fun `avoid longer names that differ only in case`() {
-            namesOf("acme.webapi:Address", "acme.web_api:Address") shouldBe
-                    listOf("AcmeWebapiAddressField", "AcmeWebApiAddressField")
+            namesOf("acme.webapi:Address", "geo.web_api:Address") shouldBe
+                    listOf("AcmeWebapiAddressField", "GeoWebApiAddressField")
+        }
+
+        @Test
+        fun `allow names that differ only in case if it is the only way`() {
+            namesOf(
+                "acme.home:Address",
+                "acme.web:Address",
+                "acme.home:Webaddress",
+                "acme.home:AcmeWebAddress"
+            ) shouldBe listOf(
+                "AddressField",
+                "WebAddressField",
+                "WebaddressField",
+                "AcmeWebAddressField"
+            )
         }
 
         @Test
@@ -263,7 +278,11 @@ private fun fieldClassNames(
         file = file { path = "acme/home/contact.proto" }
     }
     val fieldClass = ClassName("io.acme.home", around + AddFieldClass.NAME)
-    return FieldClassNames(message, fieldClass, types.map { type(it) }.toSet())
+    return FieldClassNames(
+        messageType = message,
+        fieldClass = fieldClass,
+        fieldTypes = types.map { type(it) }.toSet()
+    )
 }
 
 /**
