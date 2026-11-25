@@ -29,7 +29,7 @@ import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_BUILDER_CLASS
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.QUERY_CLASS_NAME
 
 /**
- * The names of the classes generated for an entity state by the classes of this module.
+ * The names of the classes which [EntityPlugin] nests in the Java class of an entity state.
  */
 internal val reservedNames: Set<String> = setOf(
     COLUMN_CLASS_NAME,
