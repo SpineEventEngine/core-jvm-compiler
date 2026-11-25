@@ -30,6 +30,7 @@ import io.spine.dependency.lib.AutoService
 import io.spine.dependency.lib.AutoServiceKsp
 import io.spine.dependency.local.Base
 import io.spine.dependency.local.CoreJvm
+import io.spine.dependency.local.CoreJvmCompiler
 import io.spine.dependency.local.Validation
 import io.spine.dependency.test.KotlinCompileTesting
 import io.spine.tools.gradle.project.sourceSets
@@ -58,16 +59,21 @@ apply<BomsPlugin>()
 
 configurations.all {
     resolutionStrategy {
-        dependencySubstitution {
-            // Use `:routing` module of this project for generating routing schemas
-            // instead of the code the previous version of CoreJvm Compiler.
-            substitute(module("io.spine.tools:core-jvm-routing")).using(project(":routing"))
-        }
         force(
             Base.lib,
             Validation.runtime,
             Validation.javaBundle,
         )
+    }
+}
+
+configurations.matching { it.name.startsWith("ksp") }.all {
+    resolutionStrategy.dependencySubstitution {
+        // Use `:routing` module of this project for generating routing schemas
+        // instead of the code of the previous version of CoreJvm Compiler, which
+        // the CoreJvm Compiler plugin adds to all the KSP configurations.
+        substitute(module("${CoreJvmCompiler.group}:${CoreJvmCompiler.gradlePluginArtifact}"))
+            .using(project(":routing"))
     }
 }
 
@@ -79,6 +85,10 @@ dependencies {
     kspTestFixtures(project(":routing"))
     kspTestFixtures(AutoServiceKsp.processor)
     testFixturesImplementation(CoreJvm.server)
+
+    /* Routing classes are also generated for the `test` source set, so that the tests could check
+       that they are discovered along with those from the `testFixtures` source set. */
+    testCompileOnly(AutoService.annotations)
 }
 
 ksp {

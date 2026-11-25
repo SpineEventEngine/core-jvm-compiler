@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.routing.processor
@@ -33,6 +21,7 @@ import com.google.devtools.ksp.symbol.Modifier.JAVA_STATIC
 import com.google.devtools.ksp.symbol.Origin.JAVA
 import com.google.devtools.ksp.symbol.Origin.KOTLIN
 import io.spine.server.entity.Entity
+import io.spine.string.joinBackticked
 import io.spine.tools.core.jvm.ksp.processor.diagRef
 import io.spine.tools.core.jvm.ksp.processor.msg
 import io.spine.tools.core.jvm.routing.processor.RouteSignature.Companion.routeRef
@@ -177,4 +166,43 @@ internal fun <F : RouteFun> EntityClass.hasDuplicatedRoutes(
         )
     }
     return found
+}
+
+/**
+ * Finds entity classes of the same package that have the same [name][EntityClass.routingName] for
+ * their routing classes.
+ *
+ * If at least one of the classes is nested, the names are compared ignoring case. Otherwise,
+ * one of the generated files would overwrite another in some file systems.
+ *
+ * Each group of such classes is [reported][KSPLogger.error].
+ *
+ * The function does not see entity classes compiled separately, such as those from the test code
+ * when the main code is compiled, or processed in another round.
+ *
+ * @param environment The environment for reporting errors.
+ * @return All the classes that share the name with another class.
+ */
+internal fun Iterable<EntityClass>.findWithSameRoutingName(
+    environment: Environment
+): Set<EntityClass> {
+    val clashes = groupBy { it.packageName to it.routingName.lowercase() }
+        .values
+        .filter { classes -> classes.size > 1 && classes.any { it.isNested } }
+    clashes.forEach { classes ->
+        val sorted = classes.sortedBy { it.toString() }
+        val names = sorted.map { it.routingName }.distinct()
+        val sameName = if (names.size == 1) {
+            "the same name that starts with"
+        } else {
+            "the names that differ only in case, and start with"
+        }
+        environment.logger.error(
+            "The entity classes ${sorted.joinBackticked()} would have routing classes with" +
+                    " $sameName ${names.joinBackticked()}." +
+                    " Please rename one of the entity classes.",
+            sorted.last().decl
+        )
+    }
+    return clashes.flatten().toSet()
 }

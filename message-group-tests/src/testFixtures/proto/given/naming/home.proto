@@ -1,0 +1,106 @@
+/*
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+syntax = "proto3";
+
+package given.naming.home;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.given.naming.home";
+option java_outer_classname = "HomeProto";
+option java_multiple_files = true;
+
+import "given/naming/web.proto";
+
+// Types for testing the names of the classes generated for the fields of messages.
+//
+// Please see the `FieldClassNamingSpec`, `OwnFieldTypeSpec`, and `FieldClassClashErrorSpec`
+// test suites for details.
+
+// A message using types with the same name from different packages.
+message Contact {
+    Address address = 1;
+    given.naming.web.Address page = 2;
+}
+
+message Address {
+    string street = 1;
+}
+
+// A message using types from the same package, the names of which are the same after joining
+// them with the names of their enclosing types.
+message Room {
+    ShelfBox spare = 1;
+    Shelf shelf = 2;
+}
+
+message ShelfBox {
+    string code = 1;
+}
+
+message Shelf {
+    Box box = 1;
+
+    message Box {
+        string id = 1;
+    }
+}
+
+// A message named like the class generated for the type of its field.
+message CrateField {
+    Crate crate = 1;
+}
+
+message Crate {
+    string id = 1;
+}
+
+// A message with a nested message named like the class generated for the fields.
+message Form {
+    string title = 1;
+    Field first = 2;
+
+    message Field {
+        string label = 1;
+    }
+}
+
+// A message with a nested enum named like the class generated for the fields.
+message Survey {
+    string title = 1;
+
+    enum Field {
+        FIELD_UNDEFINED = 0;
+    }
+}
+
+// A message named like the class generated for the fields.
+message Field {
+    string crop = 1;
+}
+
+// A message for which a class for the fields cannot be generated.
+message Poll {
+    string title = 1;
+
+    message Field {
+        string label = 1;
+    }
+
+    message Field_ {
+        string label = 1;
+    }
+}
