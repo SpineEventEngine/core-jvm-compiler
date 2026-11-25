@@ -14,7 +14,6 @@
 
 package io.spine.tools.core.jvm.field
 
-import io.spine.string.camelCase
 import io.spine.string.joinBackticked
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.MessageType
@@ -51,7 +50,10 @@ import io.spine.tools.compiler.jvm.ClassName
  *  3. A name that is the same as the name of a class around it has an underscore before
  *   the [SUFFIX]. For example, `Crate_Field` for `Crate` in the message `CrateField`.
  *
- * If the names still clash, the compilation fails.
+ * If there are no more words for a name that still clashes, the names of types related to it are
+ * chosen one by one, so that they differ. A type may then have fewer package words than others.
+ *
+ * If there is no way to give different names, the compilation fails.
  *
  * @param messageType The type of the message for which the [fieldClass] is generated.
  * @param fieldClass The name of the class that encloses the classes with the calculated names.
@@ -87,7 +89,7 @@ internal class FieldClassNames(
     /**
      * Creates candidates for the types that have the same short name.
      */
-    private fun candidatesFor(types: List<TypeName>): List<Candidate> {
+    private fun candidatesFor(types: List<TypeName>): List<NameCandidate> {
         val byPackage = types.groupBy { it.packageName }
         return byPackage.flatMap { (packageName, neighbours) ->
             val keepsPackage =
@@ -95,13 +97,13 @@ internal class FieldClassNames(
             val leastNested = neighbours.leastNested()
             neighbours.map { type ->
                 val keepsShortName = type == leastNested
-                val candidate = Candidate(
+                NameCandidate(
                     type = type,
                     base = if (keepsShortName) type.shortName else type.underscoredName,
                     isFixed = keepsShortName && keepsPackage,
+                    needsPackage = !keepsPackage,
                     around = fieldClass.simpleNames
                 )
-                if (keepsPackage) candidate else candidate.lengthen()
             }
         }
     }
@@ -139,99 +141,12 @@ internal class FieldClassNames(
          * The suffix of the names of field classes.
          */
         const val SUFFIX = "Field"
+
+        /**
+         * The separator of the parts of names that would clash without it.
+         */
+        const val UNDERSCORE = "_"
     }
-}
-
-private const val UNDERSCORE = "_"
-
-/**
- * A possible name of a field class.
- *
- * @property type The type for which the class is generated.
- * @property base The part of the name between the package words and the suffix.
- * @property isFixed If `true`, package words must not be added to the name.
- * @property around The simple names of the classes around the generated class.
- * @property wordCount The number of package words at the beginning of the name.
- */
-private data class Candidate(
-    val type: TypeName,
-    val base: String,
-    val isFixed: Boolean,
-    val around: List<String>,
-    val wordCount: Int = 0
-) {
-    private val packageWords: List<String> =
-        type.packageName.split(".").filter { it.isNotEmpty() }.map { it.camelCase() }
-
-    /**
-     * The name of the class, which has an underscore before the suffix if the name without it is
-     * the name of a class around.
-     */
-    val name: String = run {
-        val stem = packageWords.takeLast(wordCount).joinToString(separator = "") + base
-        val usual = stem + FieldClassNames.SUFFIX
-        if (usual in around) stem + UNDERSCORE + FieldClassNames.SUFFIX else usual
-    }
-
-    /**
-     * Adds one more package word to the name, if it is possible.
-     */
-    fun lengthen(): Candidate =
-        if (isFixed || wordCount == packageWords.size) this else copy(wordCount = wordCount + 1)
-}
-
-/**
- * Adds package words to the names that clash until they differ ignoring case, and
- * are not the names of the classes around.
- *
- * If there are not enough words for a type, the case of its name is taken into account. Names of
- * other types are still compared ignoring case.
- *
- * @param caseSensitive The types for which the case of their names is taken into account.
- */
-private tailrec fun List<Candidate>.resolve(
-    caseSensitive: Set<TypeName> = emptySet()
-): List<Candidate> {
-    val lengthened = lengthenClashing(caseSensitive)
-    val unresolved = lengthened.clashing(caseSensitive)
-        .filter { !it.isFixed && it.type !in caseSensitive }
-        .map { it.type }
-    return if (unresolved.isEmpty()) {
-        lengthened
-    } else {
-        resolve(caseSensitive + unresolved)
-    }
-}
-
-/**
- * Adds package words to the names that clash until they differ, or until there are no words
- * to add.
- */
-private tailrec fun List<Candidate>.lengthenClashing(
-    caseSensitive: Set<TypeName>
-): List<Candidate> {
-    val clashing = clashing(caseSensitive)
-    val lengthened = map { if (it in clashing) it.lengthen() else it }
-    return if (lengthened == this) {
-        this
-    } else {
-        lengthened.lengthenClashing(caseSensitive)
-    }
-}
-
-/**
- * Obtains the candidates with the names that clash with the names of other candidates, or of
- * the classes around.
- */
-private fun List<Candidate>.clashing(caseSensitive: Set<TypeName>): Set<Candidate> {
-    val sameIgnoringCase = groupBy { it.name.lowercase() }.values.filter { it.size > 1 }
-    val withOthers = sameIgnoringCase.flatMap { group ->
-        group.filter { candidate ->
-            candidate.type !in caseSensitive || group.count { it.name == candidate.name } > 1
-        }
-    }
-    val withClassesAround = filter { it.name in it.around }
-    return (withOthers + withClassesAround).toSet()
 }
 
 private val TypeName.path: List<String>
@@ -241,7 +156,7 @@ private val TypeName.shortName: String
     get() = path.joinToString(separator = "")
 
 private val TypeName.underscoredName: String
-    get() = path.joinToString(separator = UNDERSCORE)
+    get() = path.joinToString(separator = FieldClassNames.UNDERSCORE)
 
 /**
  * Obtains the type that is nested less deeply than the others, or

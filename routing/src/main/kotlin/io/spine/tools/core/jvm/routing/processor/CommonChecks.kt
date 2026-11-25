@@ -172,6 +172,9 @@ internal fun <F : RouteFun> EntityClass.hasDuplicatedRoutes(
  * Finds entity classes of the same package that have the same [name][EntityClass.routingName] for
  * their routing classes.
  *
+ * If at least one of the classes is nested, the names are compared ignoring case. Otherwise,
+ * one of the generated files would overwrite another in some file systems.
+ *
  * Each group of such classes is [reported][KSPLogger.error].
  *
  * The function does not see entity classes compiled separately, such as those from the test code
@@ -183,14 +186,20 @@ internal fun <F : RouteFun> EntityClass.hasDuplicatedRoutes(
 internal fun Iterable<EntityClass>.findWithSameRoutingName(
     environment: Environment
 ): Set<EntityClass> {
-    val clashes = groupBy { it.packageName to it.routingName }
+    val clashes = groupBy { it.packageName to it.routingName.lowercase() }
         .values
-        .filter { it.size > 1 }
+        .filter { classes -> classes.size > 1 && classes.any { it.isNested } }
     clashes.forEach { classes ->
         val sorted = classes.sortedBy { it.toString() }
+        val names = sorted.map { it.routingName }.distinct()
+        val sameName = if (names.size == 1) {
+            "the same name that starts with"
+        } else {
+            "the names that differ only in case, and start with"
+        }
         environment.logger.error(
             "The entity classes ${sorted.joinBackticked()} would have routing classes with" +
-                    " the same name that starts with `${sorted.first().routingName}`." +
+                    " $sameName ${names.joinBackticked()}." +
                     " Please rename one of the entity classes.",
             sorted.last().decl
         )

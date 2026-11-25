@@ -58,6 +58,10 @@ internal class FieldClassNamesSpec {
             "acme.home.v1:Address",
             "acme.web.v1:Address",
             "geo:Address",
+            "x.mail.v1:City",
+            "y.mail.v1:City",
+            "acme.home:XMailV1City",
+            "acme.home:YMailV1City",
         )
         val expected = fieldClassNames(types)
         listOf(types.reversed(), types.sorted(), types.drop(3) + types.take(3)).forEach {
@@ -155,6 +159,78 @@ internal class FieldClassNamesSpec {
                 "AcmeWebapiCityField",
                 "GeoWebApiCityField"
             )
+        }
+
+        @Test
+        fun `lengthen only one name if the longer name for another type is taken`() {
+            namesOf("mail.v1:Address", "web.v1:Address", "acme.home:MailV1Address") shouldBe
+                    listOf("V1AddressField", "WebV1AddressField", "MailV1AddressField")
+        }
+
+        @Test
+        fun `give a shorter name up if another type has no other names`() {
+            namesOf("mail.v1:Address", "web.v1:Address", "acme.home:WebV1Address") shouldBe
+                    listOf("MailV1AddressField", "V1AddressField", "WebV1AddressField")
+        }
+
+        @Test
+        fun `choose names that differ ignoring case if the longer name for a type is taken`() {
+            namesOf(
+                "x.mail.v1:Address", "y.mail.v1:Address",
+                "acme.home:XMailV1Address", "acme.home:V1address"
+            ) shouldBe listOf(
+                "MailV1AddressField", "YMailV1AddressField",
+                "XMailV1AddressField", "V1addressField"
+            )
+        }
+
+        @Test
+        fun `choose names that differ only in case if it is the only way`() {
+            namesOf(
+                "mail.v1:Address", "web.v1:Address",
+                "acme.home:MailV1Address", "acme.home:Mailv1Address"
+            ) shouldBe listOf(
+                "V1AddressField", "WebV1AddressField",
+                "MailV1AddressField", "Mailv1AddressField"
+            )
+        }
+
+        @Test
+        fun `not choose the names of classes around if the longer name for a type is taken`() {
+            namesOf(
+                "x.mail.v1:Address", "y.mail.v1:Address", "acme.home:XMailV1Address",
+                around = listOf("V1AddressField", "V1Address_Field")
+            ) shouldBe listOf("MailV1AddressField", "YMailV1AddressField", "XMailV1AddressField")
+        }
+
+        @Test
+        fun `not change other names if the longer name for a type is taken`() {
+            namesOf(
+                "mail.v1:Address",
+                "web.v1:Address",
+                "acme.home:MailV1Address",
+                "mail.v1:City",
+                "web.v1:City"
+            ) shouldBe listOf(
+                "V1AddressField",
+                "WebV1AddressField",
+                "MailV1AddressField",
+                "MailV1CityField",
+                "WebV1CityField"
+            )
+        }
+
+        @Test
+        fun `report types if all their names are taken`() {
+            val (error, _) = assertCompilationError {
+                namesOf(
+                    "mail.v1:Address",
+                    "web.v1:Address",
+                    "acme.home:MailV1Address",
+                    "acme.home:WebV1Address"
+                )
+            }
+            error.message shouldContain "`MailV1AddressField`"
         }
 
         @Test
