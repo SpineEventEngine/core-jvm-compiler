@@ -33,7 +33,7 @@ import org.intellij.lang.annotations.Language
  *
  * The top level class is the class of the entity state because
  * [EntityDiscovery][io.spine.tools.core.jvm.entity.EntityDiscovery] does not accept
- * entity states with nested Java classes.
+ * entity states whose Java classes are nested in other classes.
  *
  * The method is added after the constructors.
  * This makes it more visible to the people who dare to look at the generated code.

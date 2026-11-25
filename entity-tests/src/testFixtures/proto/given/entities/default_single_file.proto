@@ -24,7 +24,7 @@ option java_outer_classname = "DefaultSingleFileProto";
 
 // An entity state in a file which does not have the `java_multiple_files` option.
 //
-// The option is `false` by default, so such a state must be rejected at compile time.
+// The option defaults to `false`, so such a state must be rejected at compile time.
 // The type is excluded from regular pipeline runs (see
 // `EntityPluginTestSetup.defaultExclusions`) and exercised by
 // `DefaultSingleFileEntityStateErrorSpec`.

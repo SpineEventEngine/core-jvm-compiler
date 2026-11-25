@@ -23,8 +23,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Tests that declaring an entity state in a file without the `java_multiple_files` option
- * fails compilation.
+ * Tests that declaring an entity state in a file which does not declare
+ * the `java_multiple_files` option fails compilation.
  *
  * The suite is separate from [SingleFileEntityStateErrorSpec], which covers the option
  * set to `false`, because the pipeline can run only once per test class.

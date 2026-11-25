@@ -76,9 +76,9 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      * `NestedEntityStateErrorSpec` and `DeeplyNestedEntityStateErrorSpec`.
      * The outer messages are listed because the descriptor filter matches only top-level types.
      *
-     * [Depot] and [Garage] are in files with `java_multiple_files` being `false`, rejected at
-     * compile time and tested in `SingleFileEntityStateErrorSpec` and
-     * `DefaultSingleFileEntityStateErrorSpec`.
+     * [Depot] and [Garage] are declared in files which do not set `java_multiple_files` to `true`:
+     * the option is `false` and absent, respectively. They are rejected at compile time and
+     * tested in `SingleFileEntityStateErrorSpec` and `DefaultSingleFileEntityStateErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
@@ -129,7 +129,7 @@ internal fun PsiClass.innerClass(name: String): PsiClass {
  * Asserts that this error tells that the given entity [state] is nested in another message.
  */
 internal fun Compilation.Error.shouldReportNested(state: Descriptor) {
-    shouldReject(state)
+    shouldReport(state)
     message.let {
         it shouldContain "nested in `${state.containingType.fullName}`"
         it shouldContain "must be a top-level message"
@@ -138,11 +138,11 @@ internal fun Compilation.Error.shouldReportNested(state: Descriptor) {
 }
 
 /**
- * Asserts that this error tells that the given entity [state] is declared in a file for which
- * the `java_multiple_files` option is `false`.
+ * Asserts that this error tells that the given entity [state] is declared in a file which does not
+ * set the `java_multiple_files` option to `true`.
  */
 internal fun Compilation.Error.shouldReportSingleFile(state: Descriptor) {
-    shouldReject(state)
+    shouldReport(state)
     message.let {
         it shouldContain "does not set the `java_multiple_files` option to `true`"
         it shouldContain "Please set `java_multiple_files` to `true`"
@@ -153,7 +153,7 @@ internal fun Compilation.Error.shouldReportSingleFile(state: Descriptor) {
  * Asserts that this error is about the `(entity)` option of the given [state], and that it refers
  * to the place in the proto file at which the [state] is declared.
  */
-private fun Compilation.Error.shouldReject(state: Descriptor) {
+private fun Compilation.Error.shouldReport(state: Descriptor) {
     message.let {
         it shouldContain "${state.file.name}:${state.findDeclaration()}: "
         it shouldContain "The `(entity)` option cannot be applied"

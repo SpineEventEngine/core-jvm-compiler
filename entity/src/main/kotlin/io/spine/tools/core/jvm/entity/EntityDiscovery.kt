@@ -19,12 +19,11 @@ import io.spine.server.event.React
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.Option
-import io.spine.tools.compiler.ast.ProtoFileHeader
 import io.spine.tools.compiler.ast.event.TypeDiscovered
 import io.spine.tools.compiler.ast.isTopLevel
 import io.spine.tools.compiler.ast.qualifiedName
 import io.spine.tools.compiler.check
-import io.spine.tools.compiler.jvm.javaMultipleFiles
+import io.spine.tools.compiler.jvm.javaClassName
 import io.spine.tools.compiler.plugin.Reaction
 import io.spine.tools.compiler.settings.loadSettings
 import io.spine.tools.core.jvm.entity.event.EntityStateDiscovered
@@ -37,10 +36,10 @@ import io.spine.tools.core.jvm.settings.Entities
  *
  * The reaction checks if the discovered type has one of the options specified in
  * the [Entities.getOptionList] settings passed to the [EntityPlugin].
- * If not, no events are produced. If so, and the Java class of the type is a top-level class,
- * [EntityStateDiscovered] is emitted.
+ * If so, [EntityStateDiscovered] is emitted. Otherwise, no events are produced.
  *
- * Otherwise, the reaction reports a compilation error. It happens in the following cases:
+ * The Java class of an entity state must be a top-level class.
+ * The reaction reports a compilation error when:
  *
  *  1. The type is nested in another message.
  *  2. The file declaring the type does not set the `java_multiple_files` option to `true`.
@@ -62,7 +61,7 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
         val option = event.type.findEntityOption(settings)
             ?: return listOf()
         checkTopLevel(event.type, option)
-        checkMultipleFiles(event.type, option, headerOf(event.type))
+        checkMultipleFiles(event.type, option)
         return listOf(entityStateDiscovered {
             name = event.type.name
             file = event.file
@@ -70,12 +69,34 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
         })
     }
 
-    private fun headerOf(type: MessageType): ProtoFileHeader {
-        val found = checkNotNull(typeSystem.findMessage(type.name)) {
-            "Unable to find the file declaring the message `${type.qualifiedName}`."
+    /**
+     * Reports a compilation error if the Java class of the given entity state [type] is nested
+     * in the outer class of the file declaring the [type].
+     *
+     * It happens if the file does not set the `java_multiple_files` option to `true`.
+     * The other reason for a Java class to be nested is excluded by [checkTopLevel], which must
+     * be called first.
+     *
+     * The error refers to the declaration of the [type] because there is no source location
+     * to point at when the `java_multiple_files` option is absent. The option is `false`
+     * by default.
+     *
+     * @param type The type of the entity state.
+     * @param option The option which makes the [type] an entity state.
+     */
+    private fun checkMultipleFiles(type: MessageType, option: Option) =
+        Compilation.check(
+            condition = !type.javaClassName(typeSystem).isNested,
+            file = type.file,
+            span = type.span
+        ) {
+            "The `(${option.name})` option cannot be applied to" +
+                    " the message `${type.qualifiedName}` because the file does not set" +
+                    " the `java_multiple_files` option to `true`, so the Java class of" +
+                    " the message is nested in the outer class of the file." +
+                    " The Java class of an entity state must be a top-level class." +
+                    " Please set `java_multiple_files` to `true` in the file."
         }
-        return found.second
-    }
 }
 
 /**
@@ -93,25 +114,4 @@ private fun checkTopLevel(type: MessageType, option: Option) =
                 " because it is nested in `${type.declaredIn.qualifiedName}`." +
                 " An entity state must be a top-level message." +
                 " Please move `${type.name.simpleName}` to the top level of the file."
-    }
-
-/**
- * Reports a compilation error if the file with the given [header], which declares
- * the entity state [type], does not set the `java_multiple_files` option to `true`.
- *
- * The Java class of such a type would be nested in the outer class of the file.
- *
- * The error refers to the declaration of the [type] because the `java_multiple_files` option
- * may be absent. It is `false` by default.
- *
- * @param type The type of the entity state.
- * @param option The option which makes the [type] an entity state.
- * @param header The header of the file declaring the [type].
- */
-private fun checkMultipleFiles(type: MessageType, option: Option, header: ProtoFileHeader) =
-    Compilation.check(condition = header.javaMultipleFiles(), file = type.file, span = type.span) {
-        "The `(${option.name})` option cannot be applied to the message `${type.qualifiedName}`" +
-                " because the file does not set the `java_multiple_files` option to `true`." +
-                " The Java class of an entity state must be a top-level class." +
-                " Please set `java_multiple_files` to `true` in the file."
     }
