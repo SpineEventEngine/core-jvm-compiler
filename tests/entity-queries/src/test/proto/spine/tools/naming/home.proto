@@ -1,0 +1,96 @@
+/*
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+syntax = "proto3";
+
+package spine.tools.naming.home;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.naming.home";
+option java_outer_classname = "HomeProto";
+option java_multiple_files = true;
+
+import "spine/tools/naming/web.proto";
+
+// Types for which classes with the same name would be generated.
+//
+// Please see the `FieldClassNamesIgTest` test suite for details.
+
+// An entity state using types with the same name from different packages.
+message Contact {
+    option (entity).kind = AGGREGATE;
+
+    string id = 1;
+    Address address = 2;
+    spine.tools.naming.web.Address page = 3;
+}
+
+message Address {
+    string street = 1;
+}
+
+// An entity state using types from the same package that have the same name when nesting types
+// are put in front.
+message Room {
+    option (entity).kind = PROJECTION;
+
+    string id = 1;
+    ShelfBox spare = 2;
+    Shelf shelf = 3;
+}
+
+message ShelfBox {
+    string code = 1;
+}
+
+message Shelf {
+    Box box = 1;
+
+    message Box {
+        string label = 1;
+    }
+}
+
+// An entity state named like the class generated for the type of its field.
+message CrateField {
+    option (entity).kind = AGGREGATE;
+
+    string id = 1;
+    Crate crate = 2;
+}
+
+message Crate {
+    string weight = 1;
+}
+
+// An entity state with a nested message named like the class generated for the fields.
+message Form {
+    option (entity).kind = AGGREGATE;
+
+    string id = 1;
+    Field first = 2;
+
+    message Field {
+        string label = 1;
+    }
+}
+
+// An entity state named like the class generated for the fields.
+message Field {
+    option (entity).kind = PROJECTION;
+
+    string id = 1;
+    Crate crop = 2;
+}
