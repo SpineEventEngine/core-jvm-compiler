@@ -27,6 +27,7 @@ option java_multiple_files = true;
 // of the classes nested in the Java classes of the states.
 //
 // Please see the `TypeReferencesIgTest` test suite for details.
+//
 
 // The types with the names of the classes generated for an entity state.
 
@@ -63,7 +64,7 @@ message Plot {
     Field field = 5 [(column) = true];
     .spine.tools.references.Status status = 6 [(column) = true];
 
-    // The type of this column is the nested message.
+    // The type of this column is the message nested in this one.
     Status own_status = 7 [(column) = true];
 
     message Status {

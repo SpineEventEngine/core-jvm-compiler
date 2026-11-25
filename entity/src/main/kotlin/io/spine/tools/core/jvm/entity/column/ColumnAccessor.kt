@@ -48,8 +48,8 @@ internal class ColumnAccessor(
 ) {
 
     private val fieldName = field.name.value
-    private val fieldType by lazy {
-        typeReferences.to(field)
+    private val fieldType: String by lazy {
+        typeReferences.of(field)
     }
 
     /**
@@ -123,7 +123,7 @@ internal fun columnMethodName(field: Field): String =
  *
  * @param entityState The name of the entity state class.
  * @param fieldType The reference to the type of the field of the column.
- *   It is the wildcard by default.
+ *   Defaults to the wildcard `?`.
  */
 internal fun columnType(entityState: ClassName, fieldType: String = "?"): String {
     // We can use a simple class name because the generated code is

@@ -83,7 +83,12 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
             typeSystem = typeSystem
         )
         columns.forEach { column ->
-            ColumnAccessor(messageClass, column, cls, typeReferences).run {
+            ColumnAccessor(
+                entityState = messageClass,
+                field = column,
+                columnClass = cls,
+                typeReferences = typeReferences
+            ).run {
                 render()
             }
         }

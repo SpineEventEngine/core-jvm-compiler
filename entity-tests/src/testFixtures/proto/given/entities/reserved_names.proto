@@ -27,6 +27,7 @@ option java_multiple_files = true;
 //
 // The states which break the rule are excluded from regular pipeline runs.
 // Please see `EntityPluginTestSetup.defaultExclusions`.
+//
 
 // An entity state with a nested message which has a reserved name.
 //
@@ -81,6 +82,9 @@ message Cabinet {
     Shelf shelf = 2;
     ColumnKind kind = 3;
     Field field = 4;
+
+    // Protobuf declares a nested message for the entries of a map.
+    map<string, Shelf> spare = 5;
 
     message Shelf {
         Column column = 1;

@@ -63,11 +63,7 @@ internal class EntityDiscovery : Reaction<TypeDiscovered>(), EntityPluginCompone
 
     private fun checkNames(event: TypeDiscovered) {
         if (settings.generateQueries) {
-            ReservedNamesCheck(
-                state = event.type,
-                file = event.file,
-                typeSystem = typeSystem
-            ).perform()
+            ReservedNamesCheck(event.type, typeSystem).perform()
         }
     }
 }

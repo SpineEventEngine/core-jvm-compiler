@@ -60,7 +60,7 @@ internal abstract class QuerySupportClass(
     }
 
     /**
-     * The references to the types of fields of the entity state.
+     * The references to the types of the fields of the entity state.
      */
     protected val typeReferences: TypeReferences by lazy {
         TypeReferences(
@@ -74,6 +74,6 @@ internal abstract class QuerySupportClass(
      * The type of the [first][idField] entity state type field.
      */
     val idType: String by lazy {
-        typeReferences.to(idField)
+        typeReferences.of(idField)
     }
 }

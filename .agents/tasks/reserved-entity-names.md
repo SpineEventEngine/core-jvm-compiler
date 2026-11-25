@@ -12,18 +12,18 @@ related-memories:
 ## Goal
 
 The classes `Column`, `Query`, and `QueryBuilder`, which the compiler nests into the Java class of
-an entity state, never clash with the types of the developer without a clear error.
+an entity state, never clash with the developer's types without a clear error.
 
 ## Context
 
 A state with such a name, or with its own nested message or enum with such a name, does not
-compile. `kotlinc` reports `Unresolved reference 'newBuilder'` in the generated Kotlin code, `javac`
-reports a duplicate class among many other errors. A top-level type of the same package does not
-compile if it is the type of a column or of the ID, because the generated code refers to it by
+compile. `kotlinc` reports `Unresolved reference 'newBuilder'` in the generated Kotlin code, and
+`javac` reports a duplicate class among many other errors. A top-level type of the same package does
+not compile if it is the type of a column or of the ID, because the generated code refers to it by
 its simple name, and Java takes it for the generated class. This is true for `Field`, too.
 
-In use: the state `Column` of the Kanban example, which is on Spine 1.x. It has to rename the state
-when it moves to Spine 2.
+The state `Column` of the Kanban example, which is on Spine 1.x, is affected. It has to be renamed
+when the example moves to Spine 2.
 
 ## Rules
 
@@ -49,6 +49,8 @@ needs a change of `SpecScanner` in `core-jvm`, which finds the class by its name
 
 - Names that differ from the reserved ones only in case.
 - References to the classes of `java.lang`, e.g., if a state has a nested message `String`.
+- Top-level types with the names of the classes inherited from the base classes of Protobuf, e.g.,
+  `FieldAccessorTable`.
 - Entity states nested in other messages are the subject of `reject-nested-entity-states`.
 
 ## Log

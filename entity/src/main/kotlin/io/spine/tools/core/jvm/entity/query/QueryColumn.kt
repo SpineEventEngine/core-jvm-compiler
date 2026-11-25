@@ -61,8 +61,8 @@ internal class QueryColumn(
         doc
     }
 
-    private val fieldType by lazy {
-        typeReferences.to(field)
+    private val fieldType: String by lazy {
+        typeReferences.of(field)
     }
 
     private val entityCriterion: String = EntityCriterion::class.java.reference

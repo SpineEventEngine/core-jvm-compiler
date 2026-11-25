@@ -15,7 +15,6 @@
 package io.spine.tools.core.jvm.entity
 
 import io.spine.tools.compiler.Compilation
-import io.spine.tools.compiler.ast.File
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.Span
 import io.spine.tools.compiler.ast.TypeName
@@ -47,12 +46,10 @@ internal val reservedNames: Set<String> = setOf(
  * Types nested deeper than one level may have any names.
  *
  * @param state The entity state to check.
- * @param file The file declaring the state.
  * @param typeSystem The type system to obtain the nested types.
  */
 internal class ReservedNamesCheck(
     private val state: MessageType,
-    private val file: File,
     private val typeSystem: TypeSystem
 ) {
 
@@ -71,7 +68,7 @@ internal class ReservedNamesCheck(
 
     private fun checkName(type: TypeName, kind: String, span: Span) {
         val name = type.simpleName
-        Compilation.check(name !in reservedNames, file, span) {
+        Compilation.check(name !in reservedNames, state.file, span) {
             "The name of the $kind `${type.qualifiedName}` is reserved." +
                     " The compiler generates the class `$name`" +
                     " for the entity state `${state.qualifiedName}`." +

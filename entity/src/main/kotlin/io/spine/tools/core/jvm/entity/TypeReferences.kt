@@ -28,7 +28,7 @@ import io.spine.tools.core.jvm.field.AddFieldClass
  * the Java class of the state.
  *
  * @param file The file with the Java class of the entity state.
- * @param stateClass The name of the class.
+ * @param stateClass The name of the entity state class.
  * @param typeSystem The type system to resolve the types of the fields.
  */
 internal class TypeReferences(
@@ -38,8 +38,10 @@ internal class TypeReferences(
 ) {
 
     /**
-     * The simple names of the classes nested in the class of the entity state, including those
-     * which are yet to be generated.
+     * The simple names of the classes nested in the class of the entity state.
+     *
+     * The classes with the [reserved names][reservedNames], and the class for
+     * the [fields][AddFieldClass] may be generated later. So, their names are added explicitly.
      */
     private val nestedClasses: Set<String> by lazy {
         val present = file.findClass(stateClass).innerClasses.mapNotNull { it.name }
@@ -53,7 +55,7 @@ internal class TypeReferences(
      * a top-level class which is also the name of a class nested in the class of the entity state.
      * The simple name would mean the nested class. Therefore, the fully qualified name is returned.
      */
-    fun to(field: Field): String {
+    fun of(field: Field): String {
         val reference = field.typeReference(stateClass, typeSystem)
         val qualifiedName = field.javaType(typeSystem)
         val topLevel = qualifiedName == "${stateClass.packageName}.$reference"

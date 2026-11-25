@@ -27,6 +27,7 @@ option java_multiple_files = true;
 // of the classes nested in the Java class of the state.
 //
 // Please see `TypeReferencesSpec` for the test.
+//
 
 // The enums with the names of the classes generated for an entity state.
 

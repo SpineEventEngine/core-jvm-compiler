@@ -50,25 +50,26 @@ internal class TypeReferencesSpec {
             file("references/$typeName".java).code().filterNot { it.isWhitespace() }
 
         /**
-         * Asserts that the [code] generated for the state `Plot` refers to the given [type] of
-         * the [column].
+         * Asserts that this code, generated for a state called `Plot`, refers to the type of
+         * the [column] as [type].
          */
-        private fun assertColumn(code: String, column: String, type: String) {
+        private fun String.assertColumn(column: String, type: String) {
             val getter = "get" + column.replaceFirstChar { it.uppercase() }
-            code shouldContain "EntityColumn<Plot,$type>$column(){"
-            code shouldContain "EntityColumn<>(\"$column\",$type.class,Plot::$getter)"
-            code shouldContain "EntityCriterion<Plot,$type,QueryBuilder>$column(){"
+            this shouldContain "EntityColumn<Plot,$type>$column(){"
+            this shouldContain "EntityColumn<>(\"$column\",$type.class,Plot::$getter)"
+            this shouldContain "EntityCriterion<Plot,$type,QueryBuilder>$column(){"
         }
 
         /**
-         * Asserts that the [code] generated for the given [state] refers to the given [type] of
-         * the ID.
+         * Asserts that the code generated for the [state] refers to the type of the ID as [type].
          */
-        private fun assertId(code: String, state: String, type: String) {
-            code shouldContain "EntityQueryBuilder<$type,$state,QueryBuilder,Query>{"
-            code shouldContain "super($type.class,$state.class);"
-            code shouldContain "IdCriterion<$type,QueryBuilder>id(){"
-            code shouldContain "EntityQuery<$type,$state,QueryBuilder>{"
+        private fun assertId(state: String, type: String) {
+            code(state).let {
+                it shouldContain "EntityQueryBuilder<$type,$state,QueryBuilder,Query>{"
+                it shouldContain "super($type.class,$state.class);"
+                it shouldContain "IdCriterion<$type,QueryBuilder>id(){"
+                it shouldContain "EntityQuery<$type,$state,QueryBuilder>{"
+            }
         }
     }
 
@@ -79,13 +80,14 @@ internal class TypeReferencesSpec {
         "third, QueryBuilder",
         "fourth, Field",
         "fifth, Status",
-        "sixth, SourceCase"
+        "sixth, SourceCase",
+        "ninth, Status.Detail"
     )
     fun `have the package if the type of a column is named as a nested class`(
         column: String,
         type: String
     ) {
-        assertColumn(code("Plot"), column, "$PACKAGE.$type")
+        code("Plot").assertColumn(column, "$PACKAGE.$type")
     }
 
     @ParameterizedTest(name = "{1}")
@@ -99,25 +101,24 @@ internal class TypeReferencesSpec {
         column: String,
         type: String
     ) {
-        assertColumn(code("enums/Plot"), column, "$PACKAGE.enums.$type")
+        code("enums/Plot").assertColumn(column, "$PACKAGE.enums.$type")
     }
 
     @ParameterizedTest(name = "{0}")
     @CsvSource("Column", "Query", "QueryBuilder", "Field", "Status")
     fun `have the package if the type of the ID is named as a nested class`(type: String) {
-        val state = "${type}Holder"
-        assertId(code(state), state, "$PACKAGE.$type")
+        assertId(state = "${type}Holder", type = "$PACKAGE.$type")
     }
 
     @Test
     fun `be short if no nested class has the name of the type`() {
-        assertColumn(code("Plot"), "seventh", "Address")
-        assertColumn(code("enums/Plot"), "fifth", "Color")
-        assertId(code("AddressHolder"), "AddressHolder", "Address")
+        code("Plot").assertColumn("seventh", "Address")
+        code("enums/Plot").assertColumn("fifth", "Color")
+        assertId(state = "AddressHolder", type = "Address")
     }
 
     @Test
     fun `be short if the type is nested in the entity state`() {
-        assertColumn(code("Plot"), "eighth", "Status")
+        code("Plot").assertColumn("eighth", "Status")
     }
 }
