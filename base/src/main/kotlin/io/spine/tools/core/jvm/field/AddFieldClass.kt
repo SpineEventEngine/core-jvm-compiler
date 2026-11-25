@@ -41,8 +41,8 @@ import org.intellij.lang.annotations.Language
  * If the name `Field` is already taken by the message, by a type enclosing it, or by a type
  * nested in it, the class is called [`Field_`][ALTERNATIVE_NAME]. A warning is printed then.
  *
- * The class contains classes for the types of message fields.
- * Please see [FieldClassNames] for the rules of naming them.
+ * The class contains classes for the types of message fields. They are named after the types, and
+ * have different names even if the types have the same name.
  *
  * @param type The message type for the Java code of which to generate the nested class.
  * @param file The file with Java code generated for the [type].

@@ -19,8 +19,8 @@ package io.spine.tools.core.jvm.routing.processor
  * [StateUpdateRouting][io.spine.server.route.StateUpdateRouting] of a repository.
  *
  * The generated setup class will have the name after the pattern
- * [&lt;EntityClass&gt;StateUpdateRouting][classNameSuffix]. Please see [EntityClass.routingName] for
- * the entity classes that are nested in other classes.
+ * [&lt;EntityClass&gt;StateUpdateRouting][classNameSuffix].
+ * Please see [EntityClass.routingName] for entity classes nested in other classes.
  *
  * @see MulticastRouteVisitor
  */

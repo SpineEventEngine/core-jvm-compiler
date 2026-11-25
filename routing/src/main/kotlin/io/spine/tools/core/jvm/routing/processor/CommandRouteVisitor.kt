@@ -21,8 +21,8 @@ import com.squareup.kotlinpoet.ksp.toClassName
  * [EventRouting][io.spine.server.route.CommandRouting] of a repository.
  *
  * The generated setup class will have the name after the pattern
- * [&lt;EntityClass&gt;CommandRouting][classNameSuffix]. Please see [EntityClass.routingName] for
- * the entity classes that are nested in other classes.
+ * [&lt;EntityClass&gt;CommandRouting][classNameSuffix].
+ * Please see [EntityClass.routingName] for entity classes nested in other classes.
  *
  * @see RouteVisitor
  */
