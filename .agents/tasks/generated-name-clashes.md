@@ -34,11 +34,14 @@ Field classes. Names that do not clash stay as they are.
 4. A message that is named `Field`, is nested in a type named `Field`, or has its own nested type
    named `Field`: the generated class is `Field_`, and the compiler prints a warning.
    If `Field_` is taken too, the compiler reports an error.
-5. If the names are still equal, the compiler reports an error.
+5. If there are no more words for a name that still clashes, the names of types related to it are
+   chosen one by one, so that they differ. An error is reported only if there is no way to give
+   different names.
 
 Routing classes. The names of the outer classes of a nested entity come first, joined with `_`,
 always: `A_ScreenEventRouting` for `A.Screen`. Other entities keep the names of their routing
 classes. An error is reported if two entities still need the same class.
+If at least one of them is nested, the names are compared ignoring case.
 
 ## Plan
 
