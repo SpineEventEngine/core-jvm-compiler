@@ -64,8 +64,8 @@ internal abstract class QuerySupportClass(
      */
     protected val typeReferences: TypeReferences by lazy {
         TypeReferences(
+            state = type,
             file = psiFile,
-            stateClass = entityStateClass,
             typeSystem = typeSystem
         )
     }

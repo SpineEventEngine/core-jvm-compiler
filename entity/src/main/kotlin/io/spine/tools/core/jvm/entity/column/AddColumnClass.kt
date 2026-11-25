@@ -78,8 +78,8 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
 
     private fun addColumnMethods() {
         val typeReferences = TypeReferences(
+            state = type,
             file = psiFile,
-            stateClass = messageClass,
             typeSystem = typeSystem
         )
         columns.forEach { column ->

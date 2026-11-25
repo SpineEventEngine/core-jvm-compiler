@@ -112,7 +112,10 @@ internal class TypeReferencesSpec {
 
     @Test
     fun `be short if no nested class has the name of the type`() {
-        code("Plot").assertColumn("seventh", "Address")
+        code("Plot").run {
+            assertColumn("seventh", "Address")
+            assertColumn("tenth", "Field_")
+        }
         code("enums/Plot").assertColumn("fifth", "Color")
         assertId(state = "AddressHolder", type = "Address")
     }

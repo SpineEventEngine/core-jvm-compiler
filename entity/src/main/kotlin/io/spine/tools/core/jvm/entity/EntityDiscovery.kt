@@ -38,7 +38,8 @@ import io.spine.tools.core.jvm.settings.Entities
  * the [Entities.getOptionList] settings passed to the [EntityPlugin].
  * If so, [EntityStateDiscovered] is emitted. Otherwise, no events are produced.
  *
- * The Java class of an entity state must be a top-level class.
+ * The Java class of an entity state must be a top-level class, and the names of the classes
+ * nested in it for the query support must be free.
  * The reaction reports a compilation error when:
  *
  *  1. The type is nested in another message.

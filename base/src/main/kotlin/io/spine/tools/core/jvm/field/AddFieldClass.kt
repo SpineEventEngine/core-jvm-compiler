@@ -17,6 +17,7 @@ package io.spine.tools.core.jvm.field
 import com.google.protobuf.StringValue
 import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiClass
+import io.spine.annotation.Internal
 import io.spine.tools.compiler.Compilation
 import io.spine.tools.compiler.ast.Cardinality.CARDINALITY_SINGLE
 import io.spine.tools.compiler.ast.MessageType
@@ -88,7 +89,11 @@ public open class AddFieldClass(
          */
         public const val ALTERNATIVE_NAME: String = "Field_"
 
-        private fun nameFor(type: MessageType, typeSystem: TypeSystem): String =
+        /**
+         * Obtains the name of the class generated for the fields of the given message [type].
+         */
+        @Internal
+        public fun nameFor(type: MessageType, typeSystem: TypeSystem): String =
             if (NAME in takenNames(type, typeSystem)) ALTERNATIVE_NAME else NAME
 
         /**

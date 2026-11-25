@@ -47,6 +47,12 @@ message Field {
     string title = 1;
 }
 
+// A message with the name of the class generated for an entity state which has its own nested
+// type named `Field`.
+message Field_ {
+    string title = 1;
+}
+
 // A message with the name of a message nested in the states which use this type.
 message Status {
     string title = 1;
@@ -87,12 +93,27 @@ message Plot {
     // The type of this column is nested in the top-level message.
     .given.entities.references.Status.Detail ninth = 10 [(column) = true];
 
+    // This state has the class `Field`, and does not have `Field_`.
+    Field_ tenth = 11 [(column) = true];
+
     oneof source {
-        string person = 11;
-        string machine = 12;
+        string person = 12;
+        string machine = 13;
     }
 
     message Status {
+        string text = 1;
+    }
+}
+
+// An entity state for which the class `Field_` is generated because of the nested type.
+message Garden {
+    option (entity).kind = PROJECTION;
+
+    string id = 1;
+    Field_ bed = 2 [(column) = true];
+
+    message Field {
         string text = 1;
     }
 }
