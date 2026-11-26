@@ -1,0 +1,146 @@
+/*
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+syntax = "proto3";
+
+package given.entities.references;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.core.jvm.entity.given.references";
+option java_outer_classname = "ReferencesProto";
+option java_multiple_files = true;
+
+// Entity states with the columns and IDs of the types, the names of which are the same as the names
+// of the classes nested in the Java classes of the states.
+//
+// Please see `TypeReferencesSpec` for the test.
+//
+
+// The messages with the names of the classes generated for an entity state.
+
+message Column {
+    string title = 1;
+}
+
+message Query {
+    string title = 1;
+}
+
+message QueryBuilder {
+    string title = 1;
+}
+
+message Field {
+    string title = 1;
+}
+
+// A message with the name of a message nested in the states which use this type.
+message Status {
+    string title = 1;
+
+    message Detail {
+        string text = 1;
+    }
+}
+
+// An enum with the name of the enum which Protobuf generates for a `oneof` group of the state which
+// uses this type.
+enum SourceCase {
+    SOURCE_UNDEFINED = 0;
+    HAND_MADE = 1;
+}
+
+// A message with the name which no nested class has.
+message Address {
+    string city = 1;
+}
+
+// An entity state with the columns of the types from this file.
+message Plot {
+    option (entity).kind = PROJECTION;
+
+    string id = 1;
+    Column first = 2 [(column) = true];
+    Query second = 3 [(column) = true];
+    QueryBuilder third = 4 [(column) = true];
+    Field fourth = 5 [(column) = true];
+    .given.entities.references.Status fifth = 6 [(column) = true];
+    .given.entities.references.SourceCase sixth = 7 [(column) = true];
+    Address seventh = 8 [(column) = true];
+
+    // The type of this column is the message nested in this one.
+    Status eighth = 9 [(column) = true];
+
+    // The type of this column is nested in the top-level message.
+    .given.entities.references.Status.Detail ninth = 10 [(column) = true];
+
+    oneof source {
+        string person = 11;
+        string machine = 12;
+    }
+
+    message Status {
+        string text = 1;
+    }
+}
+
+// Entity states with the IDs of the types from this file.
+
+message ColumnHolder {
+    option (entity).kind = ENTITY;
+
+    Column id = 1;
+    string name = 2 [(column) = true];
+}
+
+message QueryHolder {
+    option (entity).kind = ENTITY;
+
+    Query id = 1;
+    string name = 2 [(column) = true];
+}
+
+message QueryBuilderHolder {
+    option (entity).kind = ENTITY;
+
+    QueryBuilder id = 1;
+    string name = 2 [(column) = true];
+}
+
+message FieldHolder {
+    option (entity).kind = ENTITY;
+
+    Field id = 1;
+    string name = 2 [(column) = true];
+}
+
+message StatusHolder {
+    option (entity).kind = ENTITY;
+
+    .given.entities.references.Status id = 1;
+    Status own = 2 [(column) = true];
+
+    message Status {
+        string text = 1;
+    }
+}
+
+message AddressHolder {
+    option (entity).kind = ENTITY;
+
+    Address id = 1;
+    string name = 2 [(column) = true];
+}

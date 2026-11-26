@@ -1,0 +1,83 @@
+/*
+ * Copyright 2026 CodeMatters, Lda.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
+ *
+ * https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
+ */
+
+syntax = "proto3";
+
+package given.base.reserved;
+
+import "spine/options.proto";
+
+option (type_url_prefix) = "type.spine.io";
+option java_package = "io.spine.tools.core.jvm.given.base.reserved";
+option java_outer_classname = "ReservedNamesProto";
+option java_multiple_files = true;
+
+// Types for testing the rule on the reserved names.
+//
+// Please see `ReservedNameSpec` for the test. It assumes that the reserved name is `Field`.
+//
+
+// A message which has no reserved names next to it.
+message Garden {
+    Bed bed = 1;
+    Fields fields = 2;
+
+    // The types with the reserved name are nested deeper than one level.
+    message Bed {
+        Field field = 1;
+
+        message Field {
+            string label = 1;
+        }
+    }
+
+    // The name only resembles the reserved one.
+    message Fields {
+        string label = 1;
+    }
+}
+
+// A message with a nested message which has the reserved name.
+message Form {
+    Field first = 1;
+
+    message Field {
+        string label = 1;
+    }
+}
+
+// A message with a nested enum which has the reserved name.
+message Survey {
+    Field field = 1;
+
+    enum Field {
+        FIELD_UNDEFINED = 0;
+        OPEN = 1;
+    }
+}
+
+// A message which has the reserved name.
+message Field {
+    string crop = 1;
+
+    // A message nested in the one with the reserved name.
+    message Part {
+        string crop = 1;
+
+        // A message nested deeper in the one with the reserved name.
+        message Row {
+            string crop = 1;
+        }
+    }
+}

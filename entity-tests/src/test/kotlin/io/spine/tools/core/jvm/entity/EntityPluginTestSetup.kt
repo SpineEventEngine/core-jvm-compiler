@@ -26,7 +26,12 @@ import io.spine.tools.core.jvm.entity.given.DefaultSingleFileProto.Garage
 import io.spine.tools.core.jvm.entity.given.Office
 import io.spine.tools.core.jvm.entity.given.RepeatedIdEntity
 import io.spine.tools.core.jvm.entity.given.SingleFileProto.Depot
+import io.spine.tools.core.jvm.entity.given.reserved.Board
+import io.spine.tools.core.jvm.entity.given.reserved.Form
+import io.spine.tools.core.jvm.entity.given.reserved.QueryBuilder
+import io.spine.tools.core.jvm.entity.given.reserved.Report
 import io.spine.tools.core.jvm.gradle.settings.EntitySettings
+import io.spine.tools.core.jvm.placeOf
 import io.spine.tools.core.jvm.settings.Entities
 import io.spine.tools.psi.java.method
 import java.nio.file.Path
@@ -79,6 +84,10 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
      * [Depot] and [Garage] are declared in files which do not set `java_multiple_files` to `true`:
      * the option is `false` and absent, respectively. They are rejected at compile time and
      * tested in `SingleFileEntityStateErrorSpec` and `DefaultSingleFileEntityStateErrorSpec`.
+     *
+     * [Board], [Report], [QueryBuilder], and [Form] break the rule on the reserved names, and are
+     * tested in `ReservedMessageNameErrorSpec`, `ReservedEnumNameErrorSpec`,
+     * `ReservedStateNameErrorSpec`, and `ReservedFieldNameErrorSpec`.
      */
     override fun defaultExclusions(): List<GenericDescriptor> =
         listOf(
@@ -88,6 +97,10 @@ abstract class EntityPluginTestSetup : PluginTestSetup<Entities>(
             Campus.getDescriptor(),
             Depot.getDescriptor(),
             Garage.getDescriptor(),
+            Board.getDescriptor(),
+            Report.getDescriptor(),
+            QueryBuilder.getDescriptor(),
+            Form.getDescriptor(),
         )
 }
 
@@ -155,29 +168,8 @@ internal fun Compilation.Error.shouldReportSingleFile(state: Descriptor) {
  */
 private fun Compilation.Error.shouldReport(state: Descriptor) {
     message.let {
-        it shouldContain "${state.file.name}:${state.findDeclaration()}: "
+        it shouldContain state.placeOf("message ${state.name} {")
         it shouldContain "The `(entity)` option cannot be applied"
         it shouldContain "the message `${state.fullName}`"
     }
-}
-
-/**
- * Finds the place at which this message is declared in its proto file.
- *
- * We search in the text of the file because the descriptors available from
- * the generated code do not have information about the source code.
- * The simple name of the message must be unique in the file.
- *
- * @return the one-based line and column in the form of `line:column`.
- */
-private fun Descriptor.findDeclaration(): String {
-    val classLoader = EntityPluginTestSetup::class.java.classLoader
-    val protoFile = checkNotNull(classLoader.getResource(file.name)) {
-        "Unable to find the resource `${file.name}`."
-    }
-    val declaration = "message $name {"
-    val (index, line) = protoFile.readText().lines()
-        .withIndex()
-        .single { (_, line) -> declaration in line }
-    return "${index + 1}:${line.indexOf(declaration) + 1}"
 }

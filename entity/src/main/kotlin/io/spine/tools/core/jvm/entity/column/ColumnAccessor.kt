@@ -1,27 +1,15 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.entity.column
@@ -33,9 +21,8 @@ import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.jvm.ClassName
 import io.spine.tools.compiler.jvm.getterName
 import io.spine.tools.compiler.jvm.javaCase
-import io.spine.tools.compiler.jvm.typeReference
-import io.spine.tools.compiler.type.TypeSystem
 import io.spine.query.EntityColumn
+import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.java.reference
 import io.spine.tools.psi.addFirst
 import io.spine.tools.psi.java.Environment.elementFactory
@@ -57,12 +44,12 @@ internal class ColumnAccessor(
     private val entityState: ClassName,
     private val field: Field,
     private val columnClass: PsiClass,
-    private val typeSystem: TypeSystem
+    private val typeReferences: TypeReferences
 ) {
 
     private val fieldName = field.name.value
-    private val fieldType by lazy {
-        field.typeReference(entityState, typeSystem)
+    private val fieldType: String by lazy {
+        typeReferences.of(field)
     }
 
     /**
@@ -77,7 +64,7 @@ internal class ColumnAccessor(
      * The return type of the generated method.
      */
     private val columnType: String by lazy {
-        columnType(entityState, typeSystem, field)
+        columnType(entityState, fieldType)
     }
 
     /**
@@ -132,27 +119,16 @@ internal fun columnMethodName(field: Field): String =
 
 /**
  * Obtains a string with the name of an entity column parameterized by
- * the type of the field, if specified.
+ * the type of the field.
  *
  * @param entityState The name of the entity state class.
- * @param typeSystem The instance of the [TypeSystem] to resolve the type of the given [field].
- *   Can be `null`, if [field] is `null`.
- * @param field The field of the column for composing the type.
- *   It is `null`, if the method is called for obtaining wildcard generic type name.
+ * @param fieldType The reference to the type of the field of the column.
+ *   Defaults to the wildcard `?`.
  */
-internal fun columnType(
-    entityState: ClassName,
-    typeSystem: TypeSystem? = null,
-    field: Field? = null
-): String {
-    require(!(typeSystem == null && field != null)) {
-        "Unable to obtain a field type without type system."
-    }
+internal fun columnType(entityState: ClassName, fieldType: String = "?"): String {
     // We can use a simple class name because the generated code is
     // nested inside the entity state class.
     val state = entityState.simpleName
-
-    val fieldType = field?.typeReference(entityState, typeSystem!!) ?: "?"
     @Language("JAVA") @Suppress("EmptyClass")
     val result = "$container<$state, $fieldType>"
     return result

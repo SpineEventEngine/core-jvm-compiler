@@ -1,44 +1,32 @@
 /*
- * Copyright 2025, TeamDev. All rights reserved.
+ * Copyright 2026 CodeMatters, Lda.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+ * except in compliance with the License. You may obtain a copy of the License at
  *
  * https://www.apache.org/licenses/LICENSE-2.0
  *
- * Redistribution and use in source and/or binary forms, with or without
- * modification, must retain the above copyright notice and the following
- * disclaimer.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions
+ * and limitations under the License.
  */
 
 package io.spine.tools.core.jvm.entity.column
 
 import com.google.common.collect.ImmutableSet
-import com.intellij.psi.PsiAnnotation
 import com.intellij.psi.PsiMethod
 import io.spine.tools.compiler.ast.Field
 import io.spine.tools.compiler.ast.MessageType
 import io.spine.tools.compiler.ast.columns
 import io.spine.tools.compiler.context.CodegenContext
-import io.spine.tools.compiler.jvm.render.CreateNestedClass
 import io.spine.tools.compiler.render.SourceFile
 import io.spine.tools.code.Java
-import io.spine.tools.core.jvm.GeneratedAnnotation
+import io.spine.tools.core.jvm.CreateReservedClass
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.COLUMN_CLASS_NAME
 import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.DEFINITIONS_METHOD_NAME
+import io.spine.tools.core.jvm.entity.EntityPlugin.Companion.ENTITY_STATE
+import io.spine.tools.core.jvm.entity.TypeReferences
 import io.spine.tools.java.reference
 import io.spine.tools.psi.java.Environment.elementFactory
 import io.spine.tools.psi.java.addLast
@@ -66,11 +54,12 @@ import org.intellij.lang.annotations.Language
  * @see render
  */
 public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: CodegenContext) :
-    CreateNestedClass(type, file, COLUMN_CLASS_NAME, context) {
+    CreateReservedClass(type, file, COLUMN_CLASS_NAME, context) {
 
     private val columns: List<Field> = type.columns
 
-    override fun createAnnotation(): PsiAnnotation = GeneratedAnnotation.forPsi()
+    override val ownerKind: String
+        get() = ENTITY_STATE
 
     @Language("JAVA") @Suppress("EmptyClass")
     override fun classJavadoc(): String = """
@@ -88,8 +77,18 @@ public class AddColumnClass(type: MessageType, file: SourceFile<Java>, context: 
     }
 
     private fun addColumnMethods() {
+        val typeReferences = TypeReferences(
+            file = psiFile,
+            stateClass = messageClass,
+            typeSystem = typeSystem
+        )
         columns.forEach { column ->
-            ColumnAccessor(messageClass, column, cls, typeSystem).run {
+            ColumnAccessor(
+                entityState = messageClass,
+                field = column,
+                columnClass = cls,
+                typeReferences = typeReferences
+            ).run {
                 render()
             }
         }

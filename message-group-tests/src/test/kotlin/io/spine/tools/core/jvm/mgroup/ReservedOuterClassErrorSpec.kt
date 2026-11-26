@@ -16,8 +16,10 @@ package io.spine.tools.core.jvm.mgroup
 
 import io.kotest.matchers.string.shouldContain
 import io.spine.base.EventMessageField
+import io.spine.given.naming.field.Field.Plot
 import io.spine.testing.compiler.assertCompilationError
 import io.spine.tools.core.jvm.PluginTestSetup
+import io.spine.tools.core.jvm.placeOf
 import io.spine.tools.core.jvm.settings.GroupSettings
 import java.nio.file.Path
 import org.junit.jupiter.api.DisplayName
@@ -25,13 +27,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 /**
- * Tests that the compilation fails if there is no name for the class generated for
- * the fields of a message.
+ * Tests that the compilation fails if the name of the class generated for the fields of
+ * a message belongs to the outer Java class of the file.
  *
- * Please see the `given/naming/home.proto` file for the type used in the test.
+ * Please see the `given/naming/field.proto` file for the type used in the test.
  */
 @DisplayName("`AddFieldClass` should")
-internal class FieldClassClashErrorSpec {
+internal class ReservedOuterClassErrorSpec {
 
     companion object : PluginTestSetup<GroupSettings>(
         MessageGroupPlugin(),
@@ -39,7 +41,7 @@ internal class FieldClassClashErrorSpec {
     ) {
         override fun createSettings(projectDir: Path): GroupSettings {
             val codegenConfig = createCompilerSettings(projectDir)
-            codegenConfig.forMessage("given.naming.home.Poll") {
+            codegenConfig.forMessage(Plot.getDescriptor().fullName) {
                 it.markFieldsAs(EventMessageField::class.java.canonicalName)
             }
             return codegenConfig.toProto().groupSettings
@@ -47,14 +49,16 @@ internal class FieldClassClashErrorSpec {
     }
 
     @Test
-    fun `report that all the names of the generated class are taken`(@TempDir projectDir: Path) {
+    fun `reject the outer Java class named 'Field'`(@TempDir projectDir: Path) {
         val (error, _) = assertCompilationError {
             runPipeline(projectDir)
         }
+        val message = Plot.getDescriptor()
         error.message.let {
-            it shouldContain "`given.naming.home.Poll`"
-            it shouldContain "both `Field` and `Field_`"
-            it shouldContain "rename"
+            it shouldContain message.placeOf("message Plot {")
+            it shouldContain "The outer Java class of the file cannot have the name `Field`."
+            it shouldContain "for the message `${message.fullName}`."
+            it shouldContain "Please set the `java_outer_classname` option to another name."
         }
     }
 }
